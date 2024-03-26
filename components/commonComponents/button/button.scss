@@ -1,4 +1,4 @@
-.orangeBtn {
+.primary {
   width: 6.5rem;
   height: 2.5rem;
   background: transparent
@@ -27,24 +27,26 @@
   color: orangered;
 }
 
-  .topbtns {
-    width: 142px;
-    height: 34px;
-    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    border: 1px solid #d8d8d8;
-    border-radius: 6px;
-    opacity: 1;
-  }
-  .topbtns:hover {
-    width: 142px;
-    height: 34px;
-    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-    background: transparent linear-gradient(112deg, #f09819 0%, #ff512f 100%) 0%
-      0% no-repeat padding-box;
-    color: #ffffff;
-    border: 1px solid #d8d8d8;
-    border-radius: 6px;
-    opacity: 1;
-  }
-
+// .primaryAnimated {
+//   width: 142px;
+//   height: 34px;
+//   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+//   background: #ffffff 0% 0% no-repeat padding-box;
+//   border: 1px solid #d8d8d8;
+//   border-radius: 6px;
+//   opacity: 1;
+// }
+.primaryAnimated {
+  width: 142px;
+  height: 34px;
+  font-size: small;
+//   transform: translateY(-1px) scale(1.1);
+//   transition-duration: 300ms;
+  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+  background: transparent linear-gradient(112deg, #f09819 0%, #ff512f 100%) 0%
+    0% no-repeat padding-box;
+  color: #ffffff;
+  border: 1px solid #d8d8d8;
+  border-radius: 6px;
+  opacity: 1;
+}

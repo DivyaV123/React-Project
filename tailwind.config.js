@@ -18,6 +18,11 @@ module.exports = {
     },
     extend: {
       colors: {
+        backgroundBlue: '#DEE6FE4D',
+        'dark-gray': '#454545',
+        'brown': '#4D2121',
+        'ash': '#575757',
+        'header-orange': 'bg-gradient-to-b from-transparent to-[#F09819] via-[#FF512F]',
         border: "#FF512F",
         input: "#FF512F",
         ring: "hsl(var(--ring))",
@@ -30,9 +35,6 @@ module.exports = {
         secondary: {
           DEFAULT: "#FF512F",
           foreground: "white",
-        },
-        textash: {
-          DEFAULT:  "#575757",
         },
         destructive: {
           DEFAULT: "hsl(var(--destructive))",
@@ -73,8 +75,33 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
+        'hover-underline-animation:hover::after': '@apply transform scaleX(1) origin-bottom-left',
+        "hover-underline-animation::after": '@apply absolute w-full transform scaleX(0) h-2 bottom-0 left-0 bg-yellow-400 origin-bottom-right transition-transform ease-out duration-250',
       },
     },
+    fontWeight: {
+      thin: '100',
+      hairline: '100',
+      extralight: '200',
+      light: '300',
+      normal: '400',
+      medium: '500',
+      semibold: '600',
+      bold: '700',
+      extrabold: '800',
+      'extra-bold': '800',
+      black: '900',
+    },
+    fontSize: {
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+    }
   },
   plugins: [require("tailwindcss-animate")],
+
 }

@@ -1,5 +1,5 @@
 import React from 'react'
-
+import './navitems.scss'
 
 
 function NavItems() {
@@ -8,7 +8,7 @@ function NavItems() {
         <div className='flex flex-wrap space-x-9 cursor-pointer font-medium'>
             {items.map((navItem, index) => {
                 return (
-                    <span key={index} className='hover:text-primary-foreground'>{navItem}</span>
+                    <span key={index} className='hover-underline-animation'>{navItem}</span>
                 )
             })}
         </div>

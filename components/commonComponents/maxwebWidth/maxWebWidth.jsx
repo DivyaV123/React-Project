@@ -1,11 +1,12 @@
-import React from 'react'
+import { cn } from "@/lib/utils";
+import React from "react";
 
-function MaxWebWidth({ children }) {
-    return (
-        <section className='w-9/10'>
-            {children}
-        </section>
-    )
+function MaxWebWidth({ children, sectionStyling, articalStyling, logo }) {
+  return (
+    <section className={cn(`w-full  ${sectionStyling}`)}>
+      <article className={cn(`w-[87%] m-auto ${articalStyling}`)}>{children}</article>
+    </section>
+  );
 }
 
-export default MaxWebWidth
+export default MaxWebWidth;

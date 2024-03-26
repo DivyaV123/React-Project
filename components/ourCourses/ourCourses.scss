@@ -8,26 +8,7 @@
     color: #000000;
     opacity: 1;
   }
-  .topbtns {
-    width: 142px;
-    height: 34px;
-    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-    background: #ffffff 0% 0% no-repeat padding-box;
-    border: 1px solid #d8d8d8;
-    border-radius: 6px;
-    opacity: 1;
-  }
-  .topbtns:hover {
-    width: 142px;
-    height: 34px;
-    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-    background: transparent linear-gradient(112deg, #f09819 0%, #ff512f 100%) 0%
-      0% no-repeat padding-box;
-    color: #ffffff;
-    border: 1px solid #d8d8d8;
-    border-radius: 6px;
-    opacity: 1;
-  }
+
   .coursemain > article {
     display: flex;
     align-items: center;

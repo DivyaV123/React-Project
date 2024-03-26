@@ -1,15 +1,13 @@
 import React from 'react'
-import Navbar from '../navbar/navbar'
 import OurCourse from '../ourCourses/ourCourse'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
+import NaveHome from '../navHome/naveHome'
 
 function Homepage() {
     return (
-        <MaxWebWidth>
-            <Navbar />
-            {/* <InitialCorosal/> */}
-            <OurCourse />
-        </MaxWebWidth>
+        <>
+            <NaveHome />
+        </>
     )
 }
 
