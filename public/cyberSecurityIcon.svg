@@ -1,0 +1,9 @@
+<svg id="icon_menu_normal_8" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="background" width="24" height="24" fill="none"/>
+  <g id="icon_cyber_security">
+    <rect id="Rectangle_17309" data-name="Rectangle 17309" width="24" height="24" fill="none"/>
+    <path id="Path_32196" data-name="Path 32196" d="M5.238,6.086,12,3l6.762,3.086a21.878,21.878,0,0,1,0,6.171c-.858,3.748-3.526,5.435-5.8,7.085a1.665,1.665,0,0,1-1.953.036c-2.039-1.456-4.939-3.471-5.774-7.12A21.879,21.879,0,0,1,5.238,6.086Z" fill="none" stroke="#454545" stroke-width="1.5"/>
+    <circle id="Ellipse_571" data-name="Ellipse 571" cx="3.25" cy="3.25" r="3.25" transform="translate(8.75 7.75)" fill="none" stroke="#454545" stroke-width="1.5"/>
+    <path id="Path_32197" data-name="Path 32197" d="M11,11.2l.857.8L13,10" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>
