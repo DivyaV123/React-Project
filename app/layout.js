@@ -1,6 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import Head from 'next/head';
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -16,6 +17,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <Head>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" />
+      </Head>
       <body
         className={cn(
           "relative h-full antialiased font-sans",
