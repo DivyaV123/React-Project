@@ -1,0 +1,20 @@
+<svg id="icon_menu_normal_6" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="background" width="24" height="24" fill="none"/>
+  <g id="icon_data_science">
+    <rect id="Rectangle_17310" data-name="Rectangle 17310" width="24" height="24" fill="none"/>
+    <path id="Path_32198" data-name="Path 32198" d="M9.6,18.833h3.8c3.167,0,4.433-1.267,4.433-4.433V10.6c0-3.167-1.267-4.433-4.433-4.433H9.6c-3.167,0-4.433,1.267-4.433,4.433v3.8C5.167,17.567,6.433,18.833,9.6,18.833Z" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32199" data-name="Path 32199" d="M10.313,16.458h2.375c1.979,0,2.771-.792,2.771-2.771V11.313c0-1.979-.792-2.771-2.771-2.771H10.313c-1.979,0-2.771.792-2.771,2.771v2.375C7.542,15.667,8.333,16.458,10.313,16.458Z" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32200" data-name="Path 32200" d="M8.341,6.167V4.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32201" data-name="Path 32201" d="M11.5,6.167V4.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32202" data-name="Path 32202" d="M14.667,6.167V4.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32203" data-name="Path 32203" d="M17.833,9.333h1.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32204" data-name="Path 32204" d="M17.833,12.5h1.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32205" data-name="Path 32205" d="M17.833,15.667h1.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32206" data-name="Path 32206" d="M14.667,18.833v1.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32207" data-name="Path 32207" d="M11.508,18.833v1.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32208" data-name="Path 32208" d="M8.341,18.833v1.583" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32209" data-name="Path 32209" d="M3.583,9.333H5.167" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32210" data-name="Path 32210" d="M3.583,12.5H5.167" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+    <path id="Path_32211" data-name="Path 32211" d="M3.583,15.667H5.167" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>

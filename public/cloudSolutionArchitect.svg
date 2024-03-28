@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66" height="66" viewBox="0 0 66 66">
+  <defs>
+    <linearGradient id="linear-gradient" x1="-0.072" y1="-0.079" x2="-0.061" y2="-0.079" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#114a8b"/>
+      <stop offset="1" stop-color="#0669bc"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="-0.052" y1="-0.079" x2="-0.044" y2="-0.079" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-opacity="0.302"/>
+      <stop offset="0.07" stop-opacity="0.2"/>
+      <stop offset="0.32" stop-opacity="0.102"/>
+      <stop offset="0.62" stop-opacity="0.051"/>
+      <stop offset="1" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-3" x1="-0.577" y1="-0.079" x2="-0.566" y2="-0.079" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#3ccbf4"/>
+      <stop offset="1" stop-color="#2892df"/>
+    </linearGradient>
+  </defs>
+  <g id="Image" transform="translate(-16 -94)">
+    <rect id="Image_background" width="66" height="66" transform="translate(16 94)" fill="#fff"/>
+    <g id="azure-icon" transform="translate(-5.114 61.73)">
+      <path id="Path_43416" data-name="Path 43416" d="M41.731,34.5h18.3l-19,56.3a2.925,2.925,0,0,1-2.765,1.985H24.022a2.913,2.913,0,0,1-2.761-3.845l17.7-52.457A2.925,2.925,0,0,1,41.731,34.5Z" transform="translate(2.076 1.626)" fill="url(#linear-gradient)"/>
+      <path id="Path_43417" data-name="Path 43417" d="M179.94,319.374H150.911A1.343,1.343,0,0,0,150,321.7l18.653,17.409a2.931,2.931,0,0,0,2,.788h16.437Z" transform="translate(-109.533 -245.484)" fill="#0078d4"/>
+      <path id="Path_43418" data-name="Path 43418" d="M41.757,34.505a2.9,2.9,0,0,0-2.772,2.024L21.31,88.9a2.91,2.91,0,0,0,2.74,3.893H38.671a3.127,3.127,0,0,0,2.4-2.039l3.525-10.388L57.184,92.11a2.979,2.979,0,0,0,1.874.683H75.433L68.251,72.269l-20.937,0L60.129,34.505Z" transform="translate(2.05 1.62)" fill="url(#linear-gradient-2)"/>
+      <path id="Path_43419" data-name="Path 43419" d="M200.583,36.488a2.921,2.921,0,0,0-2.762-1.982h-20.4a2.921,2.921,0,0,1,2.762,1.982l17.7,52.459a2.915,2.915,0,0,1-2.762,3.847h20.4a2.915,2.915,0,0,0,2.761-3.847l-17.7-52.459Z" transform="translate(-133.396 1.62)" fill="url(#linear-gradient-3)"/>
+    </g>
+  </g>
+</svg>
