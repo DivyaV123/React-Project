@@ -17,7 +17,7 @@ function TopNavbar() {
                 </div>
             </aside>
             <aside >
-                <CommonIconsComponent />
+                <CommonIconsComponent lite={false} />
             </aside>
         </MaxWebWidth>
     )

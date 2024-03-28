@@ -8,9 +8,9 @@ function Section3() {
         <CarosalSection sectionStyle="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-4 mb-4 mt-5">
             <aside className='flex items-center'>
                 <article>
-                    <header className='headerArticle mb-6'>
-                        <h1 className='mainHead text-brown'>Learn form our</h1>
-                        <p className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-3 mt-2'>Expert</p>
+                    <header className='headerArticle mb-4'>
+                        <h1 className='mainHead text-brown'>Learn from our</h1>
+                        <p className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-3 mt-2'>Experts</p>
                         <p className='paragraph font-medium mb-3  pb-4 text-ash'>With centers across the Globe, the institute is a platform <br />
                             where young minds are given the opportunity to build <br />
                             successful careers.</p>

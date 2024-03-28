@@ -2,9 +2,10 @@
 import React from 'react'
 import Button from '../commonComponents/button/Button'
 
+
 function RelevantTraining() {
     return (
-        <section className='grid grid-cols-2 gap-4 mt-6'>
+        <section className='grid grid-cols-2 gap-4 mt-6 mb-8'>
             <aside className='flex items-center'>
                 <div>
                     <header>

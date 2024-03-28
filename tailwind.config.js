@@ -19,9 +19,11 @@ module.exports = {
     extend: {
       colors: {
         backgroundBlue: '#DEE6FE4D',
+        'footer-blue': '#002248',
         'dark-gray': '#454545',
         'brown': '#4D2121',
         'ash': '#575757',
+        'white': '#FFFFFF',
         'header-orange': 'bg-gradient-to-b from-transparent to-[#F09819] via-[#FF512F]',
         border: "#FF512F",
         input: "#FF512F",
@@ -90,9 +92,10 @@ module.exports = {
       bold: '700',
       extrabold: '800',
       'extra-bold': '800',
-      black: '900',
+      black: '#000000',
     },
     fontSize: {
+      xs:'0.75rem',
       sm: '0.8rem',
       base: '1rem',
       xl: '1.25rem',
@@ -100,6 +103,10 @@ module.exports = {
       '3xl': '1.953rem',
       '4xl': '2.441rem',
       '5xl': '3.052rem',
+    },
+    backgroundImage: {
+      'illustrate_wave': "url('/illustrate_wave.svg')",
+      'footer-texture': "url('')",
     }
   },
   plugins: [require("tailwindcss-animate")],

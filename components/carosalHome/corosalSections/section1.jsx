@@ -6,7 +6,7 @@ import Button from '@/components/commonComponents/button/Button'
 
 function Section1() {
     return (
-        <CarosalSection sectionStyle="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-4 mb-4 mt-5">
+        <CarosalSection sectionStyle="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-2 gap-4">
             <aside className='flex items-center'>
                 <article className='headerArticle'>
                     <h1 className='font-bold  mainHead pb-4 text-dark-gray font-light opacity-100'>Largest Software</h1>
