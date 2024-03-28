@@ -6,7 +6,7 @@ const Branches = () => {
     {
       icon: "/softwareArchIcon.svg",
       title: "Software Architecture",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
       sublist:[
         {
           image: "/systemDesign.svg",
@@ -70,7 +70,7 @@ const Branches = () => {
     {
       icon: "/softwaredevicon.svg",
       title: "Software Development",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
       sublist:[
         {
           image: "/networksupport.svg",
@@ -107,20 +107,20 @@ const Branches = () => {
       icon: "/softwareTestingIcon.svg",
       title: "Software Testing",
       list: [
-        { icon: "/email.svg", title: "Software Testing Master Course", arrow: "/rightArrow.svg"},
-        { icon: "/email.svg", title: "Automation With Selenium", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Advance Test Automation - SDET", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Automation Architect", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Performance Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Web Service / API Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Mobile App Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Security Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Manual Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Specialised Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Domain Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "ISTQB Testing", arrow: "/rightArrow.svg" },
+        { icon: "/email.svg", title: "Software Testing Master Course", arrow: "/arrowIconDark.svg"},
+        { icon: "/email.svg", title: "Automation With Selenium", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Advance Test Automation - SDET", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Automation Architect", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Performance Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Web Service / API Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Mobile App Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Security Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Manual Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Specialised Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Domain Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "ISTQB Testing", arrow: "/arrowIconDark.svg" },
       ],
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
       sublist:[
         {
           image: "/networksupport.svg",
@@ -156,67 +156,67 @@ const Branches = () => {
     {
       icon: "/cloudComputingIcon.svg",
       title: "Devops",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/dataScienceIcon.svg",
       title: "DevOps",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/aimlIcon.svg",
       title: "Cloud Computing",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/cyberSecurityIcon.svg",
       title: "Data Science",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/bankingIcon.svg",
       title: "AI/ML",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/projectManagementIcon.svg",
       title: "Cyber Security",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/agileScrumIcon.svg",
       title: "Banking",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/supportIcon.svg",
       title: "Project Management",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/abroadStudiesICon.svg",
       title: "Agile Scrum",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "Support",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "Abroad Studies",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "HR",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "SAP",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "Salesforce",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -233,7 +233,7 @@ const Branches = () => {
             <img src={courseItem.icon} />
             <div className="flex justify-between grow">
               <button className="p-2">{courseItem.title}</button>
-              <img src={courseItem.arrow} className="" />
+              <img src={courseItem.arrow} className="w-4" />
             </div>
           </div>
         ))}
@@ -251,7 +251,7 @@ const Branches = () => {
                 <img src={item.icon} />
                 <div className="flex justify-between grow">
                   <button className="p-2">{item.title}</button>
-                  <img src={item.arrow} className="" />
+                  <img src={item.arrow} className="w-4" />
                 </div>
               </div>
             ))}

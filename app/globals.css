@@ -68,6 +68,18 @@
     --ring: 212.7 26.8% 83.9%;
   }
 }
+
+.gradient-text {
+  color: transparent;
+  background-clip: inherit;
+  background: linear-gradient(to right, #f09819, #ff512f);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.gradient-bg:hover{
+  background: linear-gradient(to right, #f09819, #ff512f);
+}
  
 /* @layer base {
   * {

@@ -10,12 +10,12 @@ function Section2() {
             <aside className='flex items-center'>
                 <article>
                     <p className='headerArticle mb-6'>
-                        <span className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>2.52L </span> <span className='mainHead text-brown'> Students have</span><br />
-                        <span className='mainHead text-brown'> Students have </span> <span className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>3100+ </span> <span className='mainHead text-brown'>Companies</span>
+                        <span className='text-xl text-primary-600 gradient-text subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>2.52L </span> <span className='mainHead text-brown'> Students have</span><br />
+                        <span className='mainHead text-brown'> Students have </span> <span className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2 gradient-text'>3100+ </span> <span className='mainHead text-brown'>Companies</span>
                     </p>
                     <article>
                         <Button
-                            className='primaryAnimated'
+                            className='primary'
                             title="Enquire now"
                         />
                     </article>

@@ -6,100 +6,100 @@ const Courses = () => {
     {
       icon: "/softwareArchIcon.svg",
       title: "Software Architecture",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
       sublist:[
         {
           image: "/systemDesign.svg",
           title: "System Design for Architects",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/advanceSystemDesign.svg",
           title: "Advance System Design for Senior Architects",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/uiDesign.svg",
           title: "ui Design for Architects",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/testAutomation.svg",
           title: "Test Automation Architect",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/performanceTest.svg",
           title: "Performance Test Architect",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/cloudPlatform.svg",
           title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/advanceDevops.svg",
           title: "Advance Devops course for Architects",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/securityTechArchitect.svg",
           title: "Security Test Architect",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/advanceDataStructure.svg",
           title: "Advance Data Structure",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         }
       ]
     },
     {
       icon: "/softwaredevicon.svg",
       title: "Software Development",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
       sublist:[
         {
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         }
       ]
     },
@@ -107,116 +107,116 @@ const Courses = () => {
       icon: "/softwareTestingIcon.svg",
       title: "Software Testing",
       list: [
-        { icon: "/email.svg", title: "Software Testing Master Course", arrow: "/rightArrow.svg"},
-        { icon: "/email.svg", title: "Automation With Selenium", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Advance Test Automation - SDET", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Automation Architect", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Performance Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Web Service / API Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Mobile App Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Security Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Manual Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Specialised Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "Domain Testing", arrow: "/rightArrow.svg" },
-        { icon: "/email.svg", title: "ISTQB Testing", arrow: "/rightArrow.svg" },
+        { icon: "/email.svg", title: "Software Testing Master Course", arrow: "/arrowIconDark.svg"},
+        { icon: "/email.svg", title: "Automation With Selenium", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Advance Test Automation - SDET", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Automation Architect", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Performance Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Web Service / API Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Mobile App Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Security Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Manual Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Specialised Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "Domain Testing", arrow: "/arrowIconDark.svg" },
+        { icon: "/email.svg", title: "ISTQB Testing", arrow: "/arrowIconDark.svg" },
       ],
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
       sublist:[
         {
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         }
       ]
     },
     {
       icon: "/cloudComputingIcon.svg",
       title: "Devops",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/dataScienceIcon.svg",
       title: "DevOps",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/aimlIcon.svg",
       title: "Cloud Computing",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/cyberSecurityIcon.svg",
       title: "Data Science",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/bankingIcon.svg",
       title: "AI/ML",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/projectManagementIcon.svg",
       title: "Cyber Security",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/agileScrumIcon.svg",
       title: "Banking",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/supportIcon.svg",
       title: "Project Management",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/abroadStudiesICon.svg",
       title: "Agile Scrum",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "Support",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "Abroad Studies",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "HR",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "SAP",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },{
       icon: "/email.svg",
       title: "Salesforce",
-      arrow: "/rightArrow.svg",
+      arrow: "/arrowIconDark.svg",
     },
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -232,8 +232,8 @@ const Courses = () => {
           >
             <img src={courseItem.icon} />
             <div className="flex justify-between grow">
-              <button className="p-2">{courseItem.title}</button>
-              <img src={courseItem.arrow} className="" />
+              <button className="p-2 text-sm">{courseItem.title}</button>
+              <img src={courseItem.arrow} className="w-4" />
             </div>
           </div>
         ))}
@@ -251,7 +251,7 @@ const Courses = () => {
                 <img src={item.icon} />
                 <div className="flex justify-between grow">
                   <button className="p-2">{item.title}</button>
-                  <img src={item.arrow} className="" />
+                  <img src={item.arrow} className="w-4" />
                 </div>
               </div>
             ))}
@@ -260,8 +260,8 @@ const Courses = () => {
         <div className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2`}>
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map((content, index) => (
             <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-5`}>
-              <div className="flex h-16.5">
-                <img className="h-16.5 w-16.5 " src={content.image} />
+              <div className="flex h-10 gap-1.5">
+                <img className="h-10 w-10" src={content.image} />
                 <h3 className="text-left h-16 text-sm">{content.title}</h3>
               </div>
               <div>

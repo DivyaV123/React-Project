@@ -88,11 +88,12 @@ function OurBranchesHome() {
                         Our Branches
                     </h1>
                 </header>
-                <article className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-4 mt-5'>
+                <article className='flex flex-wrap justify-center gap-4'>
                     {branches.map((elements) => {
                         const stylingImg = {
                             backgroundImage: `url('${elements.immage}')`,
-                            borderRadius: "7px !important"
+                            borderRadius: "7px !important",
+                            flexBasis:'23%'
                         }
                         return (
                             <div key={elements.id} className='bg-no-repeat bg-cover' style={stylingImg}>
@@ -110,7 +111,7 @@ function OurBranchesHome() {
                 </article>
 
             </section>
-            <section className='mb-6'>
+            <section className='flex justify-center mt-8 mb-8'>
                 <TrainingMode />
             </section>
         </MaxWebWidth>
