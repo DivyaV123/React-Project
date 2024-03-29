@@ -5,31 +5,31 @@ const Tutions = () => {
   const courses = [
     {
       icon: "/softwareArchIcon.svg",
-      title: "Software Architecture",
+      title: "BE",
       arrow: "/arrowIconDark.svg",
       sublist:[
         {
-          image: "/systemDesign.svg",
-          title: "System Design for Architects",
+          image: "/WebTechnologies.svg",
+          title: "Web Technologies",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },
         {
-          image: "/advanceSystemDesign.svg",
-          title: "Advance System Design for Senior Architects",
+          image: "/RDBMS.svg",
+          title: "RDBMS",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },
         {
-          image: "/uiDesign.svg",
-          title: "ui Design for Architects",
+          image: "/Operatingsystem.svg",
+          title: "Operatingsystem",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },{
-          image: "/testAutomation.svg",
-          title: "Test Automation Architect",
+          image: "/Networking.svg",
+          title: "Networking",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },
         {
-          image: "/performanceTest.svg",
-          title: "Performance Test Architect",
+          image: "/Mathematics.svg",
+          title: "Mathematics",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },
         {
@@ -69,7 +69,7 @@ const Tutions = () => {
     },
     {
       icon: "/softwaredevicon.svg",
-      title: "Software Development",
+      title: "BCA",
       arrow: "/arrowIconDark.svg",
       sublist:[
         {
@@ -105,21 +105,7 @@ const Tutions = () => {
     },
     {
       icon: "/softwareTestingIcon.svg",
-      title: "Software Testing",
-      list: [
-        { icon: "/email.svg", title: "Software Testing Master Course", arrow: "/arrowIconDark.svg"},
-        { icon: "/email.svg", title: "Automation With Selenium", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Advance Test Automation - SDET", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Automation Architect", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Performance Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Web Service / API Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Mobile App Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Security Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Manual Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Specialised Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "Domain Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "/email.svg", title: "ISTQB Testing", arrow: "/arrowIconDark.svg" },
-      ],
+      title: "BSc",
       arrow: "/arrowIconDark.svg",
       sublist:[
         {
@@ -155,74 +141,39 @@ const Tutions = () => {
     },
     {
       icon: "/cloudComputingIcon.svg",
-      title: "Devops",
+      title: "BBM",
       arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/dataScienceIcon.svg",
-      title: "DevOps",
+      title: "M Tech",
       arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/aimlIcon.svg",
-      title: "Cloud Computing",
+      title: "MCA",
       arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/cyberSecurityIcon.svg",
-      title: "Data Science",
+      title: "MSc",
       arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/bankingIcon.svg",
-      title: "AI/ML",
+      title: "Diploma",
       arrow: "/arrowIconDark.svg",
     },
     {
       icon: "/projectManagementIcon.svg",
-      title: "Cyber Security",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "/agileScrumIcon.svg",
-      title: "Banking",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "/supportIcon.svg",
-      title: "Project Management",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "/abroadStudiesICon.svg",
-      title: "Agile Scrum",
-      arrow: "/arrowIconDark.svg",
-    },{
-      icon: "/email.svg",
-      title: "Support",
-      arrow: "/arrowIconDark.svg",
-    },{
-      icon: "/email.svg",
-      title: "Abroad Studies",
-      arrow: "/arrowIconDark.svg",
-    },{
-      icon: "/email.svg",
-      title: "HR",
-      arrow: "/arrowIconDark.svg",
-    },{
-      icon: "/email.svg",
-      title: "SAP",
-      arrow: "/arrowIconDark.svg",
-    },{
-      icon: "/email.svg",
-      title: "Salesforce",
+      title: "12th",
       arrow: "/arrowIconDark.svg",
     },
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
   return (
-    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px]">
-      <div className={`bg-gradient-to-b from-muted/50 to-muted p-2 xl:w-[23%] 2xl:w-[17%] `}>
+    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px] overflow-auto">
+      <div className={`bg-gradient-to-b from-muted/50 to-muted p-2 xl:w-[17%] 2xl:w-[11%] `}>
         {courses.map((courseItem, index) => (
           <div
             key={index}
@@ -230,18 +181,18 @@ const Tutions = () => {
             onMouseEnter={() => setHoveredIndex(index)}
             // onMouseLeave={() => setHoveredIndex()}
           >
-            <img src={courseItem.icon} />
+            {/* <img src={courseItem.icon} /> */}
             <div className="flex justify-between grow">
-              <button className="p-2">{courseItem.title}</button>
+              <button className="p-2 text-sm">{courseItem.title}</button>
               <img src={courseItem.arrow} className="w-4" />
             </div>
           </div>
         ))}
       </div>
-      <div className="xl:w-[77%] 2xl:w-[83%] flex overflow-auto">
-        {hoveredIndex !== null && courses[hoveredIndex].list && (
+      <div className="xl:w-[83%] 2xl:w-[89%] flex overflow-auto">
+        {hoveredIndex !== null && courses[hoveredIndex]?.list && (
           <div className="xl:w-[41%] 2xl:w-[26%] bg-gradient-to-b from-muted/50 to-muted p-2">
-            {courses[hoveredIndex].list.map((item, itemIndex) => (
+            {courses[hoveredIndex]?.list?.map((item, itemIndex) => (
               <div
                 key={itemIndex}
                 className="flex justify-between grow"
@@ -250,19 +201,19 @@ const Tutions = () => {
               >
                 <img src={item.icon} />
                 <div className="flex justify-between grow">
-                  <button className="p-2">{item.title}</button>
+                  <button className="p-2 text-sm">{item.title}</button>
                   <img src={item.arrow} className="w-4" />
                 </div>
               </div>
             ))}
           </div>
         )}
-        <div className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2`}>
+        <div className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2`}>
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map((content, index) => (
-            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-5`}>
-              <div className="flex h-16.5">
-                <img className="h-16.5 w-16.5 " src={content.image} />
-                <h3 className="text-left h-16 text-sm">{content.title}</h3>
+            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-5`}>
+              <div className="flex h-10 gap-1.5">
+                <img className="h-10 w-10 " src={content.image} />
+                <h3 className="text-left h-10 text-sm font-bold">{content.title}</h3>
               </div>
               <div>
                 <article className=" text-sm">{content.description}</article>

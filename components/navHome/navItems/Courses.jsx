@@ -221,7 +221,7 @@ const Courses = () => {
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
   return (
-    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px]">
+    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px] overflow-auto">
       <div className={`bg-gradient-to-b from-muted/50 to-muted p-2 xl:w-[23%] 2xl:w-[17%] `}>
         {courses.map((courseItem, index) => (
           <div
@@ -238,7 +238,7 @@ const Courses = () => {
           </div>
         ))}
       </div>
-      <div className="xl:w-[77%] 2xl:w-[83%] flex overflow-auto">
+      <div className="xl:w-[77%] 2xl:w-[83%] flex">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
           <div className="xl:w-[41%] 2xl:w-[26%] bg-gradient-to-b from-muted/50 to-muted p-2">
             {courses[hoveredIndex].list.map((item, itemIndex) => (
@@ -250,7 +250,7 @@ const Courses = () => {
               >
                 <img src={item.icon} />
                 <div className="flex justify-between grow">
-                  <button className="p-2">{item.title}</button>
+                  <button className="p-2 text-sm">{item.title}</button>
                   <img src={item.arrow} className="w-4" />
                 </div>
               </div>
@@ -260,9 +260,9 @@ const Courses = () => {
         <div className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2`}>
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map((content, index) => (
             <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-5`}>
-              <div className="flex h-10 gap-1.5">
-                <img className="h-10 w-10" src={content.image} />
-                <h3 className="text-left h-16 text-sm">{content.title}</h3>
+              <div className="flex h-10 gap-1.5 ">
+                <img className="h-10 w-10 " src={content.image} />
+                <h3 className="text-left h-16 text-sm font-bold">{content.title}</h3>
               </div>
               <div>
                 <article className=" text-sm">{content.description}</article>
