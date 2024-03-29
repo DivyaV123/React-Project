@@ -10,14 +10,14 @@ function Section3() {
                 <article>
                     <header className='headerArticle mb-4'>
                         <h1 className='mainHead text-brown'>Learn from our</h1>
-                        <p className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-3 mt-2'>Experts</p>
+                        <p className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-3 mt-2 gradient-text'>Experts</p>
                         <p className='paragraph font-medium mb-3  pb-4 text-ash'>With centers across the Globe, the institute is a platform <br />
                             where young minds are given the opportunity to build <br />
                             successful careers.</p>
                     </header>
                     <article>
                         <Button
-                            className='primaryAnimated'
+                            className='primary'
                             title="Enquire now"
                         />
                     </article>

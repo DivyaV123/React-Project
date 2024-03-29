@@ -9,14 +9,14 @@ function Section4() {
                 <article>
                     <header className='headerArticle mb-6'>
                         <p>
-                            <span className='mainHead text-brown'>Our </span><span className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-3 mt-2'> Students Review </span><br />
+                            <span className='mainHead text-brown'>Our </span><span className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-3 mt-2 gradient-text'> Students Review </span><br />
                             <span className='mainHead text-brown'>Who got placed in </span> <br />
-                            <span className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-3 mt-2'>Top Companies</span>
+                            <span className='text-xl text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-3 mt-2 gradient-text'>Top Companies</span>
                         </p>
                     </header>
                     <article>
                         <Button
-                            className='primaryAnimated'
+                            className='primary'
                             title="Enquire now"
                         />
                     </article>

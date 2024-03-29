@@ -20,7 +20,7 @@ function RelevantTraining() {
                     </header>
                     <article className='flex justify-center mt-6'>
                         <Button
-                            className='primaryAnimated'
+                            className='primary'
                             title="Enquire now"
                             onClick={() => { }}
                         />

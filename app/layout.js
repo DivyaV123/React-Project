@@ -18,7 +18,8 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <Head>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" />
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Poppins" />
+        {/* <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap" /> */}
       </Head>
       <body
         className={cn(

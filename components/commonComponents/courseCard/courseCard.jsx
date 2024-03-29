@@ -1,13 +1,14 @@
 import React from 'react'
 import './courseCard.scss'
-import { Button } from "@/components/ui/button";
+import Button from '../button/Button'
+
 
 function CourseCard(props) {
     return (
         <>
             <section className='cardStyle justify-center p-4 grid justify-items-stretch'>
                 <picture className='flex justify-self-center p-1'>
-                    <img src='./sample_image_example.png' alt='image'></img>
+                    <img className='p-1' src='./sample_image_example.png' alt='image'></img>
                 </picture>
                 <div>
 
@@ -22,11 +23,11 @@ function CourseCard(props) {
                         <span className='text-sm'>{`(6,256)`}</span>
                     </div>
                     <div className='flex space-x-3 m-2 flex justify-center mt-6'>
-                        <aside >
-                            <Button variant="btnSecondary" size='lg'> Enroll now </Button>
+                        <aside>
+                            <Button className="primary h-9" title='Enroll now' size='lg'/> 
                         </aside>
                         <aside>
-                            <Button variant="btnPlain">Request Call </Button>
+                            <Button className="plainBtn" title='Request Call'/> 
                         </aside>
                     </div>
                 </aside>

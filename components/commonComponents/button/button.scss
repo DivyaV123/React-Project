@@ -1,22 +1,37 @@
 .primary {
-  width: 6.5rem;
-  height: 2.5rem;
+  width: 8rem;
+  height: 2rem;
   background: transparent
     linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
     0% 0% no-repeat padding-box;
-  border-radius: 8px;
+  border-radius: 4px;
   opacity: 1;
   font: normal normal medium 20px/30px Poppins;
   color: rgba(255, 255, 255, 1);
+  &:hover {
+    background: transparent
+      linear-gradient(
+        123deg,
+        rgba(240, 152, 25, 1) 100%,
+        rgba(255, 81, 47, 1) 0%
+      );
+  }
+}
+
+.primaryLogin {
+  @extend .primary;
+  width: 6.5rem;
+  height: 2.5rem;
+  border-radius: 6px;
 }
 
 .plainBtn {
-  width: 6.5rem;
-  height: 2.5rem;
+  width: 8rem;
+  height: 2rem;
   background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
   opacity: 1;
-  border-radius: 8px;
+  border-radius: 4px;
   color: transparent
     linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
     0% 0% no-repeat padding-box;
@@ -25,28 +40,56 @@
     0% 0% no-repeat padding-box;
   border: 1px solid orangered;
   color: orangered;
+  &:hover {
+    background: transparent
+    linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
+    0% 0% no-repeat padding-box;
+    color: #ffffff;
+    border: transparent;
+    
+  }
 }
 
-// .primaryAnimated {
-//   width: 142px;
-//   height: 34px;
-//   background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-//   background: #ffffff 0% 0% no-repeat padding-box;
-//   border: 1px solid #d8d8d8;
-//   border-radius: 6px;
-//   opacity: 1;
-// }
-.primaryAnimated {
+.plainBtnReg {
+  @extend .plainBtn;
+  width: 6.5rem;
+  height: 2.5rem;
+  border-radius: 6px;
+}
+
+.primaryPlain {
   width: 142px;
   height: 34px;
-  font-size: small;
-//   transform: translateY(-1px) scale(1.1);
-//   transition-duration: 300ms;
-  background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
-  background: transparent linear-gradient(112deg, #f09819 0%, #ff512f 100%) 0%
-    0% no-repeat padding-box;
-  color: #ffffff;
-  border: 1px solid #d8d8d8;
-  border-radius: 6px;
+  border: 1px solid gray;
   opacity: 1;
+  font-size: small;
+  color: gray;
+  border-radius: 4px;
+  &:hover {
+    min-width: 142px;
+    width: auto;
+    min-height: 34px;
+    font-size: small;
+    background: transparent linear-gradient(112deg, #f09819 0%, #ff512f 100%) 0%
+      0% no-repeat padding-box;
+    color: #ffffff !important;
+    border: 1px solid #d8d8d8;
+    border-radius: 4px;
+    opacity: 1;
+  }
+}
+
+.primaryAnimated {
+  @extend .primaryPlain;
+  border: 1px solid transparent;
+  border-image: linear-gradient(108deg, #f09819 0%, #ff512f 100%) 2;
+  color: transparent;
+  background-clip: inherit;
+  background: linear-gradient(to right, #f09819, #ff512f);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  &:hover {
+    -webkit-text-fill-color: white;
+    border-radius: 0px;
+  }
 }

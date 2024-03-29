@@ -18,7 +18,7 @@ function FooterHome() {
                                 <h3 className='text-white text-xl font-bold pb-2'>{header}</h3>
                                 <ul>
                                     {subHeaders.map((subHeader, subIndex) => (
-                                        <li className='text-white p-2 text-sm' key={subIndex}>{subHeader}</li>
+                                        <li className='text-white p-2 text-sm cursor-pointer' key={subIndex}>{subHeader}</li>
                                     ))}
                                 </ul>
                             </div>

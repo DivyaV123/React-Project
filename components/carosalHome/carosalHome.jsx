@@ -90,7 +90,7 @@ function CarosalHome() {
                     console.log(content, "content")
                     return (
                       <div className='mr-5'>
-                        <h1 className='text-3xl text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
+                        <h1 className=' gradient-text text-3xl text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
                           {element.count}
                         </h1>
                         <p className='text-white text-xs/[16px] font-thin flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />

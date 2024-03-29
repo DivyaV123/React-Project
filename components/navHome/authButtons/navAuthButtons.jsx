@@ -1,14 +1,14 @@
+import Button from '@/components/commonComponents/button/Button'
 import React from 'react'
-import { Button } from "@/components/ui/button";
 
 function NavAuthButtons() {
     return (
         <div className='flex space-x-3 ml-12'>
             <aside>
-                <Button variant="btnPlain"> Login </Button>
+                <Button className="primaryLogin" title='Login'/> 
             </aside>
             <aside>
-                <Button variant="btnSecondary">Register </Button>
+                <Button className='plainBtnReg' title='Register'/> 
             </aside>
         </div>
     )

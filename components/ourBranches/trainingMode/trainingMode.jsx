@@ -26,7 +26,7 @@ function TrainingMode() {
             <header>
                 <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5'>Modes We Train</h1>
             </header>
-            <article className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 mb-6'>
+            <article className='flex gap-8'>
                 {trainingDetails.map((element) => {
                     return (
                         <TrainingCard cardDetails={element} />
