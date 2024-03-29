@@ -1,0 +1,25 @@
+<svg id="Icon" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24" height="24" viewBox="0 0 24 24">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_44438" data-name="Rectangle 44438" width="20" height="20" transform="translate(0.309 -0.139)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+    <clipPath id="clip-path-2">
+      <path id="path1785" d="M0-16H19.569V3.569H0Z" transform="translate(0 16)"/>
+    </clipPath>
+  </defs>
+  <rect id="background" width="24" height="24" fill="none"/>
+  <g id="Mask_Group_378" data-name="Mask Group 378" transform="translate(1.691 2.139)" clip-path="url(#clip-path)">
+    <g id="g1779" transform="translate(0.499 0)">
+      <g id="g1781">
+        <g id="g1783" clip-path="url(#clip-path-2)">
+          <g id="g1789" transform="translate(1.643 4.969)">
+            <path id="path1791" d="M.453,0H-2.031V14.218H14.251V0H11.767" transform="translate(2.031)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.625" stroke-dasharray="605 45 0 45 1000"/>
+          </g>
+          <g id="g1793" transform="translate(0.382 0.382)">
+            <path id="path1795" d="M2.74,0V.764M3.886,2.331v-.42a1.147,1.147,0,1,0-2.293,0v.42m3.1,0H.867m3.44,0V4.587m-1.529,0V2.331M1.249,4.587V2.331M-8.5.764V0m1.147,2.331v-.42A1.147,1.147,0,0,0-8.5.764,1.147,1.147,0,0,0-9.644,1.911v.42m-.8,0h3.822m-3.44,2.255V2.331m1.529,0V4.587m1.529-2.255V4.587M3.236,9.861v3.4m.459-3.4H2.778m-11.772,0v3.4m-.459-3.4h.917M2.281,16.053v-.764a.764.764,0,1,0-1.529,0v.764m-7.262,0v-.764a.764.764,0,0,0-.764-.764.764.764,0,0,0-.764.764v.764M-6.51,18.8V16.053H-8.039V18.8m10.32,0V16.053H.752V18.8m-1.529,0V16.053a.764.764,0,0,0-.764-.764.763.763,0,0,0-.573.259.764.764,0,0,0-.764-.756.764.764,0,0,0-.764.756.763.763,0,0,0-.573-.259.764.764,0,0,0-.764.764V18.8m-6.039-5.542H5.262M-2.879,1.682V.076m-2.6,4.2h5.2m0,1.529V4.281a2.6,2.6,0,0,0-2.6-2.6,2.6,2.6,0,0,0-2.6,2.6V5.81m6.727,0v7.453M-.28,10.32A1.635,1.635,0,0,0-1.453,8.751l-1.426-.419L-4.3,8.751A1.635,1.635,0,0,0-5.478,10.32m5.2,2.943V10.32h-5.2v2.943m3.669,0V10.32m-2.14,0v2.943M-7.007,5.81v7.453M2.778,5.81H1.249V4.587H2.778ZM-7.007,4.587H-8.536V5.81h1.529ZM1.249,5.81H-7.007m-5.274,2.523h18.8" transform="translate(12.281)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="0.625"/>
+          </g>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="66" height="66" viewBox="0 0 66 66">
+  <defs>
+    <clipPath id="clip-path">
+      <rect id="Rectangle_44389" data-name="Rectangle 44389" width="64" height="65" transform="translate(-0.151)" fill="#fff" stroke="#707070" stroke-width="1"/>
+    </clipPath>
+  </defs>
+  <g id="Image" transform="translate(-16 -94)">
+    <rect id="Image_background" width="66" height="66" transform="translate(16 94)" fill="#fff"/>
+    <g id="Mask_Group_364" data-name="Mask Group 364" transform="translate(16.151 94)" clip-path="url(#clip-path)">
+      <g id="Layer_8" data-name="Layer 8" transform="translate(-0.135 0)">
+        <path id="Path_44207" data-name="Path 44207" d="M5.96,5.052a.835.835,0,0,0,0,1.67h.078a.813.813,0,0,0,.846-.835.868.868,0,0,0-.924-.835Z" transform="translate(11.76 11.533)"/>
+        <path id="Path_44208" data-name="Path 44208" d="M20.57,5.05H8.76a.835.835,0,0,0,0,1.67H20.57a.835.835,0,0,0,0-1.67Z" transform="translate(20.159 11.535)"/>
+        <path id="Path_44209" data-name="Path 44209" d="M5.96,8.7a.835.835,0,1,0,0,1.67h.078a.813.813,0,0,0,.846-.835A.868.868,0,0,0,5.96,8.7Z" transform="translate(11.76 22.47)"/>
+        <path id="Path_44210" data-name="Path 44210" d="M20.57,8.7H8.76a.835.835,0,0,0,0,1.67H20.57a.835.835,0,0,0,0-1.67Z" transform="translate(20.159 22.471)"/>
+        <path id="Path_44211" data-name="Path 44211" d="M5.96,12.342a.835.835,0,0,0,0,1.67h.078a.813.813,0,0,0,.846-.835.868.868,0,0,0-.924-.835Z" transform="translate(11.76 33.406)"/>
+        <path id="Path_44212" data-name="Path 44212" d="M20.57,12.341H8.76a.835.835,0,0,0,0,1.67H20.57a.835.835,0,0,0,0-1.67Z" transform="translate(20.159 33.407)"/>
+        <path id="Path_44213" data-name="Path 44213" d="M32.906.9a32,32,0,1,0,32,32,32,32,0,0,0-32-32ZM53.22,47.487a.846.846,0,0,1-.835.835h-5.41v.724A4.174,4.174,0,0,1,42.8,53.22H16.766a4.174,4.174,0,0,1-4.174-4.174V45.929a4.174,4.174,0,0,1,4.174-4.118H42.8a4.174,4.174,0,0,1,4.174,4.174v.724H51.55V33.741H46.975v.724A4.174,4.174,0,0,1,42.8,38.638H16.766a4.174,4.174,0,0,1-4.174-4.174V31.347a4.174,4.174,0,0,1,4.174-4.174H42.8a4.174,4.174,0,0,1,4.174,4.174v.724H51.55V19.159H46.975v.724A4.174,4.174,0,0,1,42.8,24.057H16.766a4.174,4.174,0,0,1-4.174-4.174V16.766a4.174,4.174,0,0,1,4.174-4.174H42.8a4.174,4.174,0,0,1,4.174,4.174v.724h5.41a.846.846,0,0,1,.835.835Z" transform="translate(-0.904 -0.904)"/>
+      </g>
+    </g>
+  </g>
+</svg>
