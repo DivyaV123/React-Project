@@ -3,7 +3,7 @@ import React from 'react'
 
 function NavAuthButtons() {
     return (
-        <div className='flex space-x-3 ml-12'>
+        <div className='flex space-x-3'>
             <aside>
                 <Button className="primaryLogin" title='Login'/> 
             </aside>

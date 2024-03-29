@@ -86,6 +86,20 @@ const Courses = () => {
           image: "/technicalsupport.svg",
           title: "Software Development",
           description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+        }, {
+          image: "/networksupport.svg",
+          title: "Software Architecture",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+        },
+        {
+          image: "/technicalsupport.svg",
+          title: "Software Development",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+        },
+        {
+          image: "/technicalsupport.svg",
+          title: "Software Development",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/networksupport.svg",
           title: "Software Architecture",

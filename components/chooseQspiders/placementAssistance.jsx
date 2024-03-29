@@ -29,17 +29,17 @@ function PlacementAssistance() {
                                 backGround: "-webkit-linear-gradient(#eee, #333)",
                                 webkitBackgroundClip: "text",
                                 webkitTextFillColor: "transparent",
-                            }} className='text-orange-600 font-extra-bold text-medium text-xl opacity-100 flex justify-center'>2.5+Lac</h1>
+                            }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center'>2.5+Lac</h1>
                             <p className='text-brown txet-normal flex justify-center  text-center'>Students Placed <br /> in Total</p>
                         </aside>
                         <aside className='w-[100%]'>
-                            <h1 className='text-orange-600 text-base font-extra-bold text-xl opacity-100 flex justify-center'>4,100+</h1>
+                            <h1 className='gradient-text text-base font-extra-bold text-xl opacity-100 flex justify-center'>4,100+</h1>
                             <p className='text-brown text-normal flex justify-center  text-center'>Multinational <br /> companies hire from us</p>
                         </aside>
                     </article>
                     <article className='flex justify-center mt-6'>
                         <Button
-                            className='primaryAnimated'
+                            className='primary'
                             title="View Placement"
                             onClick={() => { }}
                         />

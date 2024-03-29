@@ -5,19 +5,19 @@ function PlacementStatisticsHome() {
     const statistics = [
         {
             count: '94,860',
-            info: 'Students who have throughout # 60% Aggregate'
+            info: 'Students who have throughout 60% Aggregate'
         },
         {
             count: '42,992',
-            info: 'Students who have graduated # in Non - IT'
+            info: 'Students who have graduated in Non - IT'
         },
         {
             count: '68,481',
-            info: 'Students who have graduated # in IT / CS / IS'
+            info: 'Students who have graduated  in IT / CS / IS'
         },
         {
             count: '15,024',
-            info: 'Students who have less than # 60% Aggregate'
+            info: 'Students who have less than  60% Aggregate'
         },
     ]
     return (

@@ -33,7 +33,7 @@ function TestimonialsHome() {
             </header>
             <article className='flex justify-center items-cenetr mb-8 mt-8'>
                 <Button
-                    className='primaryAnimated'
+                    className='primary'
                     title="View more"
                 />
             </article>

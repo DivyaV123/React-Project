@@ -21,27 +21,27 @@ function CarosalHome() {
   const detail = [
     {
       count: 'No.1',
-      details: 'Training Institue in # the World and also # the Largest.'
+      details: 'Training Institue in  the World and also  the Largest.'
     },
     {
       count: '2.51L',
-      details: 'Students have been # Placed, and still # counting!'
+      details: 'Students have been  Placed, and still  counting!'
     },
     {
       count: '4180+',
-      details: 'Multinational # companies hire from # us, and the list is still # growing.'
+      details: 'Multinational  companies hire from  us, and the list is still  growing.'
     },
     {
       count: '19+',
-      details: 'Companies conduct # interviews every # working day.'
+      details: 'Companies conduct  interviews every  working day.'
     },
     {
       count: '1300+',
-      details: 'Students attend # interviews every day # across companies.'
+      details: 'Students attend  interviews every day  across companies.'
     },
     {
       count: '3800+',
-      details: 'Students get placed # in a Month across # the Globe.'
+      details: 'Students get placed  in a Month across  the Globe.'
     },
   ]
   let corosalsections = [
@@ -61,7 +61,7 @@ function CarosalHome() {
     <MaxWebWidth
       logo='true'
     >
-      <Carousel className="w-full ">
+      {/* <Carousel className="w-full ">
         <CarouselContent>
           {corosalsections.map((ele, index) => (
             <CarouselItem key={index}>
@@ -77,10 +77,10 @@ function CarosalHome() {
         </CarouselContent>
         <CarouselPrevious />
         <CarouselNext />
-        <section className='z-100  h-32 flex justify-center'>
+        <section className='z-100 flex justify-center'>
           <article className='rounded-lg w-[85%] bg-footer-blue flex justify-between justify-center bg-cover items-between'>
             <figure>
-              <img className='h-32' src='./illustrate_gloabImage.svg' alt='illustrate_gloabImage' />
+              <img className='h-auto' src='./illustrate_gloabImage.svg' alt='illustrate_gloabImage' />
             </figure>
             <aside className='flex justify-end items-center'>
               <div className='grid grid-cols-1  md:grid-cols-6 lg:grid-cols-6 gap-5'>
@@ -89,7 +89,7 @@ function CarosalHome() {
                     let content = element.details.replace(/#/g, "<br/>")
                     console.log(content, "content")
                     return (
-                      <div className='mr-5'>
+                      <div className='p-2'>
                         <h1 className=' gradient-text text-3xl text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
                           {element.count}
                         </h1>
@@ -102,7 +102,8 @@ function CarosalHome() {
             </aside>
           </article>
         </section>
-      </Carousel>
+      </Carousel> */}
+      <Section1/>
     </MaxWebWidth>
   )
 }

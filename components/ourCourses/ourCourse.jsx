@@ -8,6 +8,7 @@ import Button from '../commonComponents/button/Button'
 
 function OurCourse() {
     const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
     let btnNames = ['Offline Classes', 'Online Live Classes', 'Experiential Learning', 'Self Paced']
     const courses = [
         {
@@ -103,7 +104,7 @@ function OurCourse() {
                 {btnNames.map((element, index) => {
                     console.log(element, "element")
                     return <Button
-                        className={index === 0 ? 'primary':'primaryPlain'}
+                        className={index === 0 ? 'primary' : 'primaryPlain'}
                         title={element}
                     />
                 })}
@@ -111,7 +112,7 @@ function OurCourse() {
             <aside className='flex gap-2'>
                 <article className='justify-start' >
                     <div>
-                        {courses.map((item,itemIndex) => {
+                        {courses.map((item, itemIndex) => {
                             return (<div onMouseEnter={() => setHoveredIndex(itemIndex)}
                                 className='h-10 bg-orange p-2 hover:text-white gradient-bg cursor-pointer'>
                                 <div className='flex justify-between'>
@@ -131,7 +132,7 @@ function OurCourse() {
                         })}
                     </div>
                 </article>
-                <article className=''>
+                <article >
                     <div className='grid grid-cols-3 gap-4'>
                         {Array.from({ length: 6 }).map((index) => {
                             return (<div className=''>
@@ -141,10 +142,14 @@ function OurCourse() {
                     </div>
                 </article>
             </aside>
-            <article className='flex justify-end mt-8 mb-8'>
+            <article on className='flex justify-end mt-8 mb-8'>
                 <Button
-                    className='primaryAnimated'
+                    className='primaryAnimated '
                     title='View All Courses'
+                    icon={viewAllCoursesHover ? './arrowIcon.svg' : './arrowIconOrange.svg'}
+                    iconPosition='right'
+                    onMouseEnter={() => { setviewAllCoursesHover(true) }}
+                    onMouseLeave={() => { setviewAllCoursesHover(false) }}
                 />
             </article>
         </MaxWebWidth>

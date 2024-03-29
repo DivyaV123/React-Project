@@ -21,21 +21,21 @@ function ExperiencedFaculty() {
                 </p>
                 <article className='grid grid-cols-3 gap-2 mt-6'>
                     <aside>
-                        <h1 className='text-orange-600 text-base font-extra-bold opacity-100 flex justify-center text-xl'>500+</h1>
+                        <h1 className='gradient-text text-base font-extra-bold opacity-100 flex justify-center text-xl'>500+</h1>
                         <p className='text-brown text-normal flex justify-center  text-center'>Experienced <br /> trainers</p>
                     </aside>
                     <aside>
-                        <h1 className='text-orange-600 text-base font-extra-bold opacity-100 flex justify-center text-xl'>1:1</h1>
+                        <h1 className='gradient-text text-base font-extra-bold opacity-100 flex justify-center text-xl'>1:1</h1>
                         <p className='text-brown text-normal flex justify-center  text-center'> Experienced trainers</p>
                     </aside>
                     <aside>
-                        <h1 className='text-orange-600 text-base font-extra-bold opacity-100 flex justify-center text-xl'>4,100+</h1>
+                        <h1 className='gradient-text text-base font-extra-bold opacity-100 flex justify-center text-xl'>4,100+</h1>
                         <p className='text-brown text-normal flex justify-center  text-center'>Average Support <br /> Rating</p>
                     </aside>
                 </article>
                 <article className='flex justify-center mt-6'>
                     <Button
-                        className='primaryAnimated'
+                        className='primary'
                         title="View more"
                         onClick={() => { }}
                     />
