@@ -255,7 +255,6 @@ const Courses = () => {
             key={index}
             className="flex"
             onMouseEnter={() => setHoveredIndex(index)}
-            // onMouseLeave={() => setHoveredIndex()}
           >
             <img src={courseItem.icon} />
             <div className="flex justify-between grow">

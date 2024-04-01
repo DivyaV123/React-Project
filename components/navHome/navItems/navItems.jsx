@@ -22,18 +22,10 @@ const navItems = [
 function NavItems() {
     const items = ['Courses', 'Branches', "Tutions", "Hire From Us", "Placement Center", "Contact us"]
     return (
-        // <div className='flex flex-wrap space-x-9 cursor-pointer font-medium'>
-        //     {items.map((navItem, index) => {
-        //         return (
-        //             <span key={index} className='hover-underline-animation'>{navItem}</span>
-        //         )
-        //     })}
-        // </div>
         <NavigationMenu>
             <NavigationMenuList>
                 {navItems.map((navItem, index) => (
                     <NavigationMenuItem key={index}>
-                        
                         <NavigationMenuTrigger>
                             <div className='flex flex-wrap space-x-9 cursor-pointer font-medium'>
                                 <span className='hover-underline-animation'>{navItem.name}</span>

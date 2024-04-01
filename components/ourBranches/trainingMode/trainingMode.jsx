@@ -1,5 +1,6 @@
 import React from 'react'
 import TrainingCard from './trainingCard'
+import Slide from "react-reveal/Slide";
 
 function TrainingMode() {
     const trainingDetails = [
@@ -24,7 +25,9 @@ function TrainingMode() {
     return (
         <article className='mb-6'>
             <header>
-                <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5'>Modes We Train</h1>
+                <Slide top cascade>
+                    <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5'>Modes We Train</h1>
+                </Slide>
             </header>
             <article className='flex gap-8'>
                 {trainingDetails.map((element) => {

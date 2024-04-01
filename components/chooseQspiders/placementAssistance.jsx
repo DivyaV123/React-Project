@@ -1,58 +1,67 @@
 'use client'
 import React from 'react'
 import Button from '../commonComponents/button/Button'
+import Fade from 'react-reveal/Fade'
+import Slide from "react-reveal/Slide";
 
 
 function PlacementAssistance() {
     return (
         <section className='mt-6'>
             <header>
-                <h1 className='font-extra-bold text-2xl flex justify-center align-center mb-8 mt-8'>
-                    Why choose QSpiders
-                </h1>
+                <Slide top cascade>
+                    <h1 className='font-extra-bold text-2xl flex justify-center align-center mb-8 mt-8'>
+                        Why choose QSpiders
+                    </h1>
+                </Slide>
             </header>
             <article className='grid grid-cols-2 gap-4'>
-                <aside className='mt-6'>
-                    <header className='font-extra-bold text-dark-gray text-2xl flex justify-start'>
-                        <h1 >Placement Assistance</h1>
-                    </header>
-                    <p className='text-dark-gray text-normal mt-6'>
-                        Our dedicated placement cell works tirelessly to connect <br />
-                        our students with leading IT companies for job<br />
-                        opportunities. With a strong network of corporate partners<br />
-                        and recruitment drives to ensure maximum exposure for<br />
-                        our students.
-                    </p>
-                    <article className='flex justify-center align-center mt-6'>
-                        <aside className='w-[100%]'>
-                            <h1 style={{
-                                backGround: "-webkit-linear-gradient(#eee, #333)",
-                                webkitBackgroundClip: "text",
-                                webkitTextFillColor: "transparent",
-                            }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center'>2.5+Lac</h1>
-                            <p className='text-brown txet-normal flex justify-center  text-center'>Students Placed <br /> in Total</p>
-                        </aside>
-                        <aside className='w-[100%]'>
-                            <h1 className='gradient-text text-base font-extra-bold text-xl opacity-100 flex justify-center'>4,100+</h1>
-                            <p className='text-brown text-normal flex justify-center  text-center'>Multinational <br /> companies hire from us</p>
-                        </aside>
-                    </article>
-                    <article className='flex justify-center mt-6'>
-                        <Button
-                            className='primary'
-                            title="View Placement"
-                            onClick={() => { }}
-                        />
-                    </article>
-                </aside>
-                <aside className='flex justify-center align-end'>
-                    <figure className='w-[78%]'>
-                        <img src='./platformAssociateImage.png' alt='platformAssociateImage'></img>
-                    </figure>
+                <Fade left delay={0} duration={1000}>
+                    <aside className='mt-6 animate-slide-from-left'>
+                        <header className='font-extra-bold text-dark-gray text-2xl flex justify-start'>
+                            <h1 >Placement Assistance</h1>
+                        </header>
+                        <p className='text-dark-gray text-normal mt-6'>
+                            Our dedicated placement cell works tirelessly to connect <br />
+                            our students with leading IT companies for job<br />
+                            opportunities. With a strong network of corporate partners<br />
+                            and recruitment drives to ensure maximum exposure for<br />
+                            our students.
+                        </p>
+                        <article className='flex justify-center align-center mt-6'>
+                            <aside className='w-[100%]'>
+                                <h1 style={{
+                                    backGround: "-webkit-linear-gradient(#eee, #333)",
+                                    webkitBackgroundClip: "text",
+                                    webkitTextFillColor: "transparent",
+                                }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center'>2.5+Lac</h1>
+                                <p className='text-brown txet-normal flex justify-center  text-center'>Students Placed <br /> in Total</p>
+                            </aside>
+                            <aside className='w-[100%]'>
+                                <h1 className='gradient-text text-base font-extra-bold text-xl opacity-100 flex justify-center'>4,100+</h1>
+                                <p className='text-brown text-normal flex justify-center  text-center'>Multinational <br /> companies hire from us</p>
+                            </aside>
+                        </article>
+                        <article className='flex justify-center mt-6'>
+                            <Button
+                                className='primary'
+                                title="View Placement"
+                                onClick={() => { }}
+                            />
+                        </article>
+                    </aside>
+                </Fade>
+                <Fade right delay={0} duration={1000}>
+                    <aside className='flex justify-center align-end animate-slide-from-right'>
+                        <figure className='w-[78%]'>
+                            <img src='./platformAssociateImage.png' alt='platformAssociateImage'></img>
+                        </figure>
 
-                </aside>
+                    </aside>
+                </Fade>
+
             </article >
-        </section >
+        </section>
     )
 }
 

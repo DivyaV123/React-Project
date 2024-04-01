@@ -1,11 +1,12 @@
 'use client'
 import React from 'react'
 import './button.scss'
+import { Transform } from 'stream'
 
 function Button({ className = "", title = "", disable = false, type = "", onClick = () => { }, icon, iconPosition, onMouseEnter = ()=>{}, onMouseLeave=()=>{} }) {
     return (
         <>
-            <button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}  onClick={onClick} type={type} disable={disable} className={className}>
+            <button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}  onClick={onClick} type={type} disable={disable} className={`${className} transform hover:-translate-y-1`}>
                 <span className='flex slign-center justify-center'>
                     {iconPosition === 'left' && <span className='w-[75%] flex justify-start'><img src={icon} /></span>}
                     <span>{title}</span>
