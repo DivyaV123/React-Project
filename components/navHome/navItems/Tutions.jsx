@@ -172,7 +172,7 @@ const Tutions = () => {
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
   return (
-    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px] overflow-auto">
+    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px] overflow-auto myscrollbar">
       <div className={`bg-gradient-to-b from-muted/50 to-muted p-2 xl:w-[17%] 2xl:w-[11%] `}>
         {courses.map((courseItem, index) => (
           <div
@@ -189,7 +189,7 @@ const Tutions = () => {
           </div>
         ))}
       </div>
-      <div className="xl:w-[83%] 2xl:w-[89%] flex overflow-auto">
+      <div className="xl:w-[83%] 2xl:w-[89%] flex">
         {hoveredIndex !== null && courses[hoveredIndex]?.list && (
           <div className="xl:w-[41%] 2xl:w-[26%] bg-gradient-to-b from-muted/50 to-muted p-2">
             {courses[hoveredIndex]?.list?.map((item, itemIndex) => (

@@ -90,6 +90,19 @@ const Courses = () => {
           image: "/networksupport.svg",
           title: "Software Architecture",
           description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+        },{
+          image: "/technicalsupport.svg",
+          title: "Software Development",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+        },
+        {
+          image: "/technicalsupport.svg",
+          title: "Software Development",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+        },{
+          image: "/networksupport.svg",
+          title: "Software Architecture",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
@@ -235,7 +248,7 @@ const Courses = () => {
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
   return (
-    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px] overflow-auto">
+    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px] overflow-auto myscrollbar ">
       <div className={`bg-gradient-to-b from-muted/50 to-muted p-2 xl:w-[23%] 2xl:w-[17%] `}>
         {courses.map((courseItem, index) => (
           <div
