@@ -1,0 +1,39 @@
+.hover-underline-animation {
+  position: relative;
+  text-decoration: none;
+}
+
+.hover-underline-animation:hover{
+    color: orangered;
+}
+
+.hover-underline-animation::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: orangered;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+  color: orange;
+}
+.courselist{
+width: 70%;
+}
+.coursefull{
+width: 100%;
+}
+.courseMedium{
+width: 50%;
+}
+.courseinitial{
+width: 33.3%;
+}

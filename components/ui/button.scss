@@ -1,0 +1,50 @@
+.orangeBtn {
+  width: 6.5rem;
+  height: 2.5rem;
+  background: transparent
+    linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
+    0% 0% no-repeat padding-box;
+  border-radius: 8px;
+  opacity: 1;
+  font: small;
+  color: rgba(255, 255, 255, 1);
+}
+
+.plainBtn {
+  width: 6.5rem;
+  height: 2.5rem;
+  background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
+  opacity: 1;
+  border-radius: 8px;
+  color: transparent
+    linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
+    0% 0% no-repeat padding-box;
+  border: 1px solid transparent
+    linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
+    0% 0% no-repeat padding-box;
+  border: 1px solid orangered;
+  color: orangered;
+}
+
+  .topbtns {
+    width: 142px;
+    height: 34px;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border: 1px solid #d8d8d8;
+    border-radius: 6px;
+    opacity: 1;
+  }
+  .topbtns:hover {
+    width: 142px;
+    height: 34px;
+    background: var(--unnamed-color-ffffff) 0% 0% no-repeat padding-box;
+    background: transparent linear-gradient(112deg, #f09819 0%, #ff512f 100%) 0%
+      0% no-repeat padding-box;
+    color: #ffffff;
+    border: 1px solid #d8d8d8;
+    border-radius: 6px;
+    opacity: 1;
+  }
+

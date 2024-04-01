@@ -1,0 +1,8 @@
+<svg id="icon_fill_linkedin" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <g id="path" transform="translate(512 1009)">
+    <rect id="Rectangle_16961" data-name="Rectangle 16961" width="20" height="20" transform="translate(-510 -1007)" fill="none"/>
+    <path id="Path_30532" data-name="Path 30532" d="M24.357,23.912h.005v-7.4c0-3.621-.78-6.41-5.013-6.41a4.395,4.395,0,0,0-3.958,2.175h-.059V10.437H11.319V23.911H15.5V17.239c0-1.757.333-3.455,2.509-3.455,2.144,0,2.175,2,2.175,3.568v6.56Z" transform="translate(-515.354 -1010.912)" fill="#fff"/>
+    <path id="Path_30533" data-name="Path 30533" d="M.528,10.636H4.712V24.11H.528Z" transform="translate(-510.195 -1011.11)" fill="#fff"/>
+    <path id="Path_30534" data-name="Path 30534" d="M2.424,0A2.435,2.435,0,1,0,4.847,2.424,2.424,2.424,0,0,0,2.424,0Z" transform="translate(-510 -1007)" fill="#fff"/>
+  </g>
+</svg>
