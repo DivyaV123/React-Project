@@ -2,12 +2,13 @@
 import * as React from "react"
 import * as NavigationMenuPrimitive from "@radix-ui/react-navigation-menu"
 import { cva } from "class-variance-authority"
-
-
 import { cn } from "@/lib/utils"
+import "../navHome/navItems/navitems.scss"
 
-const NavigationMenu = React.forwardRef(({ className, children, ...props }, ref) => (
-  <NavigationMenuPrimitive.Root
+const NavigationMenu = React.forwardRef(({ className, children,hoverItem,hoverContent, ...props }, ref) => {
+
+  return(
+    <NavigationMenuPrimitive.Root
     ref={ref}
     className={cn(
       " z-10 flex max-w-max flex-1 items-center justify-center",
@@ -15,9 +16,10 @@ const NavigationMenu = React.forwardRef(({ className, children, ...props }, ref)
     )}
     {...props}>
     {children}
-    <NavigationMenuViewport />
+    <NavigationMenuViewport hoverItem={hoverItem} hoverContent={hoverContent} />
   </NavigationMenuPrimitive.Root>
-))
+  )
+})
 NavigationMenu.displayName = NavigationMenuPrimitive.Root.displayName
 
 const NavigationMenuList = React.forwardRef(({ className, ...props }, ref) => (
@@ -60,8 +62,8 @@ NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
 const NavigationMenuLink = NavigationMenuPrimitive.Link
 
-const NavigationMenuViewport = React.forwardRef(({ className, ...props }, ref) => (
-  <div className={cn("absolute  top-full flex justify-center -translate-x-1/2 left-[50%] translate-y-0")}>
+const NavigationMenuViewport = React.forwardRef(({ className,hoverItem,hoverContent, ...props }, ref) => (
+  <div className={`absolute ${(hoverItem ?? hoverContent) ? 'navItemsOverlay' :''} top-full flex justify-center -translate-x-1/2 left-[50%] translate-y-0 `}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
         "origin-top-center relative mt-1.5 h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-md border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",

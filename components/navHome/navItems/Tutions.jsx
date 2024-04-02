@@ -73,34 +73,53 @@ const Tutions = () => {
       arrow: "/arrowIconDark.svg",
       sublist:[
         {
-          image: "/networksupport.svg",
-          title: "Software Architecture",
+          image: "/WebTechnologies.svg",
+          title: "Web Technologies",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },
         {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
+          image: "/RDBMS.svg",
+          title: "RDBMS",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },
         {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
+          image: "/Operatingsystem.svg",
+          title: "Operatingsystem",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },{
+          image: "/Networking.svg",
+          title: "Networking",
+          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        },
+        {
+          image: "/Mathematics.svg",
+          title: "Mathematics",
+          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        },
+        {
           image: "/networksupport.svg",
           title: "Software Architecture",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
+        },,{
+          image: "/cloudSolutionAWS.svg",
+          title: "Cloud Solution Architect-AWS",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
         },
         {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
+          image: "/cloudSolutionGCP.svg",
+          title: "Cloud Solution Architect-GCP",
           description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
-        }
+        },
+        {
+          image: "/cloudSolutionArchitect.svg",
+          title: "Cloud Solution Architect-Azure",
+          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        },{
+          image: "/advanceDevops.svg",
+          title: "Advance Devops course for Architects",
+          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+        },
+        
       ]
     },
     {
@@ -183,7 +202,7 @@ const Tutions = () => {
           >
             {/* <img src={courseItem.icon} /> */}
             <div className="flex justify-between grow">
-              <button className="p-2 text-sm">{courseItem.title}</button>
+              <button className="p-2 text-xs">{courseItem.title}</button>
               <img src={courseItem.arrow} className="w-4" />
             </div>
           </div>
@@ -201,7 +220,7 @@ const Tutions = () => {
               >
                 <img src={item.icon} />
                 <div className="flex justify-between grow">
-                  <button className="p-2 text-sm">{item.title}</button>
+                  <button className="p-2 text-xs">{item.title}</button>
                   <img src={item.arrow} className="w-4" />
                 </div>
               </div>
@@ -210,13 +229,13 @@ const Tutions = () => {
         )}
         <div className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2`}>
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map((content, index) => (
-            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-5`}>
+            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-2 branchOverlay h-fit`}>
               <div className="flex h-10 gap-1.5">
                 <img className="h-10 w-10 " src={content.image} />
-                <h3 className="text-left h-10 text-sm font-bold">{content.title}</h3>
+                <h3 className="text-left h-10 text-xs font-bold">{content.title}</h3>
               </div>
               <div>
-                <article className=" text-sm">{content.description}</article>
+                <article className=" text-xs">{content.description}</article>
               </div>
             </div>
           ))}
