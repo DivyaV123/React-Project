@@ -258,7 +258,7 @@ const Courses = () => {
           >
             <img src={courseItem.icon} />
             <div className="flex justify-between grow">
-              <button className="p-2 text-sm">{courseItem.title}</button>
+              <button className="p-2 text-xs">{courseItem.title}</button>
               <img src={courseItem.arrow} className="w-4" />
             </div>
           </div>
@@ -276,7 +276,7 @@ const Courses = () => {
               >
                 <img src={item.icon} />
                 <div className="flex justify-between grow">
-                  <button className="p-2 text-sm">{item.title}</button>
+                  <button className="p-2 text-xs">{item.title}</button>
                   <img src={item.arrow} className="w-4" />
                 </div>
               </div>
@@ -285,13 +285,13 @@ const Courses = () => {
         )}
         <div className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2`}>
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map((content, index) => (
-            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-5`}>
+            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-2 branchOverlay h-fit`}>
               <div className="flex h-10 gap-1.5 ">
                 <img className="h-10 w-10 " src={content.image} />
-                <h3 className="text-left h-16 text-sm font-bold">{content.title}</h3>
+                <h3 className="text-left h-10 text-xs font-bold items-center">{content.title}</h3>
               </div>
               <div>
-                <article className=" text-sm">{content.description}</article>
+                <article className=" text-xs">{content.description}</article>
               </div>
             </div>
           ))}

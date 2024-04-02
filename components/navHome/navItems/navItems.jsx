@@ -1,44 +1,72 @@
-import React from 'react'
-import './navitems.scss'
+'use client'
+import React, { useState, useCallback } from "react";
+import "./navitems.scss";
 import {
-    NavigationMenu,
-    NavigationMenuContent,
-    NavigationMenuItem,
-    NavigationMenuTrigger,
-    NavigationMenuList,
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuTrigger,
+  NavigationMenuList,
 } from "@/components/ui/navigation-menu";
-import Courses from './Courses';
-import Branches from './Branches';
-import Tutions from './Tutions';
+import Courses from "./Courses";
+import Branches from "./Branches";
+import Tutions from "./Tutions";
+
 const navItems = [
-    { name: 'Courses', content: <Courses/>},
-    { name: 'Branches', content:<Branches/>},
-    { name: 'Tutions', content: <Tutions/>},
-    { name: 'Hire From Us', content: ""},
-    { name: 'Placement Center', content: ""},
-    { name: 'Contact us', content: ""},
+  { id: 1, name: "Courses", content: <Courses /> },
+  { id: 2, name: "Branches", content: <Branches /> },
+  { id: 3, name: "Tutions", content: <Tutions /> },
+  { id: 4, name: "Hire From Us", content: "" },
+  { id: 5, name: "Placement Center", content: "" },
+  { id: 6, name: "Contact us", content: "" },
 ];
 
 function NavItems() {
-    const items = ['Courses', 'Branches', "Tutions", "Hire From Us", "Placement Center", "Contact us"]
-    return (
-        <NavigationMenu>
-            <NavigationMenuList>
-                {navItems.map((navItem, index) => (
-                    <NavigationMenuItem key={index}>
-                        <NavigationMenuTrigger>
-                            <div className='flex flex-wrap space-x-9 cursor-pointer font-medium'>
-                                <span className='hover-underline-animation'>{navItem.name}</span>
-                            </div>
-                        </NavigationMenuTrigger>
-                        <NavigationMenuContent className="nav-content">
-                            {navItem.content}
-                        </NavigationMenuContent>
-                    </NavigationMenuItem>
-                ))}
-            </NavigationMenuList>
-        </NavigationMenu>
-    )
+  const [hoverState, setHoverState] = useState({ item: null, content: false });
+
+  const handleItemHover = useCallback((itemName) => {
+    if (["Courses", "Branches", "Tutions"].includes(itemName)) {
+      setHoverState({ item: itemName});
+    } else {
+      setHoverState({ item: null});
+    }
+  }, []);
+
+  const handleItemLeave = useCallback(() => {
+    setHoverState((prevState) => ({ ...prevState, item: null }));
+  }, []);
+
+  const handleContentHover = useCallback((isVisible) => {
+    setHoverState((prevState) => ({ ...prevState, content: isVisible }));
+  }, []);
+
+  return (
+    <>
+    <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
+      <NavigationMenuList>
+        {navItems.map((navItem) => (
+          <NavigationMenuItem key={navItem.id}
+            onMouseEnter={() => handleItemHover(navItem.name)}
+            onMouseLeave={handleItemLeave}
+          >
+            <NavigationMenuTrigger>
+              <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
+                <span className="hover-underline-animation text-sm">{navItem.name}</span>
+              </div>
+            </NavigationMenuTrigger>
+            <NavigationMenuContent
+              className="nav-content"
+              onMouseEnter={() => handleContentHover(true)}
+              onMouseLeave={() => handleContentHover(false)}
+            >
+              {navItem.content}
+            </NavigationMenuContent>
+          </NavigationMenuItem>
+        ))}
+      </NavigationMenuList>
+    </NavigationMenu>
+    </>
+  );
 }
 
-export default NavItems
+export default NavItems;

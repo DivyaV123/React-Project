@@ -37,3 +37,27 @@ width: 50%;
 .courseinitial{
 width: 33.3%;
 }
+
+.navItemsOverlay::before {
+  content: "";
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  background: rgb(0 0 0 / 20%);
+}
+
+.directions{
+background: #1919F015 0% 0% no-repeat padding-box;
+border-radius: 20px;
+opacity: 1;
+}
+.directions p {
+  color: #7298FF;
+}
+
+.branchOverlay:hover{
+background: #FFFFFF 0% 0% no-repeat padding-box;
+box-shadow: 0px 0px 6px #00000029;
+border-radius: 8px;
+opacity: 1;
+}
