@@ -3,6 +3,7 @@ import React from 'react'
 import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
 import Slide from "react-reveal/Slide";
+import Counter from '../commonComponents/counterAnimation/Counter';
 
 
 function PlacementAssistance() {
@@ -34,11 +35,15 @@ function PlacementAssistance() {
                                     backGround: "-webkit-linear-gradient(#eee, #333)",
                                     webkitBackgroundClip: "text",
                                     webkitTextFillColor: "transparent",
-                                }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center'>2.5+Lac</h1>
+                                }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center'>
+                                    <Counter initialValue={0} targetValue={5000} label='2.5+Lac' /><br />
+                                </h1>
                                 <p className='text-brown txet-normal flex justify-center  text-center'>Students Placed <br /> in Total</p>
                             </aside>
                             <aside className='w-[100%]'>
-                                <h1 className='gradient-text text-base font-extra-bold text-xl opacity-100 flex justify-center'>4,100+</h1>
+                                <h1 className='gradient-text text-base font-extra-bold text-xl opacity-100 flex justify-center'>
+                                <Counter initialValue={0} targetValue={5000} label='4,100+' /><br />
+                                </h1>
                                 <p className='text-brown text-normal flex justify-center  text-center'>Multinational <br /> companies hire from us</p>
                             </aside>
                         </article>

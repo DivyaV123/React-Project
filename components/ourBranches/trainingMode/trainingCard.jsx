@@ -3,7 +3,7 @@ import './trainingCard.scss'
 
 function TrainingCard({ cardDetails }) {
     return (
-        <section className='flex rounded-sm cardStyle row-span-4 w-60' style={{ backgroundImage: "url('./backgroundWave.svg')"}}>
+        <section className='flex rounded-sm cardStyle row-span-4 w-60 m-4' style={{ backgroundImage: "url('./backgroundWave.svg')"}}>
             <div >
                 <figure className='flex justify-center aligen-center p-5 mt-3'>
                     <img className='h-16 w-16' src={cardDetails.cardlogo} alt='logo'></img>

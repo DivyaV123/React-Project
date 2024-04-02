@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/carousel"
 import LandingCarosal from './corosalSections/LandingCarosal'
 import CarosalFooter from './carosalFooter/CarosalFooter'
+import { Fade } from 'react-reveal'
 
 
 
@@ -29,7 +30,8 @@ function CarosalHome() {
   }
   return (
     <MaxWebWidth
-      logo='true'
+      sectionStyling="bg-[url('/BackgroundWave.png')] bg-no-repeat bg-left bg-contain bg-cover max-w-full overflow-hidden"
+      articalStyling='relative'
     >
       {/* <Carousel className="w-full ">
         <CarouselContent>
@@ -49,8 +51,9 @@ function CarosalHome() {
         <CarouselNext />
       </Carousel> */}
       <LandingCarosal />
-      <CarosalFooter/>
+      <CarosalFooter />
     </MaxWebWidth>
+    
   )
 }
 

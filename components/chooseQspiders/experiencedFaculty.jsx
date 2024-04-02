@@ -2,6 +2,7 @@
 import React from 'react'
 import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
+import Counter from '../commonComponents/counterAnimation/Counter'
 
 function ExperiencedFaculty() {
     const content = [
@@ -35,13 +36,15 @@ function ExperiencedFaculty() {
                         members are industry experts who are passionate about <br />
                         grooming the next generation of IT professionals.
                     </p>
-                    <article className='grid grid-cols-3 gap-2 mt-6'>
+                    <article className='grid md:grid-cols-3 xs:grid-cols-1 sm:grid-cols-auto gap-2 mt-6'>
                         {
                             content.map((element) => {
                                 let detail = element.info.replace(/#/g, "<br/>")
                                 return (
                                     <aside>
-                                        <h1 className='gradient-text text-base font-extra-bold opacity-100 flex justify-center text-xl'>{element.count}</h1>
+                                        <h1 className='gradient-text text-base font-extra-bold opacity-100 flex justify-center text-xl'>
+                                        <Counter initialValue={0} targetValue={500} label={element.count} />
+                                        </h1>
                                         <p className='text-brown text-normal flex justify-center  text-center' dangerouslySetInnerHTML={{ __html: detail }} />
                                     </aside>
                                 )

@@ -1,7 +1,9 @@
+'use client'
 import { WidthIcon } from '@radix-ui/react-icons'
 import React from 'react'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import Qaccordion from './qaAccordion'
+import { Slide } from 'react-reveal'
 
 function FaqHome() {
     return (
@@ -15,7 +17,7 @@ function FaqHome() {
                 </span>
             </header>
             <article className='pb-8'>
-                <Qaccordion/>
+                <Qaccordion />
             </article>
         </MaxWebWidth>
     )

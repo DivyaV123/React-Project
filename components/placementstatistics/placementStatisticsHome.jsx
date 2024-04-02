@@ -1,7 +1,9 @@
 'use client'
-import React from 'react'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import Slide from "react-reveal/Slide";
+import './PlacementStatisticsHome.scss'
+import { Fade } from 'react-reveal';
+import Counter from '../commonComponents/counterAnimation/Counter';
 
 function PlacementStatisticsHome() {
     const statistics = [
@@ -31,16 +33,18 @@ function PlacementStatisticsHome() {
                     </h1>
                 </Slide>
             </header>
-            <article className='flex justify-between items-center mt-8'>
+            <article className='grid grid-cols-auto md:grid-cols-4 sm:grid-cols-2 xs:grid:cols-1  mt-8'>
                 {statistics.map((element) => {
                     let content = element.info.replace("#", "<br/>")
                     return (
-                        <div>
-                            <h1 className='font-extra-bold text-3xl text-dark-gray flex justify-center'>
-                                {element.count}
-                            </h1>
-                            <p className='text-dark-gray text-sm  flex justify-center text-center' dangerouslySetInnerHTML={{ __html: content }} />
-                        </div>
+                        <Fade top duration={1000} delay={0}>
+                            <div>
+                                <h1 className=' animatedCounter font-extra-bold text-3xl text-dark-gray flex justify-center'>
+                                    <Counter initialValue={0} targetValue={5000} label={element.count} /><br />
+                                </h1>
+                                <p className='text-dark-gray text-sm  flex justify-center text-center' dangerouslySetInnerHTML={{ __html: content }} />
+                            </div>
+                        </Fade>
                     )
                 })}
             </article>

@@ -1,6 +1,7 @@
 import React from 'react'
 import TrainingCard from './trainingCard'
 import Slide from "react-reveal/Slide";
+import { Fade } from 'react-reveal';
 
 function TrainingMode() {
     const trainingDetails = [
@@ -29,13 +30,15 @@ function TrainingMode() {
                     <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5'>Modes We Train</h1>
                 </Slide>
             </header>
-            <article className='flex gap-8'>
+            <Fade right duration={1000} delay={0}>
+            <article className='grid grid-cols-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-5'>
                 {trainingDetails.map((element) => {
                     return (
                         <TrainingCard cardDetails={element} />
                     )
                 })}
             </article>
+          </Fade>
         </article>
     )
 }

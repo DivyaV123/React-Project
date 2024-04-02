@@ -73,7 +73,6 @@ module.exports = {
           from: { height: "var(--radix-accordion-content-height)" },
           to: { height: "0" },
         },
-       
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -95,7 +94,16 @@ module.exports = {
       'extra-bold': '800',
       black: '#000000',
     },
-  
+    fontSize: {
+      xs:'0.7rem',
+      sm: '0.8rem',
+      base: '1rem',
+      xl: '1.25rem',
+      '2xl': '1.563rem',
+      '3xl': '1.953rem',
+      '4xl': '2.441rem',
+      '5xl': '3.052rem',
+    },
     backgroundImage: {
       'illustrate_wave': "url('/illustrate_wave.svg')",
       'footer-texture': "url('')",
