@@ -5,6 +5,8 @@ import CourseCard from '../commonComponents/courseCard/courseCard'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import '../ui/button.scss'
 import Button from '../commonComponents/button/Button'
+import Slide from "react-reveal/Slide";
+
 
 function OurCourse() {
     const [hoveredIndex, setHoveredIndex] = useState(null);
@@ -98,7 +100,9 @@ function OurCourse() {
     return (
         <MaxWebWidth>
             <aside className='flex justify-center align-center mb-8 mt-8' >
-                <h1 className='font-bold text-2xl header'>Explore our Courses</h1>
+                <Slide top cascade>
+                    <h1 className='font-bold text-2xl header'>Explore our Courses</h1>
+                </Slide>
             </aside>
             <article className='flex space-x-3 justify-end m-2 mb-5'>
                 {btnNames.map((element, index) => {

@@ -26,11 +26,12 @@ function MainNavbar() {
                     <NavAuthButtons />
                 </aside>
             </MaxWebWidth>
-            <article >
+            {/* <article >
                 <figure className="absolute top-40 right-0 flex justify-end z-10">
                     <img className='w-[73%] hover:w-[80%] hover:translate-y-3 duration-300' src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
                 </figure>
-            </article></>
+            </article> */}
+        </>
     )
 }
 
