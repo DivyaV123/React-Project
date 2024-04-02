@@ -6,6 +6,7 @@ import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import '../ui/button.scss'
 import Button from '../commonComponents/button/Button'
 import Slide from "react-reveal/Slide";
+import { Fade } from 'react-reveal'
 
 
 function OurCourse() {
@@ -104,58 +105,65 @@ function OurCourse() {
                     <h1 className='font-bold text-2xl header'>Explore our Courses</h1>
                 </Slide>
             </aside>
-            <article className='flex space-x-3 justify-end m-2 mb-5'>
-                {btnNames.map((element, index) => {
-                    console.log(element, "element")
-                    return <Button
-                        className={index === 0 ? 'primary' : 'primaryPlain'}
-                        title={element}
+            <Slide right cascade>
+                <article className='flex space-x-3 justify-end m-2 mb-5'>
+                    {btnNames.map((element, index) => {
+                        console.log(element, "element")
+                        return <Button
+                            className={index === 0 ? 'primary' : 'primaryPlain'}
+                            title={element}
+                        />
+                    })}
+                </article>
+            </Slide>
+
+            <Fade left duration={1000} delay={0}>
+                <aside className='flex gap-2'>
+                    <article className='justify-start' >
+                        <div>
+                            {courses.map((item, itemIndex) => {
+                                return (<div onMouseEnter={() => setHoveredIndex(itemIndex)}
+                                    className='h-10 bg-orange p-2 hover:text-white gradient-bg cursor-pointer'>
+                                    <div className='flex justify-between'>
+                                        <picture className='flex justify-start hover:text-white'>
+                                            <img src={item.icon} alt='logo' />
+                                        </picture>
+                                        <aside className='w-60 pl-2'>
+                                            <h1>
+                                                {item.title}
+                                            </h1>
+                                        </aside>
+                                        <picture className='flex justify-start '>
+                                            <img className='w-[80%] ' src={(hoveredIndex !== null && hoveredIndex === itemIndex) ? './arrowIcon.svg' : './arrowIconDark.svg'} alt='icon' />
+                                        </picture>
+                                    </div>
+                                </div>)
+                            })}
+                        </div>
+                    </article>
+                    <article >
+                        <div className='grid grid-cols-3 gap-4'>
+                            {Array.from({ length: 6 }).map((index) => {
+                                return (<div className=''>
+                                    <CourseCard />
+                                </div>)
+                            })}
+                        </div>
+                    </article>
+                </aside>
+            </Fade>
+            <Fade bottom duration={1000} delay={0} >
+                <article on className='flex justify-end mt-8 mb-8'>
+                    <Button
+                        className='primaryAnimated '
+                        title='View All Courses'
+                        icon={viewAllCoursesHover ? './arrowIcon.svg' : './arrowIconOrange.svg'}
+                        iconPosition='right'
+                        onMouseEnter={() => { setviewAllCoursesHover(true) }}
+                        onMouseLeave={() => { setviewAllCoursesHover(false) }}
                     />
-                })}
-            </article>
-            <aside className='flex gap-2'>
-                <article className='justify-start' >
-                    <div>
-                        {courses.map((item, itemIndex) => {
-                            return (<div onMouseEnter={() => setHoveredIndex(itemIndex)}
-                                className='h-10 bg-orange p-2 hover:text-white gradient-bg cursor-pointer'>
-                                <div className='flex justify-between'>
-                                    <picture className='flex justify-start hover:text-white'>
-                                        <img src={item.icon} alt='logo' />
-                                    </picture>
-                                    <aside className='w-60 pl-2'>
-                                        <h1>
-                                            {item.title}
-                                        </h1>
-                                    </aside>
-                                    <picture className='flex justify-start '>
-                                        <img className='w-[80%] ' src={(hoveredIndex !== null && hoveredIndex === itemIndex) ? './arrowIcon.svg' : './arrowIconDark.svg'} alt='icon' />
-                                    </picture>
-                                </div>
-                            </div>)
-                        })}
-                    </div>
                 </article>
-                <article >
-                    <div className='grid grid-cols-3 gap-4'>
-                        {Array.from({ length: 6 }).map((index) => {
-                            return (<div className=''>
-                                <CourseCard />
-                            </div>)
-                        })}
-                    </div>
-                </article>
-            </aside>
-            <article on className='flex justify-end mt-8 mb-8'>
-                <Button
-                    className='primaryAnimated '
-                    title='View All Courses'
-                    icon={viewAllCoursesHover ? './arrowIcon.svg' : './arrowIconOrange.svg'}
-                    iconPosition='right'
-                    onMouseEnter={() => { setviewAllCoursesHover(true) }}
-                    onMouseLeave={() => { setviewAllCoursesHover(false) }}
-                />
-            </article>
+            </Fade>
         </MaxWebWidth>
     )
 }

@@ -1,5 +1,7 @@
+import Counter from '@/components/commonComponents/counterAnimation/Counter'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import React from 'react'
+import { Fade } from 'react-reveal'
 
 function CarosalFooter() {
     const detail = [
@@ -29,20 +31,18 @@ function CarosalFooter() {
         },
     ]
     return (
-        <MaxWebWidth sectionStyling='z-100 flex justify-center' articalStyling='rounded-lg w-[85%] bg-footer-blue flex justify-between justify-center bg-cover items-between'>
-            <figure>
-                <img className='h-auto' src='./illustrate_gloabImage.svg' alt='illustrate_gloabImage' />
-            </figure>
-            <aside className='flex justify-end items-center'>
-                <div className='grid grid-cols-1  md:grid-cols-6 lg:grid-cols-6 gap-5'>
+
+        <MaxWebWidth sectionStyling='z-100 flex justify-center absolute w-full bottom-1 w-full' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3'>
+            <Fade bottom duration={1000} delay={0} >
+                <div className='flex'>
                     {
                         detail.map((element) => {
                             let content = element.details.replace(/#/g, "<br/>")
                             console.log(content, "content")
                             return (
-                                <div className='p-2'>
+                                <div className='p-4'>
                                     <h1 className=' gradient-text text-3xl text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
-                                        {element.count}
+                                        <Counter initialValue={0} targetValue={5000} label={element.count} />
                                     </h1>
                                     <p className='text-white text-xs/[16px] font-thin flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />
                                 </div>
@@ -50,8 +50,9 @@ function CarosalFooter() {
                         })
                     }
                 </div>
-            </aside>
+            </Fade>
         </MaxWebWidth>
+
     )
 }
 

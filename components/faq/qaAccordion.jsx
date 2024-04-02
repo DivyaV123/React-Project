@@ -6,10 +6,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
+import { Fade, Slide } from 'react-reveal';
+
 
 function Qaccordion() {
 
-  const [openIndex, setOpenIndex] = useState(0);
+  const [openIndex, setOpenIndex] = useState(-1);
 
   const qaList = [
     {
@@ -31,28 +33,40 @@ function Qaccordion() {
   ]
 
   const handleAccordionToggle = (index) => {
-    setOpenIndex(index === openIndex ? -1 : index);
+    
+    // if (index === 0) {
+    //   console.log(index,"index")
+    //   setOpenIndex(-1)
+    // } else {
+      setOpenIndex(index === openIndex ? -1 : index);
+    // }
+
   };
 
   return (
     <>
-      <Accordion defaultIndex={[0]} type="single" collapsible>
-        {
-          qaList.map((element, index) => {
-            return (
-              <article className={'m-2 rounded-lg'}>
-                <AccordionItem value={index + 1}>
-                  <AccordionTrigger onClick={() => handleAccordionToggle(index)}>{element.questuin}</AccordionTrigger>
-                  <AccordionContent>
-                    {element.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              </article>
-            )
-          })
-        }
 
-      </Accordion>
+      {
+        qaList.map((element, index) => {
+          return (
+            <Fade top duration={1000} delay={0}>
+              <article className={'m-2 rounded-lg'}>
+                <Accordion defaultIndex={[0]} type="single" collapsible>
+                  <AccordionItem value={index + 1}>
+                    <AccordionTrigger  onClick={() => handleAccordionToggle(index)}>{element.questuin}</AccordionTrigger>
+                    <AccordionContent>
+                      {element.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                </Accordion>
+              </article>
+            </Fade>
+
+          )
+        })
+      }
+
+
     </>
   )
 }

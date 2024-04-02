@@ -93,33 +93,33 @@ function OurBranchesHome() {
             <section>
                 <header>
                     <Slide top cascade>
-                        <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5 '>
+                        <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5'>
                             Our Branches
                         </h1>
                     </Slide>
                 </header>
-                <Fade duration={1000} delay={0}>
-                    <article className='flex flex-wrap justify-center gap-4  '>
-                        {branches.map((elements) => {
-                            const stylingImgHover = {
-                                ...stylingImg,
-                                opacity: '0.8',
-                            };
-                            return (
-                                <div key={elements.id} className='bg-no-repeat bg-cover transform hover:-translate-y-1 delay-300 duration-300 sm:flex-basis-[100%] md:flex-basis-[33.3%] lg:flex-basis-[23%] 2xl:[24%]' style={{ ...stylingImg, backgroundImage: `url(${elements.immage})` }}>
-                                    <article className='min-h-24 flex justify-center items-center flex-wrap'>
-                                        <article>
-                                            <header>
-                                                <h1 className='text-xl font-bold  hover:max-w-lg text-white flex justify-center align-center'>{elements.name}</h1>
-                                            </header>
-                                            <p className='text-white flex justify-center align-center'>{elements.number} Branches</p>
-                                        </article>
+
+                <article className='flex flex-wrap justify-center gap-4  '>
+                    {branches.map((elements) => {
+                        const stylingImgHover = {
+                            ...stylingImg,
+                            opacity: '0.8',
+                        };
+                        return (
+                            <div key={elements.id} className='bg-no-repeat bg-cover transform hover:-translate-y-1 delay-300 duration-300 sm:flex-basis-[10%] md:flex-basis-[33.3%] lg:flex-basis-[23%] 2xl:[24%]' style={{ ...stylingImg, backgroundImage: `url(${elements.immage})` }}>
+                                <article className='min-h-24 flex justify-center items-center flex-wrap'>
+                                    <article>
+                                        <header>
+                                            <h1 className='text-xl font-bold  hover:max-w-lg text-white flex justify-center align-center'>{elements.name}</h1>
+                                        </header>
+                                        <p className='text-white flex justify-center align-center'>{elements.number} Branches</p>
                                     </article>
-                                </div>
-                            )
-                        })}
-                    </article>
-                </Fade>
+                                </article>
+                            </div>
+                        )
+                    })}
+                </article>
+
             </section>
             <section className='flex justify-center mt-8 mb-8'>
                 <TrainingMode />

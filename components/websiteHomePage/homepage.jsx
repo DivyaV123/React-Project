@@ -18,9 +18,9 @@ function Homepage() {
             <OurBranchesHome />
             <ChooseQspidersHome />
             <PlacementStatisticsHome />
-            {/* <TestimonialsHome /> */}
+            <TestimonialsHome />
             <FaqHome />
-            <FooterHome/>
+            <FooterHome />
         </>
     )
 }
