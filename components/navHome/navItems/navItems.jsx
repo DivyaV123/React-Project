@@ -23,7 +23,6 @@ const navItems = [
 
 function NavItems() {
   const [hoverState, setHoverState] = useState({ item: null, content: false });
-
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {
       setHoverState({ item: itemName });
@@ -42,23 +41,23 @@ function NavItems() {
 
   return (
     <>
-      <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
-        <NavigationMenuList>
-          {navItems.map((navItem) => (
-            <NavigationMenuItem key={navItem.id}
-              onMouseEnter={() => handleItemHover(navItem.name)}
-              onMouseLeave={handleItemLeave}
+    <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
+      <NavigationMenuList>
+        {navItems.map((navItem) => (
+          <NavigationMenuItem key={navItem.id}
+            onMouseEnter={() => handleItemHover(navItem.name)}
+            onMouseLeave={handleItemLeave}
+          >
+            <NavigationMenuTrigger hoverItem={hoverState.item} hoverContent={hoverState.content}>
+              <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
+                <span className="hover-underline-animation text-sm">{navItem.name}</span>
+              </div>
+            </NavigationMenuTrigger>
+            <NavigationMenuContent
+              className="nav-content"
+              onMouseEnter={() => handleContentHover(true)}
+              onMouseLeave={() => handleContentHover(false)}
             >
-              <NavigationMenuTrigger>
-                <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
-                  <span className="hover-underline-animation text-sm">{navItem.name}</span>
-                </div>
-              </NavigationMenuTrigger>
-              <NavigationMenuContent
-                className="nav-content"
-                onMouseEnter={() => handleContentHover(true)}
-                onMouseLeave={() => handleContentHover(false)}
-              >
                 {navItem.content}
               </NavigationMenuContent>
             </NavigationMenuItem>
