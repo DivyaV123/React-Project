@@ -41,7 +41,7 @@ width: 33.3%;
 .navItemsOverlay::before {
   content: "";
   position: absolute;
-  width: 100vw;
+  width: 99.7vw;
   height: 100vh;
   background: rgb(0 0 0 / 20%);
 }
@@ -60,4 +60,16 @@ background: #FFFFFF 0% 0% no-repeat padding-box;
 box-shadow: 0px 0px 6px #00000029;
 border-radius: 8px;
 opacity: 1;
+}
+.navitemsArrow[data-state="open"]{
+  transition-delay: 2s;
+}
+.navitemsArrow[data-state="open"]::after{
+    content: '▲';
+    position: absolute;
+    top: 27px;
+    color: #FFFFFF;
+    font-size: 34px;
+    z-index: 9;
+    text-shadow:0px -1px 1px rgb(0 0 0 / 50%);
 }

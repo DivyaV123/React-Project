@@ -11,59 +11,59 @@ const Tutions = () => {
         {
           image: "/WebTechnologies.svg",
           title: "Web Technologies",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/RDBMS.svg",
           title: "RDBMS",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/Operatingsystem.svg",
           title: "Operatingsystem",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/Networking.svg",
           title: "Networking",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/Mathematics.svg",
           title: "Mathematics",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/cloudPlatform.svg",
           title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/advanceDevops.svg",
           title: "Advance Devops course for Architects",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/securityTechArchitect.svg",
           title: "Security Test Architect",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/advanceDataStructure.svg",
           title: "Advance Data Structure",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         }
       ]
     },
@@ -75,49 +75,49 @@ const Tutions = () => {
         {
           image: "/WebTechnologies.svg",
           title: "Web Technologies",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/RDBMS.svg",
           title: "RDBMS",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/Operatingsystem.svg",
           title: "Operatingsystem",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/Networking.svg",
           title: "Networking",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/Mathematics.svg",
           title: "Mathematics",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },,{
           image: "/cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/advanceDevops.svg",
           title: "Advance Devops course for Architects",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         
       ]
@@ -130,31 +130,31 @@ const Tutions = () => {
         {
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },{
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit.",
+          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
         }
       ]
     },
@@ -227,7 +227,7 @@ const Tutions = () => {
             ))}
           </div>
         )}
-        <div className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2`}>
+        <div className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2 h-fit gap-y-6 `}>
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map((content, index) => (
             <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-2 branchOverlay h-fit`}>
               <div className="flex h-10 gap-1.5">

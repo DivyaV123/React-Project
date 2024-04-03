@@ -23,7 +23,6 @@ const navItems = [
 
 function NavItems() {
   const [hoverState, setHoverState] = useState({ item: null, content: false });
-
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {
       setHoverState({ item: itemName});
@@ -49,7 +48,7 @@ function NavItems() {
             onMouseEnter={() => handleItemHover(navItem.name)}
             onMouseLeave={handleItemLeave}
           >
-            <NavigationMenuTrigger>
+            <NavigationMenuTrigger hoverItem={hoverState.item} hoverContent={hoverState.content}>
               <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
                 <span className="hover-underline-animation text-sm">{navItem.name}</span>
               </div>
