@@ -283,9 +283,9 @@ const Courses = () => {
             ))}
           </div>
         )}
-        <div className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2`}>
+        <div className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2 h-fit gap-y-9`}>
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map((content, index) => (
-            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-2 branchOverlay h-fit`}>
+            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex].list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[25%]  p-2 branchOverlay h-fit`}>
               <div className="flex h-10 gap-1.5 ">
                 <img className="h-10 w-10 " src={content.image} />
                 <h3 className="text-left h-10 text-xs font-bold items-center">{content.title}</h3>

@@ -288,7 +288,7 @@ const Branches = () => {
           </div>
         ))}
       </div>
-      <div className="xl:w-[83%] 2xl:w-[89%] flex overflow-auto">
+      <div className="xl:w-[83%] 2xl:w-[89%] flex ">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
           <div className="xl:w-[25%] 2xl:w-[17%] bg-gradient-to-b from-muted/50 to-muted p-2">
             {courses[hoveredIndex].list.map((item, itemIndex) => (
@@ -312,7 +312,7 @@ const Branches = () => {
             hoveredIndex !== null && courses[hoveredIndex].list
               ? "courselist"
               : "coursefull"
-          }   flex flex-wrap p-2`}
+          }   flex flex-wrap p-2 h-fit gap-y-4`}
         >
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
@@ -322,9 +322,9 @@ const Branches = () => {
                   hoveredIndex !== null && courses[hoveredIndex].list
                     ? "courseMedium"
                     : "courseinitial"
-                } 2xl:w-[33%] p-2 branchOverlay h-fit`}
+                } 2xl:w-[33%] p-3 branchOverlay h-fit`}
               >
-                <div className="flex h-10  justify-between">
+                <div className="flex h-10 gap-x-2.5">
                   <img className="h-10 w-16" src={content.image} />
                   <div>
                     <h3 className="text-left h-5 text-xs font-bold">
