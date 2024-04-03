@@ -25,9 +25,9 @@ function NavItems() {
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {
-      setHoverState({ item: itemName});
+      setHoverState({ item: itemName });
     } else {
-      setHoverState({ item: null});
+      setHoverState({ item: null });
     }
   }, []);
 
@@ -58,12 +58,12 @@ function NavItems() {
               onMouseEnter={() => handleContentHover(true)}
               onMouseLeave={() => handleContentHover(false)}
             >
-              {navItem.content}
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
+                {navItem.content}
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
     </>
   );
 }
