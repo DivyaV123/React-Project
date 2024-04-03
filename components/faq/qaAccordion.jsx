@@ -33,14 +33,7 @@ function Qaccordion() {
   ]
 
   const handleAccordionToggle = (index) => {
-    
-    // if (index === 0) {
-    //   console.log(index,"index")
-    //   setOpenIndex(-1)
-    // } else {
       setOpenIndex(index === openIndex ? -1 : index);
-    // }
-
   };
 
   return (

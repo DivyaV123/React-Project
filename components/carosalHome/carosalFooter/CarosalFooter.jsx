@@ -32,19 +32,21 @@ function CarosalFooter() {
     ]
     return (
 
-        <MaxWebWidth sectionStyling='z-100 flex justify-center absolute w-full bottom-1 w-full' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3'>
+        <MaxWebWidth sectionStyling='z-100 flex justify-center sm:relative md:absolute w-full bottom-1 w-full' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3'>
             <Fade bottom duration={1000} delay={0} >
-                <div className='flex'>
+                <div className='grid md:grid-cols-6'>
                     {
                         detail.map((element) => {
                             let content = element.details.replace(/#/g, "<br/>")
                             console.log(content, "content")
                             return (
-                                <div className='p-4'>
-                                    <h1 className=' gradient-text text-3xl text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
-                                        <Counter initialValue={0} targetValue={5000} label={element.count} />
-                                    </h1>
-                                    <p className='text-white text-xs/[16px] font-thin flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />
+                                <div className='p-2'>
+                                    <article>
+                                        <h1 className=' gradient-text text-3xl text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
+                                            <Counter initialValue={0} targetValue={5000} label={element.count} />
+                                        </h1>
+                                        <p className='text-white text-xs/[16px] font-thin flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />
+                                    </article>
                                 </div>
                             )
                         })

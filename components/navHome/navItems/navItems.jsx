@@ -26,9 +26,9 @@ function NavItems() {
 
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {
-      setHoverState({ item: itemName});
+      setHoverState({ item: itemName });
     } else {
-      setHoverState({ item: null});
+      setHoverState({ item: null });
     }
   }, []);
 
@@ -42,29 +42,29 @@ function NavItems() {
 
   return (
     <>
-    <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
-      <NavigationMenuList>
-        {navItems.map((navItem) => (
-          <NavigationMenuItem key={navItem.id}
-            onMouseEnter={() => handleItemHover(navItem.name)}
-            onMouseLeave={handleItemLeave}
-          >
-            <NavigationMenuTrigger>
-              <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
-                <span className="hover-underline-animation text-sm">{navItem.name}</span>
-              </div>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent
-              className="nav-content"
-              onMouseEnter={() => handleContentHover(true)}
-              onMouseLeave={() => handleContentHover(false)}
+      <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
+        <NavigationMenuList>
+          {navItems.map((navItem) => (
+            <NavigationMenuItem key={navItem.id}
+              onMouseEnter={() => handleItemHover(navItem.name)}
+              onMouseLeave={handleItemLeave}
             >
-              {navItem.content}
-            </NavigationMenuContent>
-          </NavigationMenuItem>
-        ))}
-      </NavigationMenuList>
-    </NavigationMenu>
+              <NavigationMenuTrigger>
+                <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
+                  <span className="hover-underline-animation text-sm">{navItem.name}</span>
+                </div>
+              </NavigationMenuTrigger>
+              <NavigationMenuContent
+                className="nav-content"
+                onMouseEnter={() => handleContentHover(true)}
+                onMouseLeave={() => handleContentHover(false)}
+              >
+                {navItem.content}
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+          ))}
+        </NavigationMenuList>
+      </NavigationMenu>
     </>
   );
 }
