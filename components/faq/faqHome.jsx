@@ -8,11 +8,11 @@ import { Slide } from 'react-reveal'
 function FaqHome() {
     return (
         <MaxWebWidth sectionStyling='bg-backgroundBlue'>
-            <header>
-                <h1 className='font-extra-bold text-2xl flex justify-center align-center mt-8 '>
+            <header className='mt-8 p-5'>
+                <h1 className='font-bold text-3xl flex justify-center align-center '>
                     FAQ’s
                 </h1>
-                <span className='text-sm flex justify-center align-center mb-8 min-h-10'>
+                <span className='text-sm font-normal flex justify-center align-center'>
                     often asked questions from our wonderful partners
                 </span>
             </header>

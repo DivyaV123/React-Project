@@ -16,13 +16,13 @@ function FooterHome() {
         <MaxWebWidth sectionStyling='bg-footer-blue min-h-80 flex justify-center'>
             <footer>
                 <Fade left duration={1000} delay={0}>
-                    <article className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 pt-5  ml-10'>
+                    <article className='flex justify-around pt-8 '>
                         {Object.entries(footerContent).map(([header, subHeaders], index) => (
                             <div key={index}>
-                                <h3 className='text-white text-xl font-bold pb-2'>{header}</h3>
+                                <h3 className='text-white  font-bold pb-2 text-base'>{header}</h3>
                                 <ul>
                                     {subHeaders.map((subHeader, subIndex) => (
-                                        <li className='text-white p-2 text-sm cursor-pointer' key={subIndex}>{subHeader}</li>
+                                        <li className='text-white pr-2 pb-2 pt-2 text-sm font-normal cursor-pointer' key={subIndex}>{subHeader}</li>
                                     ))}
                                 </ul>
                             </div>
