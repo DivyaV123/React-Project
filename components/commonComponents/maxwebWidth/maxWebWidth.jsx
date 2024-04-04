@@ -4,7 +4,7 @@ import React from "react";
 function MaxWebWidth({ children, sectionStyling, articalStyling, logo }) {
   return (
     <section className={cn(`w-full  ${sectionStyling}`)}>
-      <article className={cn(`w-[87%] m-auto ${articalStyling}`)}>{children}</article>
+      <article className={cn(`w-[87.5vw] m-auto ${articalStyling}`)}>{children}</article>
     </section>
   );
 }
