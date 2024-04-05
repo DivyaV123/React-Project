@@ -1,5 +1,5 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Accordion,
   AccordionContent,
@@ -33,8 +33,11 @@ function Qaccordion() {
   ]
 
   const handleAccordionToggle = (index) => {
-      setOpenIndex(index === openIndex ? -1 : index);
+    setOpenIndex(index === openIndex ? -1 : index);
+    
   };
+ 
+  
 
   return (
     <>
