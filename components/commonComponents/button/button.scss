@@ -1,7 +1,10 @@
 .primary {
-  width: 8rem;
-  height: 2rem;
+  // width: 8rem;
+  // height: 2rem;
+  height: auto;
+  width: auto;
   font-size: small;
+  padding: 8px 24px;
   background: transparent
     linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
     0% 0% no-repeat padding-box;
@@ -11,25 +14,30 @@
 }
 
 .primaryLogin {
-  width: 7.10vw;
-  height: 3.43vw;
+  // width: 8.90vw;
+  // height: 2.85vw;
+  height: auto;
+  width: auto;
   font-size: 1rem;
   font-weight: 500;
-  padding:10px 24px;
+  padding: 7px 24px;
   color: transparent;
-  background-clip: content-box , border-box;
+  background-clip: content-box, border-box;
   background: linear-gradient(to right, #f09819, #ff512f);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   border: 1px solid orangered;
   // border-image: linear-gradient(108deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%);
-  // border-image-slice: 1;  
+  // border-image-slice: 1;
   border-radius: 6px;
 }
 
 .plainBtn {
-  width: 8rem;
-  height: 2rem;
+  // width: 8rem;
+  // height: 2rem;
+  height: auto;
+  width: auto;
+  padding: 8px 24px;
   font-size: small;
   background: rgba(255, 255, 255, 1) 0% 0% no-repeat padding-box;
   box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.16);
@@ -46,25 +54,34 @@
 }
 
 .plainBtnReg {
-  width: 8.90vw;
-  height: 3.43vw;
+  // width: 8.90vw;
+  // height: 2.85vw;
+  height: auto;
+  width: auto;
   font-size: 1rem;
   font-weight: 500;
-  padding:10px 24px;
+  padding: 7px 24px;
   background: transparent linear-gradient(112deg, #f09819 0%, #ff512f 100%) 0%
-      0% no-repeat padding-box;
-    color: #ffffff !important;
-    border: 1px solid transparent;
-    border-radius: 6px;
+    0% no-repeat padding-box;
+  color: #ffffff !important;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  border: 1px solid transparent
+    linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
+    0% 0% no-repeat padding-box;
+  border: 1px solid orangered;
 }
 
 .primaryPlain {
-  width: 142px;
-  height: 34px;
+  // width: 142px;
+  // height: 34px;
+  height: auto;
+  width: auto;
   border: 1px solid gray;
   opacity: 1;
   font-size: small;
   color: gray;
+  padding: 8px 24px;
   border-radius: 4px;
   &:hover {
     min-width: 142px;

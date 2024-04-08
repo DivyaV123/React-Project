@@ -15,19 +15,19 @@ function Qaccordion() {
 
   const qaList = [
     {
-      questuin: 'How do I create an employer account with Qspiders hiring?',
+      question: 'How do I create an employer account with Qspiders hiring?',
       answer: 'Creating an account with Qspiders hiring is simple. You can start by posting your first job and authenticate your mobile number using OTP.'
     },
     {
-      questuin: 'How do I create an employer account with Qspiders hiring?',
+      question: 'How do I create an employer account with Qspiders hiring?',
       answer: 'Creating an account with Qspiders hiring is simple. You can start by posting your first job and authenticate your mobile number using OTP.'
     },
     {
-      questuin: 'How do I create an employer account with Qspiders hiring?',
+      question: 'How do I create an employer account with Qspiders hiring?',
       answer: 'Creating an account with Qspiders hiring is simple. You can start by posting your first job and authenticate your mobile number using OTP.'
     },
     {
-      questuin: 'How do I create an employer account with Qspiders hiring?',
+      question: 'How do I create an employer account with Qspiders hiring?',
       answer: 'Creating an account with Qspiders hiring is simple. You can start by posting your first job and authenticate your mobile number using OTP.'
     }
   ]
@@ -49,7 +49,7 @@ function Qaccordion() {
               <article className={'m-2 rounded-lg'}>
                 <Accordion defaultIndex={[0]} type="single" collapsible>
                   <AccordionItem value={index + 1}>
-                    <AccordionTrigger  onClick={() => handleAccordionToggle(index)}>{element.questuin}</AccordionTrigger>
+                    <AccordionTrigger  onClick={() => handleAccordionToggle(index)}>{element.question}</AccordionTrigger>
                     <AccordionContent>
                       {element.answer}
                     </AccordionContent>
