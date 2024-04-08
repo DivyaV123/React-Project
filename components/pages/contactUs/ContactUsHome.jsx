@@ -63,8 +63,12 @@ function ContactUsHome() {
                                     </form>
                                 </article>
                             </aside>
-                            <aside className='gradient-bg h-auto w-[16.55vw] rounded-r'>
-
+                            <aside className='bg-gradient  h-auto w-[16.55vw] rounded-r'>
+                                <header>
+                                    <h1>
+                                    Contact Info
+                                    </h1>
+                                </header> 
                             </aside>
                         </section>
                     </article>
