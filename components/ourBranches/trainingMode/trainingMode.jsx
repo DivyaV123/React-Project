@@ -30,7 +30,7 @@ function TrainingMode() {
                     <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5'>Modes We Train</h1>
                 </Slide>
             </header>
-            <Fade right duration={1000} delay={0}>
+            <Fade bottom duration={1000} delay={0}>
             <article className='grid grid-cols-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4  gap-5'>
                 {trainingDetails.map((element) => {
                     return (

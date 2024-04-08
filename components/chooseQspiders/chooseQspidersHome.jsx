@@ -6,7 +6,7 @@ import RelevantTraining from './relevantTraining'
 
 function ChooseQspidersHome() {
     return (
-        <MaxWebWidth>
+        <MaxWebWidth sectionStyling='max-w-full overflow-hidden'>
             <PlacementAssistance />
             <ExperiencedFaculty />
             <RelevantTraining/>

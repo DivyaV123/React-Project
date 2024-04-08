@@ -14,7 +14,7 @@ function CourseCard(props) {
 
                 </div>
                 <aside className='p-2 '>
-                    <h3 className='font-bold testing'>Test Architect</h3>
+                    <h3 className='font-bold'>Test Architect</h3>
                     <p className='flex text-gray-400 justify-start mt-2 leading-4 text-sm'>
                         Software testing course is more of job oriented training which is designed as per current industry standards.
                     </p>

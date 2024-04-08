@@ -1,8 +1,11 @@
-import React from "react";
-import NavItems from "../navItems/navItems";
-import NavAuthButtons from "../authButtons/navAuthButtons";
-import "./mainNavBar.scss";
-import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
+
+import React from 'react'
+import NavItems from '../navItems/navItems'
+import NavAuthButtons from '../authButtons/navAuthButtons'
+import './mainNavBar.scss'
+import Link from 'next/link'
+import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
+
 
 function MainNavbar() {
   return (
