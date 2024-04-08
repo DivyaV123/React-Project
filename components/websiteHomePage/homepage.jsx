@@ -1,18 +1,16 @@
 import React from 'react'
 import OurCourse from '../ourCourses/ourCourse'
-import NavHome from '../navHome/navHome'
 import CarosalHome from '../carosalHome/carosalHome'
 import OurBranchesHome from '../ourBranches/ourBranchesHome'
 import ChooseQspidersHome from '../chooseQspiders/chooseQspidersHome'
 import PlacementStatisticsHome from '../placementstatistics/placementStatisticsHome'
 import TestimonialsHome from '../testimonials/testimonialsHome'
 import FaqHome from '../faq/faqHome'
-import FooterHome from '../footer/footerHome'
+import WebLayout from '../commonComponents/webLayout/WebLayout'
 
 function Homepage() {
     return (
-        <>
-            <NavHome />
+        <WebLayout >
             <CarosalHome />
             <OurCourse />
             <OurBranchesHome />
@@ -20,8 +18,7 @@ function Homepage() {
             <PlacementStatisticsHome />
             {/* <TestimonialsHome /> */}
             <FaqHome />
-            <FooterHome />
-        </>
+        </WebLayout>
     )
 }
 

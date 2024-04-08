@@ -3,6 +3,7 @@ import React from 'react'
 import NavItems from '../navItems/navItems'
 import NavAuthButtons from '../authButtons/navAuthButtons'
 import './mainNavBar.scss'
+import Link from 'next/link'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 
 

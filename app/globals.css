@@ -80,6 +80,11 @@
 .gradient-bg:hover{
   background: linear-gradient(to right, #f09819, #ff512f);
 }
+
+.bg-gradient{
+  background: linear-gradient(to right, #f09819, #ff512f);
+}
+
 .myscrollbar::-webkit-scrollbar {
   width: 5px !important;
   border-radius: 5px;
@@ -98,6 +103,7 @@
   font-family: "Poppins", sans-serif;
 }
  
+
 /* @layer base {
   * {
     @apply border-border;
