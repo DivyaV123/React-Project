@@ -11,59 +11,59 @@ const Tutions = () => {
         {
           image: "/WebTechnologies.svg",
           title: "Web Technologies",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/RDBMS.svg",
           title: "RDBMS",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/Operatingsystem.svg",
           title: "Operatingsystem",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },{
           image: "/Networking.svg",
           title: "Networking",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/Mathematics.svg",
           title: "Mathematics",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/cloudPlatform.svg",
           title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },{
           image: "/cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },{
           image: "/advanceDevops.svg",
           title: "Advance Devops course for Architects",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/securityTechArchitect.svg",
           title: "Security Test Architect",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/advanceDataStructure.svg",
           title: "Advance Data Structure",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         }
       ]
     },
@@ -75,49 +75,49 @@ const Tutions = () => {
         {
           image: "/WebTechnologies.svg",
           title: "Web Technologies",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/RDBMS.svg",
           title: "RDBMS",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/Operatingsystem.svg",
           title: "Operatingsystem",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },{
           image: "/Networking.svg",
           title: "Networking",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/Mathematics.svg",
           title: "Mathematics",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },,{
           image: "/cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },{
           image: "/advanceDevops.svg",
           title: "Advance Devops course for Architects",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         
       ]
@@ -130,31 +130,31 @@ const Tutions = () => {
         {
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },{
           image: "/networksupport.svg",
           title: "Software Architecture",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         },
         {
           image: "/technicalsupport.svg",
           title: "Software Development",
-          description: "Lorem ipsum dolor sit amet,to the adipisicing elit.",
+          description: "Software testing course is more of job oriented training which is designed",
         }
       ]
     },
@@ -191,8 +191,8 @@ const Tutions = () => {
   ];
   const [hoveredIndex, setHoveredIndex] = useState(null);
   return (
-    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px] overflow-auto myscrollbar">
-      <div className={`bg-gradient-to-b from-muted/50 to-muted p-2 xl:w-[17%] 2xl:w-[11%] `}>
+    <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
+      <div className={`bg-gradient-to-b from-muted/50 to-muted pt-3 pl-3  xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] `}>
         {courses.map((courseItem, index) => (
           <div
             key={index}
@@ -208,9 +208,9 @@ const Tutions = () => {
           </div>
         ))}
       </div>
-      <div className="xl:w-[83%] 2xl:w-[89%] flex">
+      <div className="xl:w-[63.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex p-4">
         {hoveredIndex !== null && courses[hoveredIndex]?.list && (
-          <div className="xl:w-[41%] 2xl:w-[26%] bg-gradient-to-b from-muted/50 to-muted p-2">
+          <div className="xl:w-[17.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] bg-gradient-to-b from-muted/50 to-muted ">
             {courses[hoveredIndex]?.list?.map((item, itemIndex) => (
               <div
                 key={itemIndex}
@@ -227,12 +227,12 @@ const Tutions = () => {
             ))}
           </div>
         )}
-        <div className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courselist'  : 'coursefull'}   flex flex-wrap p-2 h-fit gap-y-6 `}>
+        <div className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courselist pl-4'  : 'coursefull'}   flex flex-wrap  h-fit gap-4 `}>
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map((content, index) => (
-            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courseMedium' : 'courseinitial'} 2xl:w-[33%] p-2 branchOverlay h-fit`}>
+            <div key={index} className={`${(hoveredIndex !== null && courses[hoveredIndex]?.list) ? 'courseMedium' : 'courseinitial'}  p-2 branchOverlay h-fit`}>
               <div className="flex h-10 gap-1.5">
                 <img className="h-10 w-10 " src={content.image} />
-                <h3 className="text-left h-10 text-xs font-bold">{content.title}</h3>
+                <h3 className="text-left h-10 text-xs font-bold flex items-center">{content.title}</h3>
               </div>
               <div>
                 <article className=" text-xs">{content.description}</article>

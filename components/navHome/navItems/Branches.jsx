@@ -269,9 +269,9 @@ const Branches = () => {
   ];
   const [hoveredIndex, setHoveredIndex] = useState(0);
   return (
-    <div className="p-3 flex md:w-[600px] lg:w-[900px] xl:w-[1100px] 2xl:w-[1500px]  lg:h-[500px] myscrollbar overflow-y-scroll">
+    <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <div
-        className={`bg-gradient-to-b from-muted/50 to-muted p-2 xl:w-[17%] 2xl:w-[11%] `}
+        className={`bg-gradient-to-b from-muted/50 to-muted pt-3 pl-3  xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw]`}
       >
         {courses.map((courseItem, index) => (
           <div
@@ -288,9 +288,9 @@ const Branches = () => {
           </div>
         ))}
       </div>
-      <div className="xl:w-[83%] 2xl:w-[89%] flex ">
+      <div className="xl:w-[63.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex p-4">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
-          <div className="xl:w-[25%] 2xl:w-[17%] bg-gradient-to-b from-muted/50 to-muted p-2">
+          <div className="xl:w-[17.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] bg-gradient-to-b from-muted/50 to-muted ">
             {courses[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}
@@ -310,9 +310,9 @@ const Branches = () => {
         <div
           className={`${
             hoveredIndex !== null && courses[hoveredIndex].list
-              ? "courselist"
+              ? "branchlist pl-4"
               : "coursefull"
-          }   flex flex-wrap p-2 h-fit gap-y-4`}
+          }   flex flex-wrap  h-fit gap-4`}
         >
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
@@ -320,12 +320,12 @@ const Branches = () => {
                 key={index}
                 className={`${
                   hoveredIndex !== null && courses[hoveredIndex].list
-                    ? "courseMedium"
-                    : "courseinitial"
-                } 2xl:w-[33%] p-3 branchOverlay h-fit`}
+                    ? "branchMedium"
+                    : "branchinitial"
+                } p-2 branchOverlay h-fit`}
               >
                 <div className="flex h-10 gap-x-2.5">
-                  <img className="h-10 w-16" src={content.image} />
+                  <img className="h-9 w-9" src={content.image} />
                   <div>
                     <h3 className="text-left h-5 text-xs font-bold">
                       {content.title}
