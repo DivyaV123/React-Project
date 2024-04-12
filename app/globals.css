@@ -85,6 +85,10 @@
   background: linear-gradient(to right, #f09819, #ff512f);
 }
 
+.bg-Pinkgradient{
+  background: linear-gradient(to right, #FEF5DB, #FFDFDF);
+}
+
 .myscrollbar::-webkit-scrollbar {
   width: 5px !important;
   border-radius: 5px;

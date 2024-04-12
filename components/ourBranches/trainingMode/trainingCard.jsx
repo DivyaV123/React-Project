@@ -1,12 +1,12 @@
 import React from 'react'
 import './trainingCard.scss'
 
-function TrainingCard({ cardDetails }) {
+function TrainingCard({ cardDetails, hover }) {
     return (
-        <section className='flex rounded-sm cardStyle row-span-4 w-60 m-4' style={{ backgroundImage: "url('./backgroundWave.svg')"}}>
+        <section className='flex rounded-sm cardStyle border-b-4 border-orange-500 row-span-4 w-60 m-4'>
             <div >
                 <figure className='flex justify-center aligen-center p-5 mt-3'>
-                    <img className='h-16 w-16' src={cardDetails.cardlogo} alt='logo'></img>
+                    <img src={cardDetails.cardlogo} alt='logo'></img>
                 </figure>
                 <header>
                     <h1 className='flex justify-center aligen-center text-dark-gray pt-5 text-xl font-bold'>
