@@ -8,9 +8,9 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import LandingCarosal from './corosalSections/LandingCarosal'
 import CarosalFooter from './carosalFooter/CarosalFooter'
 import { Fade } from 'react-reveal'
+import LandingCarosal from './corosalSections/LandingCarosal'
 
 
 
