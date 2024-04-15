@@ -7,11 +7,13 @@ import PlacementStatisticsHome from '../placementstatistics/placementStatisticsH
 import TestimonialsHome from '../testimonials/testimonialsHome'
 import FaqHome from '../faq/faqHome'
 import WebLayout from '../commonComponents/webLayout/WebLayout'
+import HiringPartners from '../hiringPartners/hiringPartners'
 
 function Homepage() {
     return (
         <WebLayout >
             <CarosalHome />
+            <HiringPartners/>
             <OurCourse />
             <OurBranchesHome />
             <ChooseQspidersHome />

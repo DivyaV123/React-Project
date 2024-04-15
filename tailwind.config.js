@@ -16,7 +16,7 @@ module.exports = {
     extend: {
       colors: {
         backgroundBlue: '#DEE6FE4D',
-        "border-gray" :'#A0A0A0',
+        "border-gray": '#A0A0A0',
         'footer-blue': '#002248',
         'dark-gray': '#454545',
         'brown': '#4D2121',
@@ -74,12 +74,20 @@ module.exports = {
           to: { height: "0" },
         },
       },
+      keyframes: {
+        scrollAnimation: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(100%)' },
+        },
+      },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
+        scrollAnimation: 'scrollAnimation 2500s linear infinite',
         "accordion-up": "accordion-up 0.2s ease-out",
         'hover-underline-animation:hover::after': '@apply transform scaleX(1) origin-bottom-left',
         "hover-underline-animation::after": '@apply absolute w-full transform scaleX(0) h-2 bottom-0 left-0 bg-yellow-400 origin-bottom-right transition-transform ease-out duration-250',
       },
+      
     },
     fontWeight: {
       thin: '100',
@@ -95,7 +103,7 @@ module.exports = {
       black: '#000000',
     },
     fontSize: {
-      xs:'0.7rem',
+      xs: '0.7rem',
       sm: '0.8rem',
       base: '1rem',
       xl: '1.25rem',
