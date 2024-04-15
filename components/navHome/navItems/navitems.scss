@@ -100,9 +100,9 @@ opacity: 1;
 .navitemsArrow[data-state="open"]::after{
     content: '▲';
     position: absolute;
-    top: 27px;
+    top: 2.34vw;
     color: #FFFFFF;
-    font-size: 34px;
+    font-size: 1.875rem;
     z-index: 9;
     text-shadow:0px -1px 1px rgb(0 0 0 / 50%);
 }
