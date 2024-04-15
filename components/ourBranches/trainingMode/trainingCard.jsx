@@ -5,7 +5,7 @@ function TrainingCard({ cardDetails, hover }) {
     return (
         <section className='flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-60 m-4'>
             <div >
-                <figure className='flex justify-center aligen-center p-5 mt-3 flex animate-scrollAnimation'>
+                <figure className='flex justify-center aligen-center p-5 mt-3 flex'>
                     <img src={cardDetails.cardlogo} alt='logo'></img>
                 </figure>
                 <header>
