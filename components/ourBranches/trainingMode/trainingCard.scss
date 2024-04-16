@@ -4,3 +4,99 @@
   border-radius: 12px;
   opacity: 1;
 }
+.animationBackground {
+  position: absolute;
+  width: 5rem;
+  height: 5rem;
+  position: absolute;
+  background: linear-gradient(
+    180deg,
+    rgba(240, 152, 25, 1) 0%,
+    rgba(255, 81, 47, 1) 100%
+  );
+  z-index: 0;
+  top: 2.2rem;
+  left: 5rem;
+  animation: reversecolor 800ms 1;
+  border-radius: 50%;
+}
+.trainingContainer {
+  overflow: hidden;
+}
+.trainingContainer:hover .animationBackground {
+  width: 40rem;
+  height: 40rem;
+  top: -70%;
+  left: -65%;
+  animation: colorchange 800ms 1;
+}
+
+@keyframes colorchange {
+  0% {
+    width: 5rem;
+    height: 5rem;
+    top: 2.2rem;
+    left: 5rem;
+    border-radius: 50%;
+  }
+  30% {
+    border-radius: 50%;
+  }
+  100% {
+    top: -70%;
+    left: -65%;
+  }
+}
+@keyframes reversecolor {
+  0% {
+    width: 40rem;
+    height: 40rem;
+    top: -70%;
+    left: -65%;
+  }
+  70% {
+    border-radius: 50%;
+  }
+  100% {
+    width: 5rem;
+    height: 5rem;
+    top: 2.2rem;
+    left: 5rem;
+    border-radius: 50%;
+  }
+}
+.trainingLogo {
+  width: 3.75rem;
+  position: absolute;
+  top: 2.75rem;
+  animation: imagedecrease 800ms 1;
+}
+.trainingContainer:hover .trainingLogo {
+  width: 6rem;
+  animation: imageincrease 800ms 1;
+  top: 1.5rem;
+}
+.trainingContainer:hover .cardHeader {
+  color: #ffffff;
+}
+.trainingContainer:hover .cardDetail {
+  color: #ffffff;
+}
+@keyframes imageincrease {
+  0% {
+    width: 3.75rem;
+  }
+  100% {
+    width: 6rem;
+    top: 1.5rem;
+  }
+}
+@keyframes imagedecrease {
+  0% {
+    width: 6rem;
+    top: 1.5rem;
+  }
+  100% {
+    width: 3.75rem;
+  }
+}

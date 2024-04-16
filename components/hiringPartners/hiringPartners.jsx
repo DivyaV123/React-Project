@@ -1,51 +1,66 @@
-'use client'
-import React from 'react'
-import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
-import { Slide } from 'react-reveal'
-
+"use client";
+import React from "react";
+import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
+import "./hiringPartners.scss";
 function HiringPartners() {
-  const logos = [
-    './compLogo01.svg', './compLogo02.svg', './compLogo03.svg', './compLogo-04.svg', './compLogo06.svg', './compLogo05.svg', './compLogo07.svg', './compLogo01.svg', './compLogo02.svg', './compLogo03.svg', , './compLogo03.svg', './compLogo-04.svg', './compLogo06.svg', './compLogo05.svg', './compLogo07.svg',
-  ]
-
-  const oddLogos = logos.filter((_, index) => index % 2 === 0); // Array of odd-indexed logos
-  const evenLogos = logos.filter((_, index) => index % 2 !== 0);
-
+  const svgPath = [
+    { src: "./compLogo01.svg" },
+    { src: "./compLogo02.svg" },
+    { src: "./compLogo03.svg" },
+    { src: "./compLogo-04.svg" },
+    { src: "./compLogo05.svg" },
+    { src: "./compLogo06.svg" },
+    { src: "./compLogo07.svg" },
+    { src: "./compLogo01.svg" },
+    { src: "./compLogo02.svg" },
+    { src: "./compLogo03.svg" },
+    { src: "./compLogo-04.svg" },
+    { src: "./compLogo05.svg" },
+    { src: "./compLogo06.svg" },
+    { src: "./compLogo07.svg" },
+    { src: "./compLogo01.svg" },
+    { src: "./compLogo02.svg" },
+    { src: "./compLogo03.svg" },
+    { src: "./compLogo-04.svg" },
+  ];
   return (
-    <MaxWebWidth sectionStyling='bg-[#FEF2E7] overflow-hidden w-full'>
+    <MaxWebWidth sectionStyling="bg-[#FEF2E7] overflow-hidden w-full py-6">
       <header>
-        <h1 className='flex justify-center aligen-center font-bold text-2xl pt-4'>
-          Our Hiring Pertners
+        <h1 className="flex justify-center align-center font-bold text-2xl pb-1">
+          Our Hiring Partners
         </h1>
       </header>
-      <div className="flex flex-wrap">
-        <div className="w-full flex justify-center">
-          {/* Display odd-indexed logos in the first line */}
-          {oddLogos.map((logo, index) => (
-            <figure key={index} className="flex-shrink-0 m-3">
-              <img src={logo} alt={`logo-${index}`} />
-            </figure>
+      <div className="slider">
+        <div className="slide-track">
+          {svgPath.map((path, index) => (
+            <div className="slide" key={index}>
+              <img src={path.src} alt={`Logo ${index}`} />
+            </div>
           ))}
         </div>
-        <div className="w-full flex justify-center">
-          {/* Display even-indexed logos in the second line */}
-          {evenLogos.map((logo, index) => (
-            <figure key={index} className="flex-shrink-0 m-3">
-              <img src={logo} alt={`logo-${index}`} />
-            </figure>
+      </div>
+
+      <div className="slider">
+        <div className="slide-track-right">
+          {svgPath.map((path, index) => (
+            <div className="slide" key={index}>
+              <img src={path.src} alt={`Logo ${index}`} />
+            </div>
           ))}
         </div>
-        <div className="w-full flex justify-center">
-          {/* Display odd-indexed logos in the first line */}
-          {logos.map((logo, index) => (
-            <figure key={index} className="flex-shrink-0 m-3">
-              <img src={logo} alt={`logo-${index}`} />
-            </figure>
+      </div>
+
+      <div className="slider">
+        <div className="slide-track">
+          {svgPath.map((path, index) => (
+            <div className="slide" key={index}>
+              <img src={path.src} alt={`Logo ${index}`} />
+            </div>
           ))}
         </div>
       </div>
     </MaxWebWidth>
-  )
+  );
 }
 
-export default HiringPartners
+export default HiringPartners;
