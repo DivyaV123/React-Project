@@ -4,6 +4,7 @@ import Slide from "react-reveal/Slide";
 import './PlacementStatisticsHome.scss'
 import { Badge } from "@/components/ui/badge"
 import { Fade } from 'react-reveal';
+import { Skeleton } from "@/components/ui/skeleton"
 import Counter from '../commonComponents/counterAnimation/Counter';
 
 function PlacementStatisticsHome() {
@@ -54,13 +55,13 @@ function PlacementStatisticsHome() {
                     {statistics.map((item, index) => {
                         let content = item.info.replace(/#/g, "<br/>")
                         return (
-                            <div className='flex aligen-items jutsify-center'>
+                            <div className='flex aligen-items jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl'>
                                 <figure>
                                     <img src={item.icon}></img>
                                 </figure>
                                 <div className='p-5'>
-                                    <h1 className='font-bold text-xl'>{item.count}</h1>
-                                    <p dangerouslySetInnerHTML={{ __html: content }} />
+                                    <h1 className='font-bold text-4xl'>{item.count}</h1>
+                                    <p className='text-dark-gray' dangerouslySetInnerHTML={{ __html: content }} />
                                 </div>
                             </div>
                         )
@@ -68,7 +69,7 @@ function PlacementStatisticsHome() {
                 </aside>
                 <asides className='relative p-2'>
                     <Fade right duration={1000} delay={0}>
-                        <figure className='absolute top-[-18%] left-[32%]'>
+                        <figure className='absolute top-[-18%] left-[50%]'>
                             <img className='w-[90%]' src='./graduationReportIcon.svg'></img>
                         </figure>
                     </Fade>
@@ -79,7 +80,7 @@ function PlacementStatisticsHome() {
                         <div className='grid grid-cols-3 gap-4'>
                             {degrees.map((element) => {
                                 return (
-                                    <Badge variant="">{element}</Badge>
+                                    <Badge variant="" className='font-bold text-xl'>{element}</Badge>
                                 )
                             })
                             }
@@ -92,7 +93,7 @@ function PlacementStatisticsHome() {
                         <div className='grid grid-cols-3 gap-4'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="">{element}</Badge>
+                                    <Badge variant="" className='font-bold text-xl'>{element}</Badge>
                                 )
                             })
                             }
