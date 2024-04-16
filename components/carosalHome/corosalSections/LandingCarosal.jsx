@@ -6,7 +6,6 @@ import Button from "@/components/commonComponents/button/Button";
 import Fade from "react-reveal/Fade";
 import CarosalFooter from "../carosalFooter/CarosalFooter";
 import Counter from "@/components/commonComponents/counterAnimation/Counter";
-import SVGIcon from "./SvgIcon";
 function LandingCarosal() {
   return (
     <div className="h-auto grid grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-2 gap-4 h-{1000px}">
