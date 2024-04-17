@@ -337,38 +337,39 @@ const Courses = () => {
       arrow: "/arrowIconDark.svg",
     },
   ];
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+  const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar ">
-      <div className="menuSidebar pt-4 pl-3 xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] ">
+      <div className="menuSidebar pt-2  xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] ">
         {courses.map((courseItem, index) => (
           <div
             key={index}
-            className="flex menuItem "
+            className="flex menuItem pl-4 pr-2"
             onMouseEnter={() => setHoveredIndex(index)}
           >
             <img src={courseItem.icon} />
             <div className="flex justify-between grow">
               <button className="p-2 text-sm">{courseItem.title}</button>
-              <img src={courseItem.arrow} className="w-4" />
+              <img src={courseItem.arrow} className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
             </div>
           </div>
         ))}
       </div>
-      <div className="xl:w-[63.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex p-4">
+      <div className="xl:w-[63.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex ">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
-          <div className="xl:w-[17.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw]  ">
+          <div className="xl:w-[20vw] 2xl:w-[17vw]  3xl:w-[12.9vw]  pt-2 menuSidebar">
             {courses[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className="flex justify-between grow"
-                onMouseEnter={() => setHoveredIndex(hoveredIndex)}
+                className="flex justify-between grow pl-2 menuItem pr-2"
+                onMouseEnter={() => setHoveredItemIndex(itemIndex)}
                 onMouseLeave={() => {}}
               >
                 <img src={item.icon} />
                 <div className="flex justify-between grow">
                   <button className="p-2 text-sm">{item.title}</button>
-                  <img src={item.arrow} className="w-4" />
+                  <img src={item.arrow} className={`${hoveredItemIndex === itemIndex ? 'visible' : 'invisible'} w-4`} />
                 </div>
               </div>
             ))}
@@ -377,9 +378,9 @@ const Courses = () => {
         <div
           className={`${
             hoveredIndex !== null && courses[hoveredIndex].list
-              ? "courselist pl-4"
-              : "coursefull"
-          }   flex flex-wrap  h-fit gap-4`}
+              ? "courselist pl-4 pt-2"
+              : "coursefull p-3"
+          }   flex flex-wrap  h-fit gap-4 `}
         >
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
@@ -392,8 +393,8 @@ const Courses = () => {
                 }  p-2 branchOverlay h-fit`}
               >
                 <div className="flex h-10 gap-1.5 ">
-                  <img className="h-10 w-10 " src={content.image} />
-                  <h3 className="text-left h-10 text-sm font-bold items-center flex">
+                  <img className="h-8 w-8" src={content.image} />
+                  <h3 className="text-left h-8 text-sm font-bold items-center flex">
                     {content.title}
                   </h3>
                 </div>
