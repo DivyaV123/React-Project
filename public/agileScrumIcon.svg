@@ -1,7 +1,0 @@
-<svg id="icon_menu_normal_11" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-  <rect id="background" width="24" height="24" fill="none"/>
-  <g id="icon_agile_scurm">
-    <rect id="Rectangle_17305" data-name="Rectangle 17305" width="24" height="24" fill="none"/>
-    <path id="Path_32188" data-name="Path 32188" d="M11.571,3,10,4.684a.538.538,0,0,0,0,.723l1.575,1.684M19.286,21l1.575-1.684a.538.538,0,0,0,0-.723l-1.575-1.684m-5.034,2.045a7.332,7.332,0,0,0,4.177-6.545,7.545,7.545,0,0,0-7.714-7.364m3.538,13.909a7.978,7.978,0,0,1-3.538.818H3.857m10.395-.818H21M7.714,5.623A7.37,7.37,0,0,0,3,12.409a7.16,7.16,0,0,0,2.061,5.01" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
-  </g>
-</svg>
