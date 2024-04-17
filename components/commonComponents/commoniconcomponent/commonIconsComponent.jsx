@@ -1,22 +1,33 @@
 import React from 'react'
+import Svg from '../Svg/Svg'
+import { svgicons } from '@/components/assets/icons/svgassets'
 
 function CommonIconsComponent({ lite }) {
-    const darkIcons = ['/youtube.svg', '/facebook.svg', '/linkedin.svg', '/x_twitter.svg', '/instagram.svg', '/whatsapp.svg']
-    const liteIcons = ['./liteYoutube.svg', './liteFacebook.svg', './litelinkedin.svg', './lite_x_twitter.svg', '/liteInstagram.svg', './liteWhatsapp.svg']
+    const darkIcons = ['youtubeIcon', 'facebookIcon', 'twitterIcon', 'instagramIcon', 'whatsappIcon']
+    const liteIcons = ['liteyoutubeIcon', 'litefacebookIcon', 'litelinkedinIcon', 'litetwitterIcon', 'liteinstagramIcon', 'litewhatsappIcon']
     return (
         <section className='flex space-x-3 items-center commonIconsComponent'>
             {!lite ? darkIcons.map((element) => {
+                // console.log(svgicons[element],"svgicons[element]", element)
                 return (
-                    <picture>
-                        <img style={{ height: "13px" }} src={element} alt="youtube Logo" />
-                    </picture>
+                    <Svg
+                        width={svgicons[element][0]}
+                        height={svgicons[element][1]}
+                        viewBox={svgicons[element][2]}
+                        icon={svgicons[element][3]}
+                        color={svgicons[element][4]}
+                    />
                 )
             }) :
                 liteIcons.map((element) => {
+                    console.log(svgicons[element], "svgicons[element]", element)
                     return (
-                        <picture>
-                            <img style={{ height: "13px" }} src={element} alt="youtube Logo" />
-                        </picture>
+                        <Svg
+                            width={svgicons[element][0]}
+                            height={svgicons[element][1]}
+                            viewBox={svgicons[element][2]}
+                            icon={svgicons[element][3]}
+                        />
                     )
                 })
             }

@@ -7,107 +7,110 @@ import '../ui/button.scss'
 import Button from '../commonComponents/button/Button'
 import Slide from "react-reveal/Slide";
 import { Fade } from 'react-reveal'
+import Svg from '../commonComponents/Svg/Svg'
+import { svgicons } from '../assets/icons/svgassets'
 
 
 function OurCourse() {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
     let btnNames = ['Offline Classes', 'Online Live Classes', 'Experiential Learning', 'Self Paced']
+
     const courses = [
         {
-            icon: "/softwareArchIcon.svg",
-            iconlite: '/SoftwareArchitectureLote.svg',
+            icon: "softwareArchIcon",
+            iconlite: 'SoftwareArchitectureLote',
             title: "Software Architecture",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/softwaredevicon.svg",
-            iconlite: '/SoftwareDevelopmentLite.svg',
+            icon: "softwaredevicon",
+            iconlite: 'SoftwareDevelopmentLite',
             title: "Software Development",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/softwareTestingIcon.svg",
+            icon: "softwareTestingIcon",
             title: "Software Testing",
-            iconlite: '/SoftwareTestingLite.svg',
+            iconlite: 'SoftwareTestingLite',
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/cloudComputingIcon.svg",
-            iconlite: '/DevopsLite.svg',
+            icon: "cloudComputingIcon",
+            iconlite: 'DevOpsLite',
             title: "Devops",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/dataScienceIcon.svg",
-            iconlite: '/DevOpsLite.svg',
+            icon: "dataScienceIcon",
+            iconlite: 'DevOpsLite',
             title: "DevOps",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/aimlIcon.svg",
-            iconlite: '/CloudComputingLite.svg',
+            icon: "aimlIcon",
+            iconlite: 'CloudComputingLite',
             title: "Cloud Computing",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/cyberSecurityIcon.svg",
-            iconlite: '/DataScienceLite.svg',
+            icon: "cyberSecurityIcon",
+            iconlite: 'DataScienceLite',
             title: "Data Science",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/bankingIcon.svg",
-            iconlite: '/AiMllite.svg',
+            icon: "bankingIcon",
+            iconlite: 'AiMllite',
             title: "AI/ML",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/projectManagementIcon.svg",
-            iconlite: '/CyberSecurityLite.svg',
+            icon: "projectManagementIcon",
+            iconlite: 'CyberSecurityLite',
             title: "Cyber Security",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/agileScrumIcon.svg",
-            iconlite: '/BankingLite.svg',
+            icon: "agileScrumIcon",
+            iconlite: 'BankingLite',
             title: "Banking",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/supportIcon.svg",
-            iconlite: '/ProjectManagemenLite.svg',
+            icon: "supportIcon",
+            iconlite: 'ProjectManagemenLite',
             title: "Project Management",
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "/abroadStudiesICon.svg",
-            iconlite: '/AgileScrumLite.svg',
+            icon: "abroadStudiesICon",
+            iconlite: 'AgileScrumLite',
             title: "Agile Scrum",
             arrow: "./arrowIconDark.svg",
         }, {
-            icon: "/supportIcon.svg",
-            iconlite: '/ProjectManagemenLite.svg',
+            icon: "supportIcon",
+            iconlite: 'ProjectManagemenLite',
             title: "Support",
             arrow: "./arrowIconDark.svg",
         }, {
-            icon: "/abroadStudiesICon.svg",
-            iconlite: '/AgileScrumLite.svg',
+            icon: "abroadStudiesICon",
+            iconlite: 'AgileScrumLite',
             title: "Abroad Studies",
             arrow: "./arrowIconDark.svg",
         }, {
-            icon: "/supportIcon.svg",
-            iconlite: '/ProjectManagemenLite.svg',
+            icon: "supportIcon",
+            iconlite: 'ProjectManagemenLite',
             title: "HR",
             arrow: "./arrowIconDark.svg",
         }, {
-            icon: "/supportIcon.svg",
-            iconlite: '/ProjectManagemenLite.svg',
+            icon: "supportIcon",
+            iconlite: 'ProjectManagemenLite',
             title: "SAP",
             arrow: "./arrowIconDark.svg",
         }, {
-            icon: "/supportIcon.svg",
-            iconlite: '/ProjectManagemenLite.svg',
+            icon: "supportIcon",
+            iconlite: 'ProjectManagemenLite',
             title: "Salesforce",
             arrow: "./arrowIconDark.svg",
         },
@@ -139,12 +142,29 @@ function OurCourse() {
             <aside className='md:flex gap-3 sm:block'>
                 <article className='justify-start' >
                     <div>
+                        {console.log(hoveredIndex !== null, "bool")}
                         {courses.map((item, itemIndex) => {
-                            return (<div onMouseEnter={() => setHoveredIndex(itemIndex)}
+                            { console.log(svgicons[item?.iconlite], "svgicons[item?.icon]s", item?.iconlite) }
+                            return (<div onMouseEnter={() => setHoveredIndex(itemIndex)} onMouseLeave={() => setHoveredIndex(null)}
                                 className='h-10 bg-orange p-2 hover:text-white hover:rounded gradient-bg cursor-pointer'>
                                 <div className='flex justify-between'>
                                     <picture className='flex justify-start hover:text-white'>
-                                        <img src={(hoveredIndex !== null && hoveredIndex === itemIndex) ? item.iconlite : item.icon} alt='logo' />
+                                        {/* <img src={(hoveredIndex !== null && hoveredIndex === itemIndex) ? item.iconlite : item.icon} alt='logo' /> */}
+                                        {(hoveredIndex === itemIndex) ?
+                                            <Svg
+                                                width={svgicons[item?.iconlite][0]}
+                                                height={svgicons[item?.iconlite][1]}
+                                                viewBox={svgicons[item?.iconlite][2]}
+                                                icon={svgicons[item?.iconlite][3]}
+                                                color={svgicons[item?.iconlite][4]}
+                                            /> :
+                                            <Svg
+                                                width={svgicons[item?.icon][0]}
+                                                height={svgicons[item?.icon][1]}
+                                                viewBox={svgicons[item?.icon][2]}
+                                                icon={svgicons[item?.icon][3]}
+                                            />
+                                        }
                                     </picture>
                                     <aside className='w-60 pl-2'>
                                         <h1>
