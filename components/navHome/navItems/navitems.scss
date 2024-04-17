@@ -79,7 +79,7 @@ width: 19.25vw;
   background: rgb(0 0 0 / 20%);
 }
 
-.directions{
+.directions:hover{
 background: #1919F015 0% 0% no-repeat padding-box;
 border-radius: 20px;
 opacity: 1;
@@ -132,3 +132,12 @@ opacity: 1;
         width: 57.5vw
       }
     } 
+.titleText{
+  color: #575757;
+}
+.menuSidebar{
+  background: #F9F9F9;
+}
+.menuItem:hover{
+  background: #FFFFFF;
+}

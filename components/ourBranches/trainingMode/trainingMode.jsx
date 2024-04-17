@@ -10,22 +10,22 @@ function TrainingMode() {
         {
             mode: "Offline Classes",
             detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
-            cardlogo: "./icon_ofline_classes.png",
+            cardlogo: "./icon_filled_ofline_classes.svg",
             hoverLogo:'./hoverOfflineClassesIcon.svg'
         }, {
             mode: "Online Live classes",
             detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
-            cardlogo: "./icon_online_live_courses.png",
+            cardlogo: "./icon_filled_online_live_classes.svg",
             hoverLogo:'./hoverOfflineClassesIcon.svg'
         }, {
             mode: "Experiential Learning",
             detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
-            cardlogo: "./icon_experiential_learning.png",
+            cardlogo: "./icon_filled_experiential_learning.svg",
             hoverLogo:'./hoverOfflineClassesIcon.svg'
         }, {
             mode: "Self paced",
             detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
-            cardlogo: "./icon_self_paced.png",
+            cardlogo: "./icon_filled_self_paced.svg",
             hoverLogo:'./hoverOfflineClassesIcon.svg'
         },
     ]

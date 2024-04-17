@@ -271,18 +271,18 @@ const Branches = () => {
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <div
-        className={`bg-gradient-to-b from-muted/50 to-muted pt-3 pl-3  xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw]`}
+        className={`menuSidebar  pt-3 pl-3 xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw]`}
       >
         {courses.map((courseItem, index) => (
           <div
             key={index}
-            className="flex"
+            className="flex menuItem "
             onMouseEnter={() => setHoveredIndex(index)}
             // onMouseLeave={() => setHoveredIndex()}
           >
             <img src={courseItem.icon} />
             <div className="flex justify-between grow">
-              <button className="p-2 text-xs">{courseItem.title}</button>
+              <button className="p-2 text-sm">{courseItem.title}</button>
               <img src={courseItem.arrow} className="w-4" />
             </div>
           </div>
@@ -290,7 +290,7 @@ const Branches = () => {
       </div>
       <div className="xl:w-[63.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex p-4">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
-          <div className="xl:w-[17.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] bg-gradient-to-b from-muted/50 to-muted ">
+          <div className="xl:w-[17.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw]  ">
             {courses[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}
@@ -300,7 +300,9 @@ const Branches = () => {
               >
                 {/* <img src={item.icon} /> */}
                 <div className="flex justify-between grow">
-                  <button className="p-2 text-xs text-left">{item.title}</button>
+                  <button className="p-2 text-sm text-left">
+                    {item.title}
+                  </button>
                   <img src={item.arrow} className="w-4" />
                 </div>
               </div>
@@ -327,7 +329,7 @@ const Branches = () => {
                 <div className="flex h-10 gap-x-2.5">
                   <img className="h-9 w-9" src={content.image} />
                   <div>
-                    <h3 className="text-left h-5 text-xs font-bold">
+                    <h3 className="text-left h-5 text-sm font-bold">
                       {content.title}
                     </h3>
                     <p className="text-left h-5 text-xs text-amber-800">
@@ -336,13 +338,13 @@ const Branches = () => {
                   </div>
                 </div>
                 <div className="flex justify-between items-center">
-                  <div className="text-xs p-1">
+                  <div className="text-sm p-1 titleText">
                     <p>5 Upcoming Batches</p>
                     <p>5 Ongoing Batches</p>
                   </div>
-                  <div className=" flex gap-1 text-xs directions p-2">
-                    <p >Get Directions</p>
-                    <img src="/DirectionIcon.svg" className="h-4 w-4"/>
+                  <div className=" flex gap-1 text-sm directions p-2">
+                    <p>Get Directions</p>
+                    <img src="/DirectionIcon.svg" className="h-4 w-4" />
                   </div>
                 </div>
               </div>
