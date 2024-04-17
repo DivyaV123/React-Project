@@ -2,10 +2,12 @@
 import React, { useState } from "react";
 import Link from "next/link";
 import "./navitems.scss";
+import { svgicons } from "@/components/assets/icons/svgassets";
+import Svg from "@/components/commonComponents/Svg/Svg";
 const Branches = () => {
   const courses = [
     {
-      icon: "/BengaluruIcon.svg",
+      icon: "bengaloreIcon",
       title: "Bangalore",
       arrow: "/arrowIconDark.svg",
       list: [
@@ -97,7 +99,7 @@ const Branches = () => {
       ],
     },
     {
-      icon: "/HyderabadIcon.svg",
+      icon: "hydrabadIcon",
       title: "Hyderabad",
       arrow: "/arrowIconDark.svg",
       sublist: [
@@ -152,7 +154,7 @@ const Branches = () => {
       ],
     },
     {
-      icon: "/ChennaiIcon.svg",
+      icon: "chennaiIcon",
       title: "Chennai",
       arrow: "/arrowIconDark.svg",
       sublist: [
@@ -207,66 +209,67 @@ const Branches = () => {
       ],
     },
     {
-      icon: "/PuneIcon.svg",
+      icon: "puneIcon",
       title: "Pune",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/MumbaiIcon.svg",
+      icon: "mumbaiIcon",
       title: "Mumbai",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/NoidaIcon.svg",
+      icon: "noidaIcon",
       title: "Noida",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/GurugramIcon.svg",
+      icon: "gurugramIcon",
       title: "Gurugram",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/NewdelhiIcon.svg",
+      icon: "newDelhiIcon",
       title: "New Delhi",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/BhubaneswarIcon.svg",
+      icon: "bhubaneshwarIcon",
       title: "Bhubaneswar",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/KolkataIcon.svg",
+      icon: "kolkataIcon",
       title: "Kolkata",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/AhmedabadIcon.svg",
+      icon: "ahmedabadIcon",
       title: "Ahmedabad",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/ChandigarhIcon.svg",
+      icon: "chandigarhIcon",
       title: "Chandigarh",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/TirupatiIcon.svg",
+      icon: "tirupatiIcon",
       title: "Tirupati",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/KochiIcon.svg",
+      icon: "kochiIcon",
       title: "Kochi",
       arrow: "/arrowIconDark.svg",
     },
     {
-      icon: "/MysoreIcon.svg",
+      icon: "mysoreIcon",
       title: "Mysore",
       arrow: "/arrowIconDark.svg",
     },
   ];
+  console.log(svgicons.gurugramIcon,"gutugram")
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
   return (
@@ -274,20 +277,29 @@ const Branches = () => {
       <div
         className={`menuSidebar  pt-2 xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw]`}
       >
-        {courses.map((courseItem, index) => (
-          <div
-            key={index}
-            className="flex menuItem pl-4 pr-2"
-            onMouseEnter={() => setHoveredIndex(index)}
+        {courses.map((courseItem, index) => {
+          return (
+            <div
+              key={index}
+              className="flex  menuItem pl-4 pr-2 items-center"
+              onMouseEnter={() => setHoveredIndex(index)}
             // onMouseLeave={() => setHoveredIndex()}
-          >
-            <img src={courseItem.icon} />
-            <div className="flex justify-between grow">
-              <button className="p-2 text-sm">{courseItem.title}</button>
-              <img src={courseItem.arrow} className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`}  />
+            >
+              {/* <img src={courseItem.icon} /> */}
+              <Svg
+                width={svgicons[courseItem?.icon][0]}
+                height={svgicons[courseItem?.icon][1]}
+                viewBox={svgicons[courseItem?.icon][2]}
+                icon={svgicons[courseItem?.icon][3]}
+                color={svgicons[courseItem?.icon][4]}
+              />
+              <div className="flex justify-between grow">
+                <button className="p-2 text-xs">{courseItem.title}</button>
+                <img src={courseItem.arrow} className={`${setHoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
       <div className="xl:w-[63.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex ">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
@@ -295,7 +307,7 @@ const Branches = () => {
             {courses[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className="flex justify-between grow pl-2 menuItem pr-2"
+                className="flex justify-between grow pl-2 menuItem pr-2 items-center"
                 onMouseEnter={() => setHoveredItemIndex(itemIndex)}
                 onMouseLeave={() => {}}
               >
@@ -321,11 +333,10 @@ const Branches = () => {
             (content, index) => (
               <div
                 key={index}
-                className={`${
-                  hoveredIndex !== null && courses[hoveredIndex].list
-                    ? "branchMedium"
-                    : "branchinitial"
-                } p-2 branchOverlay h-fit`}
+                className={`${hoveredIndex !== null && courses[hoveredIndex].list
+                  ? "branchMedium"
+                  : "branchinitial"
+                  } p-2 branchOverlay h-fit`}
               >
                 <div className="flex h-10 gap-x-2.5">
                   <img className="h-9 w-9" src={content.image} />
@@ -343,8 +354,8 @@ const Branches = () => {
                     <p>5 Upcoming Batches</p>
                     <p>5 Ongoing Batches</p>
                   </div>
-                  <div className=" flex gap-1 text-sm directions p-2">
-                    <p>Get Directions</p>
+                  <div className=" flex gap-1 text-xs directions p-2">
+                    <p >Get Directions</p>
                     <img src="/DirectionIcon.svg" className="h-4 w-4" />
                   </div>
                 </div>
