@@ -252,14 +252,13 @@ const Courses = () => {
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar ">
-      <div className="menuSidebar pt-2  xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] ">
+      <div className="menuSidebar pt-2  xl:w-[17.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] ">
         {courses.map((courseItem, index) => (
           <div
             key={index}
-            className="flex menuItem pl-4 pr-2 items-center"
             onMouseEnter={() => setHoveredIndex(index)}
+            className={`flex ${hoveredIndex  === index  ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
           >
-            {console.log(svgicons[courseItem?.icon], courseItem?.icon, "courseItem?.icon")}
             {/* <img src={courseItem.icon} /> */}
             <Svg
               width={svgicons[courseItem?.icon][0]}
@@ -280,7 +279,7 @@ const Courses = () => {
             {courses[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className="flex justify-between grow pl-2 menuItem pr-2 items-center"
+                className={`flex justify-between grow pl-2 ${hoveredItemIndex  === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
                 onMouseEnter={() => setHoveredItemIndex(itemIndex)}
                 onMouseLeave={() => {}}
               >

@@ -50,7 +50,7 @@ function NavItems() {
           >
             <NavigationMenuTrigger hoverItem={hoverState.item} hoverContent={hoverState.content}>
               <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
-                <span className=" text-normal text-slate font-semibold">{navItem.name}</span>
+                <span className="menuHeader text-normal text-slate hover-underline-animation">{navItem.name}</span>
               </div>
             </NavigationMenuTrigger>
             <NavigationMenuContent

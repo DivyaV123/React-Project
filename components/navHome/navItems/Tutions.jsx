@@ -234,7 +234,7 @@ const Tutions = () => {
         {courses.map((courseItem, index) => (
           <div
             key={index}
-            className="flex menuItem pl-4 pr-2 items-center"
+            className={`flex ${hoveredIndex  === index  ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
             onMouseEnter={() => setHoveredIndex(index)}
             // onMouseLeave={() => setHoveredIndex()}
           >
@@ -252,7 +252,7 @@ const Tutions = () => {
             {courses[hoveredIndex]?.list?.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className="flex justify-between grow pl-2 menuItem pr-2 items-center"
+                className={`flex justify-between grow pl-2 ${hoveredItemIndex  === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
                 onMouseEnter={() => setHoveredItemIndex(itemIndex)}
                 onMouseLeave={() => {}}
               >
