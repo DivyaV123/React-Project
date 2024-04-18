@@ -32,7 +32,7 @@ function CarosalFooter() {
     ]
     return (
 
-        <MaxWebWidth sectionStyling='z-100 flex justify-center sm:relative md:absolute w-full bottom-1 w-full' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3'>
+        <MaxWebWidth sectionStyling='z-100 flex justify-center sm:relative md:absolute w-full bottom-2 w-full h-[10vw] 2xl:[8vw] 3xl:h-[7vw]' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3 h-[10vw] 3xl:h-[7vw] 2xl:[8vw] items-center'>
             <Fade bottom duration={1000} delay={0} >
                 <div className='grid md:grid-cols-6'>
                     {
@@ -42,10 +42,10 @@ function CarosalFooter() {
                             return (
                                 <div className='p-2'>
                                     <article>
-                                        <h1 className=' gradient-text text-3xl text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
+                                        <h1 className=' gradient-text text-[2rem] text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
                                             <Counter initialValue={0} targetValue={5000} label={element.count} />
                                         </h1>
-                                        <p className='text-white text-xs/[16px] font-thin flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />
+                                        <p className='text-white text-[0.75rem] font-semibold flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />
                                     </article>
                                 </div>
                             )

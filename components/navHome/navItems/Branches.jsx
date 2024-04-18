@@ -269,7 +269,7 @@ const Branches = () => {
       arrow: "/arrowIconDark.svg",
     },
   ];
-  console.log(svgicons.gurugramIcon,"gutugram")
+
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
   return (
@@ -281,8 +281,8 @@ const Branches = () => {
           return (
             <div
               key={index}
-              className="flex  menuItem pl-4 pr-2 items-center"
               onMouseEnter={() => setHoveredIndex(index)}
+              className={`flex ${hoveredIndex  === index  ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
             // onMouseLeave={() => setHoveredIndex()}
             >
               {/* <img src={courseItem.icon} /> */}
@@ -294,8 +294,8 @@ const Branches = () => {
                 color={svgicons[courseItem?.icon][4]}
               />
               <div className="flex justify-between grow">
-                <button className="p-2 text-xs">{courseItem.title}</button>
-                <img src={courseItem.arrow} className={`${setHoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
+                <button className="p-2 text-sm">{courseItem.title}</button>
+                <img src={courseItem.arrow} className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
               </div>
             </div>
           )
@@ -307,7 +307,7 @@ const Branches = () => {
             {courses[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className="flex justify-between grow pl-2 menuItem pr-2 items-center"
+                className={`flex justify-between grow pl-2 ${hoveredItemIndex  === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
                 onMouseEnter={() => setHoveredItemIndex(itemIndex)}
                 onMouseLeave={() => {}}
               >

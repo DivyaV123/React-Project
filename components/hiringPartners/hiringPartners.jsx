@@ -7,7 +7,7 @@ function HiringPartners() {
     { src: "./compLogo01.svg" },
     { src: "./compLogo02.svg" },
     { src: "./compLogo03.svg" },
-    { src: "./compLogo-04.svg" },
+    { src: "./compLogo-04.svg"},
     { src: "./compLogo05.svg" },
     { src: "./compLogo06.svg" },
     { src: "./compLogo07.svg" },
@@ -26,7 +26,7 @@ function HiringPartners() {
   return (
     <MaxWebWidth sectionStyling="bg-[#FEF2E7] overflow-hidden w-full py-6">
       <header>
-        <h1 className="flex justify-center align-center font-bold text-2xl pb-1">
+        <h1 className="flex justify-center align-center font-bold text-[2rem] pb-1">
           Our Hiring Partners
         </h1>
       </header>

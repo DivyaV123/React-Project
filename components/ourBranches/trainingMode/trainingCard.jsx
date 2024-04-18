@@ -11,16 +11,15 @@ function TrainingCard({ cardDetails, hover }) {
             </div>
             <div className='z-10'>
                 <figure className='flex justify-center aligen-center '>
-                    {console.log(cardDetails?.cardlogo,svgicons[cardDetails?.cardlogo],"svgicons[cardDetails?.cardlogo]")}
-                    {/* <img className='trainingLogo' src={cardDetails.cardlogo} alt='logo'></img> */}
-                    <Svg
+                    <img className='trainingLogo' src={cardDetails.cardlogo} alt='logo'></img>
+                    {/* <Svg
                         className='trainingLogo'
                         width={svgicons[cardDetails?.cardlogo][0]}
                         height={svgicons[cardDetails?.cardlogo][1]}
                         viewBox={svgicons[cardDetails?.cardlogo][2]}
                         icon={svgicons[cardDetails?.cardlogo][3]}
                         color={svgicons[cardDetails?.cardlogo][4]}
-                    />
+                    /> */}
                 </figure>
                 <header>
                     <h1 className='flex justify-center aligen-center text-dark-gray pt-5 text-xl font-bold mt-32 cardHeader'>

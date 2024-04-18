@@ -15,7 +15,7 @@
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: orangered;
+  background: linear-gradient(to right, #f09819, #ff512f);
   transform-origin: bottom right;
   transition: transform 0.25s ease-out;
 }
@@ -125,21 +125,21 @@ opacity: 1;
 .branchlist{
   width:43.5vw;
   }
+  
+  .branchMedium{
+    width: 20.25vw;
+    }
   @media only screen and (min-width: 1536px)and (max-width: 1919px) {
     .branchlist {
       width: 54.5vw
     }
     .branchMedium {
-      width: 15.8vw
+      width: 16.2vw
     }
     .duplicate{
       top:3.6vw;
     }
   }
-
-  .branchMedium{
-    width: 19.25vw;
-    }
     @media only screen and (min-width: 1920px) {
       .branchMedium {
         width: 17.4vw
@@ -157,9 +157,23 @@ opacity: 1;
 .titleText{
   color: #575757;
 }
+.menuHeader{
+  color: #000000;
+}
 .menuSidebar{
   background: #F9F9F9;
 }
+.menuItem{
+  background: #FFFFFF;
+  font-weight: 700;
+  color: #454545;
+}
 .menuItem:hover{
   background: #FFFFFF;
+  font-weight: 700;
+  color: #454545;
+}
+.menuItemdisable{
+  color: #454545;
+  font-weight: 500;
 }
