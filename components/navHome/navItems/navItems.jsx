@@ -17,7 +17,7 @@ const navItems = [
   { id: 2, name: "Branches", content: <Branches /> },
   { id: 3, name: "Tutions", content: <Tutions /> },
   { id: 4, name: "Hire From Us", content: "" },
-  { id: 5, name: "Placement Center", content: "" },
+  { id: 5, name: "Placements", content: "" },
   { id: 6, name: "Contact us", content: "" },
 ];
 

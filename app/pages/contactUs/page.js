@@ -17,7 +17,7 @@ function ContactUsHome() {
                             <span className='text-white text-2xl font-medium flex justify-center tracking-widest'>Feel free to get in touch with team if you have any questions</span>
                         </div>
                     </header>
-                    <article className='absulate top-[75%] left-[21%] bg-white rounded border border-gray-300 absolute' >
+                    <article className='absulate top-[75%] left-[21%] bg-white rounded border border-gray-300 absolute w-[63.25vw]' >
                         <section className='flex rounded-xl gap-10'>
                             <aside >
                                 <header className='p-4'>
