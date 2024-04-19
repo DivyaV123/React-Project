@@ -8,7 +8,7 @@ function CourseCard(props) {
         <>
             <section className='cardStyle justify-center p-4 grid justify-items-stretch'>
                 <picture className='flex justify-self-center p-1'>
-                    <img className='p-1' src='./sample_image_example.png' alt='image'></img>
+                    <img className='p-1' src='./images/courseCardImages.png' alt='image'></img>
                 </picture>
                 <div>
 

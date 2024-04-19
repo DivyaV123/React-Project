@@ -18,6 +18,12 @@ function OurCourse() {
 
     const courses = [
         {
+            icon: "popularCourseIcon",
+            iconlite: 'popularCourseIconLite',
+            title: "Popular Courses",
+            arrow: "./arrowIconDark.svg",
+        },
+        {
             icon: "softwareArchIcon",
             iconlite: 'SoftwareArchitectureLote',
             title: "Software Architecture",
@@ -163,6 +169,7 @@ function OurCourse() {
                                                 height={svgicons[item?.icon][1]}
                                                 viewBox={svgicons[item?.icon][2]}
                                                 icon={svgicons[item?.icon][3]}
+                                                color={svgicons[item?.iconlite][4]}
                                             />
                                         }
                                     </picture>

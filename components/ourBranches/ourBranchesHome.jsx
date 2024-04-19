@@ -94,6 +94,14 @@ function OurBranchesHome() {
     }
     ]
 
+    const branchCards = [
+        './images/Bengalore.png', './images/HydrabadCard.png', './images/ChennaiCard.png',
+        './images/puneCard.png', './images/MumbaiCard.png', './images/NoidaCard.png', './images/gurugramCard.png',
+        './images/NewDelhiCard.png', './images/BuvaneshwarCard.png', './images/KolkataCard.png', './images/AmehabadCard.png',
+        './images/ChandigarhCard.png', './images/TirupatiCard.png', './images/KochiCard.png', './images/MysoreCard.png',
+        './images/AllCitiesCard.png'
+    ]
+
     return (
         <>
             <MaxWebWidth sectionStyling='pb-8' >
@@ -101,33 +109,19 @@ function OurBranchesHome() {
                     <header>
                         <Slide top cascade>
                             <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5'>
-                                Our Branches
+                                Our Offline Branches
                             </h1>
                         </Slide>
                     </header>
 
                     <article className='flex flex-wrap justify-center gap-4  '>
-                        {branches.map((elements) => {
-                            const stylingImgHover = {
-                                ...stylingImg,
-                                opacity: '0.8',
-                            };
+                        {branchCards.map((elements) => {
                             return (
                                 <>
-                                    <div key={elements.id} className={elements.name === "View all Cities" ? 'border border-orange-300 transform hover:-translate-y-1 delay-300 duration-300' : 'bg-no-repeat bg-cover transform hover:-translate-y-1 delay-300 duration-300 sm:flex-basis-[10%] md:flex-basis-[33.3%] lg:flex-basis-[23%] 2xl:[24%]'} style={{ ...stylingImg, backgroundImage: `url(${elements.name !== "View all Cities" ? elements.immage : ""})` }}>
-                                        <article className='min-h-24 flex justify-center items-center flex-wrap'>
-                                            <article>
-                                                <header>
-                                                    <h1 className={elements.name === "View all Cities" ? 'gradient-text flex justify-center gap-2' : 'text-xl font-bold  hover:max-w-lg text-white flex justify-center align-center'}>{elements.name}  {elements.name === "View all Cities" &&
-                                                        <img src='./arrowIconOrange.svg'></img>
-                                                    }</h1>
-                                                </header>
-                                                {elements.name !== "View all Cities" &&
-                                                    <p className='text-white flex justify-center align-center'>{elements.number} Branches</p>
-                                                }
-                                            </article>
-                                        </article>
-                                    </div>
+                                    <figure className='hover:-translate-y-1 delay-300 duration-300'>
+                                        <img src={elements} alt='imgcard' />
+                                    </figure>
+
                                 </>
                             )
                         })}
