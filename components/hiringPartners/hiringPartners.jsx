@@ -39,7 +39,7 @@ function HiringPartners() {
           ))}
         </div>
       </div>
-
+{/* 
       <div className="slider">
         <div className="slide-track-right">
           {svgPath.map((path, index) => (
@@ -48,9 +48,9 @@ function HiringPartners() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
 
-      <div className="slider">
+      {/* <div className="slider">
         <div className="slide-track">
           {svgPath.map((path, index) => (
             <div className="slide" key={index}>
@@ -58,7 +58,7 @@ function HiringPartners() {
             </div>
           ))}
         </div>
-      </div>
+      </div> */}
     </MaxWebWidth>
   );
 }
