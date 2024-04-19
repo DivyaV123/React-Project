@@ -41,12 +41,12 @@ function OurCourse() {
             title: "Devops",
             arrow: "./arrowIconDark.svg",
         },
-        {
-            icon: "dataScienceIcon",
-            iconlite: 'DevOpsLite',
-            title: "DevOps",
-            arrow: "./arrowIconDark.svg",
-        },
+        // {
+        //     icon: "dataScienceIcon",
+        //     iconlite: 'DevOpsLite',
+        //     title: "DevOps",
+        //     arrow: "./arrowIconDark.svg",
+        // },
         {
             icon: "aimlIcon",
             iconlite: 'CloudComputingLite',
@@ -122,11 +122,11 @@ function OurCourse() {
         <MaxWebWidth>
             <aside className='flex justify-center align-center mb-8 mt-8' >
                 <Slide top cascade>
-                    <h1 className='font-bold text-2xl header'>Explore our Courses</h1>
+                    <h1 className='font-bold text-[2rem] header'>Explore Our Courses</h1>
                 </Slide>
             </aside>
 
-            <article className='flex space-x-3 justify-end m-2 mb-5'>
+            {/* <article className='flex space-x-3 justify-end m-2 mb-5'>
                 {btnNames.map((element, index) => {
                     console.log(element, "element")
                     return (
@@ -138,7 +138,7 @@ function OurCourse() {
                         </>
                     )
                 })}
-            </article>
+            </article> */}
             <aside className='md:flex gap-3 sm:block'>
                 <article className='justify-start' >
                     <div>
