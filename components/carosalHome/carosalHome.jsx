@@ -23,37 +23,30 @@ function CarosalHome() {
   // ]
   let logo = () => {
     return (
-      <figure>
-        <img src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
-      </figure>
+      <>
+        <figure className='absolute right-[-8%]'>
+          <img src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
+        </figure>
+        <figure className='absolute right-[-8%] top-[12%]'>
+          <img src='./pyside (1).svg' alt="riteJspidersStickyLogo"></img>
+        </figure>
+        <figure className='absolute right-[-8%] top-[20%]'>
+          <img src='./proside (1).svg' alt="riteJspidersStickyLogo"></img>
+        </figure>
+      </>
     )
   }
   return (
     <MaxWebWidth
       sectionStyling="bg-[url('/BackgroundWave.png')] bg-no-repeat bg-left bg-contain bg-cover max-w-full overflow-hidden"
       articalStyling='relative'
+      // logo={logo}
     >
-      {/* <Carousel className="w-full ">
-        <CarouselContent>
-          {corosalsections.map((ele, index) => (
-            <CarouselItem key={index}>
-              <div className="p-1">
-                <CarosalSection className="flex justify-center">
-                  <>
-                    {ele.section}
-                  </>
-                </CarosalSection>
-              </div>
-            </CarouselItem>
-          ))}
-        </CarouselContent>
-        <CarouselPrevious />
-        <CarouselNext />
-      </Carousel> */}
+      {/* {logo()} */}
       <LandingCarosal />
       <CarosalFooter />
-    </MaxWebWidth>
-    
+    </MaxWebWidth>  
+
   )
 }
 

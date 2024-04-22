@@ -61,7 +61,7 @@ module.exports = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },screens: {
+      }, screens: {
         '3xl': '1920px',
       },
       keyframes: {
@@ -87,7 +87,7 @@ module.exports = {
         'hover-underline-animation:hover::after': '@apply transform scaleX(1) origin-bottom-left',
         "hover-underline-animation::after": '@apply absolute w-full transform scaleX(0) h-2 bottom-0 left-0 bg-yellow-400 origin-bottom-right transition-transform ease-out duration-250',
       },
-      
+
     },
     fontWeight: {
       thin: '100',
@@ -108,6 +108,7 @@ module.exports = {
       base: '1rem',
       xl: '1.25rem',
       '2xl': '1.563rem',
+      header: '1.8rem',
       '3xl': '1.953rem',
       '4xl': '2.441rem',
       '5xl': '3.052rem',
