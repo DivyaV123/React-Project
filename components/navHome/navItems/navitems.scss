@@ -165,15 +165,23 @@ opacity: 1;
 }
 .menuItem{
   background: #FFFFFF;
-  // font-weight: 700;
+  font-weight: 700;
   color: #454545;
+  letter-spacing: -0.5px;
 }
 .menuItem:hover{
   background: #FFFFFF;
-  // font-weight: 700;
+  font-weight: 700;
   color: #454545;
+  letter-spacing: -0.5px;
 }
 .menuItemdisable{
   color: #454545;
   font-weight: 500;
+}
+.menuItem button{
+  letter-spacing: -0.5px;
+}
+.menuItem:hover button{
+  letter-spacing: -0.5px;
 }

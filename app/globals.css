@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url("https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Poppins:wght@300;400;500&family=Roboto:ital,wght@0,100;0,400;0,900;1,300;1,400;1,500;1,700&family=Young+Serif&display=swap");
 
 @layer base {
   :root {
@@ -107,9 +106,9 @@
 .myscrollbar::-webkit-scrollbar-track {
   width: 5px !important;
 }
-*{
+/* *{
   font-family: "Poppins", sans-serif;
-}
+} */
 .headerText{
   color: #575757;
 }

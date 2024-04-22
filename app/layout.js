@@ -1,12 +1,11 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import Head from 'next/head';
+
 
 const poppins = Poppins({
   subsets: ["latin"],
-  variable: "--font-poppins",
-  weight: ["100", "300", "400", "500", "600"],
+  weight: ["100", "300", "400", "500", "600","700","800","900"],
 });
 
 export const metadata = {
@@ -18,8 +17,9 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={cn(
-          "relative h-full antialiased font-sans  myscrollbar overflow-y-scroll"
+        className=
+        {cn(
+          `relative h-full antialiased ${poppins.className}  myscrollbar overflow-y-scroll`
         )}
       >
         <main className="relative flex flex-col min-h-screen">{children}</main>
