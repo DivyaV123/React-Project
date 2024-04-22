@@ -275,7 +275,7 @@ const Branches = () => {
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <div
-        className={`menuSidebar  pt-2 xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw]`}
+        className={`menuSidebar  pt-2 xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw]`}
       >
         {courses.map((courseItem, index) => {
           return (
@@ -301,9 +301,9 @@ const Branches = () => {
           )
         })}
       </div>
-      <div className="xl:w-[63.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex ">
+      <div className="xl:w-[64.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex ">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
-          <div className="xl:w-[17.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] pt-2 menuSidebar ">
+          <div className="xl:w-[18.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] pt-2 menuSidebar ">
             {courses[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}

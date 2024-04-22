@@ -32,7 +32,7 @@ function CarosalFooter() {
     ]
     return (
 
-        <MaxWebWidth sectionStyling='z-100 flex justify-center sm:relative md:absolute w-full bottom-2 w-full h-[10vw] 2xl:[8vw] 3xl:h-[7vw]' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3 h-[10vw] 3xl:h-[7vw] 2xl:[8vw] items-center'>
+        <MaxWebWidth sectionStyling='z-100 flex justify-center absolute top-[73%] w-full bottom-2 w-full h-[10vw] 2xl:[8vw] 3xl:h-[7vw]' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3 h-[10vw] 3xl:h-[7vw] 2xl:[8vw] items-center'>
             <Fade bottom duration={1000} delay={0} >
                 <div className='grid md:grid-cols-6'>
                     {

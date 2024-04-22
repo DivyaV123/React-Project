@@ -8,13 +8,13 @@ import CarosalFooter from "../carosalFooter/CarosalFooter";
 import Counter from "@/components/commonComponents/counterAnimation/Counter";
 function LandingCarosal() {
   return (
-    <div className="h-auto grid grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-2 gap-4 h-{1000px}">
+    <div className=" grid grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-2 gap-4 h-[84vh]">
       <Fade left delay={0} duration={1000}>
         <aside className="flex items-center mb-8">
           <article className="headerArticle mb-10 w-full">
-            <h1 className="mainHead pb-2   text-5xl opacity-100">
+            <h1 className="mainHead pb-4   text-5xl opacity-100">
               Largest Software <br />{" "}
-              <span className="gradient-text font-extra-bold">Training organization</span>{" "}
+              <span className="gradient-text font-extra-bold">Training Organization</span>{" "}
             </h1>
             {/* <h1 className=' text-xl gradient-text  text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>TRAINING ORGANIZATION</h1> */}
             <p className="paragraph font-medium pb-4 text-ash">
@@ -22,15 +22,15 @@ function LandingCarosal() {
               <br /> performance. Your partner in achieving unparalleled quality{" "}
               <br /> assurance standards
             </p>
-            <article>
-              <Button className="primary" title="Get Started" />
+            <article className="pb-4">
+              <Button className="primary 2xl:text-lg 3xl:text-xl" title="Get Started" />
             </article>
           </article>
         </aside>
       </Fade>
       <Fade right delay={0} duration={1000}>
         <aside className="flex items-center justify-end ">
-          <article className="flex rounded-md gap-4 bg-white absolute w-56 h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[5%] left-[18%] border-dark-gray-600  items-center">
+          <article className="flex rounded-md gap-4 bg-white absolute w-56 h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[5%] left-[9%] 2xl:left-[17%] border-dark-gray-600  items-center">
             <figure>
               <img src='./courseHomeIcon.svg' />
             </figure>
@@ -43,7 +43,7 @@ function LandingCarosal() {
               </h2>
             </div>
           </article>
-          <article className="flex rounded-md gap-4 bg-white cursor-pointer  absolute w-60 h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[33%] left-[73%] border-dark-gray-600  items-center">
+          <article className="flex rounded-md gap-4 bg-white cursor-pointer  absolute w-[15.5rem] h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[33%] left-[66%] 2xl:left-[68%] border-dark-gray-600  items-center">
             <figure>
               <img src="./hiringCompanyHomeicon.svg" />
             </figure>
@@ -60,7 +60,7 @@ function LandingCarosal() {
               </h2>
             </div>
           </article>
-          <article className="flex rounded-md gap-4 absolute w-[14.5rem] h-[4.5rem] px-4 py-3 z-1  bg-white justify-start border-solid border-2 top-[57%] left-[70%]   border-dark-gray-600  items-center">
+          <article className="flex rounded-md gap-4 absolute w-[14.75rem] h-[4.5rem] px-4 py-3 z-1  bg-white justify-start border-solid border-2 top-[57%] left-[62%] 2xl:[64%]  border-dark-gray-600  items-center">
             <figure>
               <img src="./teacherHomeIcon.svg" />
             </figure>
@@ -77,7 +77,7 @@ function LandingCarosal() {
               </h2>
             </div>
           </article>
-          <article className="flex rounded-md gap-4 absolute w-56 h-24 bg-white justify-start border-solid border-2 top-[29%] left-[13%] border-dark-gray-600 px-4 py-3 items-center">
+          <article className="flex rounded-md gap-4 absolute w-[14.75rem] h-24 bg-white justify-start border-solid border-2 top-[27%] left-[3%] 2xl:left-[11%] border-dark-gray-600 px-4 py-3 items-center">
             <figure>
               <img src="./studentPlaceMentHomeIcon.svg" />
             </figure>
@@ -91,7 +91,7 @@ function LandingCarosal() {
               </h2>
             </div>
           </article>
-          <article className="flex rounded-md gap-4 absolute w-[14.5rem] h-[4.5rem] px-4 py-3 bg-white justify-start border-solid border-2 top-[56%] left-[4%] border-dark-gray-600  items-center">
+          <article className="flex rounded-md gap-4 absolute w-[15rem] h-[4.5rem] px-4 py-3 bg-white justify-start border-solid border-2 top-[56%] -left-[3%] 2xl:left-[4%] border-dark-gray-600  items-center">
             <figure>
               <img src="./trainedStudentsHomeIcon.svg" />
             </figure>
@@ -106,8 +106,8 @@ function LandingCarosal() {
               <h2 className="headerText font-medium">Trained Students</h2>
             </div>
           </article>
-          <figure className="w-[68%]">
-            <img src="./landScreenpicture.png" alt="pic001"></img>
+          <figure className="w-[75%] h-[84vh]">
+            <img src="./landScreenpicture.png" className='h-[84vh]' alt="pic001"></img>
           </figure>
         </aside>
       </Fade>
