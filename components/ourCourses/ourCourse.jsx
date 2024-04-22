@@ -16,6 +16,69 @@ function OurCourse() {
     const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
     let btnNames = ['Offline Classes', 'Online Live Classes', 'Experiential Learning', 'Self Paced']
 
+    const courseCard = [
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage.png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage(1).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/Courseimage(2).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage(3).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage(4).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage(5).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage(6).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage(8).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: './images/courseCardImages.png',
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage.png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/courseimage(1).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+        {
+            name: 'Cloud Solution  Architect - Azure',
+            image: "./images/Courseimage(2).png",
+            deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
+        },
+    ]
+
     const courses = [
         {
             icon: "popularCourseIcon",
@@ -42,17 +105,11 @@ function OurCourse() {
             arrow: "./arrowIconDark.svg",
         },
         {
-            icon: "cloudComputingIcon",
+            icon: "dataScienceIcon",
             iconlite: 'DevOpsLite',
-            title: "Devops",
+            title: "DevOps",
             arrow: "./arrowIconDark.svg",
         },
-        // {
-        //     icon: "dataScienceIcon",
-        //     iconlite: 'DevOpsLite',
-        //     title: "DevOps",
-        //     arrow: "./arrowIconDark.svg",
-        // },
         {
             icon: "aimlIcon",
             iconlite: 'CloudComputingLite',
@@ -122,16 +179,13 @@ function OurCourse() {
         },
     ];
 
-
-    const sideBarItem = ["Popular Courses", 'Software Architecture', 'Software Development', 'Software Testing', 'DevOps', 'Cyber Security', 'Data Science', 'AI / ML', 'Cloud Computing', 'Banking', 'Project Management', 'Agile Scurm', 'Support', 'Aboard Studies', 'HR', 'SAP', 'Salesforce']
     return (
         <MaxWebWidth>
             <aside className='flex justify-center align-center mb-8 mt-8' >
                 <Slide top cascade>
-                    <h1 className='font-bold text-[2rem] header'>Explore Our Courses</h1>
+                    <h1 className='font-bold text-4xl header text-black'>Explore our Courses</h1>
                 </Slide>
             </aside>
-
             {/* <article className='flex space-x-3 justify-end m-2 mb-5'>
                 {btnNames.map((element, index) => {
                     console.log(element, "element")
@@ -145,17 +199,15 @@ function OurCourse() {
                     )
                 })}
             </article> */}
-            <aside className='md:flex gap-3 sm:block'>
+            <aside className='flex'>
                 <article className='justify-start' >
                     <div>
-                        {console.log(hoveredIndex !== null, "bool")}
                         {courses.map((item, itemIndex) => {
-                            { console.log(svgicons[item?.iconlite], "svgicons[item?.icon]s", item?.iconlite) }
                             return (<div onMouseEnter={() => setHoveredIndex(itemIndex)} onMouseLeave={() => setHoveredIndex(null)}
-                                className='h-10 bg-orange p-2 hover:text-white hover:rounded gradient-bg cursor-pointer'>
-                                <div className='flex justify-between'>
+                                className='bg-orange hover:font-semibold hover:text-white w=[45.29vw] flex justify-center  gradient-bg cursor-pointer py-4 px-2'
+                            >
+                                <div className='flex justify-between align-center'>
                                     <picture className='flex justify-start hover:text-white'>
-                                        {/* <img src={(hoveredIndex !== null && hoveredIndex === itemIndex) ? item.iconlite : item.icon} alt='logo' /> */}
                                         {(hoveredIndex === itemIndex) ?
                                             <Svg
                                                 width={svgicons[item?.iconlite][0]}
@@ -173,30 +225,46 @@ function OurCourse() {
                                             />
                                         }
                                     </picture>
-                                    <aside className='w-60 pl-2'>
+                                    <aside className='w-60 pl-2 2xl:text-xl'>
                                         <h1>
                                             {item.title}
                                         </h1>
                                     </aside>
                                     <picture className='flex justify-start '>
-                                        <img className='w-auto' src={(hoveredIndex !== null && hoveredIndex === itemIndex) ? './arrowIcon.svg' : './arrowIconDark.svg'} alt='icon' />
+                                        {(hoveredIndex === itemIndex) ?
+                                            <Svg
+                                                width={svgicons.arrowIconLite[0]}
+                                                height={svgicons.arrowIconLite[1]}
+                                                viewBox={svgicons.arrowIconLite[2]}
+                                                icon={svgicons.arrowIconLite[3]}
+                                                color={svgicons.arrowIconLite[4]}
+                                            />
+                                            :
+                                            <Svg
+                                                width={svgicons.arrowIcon[0]}
+                                                height={svgicons.arrowIcon[1]}
+                                                viewBox={svgicons.arrowIcon[2]}
+                                                icon={svgicons.arrowIcon[3]}
+                                                color={svgicons.arrowIcon[4]}
+                                            />
+                                        }
                                     </picture>
                                 </div>
                             </div>)
                         })}
                     </div>
                 </article>
-                <article >
-                    <div className='grid xs:grid-cols-2 md:grid-cols-3 gap-4'>
-                        {Array.from({ length: 6 }).map((index) => {
-                            return (<div className=''>
-                                <CourseCard />
+                <article className='max-h-[69.69vw] 2xl:h-[40vw]  w-[62.59vw] 2xl:w-full overflow-hidden py-1 pl-1'>
+                    <div className='flex flex-wrap justify-end gap-3 w-full h-full overflow-y-scroll courseScroll'>
+                        {courseCard.map((element) => {
+                            return (<div className='courseCard'>
+                                <CourseCard cardData={element} />
                             </div>)
                         })}
                     </div>
                 </article>
             </aside>
-            <Fade bottom duration={1000} delay={0} >
+            {/* <Fade bottom duration={1000} delay={0} >
                 <article on className='flex justify-end mt-8 mb-8'>
                     <Button
                         className='primaryAnimated '
@@ -207,7 +275,7 @@ function OurCourse() {
                         onMouseLeave={() => { setviewAllCoursesHover(false) }}
                     />
                 </article>
-            </Fade>
+            </Fade> */}
         </MaxWebWidth >
     )
 }

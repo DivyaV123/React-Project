@@ -11,7 +11,7 @@ function PlacementAssistance() {
         <section className='mt-6'>
             <header>
                 <Slide top cascade>
-                    <h1 className='font-extra-bold text-2xl flex justify-center align-center mb-8 mt-8'>
+                    <h1 className='font-bold text-4xl text-black flex justify-center align-center mb-8 mt-8'>
                         Why choose QSpiders
                     </h1>
                 </Slide>
@@ -19,10 +19,10 @@ function PlacementAssistance() {
             <article className='grid grid-cols-2 gap-4'>
                 <Fade left delay={0} duration={1000}>
                     <aside className='mt-6 animate-slide-from-left'>
-                        <header className='font-extra-bold text-dark-gray text-2xl flex justify-start'>
+                        <header className='font-bold text-black  text-header flex justify-center'>
                             <h1 >Placement Assistance</h1>
                         </header>
-                        <p className='text-dark-gray text-normal mt-6'>
+                        <p className='text-dark-gray text-center text-normal mt-6'>
                             Our dedicated placement cell works tirelessly to connect <br />
                             our students with leading IT companies for job<br />
                             opportunities. With a strong network of corporate partners<br />
@@ -49,7 +49,7 @@ function PlacementAssistance() {
                         </article>
                         <article className='flex justify-center mt-6'>
                             <Button
-                                className='primary'
+                                className='primary text-[15px]'
                                 title="View Placement"
                                 onClick={() => { }}
                             />
@@ -59,12 +59,11 @@ function PlacementAssistance() {
                 <Fade right delay={0} duration={1000}>
                     <aside className='flex justify-center align-end animate-slide-from-right'>
                         <figure className='w-[78%]'>
-                            <img src='./platformAssociateImage.png' alt='platformAssociateImage'></img>
+                            <img src='./images/Placement assistance_image (4).png' alt='platformAssociateImage'></img>
                         </figure>
 
                     </aside>
                 </Fade>
-
             </article >
         </section>
     )

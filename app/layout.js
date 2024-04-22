@@ -5,7 +5,8 @@ import { cn } from "@/lib/utils";
 
 const poppins = Poppins({
   subsets: ["latin"],
-  weight: ["100", "300", "400", "500", "600","700","800","900"],
+  variable: "--font-poppins",
+  weight: ["100", "300", "400", "500", "600"],
 });
 
 export const metadata = {
@@ -19,12 +20,11 @@ export default function RootLayout({ children }) {
       <body
         className=
         {cn(
-          `relative h-full antialiased ${poppins.className}  myscrollbar overflow-y-scroll`
-        )}
+          `relative h-full antialiased ${poppins.className}  myscrollbar overflow-y-scroll`)}
       >
         <main className="relative flex flex-col min-h-screen">{children}</main>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       </body>
-    </html>
+    </html >
   );
 }
