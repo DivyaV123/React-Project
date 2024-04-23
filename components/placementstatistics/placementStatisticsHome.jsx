@@ -10,10 +10,10 @@ import PlaceMentStatistics from './placeMentStatistics';
 
 function PlacementStatisticsHome() {
     const degrees = [
-        'BE/BTech', 'BCA/Bsc', 'MCA', 'B.Com', 'ME/M.Tech', 'MBA', 'Msc', 'More'
+        'BE/BTech', 'BCA/Bsc', 'B.Com', 'MCA', 'ME/M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
     const branches = [
-        'CSE', 'ISE', 'ECE', 'Civil', 'EEE', 'Mech', "More"
+        'CSE', 'ISE', 'ECE', 'Civil', 'EEE', 'Mech', 'Robotics', 'Mining', "More..."
     ]
 
     return (
