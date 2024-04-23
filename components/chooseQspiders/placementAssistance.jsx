@@ -49,7 +49,7 @@ function PlacementAssistance() {
                         </article>
                         <article className='flex justify-center mt-6'>
                             <Button
-                                className='primary text-[15px]'
+                                className='primary text-[13px]'
                                 title="View Placement"
                                 onClick={() => { }}
                             />
