@@ -7,7 +7,7 @@ function Button({ className = "", title = "", disable = false, type = "", onClic
     return (
         <>
             <button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={onClick} type={type} disable={disable} className={`${className} `}>
-                <span className='flex align-center justify-center 2xl:text-lg 3xl:text-xl'>
+                <span className='flex align-center justify-center'>
                     {iconPosition === 'left' && <span className='w-[75%] flex justify-start'><img src={icon} /></span>}
                     <span>{title}</span>
                     {iconPosition === 'right' && <span className='w-[10%] ml-2 p-1 flex justify-end'><img src={icon} /></span>}

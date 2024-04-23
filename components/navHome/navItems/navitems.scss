@@ -3,8 +3,8 @@
   text-decoration: none;
 }
 
-.hover-underline-animation:hover{
-    color: orangered;
+.hover-underline-animation:hover {
+  color: orangered;
 }
 
 .hover-underline-animation::after {
@@ -25,51 +25,49 @@
   transform-origin: bottom left;
   color: orange;
 }
-.courselist{
-width:41.87vw;
+.courselist {
+  width: 41.87vw;
 }
-@media only screen and (min-width: 1536px)and (max-width: 1919px) {
+@media only screen and (min-width: 1536px) and (max-width: 1919px) {
   .courselist {
-    width: 53vw
+    width: 53vw;
   }
 }
 @media only screen and (min-width: 1920px) {
   .courselist {
-    width: 56vw
+    width: 56vw;
   }
 }
-.coursefull{
-width: 100%;
+.coursefull {
+  width: 100%;
 }
-.courseMedium{
-width: 19.25vw;
+.courseMedium {
+  width: 19.25vw;
 }
-@media only screen and (min-width: 1536px)and (max-width: 1919px) {
+@media only screen and (min-width: 1536px) and (max-width: 1919px) {
   .courseMedium {
-    width: 14.8vw
+    width: 14.8vw;
   }
 }
 @media only screen and (min-width: 1920px) {
   .courseMedium {
-    width: 17.4vw
+    width: 17.4vw;
   }
 }
 .courseinitial {
   width: 19.06vw;
 }
 
-
-@media only screen and (min-width: 1536px)and (max-width: 1919px) {
+@media only screen and (min-width: 1536px) and (max-width: 1919px) {
   .courseinitial {
-    width: 20.7vw
+    width: 20.7vw;
   }
 }
 @media only screen and (min-width: 1920px) {
   .courseinitial {
-    width: 22.06vw
+    width: 22.06vw;
   }
 }
-
 
 .navItemsOverlay::before {
   content: "";
@@ -79,112 +77,110 @@ width: 19.25vw;
   background: rgb(0 0 0 / 20%);
 }
 
-.directions:hover{
-background: #1919F015 0% 0% no-repeat padding-box;
-border-radius: 20px;
-opacity: 1;
+.directions:hover {
+  background: #1919f015 0% 0% no-repeat padding-box;
+  border-radius: 20px;
+  opacity: 1;
 }
 .directions p {
-  color: #7298FF;
+  color: #7298ff;
 }
 
-.branchOverlay:hover{
-background: #FFFFFF 0% 0% no-repeat padding-box;
-box-shadow: 0px 0px 6px #00000029;
-border-radius: 8px;
-opacity: 1;
+.branchOverlay:hover {
+  background: #ffffff 0% 0% no-repeat padding-box;
+  box-shadow: 0px 0px 6px #00000029;
+  border-radius: 8px;
+  opacity: 1;
 }
-.navitemsArrow[data-state="open"]{
+.navitemsArrow[data-state="open"] {
   transition-delay: 2s;
 }
 .duplicate {
   position: absolute;
-  top: 3.75vw;  
+  top: 3.75vw;
   width: 2.6vw;
   height: 1.3vw;
   overflow: hidden;
-  display: none ;
-
+  display: none;
 }
-.navitemsArrow[data-state="open"] .duplicate{
+.navitemsArrow[data-state="open"] .duplicate {
   display: block;
 }
 .duplicate div {
-  transform: rotate(45deg);  
-  background-color: #FFFFFF ;
+  transform: rotate(45deg);
+  background-color: #ffffff;
   width: 1.56vw;
   height: 1.56vw;
- bottom: -0.78vw; 
+  bottom: -0.78vw;
   left: 0.62vw;
   position: relative;
   border-radius: 0.41vw;
   z-index: 2;
-  
 }
 
-.branchlist{
-  width:48.59vw;
+.branchlist {
+  width: 48.59vw;
+}
+
+.branchMedium {
+  width: 21.92vw;
+}
+@media only screen and (min-width: 1536px) and (max-width: 1919px) {
+  .branchlist {
+    width: 54.5vw;
   }
-  
-  .branchMedium{
-    width: 21.92vw;
-    }
-  @media only screen and (min-width: 1536px)and (max-width: 1919px) {
-    .branchlist {
-      width: 54.5vw
-    }
-    .branchMedium {
-      width: 16.2vw
-    }
-    .duplicate{
-      top:3.6vw;
-    }
+  .branchMedium {
+    width: 24vw;
   }
-    @media only screen and (min-width: 1920px) {
-      .branchMedium {
-        width: 18vw
-      }
-      .branchinitial {
-        width: 16.06vw
-      }
-      .branchlist {
-        width: 57.5vw
-      }
-      .duplicate{
-        top:3.28vw;
-      }
-    } 
-.titleText{
+  .duplicate {
+    top: 3.6vw;
+  }
+}
+@media only screen and (min-width: 1920px) {
+  .branchlist {
+    width: 57.5vw;
+  }
+  .branchMedium {
+    width: 18vw;
+  }
+  .branchinitial {
+    width: 16.06vw;
+  }
+  .duplicate {
+    top: 3.28vw;
+  }
+}
+.titleText {
   color: #575757;
 }
-.menuHeader{
+.menuHeader {
   color: #000000;
 }
-.menuSidebar{
-  background: #F9F9F9;
+.menuSidebar {
+  background: #f9f9f9;
 }
-.menuItem{
-  background: #FFFFFF;
+.menuItem {
+  background: #ffffff;
   font-weight: 700;
   color: #454545;
   letter-spacing: -0.5px;
 }
-.menuItem:hover{
-  background: #FFFFFF;
+.menuItem:hover {
+  background: #ffffff;
   font-weight: 700;
   color: #454545;
   letter-spacing: -0.5px;
 }
-.menuItemdisable{
+.menuItemdisable {
   color: #454545;
   font-weight: 500;
 }
-.menuItemdisable button{
+.menuItemdisable button {
   letter-spacing: -0.7px;
 }
-.menuItem button{
+.menuItem button {
   letter-spacing: -0.7px;
 }
-.menuItem:hover button{
+.menuItem:hover button {
   letter-spacing: -0.7px;
 }

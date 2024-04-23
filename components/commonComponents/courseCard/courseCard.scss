@@ -1,5 +1,5 @@
 .courseCard {
-  height: 36%;
+  height: auto;
   width: 32%;
   .cardStyle {
     //   width: 40%;
@@ -16,12 +16,12 @@
 @media only screen and (min-width: 1536px) and (max-width: 1919px) {
   .courseCard {
     width: 24%;
-    height: 40%;
+    height: auto;
   }
 }
 @media only screen and (min-width: 1920px) {
   .courseCard {
     width: 24%;
-    height: 50%;
+    height: auto;
   }
 }

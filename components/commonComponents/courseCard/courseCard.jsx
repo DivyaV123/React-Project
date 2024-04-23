@@ -17,7 +17,7 @@ function CourseCard({ cardData }) {
                 </div>
                 <aside className=''>
                     <h3 className='font-bold text-base px-3 2xl:text-2xl'>Test Architect</h3>
-                    <p className='flex headerText 2xl:text-base justify-start mt-2 leading-4 text-xs xl:text:sm 2xl:text-normal text-ash px-3'>
+                    <p className='flex headerText 2xl:text-base justify-start mt-2 leading-4 text-xs xl:text:sm 2xl:text-sm text-ash px-3'>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.
                     </p>
                     <div className='flex mt-2 px-3'>
@@ -32,10 +32,10 @@ function CourseCard({ cardData }) {
                     </div>
                     <div className='flex space-x-3 m-2  justify-center mt-6'>
                         <aside>
-                            <Button className="courseCardBtn text-xs xl:p-2 xl:w-full 2xl:p-4 2xl:w-full font-medium text-white bg-gradient rounded-md" title='Enroll now' size='lg' />
+                            <Button className="courseCardBtn text-xs xl:p-2 xl:w-full 2xl:p-4 2xl:w-full 3xl:text-sm  font-medium text-white bg-gradient rounded-md" title='Enroll now' size='lg' />
                         </aside>
                         <aside>
-                            <Button className="courseCardBtn xl:p-2 xl:w-full 2xl:p-4 2xl:w-full  text-xs text-orange-500 font-medium border border-orange-500 rounded-md" title='Request call' />
+                            <Button className="courseCardBtn xl:p-2 xl:w-full 2xl:p-4 2xl:w-full  text-xs 3xl:font-sm  text-orange-500 font-medium border border-orange-500 rounded-md" title='Request call' />
                         </aside>
                     </div>
                 </aside>

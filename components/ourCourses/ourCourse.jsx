@@ -225,7 +225,7 @@ function OurCourse() {
                                             />
                                         }
                                     </picture>
-                                    <aside className='w-60 pl-2 2xl:text-xl'>
+                                    <aside className='w-60 pl-[1rem] 2xl:text-base'>
                                         <h1>
                                             {item.title}
                                         </h1>
@@ -254,7 +254,7 @@ function OurCourse() {
                         })}
                     </div>
                 </article>
-                <article className='max-h-[69.69vw] 2xl:h-[40vw]  w-[62.59vw] 2xl:w-full overflow-hidden py-1 pl-1'>
+                <article className='max-h-[73.69vw] 2xl:h-[62vw] 3xl:h-[49.69vw]  2xl:w-full overflow-hidden py-1 pl-1'>
                     <div className='flex flex-wrap justify-end gap-3 w-full h-full overflow-y-scroll courseScroll'>
                         {courseCard.map((element) => {
                             return (<div className='courseCard'>
