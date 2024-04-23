@@ -303,7 +303,7 @@ const Branches = () => {
       </div>
       <div className="xl:w-[64.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex ">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
-          <div className="xl:w-[18.75vw] 2xl:w-[14.75vw]  3xl:w-[12.75vw] pt-2 menuSidebar ">
+          <div className="xl:w-[18.75vw] 2xl:w-[17.75vw]  3xl:w-[12.75vw] pt-2 menuSidebar ">
             {courses[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}

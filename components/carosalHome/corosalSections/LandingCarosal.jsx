@@ -10,14 +10,14 @@ function LandingCarosal() {
   return (
     <div className=" grid grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-2 gap-4 h-[84vh]">
       <Fade left delay={0} duration={1000}>
-        <aside className="flex items-center mb-8">
+        <aside className="flex items-center mb-8 2xl:mb-12 3xl:mb-16">
           <article className="headerArticle mb-10 w-full">
-            <h1 className="mainHead pb-4   text-5xl opacity-100">
+            <h1 className="mainHead pb-4 text-5xl 2xl:text-[3.5rem] 3xl:text-[4rem] opacity-100">
               Largest Software <br />{" "}
-              <span className="gradient-text font-extra-bold">Training Organization</span>{" "}
+              <span className="gradient-text text-5xl 2xl:text-[3.5rem] 3xl:text-[4rem] font-extra-bold">Training Organization</span>{" "}
             </h1>
             {/* <h1 className=' text-xl gradient-text  text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>TRAINING ORGANIZATION</h1> */}
-            <p className="paragraph font-medium pb-4 text-ash">
+            <p className="paragraph 2xl:text[1.125rem] 3xl:text-[1.125rem] font-medium pb-4 text-ash">
               Innovating methodologies and tools to ensure flawless software{" "}
               <br /> performance. Your partner in achieving unparalleled quality{" "}
               <br /> assurance standards
