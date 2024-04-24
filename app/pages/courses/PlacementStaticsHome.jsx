@@ -29,7 +29,7 @@ function PlacementStaticsHome({ path }) {
         'BE/BTech', 'BCA/Bsc', 'B.Com', 'MCA', 'ME/M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
     const branches = [
-        'CSE', 'ISE', 'ECE', 'Civil', 'EEE', 'Mech', 'Robotics', 'Mining', "More..."
+        'CSE', 'ISE', 'ECE', 'Civil', 'EEE', 'Mech', 'AE', 'CH', "More..."
     ]
     const statistics = [
         {
