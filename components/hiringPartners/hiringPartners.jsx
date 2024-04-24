@@ -2,7 +2,7 @@
 import React from "react";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import "./hiringPartners.scss";
-function vHiringPartners({ page }) {
+function HiringPartners({ page }) {
   const svgPath = [
     { src: "./compLogo01.svg" },
     { src: "./compLogo02.svg" },
