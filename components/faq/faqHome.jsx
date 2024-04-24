@@ -5,19 +5,40 @@ import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import Qaccordion from './qaAccordion'
 import { Slide } from 'react-reveal'
 
-function FaqHome() {
+function FaqHome({ page, questions }) {
+
+    const qaList = [
+        {
+            question: 'How do I create an employer account with Qspiders hiring?',
+            answer: 'Creating an account with Qspiders hiring is simple. You can start by posting your first job and authenticate your mobile number using OTP.'
+        },
+        {
+            question: 'How do I create an employer account with Qspiders hiring?',
+            answer: 'Creating an account with Qspiders hiring is simple. You can start by posting your first job and authenticate your mobile number using OTP.'
+        },
+        {
+            question: 'How do I create an employer account with Qspiders hiring?',
+            answer: 'Creating an account with Qspiders hiring is simple. You can start by posting your first job and authenticate your mobile number using OTP.'
+        },
+        {
+            question: 'How do I create an employer account with Qspiders hiring?',
+            answer: 'Creating an account with Qspiders hiring is simple. You can start by posting your first job and authenticate your mobile number using OTP.'
+        }
+    ]
     return (
         <MaxWebWidth sectionStyling='bg-backgroundBlue'>
-            <header className='mt-8 p-5'>
+            <header className={`${page === 'course' ? 'w-[51.56vw] mt-8 p-5' : 'mt-8 p-5'}`}>
                 <h1 className='font-bold text-3xl flex justify-center align-center '>
-                    FAQ’s
+                    {page === 'course' ? 'Frequently Asked Questions' : 'FAQ’s'}
                 </h1>
-                <span className='text-sm font-normal flex justify-center align-center'>
-                    often asked questions from our wonderful partners
-                </span>
+                {!page === 'course' && (
+                    <span className='text-sm font-normal flex justify-center align-center'>
+                        often asked questions from our wonderful partners
+                    </span>
+                )}
             </header>
-            <article className='pb-8'>
-                <Qaccordion />
+            <article className={`${page === 'course' ? 'w-[51.56vw]' : 'pb-8'}`}>
+                <Qaccordion qaList={qaList} />
             </article>
         </MaxWebWidth>
     )
