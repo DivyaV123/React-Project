@@ -1,0 +1,24 @@
+.pointsList{
+      ul li {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+      }
+      
+      ul li::before {
+        content: "•";
+        line-height: 1.5em !important;
+        padding-right: 10px;
+        font-size: 22px;
+        color: #373737;
+        opacity: 0.4;
+        width: content;
+        margin: 0;
+      }
+      
+      ul li>*:first-child {
+        flex-grow:2;
+        padding-bottom: 1.5rem;
+      }
+}

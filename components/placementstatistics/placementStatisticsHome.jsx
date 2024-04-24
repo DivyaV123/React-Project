@@ -15,6 +15,28 @@ function PlacementStatisticsHome() {
     const branches = [
         'CSE', 'ISE', 'ECE', 'Civil', 'EEE', 'Mech', 'Robotics', 'Mining', "More..."
     ]
+    const statistics = [
+        {
+            count: '94,860',
+            info: 'Students who have throughout # 60% Aggregate',
+            icon: './placementIcon1.svg'
+        },
+        {
+            count: '42,992',
+            info: 'Students who have graduated # in Non - IT',
+            icon: './staticsIcon02.svg'
+        },
+        {
+            count: '68,481',
+            info: 'Students who have graduated # in IT / CS / IS',
+            icon: './placementIcon03.svg'
+        },
+        {
+            count: '15,024',
+            info: 'Students who have less than # 60% Aggregate',
+            icon: './placementIcon04.svg'
+        },
+    ]
 
     return (
         <MaxWebWidth sectionStyling=" flex align-ceneter mt-8" >
@@ -32,7 +54,7 @@ function PlacementStatisticsHome() {
                             <img className='w-[75%]' src='./graduationCapIcon.svg'></img>
                         </figure>
                     </Fade>
-                    <PlaceMentStatistics />
+                    <PlaceMentStatistics statistics={statistics} />
                 </aside>
                 <asides className='relative p-2'>
                     <Fade right duration={1000} delay={0}>
