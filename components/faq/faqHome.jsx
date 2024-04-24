@@ -31,9 +31,9 @@ function FaqHome({ page, questions }) {
                 <h1 className='font-bold text-3xl flex justify-center align-center '>
                     {page === 'course' ? 'Frequently Asked Questions' : 'FAQ’s'}
                 </h1>
-                {!page === 'course' && (
+                {page !== 'course' && (
                     <span className='text-sm font-normal flex justify-center align-center'>
-                        often asked questions from our wonderful partners
+                        Often asked questions from our wonderful partners
                     </span>
                 )}
             </header>

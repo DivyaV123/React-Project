@@ -12,7 +12,7 @@ function ExperiencedFaculty() {
         },
         {
             count: '4.3/5',
-            info: 'EAverage Support # Rating'
+            info: 'Average Support # Rating'
         },
         {
             count: '1:1',
@@ -34,7 +34,7 @@ function ExperiencedFaculty() {
                     <p className='text-dark-gray text-center text-normal mt-6'>
                         Our dedicated placement cell works tirelessly to connect our students with leading IT companies for job opportunities. With a strong network of corporate partners and recruitment drives to ensure maximum exposure for our students.
                     </p>
-                    <article className='grid md:grid-cols-3 xs:grid-cols-1 sm:grid-cols-auto gap-2 mt-6'>
+                    <article className='grid md:grid-cols-3 xs:grid-cols-1 sm:grid-cols-auto gap-2 mt-6 w-full'>
                         {
                             content.map((element) => {
                                 let detail = element.info.replace(/#/g, "<br/>")
@@ -49,13 +49,12 @@ function ExperiencedFaculty() {
                             })
                         }
                     </article>
-                    <article className='flex justify-center mt-6'>
-                        <Button
-                            className='primary'
-                            title="View more"
-                            onClick={() => { }}
-                        />
-                    </article>
+                    <article className='flex justify-center items-cenetr mb-8 mt-8 h-10'>
+                    <Button
+                        className='primary'
+                        title="View More"
+                    />
+                </article>
                 </aside>
             </Fade>
         </selection>

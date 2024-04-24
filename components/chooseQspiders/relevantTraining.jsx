@@ -39,7 +39,7 @@ function RelevantTraining() {
                         <article className='flex justify-center mt-6'>
                             <Button
                                 className='primary'
-                                title="Enquire now"
+                                title="Enquire Now"
                                 onClick={() => { }}
                             />
                         </article>
@@ -48,8 +48,8 @@ function RelevantTraining() {
             </Fade>
             <Fade right duration={1000} delay={0}>
                 <aside className='flex justify-center align-end'>
-                    <figure className='w-[85%]'>
-                        <img src='./releventTraining.png' alt='facultyImage'></img>
+                    <figure className='w-[95%]'>
+                        <img src='./images/PlacementAssistance_image(5).png' alt='facultyImage'></img>
                     </figure>
                 </aside>
             </Fade>
