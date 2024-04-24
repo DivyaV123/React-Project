@@ -1,10 +1,12 @@
+'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
+import { Button } from '@/components/ui/button'
 import { SectionIcon } from '@radix-ui/react-icons'
 import React from 'react'
 
 function StudentsPlacedCard({ studentsInfo }) {
     return (
-        <section className='flex flex-wrap gap-3'>
+        <section className='flex flex-wrap gap-3 justify-center'>
             {studentsInfo.map((element) => (
                 <section className='flex justify content center'>
                     <article className='bg-white p-4 rounded-lg' >

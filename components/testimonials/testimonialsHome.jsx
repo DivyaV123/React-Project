@@ -25,10 +25,11 @@ function TestimonialsHome() {
                     <AllTestimonial />
                 </article>
             </header>
-            <article className='flex justify-end items-cenetr mb-8 mt-8 h-10'>
+            <article className='flex justify-center mt-3'>
                 <Button
-                    className='primary'
-                    title="View more"
+                    className='bg-gradient h-[2.656vw] w-[9.375vw] text-[0.75rem] text-white rounded-md'
+                    title="View More"
+                    onClick={() => { }}
                 />
             </article>
         </MaxWebWidth>

@@ -6,33 +6,33 @@ import { Fade } from 'react-reveal'
 function CarosalFooter() {
     const detail = [
         {
-            count: 'No.1',
-            details: 'Training Institue in  the World and also  the Largest.'
+            count: 'NO.1',
+            details: 'Largest Training Institute # in the world'
         },
         {
-            count: '2.51L',
-            details: 'Students have been  Placed, and still  counting!'
+            count: '2.51L+',
+            details: 'Students have been # placed'
         },
         {
-            count: '4180+',
-            details: 'Multinational  companies hire from  us, and the list is still  growing.'
+            count: '4,000+',
+            details: 'Multinational companies # hire from us'
         },
         {
-            count: '19+',
-            details: 'Companies conduct  interviews every  working day.'
+            count: '20+',
+            details: 'Companies conduct interview  every working day'
         },
         {
-            count: '1300+',
-            details: 'Students attend  interviews every day  across companies.'
+            count: '1,300+',
+            details: 'Students attend interview every day across companies'
         },
         {
-            count: '3800+',
-            details: 'Students get placed  in a Month across  the Globe.'
+            count: '3,800+',
+            details: 'Students get placed in a month across the globe'
         },
     ]
     return (
 
-        <MaxWebWidth sectionStyling='z-100 flex justify-center absolute top-[73%] w-full bottom-2 w-full h-[10vw] 2xl:[8vw] 3xl:h-[7vw]' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3 h-[10vw] 3xl:h-[7vw] 2xl:[8vw] items-center'>
+        <MaxWebWidth sectionStyling='z-100 flex justify-center absolute top-[74%] w-full bottom-2 w-full h-[10vw] 2xl:[8vw] 3xl:h-[7vw]' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3 h-[10vw] 3xl:h-[7vw] 2xl:[8vw] items-center'>
             <Fade bottom duration={1000} delay={0} >
                 <div className='grid md:grid-cols-6'>
                     {

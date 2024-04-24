@@ -1,6 +1,9 @@
+'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import React from 'react'
 import StudentsPlacedCard from './StudentsPlacedCard'
+import Button from '@/components/commonComponents/button/Button'
+
 
 function StudentsPlacedHome() {
     const studentsInfo = [
@@ -68,6 +71,13 @@ function StudentsPlacedHome() {
                     </h1>
                 </header>
                 <StudentsPlacedCard studentsInfo={studentsInfo} />
+                <article className='flex justify-center mt-3'>
+                    <Button
+                        className='bg-gradient h-[2.656vw] w-[9.375vw] text-[0.75rem] text-white rounded-md'
+                        title="View More"
+                        onClick={() => { }}
+                    />
+                </article>
             </article>
         </MaxWebWidth>
     )

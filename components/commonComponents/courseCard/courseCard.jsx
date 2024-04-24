@@ -17,11 +17,11 @@ function CourseCard({ cardData }) {
                 </div>
                 <aside className=''>
                     <h3 className='font-bold text-base px-3'>Test Architect</h3>
-                    <p className='flex headerText justify-start mt-2 leading-4 text-xs xl:text:sm 2xl:text-sm text-ash px-3'>
+                    <p className='flex headerText justify-start mt-2 leading-4 text-xs xl:text:sm text-ash px-3'>
                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.
                     </p>
                     <div className='flex mt-2 px-3'>
-                        <span className='flex text-xs font-bold'><span className='font-bold'>4.5</span> <Svg
+                        <span className='flex text-sm font-bold'><span className='font-bold'>4.5</span> <Svg
                             width={svgicons.ratingStar[0]}
                             height={svgicons.ratingStar[1]}
                             viewBox={svgicons.ratingStar[2]}
