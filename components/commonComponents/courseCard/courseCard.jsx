@@ -6,7 +6,6 @@ import { svgicons } from '@/components/assets/icons/svgassets'
 
 
 function CourseCard({ cardData }) {
-    console.log(cardData,"cardDatacardData")
     return (
         <>
             <section className='cardStyle justify-center p-4 grid justify-items-stretch'>

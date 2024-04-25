@@ -1,4 +1,5 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import NavHome from '@/components/navHome/navHome'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
 import CourseLanding from './CourseLanding'
@@ -10,10 +11,15 @@ import OurBranchesHome from '@/components/ourBranches/ourBranchesHome'
 import UpComingBranches from './UpComingBranches'
 import StudentsPlacedHome from './StudentsPlacedHome'
 const Courses = () => {
+  const [isRightBarFixed, setIsRightBarFixed] = useState(false);
+
+  const handleRightBarFix = (fixed) => {
+    setIsRightBarFixed(fixed);
+  }
   return (
     <WebLayout>
-      <CourseLanding />
-      <UpComingBranches />
+      <CourseLanding onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} />
+      <UpComingBranches/>
       <PlacementStaticsHome />
       <StudentsPlacedHome />
       <CourseHighlites />

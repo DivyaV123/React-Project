@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect, useRef } from 'react';
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import TrainingMode from './trainingMode/trainingMode'
 import Slide from "react-reveal/Slide";
@@ -102,11 +102,35 @@ function OurBranchesHome({ page }) {
         './images/ChandigarhCard.png', './images/TirupatiCard.png', './images/KochiCard.png', './images/MysoreCard.png',
         './images/AllCitiesCard.png'
     ]
-
+    const [scrollThreshold, setScrollThreshold] = useState(0);
+    const sectionRef = useRef(null);
+  
+    useEffect(() => {
+      if (sectionRef.current) {
+        const sectionHeight = sectionRef.current.getBoundingClientRect().height;
+        setScrollThreshold(sectionHeight * 0.75);
+      }
+    }, []);
+  
+    useEffect(() => {
+      const handleScroll = () => {
+        if (sectionRef.current) {
+          const sectionOffset = sectionRef.current.offsetTop;
+          const scrollPos = window?.scrollY || document?.documentElement?.scrollTop;
+        //   onRightBarFix(scrollPos >= scrollThreshold);
+        }
+      };
+  
+      window.addEventListener('scroll', handleScroll);
+  
+      return () => {
+        window.removeEventListener('scroll', handleScroll);
+      };
+    }, [ scrollThreshold]);
     return (
         <>
             <MaxWebWidth sectionStyling='pb-8' >
-                <section >
+                <section ref={sectionRef}>
                     <header>
                         {page === 'course' ?
                             (

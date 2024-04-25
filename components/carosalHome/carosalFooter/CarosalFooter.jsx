@@ -38,7 +38,6 @@ function CarosalFooter() {
                     {
                         detail.map((element) => {
                             let content = element.details.replace(/#/g, "<br/>")
-                            console.log(content, "content")
                             return (
                                 <div className='p-2'>
                                     <article>

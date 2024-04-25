@@ -188,7 +188,6 @@ function OurCourse() {
             </aside>
             {/* <article className='flex space-x-3 justify-end m-2 mb-5'>
                 {btnNames.map((element, index) => {
-                    console.log(element, "element")
                     return (
                         <>
                             <Button
