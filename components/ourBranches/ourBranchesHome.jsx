@@ -94,7 +94,7 @@ function OurBranchesHome({ page }) {
         immage: './mysoreBranch.png'
     }
     ]
-
+  
     const branchCards = [
         './images/Bengalore.png', './images/HydrabadCard.png', './images/ChennaiCard.png',
         './images/puneCard.png', './images/MumbaiCard.png', './images/NoidaCard.png', './images/gurugramCard.png',
@@ -134,14 +134,25 @@ function OurBranchesHome({ page }) {
                     <header>
                         {page === 'course' ?
                             (
-                                <Slide top cascade>
+                                <article className='flex justify-between w-[51.56vw]'>
                                     <h1 className='flex justify-start text-2xl m-2 font-extra-bold py-5'>
                                         Upcoming Batches
                                     </h1>
-                                    <Button>
+                                    <article className='flex bg-white m-2 py-5'>
+                                        <Button
+                                            className='w-[9.609vw] rounded-s h-[2.656vw] bg-[#F9F9F9] text-[0.75rem] hover:font-semibold hover:bg-orange-500 hover:bg-gradient hover:text-white hover:rounded'
+                                            title='Offline Classes'
+                                        >
 
-                                    </Button>
-                                </Slide>
+                                        </Button>
+                                        <Button
+                                            className='w-[11.484vw] rounded-e h-[2.656vw] bg-[#F9F9F9] text-[0.75rem] hover:font-semibold hover:bg-orange-500 hover:text-white hover:rounded'
+                                            title='Online Live Classes'
+                                        >
+
+                                        </Button>
+                                    </article>
+                                </article>
                             ) :
                             (
                                 <Slide top cascade>
@@ -172,7 +183,7 @@ function OurBranchesHome({ page }) {
                     </article>
                 </section>
             </MaxWebWidth>
-            {!page === 'course' && (
+            {page !== "course" && (
                 <MaxWebWidth sectionStyling="bg-backgroundBlue h-[50%] bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain min-h-80 bg-cover">
                     <section className="flex justify-center mt-8 mb-8">
                         <TrainingMode />

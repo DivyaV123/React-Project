@@ -50,7 +50,7 @@ function LandingCarosal() {
             <div>
               <h1 className="headerText font-bold">
                 <Counter
-                  label="3.000+"
+                  label="3,000+"
                   targetValue={0}
                   initialValue={0}
                 ></Counter>
@@ -83,11 +83,11 @@ function LandingCarosal() {
             </figure>
             <div>
               <h1 className="headerText font-bold">
-                <Counter label="01" targetValue={0} initialValue={0}></Counter>
+                <Counter label="1" targetValue={0} initialValue={0}></Counter>
               </h1>
               <h2 className="headerText font-medium ">
                 Student placed <br />
-                in every 5min
+                in every 5 mins
               </h2>
             </div>
           </article>
