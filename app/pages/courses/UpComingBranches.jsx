@@ -1,11 +1,16 @@
+import React,{useState} from 'react'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import OurBranchesHome from '@/components/ourBranches/ourBranchesHome'
-import React from 'react'
 
 function UpComingBranches() {
+    const [isRightBarFixed, setIsRightBarFixed] = useState(false);
+
+    const handleRightBarFix = (fixed) => {
+      setIsRightBarFixed(fixed);
+    }
     return (
         <MaxWebWidth>
-            <OurBranchesHome page='course' />
+            <OurBranchesHome page='course' onRightBarFix={handleRightBarFix}/>
         </MaxWebWidth>
 
     )

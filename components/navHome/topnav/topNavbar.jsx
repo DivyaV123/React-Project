@@ -7,7 +7,6 @@ import Svg from '@/components/commonComponents/Svg/Svg';
 import { svgicons } from '../../assets/icons/svgassets'
 
 function TopNavbar() {
-    console.log(svgicons, "svgicons")
     return (
         <MaxWebWidth sectionStyling={`topnavbar flex`} articalStyling={"flex justify-between text-center items-center"}>
             <aside className='flex space-x-3 '>

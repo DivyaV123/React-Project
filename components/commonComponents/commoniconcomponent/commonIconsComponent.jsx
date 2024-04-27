@@ -8,7 +8,6 @@ function CommonIconsComponent({ lite }) {
     return (
         <section className='flex space-x-3 items-center commonIconsComponent'>
             {!lite ? darkIcons.map((element) => {
-                // console.log(svgicons[element],"svgicons[element]", element)
                 return (
                     <Svg
                         width={svgicons[element][0]}
@@ -20,7 +19,6 @@ function CommonIconsComponent({ lite }) {
                 )
             }) :
                 liteIcons.map((element) => {
-                    console.log(svgicons[element], "svgicons[element]", element)
                     return (
                         <Svg
                             width={svgicons[element][0]}
