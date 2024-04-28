@@ -94,7 +94,7 @@ function OurBranchesHome({ page }) {
         immage: './mysoreBranch.png'
     }
     ]
-  
+
     const branchCards = [
         './images/Bengalore.png', './images/HydrabadCard.png', './images/ChennaiCard.png',
         './images/puneCard.png', './images/MumbaiCard.png', './images/NoidaCard.png', './images/gurugramCard.png',
@@ -104,29 +104,33 @@ function OurBranchesHome({ page }) {
     ]
     const [scrollThreshold, setScrollThreshold] = useState(0);
     const sectionRef = useRef(null);
-  
+
     useEffect(() => {
-      if (sectionRef.current) {
-        const sectionHeight = sectionRef.current.getBoundingClientRect().height;
-        setScrollThreshold(sectionHeight * 0.75);
-      }
-    }, []);
-  
-    useEffect(() => {
-      const handleScroll = () => {
         if (sectionRef.current) {
-          const sectionOffset = sectionRef.current.offsetTop;
-          const scrollPos = window?.scrollY || document?.documentElement?.scrollTop;
-        //   onRightBarFix(scrollPos >= scrollThreshold);
+            const sectionHeight = sectionRef.current.getBoundingClientRect().height;
+            setScrollThreshold(sectionHeight * 0.75);
         }
-      };
-  
-      window.addEventListener('scroll', handleScroll);
-  
-      return () => {
-        window.removeEventListener('scroll', handleScroll);
-      };
-    }, [ scrollThreshold]);
+    }, []);
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (sectionRef.current) {
+                const sectionOffset = sectionRef.current.offsetTop;
+                const scrollPos = window?.scrollY || document?.documentElement?.scrollTop;
+                //   onRightBarFix(scrollPos >= scrollThreshold);
+            }
+        };
+
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, [scrollThreshold]);
+    if (page === "course") {
+        // Remove the last element of the branchCards array
+        branchCards.pop();
+    }
     return (
         <>
             <MaxWebWidth sectionStyling='pb-8' >
@@ -176,7 +180,6 @@ function OurBranchesHome({ page }) {
                                     <figure className={page === 'course' ? 'w-[31%] hover:-translate-y-1 delay-300 duration-300' : 'hover:-translate-y-1 delay-300 duration-300'}>
                                         <img src={elements} alt='imgcard' />
                                     </figure>
-
                                 </>
                             )
                         })}

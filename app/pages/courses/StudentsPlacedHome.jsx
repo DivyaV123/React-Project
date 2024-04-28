@@ -3,6 +3,7 @@ import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import React from 'react'
 import StudentsPlacedCard from './StudentsPlacedCard'
 import Button from '@/components/commonComponents/button/Button'
+import CoursePageContainer from './CoursePageContainer'
 
 
 function StudentsPlacedHome() {
@@ -63,7 +64,7 @@ function StudentsPlacedHome() {
         },
     ]
     return (
-        <MaxWebWidth sectionStyling='bg-[#F9F9F9] pb-5'>
+        <CoursePageContainer className='bg-[#F9F9F9] pb-5'>
             <article className='w-[51.56vw]'>
                 <header>
                     <h1 className='font-bold text-[1.5rem] py-5'>
@@ -79,7 +80,7 @@ function StudentsPlacedHome() {
                     />
                 </article>
             </article>
-        </MaxWebWidth>
+        </CoursePageContainer>
     )
 }
 
