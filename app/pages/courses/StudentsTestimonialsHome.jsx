@@ -10,10 +10,11 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel"
+import CoursePageContainer from './CoursePageContainer'
 
 function StudentsTestimonialsHome() {
     return (
-        <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
+        <CoursePageContainer className='bg-[#F9F9F9]'>
             <article className=''>
                 <header>
                     <h1 className='font-bold text-[1.5rem] py-5 w-[51.56vw]'>
@@ -26,7 +27,7 @@ function StudentsTestimonialsHome() {
                             {Array.from({ length: 4 }, (value, index) => (
                                 <CarouselItem className="basis-[57%]">
                                     <article className='pb-3'>
-                                    < TestimonialsCard />
+                                        < TestimonialsCard />
                                     </article>
                                     < TestimonialsCard />
                                 </CarouselItem>
@@ -42,7 +43,7 @@ function StudentsTestimonialsHome() {
                     />
                 </article>
             </article>
-        </MaxWebWidth>
+        </CoursePageContainer>
     )
 }
 

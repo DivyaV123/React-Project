@@ -1,12 +1,13 @@
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import HiringPartners from '@/components/hiringPartners/hiringPartners'
 import React from 'react'
+import CoursePageContainer from './CoursePageContainer'
 
 function HiringPartnersHome() {
   return (
-    <section className='w-[57.813vw] overflow-hide'>
+    <CoursePageContainer className='overflow-hide pl-0'>
       <HiringPartners page='course' />
-    </section>
+    </CoursePageContainer>
   )
 }
 

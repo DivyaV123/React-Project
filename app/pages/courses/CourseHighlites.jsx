@@ -2,6 +2,7 @@ import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import { List } from 'lucide-react'
 import React from 'react'
 import './CourseHighlites.scss'
+import CoursePageContainer from './CoursePageContainer'
 
 function CourseHighlites(props) {
     const courseContent = [
@@ -38,7 +39,7 @@ function CourseHighlites(props) {
         }
     ]
     return (
-        <MaxWebWidth>
+        <CoursePageContainer>
             <section className='w-[51.56vw]'>
                 <header>
                     <h1 className='font-bold text-black text-[1.5rem] py-5'>Highlights about the Course</h1>
@@ -61,7 +62,7 @@ function CourseHighlites(props) {
                     </article>
                 ))}
             </section>
-        </MaxWebWidth>
+        </CoursePageContainer>
     )
 }
 

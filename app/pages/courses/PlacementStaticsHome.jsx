@@ -3,6 +3,7 @@ import PlaceMentStatistics from '@/components/placementstatistics/placeMentStati
 import React from 'react'
 import { Badge } from "@/components/ui/badge"
 import HiringPartners from '@/components/hiringPartners/hiringPartners'
+import CoursePageContainer from './CoursePageContainer'
 
 function PlacementStaticsHome({ path }) {
     const svgPath = [
@@ -54,7 +55,7 @@ function PlacementStaticsHome({ path }) {
         },
     ]
     return (
-        <MaxWebWidth sectionStyling='bg-Pinkgradient' articalStyling=''>
+        <CoursePageContainer className='bg-Pinkgradient'>
             <article className='w-[51.56vw]'>
                 <h1 className='font-extra-bold text-4xl text-black flex justify-center  mb-8 mt-8 h-12'>
                     Our Placement Statistics
@@ -76,7 +77,7 @@ function PlacementStaticsHome({ path }) {
                         })
                         }
                     </div>
-                    <aside className='p-7 mt-12'>
+                    <aside className='mt-12'>
                         <h1 className='font-bold text-xl pb-5'>
                             From Various Branches
                         </h1>
@@ -91,7 +92,7 @@ function PlacementStaticsHome({ path }) {
                     </aside>
                 </aside>
             </article>
-        </MaxWebWidth>
+        </CoursePageContainer>
     )
 }
 
