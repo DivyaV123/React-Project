@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import './navitems.scss'
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
+import { COURSE_PATH } from "@/lib/RouteConstants";
+import Link from "next/link";
 const Courses = () => {
   const courses = [
     {
@@ -307,7 +309,7 @@ const Courses = () => {
         >
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
-              <div
+             <Link href={COURSE_PATH}> <div
                 key={index}
                 className={`${
                   hoveredIndex !== null && courses[hoveredIndex].list
@@ -324,7 +326,7 @@ const Courses = () => {
                 <div>
                   <article className=" text-sm titleText">{content.description}</article>
                 </div>
-              </div>
+              </div></Link>
           ))}
         </div>
       </div>
