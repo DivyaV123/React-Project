@@ -118,7 +118,8 @@ function OurBranchesHome({ page }) {
 
   const [scrollThreshold, setScrollThreshold] = useState(0);
   const sectionRef = useRef(null);
-
+    const [btnState, setBtnState] = useState('OfflineClasses')
+    const btnHoverClass = 'font-semibold bg-orange-500 bg-gradient text-white rounded'
   useEffect(() => {
     if (sectionRef.current) {
       const sectionHeight = sectionRef.current.getBoundingClientRect().height;

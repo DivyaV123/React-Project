@@ -40,28 +40,26 @@ function CourseHighlites(props) {
     ]
     return (
         <CoursePageContainer>
-            <section className='w-[51.56vw]'>
-                <header>
-                    <h1 className='font-bold text-black text-[1.5rem] py-5'>Highlights about the Course</h1>
-                </header>
-                {courseContent.map((element) => (
-                    <article className='bg-[#FFFCF9] px-5 pointsList mb-3 rounded-xl'>
-                        <header className='py-5 font-bold text-xl'>
-                            {element.question}
-                        </header>
-                        {element.bulletPoints.map((points) => (
-                            <ul className={"list-disc list-inside w-[91%]"}>
-                                <li>
-                                    <span className='text-dark-gray text-base'>
-                                        {points}
-                                    </span>
-                                </li>
-                            </ul>
-                        ))}
+            <header>
+                <h1 className='font-bold text-black text-[1.5rem] py-5'>Highlights about the Course</h1>
+            </header>
+            {courseContent.map((element) => (
+                <article className='bg-[#FFFCF9] px-5 pointsList mb-3 rounded-xl'>
+                    <header className='py-5 font-bold text-xl'>
+                        {element.question}
+                    </header>
+                    {element.bulletPoints.map((points) => (
+                        <ul className={"list-disc list-inside w-[91%]"}>
+                            <li>
+                                <span className='text-dark-gray text-base'>
+                                    {points}
+                                </span>
+                            </li>
+                        </ul>
+                    ))}
 
-                    </article>
-                ))}
-            </section>
+                </article>
+            ))}
         </CoursePageContainer>
     )
 }

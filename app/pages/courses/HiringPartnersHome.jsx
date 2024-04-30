@@ -5,7 +5,7 @@ import CoursePageContainer from './CoursePageContainer'
 
 function HiringPartnersHome() {
   return (
-    <CoursePageContainer className='overflow-hide pl-0'>
+    <CoursePageContainer className='overflow-hide !pl-0'>
       <HiringPartners page='course' />
     </CoursePageContainer>
   )

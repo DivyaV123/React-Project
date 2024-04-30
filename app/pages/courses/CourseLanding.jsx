@@ -37,10 +37,11 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
     "Attain the Azure Administrator credential for increased earning potential and career growth.",
     "Access knowledge beyond certification to excel in your role and stand out in the job market.",
   ];
-  
+
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const [section1Height, setSection1Height] = useState(0);
+  const [btnState, setBtnState] = useState("Offline Classes")
 
   useEffect(() => {
     if (section1Ref.current) {
@@ -74,7 +75,8 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
             {typesOfClasses.map((classItem, index) => (
               <button
                 key={index}
-                className="flex justify-center items-center px-4 py-2 font-medium text-sm courseButton"
+                className={`flex justify-center items-center px-4 py-2 font-medium text-sm ${classItem.title === btnState ? 'activecourseButton' : ''} `}
+                onClick={() => { setBtnState(classItem.title) }}
               >
                 {classItem.title}
               </button>
@@ -145,9 +147,8 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
           className="w-[32.93vw] flex justify-end items-center relative float-right"
         >
           <div
-            className={`${
-              isRightBarFixed ? "right-bar fixedbar" : "right-bar"
-            }`}
+            className={`${isRightBarFixed ? "right-bar fixedbar" : "right-bar"
+              }`}
           >
             <img src="../courseLanding.png" alt="courseLanding" />
             {isRightBarFixed && (
@@ -189,10 +190,10 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
                   ))}
                 </article>
                 <section className="flex gap-6 py-2 justify-center">
-                  <button className="EnrollButton text-sm font-medium py-2.5 px-6">
+                  <button className="EnrollButton text-base w-[15.15vw] font-medium py-2.5 px-6">
                     Enroll now
                   </button>
-                  <button className="EnquireButton text-sm font-medium py-2.5 px-6 relative">
+                  <button className="EnquireButton text-base w-[15.15vw] font-medium py-2.5 px-6 relative">
                     Enquire now
                   </button>
                 </section>
