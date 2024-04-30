@@ -6,7 +6,7 @@ import Button from '@/components/commonComponents/button/Button'
 import CoursePageContainer from './CoursePageContainer'
 
 
-function StudentsPlacedHome() {
+function StudentsPlacedHome({ page }) {
     const studentsInfo = [
         {
             image: '../images/user_profile.png',
@@ -62,10 +62,29 @@ function StudentsPlacedHome() {
             batch: 'BSC (64%) - 2018',
             course: 'Computer Science (CS)'
         },
+        {
+            image: '../images/user_profile.png',
+            name: 'Rahul Kumar',
+            batch: 'BSC (64%) - 2018',
+            course: 'Computer Science (CS)'
+        },
+        {
+            image: '../images/user_profile.png',
+            name: 'Rahul Kumar',
+            batch: 'BSC (64%) - 2018',
+            course: 'Computer Science (CS)'
+        },
+        {
+            image: '../images/user_profile.png',
+            name: 'Rahul Kumar',
+            batch: 'BSC (64%) - 2018',
+            course: 'Computer Science (CS)'
+        },
+
     ]
     return (
-        <CoursePageContainer className='bg-[#F9F9F9] pb-5'>
-            <article className='w-[51.56vw]'>
+        <CoursePageContainer className={page === 'branch' ? '!w-full !p-0 ' : 'bg-[#F9F9F9] pb-5'}>
+            <article className={page === 'branch' ? '' : 'w-[51.56vw]'}>
                 <header>
                     <h1 className='font-bold text-[1.5rem] py-5'>
                         Students placed through this course

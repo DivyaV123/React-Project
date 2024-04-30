@@ -5,7 +5,7 @@ function PlaceMentStatistics({ className, path, statistics }) {
     return (
         <div className={className}>
             {statistics.map((item, index) => {
-                if (path === "fromPage") {
+                if (path === "fromPage" || path === 'branch') {
                     item.icon = '.' + item.icon;
                 }
                 let content = item.info.replace(/#/g, "<br/>")

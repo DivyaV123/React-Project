@@ -204,7 +204,7 @@ function OurBranchesHome({ page }) {
                             })
                             :
                             <>
-                                <OnlineLiveClasses />
+                                <OnlineLiveClasses page='course' className='' />
                                 <div className="w-[42.03vw] flex justify-end pt-4">
                                     <button className="w-[9.37vw] py-2 px-4.5 text-sm font-semibold EnrollButton">
                                         View More
