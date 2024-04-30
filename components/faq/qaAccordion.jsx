@@ -9,11 +9,12 @@ import {
 import { Fade, Slide } from 'react-reveal';
 
 
-function Qaccordion({ qaList }) { 
+function Qaccordion({ qaList }) {
 
   const [openIndex, setOpenIndex] = useState(-1);
 
   const handleAccordionToggle = (index) => {
+    console.log(index, "indexindex")
     setOpenIndex(index === openIndex ? -1 : index);
 
   };

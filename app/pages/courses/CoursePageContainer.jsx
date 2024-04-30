@@ -1,9 +1,9 @@
 import React from 'react'
 
-function CoursePageContainer({ children , className}) {
+function CoursePageContainer({ children, className, articleStyle }) {
     return (
-        <section className={`w-[60%]  pl-[6%] ${className}`}>
-            <article>
+        <section className={`${className} w-[60%]  pl-[6%] `}>
+            <article articleStyle={articleStyle}>
                 {children}
             </article>
         </section>

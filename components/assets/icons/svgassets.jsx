@@ -6,6 +6,16 @@ export const svgicons = {
         <path d="M10 17L15 12L10 7" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />,
         'none'
     ],
+    accordianArrowDown: [
+        "24", "24", "0 0 24 24",
+        <path d="M4 9L12 17L20 9" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />,
+        'none'
+    ],
+    accordianArrowSide: [
+        "10", "18", "0 0 10 18",
+        <path d="M1 17L9 9L1 1" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />,
+        'none'
+    ],
     courseVideoIcon: [
         "24", "24", "0 0 24 24",
         <>

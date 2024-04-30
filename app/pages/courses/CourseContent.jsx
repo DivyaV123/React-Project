@@ -1,5 +1,5 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react'
 import {
     Accordion,
     AccordionContent,
@@ -9,6 +9,7 @@ import {
 import CoursePageContainer from './CoursePageContainer';
 import Svg from '@/components/commonComponents/Svg/Svg';
 import { svgicons } from '@/components/assets/icons/svgassets';
+import NestedAccordion from '@/components/ui/NestedAccordion';
 
 function CourseContent() {
     const courseContentdata = [
@@ -17,9 +18,9 @@ function CourseContent() {
                 {
                     Softwaredevelopmentlifecycle: [
                         'WaterFallmodel', 'Spiral model', 'Prototype Model', 'Hybrid Model', 'Performance test',
-                        { Softwaredevelopmentlifecycle1: [''] }, { Softwaredevelopmentlifecycle2: [''] }
                     ]
-                }
+                },
+                { Softwaredevelopmentlifecycle1: [''] }, { Softwaredevelopmentlifecycle2: [''] }
             ]
         },
         { ManualTesting: [''] },
@@ -28,27 +29,39 @@ function CourseContent() {
         { ManualTesting: [''] }
     ];
 
+    const [openIndex, setOpenIndex] = useState(-1);
 
-    const renderAccordions = (data) => {
+    const handleAccordionToggle = (index) => {
+        console.log(index, "indexindexindexindex")
+        setOpenIndex(index === openIndex ? '-1' : index);
+    };
+
+    const renderAccordions = (data, parentKey = '', isParent = true) => {
         if (!Array.isArray(data)) {
             return null; // Return null if data is not an array
         }
         return data.map((item, index) => {
-            const key = `accordion-${index}`;
+            const key = parentKey ? `${parentKey}-accordion-${index}` : `accordion-${index}`;
+            console.log(key, "keykeykey")
             if (typeof item === 'object' && !Array.isArray(item)) {
                 const [keyName] = Object.keys(item);
-                return (
-                    <AccordionItem className='border-none' key={key} value={key}>
-                        <AccordionTrigger  className='bg-[#FFFCF9] m-1'>
-                            <article className='flex justify-between w-full'>
-                                <h1>{keyName}</h1>
-                                <h1 className='pr-2'>4 Modules | 32 Min</h1>
-                            </article></AccordionTrigger>
-                        <AccordionContent >
-                            {renderAccordions(Object.values(item)[0])}
-                        </AccordionContent>
-                    </AccordionItem>
-                );
+                if (isParent) {
+                    return (
+                        <AccordionItem className='border-none' key={key} value={key}>
+                            <AccordionTrigger onClick={() => handleAccordionToggle(index)} className='bg-[#FFFCF9] m-1 font-medium'>
+                                <article className='flex justify-between w-full'>
+                                    <h1>{keyName}</h1>
+                                    <h1 className='pr-2'>4 Modules | 32 Min</h1>
+                                </article>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                {renderAccordions(Object.values(item)[0], key, false)}
+                            </AccordionContent>
+                        </AccordionItem>
+                    );
+                } else {
+                    return renderAccordions(Object.values(item)[0], key, false);
+                }
             } else if (Array.isArray(item)) {
                 return item.map((subItem, subIndex) => {
                     const subKey = `${key}-sub-${subIndex}`;
@@ -101,9 +114,7 @@ function CourseContent() {
                 Course Content
             </header>
             <article className='m-5'>
-                <Accordion defaultIndex={[0]} type="single" collapsible>
-                    {renderAccordions(courseContentdata)}
-                </Accordion>
+                <NestedAccordion data={courseContentdata} />
             </article>
         </CoursePageContainer>
     )
