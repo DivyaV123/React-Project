@@ -12,20 +12,20 @@ import {
 } from "@/components/ui/carousel"
 import CoursePageContainer from './CoursePageContainer'
 
-function StudentsTestimonialsHome() {
+function StudentsTestimonialsHome({ page }) {
     return (
-        <CoursePageContainer className='bg-[#F9F9F9]'>
+        <CoursePageContainer className={page === 'branch' ? '!w-full !p-0' : 'bg-[#F9F9F9]'}>
             <article className=''>
                 <header>
-                    <h1 className='font-bold text-[1.5rem] py-5 w-[51.56vw]'>
+                    <h1 className={page === 'branch' ? 'flex justify-center font-bold text-[1.5rem] py-5 w-[51.56vw]' : 'font-bold text-[1.5rem] py-5 w-[51.56vw]'}>
                         StudentsTestimonialsHome
                     </h1>
                 </header>
-                <article className='w-[51.56vw] overflow-hide'>
+                <article className={page === "branch" ? '' : 'w-[51.56vw] overflow-hide'}>
                     <Carousel>
                         <CarouselContent className='bg-[#F9F9F9]'>
                             {Array.from({ length: 4 }, (value, index) => (
-                                <CarouselItem className="basis-[57%]">
+                                <CarouselItem className={page === 'branch' ? 'basis-[33%]' : "basis-[57%]"} >
                                     <article className='pb-3'>
                                         < TestimonialsCard />
                                     </article>
@@ -33,9 +33,11 @@ function StudentsTestimonialsHome() {
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
+                        <CarouselPrevious />
+                        <CarouselNext />
                     </Carousel>
                 </article>
-                <article className='flex justify-center mt-3 w-[51.56vw] pb-5'>
+                <article className={page === "branch" ? 'flex justify-center mt-3 pb-5' : 'flex justify-center mt-3 w-[51.56vw] pb-5'}>
                     <Button
                         className='bg-gradient h-[2.656vw] w-[9.375vw] text-[0.75rem] text-white rounded-md'
                         title="View More"

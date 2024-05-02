@@ -2,7 +2,7 @@
 import React from "react";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import "./hiringPartners.scss";
-function HiringPartners({ page }) {
+function HiringPartners({ page, className }) {
   const svgPath = [
     { src: "./compLogo01.svg" },
     { src: "./compLogo02.svg" },
@@ -24,7 +24,7 @@ function HiringPartners({ page }) {
     { src: "./compLogo-04.svg" },
   ];
   return (
-    <MaxWebWidth sectionStyling="bg-[#FEF2E7] overflow-hidden w-full py-6">
+    <MaxWebWidth articalStyling={className} sectionStyling="bg-[#FEF2E7] overflow-hidden w-full py-6">
       <header>
         <h1 className={`${page === 'course' ? 'flex justify-center align-center font-bold text-[2rem] pb-1 w-[51.56vw]' : 'flex justify-center align-center font-bold text-[2rem] pb-1'}`}>
           Our Hiring Partners
@@ -33,7 +33,7 @@ function HiringPartners({ page }) {
       <div className="slider">
         <div className="slide-track">
           {svgPath.map((path, index) => {
-            if (page === "course") {
+            if (page === "course" || page === "branch") {
               path.src = '.' + path.src;
             }
             return (

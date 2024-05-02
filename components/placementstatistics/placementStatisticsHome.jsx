@@ -8,7 +8,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 import Counter from '../commonComponents/counterAnimation/Counter';
 import PlaceMentStatistics from './placeMentStatistics';
 
-function PlacementStatisticsHome() {
+function PlacementStatisticsHome({ page }) {
     const degrees = [
         'BE/BTech', 'BCA/Bsc', 'B.Com', 'MCA', 'ME/M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
@@ -51,15 +51,15 @@ function PlacementStatisticsHome() {
                 <aside className='p-2'>
                     <Fade left duration={1000} deley={0}>
                         <figure className='absolute top-[-4%] left-[-6.5%]'>
-                            <img className='w-[75%]' src='./graduationCapIcon.svg'></img>
+                            <img className='w-[75%]' src={page === "branch" ? '../graduationCapIcon.svg' : './graduationCapIcon.svg'}></img>
                         </figure>
                     </Fade>
-                    <PlaceMentStatistics statistics={statistics} />
+                    <PlaceMentStatistics path='branch' statistics={statistics} />
                 </aside>
                 <asides className='relative p-2'>
                     <Fade right duration={1000} delay={0}>
                         <figure className='absolute top-[-18%] left-[50%]'>
-                            <img className='w-[90%]' src='./graduationReportIcon.svg'></img>
+                            <img className='w-[90%]' src={page === "branch" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img>
                         </figure>
                     </Fade>
                     <aside className='p-7'>

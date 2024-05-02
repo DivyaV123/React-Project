@@ -7,7 +7,7 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import Button from "@/components/commonComponents/button/Button";
 
-const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
+const CourseLanding = ({ onRightBarFix, isRightBarFixed, page }) => {
   const typesOfClasses = [
     {
       title: "Offline Classes",
@@ -23,6 +23,8 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
     },
   ];
 
+  const tutionClasses = page === "tution" ? typesOfClasses.slice(2, 4) : typesOfClasses
+  console.log(tutionClasses, "tutionClasses")
   const statisticsData = [
     { number: "25,000+", text: "student placed" },
     { number: "180+", text: "Hiring Companies" },
@@ -41,7 +43,7 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const [section1Height, setSection1Height] = useState(0);
-  const [btnState, setBtnState] = useState("Offline Classes")
+  const [btnState, setBtnState] = useState(page === 'tution' ? 'Experiential Learning' : "Offline Classes")
 
   useEffect(() => {
     if (section1Ref.current) {
@@ -69,10 +71,10 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
       sectionStyling="bg-coursegradient max-w-full overflow-hidden"
       articalStyling="relative"
     >
-      <aside className="flex py-8 h-[87vh] justify-between">
+      <aside className="flex py-8  justify-between">
         <article ref={section1Ref} className="w-[51.56vw] flex flex-col py-4">
           <div className="bg-white h-[2.65vw] flex w-fit">
-            {typesOfClasses.map((classItem, index) => (
+            {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
                 className={`flex justify-center items-center px-4 py-2 font-medium text-sm ${classItem.title === btnState ? 'activecourseButton' : ''} `}
@@ -83,7 +85,7 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
             ))}
           </div>
           <div className="py-4 flex gap-6 items-center">
-            <h1 className="font-bold leading-[3rem]  text-left text-[2rem]">
+            <h1 className="font-bold leading-[4.5rem]  text-left text-[3rem]">
               Software Testing
             </h1>
             <button className="ratingButton flex justify-center items-center py-2 px-4 font-medium rounded">
@@ -100,29 +102,29 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
               4.6 Rating
             </button>
           </div>
-          <div className="py-4">
-            <p className="headerText text-left font-medium text-xl">
+          <div className="pb-6">
+            <p className="headerText text-left font-medium text-xl leading-[1.875rem]">
               Explore the dynamic world of software testing with our
               comprehensive course.
             </p>
           </div>
-          <article className="flex py-4">
+          <article className="flex pb-8">
             {statisticsData.map((ele, index) => (
               <div key={index} className=" pr-8">
-                <h1 className="text-left font-bold text-2xl headerText">
+                <h1 className="text-left font-bold text-[1.5rem] leading-[2.25rem] pb-2 headerText">
                   {ele.number}
                 </h1>
-                <p className="text-left font-medium text-sm headerText">
+                <p className="text-left font-medium text-[0.875rem] leading-[1.25rem] headerText">
                   {ele.text}
                 </p>
               </div>
             ))}
           </article>
-          <article className="py-4">
+          <article className="pb-4">
             {resources.map((resource, index) => (
               <div
                 key={index}
-                className="flex text-left gap-4  text-xs font-semibold leading-6"
+                className="flex text-left gap-4  text-[0.875rem] leading-[1.5rem] pb-4 font-semibold leading-6"
               >
                 <figure>
                   <img src={imageSrc} alt={`resource-${index}`} />
@@ -133,7 +135,7 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
               </div>
             ))}
           </article>
-          <section className="flex gap-6 py-4">
+          <section className="flex gap-6 pb-4">
             <button className="EnrollButton text-base font-medium py-2.5 px-6">
               Enroll now
             </button>
@@ -144,7 +146,7 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
         </article>
         <figure
           ref={section2Ref}
-          className="w-[32.93vw] flex justify-end items-center relative float-right"
+          className="w-[32.93vw] flex justify-end  relative float-right"
         >
           <div
             className={`${isRightBarFixed ? "right-bar fixedbar" : "right-bar"
@@ -172,28 +174,28 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed }) => {
                   </button>
                 </div>
                 <div>
-                  <p className="text-left font-medium text-xs headerText">
+                  <p className="text-left font-medium text-xs 2xl:text-base 3xl:text-[1.125rem] headerText">
                     Explore the dynamic world of software testing with our
                     comprehensive course.
                   </p>
                 </div>
-                <article className="flex justify-evenly py-1 px-2">
+                <article className="flex justify-evenly py-1 px-2 3xl:py-5">
                   {statisticsData.map((ele, index) => (
                     <div key={index} className="py-2 pr-3">
-                      <h1 className="text-left font-bold text-sm headerText">
+                      <h1 className="text-left font-bold text-sm headerText 2xl:text-[1.125rem] 3xl:text-[1.5rem]">
                         {ele.number}
                       </h1>
-                      <p className="text-left font-medium text-xs headerText">
+                      <p className="text-left font-medium text-xs 2xl:text-base 3xl:[1.125] headerText">
                         {ele.text}
                       </p>
                     </div>
                   ))}
                 </article>
-                <section className="flex gap-6 py-2 justify-center">
-                  <button className="EnrollButton text-base w-[15.15vw] font-medium py-2.5 px-6">
+                <section className="flex gap-6 py-4 3xl:pb-8 3xl:pt-4 justify-center">
+                  <button className="EnrollButton text-base w-[15.15vw] 2xl:text-base font-medium py-2.5 px-6">
                     Enroll now
                   </button>
-                  <button className="EnquireButton text-base w-[15.15vw] font-medium py-2.5 px-6 relative">
+                  <button className="EnquireButton text-base w-[15.15vw] 2xl:text-base font-medium py-2.5 px-6 relative">
                     Enquire now
                   </button>
                 </section>

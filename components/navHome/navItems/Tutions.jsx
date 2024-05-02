@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import "./navitems.scss";
+import { TUTION_PATH } from "@/lib/RouteConstants";
+import Link from "next/link";
 const Tutions = () => {
   const courses = [
     {
@@ -234,14 +236,14 @@ const Tutions = () => {
         {courses.map((courseItem, index) => (
           <div
             key={index}
-            className={`flex ${hoveredIndex  === index  ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
+            className={`flex ${hoveredIndex === index ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
             onMouseEnter={() => setHoveredIndex(index)}
-            // onMouseLeave={() => setHoveredIndex()}
+          // onMouseLeave={() => setHoveredIndex()}
           >
             {/* <img src={courseItem.icon} /> */}
             <div className="flex justify-between grow">
               <button className="p-2 text-sm">{courseItem.title}</button>
-              <img src={courseItem.arrow} className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`}  />
+              <img src={courseItem.arrow} className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
             </div>
           </div>
         ))}
@@ -252,46 +254,47 @@ const Tutions = () => {
             {courses[hoveredIndex]?.list?.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className={`flex justify-between grow pl-2 ${hoveredItemIndex  === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
+                className={`flex justify-between grow pl-2 ${hoveredItemIndex === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
                 onMouseEnter={() => setHoveredItemIndex(itemIndex)}
-                onMouseLeave={() => {}}
+                onMouseLeave={() => { }}
               >
                 <img src={item.icon} />
                 <div className="flex justify-between grow">
                   <button className="p-2 text-sm">{item.title}</button>
-                  <img src={item.arrow} className={`${hoveredItemIndex === itemIndex ? 'visible' : 'invisible'} w-4`}  />
+                  <img src={item.arrow} className={`${hoveredItemIndex === itemIndex ? 'visible' : 'invisible'} w-4`} />
                 </div>
               </div>
             ))}
           </div>
         )}
         <div
-          className={`${
-            hoveredIndex !== null && courses[hoveredIndex]?.list
-              ? "courselist pl-4 pt-2"
-              : "coursefull p-3"
-          }   flex flex-wrap  h-fit gap-4 `}
+          className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
+            ? "courselist pl-4 pt-2"
+            : "coursefull p-3"
+            }   flex flex-wrap  h-fit gap-4 `}
         >
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
-              <div
-                key={index}
-                className={`${
-                  hoveredIndex !== null && courses[hoveredIndex]?.list
+              <Link href={TUTION_PATH}>
+                {console.log(TUTION_PATH,"TUTION_PATH")}
+                <div
+                  key={index}
+                  className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
                     ? "courseMedium"
                     : "courseinitial"
-                }  p-2 branchOverlay h-fit`}
-              >
-                <div className="flex h-10 gap-1.5">
-                  <img className="h-8 w-8 " src={content.image} />
-                  <h3 className="text-left h-8 text-sm font-bold flex items-center">
-                    {content.title}
-                  </h3>
+                    }  p-2 branchOverlay h-fit`}
+                >
+                  <div className="flex h-10 gap-1.5">
+                    <img className="h-8 w-8 " src={content.image} />
+                    <h3 className="text-left h-8 text-sm font-bold flex items-center">
+                      {content.title}
+                    </h3>
+                  </div>
+                  <div>
+                    <article className=" text-sm titleText">{content.description}</article>
+                  </div>
                 </div>
-                <div>
-                  <article className=" text-sm titleText">{content.description}</article>
-                </div>
-              </div>
+              </Link>
             )
           )}
         </div>
