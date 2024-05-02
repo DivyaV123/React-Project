@@ -183,7 +183,7 @@ function OurCourse() {
         <MaxWebWidth>
             <aside className='flex justify-center align-center mb-8 mt-8' >
                 <Slide top cascade>
-                    <h1 className='font-bold text-4xl header text-black'>Explore our Courses</h1>
+                    <h1 className='font-bold text-[2rem] header text-black'>Explore Our Courses</h1>
                 </Slide>
             </aside>
             {/* <article className='flex space-x-3 justify-end m-2 mb-5'>
@@ -203,9 +203,9 @@ function OurCourse() {
                     <div>
                         {courses.map((item, itemIndex) => {
                             return (<div onMouseEnter={() => setHoveredIndex(itemIndex)} onMouseLeave={() => setHoveredIndex(null)}
-                                className='bg-orange hover:font-semibold hover:text-white w=[45.29vw] flex justify-center  gradient-bg cursor-pointer py-4 px-2'
+                                className='bg-orange hover:font-semibold hover:text-white w=[20.70vw] flex justify-center  gradient-bg cursor-pointer py-3 px-2'
                             >
-                                <div className='flex justify-between align-center'>
+                                <div className='flex justify-between items-center'>
                                     <picture className='flex justify-start hover:text-white'>
                                         {(hoveredIndex === itemIndex) ?
                                             <Svg
@@ -224,7 +224,7 @@ function OurCourse() {
                                             />
                                         }
                                     </picture>
-                                    <aside className='w-60 pl-[1rem] 2xl:text-base'>
+                                    <aside className='w-[12.5rem]  pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base'>
                                         <h1>
                                             {item.title}
                                         </h1>

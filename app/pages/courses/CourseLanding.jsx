@@ -105,7 +105,7 @@ const CourseLanding = ({ page }) => {
             {resources.map((resource, index) => (
               <div
                 key={index}
-                className="flex text-left gap-4  text-[0.875rem] leading-[1.5rem] pb-4 font-semibold leading-6"
+                className="flex text-left gap-4  text-[0.75rem] items-center leading-[1rem] pb-4 font-semibold"
               >
                 <figure>
                   <img src={imageSrc} alt={`resource-${index}`} />

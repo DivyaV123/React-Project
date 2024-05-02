@@ -170,7 +170,7 @@ function OurBranchesHome({ page }) {
                             </article>
                         ) : (
                             <Slide top cascade>
-                                <h1 className="flex justify-center text-2xl m-2 font-extra-bold p-5">
+                                <h1 className="flex justify-center text-[2rem] m-2 font-bold p-5">
                                     Our Offline Branches
                                 </h1>
                             </Slide>

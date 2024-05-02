@@ -33,7 +33,7 @@ function TrainingMode() {
         <article onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}} className='mb-6'>
             <header>
                 <Slide top cascade>
-                    <h1 className='flex justify-center text-2xl m-2 font-extra-bold p-5'>Modes We Train</h1>
+                    <h1 className='flex justify-center text-[2rem] m-2 font-bold p-5'>Modes We Train</h1>
                 </Slide>
             </header>
             <Fade bottom duration={1000} delay={0}>
