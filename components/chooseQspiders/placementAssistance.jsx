@@ -12,7 +12,7 @@ function PlacementAssistance() {
             <header>
                 <Slide top cascade>
                     <p className='font-bold text-[2rem] text-black flex justify-center align-center mb-8 mt-8'>
-                    Why Choose Qspiders
+                        Why Choose Qspiders
                     </p>
                 </Slide>
             </header>
@@ -22,7 +22,7 @@ function PlacementAssistance() {
                         <header className='font-bold text-black  text-[1.75rem]  flex justify-center'>
                             <p >Placement Assistance</p>
                         </header>
-                        <p className='text-dark-gray text-center text-normal mt-6'>
+                        <p className='text-dark-gray text-center text-[18px] mt-6'>
                             Our dedicated placement cell works tirelessly to connect <br />
                             our students with leading IT companies for job<br />
                             opportunities. With a strong network of corporate partners<br />
@@ -42,14 +42,14 @@ function PlacementAssistance() {
                             </aside>
                             <aside className='w-[100%]'>
                                 <h1 className='gradient-text text-base font-extra-bold text-xl opacity-100 flex justify-center'>
-                                <Counter initialValue={0} targetValue={5000} label='4,100+' /><br />
+                                    <Counter initialValue={0} targetValue={5000} label='4,100+' /><br />
                                 </h1>
                                 <p className='text-brown text-normal flex justify-center  text-center'>Multinational <br /> companies hire from us</p>
                             </aside>
                         </article>
                         <article className='flex justify-center mt-6'>
                             <Button
-                                className='primary text-[13px]'
+                                className='bg-gradient text-white h-[3.75vw] rounded  w-[14.844vw]'
                                 title="View Placement"
                                 onClick={() => { }}
                             />

@@ -63,7 +63,7 @@ function PlacementStaticsHome({ path }) {
                 <PlaceMentStatistics
                     statistics={statistics}
                     className='flex flex-wrap'
-                    path='fromPage'
+                    path='course'
                 />
                 <aside className='p-7'>
                     <h1 className='font-bold text-xl pb-5'>
@@ -72,7 +72,7 @@ function PlacementStaticsHome({ path }) {
                     <div className='grid grid-cols-3 gap-4'>
                         {degrees.map((element) => {
                             return (
-                                <Badge variant="" className='font-bold text-xl'>{element}</Badge>
+                                <Badge variant="" className='font-bold text-[1.125rems]'>{element}</Badge>
                             )
                         })
                         }
@@ -84,7 +84,7 @@ function PlacementStaticsHome({ path }) {
                         <div className='grid grid-cols-3 gap-4'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold text-xl'>{element}</Badge>
+                                    <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
                                 )
                             })
                             }

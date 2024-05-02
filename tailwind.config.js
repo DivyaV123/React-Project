@@ -19,7 +19,7 @@ module.exports = {
         "border-gray": '#A0A0A0',
         'footer-blue': '#002248',
         'dark-gray': '#454545',
-        'brown': '#4D2121',
+        'brown': '#454545',
         'ash': '#575757',
         'white': '#FFFFFF',
         'header-orange': 'bg-gradient-to-b from-transparent to-[#F09819] via-[#FF512F]',
