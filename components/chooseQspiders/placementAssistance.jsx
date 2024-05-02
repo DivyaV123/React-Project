@@ -11,16 +11,16 @@ function PlacementAssistance() {
         <section className='mt-6'>
             <header>
                 <Slide top cascade>
-                    <h1 className='font-bold text-4xl text-black flex justify-center align-center mb-8 mt-8'>
-                        Why choose QSpiders
-                    </h1>
+                    <p className='font-bold text-[2rem] text-black flex justify-center align-center mb-8 mt-8'>
+                    Why Choose Qspiders
+                    </p>
                 </Slide>
             </header>
             <article className='grid grid-cols-2 gap-4'>
                 <Fade left delay={0} duration={1000}>
                     <aside className='mt-6 animate-slide-from-left'>
-                        <header className='font-bold text-black  text-header flex justify-center'>
-                            <h1 >Placement Assistance</h1>
+                        <header className='font-bold text-black  text-[1.75rem]  flex justify-center'>
+                            <p >Placement Assistance</p>
                         </header>
                         <p className='text-dark-gray text-center text-normal mt-6'>
                             Our dedicated placement cell works tirelessly to connect <br />

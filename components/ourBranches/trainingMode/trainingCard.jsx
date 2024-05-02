@@ -5,9 +5,8 @@ import { svgicons } from '@/components/assets/icons/svgassets';
 
 function TrainingCard({ cardDetails, hover }) {
     return (
-        <section className='relative flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-60 m-4 trainingContainer'>
+        <section className='relative flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-[15.63rem] m-4 trainingContainer'>
             <div className="animationBackground">
-
             </div>
             <div className='z-10'>
                 <figure className='flex justify-center aligen-center '>
@@ -26,7 +25,7 @@ function TrainingCard({ cardDetails, hover }) {
                         {cardDetails.mode}
                     </h1>
                 </header>
-                <p className='text-sm flex justify-center text-center p-4 text-dark-gray font-lean mt-6 cardDetail'>
+                <p className='text-[0.875rem] flex justify-center text-center p-4 text-dark-gray font-lean mt-6 cardDetail'>
                     {cardDetails.detail}
                 </p>
             </div>
