@@ -9,6 +9,7 @@ import HiringPartnersHome from '../courses/HiringPartnersHome';
 import CourseHighlites from '../courses/CourseHighlites';
 import StudentsTestimonialsHome from '../courses/StudentsTestimonialsHome';
 import CoursesFaq from '../courses/CoursesFaq';
+import ImageScroller from '../courses/ImageScroller';
 
 const Tutions = () => {
     const [isRightBarFixed, setIsRightBarFixed] = useState(false);
@@ -18,7 +19,8 @@ const Tutions = () => {
     }
     return (
         <WebLayout>
-            <CourseLanding page='tution' onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} />
+            <CourseLanding page='tution' />
+            <ImageScroller onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} />
             <CourseContent />
             <CourseHighlites />
             <StudentsTestimonialsHome />
