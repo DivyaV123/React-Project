@@ -39,7 +39,8 @@ const OnlineLiveClasses = ({ className, page }) => {
       time: "10am - 12pm",
     },
   ];
-  const enrollEnquire = "py-2.5 px-3 w-[8.35vw] text-sm font-semibold";
+  const enrollEnquire = "py-2.5 px-3 w-[8.359375vw] text-[0.875rem] font-semibold";
+  const dateAndTime="flex text-[0.75rem] font-medium text-dark-gray gap-1.5 items-center"
   return (
     <>
       {upcomingBatchesData.map((batch, index) => (
@@ -47,15 +48,15 @@ const OnlineLiveClasses = ({ className, page }) => {
           className={`${page === "course" ? className : ""} flex flex-wrap`}
           key={index}
         >
-          <div className="w-[20.46vw] upcomingBatches p-4">
+          <div className="w-[20.46vw] upcomingBatches p-3">
             <header className="font-bold text-base py-2">{batch.course}</header>
-            <p className="font-normal text-xs py-1">By: {batch.trainer}</p>
-            <div className="flex py-4 gap-1.5 items-center justify-between">
-              <div className="flex text-xs gap-1.5 items-center">
+            <p className="font-normal text-[0.75rem] text-ash py-1">By: {batch.trainer}</p>
+            <div className="flex py-4 gap-1.5 items-center  justify-between">
+              <div className={`${dateAndTime}`}>
                 <img src="../Icon_calendar.svg" alt="calendar icon" />
                 <div>{batch.date}</div>
               </div>
-              <div className="flex text-xs gap-1.5 items-center">
+              <div className={`${dateAndTime}`}>
                 <img src="../Icon_time.svg" alt="time icon" />
                 <div>{batch.time}</div>
               </div>

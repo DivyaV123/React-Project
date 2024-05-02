@@ -157,13 +157,13 @@ function OurBranchesHome({ page }) {
                                 </h1>
                                 <article className="flex bg-white m-2 py-5">
                                     <Button
-                                        className={btnState === 'OfflineClasses' ? "font-semibold bg-orange-500 bg-gradient text-white w-[9.609vw] rounded h-[2.656vw] bg-[#F9F9F9] text-[0.75rem]" : "w-[9.609vw] rounded-s h-[2.656vw] bg-[#F9F9F9] text-[0.75rem]"}
+                                        className={btnState === 'OfflineClasses' ? "font-semibold bg-orange-500 bg-gradient text-white w-[9.609vw] rounded h-[2.656vw] bg-[#F9F9F9] text-[0.75rem]" : "w-[9.609vw] rounded-s h-[2.656vw] bg-[#F9F9F9] text-[0.75rem] text-dark-gray font-medium"}
                                         onClick={() => { setBtnState('OfflineClasses') }}
                                         title="Offline Classes"
                                     ></Button>
                                     <Button
                                         onClick={() => { setBtnState('OnlineLiveClasses') }}
-                                        className={btnState === 'OnlineLiveClasses' ? 'font-semibold bg-orange-500 text-white w-[11.484vw] rounded h-[2.656vw] bg-[#F9F9F9] text-[0.75rem]' : "w-[11.484vw] rounded-e h-[2.656vw] bg-[#F9F9F9] text-[0.75rem]"}
+                                        className={btnState === 'OnlineLiveClasses' ? 'font-semibold bg-orange-500 text-white w-[11.484vw] rounded h-[2.656vw] bg-[#F9F9F9] text-[0.75rem]' : "w-[11.484vw] rounded-e h-[2.656vw] bg-[#F9F9F9] text-[0.75rem] text-dark-gray font-medium"}
                                         title="Online Live Classes"
                                     ></Button>
                                 </article>
@@ -206,7 +206,7 @@ function OurBranchesHome({ page }) {
                             <>
                                 <OnlineLiveClasses page='course' className='' />
                                 <div className="w-[42.03vw] flex justify-end pt-4">
-                                    <button className="w-[9.37vw] py-2 px-4.5 text-sm font-semibold EnrollButton">
+                                    <button className="w-[9.37vw] py-2 px-4.5 text-[0.75rem] font-medium EnrollButton">
                                         View More
                                     </button>
                                 </div>
