@@ -1,4 +1,4 @@
-import React from 'react'
+import React from "react";
 
 const OnlineLiveClasses = ({ className, page }) => {
   const upcomingBatchesData = [
@@ -39,17 +39,17 @@ const OnlineLiveClasses = ({ className, page }) => {
       time: "10am - 12pm",
     },
   ];
+  const enrollEnquire = "py-2.5 px-3 w-[8.35vw] text-sm font-semibold";
   return (
     <>
       {upcomingBatchesData.map((batch, index) => (
-        <section className={`${page === 'course' ? className : ''} flex flex-wrap`} key={index}>
+        <section
+          className={`${page === "course" ? className : ""} flex flex-wrap`}
+          key={index}
+        >
           <div className="w-[20.46vw] upcomingBatches p-4">
-            <header className="font-bold text-base py-2">
-              {batch.course}
-            </header>
-            <p className="font-normal text-xs py-1">
-              By: {batch.trainer}
-            </p>
+            <header className="font-bold text-base py-2">{batch.course}</header>
+            <p className="font-normal text-xs py-1">By: {batch.trainer}</p>
             <div className="flex py-4 gap-1.5 items-center justify-between">
               <div className="flex text-xs gap-1.5 items-center">
                 <img src="../Icon_calendar.svg" alt="calendar icon" />
@@ -61,10 +61,10 @@ const OnlineLiveClasses = ({ className, page }) => {
               </div>
             </div>
             <div className="flex justify-between">
-              <button className="py-2.5 px-3 w-[8.35vw] text-sm font-semibold bg-gradient rounded text-white">
+              <button className={`${enrollEnquire} EnrollButton`}>
                 Demo Class
               </button>
-              <button className="w-[8.35vw] py-2.5 px-3 text-sm font-semibold border text-orange-500 border-orange-500 rounded">
+              <button className={`${enrollEnquire} EnquireButton`}>
                 Enquiry
               </button>
             </div>
@@ -72,7 +72,7 @@ const OnlineLiveClasses = ({ className, page }) => {
         </section>
       ))}
     </>
-  )
-}
+  );
+};
 
-export default OnlineLiveClasses
+export default OnlineLiveClasses;

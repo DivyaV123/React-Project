@@ -1,13 +1,12 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useState } from "react";
 import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
 import "./CourseLanding.scss";
 import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-import Button from "@/components/commonComponents/button/Button";
 
-const CourseLanding = ({ onRightBarFix, isRightBarFixed, page }) => {
+const CourseLanding = ({ page }) => {
   const typesOfClasses = [
     {
       title: "Offline Classes",
@@ -23,8 +22,8 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed, page }) => {
     },
   ];
 
-  const tutionClasses = page === "tution" ? typesOfClasses.slice(2, 4) : typesOfClasses
-  console.log(tutionClasses, "tutionClasses")
+  const tutionClasses =
+    page === "tution" ? typesOfClasses.slice(2, 4) : typesOfClasses;
   const statisticsData = [
     { number: "25,000+", text: "student placed" },
     { number: "180+", text: "Hiring Companies" },
@@ -40,31 +39,9 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed, page }) => {
     "Access knowledge beyond certification to excel in your role and stand out in the job market.",
   ];
 
-  const section1Ref = useRef(null);
-  const section2Ref = useRef(null);
-  const [section1Height, setSection1Height] = useState(0);
-  const [btnState, setBtnState] = useState(page === 'tution' ? 'Experiential Learning' : "Offline Classes")
-
-  useEffect(() => {
-    if (section1Ref.current) {
-      setSection1Height(section1Ref.current.getBoundingClientRect().height);
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (section2Ref.current) {
-        const section2Offset = section2Ref.current.offsetTop;
-        const scrollThreshold = section1Height * 0.75;
-        const scrollPos = window.scrollY || document.documentElement.scrollTop;
-        onRightBarFix(scrollPos > scrollThreshold);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [onRightBarFix, section1Height]);
+  const [btnState, setBtnState] = useState(
+    page === "tution" ? "Experiential Learning" : "Offline Classes"
+  );
 
   return (
     <MaxWebWidth
@@ -72,13 +49,17 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed, page }) => {
       articalStyling="relative"
     >
       <aside className="flex py-8  justify-between">
-        <article ref={section1Ref} className="w-[51.56vw] flex flex-col py-4">
+        <article className="w-[51.56vw] flex flex-col py-4">
           <div className="bg-white h-[2.65vw] flex w-fit">
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center px-4 py-2 font-medium text-sm ${classItem.title === btnState ? 'activecourseButton' : ''} `}
-                onClick={() => { setBtnState(classItem.title) }}
+                className={`flex justify-center items-center px-4 py-2 font-medium text-sm ${
+                  classItem.title === btnState ? "activecourseButton" : ""
+                } `}
+                onClick={() => {
+                  setBtnState(classItem.title);
+                }}
               >
                 {classItem.title}
               </button>
@@ -144,65 +125,6 @@ const CourseLanding = ({ onRightBarFix, isRightBarFixed, page }) => {
             </button>
           </section>
         </article>
-        <figure
-          ref={section2Ref}
-          className="w-[32.93vw] flex justify-end  relative float-right"
-        >
-          <div
-            className={`${isRightBarFixed ? "right-bar fixedbar" : "right-bar"
-              }`}
-          >
-            <img src="../courseLanding.png" alt="courseLanding" />
-            {isRightBarFixed && (
-              <div className="cardDataContainer">
-                <div className="flex py-3 justify-between items-center">
-                  <h1 className="font-bold leading-[1rem]  text-left text-[1.5rem]">
-                    Software Testing
-                  </h1>
-                  <button className="ratingButton flex justify-center items-center py-3 px-4 font-medium rounded">
-                    <span className="flex text-base p-1 font-bold">
-                      {" "}
-                      <Svg
-                        width={svgicons.ratingStar[0]}
-                        height={svgicons.ratingStar[1]}
-                        viewBox={svgicons.ratingStar[2]}
-                        icon={svgicons.ratingStar[3]}
-                        color={svgicons.ratingStar[4]}
-                      />
-                    </span>{" "}
-                    4.6 Rating
-                  </button>
-                </div>
-                <div>
-                  <p className="text-left font-medium text-xs 2xl:text-base 3xl:text-[1.125rem] headerText">
-                    Explore the dynamic world of software testing with our
-                    comprehensive course.
-                  </p>
-                </div>
-                <article className="flex justify-evenly py-1 px-2 3xl:py-5">
-                  {statisticsData.map((ele, index) => (
-                    <div key={index} className="py-2 pr-3">
-                      <h1 className="text-left font-bold text-sm headerText 2xl:text-[1.125rem] 3xl:text-[1.5rem]">
-                        {ele.number}
-                      </h1>
-                      <p className="text-left font-medium text-xs 2xl:text-base 3xl:[1.125] headerText">
-                        {ele.text}
-                      </p>
-                    </div>
-                  ))}
-                </article>
-                <section className="flex gap-6 py-4 3xl:pb-8 3xl:pt-4 justify-center">
-                  <button className="EnrollButton text-base w-[15.15vw] 2xl:text-base font-medium py-2.5 px-6">
-                    Enroll now
-                  </button>
-                  <button className="EnquireButton text-base w-[15.15vw] 2xl:text-base font-medium py-2.5 px-6 relative">
-                    Enquire now
-                  </button>
-                </section>
-              </div>
-            )}
-          </div>
-        </figure>
       </aside>
     </MaxWebWidth>
   );

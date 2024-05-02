@@ -10,15 +10,16 @@ import HiringPartnersHome from './HiringPartnersHome'
 import StudentsTestimonialsHome from './StudentsTestimonialsHome'
 import CourseContent from './CourseContent'
 import CoursesFaq from './CoursesFaq'
+import ImageScroller from './ImageScroller'
 const Courses = () => {
   const [isRightBarFixed, setIsRightBarFixed] = useState(false);
-
   const handleRightBarFix = (fixed) => {
     setIsRightBarFixed(fixed);
   }
   return (
     <WebLayout>
-      <CourseLanding onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} />
+      <CourseLanding />
+      <ImageScroller onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} />
       <CourseContent />
       <UpComingBranches />
       <PlacementStaticsHome />
