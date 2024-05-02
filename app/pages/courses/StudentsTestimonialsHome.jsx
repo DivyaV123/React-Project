@@ -17,8 +17,9 @@ function StudentsTestimonialsHome({ page }) {
         <CoursePageContainer className={page === 'branch' ? '!w-full !p-0' : 'bg-[#F9F9F9]'}>
             <article className=''>
                 <header>
-                    <h1 className={page === 'branch' ? 'flex justify-center font-bold text-[1.5rem] py-5 w-[51.56vw]' : 'font-bold text-[1.5rem] py-5 w-[51.56vw]'}>
+                    <h1 className={page === 'branch' ? 'flex justify-start font-bold text-[1.5rem] py-5 ' : 'font-bold text-[1.5rem] py-5 w-[51.56vw]'}>
                         StudentsTestimonialsHome
+
                     </h1>
                 </header>
                 <article className={page === "branch" ? '' : 'w-[51.56vw] overflow-hide'}>

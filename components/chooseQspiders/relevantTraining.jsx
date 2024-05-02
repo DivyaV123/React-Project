@@ -14,7 +14,7 @@ function RelevantTraining() {
                             <h1 className='font-bold text-black text-header flex justify-center mb-6'>
                                 Industry-Relevant Training
                             </h1>
-                            <p className='text-dark-gray flex text-center text-normal mt-6'>
+                            <p className='text-dark-gray flex text-center text-[18px] mt-6'>
                             At QSpiders, we are committed to providing industry-relevant training that aligns with the current trends and technologies in the IT sector.
                             </p>
                         </header>
@@ -38,7 +38,7 @@ function RelevantTraining() {
                         </article>
                         <article className='flex justify-center mt-6'>
                             <Button
-                                className='primary'
+                                className='bg-gradient text-white rounded w-[11.719vw] h-[3.75vw]'
                                 title="Enquire Now"
                                 onClick={() => { }}
                             />
