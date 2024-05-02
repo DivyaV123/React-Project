@@ -224,7 +224,7 @@ function OurCourse() {
                                             />
                                         }
                                     </picture>
-                                    <aside className='w-[12.5rem]  pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base'>
+                                    <aside className='w-[12.5rem]  pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base hover:text-white'>
                                         <h1>
                                             {item.title}
                                         </h1>
