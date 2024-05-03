@@ -28,11 +28,11 @@ function FaqHome({ page, questions }) {
     return (
         <MaxWebWidth sectionStyling={`${page === 'course' ? '' : 'bg-backgroundBlue'}`}>
             <header className={`${page === 'course' ? 'w-[51.56vw] mt-8 p-5' : 'mt-8 p-5'}`}>
-                <h1 className='font-bold text-[2rem] flex justify-center align-center '>
+                <h1 className='font-bold text-3xl flex justify-center align-center '>
                     {page === 'course' ? 'Frequently Asked Questions' : 'FAQ’s'}
                 </h1>
                 {page !== 'course' && (
-                    <span className='text-[0.875rem] text-dark-gray font-normal flex justify-center align-center'>
+                    <span className='text-sm font-normal flex justify-center align-center'>
                         Often asked questions from our wonderful partners
                     </span>
                 )}
