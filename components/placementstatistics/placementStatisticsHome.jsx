@@ -42,7 +42,7 @@ function PlacementStatisticsHome({ page }) {
         <MaxWebWidth sectionStyling=" flex align-ceneter mt-8" >
             <header>
                 <Slide top cascade>
-                    <h1 className='font-extra-bold text-4xl text-black flex justify-center  mb-8 mt-8 h-12'>
+                    <h1 className='font-bold text-[2rem] text-black flex justify-center  mb-8 mt-8 h-12'>
                         Our Placement Statistics
                     </h1>
                 </Slide>
@@ -69,7 +69,7 @@ function PlacementStatisticsHome({ page }) {
                         <div className='grid grid-cols-3 gap-4'>
                             {degrees.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold text-xl'>{element}</Badge>
+                                    <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
                                 )
                             })
                             }
@@ -82,7 +82,7 @@ function PlacementStatisticsHome({ page }) {
                         <div className='grid grid-cols-3 gap-4'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold text-xl'>{element}</Badge>
+                                    <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
                                 )
                             })
                             }

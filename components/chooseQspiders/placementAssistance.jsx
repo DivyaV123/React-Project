@@ -50,7 +50,7 @@ function PlacementAssistance() {
                         <article className='flex justify-center mt-6'>
                             <Button
                                 className='bg-gradient text-white h-[3.75vw] rounded  w-[14.844vw]'
-                                title="View Placement"
+                                title="View Placements"
                                 onClick={() => { }}
                             />
                         </article>
