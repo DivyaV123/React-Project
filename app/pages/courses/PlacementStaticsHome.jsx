@@ -72,7 +72,7 @@ function PlacementStaticsHome({ path }) {
                     <div className='grid grid-cols-3 gap-4'>
                         {degrees.map((element) => {
                             return (
-                                <Badge variant="" className='font-bold text-[1.125rems]'>{element}</Badge>
+                                <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
                             )
                         })
                         }
