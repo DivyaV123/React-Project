@@ -26,7 +26,7 @@ function HiringPartners({ page, className }) {
   return (
     <MaxWebWidth articalStyling={className} sectionStyling="bg-[#FEF2E7] overflow-hidden w-full py-6">
       <header>
-        <h1 className={`${page === 'course' ? 'flex justify-center align-center font-bold text-[2rem] pb-1 w-[51.56vw]' : 'flex justify-center align-center font-bold text-[2rem] pb-1'}`}>
+        <h1 className={`${page === 'course' ? 'flex justify-center align-center font-bold text-[1.5rem] pb-1 w-[51.56vw]' : 'flex justify-center align-center font-bold text-[2rem] pb-1'}`}>
           Our Hiring Partners
         </h1>
       </header>

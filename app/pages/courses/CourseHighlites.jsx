@@ -45,13 +45,13 @@ function CourseHighlites(props) {
             </header>
             {courseContent.map((element) => (
                 <article className='bg-[#FFFCF9] px-5 pointsList mb-3 rounded-xl'>
-                    <header className='py-5 font-bold text-xl'>
+                    <header className='py-5 font-bold text-xl text-dark-gray'>
                         {element.question}
                     </header>
                     {element.bulletPoints.map((points) => (
                         <ul className={"list-disc list-inside w-[91%]"}>
                             <li>
-                                <span className='text-dark-gray text-base'>
+                                <span className='text-ash text-base'>
                                     {points}
                                 </span>
                             </li>
