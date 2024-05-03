@@ -110,7 +110,7 @@ function CourseContent() {
 
     return (
         <CoursePageContainer>
-            <header className='text-base font-bold p-5'>
+            <header className='text-[1.5rem] font-bold p-5'>
                 Course Content
             </header>
             <article className='m-5'>

@@ -8,9 +8,10 @@
   border: none;
   text-align: left;
   outline: none;
-  font-size: 15px;
+  font-size: 1rem;
   transition: 0.4s;
   border-radius: 6px;
+  color: #454545;
 }
 
 .active,

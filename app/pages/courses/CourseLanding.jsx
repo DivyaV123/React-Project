@@ -25,7 +25,7 @@ const CourseLanding = ({ page }) => {
   const tutionClasses =
     page === "tution" ? typesOfClasses.slice(2, 4) : typesOfClasses;
   const statisticsData = [
-    { number: "25,000+", text: "student placed" },
+    { number: "25,000+", text: "Students placed" },
     { number: "180+", text: "Hiring Companies" },
     { number: "10,000+", text: "Non IT Students placed" },
     { number: "15,000+", text: "IT Students placed" },
@@ -54,7 +54,7 @@ const CourseLanding = ({ page }) => {
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center px-4 py-2 font-medium text-sm ${
+                className={`flex justify-center items-center px-4 py-2 font-medium text-[0.75rem] text-dark-gray ${
                   classItem.title === btnState ? "activecourseButton" : ""
                 } `}
                 onClick={() => {
@@ -69,8 +69,8 @@ const CourseLanding = ({ page }) => {
             <h1 className="font-bold leading-[4.5rem]  text-left text-[3rem]">
               Software Testing
             </h1>
-            <button className="ratingButton flex justify-center items-center py-2 px-4 font-medium rounded">
-              <span className="flex text-base p-1 font-bold">
+            <button className="ratingButton flex justify-center items-center py-2 px-4 font-semibold rounded text-ash">
+              <span className="flex text-base p-1">
                 {" "}
                 <Svg
                   width={svgicons.ratingStar[0]}
@@ -105,7 +105,7 @@ const CourseLanding = ({ page }) => {
             {resources.map((resource, index) => (
               <div
                 key={index}
-                className="flex text-left gap-4  text-[0.75rem] items-center leading-[1rem] pb-4 font-semibold"
+                className="flex text-left gap-4  text-[0.75rem] items-center leading-[1rem] pb-4 font-semibold text-ash"
               >
                 <figure>
                   <img src={imageSrc} alt={`resource-${index}`} />
@@ -117,11 +117,11 @@ const CourseLanding = ({ page }) => {
             ))}
           </article>
           <section className="flex gap-6 pb-4">
-            <button className="EnrollButton text-base font-medium py-2.5 px-6">
+            <button className="EnrollButton text-base font-semibold py-2.5 px-6">
               Enroll now
             </button>
-            <button className="EnquireButton text-base font-medium py-2.5 px-6 relative">
-              Enquire now
+            <button className="EnquireButton  text-base font-semibold py-2.5 px-6 relative">
+              <span>Enquire now</span>
             </button>
           </section>
         </article>
