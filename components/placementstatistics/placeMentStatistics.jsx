@@ -16,7 +16,7 @@ function PlaceMentStatistics({ className, path, statistics }) {
                         </figure>
                         <div className='p-5'>
                             <h1 className='font-bold text-[2.25rem]'>{item.count}</h1>
-                            <p className='text-dark-gray text-base 3xl:text-[1.2rem]' dangerouslySetInnerHTML={{ __html: content }} />
+                            <p className='text-dark-gray text-[0.875rem] 3xl:text-[1.2rem]' dangerouslySetInnerHTML={{ __html: content }} />
                         </div>
                     </div>
                 )

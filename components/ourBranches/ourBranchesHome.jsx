@@ -180,7 +180,7 @@ function OurBranchesHome({ page }) {
                     <article
                         className={`${page === "course"
                             ? "flex flex-wrap  gap-4 w-[51.56vw]"
-                            : "flex flex-wrap  gap-4"
+                            : "flex flex-wrap  gap-4 justify-center"
                             }`}
                     >
                         {btnState === 'OfflineClasses' ?

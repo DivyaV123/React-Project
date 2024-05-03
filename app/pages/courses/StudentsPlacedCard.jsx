@@ -14,13 +14,13 @@ function StudentsPlacedCard({ studentsInfo }) {
                             <img src={element.image} />
                         </figure>
                         <header>
-                            <h1 className='flex justify-center pb-5 font-bold text-[0.875~rem]'>
+                            <h1 className='flex justify-center pb-5 font-semibold text-[1.25rem] text-dark-gray'>
                                 {element.name}
                             </h1>
                             <article className='flex justify-center'>
                                 <div>
-                                    <p className='flex justify-center text-[#454545] pb-1 text-sm'>{element.batch}</p>
-                                    <p className='flex justify-center text-[#454545] text-sm'>{element.course}</p>
+                                    <p className='flex justify-center text-dark-gray pb-1 text-[0.875rem]'>{element.batch}</p>
+                                    <p className='flex justify-center text-dark-gray text-sm'>{element.course}</p>
                                 </div>
                             </article>
                         </header>

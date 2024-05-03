@@ -15,15 +15,15 @@ function TestimonialsCard() {
             </article>
             <article className='basis-[65%]'>
                 <header>
-                    <h1 className='font-bold pb-1'>
+                    <h1 className='font-bold pb-1 text-dark-gray'>
                         Neha Patel
                     </h1>
-                    <p className='text-[0.75rem]'>
+                    <p className='text-[0.75rem] text-ash'>
                         The software testing course exceeded my expectations. The instructor's expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that..
                     </p>
                 </header>
                 <p>
-                    <span className='flex text-sm font-bold justify-end'><span className='font-bold'>4.5</span> <Svg
+                    <span className='flex text-[0.875rem] gap-1 font-bold justify-end'><span className='font-bold'>4.5</span> <Svg
                         className='mt-[0.15rem]'
                         width={svgicons.ratingStar[0]}
                         height={svgicons.ratingStar[1]}

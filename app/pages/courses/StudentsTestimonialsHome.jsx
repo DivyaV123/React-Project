@@ -18,7 +18,7 @@ function StudentsTestimonialsHome({ page }) {
             <article className=''>
                 <header>
                     <h1 className={page === 'branch' ? 'flex justify-start font-bold text-[1.5rem] py-5 ' : 'font-bold text-[1.5rem] py-5 w-[51.56vw]'}>
-                        StudentsTestimonialsHome
+                    Students Testimonials
 
                     </h1>
                 </header>
