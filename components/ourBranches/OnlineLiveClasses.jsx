@@ -39,7 +39,7 @@ const OnlineLiveClasses = ({ className, page }) => {
       time: "10am - 12pm",
     },
   ];
-  const enrollEnquire = "py-2.5 px-3 w-[8.359375vw] text-[0.875rem] font-semibold";
+  const enrollEnquire = "py-2.5 px-2.5 w-[8.359375vw] text-[0.875rem] font-semibold";
   const dateAndTime="flex text-[0.75rem] font-medium text-dark-gray gap-1.5 items-center"
   return (
     <>

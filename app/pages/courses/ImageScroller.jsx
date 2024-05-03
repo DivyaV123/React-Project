@@ -80,29 +80,29 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed }) => {
               </button>
             </div>
             <div>
-              <p className="text-left font-medium text-xs 2xl:text-base 3xl:text-[1.125rem] headerText">
+              <p className="text-left font-medium text-[0.875rem] 2xl:text-base 3xl:text-[1.125rem] headerText">
                 Explore the dynamic world of software testing with our
                 comprehensive course.
               </p>
             </div>
-            <article className="flex justify-evenly py-1 px-2 3xl:py-5">
+            <article className="flex justify-evenly py-1  3xl:py-5">
               {statisticsData.map((ele, index) => (
-                <div key={index} className="py-2 pr-3">
-                  <h1 className="text-left font-bold text-sm 2xl:text-[1.125rem] 3xl:text-[1.5rem] headerText">
+                <div key={index} className="py-2 pr-2">
+                  <h1 className="text-left font-bold text-[0.875rem] 2xl:text-[1.125rem] 3xl:text-[1.5rem] headerText">
                     {ele.number}
                   </h1>
-                  <p className="text-left font-medium text-xs 2xl:text-base 3xl:[1.125rem] headerText">
+                  <p className="text-left font-medium text-[0.625rem] 2xl:text-base 3xl:[1.125rem] headerText ">
                     {ele.text}
                   </p>
                 </div>
               ))}
             </article>
             <section className="flex gap-6 py-4 3xl:pb-8 3xl:pt-4 justify-center">
-              <button className="EnrollButton text-sm 2xl:text-base font-medium py-2.5 px-6 w-[15.15vw]">
+              <button className="EnrollButton text-base 2xl:text-base font-semibold py-2.5 px-6 w-[15.15vw]">
                 Enroll now
               </button>
-              <button className="EnquireButton text-sm 2xl:text-base font-medium py-2.5 px-6 relative w-[15.15vw]">
-                Enquire now
+              <button className="EnquireButton text-base 2xl:text-base font-semibold py-2.5 px-6 relative w-[15.15vw]">
+                <span>Enquire now</span>
               </button>
             </section>
           </div>

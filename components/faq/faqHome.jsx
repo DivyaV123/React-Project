@@ -28,7 +28,7 @@ function FaqHome({ page, questions }) {
     return (
         <MaxWebWidth sectionStyling={`${page === 'course' ? '' : 'bg-backgroundBlue'}`}>
             <header className={`${page === 'course' ? 'w-[51.56vw] mt-8 p-5' : 'mt-8 p-5'}`}>
-                <h1 className={`font-bold ${page === 'course' ? 'text-[1.5rem] justify-start':'text-[2rem] justify-center' }flex  align-center `}>
+                <h1 className={`font-bold ${page === 'course' ? 'text-[1.5rem] justify-start':'text-[2rem] justify-center' } flex  align-center `}>
                     {page === 'course' ? 'Frequently Asked Questions' : 'FAQ’s'}
                 </h1>
                 {page !== 'course' && (
