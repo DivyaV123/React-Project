@@ -57,7 +57,7 @@ function PlacementStaticsHome({ path }) {
     return (
         <CoursePageContainer className='bg-Pinkgradient'>
             <article className='w-[51.56vw]'>
-                <h1 className='font-extra-bold text-4xl text-black flex justicy-start  mb-8 mt-8 h-12'>
+                <h1 className='font-bold text-[2rem] text-black flex justicy-start  mb-8 mt-8 h-12'>
                     Our Placement Statistics
                 </h1>
                 <PlaceMentStatistics

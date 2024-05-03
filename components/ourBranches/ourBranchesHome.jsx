@@ -142,7 +142,6 @@ function OurBranchesHome({ page }) {
         };
     }, [scrollThreshold]);
     if (page === "course") {
-        // Remove the last element of the branchCards array
         branchCards.pop();
     }
     return (
@@ -152,7 +151,7 @@ function OurBranchesHome({ page }) {
                     <header>
                         {page === "course" ? (
                             <article className="flex justify-between w-[51.56vw]">
-                                <h1 className="flex justify-start text-2xl m-2 font-extra-bold py-5">
+                                <h1 className="flex justify-start text-[1.5rem] m-2 font-bold py-5">
                                     Upcoming Batches
                                 </h1>
                                 <article className="flex bg-white m-2 py-5">
@@ -193,11 +192,11 @@ function OurBranchesHome({ page }) {
                                         <figure
                                             className={
                                                 page === "course"
-                                                    ? "w-[31%] hover:-translate-y-1 delay-300 duration-300"
+                                                    ? "w-[30.33%] h-[7.81vw] hover:-translate-y-1 delay-300 duration-300"
                                                     : "hover:-translate-y-1 delay-300 duration-300"
                                             }
                                         >
-                                            <img src={elements} alt="imgcard" />
+                                            <img src={elements} className="h-full" alt="imgcard" />
                                         </figure>
                                     </>
                                 );
