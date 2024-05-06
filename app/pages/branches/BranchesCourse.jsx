@@ -76,7 +76,7 @@ function BranchesCourse() {
                     </h1>
                 </header>
             </MaxWebWidth>
-            <MaxWebWidth articalStyling='flex flex-wrap'>
+            <MaxWebWidth articalStyling='flex flex-wrap justify-around gap-3'>
                 {courseCard.map((element) => {
                     return (<div className='courseCard'>
                         <article className='w-[20.469vw] h-[27.578vw]'>

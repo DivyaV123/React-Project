@@ -11,6 +11,9 @@ import {
 import Courses from "./Courses";
 import Branches from "./Branches";
 import Tutions from "./Tutions";
+import Link from "next/link";
+import { InputIcon } from "@radix-ui/react-icons";
+import { CONTACT_US_PATH } from "@/lib/RouteConstants";
 
 const navItems = [
   { id: 1, name: "Courses", content: <Courses /> },
@@ -41,26 +44,27 @@ function NavItems() {
 
   return (
     <>
-    <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
-      <NavigationMenuList>
-        {navItems.map((navItem) => (
-          <NavigationMenuItem key={navItem.id}
-            onMouseEnter={() => handleItemHover(navItem.name)}
-            onMouseLeave={handleItemLeave}
-          >
-            <NavigationMenuTrigger hoverItem={hoverState.item} hoverContent={hoverState.content}>
-              <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
-                <span className="menuHeader text-normal text-slate hover-underline-animation text-base 2xl:text-lg 3xl:text-xl font-medium">{navItem.name}</span>
-              </div>
-            </NavigationMenuTrigger>
-            <NavigationMenuContent
-              className="nav-content"
-              onMouseEnter={() => handleContentHover(true)}
-              onMouseLeave={() => handleContentHover(false)}
-            >
-                {navItem.content}
-              </NavigationMenuContent>
-            </NavigationMenuItem>
+      <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
+        <NavigationMenuList>
+          {navItems.map((navItem) => (
+            <Link href={navItem.name === 'Contact us' ? CONTACT_US_PATH : ''}>
+              <NavigationMenuItem key={navItem.id}
+                onMouseEnter={() => handleItemHover(navItem.name)}
+                onMouseLeave={handleItemLeave}
+              >
+                <NavigationMenuTrigger hoverItem={hoverState.item} hoverContent={hoverState.content}>
+                  <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
+                    <span className="menuHeader text-normal text-slate hover-underline-animation text-base 2xl:text-lg 3xl:text-xl font-medium">{navItem.name}</span>
+                  </div>
+                </NavigationMenuTrigger>
+                <NavigationMenuContent
+                  className="nav-content"
+                  onMouseEnter={() => handleContentHover(true)}
+                  onMouseLeave={() => handleContentHover(false)}
+                >
+                  {navItem.content}
+                </NavigationMenuContent>
+              </NavigationMenuItem></Link>
           ))}
         </NavigationMenuList>
       </NavigationMenu>

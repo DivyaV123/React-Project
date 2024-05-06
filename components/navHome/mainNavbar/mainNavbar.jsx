@@ -4,6 +4,7 @@ import NavItems from '../navItems/navItems'
 import NavAuthButtons from '../authButtons/navAuthButtons'
 import './mainNavBar.scss'
 import Link from 'next/link'
+import { HOME_PATH } from '@/lib/RouteConstants'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import Svg from '@/components/commonComponents/Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
@@ -18,13 +19,15 @@ function MainNavbar() {
       >
         <aside className="flex justify-between">
           <figure>
-            <Svg
-              width={svgicons.qspiderslogo[0]}
-              height={svgicons.qspiderslogo[1]}
-              viewBox={svgicons.qspiderslogo[2]}
-              icon={svgicons.qspiderslogo[3]}
-              color={svgicons.qspiderslogo[4]}
-            />
+            <Link href={HOME_PATH} >
+              <Svg
+                width={svgicons.qspiderslogo[0]}
+                height={svgicons.qspiderslogo[1]}
+                viewBox={svgicons.qspiderslogo[2]}
+                icon={svgicons.qspiderslogo[3]}
+                color={svgicons.qspiderslogo[4]}
+              />
+            </Link>
           </figure>
         </aside>
         <button

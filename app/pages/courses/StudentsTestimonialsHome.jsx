@@ -22,7 +22,7 @@ function StudentsTestimonialsHome({ page }) {
 
                     </h1>
                 </header>
-                <article className={page === "branch" ? '' : 'w-[51.56vw] overflow-hide'}>
+                <article className={page === "branch" ? '' : 'w-[93%] overflow-hide'}>
                     <Carousel>
                         <CarouselContent className='bg-[#F9F9F9]'>
                             {Array.from({ length: 4 }, (value, index) => (

@@ -80,6 +80,24 @@ function StudentsPlacedHome({ page }) {
             batch: 'BSC (64%) - 2018',
             course: 'Computer Science (CS)'
         },
+        {
+            image: '../images/user_profile.png',
+            name: 'Rahul Kumar',
+            batch: 'BSC (64%) - 2018',
+            course: 'Computer Science (CS)'
+        },
+        {
+            image: '../images/user_profile.png',
+            name: 'Rahul Kumar',
+            batch: 'BSC (64%) - 2018',
+            course: 'Computer Science (CS)'
+        },
+        {
+            image: '../images/user_profile.png',
+            name: 'Rahul Kumar',
+            batch: 'BSC (64%) - 2018',
+            course: 'Computer Science (CS)'
+        },
 
     ]
     return (

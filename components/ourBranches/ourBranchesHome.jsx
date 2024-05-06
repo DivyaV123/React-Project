@@ -192,7 +192,7 @@ function OurBranchesHome({ page }) {
                                         <figure
                                             className={
                                                 page === "course"
-                                                    ? "w-[30.33%] h-[7.81vw] hover:-translate-y-1 delay-300 duration-300"
+                                                    ? "w-[30.33%] h-[5.81vw] hover:-translate-y-1 delay-300 duration-300"
                                                     : "hover:-translate-y-1 delay-300 duration-300"
                                             }
                                         >
