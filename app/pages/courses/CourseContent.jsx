@@ -42,7 +42,6 @@ function CourseContent() {
         }
         return data.map((item, index) => {
             const key = parentKey ? `${parentKey}-accordion-${index}` : `accordion-${index}`;
-            console.log(key, "keykeykey")
             if (typeof item === 'object' && !Array.isArray(item)) {
                 const [keyName] = Object.keys(item);
                 if (isParent) {
@@ -50,7 +49,9 @@ function CourseContent() {
                         <AccordionItem className='border-none' key={key} value={key}>
                             <AccordionTrigger onClick={() => handleAccordionToggle(index)} className='bg-[#FFFCF9] m-1 font-medium'>
                                 <article className='flex justify-between w-full'>
-                                    <h1>{keyName}</h1>
+                                    <h1>
+                                        {keyName}
+                                    </h1>
                                     <h1 className='pr-2'>4 Modules | 32 Min</h1>
                                 </article>
                             </AccordionTrigger>

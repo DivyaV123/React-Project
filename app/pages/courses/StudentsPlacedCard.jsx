@@ -6,7 +6,7 @@ import React from 'react'
 
 function StudentsPlacedCard({ studentsInfo }) {
     return (
-        <section className='flex flex-wrap gap-3 justify-center'>
+        <section className='flex flex-wrap gap-3 justify-around'>
             {studentsInfo.map((element) => (
                 <section className='flex justify content center'>
                     <article className='bg-white p-4 rounded-lg' >

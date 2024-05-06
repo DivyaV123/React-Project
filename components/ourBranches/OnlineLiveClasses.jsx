@@ -39,7 +39,7 @@ const OnlineLiveClasses = ({ className, page }) => {
       time: "10am - 12pm",
     },
   ];
-  const enrollEnquire = "py-2.5 px-2.5 w-[8.359375vw] text-[0.875rem] font-semibold";
+  const enrollEnquire = "py-2.5 px-2.5 w-[8.359375vw] text-[0.875rem] font-semibold"  
   const dateAndTime="flex text-[0.75rem] font-medium text-dark-gray gap-1.5 items-center"
   return (
     <>
@@ -62,10 +62,10 @@ const OnlineLiveClasses = ({ className, page }) => {
               </div>
             </div>
             <div className="flex justify-between">
-              <button className={`${enrollEnquire} EnrollButton`}>
+              <button className={`${enrollEnquire} EnrollButton bg-gradient rounded text-white`}>
                 Demo Class
               </button>
-              <button className={`${enrollEnquire} EnquireButton`}>
+              <button className={`${enrollEnquire} EnquireButton rounded border border-orange-500 text-orange-500`}>
                 Enquiry
               </button>
             </div>

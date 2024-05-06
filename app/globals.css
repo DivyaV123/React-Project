@@ -88,6 +88,10 @@
   background: linear-gradient(to right, #FEF5DB, #FFDFDF);
 }
 
+.bg-litePink{
+  background: linear-gradient(to right, #FFC9971A, #FFDFDF);
+}
+
 .bg-coursegradient{
   background: linear-gradient(180deg, rgba(255, 201, 151, 0.1) 0%, rgba(255, 255, 255, 0.76) 78.2%);
 

@@ -5,16 +5,25 @@ import { svgicons } from '../assets/icons/svgassets';
 
 function NestedAccordion({ data }) {
     const [activeSections, setActiveSections] = useState([]);
+    const [accordianArrow, setAccordianArrow] = useState([]);
 
     const handleClick = (index) => {
         setActiveSections((prevActiveSections) => {
             if (prevActiveSections.includes(index)) {
                 // If section is already active, close it
-                return prevActiveSections.filter((activeIndex) => { activeIndex !== index; });
+                return prevActiveSections.filter((activeIndex) => activeIndex !== index);
             } else {
                 // If section is not active, open it
                 return [...prevActiveSections, index];
-
+            }
+        });
+        setAccordianArrow((prevActiveSections) => {
+            if (prevActiveSections.includes(index)) {
+                // If section is already active, close it
+                return prevActiveSections.filter((activeIndex) => activeIndex !== index);
+            } else {
+                // If section is not active, open it
+                return [...prevActiveSections, index];
             }
         });
     };
@@ -23,6 +32,15 @@ function NestedAccordion({ data }) {
         e.stopPropagation();
         const subsectionIndex = e.target.dataset.subsection;
         setActiveSections((prevActiveSections) => {
+            if (!prevActiveSections.includes(subsectionIndex)) {
+                // If the subsection is not active, open it
+                return [...prevActiveSections, subsectionIndex];
+            } else {
+                // If the subsection is active, toggle its state
+                return prevActiveSections.filter((activeIndex) => activeIndex !== subsectionIndex);
+            }
+        });
+        setAccordianArrow((prevActiveSections) => {
             if (!prevActiveSections.includes(subsectionIndex)) {
                 // If the subsection is not active, open it
                 return [...prevActiveSections, subsectionIndex];
@@ -47,7 +65,27 @@ function NestedAccordion({ data }) {
                                 className={`${styles.accordion} flex`}
                                 data-subsection={subsectionIndex}
                             >
+                                {accordianArrow.includes(subsectionIndex) ? (
+                                    <Svg
+                                        className='mr-2 p-[1px] mt-[2px]'
+                                        width={svgicons.accordianArrowDown[0]}
+                                        height={svgicons.accordianArrowDown[1]}
+                                        viewBox={svgicons.accordianArrowDown[2]}
+                                        icon={svgicons.accordianArrowDown[3]}
+                                        color={svgicons.accordianArrowDown[4]}
+                                    />
+                                ) : (
+                                    <Svg
+                                        className='mr-2 p-[1px] mt-[2px]'
+                                        width={svgicons.accordianArrowSide[0]}
+                                        height={svgicons.accordianArrowSide[1]}
+                                        viewBox={svgicons.accordianArrowSide[2]}
+                                        icon={svgicons.accordianArrowSide[3]}
+                                        color={svgicons.accordianArrowSide[4]}
+                                    />
+                                )}
                                 {subsectionKey}
+
                             </button>
                             <div className={`${styles.panel} ${activeSections.includes(subsectionIndex) ? styles.active : ''}`}>
                                 {renderContent(subsectionContent, subsectionIndex)}
@@ -97,7 +135,26 @@ function NestedAccordion({ data }) {
         <div>
             {data.map((section, index) => (
                 <div key={index} className='border border-[#EBEBEB] my-1.5 rounded-md'>
-                    <button className={`${styles.accordion}`} onClick={() => handleClick(index)}>
+                    <button className={`${styles.accordion} flex`} onClick={() => handleClick(index)}>
+                        {accordianArrow.includes(index) ? (
+                            <Svg
+                            className='mr-2 p-[1px] mt-[2px]'
+                                width={svgicons.accordianArrowDown[0]}
+                                height={svgicons.accordianArrowDown[1]}
+                                viewBox={svgicons.accordianArrowDown[2]}
+                                icon={svgicons.accordianArrowDown[3]}
+                                color={svgicons.accordianArrowDown[4]}
+                            />
+                        ) : (
+                            <Svg
+                                className='mr-2 p-[1px] mt-[2px]'
+                                width={svgicons.accordianArrowSide[0]}
+                                height={svgicons.accordianArrowSide[1]}
+                                viewBox={svgicons.accordianArrowSide[2]}
+                                icon={svgicons.accordianArrowSide[3]}
+                                color={svgicons.accordianArrowSide[4]}
+                            />
+                        )}
                         {Object.keys(section)[0]}
                     </button>
                     <div className={`${styles.panel} ${activeSections.includes(index) ? styles.active : ''}`}>
