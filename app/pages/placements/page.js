@@ -1,6 +1,6 @@
 import React from 'react'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import PlacementCards from './placementCards'
+import PlacementCards from './PlacementCards'
 import Degree_Branch_Passout from './Degree_Branch_Passout'
 import PlacementSideBar from './PlacementSideBar'
 const Placements = () => {
