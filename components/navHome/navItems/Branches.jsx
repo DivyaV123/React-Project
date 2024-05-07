@@ -280,28 +280,33 @@ const Branches = () => {
       >
         {Branches.map((courseItem, index) => {
           return (
-            <Link href={BRANCH_PATH}>
-              <div
-                key={index}
-                onMouseEnter={() => setHoveredIndex(index)}
-                className={`flex ${hoveredIndex === index ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
+            <div
+              key={index}
+              onMouseEnter={() => setHoveredIndex(index)}
+              className={`flex ${
+                hoveredIndex === index ? "menuItem" : "menuItemdisable"
+              }  pl-4 pr-2 items-center`}
               // onMouseLeave={() => setHoveredIndex()}
-              >
-                {/* <img src={courseItem.icon} /> */}
-                <Svg
-                  width={svgicons[courseItem?.icon][0]}
-                  height={svgicons[courseItem?.icon][1]}
-                  viewBox={svgicons[courseItem?.icon][2]}
-                  icon={svgicons[courseItem?.icon][3]}
-                  color={svgicons[courseItem?.icon][4]}
+            >
+              {/* <img src={courseItem.icon} /> */}
+              <Svg
+                width={svgicons[courseItem?.icon][0]}
+                height={svgicons[courseItem?.icon][1]}
+                viewBox={svgicons[courseItem?.icon][2]}
+                icon={svgicons[courseItem?.icon][3]}
+                color={svgicons[courseItem?.icon][4]}
+              />
+              <div className="flex justify-between grow">
+                <button className="p-2 text-sm">{courseItem.title}</button>
+                <img
+                  src={courseItem.arrow}
+                  className={`${
+                    hoveredIndex === index ? "visible" : "invisible"
+                  } w-4`}
                 />
-                <div className="flex justify-between grow">
-                  <button className="p-2 text-sm">{courseItem.title}</button>
-                  <img src={courseItem.arrow} className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
-                </div>
               </div>
-            </Link>
-          )
+            </div>
+          );
         })}
       </div>
       <div className="xl:w-[64.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex ">
@@ -310,58 +315,71 @@ const Branches = () => {
             {Branches[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className={`flex justify-between grow pl-2 ${hoveredItemIndex === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
+                className={`flex justify-between grow pl-2 ${
+                  hoveredItemIndex === itemIndex
+                    ? "menuItem"
+                    : "menuItemdisable"
+                } pr-2 items-center`}
                 onMouseEnter={() => setHoveredItemIndex(itemIndex)}
-                onMouseLeave={() => { }}
+                onMouseLeave={() => {}}
               >
                 {/* <img src={item.icon} /> */}
                 <div className="flex justify-between grow ">
                   <button className="p-2 text-sm text-left">
                     {item.title}
                   </button>
-                  <img src={item.arrow} className={`${hoveredItemIndex === itemIndex ? 'visible' : 'invisible'} w-4`} />
+                  <img
+                    src={item.arrow}
+                    className={`${
+                      hoveredItemIndex === itemIndex ? "visible" : "invisible"
+                    } w-4`}
+                  />
                 </div>
               </div>
             ))}
           </div>
         )}
         <div
-          className={`${hoveredIndex !== null && Branches[hoveredIndex].list
-            ? "branchlist pl-4 pt-2"
-            : "coursefull p-3"
-            }   flex flex-wrap  h-fit gap-4`}
+          className={`${
+            hoveredIndex !== null && Branches[hoveredIndex].list
+              ? "branchlist pl-4 pt-2"
+              : "coursefull p-3"
+          }   flex flex-wrap  h-fit gap-4`}
         >
           {(Branches[hoveredIndex] ?? Branches[0])?.sublist?.map(
             (content, index) => (
-              <div
-                key={index}
-                className={`${hoveredIndex !== null && Branches[hoveredIndex].list
-                  ? "branchMedium"
-                  : "branchinitial"
+              <Link href={BRANCH_PATH}>
+                <div
+                  key={index}
+                  className={`${
+                    hoveredIndex !== null && Branches[hoveredIndex].list
+                      ? "branchMedium"
+                      : "branchinitial"
                   } p-2 branchOverlay h-fit`}
-              >
-                <div className="flex h-10 gap-x-2.5">
-                  <img className="h-9 w-9" src={content.image} />
-                  <div>
-                    <h3 className="text-left h-5 text-sm font-bold">
-                      {content.title}
-                    </h3>
-                    <p className="text-left h-5 text-xs text-amber-800">
-                      {content.mobile}
-                    </p>
+                >
+                  <div className="flex h-10 gap-x-2.5">
+                    <img className="h-9 w-9" src={content.image} />
+                    <div>
+                      <h3 className="text-left h-5 text-sm font-bold">
+                        {content.title}
+                      </h3>
+                      <p className="text-left h-5 text-xs text-amber-800">
+                        {content.mobile}
+                      </p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <div className="text-sm p-1 titleText">
+                      <p>5 Upcoming Batches</p>
+                      <p>5 Ongoing Batches</p>
+                    </div>
+                    <div className=" flex gap-1 text-xs directions p-2">
+                      <p>Get Directions</p>
+                      <img src="/DirectionIcon.svg" className="h-4 w-4" />
+                    </div>
                   </div>
                 </div>
-                <div className="flex justify-between items-center">
-                  <div className="text-sm p-1 titleText">
-                    <p>5 Upcoming Batches</p>
-                    <p>5 Ongoing Batches</p>
-                  </div>
-                  <div className=" flex gap-1 text-xs directions p-2">
-                    <p >Get Directions</p>
-                    <img src="/DirectionIcon.svg" className="h-4 w-4" />
-                  </div>
-                </div>
-              </div>
+              </Link>
             )
           )}
         </div>
