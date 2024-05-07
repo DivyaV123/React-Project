@@ -76,6 +76,7 @@ function ContactUsHome() {
                                             <span className='text-small font-normal'>Your Message</span>
                                             <TextArea
                                                 textAreaStyle='h-[8.516vw]'
+                                                iconStyle='!top-[18%]'
                                                 iconPath='/emailFieldicon.svg'
                                                 placeholder='Type here...'
                                             />
