@@ -13,7 +13,7 @@ import Branches from "./Branches";
 import Tutions from "./Tutions";
 import Link from "next/link";
 import { InputIcon } from "@radix-ui/react-icons";
-import { CONTACT_US_PATH } from "@/lib/RouteConstants";
+import { CONTACT_US_PATH ,PLACEMENT_PATH} from "@/lib/RouteConstants";
 
 const navItems = [
   { id: 1, name: "Courses", content: <Courses /> },
@@ -47,7 +47,7 @@ function NavItems() {
       <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
         <NavigationMenuList>
           {navItems.map((navItem) => (
-            <Link href={navItem.name === 'Contact us' ? CONTACT_US_PATH : ''}>
+            <Link href={navItem.name === 'Contact us' ? CONTACT_US_PATH : navItem.name === 'Placements' ? PLACEMENT_PATH :''}>
               <NavigationMenuItem key={navItem.id}
                 onMouseEnter={() => handleItemHover(navItem.name)}
                 onMouseLeave={handleItemLeave}
