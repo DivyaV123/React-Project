@@ -4,8 +4,8 @@ import "./IndividualBranches.scss";
 import { useParams } from "next/navigation";
 import Link from "next/link";
 const IndividualBranches = () => {
-  const params=useParams()
-  const paramCity=params.offline
+  const params = useParams();
+  const paramCity = params.offline;
   const navCities = [
     {
       city: "Bengalore",
@@ -108,68 +108,71 @@ const IndividualBranches = () => {
         },
       ],
     },
-    { city: "Hyderabad",sublist: [
-      {
-        image: "../../systemDesign.svg",
-        title: "System Design for Architects",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../advanceSystemDesign.svg",
-        title: "Advance System Design for Senior Architects",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../uiDesign.svg",
-        title: "ui Design for Architects",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../testAutomation.svg",
-        title: "Test Automation Architect",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../performanceTest.svg",
-        title: "Performance Test Architect",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../cloudPlatform.svg",
-        title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../cloudSolutionAWS.svg",
-        title: "Cloud Solution Architect-AWS",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../cloudSolutionGCP.svg",
-        title: "Cloud Solution Architect-GCP",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../cloudSolutionArchitect.svg",
-        title: "Cloud Solution Architect-Azure",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-      {
-        image: "../../advanceDevops.svg",
-        title: "Advance Devops course for Architects",
-        description:
-          "Software testing course is more of job oriented training which is designed",
-      },
-    ], },
+    {
+      city: "Hyderabad",
+      sublist: [
+        {
+          image: "../../systemDesign.svg",
+          title: "System Design for Architects",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../advanceSystemDesign.svg",
+          title: "Advance System Design for Senior Architects",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../uiDesign.svg",
+          title: "ui Design for Architects",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../testAutomation.svg",
+          title: "Test Automation Architect",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../performanceTest.svg",
+          title: "Performance Test Architect",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../cloudPlatform.svg",
+          title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../cloudSolutionAWS.svg",
+          title: "Cloud Solution Architect-AWS",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../cloudSolutionGCP.svg",
+          title: "Cloud Solution Architect-GCP",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../cloudSolutionArchitect.svg",
+          title: "Cloud Solution Architect-Azure",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+        {
+          image: "../../advanceDevops.svg",
+          title: "Advance Devops course for Architects",
+          description:
+            "Software testing course is more of job oriented training which is designed",
+        },
+      ],
+    },
     { city: "Chennai" },
     { city: "Pune" },
     { city: "Mumbai" },
@@ -192,18 +195,17 @@ const IndividualBranches = () => {
       <section className="citySection w-[87.5vw] m-auto pt-3 pb-16">
         <div className="h-[2.65vw] flex cityNavbar">
           {navCities.map((ele, index) => (
-            <Link href={{
-              pathname: `/pages/offlineBranches/${ele.city}`,
-              query: { city: ele.city }
-            }} replace>
-            <button
-              key={index}
+            <Link
+              href={{
+                pathname: `/pages/offlineBranches/${ele.city}`,
+                query: { city: ele.city },
+              }}
+              replace
               className={`flex justify-center items-center w-[8.359vw] py-2  text-[0.75rem] ${
                 ele.city === paramCity ? "activeCity" : ""
               }`}
             >
-              {ele.city}
-            </button>
+              <button key={index}>{ele.city}</button>
             </Link>
           ))}
         </div>
