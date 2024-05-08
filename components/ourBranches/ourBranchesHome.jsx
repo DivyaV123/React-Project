@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef,  } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import TrainingMode from "./trainingMode/trainingMode";
 import Slide from "react-reveal/Slide";
@@ -183,17 +183,21 @@ function OurBranchesHome({ page }) {
                 }
                 return (
                   <>
-                    <Link href={{
-      pathname: `/pages/offlineBranches/${elements.city}`,
-      query: { city: elements.city }
-    }}>
-                      <figure
-                        className={
-                          page === "course"
-                            ? "w-[30.33%] h-[5.81vw] hover:-translate-y-1 delay-300 duration-300"
-                            : "hover:-translate-y-1 delay-300 duration-300 cursor-pointer"
-                        }
-                      >
+                    <Link
+                      href={
+                        page !== "course"
+                          ? `/pages/offlineBranches/${elements.city}`
+                          : ""
+                      }
+                      query={page !== "course" ? { city: elements.city } : {}}
+                      className={
+                        "hover:-translate-y-1 delay-300 duration-300 " +
+                        (page !== "course"
+                          ? "cursor-pointer"
+                          : "w-[30.33%] h-[5.81vw]")
+                      }
+                    >
+                      <figure>
                         <img
                           src={elements.path}
                           className="h-full"
