@@ -1,12 +1,9 @@
 
-import Homepage from "@/components/websiteHomePage/homepage";
-import HomePageContextProvider from "@/components/Contexts/HomePageContext";
+import Homepage from "@/components/websiteHomePage/homepage"; 
 export default function Home() {
   return (
     <main className="">
-      <HomePageContextProvider>
       <Homepage />
-      </HomePageContextProvider>
     </main>
   );
 }

@@ -1,12 +1,11 @@
 "use client";
-import React, { useState, useEffect, useRef, useContext } from "react";
+import React, { useState, useEffect, useRef,  } from "react";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import TrainingMode from "./trainingMode/trainingMode";
 import Slide from "react-reveal/Slide";
 import Fade from "react-reveal/Fade";
 import Button from "../commonComponents/button/Button";
 import OnlineLiveClasses from "./OnlineLiveClasses";
-import { HomePageContext } from "../Contexts/HomePageContext";
 import Link from "next/link";
 import { offlineBranches } from "@/lib/RouteConstants";
 function OurBranchesHome({ page }) {
@@ -119,13 +118,13 @@ function OurBranchesHome({ page }) {
   ];
 
   const [btnState, setBtnState] = useState("OfflineClasses");
-  const { selectedBranch, setSelectedBranch } = useContext(HomePageContext);
   const btnHoverClass =
     "font-semibold bg-orange-500 bg-gradient text-white rounded";
 
   if (page === "course") {
     branchCards.pop();
   }
+
   return (
     <>
       <MaxWebWidth sectionStyling="pb-8">
@@ -184,14 +183,16 @@ function OurBranchesHome({ page }) {
                 }
                 return (
                   <>
-                    <Link href={page !== "course" ? offlineBranches : ""}>
+                    <Link href={{
+      pathname: `/pages/offlineBranches/${elements.city}`,
+      query: { city: elements.city }
+    }}>
                       <figure
                         className={
                           page === "course"
                             ? "w-[30.33%] h-[5.81vw] hover:-translate-y-1 delay-300 duration-300"
                             : "hover:-translate-y-1 delay-300 duration-300 cursor-pointer"
                         }
-                        onClick={() => setSelectedBranch(elements.city)}
                       >
                         <img
                           src={elements.path}
