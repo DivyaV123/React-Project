@@ -1,11 +1,9 @@
 
-import Homepage from "@/components/websiteHomePage/homepage";
-
+import Homepage from "@/components/websiteHomePage/homepage"; 
 export default function Home() {
   return (
     <main className="">
       <Homepage />
-      {/* <ContactUsHome /> */}
     </main>
   );
 }
