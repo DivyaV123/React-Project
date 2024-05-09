@@ -1,4 +1,5 @@
 'use client'
+import React, { useState } from 'react'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import { Checkbox } from "@/components/ui/checkbox"
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
@@ -11,7 +12,6 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group"
 import './upComingBranches.scss'
 
-import React, { useState } from 'react'
 import BatchesCard from './BatchesCard'
 
 function UpCommingBranches() {
