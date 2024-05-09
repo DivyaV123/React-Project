@@ -3,7 +3,7 @@ import styles from './Accordion.module.css'; // Import CSS module
 import Svg from '../commonComponents/Svg/Svg';
 import { svgicons } from '../assets/icons/svgassets';
 
-function NestedAccordion({ data }) {
+function NestedAccordion({ data, page, parentAccordianStyle }) {
     const [activeSections, setActiveSections] = useState([]);
     const [accordianArrow, setAccordianArrow] = useState([]);
 
@@ -62,12 +62,12 @@ function NestedAccordion({ data }) {
                     return (
                         <div key={subsectionIndex} onClick={handleSubsectionClick}>
                             <button
-                                className={`${styles.accordion} flex`}
+                                className={page === 'course' ? `${styles.accordion} flex` : ''}
                                 data-subsection={subsectionIndex}
                             >
-                                {accordianArrow.includes(subsectionIndex) ? (
+                                {(accordianArrow.includes(subsectionIndex) && page === 'course') ? (
                                     <Svg
-                                        className='mr-2 p-[1px] mt-[2px]'
+                                        className='mr-2 p-[1px] mt-[4px]'
                                         width={svgicons.accordianArrowDown[0]}
                                         height={svgicons.accordianArrowDown[1]}
                                         viewBox={svgicons.accordianArrowDown[2]}
@@ -76,7 +76,7 @@ function NestedAccordion({ data }) {
                                     />
                                 ) : (
                                     <Svg
-                                        className='mr-2 p-[1px] mt-[2px]'
+                                        className='mr-2 p-[1px] mt-[4px]'
                                         width={svgicons.accordianArrowSide[0]}
                                         height={svgicons.accordianArrowSide[1]}
                                         viewBox={svgicons.accordianArrowSide[2]}
@@ -90,7 +90,7 @@ function NestedAccordion({ data }) {
                             <div className={`${styles.panel} ${activeSections.includes(subsectionIndex) ? styles.active : ''}`}>
                                 {renderContent(subsectionContent, subsectionIndex)}
                             </div>
-                        </div>
+                        </div >
                     );
                 } else {
                     // Render string content
@@ -98,29 +98,37 @@ function NestedAccordion({ data }) {
                         <>
                             {item !== "" && (
                                 <article className='flex justify-between p-3'>
-                                    <h1 className='flex'>
-                                        <span>
-                                            <Svg
-                                                width={svgicons.courseVideoIcon[0]}
-                                                height={svgicons.courseVideoIcon[1]}
-                                                viewBox={svgicons.courseVideoIcon[2]}
-                                                icon={svgicons.courseVideoIcon[3]}
-                                                color={svgicons.courseVideoIcon[4]}
-                                            />
-                                        </span><span className='p-1 text-dark-gray font medium text-sm'>{item}</span>
-                                    </h1>
-                                    <h1 className='flex'>
-                                        <span>
-                                            <Svg
-                                                width={svgicons.courseVideoIcon[0]}
-                                                height={svgicons.courseVideoIcon[1]}
-                                                viewBox={svgicons.courseVideoIcon[2]}
-                                                icon={svgicons.courseVideoIcon[3]}
-                                                color={svgicons.courseVideoIcon[4]}
-                                            />
-                                        </span><span className='p-1 text-dark-gray font medium text-sm'>Preview</span><span className='p-1 text-dark-gray font medium text-sm'>4 min</span>
-                                    </h1>
+                                    {page === 'course' ?
+                                        <>
+                                            <h1 className='flex'>
+                                                <span>
+                                                    <Svg
+                                                        width={svgicons.courseVideoIcon[0]}
+                                                        height={svgicons.courseVideoIcon[1]}
+                                                        viewBox={svgicons.courseVideoIcon[2]}
+                                                        icon={svgicons.courseVideoIcon[3]}
+                                                        color={svgicons.courseVideoIcon[4]}
+                                                    />
+                                                </span>
+                                                <span className='p-1 text-dark-gray font medium text-sm'>{item}</span>
+                                            </h1>
+                                            <h1 className='flex'>
+                                                <span>
+                                                    <Svg
+                                                        width={svgicons.courseVideoIcon[0]}
+                                                        height={svgicons.courseVideoIcon[1]}
+                                                        viewBox={svgicons.courseVideoIcon[2]}
+                                                        icon={svgicons.courseVideoIcon[3]}
+                                                        color={svgicons.courseVideoIcon[4]}
+                                                    />
+                                                </span><span className='p-1 text-dark-gray font medium text-sm'>Preview</span><span className='p-1 text-dark-gray font medium text-sm'>4 min</span>
+                                            </h1>
+                                        </> :
+                                        <span className='p-1 text-dark-gray font medium text-sm'>{item}</span>
+                                    }
                                 </article>
+
+
                             )}
                         </>
                     );
@@ -134,11 +142,11 @@ function NestedAccordion({ data }) {
     return (
         <div>
             {data.map((section, index) => (
-                <div key={index} className='border border-[#EBEBEB] my-1.5 rounded-md'>
-                    <button className={`${styles.accordion} flex`} onClick={() => handleClick(index)}>
+                <div key={index} className={page === 'course' ? 'border border-[#EBEBEB] my-1.5 rounded-md' : `${parentAccordianStyle}`}>
+                    <button className={page === 'course'? `${styles.accordion} flex` : 'flex'} onClick={() => handleClick(index)}>
                         {accordianArrow.includes(index) ? (
                             <Svg
-                            className='mr-2 p-[1px] mt-[2px]'
+                                className='mr-2 p-[1px] mt-[2px]'
                                 width={svgicons.accordianArrowDown[0]}
                                 height={svgicons.accordianArrowDown[1]}
                                 viewBox={svgicons.accordianArrowDown[2]}

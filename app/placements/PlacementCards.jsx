@@ -1,7 +1,6 @@
 'use client'
 import React from "react";
 import "./PlacementCards.scss";
-
 const PlacementCards = () => {
   return (
     <div className="flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-[1.875rem]">

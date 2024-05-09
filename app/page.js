@@ -1,5 +1,5 @@
 
-import Homepage from "@/components/websiteHomePage/homepage"; 
+import Homepage from "@/app/homepage"; 
 export default function Home() {
   return (
     <main className="">

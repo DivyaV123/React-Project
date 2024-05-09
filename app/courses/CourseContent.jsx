@@ -115,7 +115,8 @@ function CourseContent() {
                 Course Content
             </header>
             <article className='m-5'>
-                <NestedAccordion data={courseContentdata} />
+                <NestedAccordion data={courseContentdata} 
+                page='course'/>
             </article>
         </CoursePageContainer>
     )

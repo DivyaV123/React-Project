@@ -1,7 +1,7 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-
+import GlobalContextProvider from "@/components/Context/GlobalContext";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -22,7 +22,9 @@ export default function RootLayout({ children }) {
         {cn(
           `relative h-full antialiased ${poppins.className}  myscrollbar overflow-y-scroll`)}
       >
+        <GlobalContextProvider>
         <main className="relative flex flex-col min-h-screen">{children}</main>
+        </GlobalContextProvider>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       </body>
     </html >

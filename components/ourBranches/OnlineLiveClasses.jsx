@@ -1,6 +1,7 @@
 import React from "react";
-
-const OnlineLiveClasses = ({ className, page }) => {
+import Svg from "../commonComponents/Svg/Svg";
+import { svgicons } from "../assets/icons/svgassets";
+const OnlineLiveClasses = ({ className, page, branchCard, cardSize }) => {
   const upcomingBatchesData = [
     {
       course: "Advanced React",
@@ -39,25 +40,38 @@ const OnlineLiveClasses = ({ className, page }) => {
       time: "10am - 12pm",
     },
   ];
-  const enrollEnquire = "py-2.5 px-2.5 w-[8.359375vw] text-[0.875rem] font-semibold"  
-  const dateAndTime="flex text-[0.75rem] font-medium text-dark-gray gap-1.5 items-center"
+  const enrollEnquire = "py-2.5 px-2.5 w-[8.359375vw] text-[0.875rem] font-semibold"
+  const dateAndTime = "flex text-[0.75rem] font-medium text-dark-gray gap-1.5 items-center"
   return (
     <>
       {upcomingBatchesData.map((batch, index) => (
         <section
-          className={`${page === "course" ? className : ""} flex flex-wrap`}
+          className={`${page === "course" ? className : branchCard} flex flex-wrap`}
           key={index}
         >
-          <div className="w-[20.46vw] upcomingBatches p-3">
+          <div className={page === 'branch' ? { cardSize } : "w-[20.46vw] upcomingBatches p-3"}>
             <header className="font-bold text-base py-2">{batch.course}</header>
             <p className="font-normal text-[0.75rem] text-ash py-1">By: {batch.trainer}</p>
             <div className="flex py-4 gap-1.5 items-center  justify-between">
               <div className={`${dateAndTime}`}>
-                <img src="../Icon_calendar.svg" alt="calendar icon" />
+                <Svg
+                  className='p-1'
+                  width={svgicons.calender[0]}
+                  height={svgicons.calender[1]}
+                  viewBox={svgicons.calender[2]}
+                  icon={svgicons.calender[3]}
+                  color={svgicons.calender[4]}
+                />
                 <div>{batch.date}</div>
               </div>
               <div className={`${dateAndTime}`}>
-                <img src="../Icon_time.svg" alt="time icon" />
+                <Svg
+                  width={svgicons.icontime[0]}
+                  height={svgicons.icontime[1]}
+                  viewBox={svgicons.icontime[2]}
+                  icon={svgicons.icontime[3]}
+                  color={svgicons.icontime[4]}
+                />
                 <div>{batch.time}</div>
               </div>
             </div>
@@ -70,10 +84,11 @@ const OnlineLiveClasses = ({ className, page }) => {
               </button>
             </div>
           </div>
-        </section>
+        </section >
       ))}
     </>
   );
 };
+
 
 export default OnlineLiveClasses;
