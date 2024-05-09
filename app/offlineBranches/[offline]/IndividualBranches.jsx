@@ -3,7 +3,10 @@ import React, { useContext } from "react";
 import "./IndividualBranches.scss";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const IndividualBranches = () => {
+  const { selectedBranch, setSelectedBranch } = useContext(GlobalContext);
+  console.log(selectedBranch,"selectedBranch")
   const params = useParams();
   const paramCity = params.offline;
   const navCities = [
@@ -223,7 +226,7 @@ const IndividualBranches = () => {
           {navCities.map((ele, index) => (
             <Link
               href={{
-                pathname: `/pages/offlineBranches/${ele.city}`,
+                pathname: `/offlineBranches/${ele.city}`,
                 query: { city: ele.city },
               }}
               replace
@@ -244,7 +247,7 @@ const IndividualBranches = () => {
           {selectedCity &&
             selectedCity?.sublist?.map((item, index) => (
               <Link href={{
-                pathname: `/pages/offlineBranches/${selectedCity.city}/offlineCentres/${item.id}`,
+                pathname: `/offlineBranches/${selectedCity.city}/offlineCentres/${item.id}`,
                 query: { city: selectedCity.city },
               }} key={index} className="courseCard p-2">
                 <div className="flex items-center gap-2">

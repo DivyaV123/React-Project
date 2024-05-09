@@ -320,7 +320,7 @@ const IndividualCentres = () => {
           {navCities.map((ele, index) => (
             <Link
               href={{
-                pathname: `/pages/offlineBranches/${ele.city}/offlineCentres/${1}`,
+                pathname: `/offlineBranches/${ele.city}/offlineCentres/${1}`,
                 query: { city: ele.city },
               }}
               replace
@@ -337,7 +337,7 @@ const IndividualCentres = () => {
               selectedCity?.sublist?.map((item, index) => (
                 <Link
                   href={{
-                    pathname: `/pages/offlineBranches/${selectedCity.city}/offlineCentres/${item.id}`,
+                    pathname: `/offlineBranches/${selectedCity.city}/offlineCentres/${item.id}`,
                     query: { city: selectedCity.city },
                   }}
                   replace
