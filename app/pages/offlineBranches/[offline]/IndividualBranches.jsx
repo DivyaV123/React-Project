@@ -11,96 +11,112 @@ const IndividualBranches = () => {
       city: "Bengalore",
       sublist: [
         {
+          id:1,
           image: "../../systemDesign.svg",
           title: "System Design for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:2,
           image: "../../advanceSystemDesign.svg",
           title: "Advance System Design for Senior Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:3,
           image: "../../uiDesign.svg",
           title: "ui Design for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:4,
           image: "../../testAutomation.svg",
           title: "Test Automation Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:5,
           image: "../../performanceTest.svg",
           title: "Performance Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:6,
           image: "../../cloudPlatform.svg",
           title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:7,
           image: "../../cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:8,
           image: "../../cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:9,
           image: "../../cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:10,
           image: "../../advanceDevops.svg",
           title: "Advance Devops course for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:11,
           image: "../../securityTechArchitect.svg",
           title: "Security Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:12,
           image: "../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:13,
           image: "../../advanceDevops.svg",
           title: "Advance Devops course for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:14,
           image: "../../securityTechArchitect.svg",
           title: "Security Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:15,
           image: "../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:16,
           image: "../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
@@ -112,60 +128,70 @@ const IndividualBranches = () => {
       city: "Hyderabad",
       sublist: [
         {
+          id:1,
           image: "../../systemDesign.svg",
           title: "System Design for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:2,
           image: "../../advanceSystemDesign.svg",
           title: "Advance System Design for Senior Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:3,
           image: "../../uiDesign.svg",
           title: "ui Design for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:4,
           image: "../../testAutomation.svg",
           title: "Test Automation Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:5,
           image: "../../performanceTest.svg",
           title: "Performance Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:6,
           image: "../../cloudPlatform.svg",
           title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:7,
           image: "../../cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:8,
           image: "../../cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:9,
           image: "../../cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
+          id:10,
           image: "../../advanceDevops.svg",
           title: "Advance Devops course for Architects",
           description:
@@ -217,7 +243,10 @@ const IndividualBranches = () => {
         <section className="w-[80vw] m-auto pt-3 flex flex-wrap gap-4">
           {selectedCity &&
             selectedCity?.sublist?.map((item, index) => (
-              <div key={index} className="courseCard p-2">
+              <Link href={{
+                pathname: `/pages/offlineBranches/${selectedCity.city}/offlineCentres/${item.id}`,
+                query: { city: selectedCity.city },
+              }} key={index} className="courseCard p-2">
                 <div className="flex items-center gap-2">
                   <img src={item.image} alt={item.title} className="h-6 w-6" />
                   <h3 className="text-[0.75rem] text-[#454545] font-bold">
@@ -229,7 +258,7 @@ const IndividualBranches = () => {
                     {item.description}
                   </article>
                 </div>
-              </div>
+              </Link>
             ))}
         </section>
       </section>
