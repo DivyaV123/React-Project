@@ -4,6 +4,7 @@ import "./IndividualCentres.scss";
 import "../../IndividualBranches.scss";
 import { useParams } from "next/navigation";
 import Link from "next/link";
+import CommonBranch from "./CommonBranch";
 const IndividualCentres = () => {
   const params = useParams();
   const paramCity = params.offline;
@@ -158,84 +159,84 @@ const IndividualCentres = () => {
         },
         {
           id:5,
-          image: "../../performanceTest.svg",
+          image: "../../../../performanceTest.svg",
           title: "Performance Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:6,
-          image: "../../cloudPlatform.svg",
+          image: "../../../../cloudPlatform.svg",
           title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:7,
-          image: "../../cloudSolutionAWS.svg",
+          image: "../../../../cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:8,
-          image: "../../cloudSolutionGCP.svg",
+          image: "../../../../cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:9,
-          image: "../../cloudSolutionArchitect.svg",
+          image: "../../../../cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:10,
-          image: "../../advanceDevops.svg",
+          image: "../../../../advanceDevops.svg",
           title: "Advance Devops course for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:11,
-          image: "../../securityTechArchitect.svg",
+          image: "../../../../securityTechArchitect.svg",
           title: "Security Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:12,
-          image: "../../advanceDataStructure.svg",
+          image: "../../../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:13,
-          image: "../../advanceDevops.svg",
+          image: "../../../../advanceDevops.svg",
           title: "Advance Devops course for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:14,
-          image: "../../securityTechArchitect.svg",
+          image: "../../../../securityTechArchitect.svg",
           title: "Security Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:15,
-          image: "../../advanceDataStructure.svg",
+          image: "../../../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
           id:16,
-          image: "../../advanceDataStructure.svg",
+          image: "../../../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
             "Software testing course is more of job oriented training which is designed",
@@ -311,7 +312,6 @@ const IndividualCentres = () => {
   const selectedId = selectedCity?.sublist?.find(
     (item) => String(item.id) === String(paramId)
   );
-  console.log(selectedId, "selectedId", paramId, selectedCity);
   return (
     <div className="w-full">
       <header className="offlineHeader">Our Offline Centres</header>
@@ -358,52 +358,8 @@ const IndividualCentres = () => {
                   </h3>
                 </Link>
               ))}
-          </div>
-          <section className="w-[73.656vw] mt-6  flex flex-wrap gap-4 h-full overflow-y-scroll myscrollbar">
-            {selectedId &&
-              selectedId?.branchCentre?.map((branch, branchIndex) => (
-                <div
-                  key={branchIndex}
-                  className="branchCard w-[23.438vw] h-[344px] p-2 courseSidebar rounded-md"
-                >
-                  <img
-                    src="../../../../Frame 41334.png"
-                    alt="Branch"
-                    className="w-full"
-                  />
-                  <header className="text-[1.25rem] font-bold pt-3">
-                    {branch.branchName}
-                  </header>
-                  <div className="flex gap-3 pt-3">
-                    <img
-                      src="../../../../icon_outline_location.svg"
-                      alt="Location"
-                    />
-                    <p className="text-[0.625rem] text-[#575757]">
-                      {branch.description}
-                    </p>
-                  </div>
-                  <div className="flex gap-3 pt-3">
-                    <img src="../../../../icon_call.svg" alt="Phone" />
-                    <p className="text-[0.75rem] text-[#107BD4] font-medium">
-                      {branch.phone}
-                    </p>
-                  </div>
-                  <div className="flex gap-3 pt-3">
-                    <img src="../../../../Icon_time2.svg" alt="Upcoming" />
-                    <p className="text-[0.75rem] text-[#454545] font-medium">
-                      {branch.upComing} Upcoming Batches
-                    </p>
-                  </div>
-                  <div className="flex gap-3 pt-3">
-                    <img src="../../../../Icon_time2.svg" alt="Ongoing" />
-                    <p className="text-[0.75rem] text-[#454545] font-medium">
-                      {branch.onGoing} Ongoing Batches
-                    </p>
-                  </div>
-                </div>
-              ))}
-          </section>
+          </div>          
+          <CommonBranch selectedId={selectedId} />
         </section>
       </section>
     </div>
