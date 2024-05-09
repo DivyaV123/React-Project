@@ -2,7 +2,7 @@ import { svgicons } from '@/components/assets/icons/svgassets'
 import Svg from '@/components/commonComponents/Svg/Svg'
 import Button from '@/components/commonComponents/button/Button'
 import React from 'react'
-import './upCommingBranches.scss'
+import './upComingBranches.scss'
 
 function BatchesCard() {
     return (
