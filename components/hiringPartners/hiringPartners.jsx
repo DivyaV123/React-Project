@@ -44,7 +44,7 @@ function HiringPartners({ page, className }) {
           })}
         </div>
       </div>
-      {/* 
+{/* 
       <div className="slider">
         <div className="slide-track-right">
           {svgPath.map((path, index) => (

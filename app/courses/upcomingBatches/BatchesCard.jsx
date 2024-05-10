@@ -40,14 +40,18 @@ function BatchesCard() {
                 </article>
             </article>
             <article className='flex gap-2 pt-4'>
-                <Button
-                    title='Enroll'
-                    className='w-[10.625vw] 3xl:[2.438vw] h-[3.438vw] bg-gradient rounded-md text-white'
-                />
-                <Button
-                    title='Details'
-                    className='w-[10.625vw] 3xl:[2.438vw] h-[3.438vw] border border-orange-500  rounded-md text-orange-500'
-                />
+                <div>
+                    <Button
+                        title='Enroll'
+                        className='w-[10.625vw] 3xl:[2.438vw] h-[3.438vw] bg-gradient rounded-md text-white'
+                    />
+                </div>
+                <div>
+                    <Button
+                        title='Details'
+                        className='w-[10.625vw] 3xl:[2.438vw] h-[3.438vw] border border-orange-500  rounded-md text-orange-500'
+                    />
+                </div>
             </article>
         </section>
     )

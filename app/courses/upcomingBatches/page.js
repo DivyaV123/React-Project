@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import { Checkbox } from "@/components/ui/checkbox"
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
@@ -39,6 +39,10 @@ function UpComingBranches() {
     setOpenIndex(index === openIndex ? -1 : index);
 
   };
+  useEffect(() => {
+    setIsClient(true)
+  }, [])
+
   return (
     <WebLayout>
       <MaxWebWidth sectionStyling='bg-[#F9F9F9]' articalStyling='!w-[94.5vw] pb-6' >

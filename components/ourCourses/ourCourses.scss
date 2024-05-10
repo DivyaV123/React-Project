@@ -36,6 +36,21 @@
   visibility: hidden;
 }
 
-.titleSpacing{
+.titleSpacing {
   letter-spacing: -0.5px;
+}
+
+.searchField[type="text"] {
+  width: 130px;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+  border-style: none;
+  padding-top: 6px;
+  padding-bottom: 6px;
+}
+
+.searchField[type="text"]:focus {
+  width: 100%;
+  border: 1px solid #bbbaba !important;
+  outline: none !important;
 }
