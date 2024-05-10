@@ -1,14 +1,14 @@
 import React from 'react'
 import './IndividualCentres.scss'
-const CommonBranch = ({selectedId}) => {
+const CommonBranch = ({selectedId,page=''}) => {
   return (
-    <section className="w-[73.656vw] mt-6  flex flex-wrap gap-4 h-full overflow-y-scroll myscrollbar">
+    <section className={` mt-6  flex  gap-4   ${page==='offlineBranches'? ' w-full pl-[6%] py-2 overflow-x-scroll offlineScrollbar' : "w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
     {selectedId &&
       selectedId?.branchCentre?.map((branch, branchIndex) => (
         <div
           key={branchIndex}
-          className="branchCard w-[23.438vw] h-[344px] p-2 courseSidebar rounded-md"
-        >
+          className={`branchCard w-[23.438vw] h-[344px] p-2 courseSidebar rounded-md ${page==='offlineBranches'? "flex-shrink-0" : ""} `}
+         >
           <img
             src="../../../../Frame 41334.png"
             alt="Branch"

@@ -276,7 +276,6 @@ const Tutions = () => {
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
               <Link href={TUTION_PATH}>
-                {console.log(TUTION_PATH,"TUTION_PATH")}
                 <div
                   key={index}
                   className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
