@@ -1,7 +1,7 @@
 import React from 'react'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
 import IndividualCentres from './IndividualCentres'
-const OfflineCentres = () => {
+const offlineCentres = () => {
   return (
 <WebLayout>
 <IndividualCentres />
@@ -9,4 +9,4 @@ const OfflineCentres = () => {
   )
 }
 
-export default OfflineCentres
+export default offlineCentres

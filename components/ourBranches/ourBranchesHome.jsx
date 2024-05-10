@@ -1,14 +1,16 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import TrainingMode from "./trainingMode/trainingMode";
 import Slide from "react-reveal/Slide";
 import Button from "../commonComponents/button/Button";
 import OnlineLiveClasses from "./OnlineLiveClasses";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { GlobalContext } from "../Context/GlobalContext";
+import { OFFLINE_BRANCHES,UPCOMING_BATCHES,COMBINED_BRANCHES } from "@/lib/RouteConstants";
 function OurBranchesHome({ page }) {
   const router = useRouter();
+  const { setSelectedBranch } = useContext(GlobalContext);
   const branchCards = [
     { path: "./images/Bengalore.png", city: "Bengalore" },
     { path: "./images/HydrabadCard.png", city: "Hyderabad" },
@@ -38,11 +40,12 @@ function OurBranchesHome({ page }) {
   const handleImageRoute = (e, city) => {
     e.preventDefault();
     if (page !== "course" && city !== "AllCities") {
-      router.push(`/offlineBranches/${city}`);
+      setSelectedBranch(city);
+      router.push(`${OFFLINE_BRANCHES}`);
     } else if (page === "course") {
-      router.push("/courses/upcommingBatches");
+      router.push(`${UPCOMING_BATCHES}`);
     } else if (page !== "course" && city === "AllCities") {
-      router.push("/combinedBranches");
+      router.push(`${COMBINED_BRANCHES}`);
     }
   };
   return (
