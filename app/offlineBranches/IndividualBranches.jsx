@@ -1,124 +1,124 @@
 "use client";
 import React, { useContext } from "react";
 import "./IndividualBranches.scss";
-import { useParams } from "next/navigation";
-import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { useRouter } from "next/navigation";
+import { OFFLINE_CENTRES} from "@/lib/RouteConstants";
 const IndividualBranches = () => {
-  const { selectedBranch, setSelectedBranch } = useContext(GlobalContext);
-  const params = useParams();
-  const paramCity = params.offline;
+  const router = useRouter();
+  const { selectedBranch, setSelectedBranch, setSelectedCourseId } =
+    useContext(GlobalContext);
   const navCities = [
     {
       city: "Bengalore",
       sublist: [
         {
-          id:1,
+          id: 1,
           image: "../../systemDesign.svg",
           title: "System Design for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:2,
+          id: 2,
           image: "../../advanceSystemDesign.svg",
           title: "Advance System Design for Senior Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:3,
+          id: 3,
           image: "../../uiDesign.svg",
           title: "ui Design for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:4,
+          id: 4,
           image: "../../testAutomation.svg",
           title: "Test Automation Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:5,
+          id: 5,
           image: "../../performanceTest.svg",
           title: "Performance Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:6,
+          id: 6,
           image: "../../cloudPlatform.svg",
           title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:7,
+          id: 7,
           image: "../../cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:8,
+          id: 8,
           image: "../../cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:9,
+          id: 9,
           image: "../../cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:10,
+          id: 10,
           image: "../../advanceDevops.svg",
           title: "Advance Devops course for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:11,
+          id: 11,
           image: "../../securityTechArchitect.svg",
           title: "Security Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:12,
+          id: 12,
           image: "../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:13,
+          id: 13,
           image: "../../advanceDevops.svg",
           title: "Advance Devops course for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:14,
+          id: 14,
           image: "../../securityTechArchitect.svg",
           title: "Security Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:15,
+          id: 15,
           image: "../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:16,
+          id: 16,
           image: "../../advanceDataStructure.svg",
           title: "Advance Data Structure",
           description:
@@ -130,70 +130,70 @@ const IndividualBranches = () => {
       city: "Hyderabad",
       sublist: [
         {
-          id:1,
+          id: 1,
           image: "../../systemDesign.svg",
           title: "System Design for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:2,
+          id: 2,
           image: "../../advanceSystemDesign.svg",
           title: "Advance System Design for Senior Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:3,
+          id: 3,
           image: "../../uiDesign.svg",
           title: "ui Design for Architects",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:4,
+          id: 4,
           image: "../../testAutomation.svg",
           title: "Test Automation Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:5,
+          id: 5,
           image: "../../performanceTest.svg",
           title: "Performance Test Architect",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:6,
+          id: 6,
           image: "../../cloudPlatform.svg",
           title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:7,
+          id: 7,
           image: "../../cloudSolutionAWS.svg",
           title: "Cloud Solution Architect-AWS",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:8,
+          id: 8,
           image: "../../cloudSolutionGCP.svg",
           title: "Cloud Solution Architect-GCP",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:9,
+          id: 9,
           image: "../../cloudSolutionArchitect.svg",
           title: "Cloud Solution Architect-Azure",
           description:
             "Software testing course is more of job oriented training which is designed",
         },
         {
-          id:10,
+          id: 10,
           image: "../../advanceDevops.svg",
           title: "Advance Devops course for Architects",
           description:
@@ -216,25 +216,26 @@ const IndividualBranches = () => {
     // { "city": "Mysore" },
     // { "city": "AllCities" }
   ];
-  const selectedCity = navCities.find((city) => city.city === paramCity);
+  const selectedCity = navCities.find((city) => city.city === selectedBranch);
+  const handleCourseRoute = (e, course) => {
+    e.preventDefault();
+    router.push(`${OFFLINE_CENTRES}`);
+    setSelectedCourseId(course);
+  };
   return (
     <div className="w-full">
       <header className="offlineHeader">Our Offline Centres</header>
       <section className="citySection w-[87.5vw] m-auto pt-3 pb-16">
         <div className="h-[2.65vw] flex cityNavbar">
           {navCities.map((ele, index) => (
-            <Link
-              href={{
-                pathname: `/offlineBranches/${ele.city}`,
-                query: { city: ele.city },
-              }}
-              replace
+            <div
+              onClick={() => setSelectedBranch(ele.city)}
               className={`flex justify-center items-center w-[8.359vw] py-2  text-[0.75rem] ${
-                ele.city === paramCity ? "activeCity" : ""
+                ele.city === selectedBranch ? "activeCity" : ""
               }`}
             >
               <button key={index}>{ele.city}</button>
-            </Link>
+            </div>
           ))}
         </div>
         <div className="pt-6">
@@ -244,23 +245,28 @@ const IndividualBranches = () => {
         </div>
         <section className="w-[80vw] m-auto pt-3 flex flex-wrap gap-4">
           {selectedCity &&
-            selectedCity?.sublist?.map((item, index) => (
-              <Link href={{
-                pathname: `/offlineBranches/${selectedCity.city}/offlineCentres/${item.id}`,
-                query: { city: selectedCity.city },
-              }} key={index} className="courseCard p-2">
+            selectedCity?.sublist?.map((course, index) => (
+              <div
+                onClick={(e) => handleCourseRoute(e, course.id)}
+                key={index}
+                className="courseCard p-2 cursor-pointer"
+              >
                 <div className="flex items-center gap-2">
-                  <img src={item.image} alt={item.title} className="h-6 w-6" />
+                  <img
+                    src={course.image}
+                    alt={course.title}
+                    className="h-6 w-6"
+                  />
                   <h3 className="text-[0.75rem] text-[#454545] font-bold">
-                    {item.title}
+                    {course.title}
                   </h3>
                 </div>
                 <div>
                   <article className="text-[#575757] text-[0.688rem] pt-4">
-                    {item.description}
+                    {course.description}
                   </article>
                 </div>
-              </Link>
+              </div>
             ))}
         </section>
       </section>

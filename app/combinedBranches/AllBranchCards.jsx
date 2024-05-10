@@ -1,6 +1,6 @@
 import React from "react";
 import { AllBranches } from "@/lib/jsonutil";
-import CommonBranch from "../offlineBranches/[offline]/offlineCentres/[centre]/CommonBranch";
+import CommonBranch from "../offlineBranches/offlineCentres/CommonBranch";
 import './AllBranchCard.scss';
 const AllBranchCards = () => {
   return (
