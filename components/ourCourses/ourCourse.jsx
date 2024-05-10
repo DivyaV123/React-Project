@@ -9,13 +9,30 @@ import Slide from "react-reveal/Slide";
 import { Fade } from 'react-reveal'
 import Svg from '../commonComponents/Svg/Svg'
 import { svgicons } from '../assets/icons/svgassets'
+import Link from 'next/link'
+import Input from '../commonComponents/input/Input'
 
 
-function OurCourse() {
+function OurCourse({ page }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
-    let btnNames = ['Offline Classes', 'Online Live Classes', 'Experiential Learning', 'Self Paced']
-
+    const typesOfClasses = [
+        {
+            title: "Offline Classes",
+        },
+        {
+            title: "Online Live Classes",
+        },
+        {
+            title: "Experiential Learning",
+        },
+        {
+            title: "Self Paced",
+        },
+    ];
+    const [btnState, setBtnState] = useState(
+        page === "tution" ? "Experiential Learning" : "Offline Classes"
+    );
     const courseCard = [
         {
             name: 'Cloud Solution  Architect - Azure',
@@ -179,25 +196,59 @@ function OurCourse() {
         },
     ];
 
+    const tutionClasses =
+        page === "tution" ? typesOfClasses.slice(2, 4) : typesOfClasses;
+    const statisticsData = [
+        { number: "25,000+", text: "Students placed" },
+        { number: "180+", text: "Hiring Companies" },
+        { number: "10,000+", text: "Non IT Students placed" },
+        { number: "15,000+", text: "IT Students placed" },
+    ];
+
     return (
         <MaxWebWidth>
-            <aside className='flex justify-center align-center mb-8 mt-8' >
-                <Slide top cascade>
-                    <h1 className='font-bold text-[2rem] header text-black'>Explore Our Courses</h1>
-                </Slide>
-            </aside>
-            {/* <article className='flex space-x-3 justify-end m-2 mb-5'>
-                {btnNames.map((element, index) => {
-                    return (
-                        <>
-                            <Button
-                                className={index === 0 ? 'primary' : 'primaryPlain'}
-                                title={element}
+            {page !== "explore" &&
+                <aside className='flex justify-center align-center mb-8 mt-8' >
+                    <Slide top cascade>
+                        <h1 className='font-bold text-[2rem] header text-black'>Explore Our Courses</h1>
+                    </Slide>
+                </aside>
+            }
+            <article className={page === 'explore' ? 'flex justify-between  mb-8 mt-8' : "flex justify-end mb-3"}>
+                {page === 'explore' &&
+                    <div>
+                        <header className='' >
+                            <h1 className='font-bold text-[1.5rem] header text-black '>Explore Our Courses</h1>
+                        </header>
+                    </div>
+                }
+                <div className='flex'>
+                    {page === 'explore' &&
+                        <article className='pr-2 pt-[1px]'>
+                            <Input
+                                inputStyle='searchField p-2 text-sm'
+                                placeholder='Search'
+                                iconPath='../images/shape.png'
                             />
-                        </>
-                    )
-                })}
-            </article> */}
+                        </article>
+                    }
+
+                    <div className="bg-white border border-gray-300 flex rounded">
+                        {tutionClasses.map((classItem, index) => (
+                            <button
+                                key={index}
+                                className={`flex justify-center items-center px-4 py-2 font-medium text-[0.75rem] text-dark-gray ${classItem.title === btnState ? "bg-gradient text-white rounded p-2" : ""
+                                    } `}
+                                onClick={() => {
+                                    setBtnState(classItem.title);
+                                }}
+                            >
+                                {classItem.title}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+            </article>
             <aside className='flex'>
                 <article className='justify-start' >
                     <div>
@@ -206,7 +257,7 @@ function OurCourse() {
                                 className='bg-orange hover:font-semibold hover:text-white w=[20.70vw] flex justify-center  gradient-bg cursor-pointer py-3 px-2'
                             >
                                 <div className='flex justify-between items-center'>
-                                    <picture className='flex justify-start hover:text-white'>
+                                    <picture className='flex justify-start'>
                                         {(hoveredIndex === itemIndex) ?
                                             <Svg
                                                 width={svgicons[item?.iconlite][0]}
@@ -224,7 +275,7 @@ function OurCourse() {
                                             />
                                         }
                                     </picture>
-                                    <aside className='w-[12.5rem]  pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base hover:text-white'>
+                                    <aside className={(hoveredIndex === itemIndex) ? 'w-[12.5rem]  pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base text-white' : 'w-[12.5rem]  pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base text-black'}>
                                         <h1>
                                             {item.title}
                                         </h1>
@@ -253,7 +304,7 @@ function OurCourse() {
                         })}
                     </div>
                 </article>
-                <article className='max-h-[73.69vw] 2xl:h-[62vw] 3xl:h-[49.69vw]  2xl:w-full overflow-hidden py-1 pl-1'>
+                <article className='max-h-[64.69vw] 2xl:h-[62vw] 3xl:h-[49.69vw]  2xl:w-full overflow-hidden py-1 pl-1'>
                     <div className='flex flex-wrap justify-end gap-3 w-full h-full overflow-y-scroll courseScroll'>
                         {courseCard.map((element) => {
                             return (<div className='courseCard'>
@@ -263,18 +314,23 @@ function OurCourse() {
                     </div>
                 </article>
             </aside>
-            {/* <Fade bottom duration={1000} delay={0} >
-                <article on className='flex justify-end mt-8 mb-8'>
-                    <Button
-                        className='primaryAnimated '
-                        title='View All Courses'
-                        icon={viewAllCoursesHover ? './arrowIcon.svg' : './arrowIconOrange.svg'}
-                        iconPosition='right'
-                        onMouseEnter={() => { setviewAllCoursesHover(true) }}
-                        onMouseLeave={() => { setviewAllCoursesHover(false) }}
-                    />
-                </article>
-            </Fade> */}
+            {page !== "explore" &&
+                <Link
+                    href='./exploreCourses'
+                >
+                    <article on className='flex justify-end mt-8 mb-8'>
+                        <Button
+                            className='border border-orange-500 rounded text-orange-500 p-2 hover:bg-gradient '
+                            title='View All Courses'
+                            icon={viewAllCoursesHover ? './arrowIcon.svg' : './arrowIconOrange.svg'}
+                            iconPosition='right'
+                        // onMouseEnter={() => { setviewAllCoursesHover(true) }}
+                        // onMouseLeave={() => { setviewAllCoursesHover(false) }}
+                        />
+                    </article>
+                </Link>
+            }
+
         </MaxWebWidth >
     )
 }

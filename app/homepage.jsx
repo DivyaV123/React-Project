@@ -8,18 +8,20 @@ import TestimonialsHome from '../components/testimonials/testimonialsHome'
 import FaqHome from '../components/faq/faqHome'
 import WebLayout from '../components/commonComponents/webLayout/WebLayout'
 import HiringPartners from '../components/hiringPartners/hiringPartners'
+import ContactSection from '@/components/carosalHome/ContactSection'
 
 function Homepage() {
     return (
         <WebLayout >
             <CarosalHome />
-            <HiringPartners/>
+            <HiringPartners />
             <OurCourse />
             <OurBranchesHome />
             <ChooseQspidersHome />
             <PlacementStatisticsHome />
             {/* <TestimonialsHome /> */}
             <FaqHome />
+            <ContactSection/>
         </WebLayout>
     )
 }
