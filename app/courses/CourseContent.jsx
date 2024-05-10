@@ -32,7 +32,6 @@ function CourseContent() {
     const [openIndex, setOpenIndex] = useState(-1);
 
     const handleAccordionToggle = (index) => {
-        console.log(index, "indexindexindexindex")
         setOpenIndex(index === openIndex ? '-1' : index);
     };
 

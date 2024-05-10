@@ -14,7 +14,7 @@ import './upComingBranches.scss'
 
 import BatchesCard from './BatchesCard'
 
-function UpCommingBranches() {
+function UpComingBranches() {
   const [openIndex, setOpenIndex] = useState(-1);
   const branchesList = [
     { Bangalore: ['Basavanagudi', 'Old Airport Road', 'Rajajinagar', 'Hebbal', 'BTM Layout'] },
@@ -36,7 +36,6 @@ function UpCommingBranches() {
   ]
 
   const handleAccordionToggle = (index) => {
-    console.log(index, "indexindex")
     setOpenIndex(index === openIndex ? -1 : index);
 
   };
@@ -123,4 +122,4 @@ function UpCommingBranches() {
   )
 }
 
-export default UpCommingBranches
+export default UpComingBranches

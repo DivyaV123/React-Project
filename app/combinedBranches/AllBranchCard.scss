@@ -1,0 +1,11 @@
+.offlineScrollbar::-webkit-scrollbar{
+visibility: hidden;
+}
+.offlineScrollbar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.cardBackground:hover{
+  background: #FEF2E7;
+}
+

@@ -6,7 +6,6 @@ import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const IndividualBranches = () => {
   const { selectedBranch, setSelectedBranch } = useContext(GlobalContext);
-  console.log(selectedBranch,"selectedBranch")
   const params = useParams();
   const paramCity = params.offline;
   const navCities = [
