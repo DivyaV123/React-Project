@@ -110,7 +110,7 @@ function NestedAccordion({ data, page, parentAccordianStyle }) {
                                                         color={svgicons.courseVideoIcon[4]}
                                                     />
                                                 </span>
-                                                <span className='p-1 text-dark-gray font medium text-sm'>{item}</span>
+                                                <span className='p-1 text-dark-gray font medium text-[0.875rem]'>{item}</span>
                                             </h1>
                                             <h1 className='flex'>
                                                 <span>
@@ -121,10 +121,10 @@ function NestedAccordion({ data, page, parentAccordianStyle }) {
                                                         icon={svgicons.courseVideoIcon[3]}
                                                         color={svgicons.courseVideoIcon[4]}
                                                     />
-                                                </span><span className='p-1 text-dark-gray font medium text-sm'>Preview</span><span className='p-1 text-dark-gray font medium text-sm'>4 min</span>
+                                                </span><span className='p-1 text-dark-gray font medium text-[0.875rem]'>Preview</span><span className='p-1 text-dark-gray font medium text-[0.875rem]'>4 min</span>
                                             </h1>
                                         </> :
-                                        <span className='p-1 text-dark-gray font medium text-sm'>{item}</span>
+                                        <span className='p-1 text-dark-gray font medium text-[0.875rem]'>{item}</span>
                                     }
                                 </article>
 

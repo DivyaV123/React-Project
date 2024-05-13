@@ -17,8 +17,8 @@ function StudentsTestimonialsHome({ page }) {
         <CoursePageContainer className={page === 'branch' ? '!w-full !p-0' : 'bg-[#F9F9F9]'}>
             <article className=''>
                 <header>
-                    <h1 className={page === 'branch' ? 'flex justify-start font-bold text-[1.5rem] py-5 ' : 'font-bold text-[1.5rem] py-5 w-[51.56vw]'}>
-                    Students Testimonials
+                    <h1 className={page === 'branch' ? 'flex justify-start font-bold text-[2rem] py-5 ' : 'font-bold text-[1.5rem] py-5 w-[51.56vw]'}>
+                        Students Testimonials
 
                     </h1>
                 </header>
@@ -27,10 +27,12 @@ function StudentsTestimonialsHome({ page }) {
                         <CarouselContent className='bg-[#F9F9F9]'>
                             {Array.from({ length: 4 }, (value, index) => (
                                 <CarouselItem className={page === 'branch' ? 'basis-[33%]' : "basis-[57%]"} >
-                                    <article className='pb-3'>
+                                    <article className='flex gap-4 pb-3'>
                                         < TestimonialsCard />
                                     </article>
-                                    < TestimonialsCard />
+                                    <article className='flex gap-4'>
+                                        < TestimonialsCard />
+                                    </article>
                                 </CarouselItem>
                             ))}
                         </CarouselContent>
@@ -40,7 +42,7 @@ function StudentsTestimonialsHome({ page }) {
                 </article>
                 <article className={page === "branch" ? 'flex justify-center mt-3 pb-5' : 'flex justify-center mt-3 w-[51.56vw] pb-5'}>
                     <Button
-                        className='bg-gradient h-[2.656vw] w-[9.375vw] text-[0.75rem] text-white rounded-md'
+                        className='bg-gradient h-[2.656vw] font-medium w-[9.375vw] text-[0.75rem] text-white rounded-md'
                         title="View More"
                         onClick={() => { }}
                     />

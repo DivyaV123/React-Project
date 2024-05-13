@@ -1,11 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Button from '../commonComponents/button/Button'
 import Svg from '../commonComponents/Svg/Svg'
 import { svgicons } from '../assets/icons/svgassets'
 
 function ContactSection() {
+    const [showDiv, setShowDiv] = useState(false);
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    const handleScroll = () => {
+        // Adjust the value (in pixels) based on how far down you want to scroll before showing the div
+        if (window.scrollY > 60) {
+            setShowDiv(true);
+        } else {
+            setShowDiv(false);
+        }
+    };
     return (
-        <article className='w-[100%] flex justify-center z-10 sticky p-2 bg-white fixed bottom-0'>
+        <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className=' w-[100%] flex justify-center z-10 sticky p-2 bg-white fixed bottom-0'>
             <div className='flex gap-3'>
                 <Button
                     title={<div className='flex gap-2'>

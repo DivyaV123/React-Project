@@ -4,7 +4,7 @@ import React from 'react'
 
 function TestimonialsCard() {
     return (
-        <article className='flex justify-around w-[28.906vw] bg-white rounded-xl py-3 px-1 overflow-hide '>
+        <article className='flex justify-around w-[28.906vw] bg-white rounded-xl py-3 px-1 overflow-hide'>
             <article className='base-[35%]'>
                 <figure className='p-1 w-full'>
                     <img className='w-full' src='../images/Testimonialsimage1.png' />
@@ -23,7 +23,7 @@ function TestimonialsCard() {
                     </p>
                 </header>
                 <p>
-                    <span className='flex text-[0.875rem] gap-1 font-bold justify-end'><span className='font-bold'>4.5</span> <Svg
+                    <span className='flex text-[0.875rem] gap-1 font-bold justify-end items-baseline'><span className='font-bold'>4.5</span> <Svg
                         className='mt-[0.15rem]'
                         width={svgicons.ratingStar[0]}
                         height={svgicons.ratingStar[1]}

@@ -54,9 +54,8 @@ const CourseLanding = ({ page }) => {
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center px-4 py-2 font-medium text-[0.75rem] text-dark-gray ${
-                  classItem.title === btnState ? "activecourseButton" : ""
-                } `}
+                className={`flex justify-center items-center px-4 py-2 font-medium text-[0.75rem] text-dark-gray ${classItem.title === btnState ? "activecourseButton" : ""
+                  } `}
                 onClick={() => {
                   setBtnState(classItem.title);
                 }}

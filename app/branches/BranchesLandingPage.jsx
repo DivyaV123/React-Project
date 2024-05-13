@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/carousel"
 import Svg from '@/components/commonComponents/Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
+import './branchesLandingPage.scss'
 
 function BranchesLandingPage() {
     const [selectedImg, setSelectedImg] = useState('../images/Frame 22.png')
@@ -30,7 +31,7 @@ function BranchesLandingPage() {
         }
     ]
     return (
-        <MaxWebWidth sectionStyling='bg-litePink' articalStyling='flex justify-between'>
+        <MaxWebWidth sectionStyling='bg-pink' articalStyling='flex justify-between'>
             <section className='basis-[50%] pt-10 pb-10'>
                 <figure className='h-[25vw] w-[49.219vw] rounded-2xl'>
                     <img className='w-full  p-2 ' src={selectedImg} />

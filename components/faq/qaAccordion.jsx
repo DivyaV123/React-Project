@@ -20,27 +20,18 @@ function Qaccordion({ qaList }) {
 
   return (
     <>
-      {
-        qaList.map((element, index) => {
-          return (
-            <Fade top duration={1000} delay={0}>
-              <article className={'m-2 rounded-lg'}>
-                <Accordion defaultIndex={[0]} type="single" collapsible>
-                  <AccordionItem value={index + 1}>
-                    <AccordionTrigger onClick={() => handleAccordionToggle(index)}>{element.question}</AccordionTrigger>
-                    <AccordionContent>
-                      {element.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                </Accordion>
-              </article>
-            </Fade>
-
-          )
-        })
-      }
-
-
+      <Fade top duration={1000} delay={0}>
+        <Accordion className='w-full' defaultIndex={[0]} type="single" collapsible>
+          {qaList.map((element, index) => (
+            <AccordionItem className='pb-2 min-h-[4.375vw]' key={index} value={index + 1}>
+              <AccordionTrigger onClick={() => handleAccordionToggle(index)}>{element.question}</AccordionTrigger>
+              <AccordionContent>
+                {element.answer}
+              </AccordionContent>
+            </AccordionItem>
+          ))}
+        </Accordion>
+      </Fade>
     </>
   )
 }

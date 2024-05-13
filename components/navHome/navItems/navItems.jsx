@@ -13,7 +13,7 @@ import Branches from "./Branches";
 import Tutions from "./Tutions";
 import Link from "next/link";
 import { InputIcon } from "@radix-ui/react-icons";
-import { CONTACT_US_PATH ,PLACEMENT_PATH} from "@/lib/RouteConstants";
+import { CONTACT_US_PATH, PLACEMENT_PATH } from "@/lib/RouteConstants";
 
 const navItems = [
   { id: 1, name: "Courses", content: <Courses /> },
@@ -47,14 +47,14 @@ function NavItems() {
       <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
         <NavigationMenuList>
           {navItems.map((navItem) => (
-            <Link href={navItem.name === 'Contact us' ? CONTACT_US_PATH : navItem.name === 'Placements' ? PLACEMENT_PATH :''}>
+            <Link href={navItem.name === 'Contact us' ? CONTACT_US_PATH : navItem.name === 'Placements' ? PLACEMENT_PATH : ''}>
               <NavigationMenuItem key={navItem.id}
                 onMouseEnter={() => handleItemHover(navItem.name)}
                 onMouseLeave={handleItemLeave}
               >
                 <NavigationMenuTrigger hoverItem={hoverState.item} hoverContent={hoverState.content}>
                   <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
-                    <span className="menuHeader text-normal text-slate hover-underline-animation text-base 2xl:text-lg 3xl:text-xl font-medium">{navItem.name}</span>
+                    <span className="menuHeader font-bold text-normal text-slate hover-underline-animation text-base 2xl:text-lg 3xl:text-xl">{navItem.name}</span>
                   </div>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent

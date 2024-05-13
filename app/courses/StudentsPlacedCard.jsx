@@ -4,12 +4,12 @@ import { Button } from '@/components/ui/button'
 import { SectionIcon } from '@radix-ui/react-icons'
 import React from 'react'
 
-function StudentsPlacedCard({ studentsInfo }) {
+function StudentsPlacedCard({ studentsInfo, page }) {
     return (
-        <section className='flex flex-wrap gap-3 justify-around'>
+        <section className='flex flex-wrap gap-4 justify-between'>
             {studentsInfo.map((element) => (
-                <section className='flex justify content center'>
-                    <article className='bg-white p-4 rounded-lg' >
+                <section className='flex justify content center '>
+                    <article className={page !== 'branch' ? 'bg-white p-4 rounded-lg' : 'bg-white p-10 rounded-lg w-[20.469vw]'} >
                         <figure className='flex justify-center pb-4'>
                             <img src={element.image} />
                         </figure>
