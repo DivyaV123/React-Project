@@ -131,7 +131,7 @@ function OurBranchesHome({ page }) {
               <>
                 <OnlineLiveClasses page="course" className="" />
                 <div className="w-[42.03vw] flex justify-end pt-4">
-                  <button className="w-[9.37vw] py-2 px-4.5 text-[0.75rem] font-medium EnrollButton">
+                  <button className="w-[9.37vw] py-2 px-4.5 text-[0.875rem] font-semibold EnrollButton">
                     View More
                   </button>
                 </div>

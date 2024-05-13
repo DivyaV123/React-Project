@@ -42,7 +42,7 @@ function PlacementStatisticsHome({ page }) {
         <MaxWebWidth sectionStyling=" flex align-ceneter mt-8" >
             <header>
                 <Slide top cascade>
-                    <h1 className='font-bold text-[2rem] text-black flex justify-center  mb-8 mt-8 h-12'>
+                    <h1 className='font-bold text-[2rem] text-black flex justify-start  mb-8 mt-8 h-12'>
                         Our Placement Statistics
                     </h1>
                 </Slide>
@@ -75,7 +75,7 @@ function PlacementStatisticsHome({ page }) {
                             }
                         </div>
                     </aside>
-                    <aside className='p-7 mt-12'>
+                    <aside className='p-7 '>
                         <h1 className='font-bold text-xl pb-5'>
                             From Various Branches
                         </h1>

@@ -252,56 +252,38 @@ function OurCourse({ page }) {
             <aside className='flex'>
                 <article className='justify-start' >
                     <div>
-                        {courses.map((item, itemIndex) => {
-                            return (<div onMouseEnter={() => setHoveredIndex(itemIndex)} onMouseLeave={() => setHoveredIndex(null)}
-                                className='bg-orange hover:font-semibold hover:text-white w=[20.70vw] flex justify-center  gradient-bg cursor-pointer py-3 px-2'
+                        {courses.map((item, itemIndex) => (
+                            <div
+                                key={itemIndex} // Don't forget to add a unique key
+                                onMouseEnter={() => setHoveredIndex(itemIndex)}
+                                onMouseLeave={() => setHoveredIndex(null)}
+                                className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'hovered' : ''}`}
                             >
                                 <div className='flex justify-between items-center'>
                                     <picture className='flex justify-start'>
-                                        {(hoveredIndex === itemIndex) ?
-                                            <Svg
-                                                width={svgicons[item?.iconlite][0]}
-                                                height={svgicons[item?.iconlite][1]}
-                                                viewBox={svgicons[item?.iconlite][2]}
-                                                icon={svgicons[item?.iconlite][3]}
-                                                color={svgicons[item?.iconlite][4]}
-                                            /> :
-                                            <Svg
-                                                width={svgicons[item?.icon][0]}
-                                                height={svgicons[item?.icon][1]}
-                                                viewBox={svgicons[item?.icon][2]}
-                                                icon={svgicons[item?.icon][3]}
-                                                color={svgicons[item?.iconlite][4]}
-                                            />
-                                        }
+                                        <Svg
+                                            width={hoveredIndex === itemIndex ? svgicons[item?.iconlite][0] : svgicons[item?.icon][0]}
+                                            height={hoveredIndex === itemIndex ? svgicons[item?.iconlite][1] : svgicons[item?.icon][1]}
+                                            viewBox={hoveredIndex === itemIndex ? svgicons[item?.iconlite][2] : svgicons[item?.icon][2]}
+                                            icon={hoveredIndex === itemIndex ? svgicons[item?.iconlite][3] : svgicons[item?.icon][3]}
+                                            color={hoveredIndex === itemIndex ? svgicons[item?.iconlite][4] : svgicons[item?.icon][4]}
+                                        />
                                     </picture>
-                                    <aside className={(hoveredIndex === itemIndex) ? 'w-[12.5rem]  pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base text-white' : 'w-[12.5rem]  pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base text-black'}>
-                                        <h1>
-                                            {item.title}
-                                        </h1>
+                                    <aside className={`w-[12.5rem] pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base ${hoveredIndex === itemIndex ? 'text-white' : 'text-black'}`}>
+                                        <h1>{item.title}</h1>
                                     </aside>
-                                    <picture className='flex justify-start '>
-                                        {(hoveredIndex === itemIndex) ?
-                                            <Svg
-                                                width={svgicons.arrowIconLite[0]}
-                                                height={svgicons.arrowIconLite[1]}
-                                                viewBox={svgicons.arrowIconLite[2]}
-                                                icon={svgicons.arrowIconLite[3]}
-                                                color={svgicons.arrowIconLite[4]}
-                                            />
-                                            :
-                                            <Svg
-                                                width={svgicons.arrowIcon[0]}
-                                                height={svgicons.arrowIcon[1]}
-                                                viewBox={svgicons.arrowIcon[2]}
-                                                icon={svgicons.arrowIcon[3]}
-                                                color={svgicons.arrowIcon[4]}
-                                            />
-                                        }
+                                    <picture className='flex justify-start'>
+                                        <Svg
+                                            width={hoveredIndex === itemIndex ? svgicons.arrowIconLite[0] : svgicons.arrowIcon[0]}
+                                            height={hoveredIndex === itemIndex ? svgicons.arrowIconLite[1] : svgicons.arrowIcon[1]}
+                                            viewBox={hoveredIndex === itemIndex ? svgicons.arrowIconLite[2] : svgicons.arrowIcon[2]}
+                                            icon={hoveredIndex === itemIndex ? svgicons.arrowIconLite[3] : svgicons.arrowIcon[3]}
+                                            color={hoveredIndex === itemIndex ? svgicons.arrowIconLite[4] : svgicons.arrowIcon[4]}
+                                        />
                                     </picture>
                                 </div>
-                            </div>)
-                        })}
+                            </div>
+                        ))}
                     </div>
                 </article>
                 <article className='max-h-[64.69vw] 2xl:h-[62vw] 3xl:h-[49.69vw]  2xl:w-full overflow-hidden py-1 pl-1'>
