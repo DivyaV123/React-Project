@@ -1,10 +1,13 @@
+'use client'
 import Button from '@/components/commonComponents/button/Button'
 import CourseCard from '@/components/commonComponents/courseCard/courseCard'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './branchesCourseCard.scss'
+import CourseCardSkeleton from '@/components/commonComponents/courseCard/CourseCardSkeleton'
 
 function BranchesCourse() {
+    const [isloading, setisLoading] = useState(true)
     const courseCard = [
         {
             name: 'Cloud Solution  Architect - Azure',
@@ -67,6 +70,13 @@ function BranchesCourse() {
             deytail: 'Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.',
         },
     ]
+
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false)
+        }, 2000);
+    }, [])
+
     return (
         <>
             <MaxWebWidth>
@@ -80,7 +90,7 @@ function BranchesCourse() {
                 {courseCard.map((element) => {
                     return (<div className='courseCard'>
                         <article className='w-[20.469vw] h-[27.578vw]'>
-                            <CourseCard cardData={element} />
+                            {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
                             <div className='viewmore'></div>
                         </article>
                     </div>)

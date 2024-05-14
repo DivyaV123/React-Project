@@ -2,6 +2,7 @@ import React from "react";
 import { AllBranches } from "@/lib/jsonutil";
 import CommonBranch from "../offlineBranches/offlineCentres/CommonBranch";
 import './AllBranchCard.scss';
+import { Skeleton } from "@/components/ui/skeleton"
 const AllBranchCards = () => {
   return (
     <>

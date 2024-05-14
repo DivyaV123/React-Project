@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import TrainingMode from "./trainingMode/trainingMode";
 import Slide from "react-reveal/Slide";
@@ -7,9 +7,11 @@ import Button from "../commonComponents/button/Button";
 import OnlineLiveClasses from "./OnlineLiveClasses";
 import { useRouter } from "next/navigation";
 import { GlobalContext } from "../Context/GlobalContext";
-import { OFFLINE_BRANCHES,UPCOMING_BATCHES,COMBINED_BRANCHES } from "@/lib/RouteConstants";
+import { OFFLINE_BRANCHES, UPCOMING_BATCHES, COMBINED_BRANCHES } from "@/lib/RouteConstants";
+import { Skeleton } from "@/components/ui/skeleton"
 function OurBranchesHome({ page }) {
   const router = useRouter();
+  const [isloading, setisLoading] = useState(true)
   const { setSelectedBranch } = useContext(GlobalContext);
   const branchCards = [
     { path: "./images/Bengalore.png", city: "Bengalore" },
@@ -48,6 +50,11 @@ function OurBranchesHome({ page }) {
       router.push(`${COMBINED_BRANCHES}`);
     }
   };
+  useEffect(() => {
+    setTimeout(() => {
+      setisLoading(false)
+    }, 500);
+  }, [])
   return (
     <>
       <MaxWebWidth sectionStyling="pb-8">
@@ -93,11 +100,10 @@ function OurBranchesHome({ page }) {
           </header>
 
           <article
-            className={`${
-              page === "course"
-                ? "flex flex-wrap  gap-4 w-[51.56vw]"
-                : "flex flex-wrap  gap-4 justify-center"
-            }`}
+            className={`${page === "course"
+              ? "flex flex-wrap  gap-4 w-[51.56vw]"
+              : "flex flex-wrap  gap-4 justify-center"
+              }`}
           >
             {btnState === "OfflineClasses" ? (
               branchCards.map((elements) => {
@@ -114,15 +120,19 @@ function OurBranchesHome({ page }) {
                           : "w-[30.33%] h-[5.81vw]")
                       }
                     >
-                      <figure
-                        onClick={(e) => handleImageRoute(e, elements.city)}
-                      >
-                        <img
-                          src={elements.path}
-                          className="h-full"
-                          alt="imgcard"
-                        />
-                      </figure>
+                      {isloading ?
+                        <Skeleton className="h-[7.813vw] w-[20.469vw]" />
+                        :
+                        <figure
+                          onClick={(e) => handleImageRoute(e, elements.city)}
+                        >
+                          <img
+                            src={elements.path}
+                            className="h-full"
+                            alt="imgcard"
+                          />
+                        </figure>
+                      }
                     </div>
                   </>
                 );

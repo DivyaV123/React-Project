@@ -1,11 +1,14 @@
+'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import PlaceMentStatistics from '@/components/placementstatistics/placeMentStatistics'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Badge } from "@/components/ui/badge"
 import HiringPartners from '@/components/hiringPartners/hiringPartners'
 import CoursePageContainer from './CoursePageContainer'
+import { Skeleton } from "@/components/ui/skeleton"
 
 function PlacementStaticsHome({ path }) {
+    const [isloading, setisLoading] = useState(true)
     const svgPath = [
         { src: "../compLogo01.svg" },
         { src: "../compLogo02.svg" },
@@ -54,17 +57,24 @@ function PlacementStaticsHome({ path }) {
             icon: './placementIcon04.svg'
         },
     ]
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false)
+        }, 500);
+    }, [])
     return (
         <CoursePageContainer className='bg-Pinkgradient'>
             <article className='w-[51.56vw]'>
                 <h1 className='font-bold text-[2rem] text-black flex justicy-start  mb-8 mt-8 h-12'>
                     Our Placement Statistics
                 </h1>
+
                 <PlaceMentStatistics
                     statistics={statistics}
                     className='flex flex-wrap'
                     path='course'
                 />
+
                 <aside className='p-7'>
                     <h1 className='font-bold text-xl pb-5'>
                         From Various Degree

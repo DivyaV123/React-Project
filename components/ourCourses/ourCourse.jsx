@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './ourCourses.scss'
 import CourseCard from '../commonComponents/courseCard/courseCard'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
@@ -11,11 +11,14 @@ import Svg from '../commonComponents/Svg/Svg'
 import { svgicons } from '../assets/icons/svgassets'
 import Link from 'next/link'
 import Input from '../commonComponents/input/Input'
+import { Skeleton } from "@/components/ui/skeleton"
+import CourseCardSkeleton from '../commonComponents/courseCard/CourseCardSkeleton'
 
 
 function OurCourse({ page }) {
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
+    const [isloading, setisLoading] = useState(true)
     const typesOfClasses = [
         {
             title: "Offline Classes",
@@ -205,6 +208,12 @@ function OurCourse({ page }) {
         { number: "15,000+", text: "IT Students placed" },
     ];
 
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false)
+        }, 500);
+    }, [])
+
     return (
         <MaxWebWidth>
             {page !== "explore" &&
@@ -252,51 +261,64 @@ function OurCourse({ page }) {
             <aside className='flex'>
                 <article className='justify-start' >
                     <div>
-                        {courses.map((item, itemIndex) => (
-                            <div
-                                key={itemIndex} // Don't forget to add a unique key
-                                onMouseEnter={() => setHoveredIndex(itemIndex)}
-                                onMouseLeave={() => setHoveredIndex(null)}
-                                className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'hovered' : ''}`}
-                            >
-                                <div className='flex justify-between items-center'>
-                                    <picture className='flex justify-start'>
-                                        <Svg
-                                            width={hoveredIndex === itemIndex ? svgicons[item?.iconlite][0] : svgicons[item?.icon][0]}
-                                            height={hoveredIndex === itemIndex ? svgicons[item?.iconlite][1] : svgicons[item?.icon][1]}
-                                            viewBox={hoveredIndex === itemIndex ? svgicons[item?.iconlite][2] : svgicons[item?.icon][2]}
-                                            icon={hoveredIndex === itemIndex ? svgicons[item?.iconlite][3] : svgicons[item?.icon][3]}
-                                            color={hoveredIndex === itemIndex ? svgicons[item?.iconlite][4] : svgicons[item?.icon][4]}
-                                        />
-                                    </picture>
-                                    <aside className={`w-[12.5rem] pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base ${hoveredIndex === itemIndex ? 'text-white' : 'text-black'}`}>
-                                        <h1>{item.title}</h1>
-                                    </aside>
-                                    <picture className='flex justify-start'>
-                                        <Svg
-                                            width={hoveredIndex === itemIndex ? svgicons.arrowIconLite[0] : svgicons.arrowIcon[0]}
-                                            height={hoveredIndex === itemIndex ? svgicons.arrowIconLite[1] : svgicons.arrowIcon[1]}
-                                            viewBox={hoveredIndex === itemIndex ? svgicons.arrowIconLite[2] : svgicons.arrowIcon[2]}
-                                            icon={hoveredIndex === itemIndex ? svgicons.arrowIconLite[3] : svgicons.arrowIcon[3]}
-                                            color={hoveredIndex === itemIndex ? svgicons.arrowIconLite[4] : svgicons.arrowIcon[4]}
-                                        />
-                                    </picture>
-                                </div>
-                            </div>
-                        ))}
+                        {courses.map((item, itemIndex) => {
+                            return (
+                                isloading ?
+                                    <div className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'hovered' : ''}`}>
+                                        <div className="flex items-center space-x-4">
+                                            <Skeleton className="h-7 w-7 rounded-full" />
+                                            <div className="space-y-1">
+                                                <Skeleton className="h-3 w-[12.5rem]" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    :
+                                    <div
+                                        key={itemIndex} // Don't forget to add a unique key
+                                        onMouseEnter={() => setHoveredIndex(itemIndex)}
+                                        onMouseLeave={() => setHoveredIndex(null)}
+                                        className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'hovered' : ''}`}
+                                    >
+                                        <div className='flex justify-between items-center'>
+                                            <picture className='flex justify-start'>
+                                                <Svg
+                                                    width={hoveredIndex === itemIndex ? svgicons[item?.iconlite][0] : svgicons[item?.icon][0]}
+                                                    height={hoveredIndex === itemIndex ? svgicons[item?.iconlite][1] : svgicons[item?.icon][1]}
+                                                    viewBox={hoveredIndex === itemIndex ? svgicons[item?.iconlite][2] : svgicons[item?.icon][2]}
+                                                    icon={hoveredIndex === itemIndex ? svgicons[item?.iconlite][3] : svgicons[item?.icon][3]}
+                                                    color={hoveredIndex === itemIndex ? svgicons[item?.iconlite][4] : svgicons[item?.icon][4]}
+                                                />
+                                            </picture>
+                                            <aside className={`w-[12.5rem] pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base ${hoveredIndex === itemIndex ? 'text-white' : 'text-black'}`}>
+                                                <h1>{item.title}</h1>
+                                            </aside>
+                                            <picture className='flex justify-start'>
+                                                <Svg
+                                                    width={hoveredIndex === itemIndex ? svgicons.arrowIconLite[0] : svgicons.arrowIcon[0]}
+                                                    height={hoveredIndex === itemIndex ? svgicons.arrowIconLite[1] : svgicons.arrowIcon[1]}
+                                                    viewBox={hoveredIndex === itemIndex ? svgicons.arrowIconLite[2] : svgicons.arrowIcon[2]}
+                                                    icon={hoveredIndex === itemIndex ? svgicons.arrowIconLite[3] : svgicons.arrowIcon[3]}
+                                                    color={hoveredIndex === itemIndex ? svgicons.arrowIconLite[4] : svgicons.arrowIcon[4]}
+                                                />
+                                            </picture>
+                                        </div>
+                                    </div>
+                            )
+                        })}
                     </div>
                 </article>
                 <article className='max-h-[64.69vw] 2xl:h-[62vw] 3xl:h-[49.69vw]  2xl:w-full overflow-hidden py-1 pl-1'>
                     <div className='flex flex-wrap justify-end gap-3 w-full h-full overflow-y-scroll courseScroll'>
                         {courseCard.map((element) => {
                             return (<div className='courseCard'>
-                                <CourseCard cardData={element} />
+                                {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
                             </div>)
                         })}
                     </div>
                 </article>
-            </aside>
-            {page !== "explore" &&
+            </aside >
+            {
+                page !== "explore" &&
                 <Link
                     href='./exploreCourses'
                 >
