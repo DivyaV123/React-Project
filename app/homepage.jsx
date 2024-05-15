@@ -10,6 +10,7 @@ import FaqHome from '../components/faq/faqHome'
 import WebLayout from '../components/commonComponents/webLayout/WebLayout'
 import HiringPartners from '../components/hiringPartners/hiringPartners'
 
+
 function Homepage() {
 
     return (

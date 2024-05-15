@@ -1,6 +1,6 @@
 'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import TestimonialsCard from './TestimonialsCard'
 import Button from '@/components/commonComponents/button/Button'
 import {
@@ -11,8 +11,15 @@ import {
     CarouselPrevious,
 } from "@/components/ui/carousel"
 import CoursePageContainer from './CoursePageContainer'
+import TestimonialsSkeletonCard from './TestimonialsSkeletonCard'
 
 function StudentsTestimonialsHome({ page }) {
+    const [isloading, setisLoading] = useState(true)
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false)
+        }, 500);
+    }, [])
     return (
         <CoursePageContainer className={page === 'branch' ? '!w-full !p-0' : 'bg-[#F9F9F9]'}>
             <article className=''>
@@ -28,10 +35,10 @@ function StudentsTestimonialsHome({ page }) {
                             {Array.from({ length: 4 }, (value, index) => (
                                 <CarouselItem className={page === 'branch' ? 'basis-[33%]' : "basis-[57%]"} >
                                     <article className='flex gap-4 pb-3'>
-                                        < TestimonialsCard />
+                                        {isloading ? <TestimonialsSkeletonCard /> : < TestimonialsCard />}
                                     </article>
                                     <article className='flex gap-4'>
-                                        < TestimonialsCard />
+                                        {isloading ? <TestimonialsSkeletonCard /> : < TestimonialsCard />}
                                     </article>
                                 </CarouselItem>
                             ))}

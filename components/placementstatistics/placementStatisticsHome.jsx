@@ -7,8 +7,10 @@ import { Fade } from 'react-reveal';
 import { Skeleton } from "@/components/ui/skeleton"
 import Counter from '../commonComponents/counterAnimation/Counter';
 import PlaceMentStatistics from './placeMentStatistics';
+import { useEffect, useState } from 'react';
 
 function PlacementStatisticsHome({ page }) {
+    const [isloading, setisLoading] = useState(true)
     const degrees = [
         'BE/BTech', 'BCA/Bsc', 'B.Com', 'MCA', 'ME/M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
@@ -38,6 +40,12 @@ function PlacementStatisticsHome({ page }) {
         },
     ]
 
+    useEffect(() => {
+        setTimeout(() => {
+            setisLoading(false)
+        }, 500);
+    }, [])
+
     return (
         <MaxWebWidth sectionStyling=" flex align-ceneter mt-8" >
             <header>
@@ -54,7 +62,10 @@ function PlacementStatisticsHome({ page }) {
                             <img className='w-[75%]' src={page === "branch" ? '../graduationCapIcon.svg' : './graduationCapIcon.svg'}></img>
                         </figure>
                     </Fade>
-                    <PlaceMentStatistics path='branch' statistics={statistics} />
+
+                
+                        <PlaceMentStatistics path='branch' statistics={statistics} />
+                    
                 </aside>
                 <asides className='relative p-2'>
                     <Fade right duration={1000} delay={0}>
