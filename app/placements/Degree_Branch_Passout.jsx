@@ -1,10 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Degree_Branch_passout.scss";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Skranji } from "next/font/google";
 const Degree_Branch_Passout = () => {
   const [degreeButton, setDegreeButton] = useState("BE/Btech");
   const [branchButton, setBranchButton] = useState("CSE");
   const [passOutButton, setPassOutButton] = useState("2023");
+  const [isloading, setisLoading] = useState(true)
   const degreeCourses = [
     { title: "BE/Btech" },
     {
@@ -66,58 +69,82 @@ const Degree_Branch_Passout = () => {
       title: "more",
     },
   ];
+  useEffect(() => {
+    setTimeout(() => {
+      setisLoading(false)
+    }, 2000);
+  }, [])
   return (
     <section className="mt-2  flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2">
-      <div className="w-[44.219vw]">
-        <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">Degree</p>
-        <div className="bg-white h-[2.65vw] flex w-full buttonSection">
-          {degreeCourses.map((classItem, index) => (
-            <button
-              key={index}
-              className={`flex justify-center items-center w-[7.5vw] py-2 font-medium text-[0.63rem] text-dark-gray ${
-                classItem.title === degreeButton ? "activeButton" : ""
-              }`}
-              onClick={()=>{setDegreeButton(classItem.title)}}
-            >
-              {classItem.title}
-            </button>
-          ))}
+      {isloading ?
+        <div className="w-[44.219vw]">
+          <div className=" rounded-md mt-5">
+            <Skeleton className='h-[2.65vw] w-full' />
+          </div>
         </div>
-      </div>
-      <div className="w-[29.453vw]">
-        <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">Branch</p>
-        <div className="bg-white h-[2.65vw] flex w-full buttonSection">
-          {Branch.map((classItem, index) => (
-            <button
-              key={index}
-              className={`flex justify-center items-center w-[4.219vw] py-2 font-medium text-[0.63rem] text-dark-gray ${
-                classItem.title === branchButton ? "activeButton" : ""
-              }`}
-              onClick={()=>{setBranchButton(classItem.title)}}
-            >
-              {classItem.title}
-            </button>
-          ))}
+        :
+        <div className="w-[44.219vw]">
+          <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">Degree</p>
+          <div className="bg-white h-[2.65vw] flex w-full buttonSection">
+            {degreeCourses.map((classItem, index) => (
+              <button
+                key={index}
+                className={`flex justify-center items-center w-[7.5vw] py-2 font-medium text-[0.63rem] text-dark-gray ${classItem.title === degreeButton ? "activeButton" : ""
+                  }`}
+                onClick={() => { setDegreeButton(classItem.title) }}
+              >
+                {classItem.title}
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="w-[20.313vw]">
-        <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-          Year of passout
-        </p>
-        <div className="bg-white h-[2.65vw] flex w-full buttonSection">
-          {Passout.map((classItem, index) => (
-            <button
-              key={index}
-              className={`flex justify-center items-center w-[4.219vw] py-2 font-medium text-[0.63rem] text-dark-gray ${
-                classItem.title === passOutButton ? "activeButton" : ""
-              }`}
-              onClick={()=>{setPassOutButton(classItem.title)}}
-            >
-              {classItem.title}
-            </button>
-          ))}
+      }
+      {isloading ?
+        <div className="w-[29.453vw] mt-5">
+          <Skeleton className='h-[2.65vw]' />
         </div>
-      </div>
+        :
+        <div className="w-[29.453vw]">
+          <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">Branch</p>
+          <div className="bg-white h-[2.65vw] flex w-full buttonSection">
+            {Branch.map((classItem, index) => (
+              <button
+                key={index}
+                className={`flex justify-center items-center w-[4.219vw] py-2 font-medium text-[0.63rem] text-dark-gray ${classItem.title === branchButton ? "activeButton" : ""
+                  }`}
+                onClick={() => { setBranchButton(classItem.title) }}
+              >
+                {classItem.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      }
+
+      {isloading ?
+        <div className="w-[20.313vw] mt-5">
+          <Skeleton className='h-[2.65vw]' />
+        </div>
+        :
+        <div className="w-[20.313vw]">
+          <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+            Year of passout
+          </p>
+          <div className="bg-white h-[2.65vw] flex w-full buttonSection">
+            {Passout.map((classItem, index) => (
+              <button
+                key={index}
+                className={`flex justify-center items-center w-[4.219vw] py-2 font-medium text-[0.63rem] text-dark-gray ${classItem.title === passOutButton ? "activeButton" : ""
+                  }`}
+                onClick={() => { setPassOutButton(classItem.title) }}
+              >
+                {classItem.title}
+              </button>
+            ))}
+          </div>
+        </div>
+      }
+
     </section>
   );
 };
