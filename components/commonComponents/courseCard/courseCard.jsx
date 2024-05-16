@@ -34,7 +34,7 @@ function CourseCard({ cardData }) {
                             <Button className="courseCardBtn text-[0.875rem] xl:p-2 xl:w-full 2xl:p-4 2xl:w-full 3xl:text-sm  font-semibold text-white bg-gradient rounded-md" title='Enroll now' size='lg' />
                         </aside>
                         <aside>
-                            <Button className="courseCardBtn buttonTextColour xl:p-2 xl:w-full 2xl:p-4 2xl:w-full  text-[0.875rem] 3xl:font-sm  font-semiboldF border border-orange-500 rounded-md" title='Request call' />
+                            <Button className="courseCardBtn buttonTextColour xl:p-2 xl:w-full  2xl:w-full  text-[0.875rem] 3xl:font-sm  font-semiboldF border border-orange-500 rounded-md" title='Request call' />
                         </aside>
                     </div>
                 </aside>

@@ -289,7 +289,7 @@ function OurCourse({ page }) {
                                                     color={hoveredIndex === itemIndex ? svgicons[item?.iconlite][4] : svgicons[item?.icon][4]}
                                                 />
                                             </picture>
-                                            <aside className={`w-[12.5rem] pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base ${hoveredIndex === itemIndex ? 'text-white' : 'text-black'}`}>
+                                            <aside className={`w-[12.5rem] pl-[1rem] text-[0.875rem] text-dark-gray 2xl:text-base tracking-tighter ${hoveredIndex === itemIndex ? 'text-white' : 'text-black'}`}>
                                                 <h1>{item.title}</h1>
                                             </aside>
                                             <picture className='flex justify-start'>
