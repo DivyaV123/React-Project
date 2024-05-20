@@ -41,6 +41,18 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize }) => {
       date: "02 Jan - 30 Mar",
       time: "10am - 12pm",
     },
+    {
+      course: "Advanced React",
+      trainer: "shashi kunal",
+      date: "02 Jan - 30 Mar",
+      time: "10am - 12pm",
+    },
+    {
+      course: "Advanced React",
+      trainer: "shashi kunal",
+      date: "02 Jan - 30 Mar",
+      time: "10am - 12pm",
+    },
   ];
   const enrollEnquire = "py-2.5 px-2.5 w-[8.359375vw] text-[0.875rem] font-semibold"
   const dateAndTime = "flex text-[0.75rem] font-medium text-dark-gray gap-1.5 items-center"
@@ -56,10 +68,16 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize }) => {
 
           isloading ?
             <>
-              <div className={page === 'branch' ? { cardSize } : "w-[20.46vw] upcomingBatches p-3"}>
-                <Skeleton className='h-4 w-[25%] mb-3' />
+              <div className={page === 'branch' ? { cardSize } : "h-[13.672vw] w-[20.469vw]  upcomingBatches p-3"}>
+                <Skeleton className='h-4 w-[70%] mb-3' />
+                <Skeleton className='h-3 w-[30%] mb-5' />
                 <Skeleton className='w-[20%]' />
-                <div className="flex gap-2 mt-5">
+                <Skeleton className='w-[20%]' />
+                <div className="flex gap-2 mt-7">
+                  <Skeleton className="h-4 w-[250px]" />
+                  <Skeleton className="h-4 w-[200px]" />
+                </div>
+                <div className="flex gap-2 mt-8">
                   <Skeleton className="h-8 w-[250px]" />
                   <Skeleton className="h-8 w-[200px]" />
                 </div>

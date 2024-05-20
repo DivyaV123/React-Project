@@ -36,22 +36,42 @@ function BranchesLandingPage() {
                 <figure className='h-[25vw] w-[49.219vw] rounded-2xl'>
                     <img className='w-full  p-2 ' src={selectedImg} />
                 </figure>
-                <article className='p-2'>
+                <article className='flex gap-2'>
+                    <div>
+                        <Svg
+                            className='p-1 h-full w-[3vw] mt-1'
+                            width={svgicons.corasalArrowLeft[0]}
+                            height={svgicons.corasalArrowLeft[1]}
+                            viewBox={svgicons.corasalArrowLeft[2]}
+                            icon={svgicons.corasalArrowLeft[3]}
+                            color={svgicons.corasalArrowLeft[4]}
+                        />
+                    </div>
                     <Carousel>
                         <CarouselContent>
                             <CarouselItem >
                                 <div className='flex w-full justify-center'>
                                     {corosalImgs.map((image) => (
-                                        <figure className={selectedImg === image ? 'p-3 h-[4.063vw] w-[7.813vw] rounded border-orange-500' : 'p-3 h-[4.063vw] w-[7.813vw] rounded'} onClick={() => { setSelectedImg(image) }}>
-                                            <img src={image} alt='image' />
+                                        <figure className='p-2 mt-3' onClick={() => { setSelectedImg(image) }}>
+                                            <img className={selectedImg === image ? 'border-2 rounded-md border-orange-500  h-[4.063vw] w-[7.813vw] rounded' : ' h-[4.063vw] w-[7.813vw] rounded'} src={image} alt='image' />
                                         </figure>
                                     ))}
                                 </div>
                             </CarouselItem>
                         </CarouselContent>
-                        <CarouselPrevious />
-                        <CarouselNext />
+                        {/* <CarouselPrevious />
+                        <CarouselNext /> */}
                     </Carousel>
+                    <div>
+                        <Svg
+                            className='p-1 h-full w-[3vw] mt-1'
+                            width={svgicons.corasalArrowRight[0]}
+                            height={svgicons.corasalArrowRight[1]}
+                            viewBox={svgicons.corasalArrowRight[2]}
+                            icon={svgicons.corasalArrowRight[3]}
+                            color={svgicons.corasalArrowRight[4]}
+                        />
+                    </div>
                 </article>
             </section>
             <section className='basis-[40%] pt-10 pb-10'>
