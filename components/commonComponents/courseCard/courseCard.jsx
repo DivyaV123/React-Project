@@ -8,7 +8,7 @@ import { svgicons } from '@/components/assets/icons/svgassets'
 function CourseCard({ cardData }) {
     return (
         <>
-            <section className='cardStyle justify-center p-4 grid justify-items-stretch'>
+            <section className='cardStyle justify-center p-4 grid justify-items-stretch mt-[1px] mb-[1px]'>
                 <picture className='flex justify-self-center p-1 w-full '>
                     <img className='p-1 w-full' src={cardData.image} alt='image'></img>
                 </picture>

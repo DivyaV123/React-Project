@@ -33,13 +33,13 @@ function ContactUsHome() {
                 <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover h-[29.7vw]">
                     <header className='flex justify-center pt-[8%]'>
                         <div className=''>
-                            <h1 className='flex justify-center'>
-                                <span className='text-[3rem] font-extrabold text-white tracking-tight justify-around'>We are eager to </span>{'  '}<span className='tracking-tight gradient-text text-[3rem] font-extrabold'> hear from you!</span>
+                            <h1 className='flex justify-center gap-2 mb-1'>
+                                <span className='text-[3rem] font-extrabold text-white tracking-tight justify-around'>We are eager to </span><span className='tracking-tight gradient-text text-[3rem] font-extrabold'>hear from you!</span>
                             </h1>
-                            <span className='text-white text-[2rem] font-medium flex justify-center tracking-widest justify-center'>Feel free to get in touch with team if you have any questions</span>
+                            <span className='text-white text-[2rem] font-medium flex justify-center  justify-center'>Feel free to get in touch with team if you have any questions</span>
                         </div>
                     </header>
-                    <article className='absulate top-[75%] left-[20%] bg-white rounded border border-gray-300 absolute w-[63%]' >
+                    <article className='absulate top-[75%] left-[16%] bg-white rounded border border-gray-300 absolute w-[67.5vw]' >
                         <section className='flex rounded-xl gap-10 justify-between'>
                             <aside className='basis-[70%]' >
                                 <header className='p-4'>
@@ -75,13 +75,13 @@ function ContactUsHome() {
                                         <div className='mb-5'>
                                             <span className='text-[0.75rem] font-normal'>Your Message</span>
                                             <TextArea
-                                                textAreaStyle='max-h-[8.516vw]'
+                                                textAreaStyle='max-h-[8.516vw] resize-none'
                                                 iconStyle='!top-[27%]'
                                                 iconPath='/emailFieldicon.svg'
                                                 placeholder='Type here...'
                                             />
                                         </div>
-                                        <div className='flex justify-center p-2'>
+                                        <div className='flex justify-center p-2 mb-[12%]'>
                                             <Button
                                                 className='bg-gradient text-white rounded text-[1rem] w-[8.281vw] h-[3.75vw]'
                                                 title='Submit'
@@ -90,7 +90,7 @@ function ContactUsHome() {
                                     </form>
                                 </article>
                             </aside>
-                            <aside className='bg-gradient p-2 h-auto w-[29%] rounded-r'>
+                            <aside className='bg-gradient p-2 h-auto w-[25.859vw] rounded-r'>
                                 <header>
                                     <h1 className='text-[1.5rem] text-white font-semibold mb-3'>
                                         Contact Info

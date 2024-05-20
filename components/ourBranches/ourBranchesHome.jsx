@@ -9,26 +9,27 @@ import { useRouter } from "next/navigation";
 import { GlobalContext } from "../Context/GlobalContext";
 import { OFFLINE_BRANCHES, UPCOMING_BATCHES, COMBINED_BRANCHES } from "@/lib/RouteConstants";
 import { Skeleton } from "@/components/ui/skeleton"
+import './ourBranchesHome.scss'
 function OurBranchesHome({ page }) {
   const router = useRouter();
   const [isloading, setisLoading] = useState(true)
   const { setSelectedBranch } = useContext(GlobalContext);
   const branchCards = [
-    { path: "./images/Bengalore.png", city: "Bengalore" },
-    { path: "./images/HydrabadCard.png", city: "Hyderabad" },
-    { path: "./images/ChennaiCard.png", city: "Chennai" },
-    { path: "./images/puneCard.png", city: "Pune" },
-    { path: "./images/MumbaiCard.png", city: "Mumbai" },
-    { path: "./images/NoidaCard.png", city: "Noida" },
-    { path: "./images/gurugramCard.png", city: "Gurugram" },
-    { path: "./images/NewDelhiCard.png", city: "NewDelhi" },
-    { path: "./images/BuvaneshwarCard.png", city: "Bhuvaneshwar" },
-    { path: "./images/KolkataCard.png", city: "Kolkata" },
-    { path: "./images/AmehabadCard.png", city: "Ahmedaabad" },
-    { path: "./images/ChandigarhCard.png", city: "Chandigarh" },
-    { path: "./images/TirupatiCard.png", city: "Tirupati" },
-    { path: "./images/KochiCard.png", city: "Kochi" },
-    { path: "./images/MysoreCard.png", city: "Mysore" },
+    { path: "./images/bengaloreBg-Image.png", city: "Bengalore", branchCount: 12 },
+    { path: "./images/hydrabadBg-Image.png", city: "Hyderabad", branchCount: 12 },
+    { path: "./images/chennaiBg-Images.png", city: "Chennai", branchCount: 12 },
+    { path: "./images/puneBg-Image.png", city: "Pune", branchCount: 12 },
+    { path: "./images/mumbaiBg-Image.png", city: "Mumbai", branchCount: 12 },
+    { path: "./images/noidaBg-Image.png", city: "Noida", branchCount: 12 },
+    { path: "./images/gurugramBg-Image.png", city: "Gurugram", branchCount: 12 },
+    { path: "./images/newDelhiBg-Image.png", city: "NewDelhi", branchCount: 12 },
+    { path: "./images/BhubaneshwariBg-Image.png", city: "Bhuvaneshwar", branchCount: 12 },
+    { path: "./images/KolkataBg-Image.png", city: "Kolkata", branchCount: 12 },
+    { path: "./images/ahmedabadBg-Image.png", city: "Ahmedaabad", branchCount: 12 },
+    { path: "./images/chandhigarBg-image.png", city: "Chandigarh", branchCount: 12 },
+    { path: "./images/tirupatiBg-Image.png", city: "Tirupati", branchCount: 12 },
+    { path: "./images/kochiBg-Image.png", city: "Kochi", branchCount: 12 },
+    { path: "./images/mysoreBg-Image.png", city: "Mysore", branchCount: 12 },
     { path: "./images/AllCitiesCard.png", city: "AllCities" },
   ];
 
@@ -117,21 +118,46 @@ function OurBranchesHome({ page }) {
                         "hover:-translate-y-1 delay-300 duration-300 " +
                         (page !== "course"
                           ? "cursor-pointer"
-                          : "w-[30.33%] h-[5.81vw]")
+                          : "w-[31.33%] ")
                       }
                     >
                       {isloading ?
                         <Skeleton className="h-[7.813vw] w-[20.469vw]" />
                         :
-                        <figure
-                          onClick={(e) => handleImageRoute(e, elements.city)}
-                        >
-                          <img
-                            src={elements.path}
-                            className="h-full"
-                            alt="imgcard"
-                          />
-                        </figure>
+                        page === "course" ?
+                          <div className={`${elements.city !== "AllCities" ? " imgstyling" : ""} w-full h-[7.813vw] w-[20.469vw] rounded-lg flex flex-col justify-center items-center`}
+                            style={{
+                              backgroundImage: `url(${elements.path})`,
+                            }}
+                          >
+                            {elements.city !== "AllCities" &&
+                              <p>
+                                <h1 className="font-bold text-white text-[1.5rem] flex flex-col justify-center items-center">
+                                  {elements.city}
+                                </h1>
+                                <h1 className='text-white text-[1rem] flex flex-col justify-center items-center'>
+                                  {elements.branchCount}{" "}Branches
+                                </h1>
+                              </p>
+                            }
+                          </div>
+                          :
+                          <div className={`${elements.city !== "AllCities" ? " imgstyling" : ""} w-full h-[7.813vw] !w-[20.469vw] rounded-lg flex flex-col justify-center items-center`}
+                            style={{
+                              backgroundImage: `url(${elements.path})`,
+                            }}
+                          >
+                            {elements.city !== "AllCities" &&
+                              <p>
+                                <h1 className="font-bold text-white text-[1.5rem] flex flex-col justify-center items-center">
+                                  {elements.city}
+                                </h1>
+                                <h1 className='text-white text-[1rem] flex flex-col justify-center items-center'>
+                                  {elements.branchCount}{" "}Branches
+                                </h1>
+                              </p>
+                            }
+                          </div>
                       }
                     </div>
                   </>
@@ -148,15 +174,16 @@ function OurBranchesHome({ page }) {
               </>
             )}
           </article>
-        </section>
-      </MaxWebWidth>
+        </section >
+      </MaxWebWidth >
       {page !== "course" && (
         <MaxWebWidth sectionStyling="bg-backgroundBlue h-[50%] bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain min-h-80 bg-cover">
           <section className="flex justify-center mt-8 mb-8">
             <TrainingMode />
           </section>
         </MaxWebWidth>
-      )}
+      )
+      }
     </>
   );
 }

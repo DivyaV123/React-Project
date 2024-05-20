@@ -82,7 +82,7 @@ function PlacementStaticsHome({ path }) {
                     <div className='flex flex-wrap  gap-[1.125rem]'>
                         {degrees.map((element) => {
                             return (
-                                <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
+                                <Badge variant="" className='font-[1000] text-[1.125rem]'>{element}</Badge>
                             )
                         })
                         }
@@ -94,7 +94,7 @@ function PlacementStaticsHome({ path }) {
                         <div className='flex flex-wrap  gap-[1.125rem]'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
+                                    <Badge variant="" className='font-[1000] text-[1.125rem]'>{element}</Badge>
                                 )
                             })
                             }
