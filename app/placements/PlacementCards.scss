@@ -8,12 +8,20 @@
 .degreeCard {
   @extend .placedCard;
   background: #fff0f2;
-  width: 17.813vw;
+  // width: 17.813vw;
+  background-image: url(../../public/red_card.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
 }
 .nonItCard {
   @extend .placedCard;
   background: #f3f6ff;
-  width: 17.422vw;
+  // width: 17.422vw;
+  background-image: url(../../public/blue_card.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
 }
 .branchCard{
   @extend .placedCard;

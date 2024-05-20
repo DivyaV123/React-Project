@@ -80,24 +80,24 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed }) => {
               </button>
             </div>
             <div>
-              <p className="text-left font-medium text-[0.875rem] 2xl:text-base 3xl:text-[1.125rem] headerText">
+              <p className="text-left font-medium text-[0.875rem] 2xl:text-base 3xl:text-[1.125rem] headerText py-2">
                 Explore the dynamic world of software testing with our
                 comprehensive course.
               </p>
             </div>
-            <article className="flex justify-evenly py-1  3xl:py-5">
+            <article className="flex justify-between py-1 2xl:py-2 3xl:py-5">
               {statisticsData.map((ele, index) => (
                 <div key={index} className="py-2 pr-2">
-                  <h1 className="text-left font-bold text-[0.875rem] 2xl:text-[1.125rem] 3xl:text-[1.5rem] headerText">
+                  <h1 className="text-left font-bold text-[0.875rem]  3xl:text-[1.125rem] headerText">
                     {ele.number}
                   </h1>
-                  <p className="text-left font-medium text-[0.625rem] 2xl:text-base 3xl:[1.125rem] headerText ">
+                  <p className="text-left font-medium text-[0.625rem] tracking-tighter 2xl:text-[0.7rem] 3xl:text-[0.9rem] headerText pt-2 2xl:pt-4 3xl:pt-5">
                     {ele.text}
                   </p>
                 </div>
               ))}
             </article>
-            <section className="flex gap-6 py-4 3xl:pb-8 3xl:pt-4 justify-center">
+            <section className="flex gap-6 pb-2 2xl:pb-4 3xl:pb-6 pt-1 2xl:pt-2 3xl:pt-3 justify-center">
               <button className="EnrollButton text-base 2xl:text-base font-semibold py-2.5 px-6 w-[15.15vw]">
                 Enroll now
               </button>

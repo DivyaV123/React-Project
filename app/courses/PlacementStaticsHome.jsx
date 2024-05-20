@@ -65,13 +65,13 @@ function PlacementStaticsHome({ path }) {
     return (
         <CoursePageContainer className='bg-Pinkgradient'>
             <article className='w-[51.56vw]'>
-                <h1 className='font-bold text-[2rem] text-black flex justicy-start  mb-8 mt-8 h-12'>
+                <h1 className='font-bold text-[2rem] text-black flex justicy-start py-4 h-12'>
                     Our Placement Statistics
                 </h1>
 
                 <PlaceMentStatistics
                     statistics={statistics}
-                    className='flex flex-wrap'
+                    className='flex flex-wrap mt-5'
                     path='course'
                 />
 
@@ -79,7 +79,7 @@ function PlacementStaticsHome({ path }) {
                     <h1 className='font-bold text-xl pb-5'>
                         From Various Degree
                     </h1>
-                    <div className='grid grid-cols-3 gap-4'>
+                    <div className='flex flex-wrap  gap-[1.125rem]'>
                         {degrees.map((element) => {
                             return (
                                 <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
@@ -91,7 +91,7 @@ function PlacementStaticsHome({ path }) {
                         <h1 className='font-bold text-xl pb-5'>
                             From Various Branches
                         </h1>
-                        <div className='grid grid-cols-3 gap-4'>
+                        <div className='flex flex-wrap  gap-[1.125rem]'>
                             {branches.map((element) => {
                                 return (
                                     <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
