@@ -31,7 +31,7 @@ function BranchesLandingPage() {
         }
     ]
     return (
-        <MaxWebWidth sectionStyling='bg-pink' articalStyling='flex justify-between'>
+        <MaxWebWidth sectionStyling='bg-coursegradient' articalStyling='flex justify-between'>
             <section className='basis-[50%] pt-10 pb-10'>
                 <figure className='h-[25vw] w-[49.219vw] rounded-2xl'>
                     <img className='w-full  p-2 ' src={selectedImg} />

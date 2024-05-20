@@ -93,8 +93,7 @@
 }
 
 .bg-coursegradient{
-  background: linear-gradient(180deg, rgba(255, 201, 151, 0.1) 0%, rgba(255, 255, 255, 0.76) 78.2%);
-
+  background: linear-gradient(180deg, rgba(255, 201, 151, 0.3) 0%, rgba(255, 255, 255, 0.76) 78.2%);
 }
 
 .myscrollbar::-webkit-scrollbar {

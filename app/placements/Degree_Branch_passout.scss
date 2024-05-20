@@ -8,3 +8,30 @@
   border-radius: 0.188rem;
   font-size: 0.813rem;
 }
+.passout-wrapper {
+  position: relative;
+}
+
+.additional-years-list {
+  list-style: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  width: 5.234vw;
+}
+
+.additional-years-list li {
+  cursor: pointer;
+  padding: 2px 30px 2px 10px;
+  width: 100%;
+}
+
+.additional-years-list li:hover {
+  background: #F098191F;
+
+}
+
+

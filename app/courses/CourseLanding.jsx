@@ -45,12 +45,12 @@ const CourseLanding = ({ page }) => {
 
   return (
     <MaxWebWidth
-      sectionStyling="bg-coursegradient max-w-full overflow-hidden"
+      sectionStyling=" max-w-full overflow-hidden courseBackgroundwave "
       articalStyling="relative"
     >
       <aside className="flex py-8  justify-between">
         <article className="w-[51.56vw] flex flex-col py-4">
-          <div className="bg-white h-[2.65vw] flex w-fit">
+          <div className="bg-white h-[2.65vw] flex w-fit classTypes">
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
