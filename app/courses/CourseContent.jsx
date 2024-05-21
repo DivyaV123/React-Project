@@ -14,7 +14,7 @@ import NestedAccordion from '@/components/ui/NestedAccordion';
 function CourseContent() {
     const courseContentdata = [
         {
-            ManualTesting: [
+            "Manual Testing": [
                 {
                     Softwaredevelopmentlifecycle: [
                         'WaterFallmodel', 'Spiral model', 'Prototype Model', 'Hybrid Model', 'Performance test',
@@ -23,10 +23,10 @@ function CourseContent() {
                 { Softwaredevelopmentlifecycle1: [''] }, { Softwaredevelopmentlifecycle2: [''] }
             ]
         },
-        { ManualTesting: [''] },
-        { ManualTesting: [''] },
-        { ManualTesting: [''] },
-        { ManualTesting: [''] }
+        { "Manual Testing": [''] },
+        { "Manual Testing": [''] },
+        { "Manual Testing": [''] },
+        { "Manual Testing": [''] }
     ];
 
     const [openIndex, setOpenIndex] = useState(-1);
@@ -110,7 +110,7 @@ function CourseContent() {
 
     return (
         <CoursePageContainer className='pt-4'>
-            <header className='text-[1.5rem] font-bold p-5'>
+            <header className='text-[1.5rem] font-bold pt-5 pr-5 pb-5'>
                 Course Content
             </header>
             <article className='m-5'>

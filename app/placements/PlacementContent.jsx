@@ -4,7 +4,7 @@ import "./PlacementSidebar.scss";
 const PlacementContent = () => {
   return (
     <>
-      <section className="w-full contentCard flex pt-1 pl-1.5 pb-2 mb-2">
+      <section className="w-full contentCard flex pt-1 pl-1.5 pb-2 mb-6 mt-[1px]">
         <div className="w-[15.547vw] ">
           <img src="../Rectangle 16961.svg" />
           <div className="imageCard">
@@ -48,8 +48,8 @@ const PlacementContent = () => {
             proin proin. Vestibulum nulla mauris habitant pellentesque eget.
             Nisl egestas posuere orci facilisis non. Viverra in.
           </p>
-          <div className="flex gap-2 items-center pb-4 justify-center">
-            <div className="text-[0.625rem] text-[#201C19]">Reviews :</div>
+          <div className="flex gap-2 items-center pb-4 pl-16">
+            <div className="text-[0.625rem] text-[#201C19] pr-5">Reviews :</div>
             <div className="iconContainer">
               <img src="../google 1.svg" />
             </div>
@@ -69,7 +69,7 @@ const PlacementContent = () => {
           <div className="imageBox"></div>
         </div>
       </section>
-      <section className="w-full contentCard flex pt-1 pl-1.5 pb-2 mb-2">
+      <section className="w-full contentCard flex pt-1 pl-1.5 pb-2 mb-6 mt-[1px]">
         <div className="w-[15.547vw] ">
           <img src="../Rectangle 16961.svg" />
           <div className="imageCard">
@@ -113,8 +113,8 @@ const PlacementContent = () => {
             proin proin. Vestibulum nulla mauris habitant pellentesque eget.
             Nisl egestas posuere orci facilisis non. Viverra in.
           </p>
-          <div className="flex gap-2 items-center pb-4 justify-center">
-            <div className="text-[0.625rem] text-[#201C19]">Reviews :</div>
+          <div className="flex gap-2 items-center pb-4 pl-16">
+            <div className="text-[0.625rem] text-[#201C19] pr-5">Reviews :</div>
             <div className="iconContainer">
               <img src="../google 1.svg" />
             </div>

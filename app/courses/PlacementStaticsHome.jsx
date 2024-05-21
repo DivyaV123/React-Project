@@ -65,7 +65,7 @@ function PlacementStaticsHome({ path }) {
     return (
         <CoursePageContainer className='bg-Pinkgradient'>
             <article className='w-[51.56vw]'>
-                <h1 className='font-bold text-[2rem] text-black flex justicy-start py-4 h-12'>
+                <h1 className='font-bold text-[1.5rem] text-black flex justicy-start py-4 h-12'>
                     Our Placement Statistics
                 </h1>
 
@@ -75,26 +75,26 @@ function PlacementStaticsHome({ path }) {
                     path='course'
                 />
 
-                <aside className='p-7'>
-                    <h1 className='font-bold text-xl pb-5'>
+                <aside className='pr-7 pb-7 pt-7'>
+                    <h1 className='font-bold text-[1.25rem] pb-5'>
                         From Various Degree
                     </h1>
                     <div className='flex flex-wrap  gap-[1.125rem]'>
                         {degrees.map((element) => {
                             return (
-                                <Badge variant="" className='font-[1000] text-[1.125rem]'>{element}</Badge>
+                                <Badge variant="" className='font-bold text-[1.25rem]'>{element}</Badge>
                             )
                         })
                         }
                     </div>
                     <aside className='mt-12'>
-                        <h1 className='font-bold text-xl pb-5'>
+                        <h1 className='font-bold text-[1.25rem] pb-5'>
                             From Various Branches
                         </h1>
                         <div className='flex flex-wrap  gap-[1.125rem]'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-[1000] text-[1.125rem]'>{element}</Badge>
+                                    <Badge variant="" className='font-bold text-[1.25rem]'>{element}</Badge>
                                 )
                             })
                             }
