@@ -10,6 +10,7 @@ import { GlobalContext } from "../Context/GlobalContext";
 import { OFFLINE_BRANCHES, UPCOMING_BATCHES, COMBINED_BRANCHES } from "@/lib/RouteConstants";
 import { Skeleton } from "@/components/ui/skeleton"
 import './ourBranchesHome.scss'
+import Link from "next/link";
 function OurBranchesHome({ page }) {
   const router = useRouter();
   const [isloading, setisLoading] = useState(true)
@@ -125,9 +126,12 @@ function OurBranchesHome({ page }) {
                         <Skeleton className="h-[7.813vw] w-[20.469vw]" />
                         :
                         page === "course" ?
-                          <div className={`${elements.city !== "AllCities" ? " imgstyling" : ""} w-full h-[7.813vw] w-[20.469vw] rounded-lg flex flex-col justify-center items-center`}
+                          <div
+                            onClick={(e) => handleImageRoute(e, elements.city)}
+                            className={`${elements.city !== "AllCities" ? " imgstyling" : ""} w-full h-[7.813vw] w-[20.469vw] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
                             style={{
                               backgroundImage: `url(${elements.path})`,
+                              backgroundRepeat: "no-repeat"
                             }}
                           >
                             {elements.city !== "AllCities" &&
@@ -142,9 +146,12 @@ function OurBranchesHome({ page }) {
                             }
                           </div>
                           :
-                          <div className={`${elements.city !== "AllCities" ? " imgstyling" : ""} w-full h-[7.813vw] !w-[20.469vw] rounded-lg flex flex-col justify-center items-center`}
+                          <div
+                            onClick={(e) => handleImageRoute(e, elements.city)}
+                            className={`${elements.city !== "AllCities" ? " imgstyling" : ""} w-full h-[7.813vw] !w-[20.469vw] rounded-lg flex flex-col justify-center items-center`}
                             style={{
                               backgroundImage: `url(${elements.path})`,
+                              backgroundRepeat: 'no-repeat',
                             }}
                           >
                             {elements.city !== "AllCities" &&

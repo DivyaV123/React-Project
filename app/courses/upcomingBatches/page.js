@@ -39,9 +39,9 @@ function UpComingBranches() {
     setOpenIndex(index === openIndex ? -1 : index);
 
   };
-  useEffect(() => {
-    setIsClient(true)
-  }, [])
+  // useEffect(() => {
+  //   setIsClient(true)
+  // }, [])
 
   return (
     <WebLayout>
