@@ -63,7 +63,7 @@ function OurBranchesHome({ page }) {
           <header>
             {page === "course" ? (
               <article className="flex justify-between w-[51.56vw]">
-                <h1 className="flex justify-start text-[1.5rem] m-2 font-bold py-5">
+                <h1 className="flex justify-start text-[1.5rem] items-center font-bold py-5">
                   Upcoming Batches
                 </h1>
                 <article className="flex bg-white m-2 py-5">

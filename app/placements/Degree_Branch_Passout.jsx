@@ -114,8 +114,10 @@ const Degree_Branch_Passout = () => {
             {degreeCourses.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center w-[7.5vw] py-2 font-medium text-[0.63rem] text-dark-gray ${
-                  classItem.title === degreeButton ? "activeButton" : ""
+                className={`flex justify-center items-center w-[7.5vw] py-2  text-[0.63rem]  ${
+                  classItem.title === degreeButton ? "activeButton font-medium" : ""
+                } ${
+                  classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
                 }`}
                 onClick={() => handleDegreeBar(classItem.title)}
               >
@@ -138,8 +140,10 @@ const Degree_Branch_Passout = () => {
             {Branch.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center w-[4.219vw] py-2 font-medium text-[0.63rem] text-dark-gray ${
-                  classItem.title === branchButton ? "activeButton" : ""
+                className={`flex justify-center items-center w-[4.219vw] py-2  text-[0.63rem]  ${
+                  classItem.title === branchButton ? "activeButton font-medium" : ""
+                } ${
+                  classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
                 }`}
                 onClick={() => handleBranchBar(classItem.title)}
               >
@@ -164,8 +168,10 @@ const Degree_Branch_Passout = () => {
           {Passout.map((classItem, index) => (
             <button
               key={index}
-              className={`flex justify-center items-center w-[4.219vw] py-2 font-medium text-[0.63rem] text-dark-gray ${
-                classItem.title === passOutButton ? "activeButton" : ""
+              className={`flex justify-center items-center w-[4.219vw] py-2  text-[0.63rem]  ${
+                classItem.title === passOutButton ? "activeButton font-medium" : ""
+              } ${
+                classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
               }`}
               onClick={() => handlePassOutBar(classItem.title)}
             >

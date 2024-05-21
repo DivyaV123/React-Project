@@ -51,7 +51,7 @@ const PlacementSideBar = () => {
             <div className="py-8">
               <button
                 key={index}
-                className={` justify-center items-center px-4 py-2 font-medium float-right text-[0.938rem] text-dark-gray  ${classItem.title === sideBarBtn ? "sideBarButton" : ""
+                className={` justify-center items-center px-4 py-2  float-right  ${classItem.title === sideBarBtn ? "sideBarButton font-medium  text-[0.938rem]" : ""
                   }`}
                 onClick={() => { setSideBarBtn(classItem.title) }}
               >

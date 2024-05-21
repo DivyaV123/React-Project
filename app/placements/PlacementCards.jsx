@@ -18,9 +18,9 @@ const PlacementCards = () => {
         </div>
         :
         <div className="placedCard">
-          <div className="flex flex-col justify-between text-white h-full">
-            <p className="font-medium pl-5 pt-5">Total Placed</p>
-            <p className="font-bold text-[2rem] pl-5 pb-5">26,58,720</p>
+          <div className="flex flex-col justify-between h-full">
+            <p className="font-medium pl-5 pt-5 text-[#FAFAFA]">Total Placed</p>
+            <p className="font-bold text-[2rem] pl-5 pb-5 text-[#FAFAFA]">26,58,720</p>
           </div>
         </div>
       }
@@ -37,7 +37,7 @@ const PlacementCards = () => {
         <div className="degreeCard">
           <div className="flex h-full">
             <div className="flex flex-col gap-2 justify-between">
-              <p className="font-medium pl-5 pt-5 text-[0.875rem]">Less than 60% in <br/> Degree</p>
+              <p className="font-medium pl-5 pt-5 text-[0.875rem] text-[#191919]">Less than 60% in <br/> Degree</p>
               <p className="font-bold text-[1.5rem] text-[#F28C21] pl-5 pb-5">26,720</p>
             </div>
             {/* <div>

@@ -7,7 +7,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 
 const ImageScroller = ({ onRightBarFix, isRightBarFixed }) => {
   const statisticsData = [
-    { number: "25,000+", text: "student placed" },
+    { number: "25,000+", text: "Student placed" },
     { number: "180+", text: "Hiring Companies" },
     { number: "10,000+", text: "Non IT Students placed" },
     { number: "15,000+", text: "IT Students placed" },
@@ -91,7 +91,7 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed }) => {
                   <h1 className="text-left font-bold text-[0.875rem]  3xl:text-[1.125rem] headerText">
                     {ele.number}
                   </h1>
-                  <p className="text-left font-medium text-[0.625rem] tracking-tighter 2xl:text-[0.7rem] 3xl:text-[0.9rem] headerText pt-2 2xl:pt-4 3xl:pt-5">
+                  <p className="text-left font-medium text-[0.625rem] tracking-tighter 2xl:text-[0.7rem] 3xl:text-[0.9rem] headerText pt-1 2xl:pt-2 3xl:pt-3">
                     {ele.text}
                   </p>
                 </div>
