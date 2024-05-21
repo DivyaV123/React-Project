@@ -30,7 +30,7 @@ function ContactUsHome() {
     return (
         <WebLayout>
             <div className='h-[70vw]'>
-                <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover h-[29.7vw]">
+                <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover h-[38.906vw]">
                     <header className='flex justify-center pt-[8%]'>
                         <div className=''>
                             <h1 className='flex justify-center gap-2 mb-1'>
@@ -39,7 +39,7 @@ function ContactUsHome() {
                             <span className='text-white text-[2rem] font-medium flex justify-center  justify-center'>Feel free to get in touch with team if you have any questions</span>
                         </div>
                     </header>
-                    <article className='absulate top-[75%] left-[16%] bg-white rounded border border-gray-300 absolute w-[67.5vw]' >
+                    <article className='absulate top-[62%] left-[16%] bg-white rounded border border-gray-300 absolute w-[67.5vw]' >
                         <section className='flex rounded-xl gap-10 justify-between'>
                             <aside className='basis-[70%]' >
                                 <header className='p-4'>
@@ -90,49 +90,49 @@ function ContactUsHome() {
                                     </form>
                                 </article>
                             </aside>
-                            <aside className='bg-gradient p-2 h-auto w-[25.859vw] rounded-r'>
+                            <aside className='bg-gradient p-4 h-auto w-[25.859vw] rounded-r'>
                                 <header>
                                     <h1 className='text-[1.5rem] text-white font-semibold mb-3'>
                                         Contact Info
                                     </h1>
                                     {contactInfo.map((data) => (
-                                        <article className='p-2'>
+                                        <article className='mb-3'>
                                             <h1 className='text-white pb-1 text-[1.25rem] font-bold'>
                                                 {data.country}
                                             </h1>
-                                            <p className='flex text-white text-[0.75rem] pl-1 pb-1'>
+                                            <div className='flex gap-2 '>
                                                 <Svg
-                                                    className='mr-2 basis-[15]'
+                                                    className=''
                                                     width={svgicons.contactUsCallSvg[0]}
                                                     height={svgicons.contactUsCallSvg[1]}
                                                     viewBox={svgicons.contactUsCallSvg[2]}
                                                     icon={svgicons.contactUsCallSvg[3]}
                                                     color={svgicons.contactUsCallSvg[4]}
                                                 />
-                                                {data.call}
-                                            </p>
-                                            <p className='flex text-white text-[0.75rem] pl-1 pb-1'>
+                                                <div className='text-white text-[0.75rem]'>{data.call}</div>
+                                            </div>
+                                            <div className='flex gap-2'>
                                                 <Svg
-                                                    className='mr-2 3xl:basis-[7%] basis-[10%]'
+                                                    className=''
                                                     width={svgicons.contactUsMail[0]}
                                                     height={svgicons.contactUsMail[1]}
                                                     viewBox={svgicons.contactUsMail[2]}
                                                     icon={svgicons.contactUsMail[3]}
                                                     color={svgicons.contactUsMail[4]}
                                                 />
-                                                <span>{data.mail}</span>
-                                            </p>
-                                            <p className='flex pl-1 pb-1'>
+                                                <div className='text-[0.75rem] text-white '>{data.mail}</div>
+                                            </div>
+                                            <div className='flex gap-2'>
                                                 <Svg
-                                                    className='mr-2 3xl:basis-[10%] basis-[24%] '
+                                                    className='basis-[10%]'
                                                     width={svgicons.contactUsAdressSvg[0]}
                                                     height={svgicons.contactUsAdressSvg[1]}
                                                     viewBox={svgicons.contactUsAdressSvg[2]}
                                                     icon={svgicons.contactUsAdressSvg[3]}
                                                     color={svgicons.contactUsAdressSvg[4]}
                                                 />
-                                                <span className='text-white text-[0.75rem] col-5'>{data.address}</span>
-                                            </p>
+                                                <div className='text-white text-[0.75rem]'>{data.address}</div>
+                                            </div>
                                         </article>
                                     ))}
 
