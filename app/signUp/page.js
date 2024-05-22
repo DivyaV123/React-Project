@@ -1,14 +1,11 @@
 import React from 'react'
-import SignupForm from './SignupForm'
-import SignInForm from './SignInForm'
+import SignupLanding from './SignupLanding'
 
 
 function SignUp() {
     return (
-        <section className="flex gap-6 p-5">
-            <SignupForm />
-            <SignInForm />
-        </section>
+
+        <SignupLanding />
 
     )
 }
