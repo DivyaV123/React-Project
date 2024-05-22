@@ -1,16 +1,23 @@
 'use client'
-import React, { createContext,useState } from "react";
-export const GlobalContext = createContext(); 
+import React, { createContext, useState } from "react";
+export const GlobalContext = createContext();
 
 const GlobalContextProvider = ({ children }) => {
-const [selectedBranch,setSelectedBranch]=useState('Bengalore')
-const [selectedCourseId,setSelectedCourseId]=useState('1')
+  const [selectedBranch, setSelectedBranch] = useState('Bengalore')
+  const [selectedCourseId, setSelectedCourseId] = useState('1')
+
+  const [selectedBatch, setSelectedBatch] = useState("Bengalore")
+  const [selectedClassMode, setSelectedClassMode] = useState("offline")
   return (
     <GlobalContext.Provider value={{
-      selectedBranch, 
+      selectedBranch,
       setSelectedBranch,
       selectedCourseId,
-      setSelectedCourseId
+      setSelectedCourseId,
+      selectedBatch,
+      setSelectedBatch,
+      selectedClassMode,
+      setSelectedClassMode
     }}>{children}</GlobalContext.Provider>
   );
 };

@@ -10,11 +10,10 @@ import { GlobalContext } from "../Context/GlobalContext";
 import { OFFLINE_BRANCHES, UPCOMING_BATCHES, COMBINED_BRANCHES } from "@/lib/RouteConstants";
 import { Skeleton } from "@/components/ui/skeleton"
 import './ourBranchesHome.scss'
-import Link from "next/link";
 function OurBranchesHome({ page }) {
   const router = useRouter();
   const [isloading, setisLoading] = useState(true)
-  const { setSelectedBranch } = useContext(GlobalContext);
+  const { setSelectedBranch, setSelectedBatch } = useContext(GlobalContext);
   const branchCards = [
     { path: "./images/bengaloreBg-Image.png", city: "Bengalore", branchCount: 12 },
     { path: "./images/hydrabadBg-Image.png", city: "Hyderabad", branchCount: 12 },
@@ -47,6 +46,7 @@ function OurBranchesHome({ page }) {
       setSelectedBranch(city);
       router.push(`${OFFLINE_BRANCHES}`);
     } else if (page === "course") {
+      setSelectedBatch(city)
       router.push(`${UPCOMING_BATCHES}`);
     } else if (page !== "course" && city === "AllCities") {
       router.push(`${COMBINED_BRANCHES}`);
@@ -131,7 +131,8 @@ function OurBranchesHome({ page }) {
                             className={`${elements.city !== "AllCities" ? " imgstyling" : ""} w-full h-[7.813vw] w-[20.469vw] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
                             style={{
                               backgroundImage: `url(${elements.path})`,
-                              backgroundRepeat: "no-repeat"
+                              backgroundRepeat: "no-repeat",
+                              backgroundSize: "cover"
                             }}
                           >
                             {elements.city !== "AllCities" &&
@@ -152,6 +153,7 @@ function OurBranchesHome({ page }) {
                             style={{
                               backgroundImage: `url(${elements.path})`,
                               backgroundRepeat: 'no-repeat',
+                              backgroundSize: "cover"
                             }}
                           >
                             {elements.city !== "AllCities" &&

@@ -13,7 +13,7 @@ function BatchesCard() {
                 </h1>
             </header>
             <article>
-                <p className='text-ash text-[0.75rem] pb-3'>By : Abhishek bandi</p>
+                <div className='text-ash text-[0.75rem] pb-3'>By : Abhishek bandi</div>
                 <article className='flex gap-2 pb-2'>
                     <Svg
                         width={svgicons.orangeCalender[0]}
@@ -22,9 +22,9 @@ function BatchesCard() {
                         icon={svgicons.orangeCalender[3]}
                         color={svgicons.orangeCalender[4]}
                     />
-                    <p className='font-medium text-[0.875rem] text-ash'>
+                    <div className='font-medium text-[0.875rem] text-ash'>
                         02 Jan - 30 Mar
-                    </p>
+                    </div>
                 </article>
                 <article className='flex gap-2'>
                     <Svg
@@ -34,9 +34,9 @@ function BatchesCard() {
                         icon={svgicons.orangeClockIcon[3]}
                         color={svgicons.orangeClockIcon[4]}
                     />
-                    <p className='font-medium text-[0.875rem] text-ash'>
+                    <div className='font-medium text-[0.875rem] text-ash'>
                         10am - 12am
-                    </p>
+                    </div>
                 </article>
             </article>
             <article className='flex gap-2 pt-4'>
