@@ -16,7 +16,7 @@ import CourseCardSkeleton from '../commonComponents/courseCard/CourseCardSkeleto
 
 
 function OurCourse({ page }) {
-    const [hoveredIndex, setHoveredIndex] = useState(null);
+    const [hoveredIndex, setHoveredIndex] = useState(0);
     const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
     const [isloading, setisLoading] = useState(true)
     const typesOfClasses = [
@@ -264,7 +264,7 @@ function OurCourse({ page }) {
                         {courses.map((item, itemIndex) => {
                             return (
                                 isloading ?
-                                    <div className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'hovered gradient-bg' : ''}`}>
+                                    <div className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 `}>
                                         <div className="flex items-center space-x-4">
                                             <Skeleton className="h-7 w-7 rounded-full" />
                                             <div className="space-y-1">
@@ -276,8 +276,8 @@ function OurCourse({ page }) {
                                     <div
                                         key={itemIndex} // Don't forget to add a unique key
                                         onMouseEnter={() => setHoveredIndex(itemIndex)}
-                                        onMouseLeave={() => setHoveredIndex(null)}
-                                        className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'hovered' : ''}`}
+                                        onMouseLeave={() => setHoveredIndex(0)}
+                                        className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'bg-gradient' : ''}`}
                                     >
                                         <div className='flex justify-between items-center'>
                                             <picture className='flex justify-start'>
