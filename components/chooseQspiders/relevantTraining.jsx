@@ -39,7 +39,7 @@ function RelevantTraining() {
                         <article className='flex justify-center mt-6'>
                             <Button
                                 className='bg-gradient text-white rounded w-[11.719vw] h-[3.75vw]'
-                                title="Enquire Now"
+                                title="Know more"
                                 onClick={() => { }}
                             />
                         </article>

@@ -120,7 +120,7 @@ const CourseLanding = ({ page }) => {
               Enroll now
             </button>
             <button className="EnquireButton  text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw] relative">
-              <span>Enquire now</span>
+              <span>Know more</span>
             </button>
           </section>
         </article>
