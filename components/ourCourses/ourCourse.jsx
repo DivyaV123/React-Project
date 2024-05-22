@@ -264,7 +264,7 @@ function OurCourse({ page }) {
                         {courses.map((item, itemIndex) => {
                             return (
                                 isloading ?
-                                    <div className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'hovered' : ''}`}>
+                                    <div className={`bg-orange hover:font-semibold hover:text-white w-[20.70vw] flex justify-center gradient-bg cursor-pointer py-3 px-2 ${hoveredIndex === itemIndex ? 'hovered gradient-bg' : ''}`}>
                                         <div className="flex items-center space-x-4">
                                             <Skeleton className="h-7 w-7 rounded-full" />
                                             <div className="space-y-1">
