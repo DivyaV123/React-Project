@@ -20,7 +20,7 @@ export default function RootLayout({ children }) {
       <body
         className=
         {cn(
-          `relative h-full antialiased ${poppins.className}  myscrollbar overflow-y-scroll`)}
+          `relative h-full antialiased ${poppins.className}  myscrollbar overflow-y-auto`)}
       >
         <GlobalContextProvider>
         <main className="relative flex flex-col min-h-screen">{children}</main>
