@@ -108,7 +108,7 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed }) => {
                 Enroll now
               </button>
               <button className="EnquireButton text-[1.25vw] font-semibold py-[0.781vw] px-[3.333vh] relative w-[15.15vw]">
-                <span>Enquire now</span>
+                <span>Know more</span>
               </button>
             </section>
           </div>
