@@ -17,18 +17,18 @@ function StudentsPlacedCard({ studentsInfo, page }) {
         <section className='flex flex-wrap gap-4 justify-between'>
             {studentsInfo.map((element) => (
                 isloading ? <TrainingCardSkeleton /> : <section className='flex justify content center '>
-                    <article className={page !== 'branch' ? 'bg-white p-4 rounded-lg' : 'bg-white p-10 rounded-lg w-[20.469vw]'} >
-                        <figure className='flex justify-center pb-4'>
+                    <article className={page !== 'branch' ? 'bg-white py-[2.222vh] px-[1.25vw] rounded-lg' : 'bg-white px-[5.556vh] py-[3.125vw] rounded-lg w-[20.469vw]'} >
+                        <figure className='flex justify-center pb-[3.125vw]'>
                             <img src={element.image} />
                         </figure>
                         <header>
-                            <h1 className='flex justify-center pb-5 font-semibold text-[1.25rem] text-dark-gray'>
+                            <h1 className='flex justify-center pb-[2.778vh] font-semibold text-[1.563vw] text-dark-gray'>
                                 {element.name}
                             </h1>
                             <article className='flex justify-center'>
                                 <div>
-                                    <p className='flex justify-center text-dark-gray pb-1 text-[0.875rem]'>{element.batch}</p>
-                                    <p className='flex justify-center text-dark-gray text-sm'>{element.course}</p>
+                                    <p className='flex justify-center text-dark-gray pb-1 text-[1.094vw]'>{element.batch}</p>
+                                    <p className='flex justify-center text-dark-gray text-[0.938vw]'>{element.course}</p>
                                 </div>
                             </article>
                         </header>

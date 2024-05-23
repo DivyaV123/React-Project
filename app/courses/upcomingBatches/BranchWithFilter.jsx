@@ -74,9 +74,9 @@ function BranchWithFilter() {
 
                                     return (
                                         <AccordionItem key={index} value={`item-${index + 1}`} isOpen={index === openIndex}>
-                                            <AccordionTrigger className='p-2' onClick={() => handleAccordionToggle(index)}>
-                                                <div className='p-2'>
-                                                    <div className="flex items-center space-x-2">
+                                            <AccordionTrigger className='p-[1.111vh]' onClick={() => handleAccordionToggle(index)}>
+                                                <div className='p-[1.111vh]'>
+                                                    <div className="flex items-center space-x-[1.111vh]">
                                                         <Checkbox
                                                             checked={selectedBatch.includes(cityName)}
                                                             onCheckedChange={(checked) => handleCheckboxChange(checked, cityName)}
@@ -91,11 +91,11 @@ function BranchWithFilter() {
                                                     </div>
                                                 </div>
                                             </AccordionTrigger>
-                                            <AccordionContent className='pl-3'>
+                                            <AccordionContent className='pl-[0.938vw]'>
                                                 {branches.map((branch, branchIndex) => {
                                                     const branchId = `${cityId}-${branch.toLowerCase().replace(/ /g, '')}`;
                                                     return (
-                                                        <div className='p-2' key={branchIndex}>
+                                                        <div className='p-[1.111vh]' key={branchIndex}>
                                                             <div className="flex items-center space-x-2">
                                                                 <Checkbox
                                                                     id={branchId}

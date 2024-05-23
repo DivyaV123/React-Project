@@ -89,7 +89,7 @@ function BranchesCourse() {
             <MaxWebWidth articalStyling='flex flex-wrap justify-around gap-3'>
                 {courseCard.map((element) => {
                     return (<div className='courseCard'>
-                        <article className='w-[20.469vw] h-[27.578vw]'>
+                        <article className='w-[20.469vw] '>
                             {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
                             <div className='viewmore'></div>
                         </article>
@@ -99,7 +99,7 @@ function BranchesCourse() {
             <MaxWebWidth articalStyling='flex justify-end pb-5'>
                 <article className='flex justify-center mt-2'>
                     <Button
-                        className='bg-gradient w-[9.375vw] h-[2.656vw] text-[0.75rem] text-white rounded-md'
+                        className='bg-gradient w-[9.375vw] h-[5.694vh] text-[0.938vw] text-white rounded-md'
                         title="View More"
                         onClick={() => { }}
                     />

@@ -32,14 +32,14 @@ function BranchesLandingPage() {
     ]
     return (
         <MaxWebWidth sectionStyling='bg-coursegradient' articalStyling='flex justify-between'>
-            <section className='basis-[50%] pt-10 pb-10'>
-                <figure className='h-[25vw] w-[49.219vw] rounded-2xl'>
-                    <img className='w-full  p-2 ' src={selectedImg} />
+            <section className='basis-[50%] pt-[11.111vh] pb-[8.889vh]'>
+                <figure className=''>
+                    <img className='h-[25vw]  w-[49.219vw] rounded-2xl' src={selectedImg} />
                 </figure>
-                <article className='flex gap-2'>
+                <article className='flex gap-2 pt-[2.222vh]'>
                     <div>
                         <Svg
-                            className='p-1 h-full w-[3vw] mt-1'
+                            className=''
                             width={svgicons.corasalArrowLeft[0]}
                             height={svgicons.corasalArrowLeft[1]}
                             viewBox={svgicons.corasalArrowLeft[2]}
@@ -50,10 +50,10 @@ function BranchesLandingPage() {
                     <Carousel>
                         <CarouselContent>
                             <CarouselItem >
-                                <div className='flex w-full justify-center'>
+                                <div className='flex w-full justify-center gap-4'>
                                     {corosalImgs.map((image) => (
-                                        <figure className='p-2 mt-3' onClick={() => { setSelectedImg(image) }}>
-                                            <img className={selectedImg === image ? 'border-2 rounded-md border-orange-500  h-[4.063vw] w-[7.813vw] rounded' : ' h-[4.063vw] w-[7.813vw] rounded'} src={image} alt='image' />
+                                        <figure className='' onClick={() => { setSelectedImg(image) }}>
+                                            <img className={selectedImg === image ? 'border-2 rounded-md border-orange-500  w-[7.813vw] rounded' : ' w-[7.813vw] rounded'} src={image} alt='image' />
                                         </figure>
                                     ))}
                                 </div>
@@ -64,7 +64,7 @@ function BranchesLandingPage() {
                     </Carousel>
                     <div>
                         <Svg
-                            className='p-1 h-full w-[3vw] mt-1'
+                            className=''
                             width={svgicons.corasalArrowRight[0]}
                             height={svgicons.corasalArrowRight[1]}
                             viewBox={svgicons.corasalArrowRight[2]}
@@ -74,13 +74,13 @@ function BranchesLandingPage() {
                     </div>
                 </article>
             </section>
-            <section className='basis-[40%] pt-10 pb-10'>
+            <section className='basis-[50%] pl-[3.047vw] pt-[11.111vh] pb-[3.333vh]'>
                 <header>
-                    <h1 className='font-bold text-[3rem]'>
+                    <div className='font-bold text-[3.75vw]'>
                         Basavanagudi
-                    </h1>
+                    </div>
                 </header>
-                <article className='flex font-medium text-base pt-6'>
+                <article className='flex font-medium text-[1.25vw] pt-[3.333vh]'>
                     <span>
                         <Svg
                             width={svgicons.locationIcon[0]}
@@ -90,11 +90,11 @@ function BranchesLandingPage() {
                             color={svgicons.locationIcon[4]}
                         />
                     </span>
-                    <p className='font-medium pl-2'>
+                    <p className='font-medium text-[1.25vw] pl-[0.625vw]'>
                         01, Hayavadana Rao Rd, Basappa Layout, Gavipuram Extension, Gavipuram Extention, Kempegowda Nagar, Bengaluru, Karnataka 560019
                     </p>
                 </article>
-                <article className='flex font-medium text-base pt-6'>
+                <article className='flex font-medium text-[1.25vw] pt-[3.333vh]'>
                     <span>
                         <Svg
                             width={svgicons.phoneCall[0]}
@@ -104,11 +104,11 @@ function BranchesLandingPage() {
                             color={svgicons.phoneCall[4]}
                         />
                     </span>
-                    <p className='font-medium pl-2'>
+                    <p className='font-medium text-[1.25vw] pl-[0.625vw]'>
                         +91 8265-569-845
                     </p>
                 </article>
-                <article className='flex font-medium text-base pt-6'>
+                <article className='flex font-medium text-[1.25vw] pt-[3.333vh]'>
                     <span>
                         <Svg
                             width={svgicons.calender[0]}
@@ -118,11 +118,11 @@ function BranchesLandingPage() {
                             color={svgicons.calender[4]}
                         />
                     </span>
-                    <p className='font-medium pl-2'>
+                    <p className='font-medium text-[1.25vw] pl-[0.625vw]'>
                         12 Upcoming Batches
                     </p>
                 </article>
-                <article className='flex font-medium text-base pt-6'>
+                <article className='flex font-medium text-[1.25vw] pt-[3.333vh]'>
                     <span>
                         <Svg
                             width={svgicons.calenderTicked[0]}
@@ -132,7 +132,7 @@ function BranchesLandingPage() {
                             color={svgicons.calenderTicked[4]}
                         />
                     </span>
-                    <p className='font-medium pl-2'>
+                    <p className='font-medium text-[1.25vw] pl-[0.625vw]'>
                         06 Ongoing Batches
                     </p>
                 </article>

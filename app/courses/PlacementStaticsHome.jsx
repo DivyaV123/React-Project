@@ -76,25 +76,25 @@ function PlacementStaticsHome({ path }) {
                 />
 
                 <aside className='pr-7 pb-7 pt-7'>
-                    <h1 className='font-bold text-[1.25rem] pb-5'>
+                    <h1 className='font-bold text-[1.563vw] pb-[2.778vh]'>
                         From Various Degree
                     </h1>
                     <div className='flex flex-wrap  gap-[1.125rem]'>
                         {degrees.map((element) => {
                             return (
-                                <Badge variant="" className='font-bold text-[1.25rem]'>{element}</Badge>
+                                <Badge variant="" className='font-bold py-[1.944vh] px-[2.188vw] text-[1.563vw]'>{element}</Badge>
                             )
                         })
                         }
                     </div>
                     <aside className='mt-12'>
-                        <h1 className='font-bold text-[1.25rem] pb-5'>
+                        <h1 className='font-bold text-[1.563vw] pb-[2.778vh]'>
                             From Various Branches
                         </h1>
                         <div className='flex flex-wrap  gap-[1.125rem]'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold text-[1.25rem]'>{element}</Badge>
+                                    <Badge variant="" className='font-bold py-[1.944vh] px-[2.188vw]  text-[1.563vw]'>{element}</Badge>
                                 )
                             })
                             }

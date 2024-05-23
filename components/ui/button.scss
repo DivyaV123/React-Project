@@ -47,33 +47,14 @@
   border-radius: 6px;
   opacity: 1;
 }
-.buttonTextColour{
-  color: #F96900;
+.buttonTextColour {
+  color: #f96900;
 }
 
 .courseCardBtn {
   width: 9.27vw;
-  height: 2.65vw;
+  height: 5.694vh;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-@media only screen and (min-width: 1536px) and (max-width: 1919px) {
-  .courseCardBtn {
-    width: 7vw;
-    height: 2.65vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-}
-@media only screen and (min-width: 1920px) {
-  .courseCardBtn {
-    width: 7.25vw;
-    height: 2.65vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
 }

@@ -17,7 +17,7 @@ function UpCommingBatches() {
             </MaxWebWidth>
             <MaxWebWidth>
                 <div className="flex justify-end pt-4">
-                    <button className="w-[9.37vw] bg-gradient rounded text-white py-2 px-4.5 text-sm font-semibold EnrollButton">
+                    <button className=" bg-gradient rounded text-white py-[1.111vh] px-[1.406vw] text-sm font-semibold EnrollButton">
                         View More
                     </button>
                 </div>
