@@ -4,11 +4,13 @@ import "./PlacementSidebar.scss";
 const PlacementContent = () => {
   return (
     <>
-      <section className="w-full contentCard flex pt-1 pl-1.5 pb-2 mb-6 mt-[1px]">
+      <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh]">
         <div className="w-[15.547vw] ">
-          <img src="../Rectangle 16961.svg" />
+          <img src="../Rectangle 16961.svg" className="w-full"/>
           <div className="imageCard">
-            <header className="studentName font-semibold py-2">Suraksha J B</header>
+            <header className="studentName font-semibold py-[1.111vh]">
+              Suraksha J B
+            </header>
             <div className="flex gap-1 studentDetails">
               <div>
                 <div className="studentDetails flex justify-center">Bsc</div>
@@ -32,7 +34,7 @@ const PlacementContent = () => {
             </div>
           </div>
         </div>
-        <div className="pl-5 w-[42.813vw] pt-4 flex flex-col justify-between">
+        <div className="pl-[1.563vw] w-[42.813vw] pt-[2.222vh] flex flex-col justify-between">
           <p className="studentReview">
             Lorem ipsum dolor sit amet consectetur. Ut nisl at cras adipiscing
             vel varius pulvinar neque. Nulla fermentum laoreet odio suscipit
@@ -48,8 +50,8 @@ const PlacementContent = () => {
             proin proin. Vestibulum nulla mauris habitant pellentesque eget.
             Nisl egestas posuere orci facilisis non. Viverra in.
           </p>
-          <div className="flex gap-2 items-center pb-4 pl-16">
-            <div className="text-[0.625rem] text-[#201C19] pr-5">Reviews :</div>
+          <div className="flex gap-2 items-center pb-[2.222vh] pl-[5vw]">
+            <div className="text-[0.781vw] text-[#201C19] pr-[1.563vw]">Reviews :</div>
             <div className="iconContainer">
               <img src="../google 1.svg" />
             </div>
@@ -64,16 +66,18 @@ const PlacementContent = () => {
             </div>
           </div>
         </div>
-        <div className="pl-10 pt-4 flex flex-col gap-3">
+        <div className="pl-[3.125vw] pt-[2.222vh] flex flex-col gap-3">
           <div className="imageBox"></div>
           <div className="imageBox"></div>
         </div>
       </section>
-      <section className="w-full contentCard flex pt-1 pl-1.5 pb-2 mb-6 mt-[1px]">
+      <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh]  mt-[0.556vh]">
         <div className="w-[15.547vw] ">
-          <img src="../Rectangle 16961.svg" />
+          <img src="../Rectangle 16961.svg" className="w-full"/>
           <div className="imageCard">
-            <header className="studentName font-semibold py-2">Suraksha J B</header>
+            <header className="studentName font-semibold py-[1.111vh]">
+              Suraksha J B
+            </header>
             <div className="flex gap-1 studentDetails">
               <div>
                 <div className="studentDetails flex justify-center">Bsc</div>
@@ -97,7 +101,7 @@ const PlacementContent = () => {
             </div>
           </div>
         </div>
-        <div className="pl-5 w-[42.813vw] pt-4 flex flex-col justify-between">
+        <div className="pl-[1.563vw] w-[42.813vw] pt-[2.222vh] flex flex-col justify-between">
           <p className="studentReview">
             Lorem ipsum dolor sit amet consectetur. Ut nisl at cras adipiscing
             vel varius pulvinar neque. Nulla fermentum laoreet odio suscipit
@@ -113,8 +117,8 @@ const PlacementContent = () => {
             proin proin. Vestibulum nulla mauris habitant pellentesque eget.
             Nisl egestas posuere orci facilisis non. Viverra in.
           </p>
-          <div className="flex gap-2 items-center pb-4 pl-16">
-            <div className="text-[0.625rem] text-[#201C19] pr-5">Reviews :</div>
+          <div className="flex gap-2 items-center pb-[2.222vh] pl-[5vw]">
+            <div className="text-[0.781vw] text-[#201C19] pr-[1.563vw]">Reviews :</div>
             <div className="iconContainer">
               <img src="../google 1.svg" />
             </div>
@@ -129,7 +133,7 @@ const PlacementContent = () => {
             </div>
           </div>
         </div>
-        <div className="pl-10 pt-4 flex flex-col gap-3">
+        <div className="pl-[3.125vw] pt-[2.222vh] flex flex-col gap-3">
           <div className="imageBox"></div>
           <div className="imageBox"></div>
         </div>

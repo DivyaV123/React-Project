@@ -2,6 +2,11 @@
 import React, { useEffect, useState } from "react";
 import "./PlacementCards.scss";
 import { Skeleton } from "@/components/ui/skeleton";
+import TotalPlacedCard from "./TotalPlacedCard";
+import DegreeCard from "./DegreeCard";
+import NonItCard from "./NonItCard";
+import BranchCard from "./BranchCard";
+import OverviewCard from "./OverviewCard";
 const PlacementCards = () => {
   const [isloading, setisLoading] = useState(true)
   useEffect(() => {
@@ -17,12 +22,7 @@ const PlacementCards = () => {
           <Skeleton className='h-10 w-[70%] ml-2' />
         </div>
         :
-        <div className="placedCard">
-          <div className="flex flex-col justify-between h-full">
-            <p className="font-medium pl-5 pt-5 text-[#FAFAFA]">Total Placed</p>
-            <p className="font-bold text-[2rem] pl-5 pb-5 text-[#FAFAFA]">26,58,720</p>
-          </div>
-        </div>
+        <TotalPlacedCard/>
       }
       {isloading ? <div className="flex flex-col gap-2 justify-around w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
         <div className="flex justify-between">
@@ -34,17 +34,7 @@ const PlacementCards = () => {
         </div>
       </div>
         :
-        <div className="degreeCard">
-          <div className="flex h-full">
-            <div className="flex flex-col gap-2 justify-between">
-              <p className="font-medium pl-5 pt-5 text-[0.875rem] text-[#191919]">Less than 60% in <br/> Degree</p>
-              <p className="font-bold text-[1.5rem] text-[#F28C21] pl-5 pb-5">26,720</p>
-            </div>
-            {/* <div>
-              <img className="h-full object-cover object-right" src="../red_card.png" />
-            </div> */}
-          </div>
-        </div>
+        <DegreeCard/>
       }
       {isloading ?
         <div className="flex flex-col gap-2 justify-around w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
@@ -56,17 +46,7 @@ const PlacementCards = () => {
             <Skeleton className='h-[8vw] w-[25%] mr-2' />
           </div>
         </div> :
-        <div className="nonItCard">
-          <div className="flex h-full">
-            <div className="flex flex-col justify-between ">
-              <p className="font-medium pl-5 pt-5 text-[0.875rem]">Non-IT</p>
-              <p className="font-bold text-[1.5rem] text-[#FD521B] pl-5 pb-5">1,11,584</p>
-            </div>
-            {/* <div>
-              <img className="h-full object-cover object-right" src="../blue_card.png" />
-            </div> */}
-          </div>
-        </div>
+        <NonItCard/>
       }
       {isloading ?
         <div className="flex flex-col gap-2 justify-around w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
@@ -78,17 +58,7 @@ const PlacementCards = () => {
             <Skeleton className='h-[8vw] w-[25%] mr-2' />
           </div>
         </div> :
-        <div className="branchCard">
-          <div className="flex h-full">
-            <div className="flex flex-col justify-between ">
-              <p className="font-medium pl-5 pt-5 text-[0.875rem]">IT/CS/IS <br/>candidates</p>
-              <p className="font-bold text-[1.5rem] text-[#DC4267] pl-5 pb-5">1,36,859</p>
-            </div>
-            <div>
-              <img className="h-full object-cover object-right" src="../white_card.png" />
-            </div>
-          </div>
-        </div>
+        <BranchCard/>
       }
       {isloading ?
         <div className="flex flex-col gap-2 justify-around w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
@@ -100,17 +70,7 @@ const PlacementCards = () => {
             <Skeleton className='h-[8vw] w-[25%] mr-2' />
           </div>
         </div> :
-        <div className="overviewCard">
-          <div className="flex h-full">
-            <div className="flex flex-col justify-between ">
-              <p className="font-medium pl-5 pt-5 text-[0.875rem]">Throughout 60% in degree</p>
-              <p className="font-bold text-[1.5rem] text-[#002248] pl-5 pb-5">23,59,365</p>
-            </div>
-            <div>
-              <img className="h-full object-cover object-right" src="../hero_card.png" />
-            </div>
-          </div>
-        </div>
+        <OverviewCard/>
       }
     </div>
   );
