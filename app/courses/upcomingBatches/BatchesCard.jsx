@@ -6,7 +6,7 @@ import './upComingBranches.scss'
 
 function BatchesCard() {
     return (
-        <section className='w-[23.594vw] 3xl:h-auto h-[17.188vw] bg-white rounded p-3 border-t-4 cardShadow border-t-orange-500'>
+        <section className='w-[23.594vw] 3xl:h-auto h-[30.556vh] bg-white rounded p-3 border-t-4 cardShadow border-t-orange-500'>
             <header>
                 <h1 className='font-bold text-black text-[1.25rem] pb-5'>
                     Java Full Stack
@@ -22,7 +22,7 @@ function BatchesCard() {
                         icon={svgicons.orangeCalender[3]}
                         color={svgicons.orangeCalender[4]}
                     />
-                    <div className='font-medium text-[0.875rem] text-ash'>
+                    <div className='font-medium text-[1.094vw] text-ash'>
                         02 Jan - 30 Mar
                     </div>
                 </article>
@@ -34,22 +34,22 @@ function BatchesCard() {
                         icon={svgicons.orangeClockIcon[3]}
                         color={svgicons.orangeClockIcon[4]}
                     />
-                    <div className='font-medium text-[0.875rem] text-ash'>
+                    <div className='font-medium text-[1.094vw] text-ash'>
                         10am - 12am
                     </div>
                 </article>
             </article>
-            <article className='flex gap-2 pt-4'>
+            <article className='flex gap-2 pt-[2.222vh]'>
                 <div>
                     <Button
                         title='Enroll'
-                        className='w-[10.625vw] 3xl:[2.438vw] h-[3.438vw] bg-gradient rounded-md text-white'
+                        className='px-[1.389vh] py-[1.25vw] bg-gradient rounded-md text-white'
                     />
                 </div>
                 <div>
                     <Button
                         title='Details'
-                        className='w-[10.625vw] 3xl:[2.438vw] h-[3.438vw] border border-orange-500  rounded-md text-orange-500'
+                        className='px-[1.389vh]  py-[0.938vw] border border-orange-500  rounded-md text-orange-500'
                     />
                 </div>
             </article>

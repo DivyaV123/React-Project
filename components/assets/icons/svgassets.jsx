@@ -7,8 +7,8 @@ export const svgicons = {
         'none'
     ],
     corasalArrowRight: [
-        "24", "24", "0 0 24 24",
-        <path d="M8 21.0001L15.3491 13.591C16.217 12.716 16.217 11.2842 15.3491 10.4092L8 3.00006" stroke="#575757" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />,
+        "24" ,"52" ,"0 0 24 52",
+        <path d="M8 35.0001L15.3491 27.591C16.217 26.716 16.217 25.2842 15.3491 24.4092L8 17.0001" stroke="#575757" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>,
         'none'
     ],
     corasalArrowLeft: [
