@@ -13,11 +13,11 @@ function TextArea(
 
 ) {
     return (
-        <section className={`${sectionStyle} relative`}>
+        <section className={`${sectionStyle} relative h-[8.516vw]`}>
             {iconPath &&
-                <img src={iconPath} alt="icon" className={`${iconStyle} absolute left-2 top-1/2 transform -translate-y-1/2 w-6 h-6`}></img>
+                <img src={iconPath} alt="icon" className={`${iconStyle} absolute left-[0.938vw] top-[1.389vh] w-[2.778vh] h-[2.778vh]`}></img>
             }
-            <textarea className={`${textAreaStyle} w-full ${iconPath ? 'py-2 pl-12 pr-4' : 'p-2'} border border-gray-300 rounded`} type={type} onChange={onChange} placeholder={placeholder} />
+            <textarea className={`${textAreaStyle} w-full ${iconPath ? 'py-[1.25vh] px-[0.938vw] pl-[2.6vw]' : 'py-[1.25vh] px-[0.938vw]'} border border-gray-300 rounded`} type={type} onChange={onChange} placeholder={placeholder} />
         </section>
     )
 }

@@ -6,9 +6,17 @@ export const svgicons = {
         <path d="M10 17L15 12L10 7" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />,
         'none'
     ],
+    cancelButtonIcon: [
+        "40", "40", "0 0 40 40",
+        <>
+            <circle cx="20" cy="20" r="20" fill="#F9F9F9" />
+            <path d="M25.25 14.75L14.75 25.25M14.75 14.75L25.25 25.25" stroke="#292D32" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+        </>,
+        'none'
+    ],
     corasalArrowRight: [
-        "24" ,"52" ,"0 0 24 52",
-        <path d="M8 35.0001L15.3491 27.591C16.217 26.716 16.217 25.2842 15.3491 24.4092L8 17.0001" stroke="#575757" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>,
+        "24", "52", "0 0 24 52",
+        <path d="M8 35.0001L15.3491 27.591C16.217 26.716 16.217 25.2842 15.3491 24.4092L8 17.0001" stroke="#575757" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />,
         'none'
     ],
     corasalArrowLeft: [
