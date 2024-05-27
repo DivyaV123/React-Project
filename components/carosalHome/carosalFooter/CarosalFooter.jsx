@@ -42,7 +42,7 @@ function CarosalFooter() {
                                 <div className='p-2'>
                                     <article>
                                         <h1 className=' gradient-text text-[2rem] text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
-                                            <Counter initialValue={0} targetValue={1000} label={element.count} />
+                                            <Counter initialValue={0} targetValue={50} label={element.count} />
                                         </h1>
                                         <p className='text-white text-[0.75rem] font-semibold flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />
                                     </article>
