@@ -30,12 +30,12 @@ function PlaceMentStatistics({ className, path, statistics }) {
 
                         :
                         <>
-                            <div className='flex aligen-items jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl'>
+                            <div className='flex aligen-items jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl w-[24.531vw]'>
                                 <figure>
-                                    <img src={item.icon}></img>
+                                    <img className='h-full' src={item.icon}></img>
                                 </figure>
-                                <div className='py-[2.778vh] px-[1.563vw]'>
-                                    <h1 className='font-bold text-[2.25rem]'>{item.count}</h1>
+                                <div className='py-[1.944vh] px-[0.938vw]'>
+                                    <h1 className='font-bold text-[2.813vw]'>{item.count}</h1>
                                     <p className='text-dark-gray text-[1.094vw]' dangerouslySetInnerHTML={{ __html: content }} />
                                 </div>
                             </div>

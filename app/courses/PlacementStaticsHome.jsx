@@ -38,22 +38,22 @@ function PlacementStaticsHome({ path }) {
     const statistics = [
         {
             count: '94,860',
-            info: 'Students who have # throughout 60% # Aggregate',
+            info: 'Students who have throughout 60% Aggregate',
             icon: './placementIcon1.svg'
         },
         {
             count: '42,992',
-            info: 'Students who have # graduated in Non - IT',
+            info: 'Students who have graduated in Non - IT',
             icon: './staticsIcon02.svg'
         },
         {
             count: '68,481',
-            info: 'Students who have # graduated in IT /# / CS /IS',
+            info: 'Students who have graduated in IT/CS/IS',
             icon: './placementIcon03.svg'
         },
         {
             count: '15,024',
-            info: 'Students who have #  less than 60%  #  Aggregate',
+            info: 'Students who have less than 60% Aggregate',
             icon: './placementIcon04.svg'
         },
     ]
@@ -65,36 +65,36 @@ function PlacementStaticsHome({ path }) {
     return (
         <CoursePageContainer className='bg-Pinkgradient'>
             <article className='w-[51.56vw]'>
-                <h1 className='font-bold text-[1.5rem] text-black flex justicy-start py-4 h-12'>
+                <h1 className='font-bold text-[1.875vw] text-black flex justicy-start pb-[4.167vh] pt-[3.611vh] '>
                     Our Placement Statistics
                 </h1>
 
                 <PlaceMentStatistics
                     statistics={statistics}
-                    className='flex flex-wrap mt-5'
+                    className='flex flex-wrap'
                     path='course'
                 />
 
-                <aside className='pr-7 pb-7 pt-7'>
-                    <h1 className='font-bold text-[1.563vw] pb-[2.778vh]'>
+                <aside className='pr-[2.188vw] pb-[5.556vh] pt-[8.333vh]'>
+                    <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
                         From Various Degree
                     </h1>
-                    <div className='flex flex-wrap  gap-[1.125rem]'>
+                    <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
                         {degrees.map((element) => {
                             return (
-                                <Badge variant="" className='font-bold py-[1.944vh] px-[2.188vw] text-[1.563vw]'>{element}</Badge>
+                                <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
                             )
                         })
                         }
                     </div>
-                    <aside className='mt-12'>
-                        <h1 className='font-bold text-[1.563vw] pb-[2.778vh]'>
+                    <aside className='pt-[8.333vh]'>
+                        <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
                             From Various Branches
                         </h1>
-                        <div className='flex flex-wrap  gap-[1.125rem]'>
+                        <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold py-[1.944vh] px-[2.188vw]  text-[1.563vw]'>{element}</Badge>
+                                    <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
                                 )
                             })
                             }

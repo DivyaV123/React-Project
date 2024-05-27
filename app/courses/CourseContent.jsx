@@ -110,15 +110,14 @@ function CourseContent() {
 
     return (
         <CoursePageContainer className=''>
-            <header className='text-[1.5rem] font-bold pt-5 pr-5 pb-5'>
+            <header className='text-[1.875vw] font-bold pt-[2.778vh] pr-[1.563vw] pb-[2.778vh]'>
                 Course Content
             </header>
-            <article className='m-5'>
+            <article className='my-[2.778vh] mr-[1.563vw]'>
                 <NestedAccordion data={courseContentdata} 
                 page='course'/>
             </article>
         </CoursePageContainer>
     )
 }
-
 export default CourseContent

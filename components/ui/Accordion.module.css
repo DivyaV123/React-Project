@@ -3,12 +3,14 @@
 .accordion {
   background-color: #FFFCF9;
   cursor: pointer;
-  padding: 18px;
+  padding-top: 2.222vh;
+  padding-bottom:2.222vh;
+  padding-left: 2.813vw;
   width: 100%;
   border: none;
   text-align: left;
   outline: none;
-  font-size: 1rem;
+  font-size: 1.25vw;
   transition: 0.4s;
   border-radius: 6px;
   color: #454545;
@@ -20,7 +22,7 @@
 }
 
 .panel {
-  padding: 0 18px;
+  /* padding: 0 1.406vw; */
   display: none;
   background-color: white;
   overflow: hidden;
