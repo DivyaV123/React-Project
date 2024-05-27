@@ -288,7 +288,7 @@ function OurCourse({ page }) {
         </div>
       </article>
       <aside className="flex h-[132.222vh]">
-        <article className="justify-start w-[20.70vw] h-full">
+        <article className="justify-start w-[20.70vw] h-full overflow-auto courseScroll">
           <div className="w-full">
             {courses.map((item, itemIndex) => {
               return isloading ? (
