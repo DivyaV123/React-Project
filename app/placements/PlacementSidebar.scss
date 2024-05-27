@@ -1,10 +1,11 @@
 .sidebarContainer{
-  width: 14.844vw;
+  width: 18.203vw;
   background: #F6F6F6;
   box-shadow: 0px 0px 4px 0px #00000040;
+  border-radius: 11px;
 }
 .sideBarButton{
-border-radius: 20px 0px 0px 20px;
+// border-radius: 20px 0px 0px 20px;
 background: linear-gradient(159.73deg, #F7A54D 12.36%, #EF810E 83.19%);
 color: white;
 }
@@ -41,7 +42,7 @@ font-size: 0.625vw
 }
 .studentReview{
   color: #6F6E6E;
-font-size: 0.781vw
+font-size: 0.859vw;
 }
 .iconContainer{
   width: 1.875vw;

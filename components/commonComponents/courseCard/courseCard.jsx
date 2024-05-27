@@ -21,19 +21,19 @@ function CourseCard({ cardData }) {
     const [openDialog, setOpenDialog] = useState('false')
     return (
         <>
-            <section className='cardStyle justify-center p-4 grid justify-items-stretch mt-[1px] mb-[1px]'>
+            <section className='cardStyle justify-center   justify-items-stretch'>
                 <AlertDialog>
-                    <picture className='flex justify-self-center px-[0.556vh] py-[0.556vh] w-full '>
-                        <img className='px-[2.222vh] py-[0.556vh] w-full' src={cardData.image} alt='image'></img>
+                    <picture className='flex justify-self-center  w-full '>
+                        <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full' src={cardData.image} alt='image'></img>
                     </picture>
                     <div>
                     </div>
-                    <aside className=''>
-                        <h3 className='font-bold text-[1.094vw] px-[1.25vw]'>Test Architect</h3>
-                        <p className='flex headerText justify-start mt-2 leading-4 text-[0.938vw] xl:text-sm text-ash leading-[1.234rem] px-[1.25vw]'>
+                    <aside className='px-[0.781vw] pt-[1.389vh]'>
+                        <h3 className='font-bold text-[1.25vw] '>Test Architect</h3>
+                        <p className='flex headerText justify-start pt-[0.833vh]  text-[0.938vw]  text-ash  '>
                             Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.
                         </p>
-                        <div className='flex mt-2 px-[1.25vw]'>
+                        <div className='flex pt-[0.833vh]'>
                             <span className='flex text-[0.938vw] font-bold items-baseline'><span className='font-bold'>4.5</span> <Svg
                                 width={svgicons.ratingStar[0]}
                                 height={svgicons.ratingStar[1]}
@@ -44,7 +44,7 @@ function CourseCard({ cardData }) {
                             <span className='flex text-[0.938vw] items-baseline'>{`6,256`}</span>
                         </div>
 
-                        <div className='flex justify-center gap-2 py-[2.222vh] px-[1.25vw] '>
+                        <div className='flex justify-center gap-2 py-[1.389vh]  '>
                             <aside>
                                 <AlertDialogTrigger asChild>
                                     <Button onClick={() => { setOpenDialog(true) }} className="courseCardBtn text-[1.094vw]  font-semibold text-white bg-gradient rounded-md" title='Enroll now' />

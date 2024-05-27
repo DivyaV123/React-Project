@@ -6,22 +6,34 @@ import { Skeleton } from "@/components/ui/skeleton";
 const PlacementSideBar = () => {
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements")
   const sideBar = [{
-    title: "Recent Placements"
+    title: "Recent Placements",
+    icon:"../../icon_arrow_white.svg",
+    blackIcon:"../../icon_arrow.svg"
   },
   {
-    title: "Top Salaries"
+    title: "Top Salaries",
+    icon:"../../icon_arrow_white.svg",
+    blackIcon:"../../icon_arrow.svg"
   },
   {
-    title: "Last Week"
+    title: "Last Week",
+    icon:"../../icon_arrow_white.svg",
+    blackIcon:"../../icon_arrow.svg"
   },
   {
-    title: "Last month"
+    title: "Last month",
+    icon:"../../icon_arrow_white.svg",
+    blackIcon:"../../icon_arrow.svg"
   },
   {
-    title: "Last 3 months"
+    title: "Last 3 months",
+    icon:"../../icon_arrow_white.svg",
+    blackIcon:"../../icon_arrow.svg"
   },
   {
-    title: "Last 6 months"
+    title: "Last 6 months",
+    icon:"../../icon_arrow_white.svg",
+    blackIcon:"../../icon_arrow.svg"
   }
 
   ]
@@ -32,39 +44,38 @@ const PlacementSideBar = () => {
     }, 2000);
   }, [])
   return (
-    <section className="flex ml-16 mb-8 h-[424px]">
+    <section className="flex ml-16 mb-8 h-[58.889vh]">
       {isloading ?
-        <section className="flex flex-col justify-start items-end pt-8 w-[15%] gap-3 mb-8 h-[424px] border rounded-xl">
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
-          <Skeleton className='h-9 rounded-s-2xl w-[80%]' />
+        <section className="flex flex-col justify-start items-end pt-8 w-[15%] gap-3 mb-8 h-[58.889vh]  border rounded-xl">
+          <Skeleton className='h-9  w-full' />
+          <Skeleton className='h-9 w-full' />
+          <Skeleton className='h-9 w-full' />
+          <Skeleton className='h-9  w-full' />
+          <Skeleton className='h-9  w-full' />
+          <Skeleton className='h-9  w-full' />
         </section>
         :
-        <aside className="sidebarContainer">
+        <aside className="sidebarContainer pt-[3.333vh]">
           {sideBar.map((classItem, index) => (
-            <div className="py-8">
               <button
                 key={index}
-                className={` justify-center items-center px-4 py-2  float-right  ${classItem.title === sideBarBtn ? "sideBarButton font-medium  text-[0.938rem]" : ""
+                className={`flex justify-between items-center px-[1.25vw] py-[2.222vh] mb-[0.833vh] w-full text-[1.094vw] ${classItem.title === sideBarBtn ? "sideBarButton font-medium" : ""
                   }`}
                 onClick={() => { setSideBarBtn(classItem.title) }}
               >
+                <div>
+
                 {classItem.title}
+                </div>
+                <img className="text-white" src={classItem.title === sideBarBtn ? classItem.icon : classItem.blackIcon}/>
               </button>
-            </div>
           ))}
         </aside>
       }
       {/* {islo} */}
 
       {isloading ?
-        <section className='ml-6 w-[71.641vw] h-full flex overflow-y-scroll myscrollbar rounded border h-[17vw]'>
+        <section className='ml-6 w-[71.641vw] h-full flex overflow-y-scroll myscrollbar rounded border '>
           <div className="w-[15.547vw] flex m-3">
             <Skeleton className='h-[15vw] w-[71vw]' />
           </div>

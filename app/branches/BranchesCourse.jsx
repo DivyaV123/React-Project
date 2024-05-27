@@ -89,7 +89,7 @@ function BranchesCourse() {
             <MaxWebWidth articalStyling='flex flex-wrap justify-around gap-3'>
                 {courseCard.map((element) => {
                     return (<div className='courseCard'>
-                        <article className='w-[20.469vw] '>
+                        <article className='w-full '>
                             {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
                             <div className='viewmore'></div>
                         </article>

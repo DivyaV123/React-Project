@@ -50,7 +50,7 @@ const PlacementContent = () => {
             proin proin. Vestibulum nulla mauris habitant pellentesque eget.
             Nisl egestas posuere orci facilisis non. Viverra in.
           </p>
-          <div className="flex gap-2 items-center pb-[2.222vh] pl-[5vw]">
+          <div className="flex gap-2 items-center mb-[1.111vh] pl-[5vw]">
             <div className="text-[0.781vw] text-[#201C19] pr-[1.563vw]">Reviews :</div>
             <div className="iconContainer">
               <img src="../google 1.svg" />
@@ -117,7 +117,7 @@ const PlacementContent = () => {
             proin proin. Vestibulum nulla mauris habitant pellentesque eget.
             Nisl egestas posuere orci facilisis non. Viverra in.
           </p>
-          <div className="flex gap-2 items-center pb-[2.222vh] pl-[5vw]">
+          <div className="flex gap-2 items-center mb-[1.111vh] pl-[5vw]">
             <div className="text-[0.781vw] text-[#201C19] pr-[1.563vw]">Reviews :</div>
             <div className="iconContainer">
               <img src="../google 1.svg" />
