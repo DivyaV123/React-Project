@@ -1,6 +1,6 @@
 'use client'
-import React, { useEffect, useState } from 'react'
-import TrainingCard from './trainingCard'
+import React, { useEffect, useState } from 'react';
+import TrainingCard from './trainingCard';
 import Slide from "react-reveal/Slide";
 import { Fade } from 'react-reveal';
 import { useSearchParams } from 'next/navigation';
@@ -41,7 +41,7 @@ function TrainingMode() {
         <article onMouseEnter={() => { setHover(true) }} onMouseLeave={() => { setHover(false) }} className='mb-6'>
             <header>
                 <Slide top cascade>
-                    <h1 className='flex justify-center text-[2rem] m-2 font-bold p-5'>Modes We Train</h1>
+                    <h1 className='flex justify-center text-[2.5vw]  font-bold pt-[5.556vh] pb-[3.333vh]'>Modes We Train</h1>
                 </Slide>
             </header>
             <Fade bottom duration={1000} delay={0}>

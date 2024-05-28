@@ -224,8 +224,8 @@ function OurBranchesHome({ page }) {
       </section>
       {/* </MaxWebWidth > */}
       {page !== "course" && (
-        <MaxWebWidth sectionStyling="bg-backgroundBlue h-[50%] bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain min-h-80 bg-cover">
-          <section className="flex justify-center mt-8 mb-8">
+        <MaxWebWidth sectionStyling="bg-backgroundBlue  bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain  bg-cover my-[6.667vh]">
+          <section >
             <TrainingMode />
           </section>
         </MaxWebWidth>

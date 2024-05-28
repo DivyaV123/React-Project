@@ -5,6 +5,7 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import { COURSE_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
+import { useGetAllCoursesQuery } from "@/redux/queries/getAllCourses";
 const Courses = () => {
   const courses = [
     {
@@ -250,6 +251,8 @@ const Courses = () => {
       arrow: "/arrowIconDark.svg",
     },
   ];
+  const {data,isLoading,error}=useGetAllCoursesQuery()
+  console.log(data,"asdfg")
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
   return (

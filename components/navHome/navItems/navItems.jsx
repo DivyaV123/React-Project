@@ -18,7 +18,7 @@ import { CONTACT_US_PATH, PLACEMENT_PATH,HIREFROMUS_PATH } from "@/lib/RouteCons
 const navItems = [
   { id: 1, name: "Courses", content: <Courses /> },
   { id: 2, name: "Branches", content: <Branches /> },
-  { id: 3, name: "Tutions", content: <Tutions /> },
+  { id: 3, name: "Tuitions", content: <Tutions /> },
   { id: 4, name: "Hire From Us", content: "" },
   { id: 5, name: "Placements", content: "" },
   { id: 6, name: "Contact us", content: "" },

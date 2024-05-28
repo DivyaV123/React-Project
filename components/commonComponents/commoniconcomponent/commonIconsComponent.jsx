@@ -6,7 +6,7 @@ function CommonIconsComponent({ lite }) {
     const darkIcons = ['youtubeIcon', 'facebookIcon', 'twitterIcon', 'instagramIcon', 'whatsappIcon']
     const liteIcons = ['liteyoutubeIcon', 'litefacebookIcon', 'litelinkedinIcon', 'litetwitterIcon', 'liteinstagramIcon', 'litewhatsappIcon']
     return (
-        <section className='flex space-x-3 items-center commonIconsComponent'>
+        <section className='flex space-x-3 items-center commonIconsComponent cursor-pointer'>
             {!lite ? darkIcons.map((element) => {
                 return (
                     <Svg

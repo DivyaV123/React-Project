@@ -8,6 +8,11 @@ const DynamicHeader = dynamic(() => import('./homepage'), {
   ssr: false,
 })
 
+export const metadata = {
+  title: "Qspiders",
+  description: ""
+};
+
 export default function Home() {
   return (
     <main className="">
