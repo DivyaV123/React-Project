@@ -41,14 +41,14 @@ function EnrollPopUp() {
                             <div>
                                 <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Mobile number</p>
                                 <Input
-                                    inputStyle='h-[5.833vh] w-[25vw] text-[0.938vw]'
+                                    inputStyle='h-[5.833vh] !w-[25vw] text-[0.938vw]'
                                     placeholder='Enter your phone number'
                                 />
                             </div>
                             <div>
                                 <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Email</p>
                                 <Input
-                                    inputStyle='h-[5.833vh] w-[25vw] 0.938vw text-[0.938vw]'
+                                    inputStyle='h-[5.833vh] !w-[25vw] 0.938vw text-[0.938vw]'
                                     placeholder='Enter your email'
                                 />
                             </div>
@@ -57,29 +57,29 @@ function EnrollPopUp() {
                             <div>
                                 <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Course</p>
                                 <Input
-                                    inputStyle='h-[5.833vh] w-[25vw] text-[0.938vw]'
+                                    inputStyle='h-[5.833vh] !w-[25vw] text-[0.938vw]'
                                     placeholder='-Select-'
                                 />
                             </div>
                             <div>
                                 <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Full Name</p>
                                 <Input
-                                    inputStyle='h-[5.833vh] w-[25vw] text-[0.938vw]'
+                                    inputStyle='h-[5.833vh] !w-[25vw] text-[0.938vw]'
                                     placeholder='Enter your full name'
                                 />
                             </div>
                         </div>
-                        <div className='flex justify-between pb-[3.333vh]'>
+                        <div className='flex justify-between pb-[8.611vh]'>
                             <div>
                                 <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Message</p>
                                 <TextArea
                                     placeholder='Enter your message...'
-                                    textAreaStyle='max-h-[11.667vh] resize-none w-[25vw] text-[0.938vw] '
+                                    textAreaStyle='!h-full resize-none !w-[25vw] text-[0.938vw] '
                                 />
                             </div>
                             <div className='relative'>
-                                <AlertDialogAction className='bg-gradient text-white absolute right-0 bottom-0 py-[1.667vh] px-[1.875vw]'>
-                                    <span className='text-[1.25vw]'>Submit</span>
+                                <AlertDialogAction className='bg-gradient text-white absolute right-0 bottom-0 !py-[1.667vh] !px-[1.875vw]'>
+                                    <span className='text-[1.25vw] '>Submit</span>
                                 </AlertDialogAction>
                             </div>
                         </div>
