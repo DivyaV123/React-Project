@@ -4,6 +4,11 @@ import "./CounserllorFilters.scss";
 import StateFilter from "./StateFilter";
 import YearFilter from "./YearFilter";
 import TimeFilter from "./TimeFilter";
+import UniversityFilter from "./UniversityFilter";
+import CollegeFilter from "./CollegeFilter";
+import DegreeFilter from "./DegreeFilter";
+import StreamFilter from "./StreamFilter";
+import PercentageFilter from "./PercentageFilter";
 const CounsellorFilters = () => {
   const filterClass = "text-[#002248] text-[1.25vw] font-semibold";
   return (
@@ -16,9 +21,14 @@ const CounsellorFilters = () => {
           </div>
           <button className={`${filterClass}`}>Clear</button>
         </div>
-        <TimeFilter/>
-        <YearFilter/>
-        <StateFilter/>
+        <TimeFilter />
+        <YearFilter />
+        <StateFilter />
+        <UniversityFilter />
+        <CollegeFilter />
+        <DegreeFilter />
+        <StreamFilter />
+        <PercentageFilter />
       </aside>
     </>
   );

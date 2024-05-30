@@ -3,37 +3,44 @@ import React, { useEffect, useState } from "react";
 import PlacementContent from "./PlacementContent";
 import './PlacementSidebar.scss';
 import { Skeleton } from "@/components/ui/skeleton";
+import { useGetAllCitiesQuery } from "@/redux/queries/getAllCities";
+import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
+
 const PlacementSideBar = () => {
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements")
+  // const { citydata, error, isLoading } = useGetAllCitiesQuery();
+  const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
+  const degreeList = degreeAndStreamdata?.degreeList;
+  const courseList = degreeAndStreamdata?.streamList;
   const sideBar = [{
     title: "Recent Placements",
-    icon:"../../icon_arrow_white.svg",
-    blackIcon:"../../icon_arrow.svg"
+    icon: "../../icon_arrow_white.svg",
+    blackIcon: "../../icon_arrow.svg"
   },
   {
     title: "Top Salaries",
-    icon:"../../icon_arrow_white.svg",
-    blackIcon:"../../icon_arrow.svg"
+    icon: "../../icon_arrow_white.svg",
+    blackIcon: "../../icon_arrow.svg"
   },
   {
     title: "Last Week",
-    icon:"../../icon_arrow_white.svg",
-    blackIcon:"../../icon_arrow.svg"
+    icon: "../../icon_arrow_white.svg",
+    blackIcon: "../../icon_arrow.svg"
   },
   {
     title: "Last month",
-    icon:"../../icon_arrow_white.svg",
-    blackIcon:"../../icon_arrow.svg"
+    icon: "../../icon_arrow_white.svg",
+    blackIcon: "../../icon_arrow.svg"
   },
   {
     title: "Last 3 months",
-    icon:"../../icon_arrow_white.svg",
-    blackIcon:"../../icon_arrow.svg"
+    icon: "../../icon_arrow_white.svg",
+    blackIcon: "../../icon_arrow.svg"
   },
   {
     title: "Last 6 months",
-    icon:"../../icon_arrow_white.svg",
-    blackIcon:"../../icon_arrow.svg"
+    icon: "../../icon_arrow_white.svg",
+    blackIcon: "../../icon_arrow.svg"
   }
 
   ]
@@ -57,18 +64,18 @@ const PlacementSideBar = () => {
         :
         <aside className="sidebarContainer pt-[3.333vh]">
           {sideBar.map((classItem, index) => (
-              <button
-                key={index}
-                className={`flex justify-between items-center px-[1.25vw] py-[2.222vh] mb-[0.833vh] w-full text-[1.094vw] ${classItem.title === sideBarBtn ? "sideBarButton font-medium" : ""
-                  }`}
-                onClick={() => { setSideBarBtn(classItem.title) }}
-              >
-                <div>
+            <button
+              key={index}
+              className={`flex justify-between items-center px-[1.25vw] py-[2.222vh] mb-[0.833vh] w-full text-[1.094vw] ${classItem.title === sideBarBtn ? "sideBarButton font-medium" : ""
+                }`}
+              onClick={() => { setSideBarBtn(classItem.title) }}
+            >
+              <div>
 
                 {classItem.title}
-                </div>
-                <img className="text-white" src={classItem.title === sideBarBtn ? classItem.icon : classItem.blackIcon}/>
-              </button>
+              </div>
+              <img className="text-white" src={classItem.title === sideBarBtn ? classItem.icon : classItem.blackIcon} />
+            </button>
           ))}
         </aside>
       }

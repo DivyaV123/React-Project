@@ -94,6 +94,15 @@ function ContactUsHome() {
                                 <header>
                                     <h1 className='text-[1.875vw] text-white font-semibold pt-[2.222vh] pb-[2.5vw]'>
                                         Contact Info
+                                        <div className='p-0'>
+                                            <Svg
+                                                width={svgicons.contactUsHilight[0]}
+                                                height={svgicons.contactUsHilight[1]}
+                                                viewBox={svgicons.contactUsHilight[2]}
+                                                icon={svgicons.contactUsHilight[3]}
+                                                color={svgicons.contactUsHilight[4]}
+                                            />
+                                        </div>
                                     </h1>
                                     {contactInfo.map((data) => (
                                         <article className={`${data.country === "United Kingdom" ? "pb-[7.031vw]" : "pb-[3.125vw]"}`}>

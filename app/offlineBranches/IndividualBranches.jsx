@@ -3,7 +3,9 @@ import React, { useContext } from "react";
 import "./IndividualBranches.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useRouter } from "next/navigation";
-import { OFFLINE_CENTRES} from "@/lib/RouteConstants";
+import { OFFLINE_CENTRES } from "@/lib/RouteConstants";
+import Svg from "@/components/commonComponents/Svg/Svg";
+import { svgicons } from "@/components/assets/icons/svgassets";
 const IndividualBranches = () => {
   const router = useRouter();
   const { selectedBranch, setSelectedBranch, setSelectedCourseId } =
@@ -225,19 +227,21 @@ const IndividualBranches = () => {
   return (
     <div className="w-full">
       <header className="offlineHeader">Our Offline Centres</header>
-      <section className="citySection w-[87.5vw] m-auto pt-3 pb-16">
-        <div className="h-[2.65vw] flex cityNavbar">
+      <section className="citySection w-[87.5vw] m-auto pt-3 pb-16 ">
+        <div className="h-[2.65vw] flex items-center">
+
           {navCities.map((ele, index) => (
             <div
               onClick={() => setSelectedBranch(ele.city)}
-              className={`flex justify-center items-center w-[8.359vw] py-2  text-[0.75rem] ${
-                ele.city === selectedBranch ? "activeCity" : ""
-              }`}
+              className={`cityNavbar flex justify-center items-center w-[8.359vw] py-2  text-[0.75rem] ${ele.city === selectedBranch ? "activeCity" : ""
+                }`}
             >
               <button key={index}>{ele.city}</button>
             </div>
           ))}
+
         </div>
+
         <div className="pt-6">
           <p className="font-medium text-[0.75rem] text-[#4987CE]">
             Select Course to View our offline Centres
