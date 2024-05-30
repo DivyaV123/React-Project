@@ -4,7 +4,6 @@ import "./CounserllorFilters.scss";
 import StateFilter from "./StateFilter";
 import YearFilter from "./YearFilter";
 import TimeFilter from "./TimeFilter";
-import CityFilter from "./cityFilter";
 import UniversityFilter from "./UniversityFilter";
 import CollegeFilter from "./CollegeFilter";
 import DegreeFilter from "./DegreeFilter";
