@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
-import CityFilter from './cityFilter';
+import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 const StateFilter = () => {
   const { data, error, isLoading } = useGetAllStatesQuery();
