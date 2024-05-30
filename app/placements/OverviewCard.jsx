@@ -1,6 +1,6 @@
 import React from "react";
 import "./PlacementCards.scss";
-const OverviewCard = () => {
+const OverviewCard = ({allCounts}) => {
   return (
     <div className="overviewCard">
       <div className="flex h-full">
@@ -9,7 +9,7 @@ const OverviewCard = () => {
             Throughout 60% in degree
           </p>
           <p className="font-bold text-[1.875vw] text-[#002248] pl-[1.563vw] pb-[2.778vh]">
-            23,59,365
+            {allCounts?.response?.throughOutSixtyPercent}
           </p>
         </div>
         <div>

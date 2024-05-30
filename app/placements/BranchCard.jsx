@@ -1,6 +1,6 @@
 import React from "react";
 import "./PlacementCards.scss";
-const BranchCard = () => {
+const BranchCard = ({allCounts}) => {
   return (
     <div className="branchCard">
       <div className="flex h-full">
@@ -10,7 +10,7 @@ const BranchCard = () => {
             candidates
           </p>
           <p className="font-bold text-[1.875vw] text-[#DC4267] pl-[1.563vw] pb-[2.778vh]">
-            1,36,859
+            {allCounts?.response?.itCount}
           </p>
         </div>
         <div>

@@ -1,6 +1,6 @@
 import React from "react";
 import "./PlacementCards.scss";
-const DegreeCard = () => {
+const DegreeCard = ({allCounts}) => {
   return (
     <div className="degreeCard">
       <div className="flex h-full">
@@ -9,7 +9,7 @@ const DegreeCard = () => {
             Less than 60% in <br /> Degree
           </p>
           <p className="font-bold text-[1.875vw] text-[#F28C21] pl-[1.563vw] pb-[2.778vh]">
-            26,720
+            {allCounts?.response?.lessThanSixtyPercent}
           </p>
         </div>
         {/* <div>
