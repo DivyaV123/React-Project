@@ -3,15 +3,12 @@ import React, { useEffect, useState } from "react";
 import PlacementContent from "./PlacementContent";
 import './PlacementSidebar.scss';
 import { Skeleton } from "@/components/ui/skeleton";
-import { useGetAllCitiesQuery } from "@/redux/queries/getAllCities";
-import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
+
 
 const PlacementSideBar = () => {
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements")
   // const { citydata, error, isLoading } = useGetAllCitiesQuery();
-  const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
-  const degreeList = degreeAndStreamdata?.degreeList;
-  const courseList = degreeAndStreamdata?.streamList;
+
   const sideBar = [{
     title: "Recent Placements",
     icon: "../../icon_arrow_white.svg",
