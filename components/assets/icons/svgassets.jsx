@@ -14,6 +14,21 @@ export const svgicons = {
         </>,
         'none'
     ],
+    contactUsHilight: [
+        "36", "4", "0 0 36 4",
+        <rect width="36" height="4" rx="2" fill="white" />,
+        'none'
+    ],
+    branchescorosalLeftArrow: [
+        "11", "19", "0 0 11 19",
+        <path d="M9.5 2L2 9.5L9.5 17" stroke="#F09819" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />,
+        'none'
+    ],
+    branchescorosalRiteArrow: [
+        "11", "19", "0 0 11 19",
+        <path d="M1.5 2L9 9.5L1.5 17" stroke="#F09819" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />,
+        'none'
+    ],
     corasalArrowRight: [
         "24", "52", "0 0 24 52",
         <path d="M8 35.0001L15.3491 27.591C16.217 26.716 16.217 25.2842 15.3491 24.4092L8 17.0001" stroke="#575757" stroke-width="1.5" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round" />,

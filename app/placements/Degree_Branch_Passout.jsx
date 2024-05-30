@@ -3,13 +3,21 @@ import React, { useEffect, useState } from "react";
 import "./Degree_Branch_passout.scss";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Skranji } from "next/font/google";
+import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
+
+
 const Degree_Branch_Passout = () => {
   const [degreeButton, setDegreeButton] = useState("BE/Btech");
   const [branchButton, setBranchButton] = useState("CSE");
   const [passOutButton, setPassOutButton] = useState("2023");
   const [isloading, setisLoading] = useState(true);
   const [iseSelectOpen, setiseSelectOpen] = useState(false);
-  const degreeCourses = [
+  const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
+  const degreeList = degreeAndStreamdata?.response.degreeList;
+  const courseList = degreeAndStreamdata?.response.streamList;
+  let degreeCourses = degreeList?.map(item => ({ title: item }));
+
+  const degreeCou = [
     { title: "BE/Btech" },
     {
       title: "BSC/BCA",
@@ -111,14 +119,12 @@ const Degree_Branch_Passout = () => {
             Degree
           </p>
           <div className="bg-white h-[2.65vw] flex w-full buttonSection">
-            {degreeCourses.map((classItem, index) => (
+            {degreeCourses?.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center w-[7.5vw] py-2  text-[0.63rem]  ${
-                  classItem.title === degreeButton ? "activeButton font-medium" : ""
-                } ${
-                  classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
-                }`}
+                className={`flex justify-center items-center w-[7.5vw] py-2  text-[0.63rem]  ${classItem.title === degreeButton ? "activeButton font-medium" : ""
+                  } ${classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
+                  }`}
                 onClick={() => handleDegreeBar(classItem.title)}
               >
                 {classItem.title}
@@ -140,11 +146,9 @@ const Degree_Branch_Passout = () => {
             {Branch.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center w-[4.219vw] py-2  text-[0.63rem]  ${
-                  classItem.title === branchButton ? "activeButton font-medium" : ""
-                } ${
-                  classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
-                }`}
+                className={`flex justify-center items-center w-[4.219vw] py-2  text-[0.63rem]  ${classItem.title === branchButton ? "activeButton font-medium" : ""
+                  } ${classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
+                  }`}
                 onClick={() => handleBranchBar(classItem.title)}
               >
                 {classItem.title}
@@ -160,34 +164,32 @@ const Degree_Branch_Passout = () => {
         </div>
       ) : (
         <div className="passout-wrapper">
-      <div className="w-[20.313vw]">
-        <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-          Year of passout
-        </p>
-        <div className="bg-white h-[2.65vw] flex w-full buttonSection">
-          {Passout.map((classItem, index) => (
-            <button
-              key={index}
-              className={`flex justify-center items-center w-[4.219vw] py-2  text-[0.63rem]  ${
-                classItem.title === passOutButton ? "activeButton font-medium" : ""
-              } ${
-                classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
-              }`}
-              onClick={() => handlePassOutBar(classItem.title)}
-            >
-              {classItem.title}
-            </button>
-          ))}
+          <div className="w-[20.313vw]">
+            <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+              Year of passout
+            </p>
+            <div className="bg-white h-[2.65vw] flex w-full buttonSection">
+              {Passout.map((classItem, index) => (
+                <button
+                  key={index}
+                  className={`flex justify-center items-center w-[4.219vw] py-2  text-[0.63rem]  ${classItem.title === passOutButton ? "activeButton font-medium" : ""
+                    } ${classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
+                    }`}
+                  onClick={() => handlePassOutBar(classItem.title)}
+                >
+                  {classItem.title}
+                </button>
+              ))}
+            </div>
+            {iseSelectOpen && (
+              <ul className="additional-years-list ">
+                {[2019, 2018, 2017].map((year, index) => (
+                  <li key={index} className="flex justify-center items-center w-[4.219vw] py-2 font-medium text-[0.63rem] text-dark-gray my-2.5" onClick={() => handleYearClick(year)}>{year}</li>
+                ))}
+              </ul>
+            )}
+          </div>
         </div>
-        {iseSelectOpen && (
-          <ul className="additional-years-list ">
-            {[2019, 2018, 2017].map((year, index) => (
-              <li key={index} className="flex justify-center items-center w-[4.219vw] py-2 font-medium text-[0.63rem] text-dark-gray my-2.5" onClick={() => handleYearClick(year)}>{year}</li>
-            ))}
-          </ul>
-        )}
-      </div>
-    </div>
       )}
     </section>
   );
