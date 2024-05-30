@@ -227,13 +227,13 @@ const IndividualBranches = () => {
   return (
     <div className="w-full">
       <header className="offlineHeader">Our Offline Centres</header>
-      <section className="citySection w-[87.5vw] m-auto pt-3 pb-16 ">
-        <div className="h-[2.65vw] flex items-center">
+      <section className="citySection w-[87.5vw] m-auto pt-[1.667vh] pb-[8.889vh] ">
+        <div className="flex items-center">
 
           {navCities.map((ele, index) => (
             <div
               onClick={() => setSelectedBranch(ele.city)}
-              className={`cityNavbar flex justify-center items-center w-[8.359vw] py-2  text-[0.75rem] ${ele.city === selectedBranch ? "activeCity" : ""
+              className={`cityNavbar flex justify-center items-center w-[8.359vw] py-[1.111vh]  text-[0.938vw] ${ele.city === selectedBranch ? "activeCity" : ""
                 }`}
             >
               <button key={index}>{ele.city}</button>
@@ -242,31 +242,31 @@ const IndividualBranches = () => {
 
         </div>
 
-        <div className="pt-6">
-          <p className="font-medium text-[0.75rem] text-[#4987CE]">
+        <div className="pt-[3.333vh]">
+          <p className="font-medium text-[0.938vw] text-[#4987CE]">
             Select Course to View our offline Centres
           </p>
         </div>
-        <section className="w-[80vw] m-auto pt-3 flex flex-wrap gap-4">
+        <section className="w-[80vw] m-auto pt-[1.667vh] flex flex-wrap gap-4">
           {selectedCity &&
             selectedCity?.sublist?.map((course, index) => (
               <div
                 onClick={(e) => handleCourseRoute(e, course.id)}
                 key={index}
-                className="courseCard p-2 cursor-pointer"
+                className="courseCard  py-[1.111vh] px-[0.625vw] cursor-pointer"
               >
                 <div className="flex items-center gap-2">
                   <img
                     src={course.image}
                     alt={course.title}
-                    className="h-6 w-6"
+                    className="h-[3.333vh] w-[1.875vw]"
                   />
-                  <h3 className="text-[0.75rem] text-[#454545] font-bold">
+                  <h3 className="text-[0.938vw] text-[#454545] font-bold">
                     {course.title}
                   </h3>
                 </div>
                 <div>
-                  <article className="text-[#575757] text-[0.688rem] pt-4">
+                  <article className="text-[#575757] text-[0.866vw] pt-[2.222vh]">
                     {course.description}
                   </article>
                 </div>
