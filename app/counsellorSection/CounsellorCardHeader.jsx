@@ -16,7 +16,7 @@ const CounsellorCardHeader = () => {
   const {data:ThroughoutSixty}=useGetThroughOutSixtyQuery()
   const { data:counsellorFilterResponse, error,refetch } = useFetchCounsellorsQuery({
       pageNumber: 1,
-      pageSize: 1,
+      pageSize: 20,
       parameter: "it",
       bodyData: filteringData
     });

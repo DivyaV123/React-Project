@@ -9,8 +9,11 @@ import CollegeFilter from "./CollegeFilter";
 import DegreeFilter from "./DegreeFilter";
 import StreamFilter from "./StreamFilter";
 import PercentageFilter from "./PercentageFilter";
-
+import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 const CounsellorFilters = () => {
+  const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
+  const degreeList = degreeAndStreamdata?.response.degreeList;
+  const streamList = degreeAndStreamdata?.response.streamList;
   const filterClass = "text-[#002248] text-[1.25vw] font-semibold";
   return (
     <>
@@ -27,8 +30,8 @@ const CounsellorFilters = () => {
         <StateFilter />
         <UniversityFilter />
         <CollegeFilter />
-        <DegreeFilter />
-        <StreamFilter />
+        <DegreeFilter degreeList={degreeList}/>
+        <StreamFilter streamList={streamList}/>
         <PercentageFilter />
       </aside>
     </>
