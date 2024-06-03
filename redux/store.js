@@ -19,7 +19,8 @@ import PlacementCountReducer from './slices/placementCount/PlacementCountSlice';
 import LessthanSixtySliceReducer from './slices/placementCount/LessthanSixtySlice';
 import ThroughOutSixtyReducer from './slices/placementCount/ThroughOutSixtySlice';
 import ItandNonItReducer from './slices/placementCount/ItandNonItSlice';
-
+import CounsellorFilterReducer from './slices/counsellorPlacementFilter/CounsellorFilterSlice';
+import { counsellorsApi } from './queries/counsellorsApi';
 const store = configureStore({
   reducer: {
     [courseApi.reducerPath]: courseApi.reducer,
@@ -51,9 +52,13 @@ const store = configureStore({
 
     [ItandNonItApi.reducerPath]: ItandNonItApi.reducer,
     getItandNonIt: ItandNonItReducer,
+
+    [counsellorsApi.reducerPath]: counsellorsApi.reducer
+
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware, ItandNonItApi.middleware),
+    getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
+       ItandNonItApi.middleware,counsellorsApi.middleware),
 });
 
 export default store;

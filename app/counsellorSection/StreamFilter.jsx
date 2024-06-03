@@ -1,9 +1,10 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
-
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const StreamFilter = () => {
+    const { filteringData, setFilteringData ,handleFilter} = useContext(GlobalContext);
     const [stateItems, setStateItems] = useState([{
         id: "karnataka",
         label: "Karnataka",
@@ -59,7 +60,7 @@ const StreamFilter = () => {
                         id={item.id}
                         label={item.label}
                         checked={item.checked}
-                        onChange={() => handleFilterState(index)}
+                        onChange={() => handleFilter(index,stateItems,setStateItems,'stream')}
                     />
                 ))}
             </>

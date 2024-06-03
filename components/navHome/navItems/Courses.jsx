@@ -252,7 +252,6 @@ const Courses = () => {
     },
   ];
   const {data,isLoading,error}=useGetAllCoursesQuery()
-  console.log(data,"asdfg")
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
   return (
