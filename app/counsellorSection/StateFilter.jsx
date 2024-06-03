@@ -6,28 +6,10 @@ import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const StateFilter = () => {
-  const { filteringData, setFilteringData ,handleFilter} = useContext(GlobalContext);
-  const { data, error, isLoading } = useGetAllStatesQuery();
-  const [stateItems, setStateItems] = useState([{
-    id: "karnataka",
-    label: "Karnataka",
-    checked: false,
-  },
-  {
-    id: "maharashtra",
-    label: "Maharashtra",
-    checked: false,
-  }, {
-    id: "punjab",
-    label: "Punjab",
-    checked: false,
-  },
-  {
-    id: "kerela",
-    label: "Kerela",
-    checked: false,
-  },
-  ])
+  const { filteringData, setFilteringData ,handleCommonFilter} = useContext(GlobalContext);
+  const { data:statesData, error, isLoading } = useGetAllStatesQuery();
+  const statesList = statesData?.response;
+  const [stateItems, setStateItems] = useState([])
   return (
     <>
       <div className="px-[1.875vw] pt-[2.778vh]">
@@ -42,13 +24,13 @@ const StateFilter = () => {
           <div class="search-icon"></div>
         </div>
         <>
-          {stateItems.map((item, index) => (
+          {statesList?.map((item, index) => (
             <Checkbox
-              key={index}
-              id={item.id}
-              label={item.label}
-              checked={item.checked}
-              onChange={() => handleFilter(index,stateItems,setStateItems,'state')}
+            key={index}
+            id={index}
+            label={item}
+            checked={stateItems.includes(index)}
+              onChange={() => handleCommonFilter(index,stateItems,setStateItems,statesList)}
             />
           ))}
         </>

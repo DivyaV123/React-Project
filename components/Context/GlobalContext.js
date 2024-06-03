@@ -43,7 +43,21 @@ const GlobalContextProvider = ({ children }) => {
       [field]: selectedValues,
     }));
   };
+  const handleCommonFilter = (index,items,setItems,response) => {
+    const updatedSelectedItems = [...items];
+    if (updatedSelectedItems.includes(index)) {
+        updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
+    } else {
+        updatedSelectedItems.push(index);
+    }
+    setItems(updatedSelectedItems);
 
+    const selectedDegreeNames = updatedSelectedItems.map(index => response[index]);
+    setFilteringData(prevFilteringData => ({
+        ...prevFilteringData,
+        degree: selectedDegreeNames,
+    }));
+};
   return (
     <GlobalContext.Provider value={{
       selectedBranch,
@@ -56,7 +70,8 @@ const GlobalContextProvider = ({ children }) => {
       setSelectedClassMode,
       filteringData,
       setFilteringData,
-      handleFilter
+      handleFilter,
+      handleCommonFilter
     }}>{children}</GlobalContext.Provider>
   );
 };

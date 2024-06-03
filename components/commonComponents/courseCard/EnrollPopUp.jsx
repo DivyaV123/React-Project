@@ -10,7 +10,6 @@ import {
     AlertDialogTitle,
     AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
-import Button from '../button/Button'
 import Svg from '../Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import Input from '../input/Input'
@@ -85,9 +84,6 @@ function EnrollPopUp() {
                         </div>
                     </AlertDialogDescription>
                 </AlertDialogHeader>
-                {/* <AlertDialogFooter>
-                    
-                </AlertDialogFooter> */}
             </AlertDialogContent>
         </div>
     )

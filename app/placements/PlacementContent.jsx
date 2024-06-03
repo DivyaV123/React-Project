@@ -1,27 +1,60 @@
-import React from "react";
+import React,{useState} from "react";
 import "./PlacementSidebar.scss";
-
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import ImagePopup from "./ImagePopup";
+import VideoPopup from "./VideoPopup";
+import Link from "next/link";
 const PlacementContent = ({ counsellorFilterResponse }) => {
+  const [imageDialog, setImageDialog] = useState(false);
+  const [videoDialog, setVideoDialog] = useState(false);
+  console.log(videoDialog,"videoDialog")
+  const openImageDialog = () => {
+    setImageDialog(true);
+    setVideoDialog(false); // Close video dialog if open
+  };
+
+  const openVideoDialog = () => {
+    setVideoDialog(true);
+    setImageDialog(false); // Close image dialog if open
+  };
+  const convertStream = (inputString) => {
+    const mapping = {
+      "INFORMATION TECHNOLOGY": "IT",
+      "CIVIL ENGINEERING": "Civil",
+      "COMPUTER SCIENCE AND ENGINEERING":"CSE"
+    };
+
+    return mapping[inputString.toUpperCase()] || inputString;
+  };
   return (
     <>
-      {counsellorFilterResponse?.map((student, index) => (
-        
+      {counsellorFilterResponse?.map((student) => (
         <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh] h-[32.083vh]">
+          {console.log(student?.testimonial?.youtubeReview,"youtubereview")}
+          <AlertDialog popup='imagepopup'>
           <div className="w-[15.547vw] ">
-            <img src={student?.photoLink} className="w-full h-[24.861vh] object-cover" />
+            <img
+              src={student?.photoLink}
+              className="w-full h-[24.861vh] object-cover"
+            />
             <div className="imageCard">
               <header className="studentName font-semibold py-[1.111vh]">
                 {student?.name}
               </header>
               <div className="flex gap-1 studentDetails">
                 <div>
-                  <div className="studentDetails flex justify-center">{student?.degree?.degreeName}</div>
+                  <div className="studentDetails flex justify-center">
+                    {student?.degree?.degreeName}
+                  </div>
                   <div className="educationDetails">Degree</div>
                 </div>
                 <div>|</div>
                 <div>
                   <div className="studentDetails flex justify-center">
-                    Civil
+                    {convertStream(student?.degree?.degreeStream)}
                   </div>
                   <div className="educationDetails">Stream</div>
                 </div>
@@ -34,7 +67,9 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                 </div>
                 <div>|</div>
                 <div>
-                  <div className="studentDetails flex justify-center">{student?.degree?.degreeYop}</div>
+                  <div className="studentDetails flex justify-center">
+                    {student?.degree?.degreeYop}
+                  </div>
                   <div className="educationDetails">YOP</div>
                 </div>
               </div>
@@ -63,9 +98,24 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
             </div>
           </div>
           <div className="pl-[3.125vw] pt-[2.222vh] flex flex-col gap-3">
-            <div className="imageBox"></div>
-            <div className="imageBox"></div>
+            <AlertDialogTrigger asChild>
+            <img onClick={openImageDialog} src={student?.testimonial?.testimonialLink} className="imageBox cursor-pointer"/>
+            </AlertDialogTrigger>
+            <AlertDialogTrigger asChild>
+              <img onClick={openVideoDialog}  typeof="foaf:Image" className="videoBox cursor-pointer"/>
+            </AlertDialogTrigger>
           </div>
+          {
+            imageDialog && (
+              <ImagePopup testimonialLink={student?.testimonial?.testimonialLink}/>
+          )
+          }
+          {
+            videoDialog && (
+              <VideoPopup videoLink={student?.testimonial?.youtubeReview}/>
+          )
+          }
+          </AlertDialog>
         </section>
       ))}
     </>
