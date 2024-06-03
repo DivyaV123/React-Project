@@ -1,10 +1,12 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
 import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const StateFilter = () => {
+  const { filteringData, setFilteringData ,handleFilter} = useContext(GlobalContext);
   const { data, error, isLoading } = useGetAllStatesQuery();
   const [stateItems, setStateItems] = useState([{
     id: "karnataka",
@@ -26,22 +28,6 @@ const StateFilter = () => {
     checked: false,
   },
   ])
-  const handleFilterState = (index) => {
-    const newStateItems = stateItems.map((item, idx) => {
-      if (idx === index) {
-        return {
-          ...item,
-          checked: !item.checked,
-        };
-      } else {
-        return {
-          ...item,
-          checked: false,
-        };
-      }
-    });
-    setStateItems(newStateItems);
-  };
   return (
     <>
       <div className="px-[1.875vw] pt-[2.778vh]">
@@ -62,7 +48,7 @@ const StateFilter = () => {
               id={item.id}
               label={item.label}
               checked={item.checked}
-              onChange={() => handleFilterState(index)}
+              onChange={() => handleFilter(index,stateItems,setStateItems,'state')}
             />
           ))}
         </>

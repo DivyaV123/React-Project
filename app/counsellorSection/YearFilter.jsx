@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState,useContext } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
 import {
@@ -10,7 +10,9 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const YearFilter = () => {
+  const { filteringData, setFilteringData ,handleFilter} = useContext(GlobalContext);
   const [yearItems, setYearItems] = useState([
     {
       id: "2023",
@@ -42,38 +44,6 @@ const YearFilter = () => {
     },
   ]);
 
-  const handleFilterYear = (index) => {
-    const newYearItems = yearItems.map((item, idx) => {
-      if (idx === index) {
-        return {
-          ...item,
-          checked: !item.checked,
-        };
-      } else {
-        return {
-          ...item,
-          checked: false,
-        };
-      }
-    });
-    setYearItems(newYearItems);
-  };
-  const handleFilterBranch = (index) => {
-    const newBranchItems = branchItems.map((item, idx) => {
-      if (idx === index) {
-        return {
-          ...item,
-          checked: !item.checked,
-        };
-      } else {
-        return {
-          ...item,
-          checked: false,
-        };
-      }
-    });
-    setBranchItems(newBranchItems);
-  };
   return (
     <div className="px-[1.875vw] pt-[2.778vh] timePeriod">
       <div className="flex justify-between pb-[1.111vh]">
@@ -119,7 +89,7 @@ const YearFilter = () => {
             id={item.id}
             label={item.label}
             checked={item.checked}
-            onChange={() => handleFilterYear(index)}
+            onChange={() => handleFilter(index, yearItems, setYearItems, 'yop')}
           />
         ))}
       </>
@@ -136,7 +106,7 @@ const YearFilter = () => {
             id={item.id}
             label={item.label}
             checked={item.checked}
-            onChange={() => handleFilterBranch(index)}
+            onChange={() => handleFilter(index, branchItems, setBranchItems, 'branchLocation')}
           />
         ))}
       </>
