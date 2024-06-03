@@ -6,11 +6,20 @@ import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import dayjs from "dayjs";
+import { useGetPlacedDateBetweenQuery } from "@/redux/queries/getPlacedDateBetween";
 const TimeFilter = () => {
   const { filteringData, setFilteringData } = useContext(GlobalContext);
   const [fromcalender, setFromCalender] = useState(false);
   const [tocalender, setToCalender] = useState(false);
-  const [value, setValue] = useState(new Date());
+  const [fromvalue, setFromValue] = useState('');
+  const [toValue, setToValue] = useState('');
+  const todayFormatted = dayjs().format("YYYY-MM-DD")
+  const formattedStartDate=dayjs(fromvalue).format("YYYY-MM-DD")
+  const formattedEndDate=dayjs(toValue).format("YYYY-MM-DD")
+  const {data:PlacedDateBetween}=useGetPlacedDateBetweenQuery({
+    startDate:formattedStartDate,endDate:formattedEndDate,pageNo:1,pageSize:10
+  })
+
   const [timeItems, setTimeItems] = useState([
     {
       id: "last week",
@@ -34,14 +43,13 @@ const TimeFilter = () => {
     },
   ]);
   const handleToChange = (newValue) => {
-    setValue(newValue);
+    setToValue(newValue);
   };
   const handleFromChange = (newValue) => {
-    setValue(newValue);
+    setFromValue(newValue);
   };
-
-  const today = dayjs();
-  
+  console.log(fromvalue,toValue,"jhgfdfghjkjhgfg");
+  const today = dayjs()
   const weekEnd = today.subtract(1, "week").format("YYYY-MM-DD");
 
   const lastMonth = today.subtract(1, "month").format("YYYY-MM-DD");
@@ -111,7 +119,7 @@ const TimeFilter = () => {
         </button>
         {fromcalender && (
           <div className="calenderStyle">
-            <Calendar onChange={handleFromChange} value={value} />
+            <Calendar onChange={handleFromChange} value={fromvalue} />
           </div>
         )}
         <button
@@ -124,7 +132,7 @@ const TimeFilter = () => {
         </button>
         {tocalender && (
           <div className="calenderStyle">
-            <Calendar onChange={handleToChange} value={value} />
+            <Calendar onChange={handleToChange} value={toValue} />
           </div>
         )}
       </div>
