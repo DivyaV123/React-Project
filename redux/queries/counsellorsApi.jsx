@@ -6,7 +6,7 @@ export const counsellorsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: 'http://37.61.213.213:8090/' }),
   endpoints: (builder) => ({
     fetchCounsellors: builder.query({
-      query: ({ pageNumber=1, pageSize=10, parameter='', bodyData }) => ({
+      query: ({ pageNumber = 1, pageSize = 5, parameter = 'it', bodyData }) => ({
         url: `candidate/counsellor/filter?pageNumber=${pageNumber}&pageSize=${pageSize}&parameter=${parameter}`,
         method: 'POST',
         body: bodyData

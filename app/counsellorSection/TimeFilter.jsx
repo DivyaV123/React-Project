@@ -34,10 +34,12 @@ const TimeFilter = () => {
     },
   ]);
   const handleToChange = (newValue) => {
-    setValue(newValue);
+    setToValue(newValue);
+    setToCalender(false)
   };
   const handleFromChange = (newValue) => {
-    setValue(newValue);
+    setFromValue(newValue);
+    setFromCalender(false)
   };
 
   const today = dayjs();

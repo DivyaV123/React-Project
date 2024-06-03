@@ -1,17 +1,17 @@
 'use client'
 import React, { createContext, useState } from "react";
 export const GlobalContext = createContext();
-const initalFilter={
-  timePeriod:[],
-  yop:[],
-  branchLocation:[],
-  state:[],
-  city:[],
-  university:[],
-  college:[],
-  percentage:[],
-  degree:[],
-  stream:[]
+const initalFilter = {
+  timePeriod: [],
+  yop: [],
+  branchLocation: [],
+  state: [],
+  city: [],
+  university: [],
+  college: [],
+  percentage: [],
+  degree: [],
+  stream: []
 }
 const GlobalContextProvider = ({ children }) => {
   const [selectedBranch, setSelectedBranch] = useState('Bengalore')
@@ -20,7 +20,9 @@ const GlobalContextProvider = ({ children }) => {
   const [selectedBatch, setSelectedBatch] = useState("Bengalore")
   const [selectedClassMode, setSelectedClassMode] = useState("offline")
 
-  const [filteringData,setFilteringData]=useState(initalFilter)
+  const [filteringData, setFilteringData] = useState(initalFilter)
+  const [page, setPage] = useState(0)
+  const [size, setSize] = useState(5)
 
 
   const handleFilter = (index, items, setItems, field) => {
@@ -71,7 +73,10 @@ const GlobalContextProvider = ({ children }) => {
       filteringData,
       setFilteringData,
       handleFilter,
-      handleCommonFilter
+      page,
+      setPage,
+      size,
+      setSize
     }}>{children}</GlobalContext.Provider>
   );
 };

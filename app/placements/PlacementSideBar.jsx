@@ -7,7 +7,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 
 const PlacementSideBar = () => {
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements")
-  // const { citydata, error, isLoading } = useGetAllCitiesQuery();
+  const { data: citydata, error, isLoading } = useGetAllCitiesQuery(state);
 
   const sideBar = [{
     title: "Recent Placements",

@@ -6,7 +6,11 @@ export const citiesApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: PROD_URL }),
     endpoints: (builder) => ({
         getAllCities: builder.query({
-            query: () => 'candidate/cities',
+            query: ({ state }) => ({
+                url: 'candidate/cities',
+                method: 'POST',
+                body: state
+            }),
         }),
     }),
 });

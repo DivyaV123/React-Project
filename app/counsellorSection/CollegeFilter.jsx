@@ -1,10 +1,13 @@
 'use client'
-import React, { useState ,useContext} from 'react'
+import React, { useState, useContext } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { useGetAllCollegesQuery } from '@/redux/queries/getAllColleges';
 const CollegeFilter = () => {
-    const { filteringData, setFilteringData ,handleFilter} = useContext(GlobalContext);
+    const { data, isLoading, error } = useGetAllCollegesQuery("")
+    const { filteringData, setFilteringData, handleFilter } = useContext(GlobalContext);
+    console.log(data, "data")
     const [stateItems, setStateItems] = useState([{
         id: "karnataka",
         label: "Karnataka",
@@ -60,7 +63,7 @@ const CollegeFilter = () => {
                         id={item.id}
                         label={item.label}
                         checked={item.checked}
-                        onChange={() => handleFilter(index,stateItems,setStateItems,'college')}
+                        onChange={() => handleFilter(index, stateItems, setStateItems, 'college')}
                     />
                 ))}
             </>
