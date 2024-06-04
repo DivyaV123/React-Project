@@ -36,7 +36,7 @@ const CounsellorCardHeader = () => {
     const { scrollTop, clientHeight, scrollHeight } = event.target;
 
     if (scrollTop + clientHeight >= scrollHeight - 20) {
-      if (counsellorFilterResponse.response.last === false && counsellorFilterResponse.response.totalPages >= page) {
+      if (counsellorFilterResponse?.response.last === false && counsellorFilterResponse.response.totalPages >= page) {
         setPage(page + 1)
       }
     };
