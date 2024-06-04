@@ -1,5 +1,5 @@
 'use client'
-import React,{useContext,useEffect} from "react";
+import React, { useContext, useEffect, useState } from "react";
 import TotalPlacedCard from "../placements/TotalPlacedCard";
 import DegreeCard from "../placements/DegreeCard";
 import OverviewCard from "../placements/OverviewCard";
@@ -8,33 +8,59 @@ import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCou
 import { useGetLessthanSixtyQuery } from "@/redux/queries/getLessthanSixty";
 import { useGetThroughOutSixtyQuery } from "@/redux/queries/getThroughOutSixty";
 import { useFetchCounsellorsQuery } from '@/redux/queries/counsellorsApi'
-import { GlobalContext } from "@/components/Context/GlobalContext"; 
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const CounsellorCardHeader = () => {
-  const {filteringData}=useContext(GlobalContext)  
-  const {data:allCounts,isLoading,isError}=useGetAllPlacementCountQuery()
-  const {data:lessthanSixty}=useGetLessthanSixtyQuery()
-  const {data:ThroughoutSixty}=useGetThroughOutSixtyQuery()
-  const { data:counsellorFilterResponse, error,refetch } = useFetchCounsellorsQuery({
-      pageNumber: 1,
-      pageSize: 20,
-      parameter: "it",
-      bodyData: filteringData
-    });
-    useEffect(() => {
-      refetch(); 
-    }, [filteringData]);
-    
+  const [accumulatedData, setAccumulatedData] = useState([]);
+  const { filteringData, page, size, setPage, setSize } = useContext(GlobalContext)
+  const { data: allCounts, isLoading, isError } = useGetAllPlacementCountQuery()
+  const { data: lessthanSixty } = useGetLessthanSixtyQuery()
+  const { data: ThroughoutSixty } = useGetThroughOutSixtyQuery()
+  const { data: counsellorFilterResponse, error, refetch } = useFetchCounsellorsQuery({
+    pageNumber: page,
+    pageSize: size,
+    parameter: "it",
+    bodyData: filteringData
+  });
+  useEffect(() => {
+    refetch();
+  }, [filteringData, page, size]);
+
+  useEffect(() => {
+    if (counsellorFilterResponse) {
+      setAccumulatedData(prevData => [...prevData, ...counsellorFilterResponse.response.content]);
+    }
+  }, [counsellorFilterResponse]);
+
+
+  const handleScroll = (event) => {
+    const target = event.target;
+    const scrolledToBottom =
+      Math.ceil(target.scrollTop + target.clientHeight) > target.scrollHeight - 1;
+    console.log("handleScroll is calaing", scrolledToBottom)
+    if (scrolledToBottom) {
+      if (!counsellorFilterResponse.response.last) {
+        setPage(page + 1)
+      }
+    };
+  }
+
   return (
     <>
-        <section className="px-[6.641vw] flex gap-6 pb-[3.333vh] items-center">
-      <TotalPlacedCard allCounts={allCounts}/>
-      <DegreeCard allCounts={allCounts}/>
-      <OverviewCard allCounts={allCounts}/>
-    </section>
-    <div className="h-[58.889vh] overflow-auto myscrollbar">
+      <section
 
-    <PlacementContent counsellorFilterResponse={counsellorFilterResponse?.response?.content}/>
-    </div>
+        className="px-[6.641vw] flex gap-6 pb-[3.333vh] items-center">
+        <TotalPlacedCard allCounts={allCounts} />
+        <DegreeCard allCounts={allCounts} />
+        <OverviewCard allCounts={allCounts} />
+      </section>
+      <div
+        onScroll={(e) => {
+          handleScroll(e)
+        }}
+        className="h-[58.889vh] overflow-auto myscrollbar">
+
+        <PlacementContent counsellorFilterResponse={accumulatedData} />
+      </div>
     </>
   );
 };

@@ -23,7 +23,7 @@ function CourseCard({ cardData }) {
         <>
             <section className='cardStyle justify-center   justify-items-stretch'>
                 <AlertDialog>
-                    <picture className='flex justify-self-center  w-full '>
+                    <picture className='flex justify-gf-center  w-full '>
                         <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full' src={cardData.image} alt='image'></img>
                     </picture>
                     <div>

@@ -42,7 +42,7 @@ const store = configureStore({
     getAllUniversities: UniversitiesReducer,
 
     [collegesApi.reducerPath]: collegesApi.reducer,
-    getAllColleges: CollegesReducer,
+    // getAllColleges: CollegesReducer,
 
     [statesApi.reducerPath]: statesApi.reducer,
     getAllStates: statesReducer,

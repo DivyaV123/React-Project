@@ -62,7 +62,7 @@ const YearFilter = () => {
             label={item}
             checked={selectedYop.includes(index)}
             onChange={() =>
-              handleCommonFilter(index, selectedYop, setSelectedYop, YopList)
+              handleCommonFilter(index, selectedYop, setSelectedYop, YopList, 'yop')
             }
           />
         ))}

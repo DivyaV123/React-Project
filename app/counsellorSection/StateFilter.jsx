@@ -1,15 +1,18 @@
 'use client'
-import React, { useState,useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
 import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { useGetAllCitiesQuery } from '@/redux/queries/getAllCities';
 const StateFilter = () => {
-  const { filteringData, setFilteringData ,handleCommonFilter} = useContext(GlobalContext);
-  const { data:statesData, error, isLoading } = useGetAllStatesQuery();
+  const { filteringData, setFilteringData, handleCommonFilter } = useContext(GlobalContext);
+  const { data: statesData, error, isLoading } = useGetAllStatesQuery();
+  const { data: cityData, error: cityError, isLoading: cityIsLoading } = useGetAllCitiesQuery();
   const statesList = statesData?.response;
   const [stateItems, setStateItems] = useState([])
+  console.log(stateItems, "selectedState", cityData, "cityData")
   return (
     <>
       <div className="px-[1.875vw] pt-[2.778vh]">
@@ -26,16 +29,17 @@ const StateFilter = () => {
         <>
           {statesList?.map((item, index) => (
             <Checkbox
-            key={index}
-            id={index}
-            label={item}
-            checked={stateItems.includes(index)}
-              onChange={() => handleCommonFilter(index,stateItems,setStateItems,statesList)}
+              key={index}
+              id={index}
+              label={item}
+              checked={stateItems.includes(index)}
+              onChange={() =>
+                handleCommonFilter(index, stateItems, setStateItems, statesList, 'state')}
             />
           ))}
         </>
       </div>
-      <CityFilter />
+      <CityFilter selectedState={stateItems} />
     </>
   )
 }

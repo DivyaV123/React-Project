@@ -6,7 +6,11 @@ export const collegesApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: PROD_URL }),
     endpoints: (builder) => ({
         getAllColleges: builder.query({
-            query: () => 'candidate/colleges',
+            query: (university) => ({
+                url: `candidate/colleges`,
+                method: 'POST',
+                body: university
+            })
         }),
     }),
 });
