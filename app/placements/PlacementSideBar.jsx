@@ -3,12 +3,9 @@ import React, { useEffect, useState } from "react";
 import PlacementContent from "./PlacementContent";
 import './PlacementSidebar.scss';
 import { Skeleton } from "@/components/ui/skeleton";
-import { useGetAllCitiesQuery } from "@/redux/queries/getAllCities";
-
 
 const PlacementSideBar = () => {
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements")
-  const { data: citydata, error, isLoading } = useGetAllCitiesQuery('Karnataka');
 
   const sideBar = [{
     title: "Recent Placements",

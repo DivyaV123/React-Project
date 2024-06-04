@@ -23,6 +23,8 @@ const GlobalContextProvider = ({ children }) => {
   const [filteringData, setFilteringData] = useState(initalFilter)
   const [page, setPage] = useState(0)
   const [size, setSize] = useState(5)
+  const [universitySelected, setUniversitySelected] = useState([])
+  const [ststeSelected, setStateSelected] = useState([])
 
 
   const handleFilter = (index, items, setItems, field) => {
@@ -45,21 +47,34 @@ const GlobalContextProvider = ({ children }) => {
       [field]: selectedValues,
     }));
   };
-  const handleCommonFilter = (index,items,setItems,response) => {
+  const handleCommonFilter = (index, items, setItems, response, key) => {
     const updatedSelectedItems = [...items];
     if (updatedSelectedItems.includes(index)) {
-        updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
+      updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
     } else {
-        updatedSelectedItems.push(index);
+      updatedSelectedItems.push(index);
     }
     setItems(updatedSelectedItems);
 
     const selectedDegreeNames = updatedSelectedItems.map(index => response[index]);
-    setFilteringData(prevFilteringData => ({
+    if (key) {
+      setFilteringData(prevFilteringData => ({
+        ...prevFilteringData,
+        [key]: selectedDegreeNames,
+      }));
+      if (key === "university") {
+        setUniversitySelected(selectedDegreeNames)
+      } else if (key === "state") {
+        setStateSelected(selectedDegreeNames)
+      }
+    } else {
+      setFilteringData(prevFilteringData => ({
         ...prevFilteringData,
         degree: selectedDegreeNames,
-    }));
-};
+      }));
+    }
+
+  };
   return (
     <GlobalContext.Provider value={{
       selectedBranch,
@@ -75,8 +90,11 @@ const GlobalContextProvider = ({ children }) => {
       handleFilter,
       page,
       setPage,
+      universitySelected,
+      ststeSelected,
       size,
-      setSize
+      setSize,
+      handleCommonFilter
     }}>{children}</GlobalContext.Provider>
   );
 };

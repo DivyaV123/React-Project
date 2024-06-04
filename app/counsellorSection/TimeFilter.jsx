@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useContext ,useEffect} from "react";
+import React, { useState, useContext, useEffect } from "react";
 import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 import "./CounserllorFilters.scss";
 import Calendar from "react-calendar";
@@ -14,12 +14,13 @@ const TimeFilter = () => {
   const [fromvalue, setFromValue] = useState('');
   const [toValue, setToValue] = useState('');
   const todayFormatted = dayjs().format("YYYY-MM-DD")
-  const formattedStartDate=dayjs(fromvalue).format("YYYY-MM-DD")
-  const formattedEndDate=dayjs(toValue).format("YYYY-MM-DD")
-  const {data:PlacedDateBetween}=useGetPlacedDateBetweenQuery({
-    startDate:formattedStartDate,endDate:formattedEndDate,pageNo:1,pageSize:10
+  const formattedStartDate = dayjs(fromvalue).format("YYYY-MM-DD")
+  const formattedEndDate = dayjs(toValue).format("YYYY-MM-DD")
+  const { data: PlacedDateBetween } = useGetPlacedDateBetweenQuery({
+    startDate: formattedStartDate, endDate: formattedEndDate, pageNo: 1, pageSize: 10
   })
 
+  console.log(formattedStartDate, formattedEndDate, "start and end")
   const [timeItems, setTimeItems] = useState([
     {
       id: "last week",
@@ -50,7 +51,7 @@ const TimeFilter = () => {
     setFromValue(newValue);
     setFromCalender(false)
   };
-  console.log(fromvalue,toValue,"jhgfdfghjkjhgfg");
+  console.log(fromvalue, toValue, "jhgfdfghjkjhgfg");
   const today = dayjs()
   const weekEnd = today.subtract(1, "week").format("YYYY-MM-DD");
 
@@ -72,10 +73,10 @@ const TimeFilter = () => {
       }
     });
     setTimeItems(newTimeItems);
-  
+
     const updatedFilteringData = { ...filteringData };
     const dateRanges = [];
-  
+
     newTimeItems.forEach((item) => {
       if (item.checked) {
         switch (item.label) {
@@ -97,10 +98,10 @@ const TimeFilter = () => {
       }
     });
     updatedFilteringData.timePeriod = dateRanges;
-  
+
     setFilteringData(updatedFilteringData);
   };
-  
+
 
   return (
     <div className="px-[1.875vw] pt-[2.778vh] timePeriod">

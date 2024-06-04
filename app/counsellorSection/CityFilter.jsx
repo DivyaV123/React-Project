@@ -1,30 +1,20 @@
 'use client'
-import React, { useState,useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-const CityFilter = ({ data }) => {
-    const { filteringData, setFilteringData ,handleFilter} = useContext(GlobalContext);
-    const [stateItems, setStateItems] = useState([{
-        id: "karnataka",
-        label: "Karnataka",
-        checked: false,
-    },
-    {
-        id: "maharashtra",
-        label: "Maharashtra",
-        checked: false,
-    }, {
-        id: "punjab",
-        label: "Punjab",
-        checked: false,
-    },
-    {
-        id: "kerela",
-        label: "Kerela",
-        checked: false,
-    },
-    ])
+import { useGetAllCitiesQuery } from '@/redux/queries/getAllCities';
+const CityFilter = ({ selectedState }) => {
+    const [selectedCity, setSelectedCity] = useState([]);
+    const { filteringData, setFilteringData, handleFilter, handleCommonFilter, ststeSelected } = useContext(GlobalContext);
+    const { data: cityData, error, isLoading, refetch } = useGetAllCitiesQuery(ststeSelected);
+    console.log(selectedState, "selectedState", cityData, "cityData")
+
+    useEffect(() => {
+        refetch()
+    }, [ststeSelected])
+
+    console.log(ststeSelected, "ststeSelected")
     return (
         <div className="px-[1.875vw] pt-[2.778vh]">
             <div className="flex justify-between pb-[1.111vh]">
@@ -38,13 +28,15 @@ const CityFilter = ({ data }) => {
                 <div class="search-icon"></div>
             </div>
             <>
-                {stateItems.map((item, index) => (
+                {cityData?.response.map((item, index) => (
                     <Checkbox
                         key={index}
-                        id={item.id}
-                        label={item.label}
+                        id={index}
+                        label={item}
                         checked={item.checked}
-                        onChange={() => handleFilter(index,stateItems,setStateItems,'city')}
+                        onChange={() =>
+                            handleCommonFilter(index, selectedCity, setSelectedCity, cityData.response, 'city')
+                        }
                     />
                 ))}
             </>

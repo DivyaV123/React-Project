@@ -33,10 +33,12 @@ const CounsellorCardHeader = () => {
 
 
   const handleScroll = (event) => {
-    const { scrollTop, clientHeight, scrollHeight } = event.target;
-
-    if (scrollTop + clientHeight >= scrollHeight - 20) {
-      if (counsellorFilterResponse?.response.last === false && counsellorFilterResponse.response.totalPages >= page) {
+    const target = event.target;
+    const scrolledToBottom =
+      Math.ceil(target.scrollTop + target.clientHeight) > target.scrollHeight - 1;
+    console.log("handleScroll is calaing", scrolledToBottom)
+    if (scrolledToBottom) {
+      if (!counsellorFilterResponse.response.last) {
         setPage(page + 1)
       }
     };
