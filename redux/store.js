@@ -21,6 +21,12 @@ import ThroughOutSixtyReducer from './slices/placementCount/ThroughOutSixtySlice
 import ItandNonItReducer from './slices/placementCount/ItandNonItSlice';
 import CounsellorFilterReducer from './slices/counsellorPlacementFilter/CounsellorFilterSlice';
 import { counsellorsApi } from './queries/counsellorsApi';
+import PlacementBranchReducer from './slices/placementCount/PlacementBranchSlice';
+import { PlacementBranchApi } from './queries/getBranches';
+import YearOfPassoutReducer from './slices/placementCount/YearOfPassoutSlice';
+import { YearOfPassoutApi } from './queries/getYearOfPassout';
+import PlacedDateBetweenReducer from './slices/placementCount/PlacedDateBetweenSlice';
+import { PlacedDateBetweenApi } from './queries/getPlacedDateBetween';
 const store = configureStore({
   reducer: {
     [courseApi.reducerPath]: courseApi.reducer,
@@ -53,12 +59,21 @@ const store = configureStore({
     [ItandNonItApi.reducerPath]: ItandNonItApi.reducer,
     getItandNonIt: ItandNonItReducer,
 
-    [counsellorsApi.reducerPath]: counsellorsApi.reducer
+    [counsellorsApi.reducerPath]: counsellorsApi.reducer,
+
+    [PlacementBranchApi.reducerPath]: PlacementBranchApi.reducer,
+    getPlacementBranch: PlacementBranchReducer,
+
+    [YearOfPassoutApi.reducerPath]: YearOfPassoutApi.reducer,
+    getYearOfPassout: YearOfPassoutReducer,
+
+    [PlacedDateBetweenApi.reducerPath]: PlacedDateBetweenApi.reducer,
+    getPlacedBetween: PlacedDateBetweenReducer,
 
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
-       ItandNonItApi.middleware,counsellorsApi.middleware),
+       ItandNonItApi.middleware,counsellorsApi.middleware,PlacementBranchApi.middleware,YearOfPassoutApi.middleware,PlacedDateBetweenApi.middleware),
 });
 
 export default store;
