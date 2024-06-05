@@ -4,6 +4,7 @@ import "./Degree_Branch_passout.scss";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Skranji } from "next/font/google";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
+import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 
 
 const Degree_Branch_Passout = () => {
@@ -12,72 +13,34 @@ const Degree_Branch_Passout = () => {
   const [passOutButton, setPassOutButton] = useState("2023");
   const [isloading, setisLoading] = useState(true);
   const [iseSelectOpen, setiseSelectOpen] = useState(false);
+  const [isBranchOpen, setiseBranchOpen] = useState(false)
   const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
+  const { data: yopData, error: yopError, isLoading: IsLoadingYOPError } = useGetAllYearOfPassoutQuery();
   const degreeList = degreeAndStreamdata?.response.degreeList;
   const courseList = degreeAndStreamdata?.response.streamList;
   let degreeCourses = degreeList?.map(item => ({ title: item }));
+  let yopList = yopData?.response?.map(item => ({ title: item }));
 
-  const degreeCou = [
-    { title: "BE/Btech" },
-    {
-      title: "BSC/BCA",
-    },
-    {
-      title: "MCA",
-    },
-    {
-      title: "ME/Mtech",
-    },
-    {
-      title: "B.com",
-    },
-    {
-      title: "MBA",
-    },
-    {
-      title: "more",
-    },
-  ];
   const Branch = [
-    {
-      title: "CSE",
-    },
-    {
-      title: "ISE",
-    },
-    {
-      title: "ECE",
-    },
-    {
-      title: "EEE",
-    },
-    {
-      title: "Mech",
-    },
-    {
-      title: "Civil",
-    },
-    {
-      title: "more",
-    },
+    { title: 'AERONAUTICAL ENGINEERING', key: 'AERO' },
+    { title: 'AERONAUTICAL ENGINEERINGNAUTICAL ENGINEERING', key: 'AEE' },
+    { title: 'ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING', key: 'AI & ML' },
+    { title: 'BIOMEDICAL ENGINEERING', key: 'BioE' },
+    { title: 'CIVIL ENGINEERING', key: 'CE' },
+    { title: 'COMPUTER SCIENCE AND ENGINEERING', key: 'CS' },
+    { title: 'DATA SCIENCE AND ENGINEERING', key: 'DSE' },
+    { title: 'ELECTRONICS AND COMMUNICATION ENGINEERING', key: 'E&C' },
+    { title: 'HISTORY', key: 'HISTORY' },
+    { title: 'INFORMATION TECHNOLOGY', key: 'IT' },
+    { title: 'MECHANICAL ENGINEERING', key: 'ME' },
+    { title: 'MECHANICAL ENGINEERING TECHNOLOGY', key: 'MEL' },
+    { title: 'MICROSYSTEMS ENGINEERING', key: 'MicroE' },
+    { title: 'MINING ENGINEERING', key: 'ME' },
+    { title: 'POLITICAL SCIENCE', key: 'PS' },
+    { title: 'SYSTEMS ENGINEERING', key: 'SE' },
+    { title: 'more', key: 'more' }
   ];
-  const Passout = [
-    {
-      title: "2023",
-    },
-    {
-      title: "2022",
-    },
-    {
-      title: "2021",
-    },
-    {
-      title: "2020",
-    },
-    {
-      title: "more",
-    },
-  ];
+
 
   const handleDegreeBar = (title) => {
     setDegreeButton(title);
@@ -102,9 +65,12 @@ const Degree_Branch_Passout = () => {
       setisLoading(false);
     }, 2000);
   }, []);
+
   const handleYearClick = (year) => {
     console.log(`Clicked on year: ${year}`);
   };
+
+
   return (
     <section className="mt-2  flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2">
       {isloading ? (
@@ -146,12 +112,10 @@ const Degree_Branch_Passout = () => {
             {Branch.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center w-[4.219vw] py-2  text-[0.63rem]  ${classItem.title === branchButton ? "activeButton font-medium" : ""
-                  } ${classItem.title === 'more' ? "text-[#4987CE]" : "text-[#707070]"
-                  }`}
+                className={`flex justify-center items-center w-[4.219vw] py-2 text-[0.63rem] ${classItem.title === branchButton ? "activeButton font-medium" : ""} ${classItem.key === 'more' ? "text-[#4987CE]" : "text-[#707070]"}`}
                 onClick={() => handleBranchBar(classItem.title)}
               >
-                {classItem.title}
+                {classItem.key}
               </button>
             ))}
           </div>
@@ -169,7 +133,7 @@ const Degree_Branch_Passout = () => {
               Year of passout
             </p>
             <div className="bg-white h-[2.65vw] flex w-full buttonSection">
-              {Passout.map((classItem, index) => (
+              {yopList.map((classItem, index) => (
                 <button
                   key={index}
                   className={`flex justify-center items-center w-[4.219vw] py-2  text-[0.63rem]  ${classItem.title === passOutButton ? "activeButton font-medium" : ""

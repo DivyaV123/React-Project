@@ -123,7 +123,7 @@ function BranchWithFilter() {
                       </AccordionTrigger>
                       <AccordionContent className="pl-[0.938vw]">
                         {branches.map((branch, branchIndex) => {
-                          const branchId = `${cityId}-${branch
+                          const branchId  = `${cityId}-${branch
                             .toLowerCase()
                             .replace(/ /g, "")}`;
                           return (

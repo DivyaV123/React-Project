@@ -83,7 +83,8 @@ const YearFilter = () => {
                 index,
                 selectedBranch,
                 setSelectedBranch,
-                BranchList
+                BranchList,
+                'branch'
               )
             }
           />
