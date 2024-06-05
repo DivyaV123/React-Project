@@ -28,7 +28,7 @@ const DegreeFilter = ({ degreeList }) => {
                         id={index}
                         label={item}
                         checked={selectedDegrees.includes(index)}
-                        onChange={() => handleCommonFilter(index, selectedDegrees, setSelectedDegrees, degreeList,'digree')}
+                        onChange={() => handleCommonFilter(index, selectedDegrees, setSelectedDegrees, degreeList,'degree')}
                     />
                 ))} 
             </>

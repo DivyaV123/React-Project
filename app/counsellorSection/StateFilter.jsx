@@ -12,7 +12,6 @@ const StateFilter = () => {
   const { data: cityData, error: cityError, isLoading: cityIsLoading } = useGetAllCitiesQuery();
   const statesList = statesData?.response;
   const [stateItems, setStateItems] = useState([])
-  console.log(stateItems, "selectedState", cityData, "cityData")
   return (
     <>
       <div className="px-[1.875vw] pt-[2.778vh]">

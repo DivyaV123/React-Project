@@ -1,8 +1,11 @@
 'use client'
-import React, { createContext, useState } from "react";
+import React, { createContext, useState ,useEffect} from "react";
+import { useRouter } from "next/navigation";
+import { COUNSELLOR_SECTION } from "@/lib/RouteConstants";
 export const GlobalContext = createContext();
 const initalFilter = {}
 const GlobalContextProvider = ({ children }) => {
+  const router=useRouter()
   const [selectedBranch, setSelectedBranch] = useState('Bengalore')
   const [selectedCourseId, setSelectedCourseId] = useState('1')
 
@@ -14,12 +17,15 @@ const GlobalContextProvider = ({ children }) => {
   const [size, setSize] = useState(5)
   const [universitySelected, setUniversitySelected] = useState([])
   const [ststeSelected, setStateSelected] = useState([])
+  const [placeCheckedIcon,setPlacedCheckedIcon]=useState(true)
+  const [lesscheckedIcon, setLessCheckedIcon] = useState(false)
+  const [throughcheckedIcon, setThroughCheckedIcon] = useState(false)
 
   const handleScroll = (event, page, setPage, repData) => {
     const target = event.target;
     const scrolledToBottom =
       Math.ceil(target.scrollTop + target.clientHeight) > target.scrollHeight - 1;
-    console.log("handleScroll is calaing", scrolledToBottom)
+
     if (scrolledToBottom) {
       if (!repData.response.last) {
         setPage(page + 1)
@@ -52,7 +58,7 @@ const GlobalContextProvider = ({ children }) => {
     const updatedSelectedItems = [...items];
     if (updatedSelectedItems.includes(index)) {
       updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
-    } else {
+     } else {
       updatedSelectedItems.push(index);
     }
     setItems(updatedSelectedItems);
@@ -87,7 +93,25 @@ const GlobalContextProvider = ({ children }) => {
       });
     }
   };
+  useEffect(() => {
+    const searchParams = constructSearchParams()
+    const fullURL = `${COUNSELLOR_SECTION}/${searchParams ? `?${searchParams}` : ''}`;
+    router.push(fullURL);
+  }, [filteringData]);
 
+  const constructSearchParams = () => {
+    let searchParams = '';
+    for (const key in filteringData) {
+      if (filteringData.hasOwnProperty(key)) {
+        if (searchParams !== '') {
+          searchParams += '&';
+        }
+        searchParams += key + '=' + filteringData[key].join(',');
+      }
+    }
+    return searchParams;
+  };
+  
   return (
     <GlobalContext.Provider value={{
       selectedBranch,
@@ -108,7 +132,13 @@ const GlobalContextProvider = ({ children }) => {
       size,
       setSize,
       handleCommonFilter,
-      handleScroll
+      handleScroll,
+      placeCheckedIcon,
+      setPlacedCheckedIcon,
+      lesscheckedIcon,
+      setLessCheckedIcon,
+      throughcheckedIcon,
+      setThroughCheckedIcon
     }}>{children}</GlobalContext.Provider>
   );
 };

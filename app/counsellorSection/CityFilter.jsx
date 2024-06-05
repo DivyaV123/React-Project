@@ -6,15 +6,12 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllCitiesQuery } from '@/redux/queries/getAllCities';
 const CityFilter = ({ selectedState }) => {
     const [selectedCity, setSelectedCity] = useState([]);
-    const { filteringData, setFilteringData, handleFilter, handleCommonFilter, ststeSelected } = useContext(GlobalContext);
+    const { filteringData, setFilteringData, handleCommonFilter, ststeSelected } = useContext(GlobalContext);
     const { data: cityData, error, isLoading, refetch } = useGetAllCitiesQuery(ststeSelected);
-    console.log(selectedState, "selectedState", cityData, "cityData")
-
     useEffect(() => {
         refetch()
     }, [ststeSelected])
 
-    console.log(ststeSelected, "ststeSelected")
     return (
         <div className="px-[1.875vw] pt-[2.778vh]">
             <div className="flex justify-between pb-[1.111vh]">

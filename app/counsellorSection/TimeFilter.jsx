@@ -20,7 +20,6 @@ const TimeFilter = () => {
     startDate: formattedStartDate, endDate: formattedEndDate, pageNo: 1, pageSize: 10
   })
 
-  console.log(formattedStartDate, formattedEndDate, "start and end")
   const [timeItems, setTimeItems] = useState([
     {
       id: "last week",
@@ -51,7 +50,6 @@ const TimeFilter = () => {
     setFromValue(newValue);
     setFromCalender(false)
   };
-  console.log(fromvalue, toValue, "jhgfdfghjkjhgfg");
   const today = dayjs()
   const weekEnd = today.subtract(1, "week").format("YYYY-MM-DD");
 

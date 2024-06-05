@@ -6,10 +6,9 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllCollegesQuery } from '@/redux/queries/getAllColleges';
 import UniversityFilter from './UniversityFilter';
 const CollegeFilter = () => {
-    const { filteringData, setFilteringData, handleFilter, handleCommonFilter, universitySelected } = useContext(GlobalContext);
+    const { filteringData, setFilteringData, handleCommonFilter, universitySelected } = useContext(GlobalContext);
     const [selectedCity, setSelectedCity] = useState([]);
     const { data: collegeData, isLoading, error, refetch } = useGetAllCollegesQuery(universitySelected)
-    console.log(collegeData, "collegeData", universitySelected, "universitySelected")
 
     useEffect(() => {
         refetch();
