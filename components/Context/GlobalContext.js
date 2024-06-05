@@ -14,13 +14,15 @@ const GlobalContextProvider = ({ children }) => {
   const [size, setSize] = useState(5)
   const [universitySelected, setUniversitySelected] = useState([])
   const [ststeSelected, setStateSelected] = useState([])
+  const [scrollConst, setScrollConst] = useState()
 
   const handleScroll = (event, page, setPage, repData) => {
     const target = event.target;
     const scrolledToBottom =
-      Math.ceil(target.scrollTop + target.clientHeight) > target.scrollHeight - 1;
-    console.log("handleScroll is calaing", scrolledToBottom)
+      Math.ceil(target?.scrollTop + target?.clientHeight) > target?.scrollHeight - 1;
+    setScrollConst(scrolledToBottom)
     if (scrolledToBottom) {
+      console.log("handleScroll is calaing", scrolledToBottom)
       if (!repData.response.last) {
         setPage(page + 1)
       }
@@ -57,7 +59,12 @@ const GlobalContextProvider = ({ children }) => {
     }
     setItems(updatedSelectedItems);
 
-    const selectedDegreeNames = updatedSelectedItems.map(index => response[index]);
+    let selectedDegreeNames = updatedSelectedItems.map(index => response[index]);
+
+    // Flatten the array if the key is "timePeriods"
+    if (key === "timePeriod" && selectedDegreeNames.length > 0 && Array.isArray(selectedDegreeNames[0])) {
+      selectedDegreeNames = selectedDegreeNames.flat();
+    }
 
     if (key) {
       setFilteringData(prevFilteringData => {
@@ -107,6 +114,7 @@ const GlobalContextProvider = ({ children }) => {
       ststeSelected,
       size,
       setSize,
+      scrollConst,
       handleCommonFilter,
       handleScroll
     }}>{children}</GlobalContext.Provider>
