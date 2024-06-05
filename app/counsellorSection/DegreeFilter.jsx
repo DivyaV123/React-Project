@@ -4,10 +4,10 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const DegreeFilter = ({ degreeList }) => {
-    const { filteringData, setFilteringData,handleCommonFilter } = useContext(GlobalContext);
+    const { filteringData, setFilteringData, handleCommonFilter } = useContext(GlobalContext);
     const [selectedDegrees, setSelectedDegrees] = useState([]);
 
-   
+
 
     return (
         <div className="px-[1.875vw] pt-[2.778vh]">
@@ -28,9 +28,9 @@ const DegreeFilter = ({ degreeList }) => {
                         id={index}
                         label={item}
                         checked={selectedDegrees.includes(index)}
-                        onChange={() => handleCommonFilter(index,selectedDegrees,setSelectedDegrees,degreeList)}
+                        onChange={() => handleCommonFilter(index, selectedDegrees, setSelectedDegrees, degreeList,'digree')}
                     />
-                ))}
+                ))} 
             </>
         </div>
     )

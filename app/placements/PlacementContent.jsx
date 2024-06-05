@@ -15,7 +15,6 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
     setImageDialog(true);
     setVideoDialog(false); // Close video dialog if open
   };
-
   const openVideoDialog = () => {
     setVideoDialog(true);
     setImageDialog(false); // Close image dialog if open
@@ -24,10 +23,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
     const mapping = {
       "INFORMATION TECHNOLOGY": "IT",
       "CIVIL ENGINEERING": "Civil",
-      "COMPUTER SCIENCE AND ENGINEERING": "CSE",
-      "MICROSYSTEMS ENGINEERING": "MIE",
-      "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING": "AI&ML",
-      "MECHANICAL ENGINEERING": "MECH"
+      "COMPUTER SCIENCE AND ENGINEERING": "CSE"
     };
 
     return mapping[inputString.toUpperCase()] || inputString;

@@ -11,7 +11,7 @@ import { useFetchCounsellorsQuery } from '@/redux/queries/counsellorsApi'
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const CounsellorCardHeader = () => {
   const [accumulatedData, setAccumulatedData] = useState([]);
-  const { filteringData, page, size, setPage, setSize } = useContext(GlobalContext)
+  const { filteringData, page, size, setPage, setSize, handleScroll } = useContext(GlobalContext)
   const { data: allCounts, isLoading, isError } = useGetAllPlacementCountQuery()
   const { data: lessthanSixty } = useGetLessthanSixtyQuery()
   const { data: ThroughoutSixty } = useGetThroughOutSixtyQuery()
@@ -23,26 +23,17 @@ const CounsellorCardHeader = () => {
   });
   useEffect(() => {
     refetch();
+    setAccumulatedData(counsellorFilterResponse?.response?.content || [])
   }, [filteringData, page, size]);
 
   useEffect(() => {
-    if (counsellorFilterResponse) {
-      setAccumulatedData(prevData => [...prevData, ...counsellorFilterResponse.response.content]);
+    if (counsellorFilterResponse && page > 0) {
+      setAccumulatedData(prevData => [...(prevData || []), ...counsellorFilterResponse?.response?.content]);
+    } else {
+      setAccumulatedData(counsellorFilterResponse?.response?.content)
     }
   }, [counsellorFilterResponse]);
 
-
-  const handleScroll = (event) => {
-    const target = event.target;
-    const scrolledToBottom =
-      Math.ceil(target.scrollTop + target.clientHeight) > target.scrollHeight - 1;
-    console.log("handleScroll is calaing", scrolledToBottom)
-    if (scrolledToBottom) {
-      if (!counsellorFilterResponse?.response?.last) {
-        setPage(page + 1)
-      }
-    };
-  }
 
   return (
     <>
@@ -54,8 +45,8 @@ const CounsellorCardHeader = () => {
         <OverviewCard allCounts={allCounts} />
       </section>
       <div
-        onScroll={(e) => {
-          handleScroll(e)
+        onScroll={(event) => {
+          handleScroll(event, page, setPage, counsellorFilterResponse)
         }}
         className="h-[58.889vh] overflow-auto myscrollbar">
 

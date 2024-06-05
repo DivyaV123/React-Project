@@ -1,10 +1,10 @@
 'use client'
-import React, { useState,useContext } from 'react'
+import React, { useState, useContext } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-const StreamFilter = ({streamList}) => {
-    const { filteringData, setFilteringData ,handleCommonFilter} = useContext(GlobalContext);
+const StreamFilter = ({ streamList }) => {
+    const { filteringData, setFilteringData, handleCommonFilter } = useContext(GlobalContext);
     const [selectedStream, setSelectedStream] = useState([]);
     return (
         <div className="px-[1.875vw] pt-[2.778vh]">
@@ -21,11 +21,11 @@ const StreamFilter = ({streamList}) => {
             <>
                 {streamList?.map((item, index) => (
                     <Checkbox
-                    key={index}
-                    id={index}
-                    label={item}
-                    checked={selectedStream.includes(index)}
-                        onChange={() => handleCommonFilter(index,selectedStream,setSelectedStream,streamList)}
+                        key={index}
+                        id={index}
+                        label={item}
+                        checked={selectedStream.includes(index)}
+                        onChange={() => handleCommonFilter(index, selectedStream, setSelectedStream, streamList, 'stream')}
                     />
                 ))}
             </>

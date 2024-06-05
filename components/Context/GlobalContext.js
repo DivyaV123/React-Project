@@ -1,18 +1,7 @@
 'use client'
 import React, { createContext, useState } from "react";
 export const GlobalContext = createContext();
-const initalFilter = {
-  timePeriod: [],
-  yop: [],
-  branchLocation: [],
-  state: [],
-  city: [],
-  university: [],
-  college: [],
-  percentage: [],
-  degree: [],
-  stream: []
-}
+const initalFilter = {}
 const GlobalContextProvider = ({ children }) => {
   const [selectedBranch, setSelectedBranch] = useState('Bengalore')
   const [selectedCourseId, setSelectedCourseId] = useState('1')
@@ -26,6 +15,17 @@ const GlobalContextProvider = ({ children }) => {
   const [universitySelected, setUniversitySelected] = useState([])
   const [ststeSelected, setStateSelected] = useState([])
 
+  const handleScroll = (event, page, setPage, repData) => {
+    const target = event.target;
+    const scrolledToBottom =
+      Math.ceil(target.scrollTop + target.clientHeight) > target.scrollHeight - 1;
+    console.log("handleScroll is calaing", scrolledToBottom)
+    if (scrolledToBottom) {
+      if (!repData.response.last) {
+        setPage(page + 1)
+      }
+    };
+  }
 
   const handleFilter = (index, items, setItems, field) => {
     const newItems = items.map((item, idx) => {
@@ -48,6 +48,7 @@ const GlobalContextProvider = ({ children }) => {
     }));
   };
   const handleCommonFilter = (index, items, setItems, response, key) => {
+    setPage(0);
     const updatedSelectedItems = [...items];
     if (updatedSelectedItems.includes(index)) {
       updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
@@ -57,24 +58,36 @@ const GlobalContextProvider = ({ children }) => {
     setItems(updatedSelectedItems);
 
     const selectedDegreeNames = updatedSelectedItems.map(index => response[index]);
+
     if (key) {
-      setFilteringData(prevFilteringData => ({
-        ...prevFilteringData,
-        [key]: selectedDegreeNames,
-      }));
+      setFilteringData(prevFilteringData => {
+        const updatedFilteringData = { ...prevFilteringData };
+        if (selectedDegreeNames.length === 0) {
+          delete updatedFilteringData[key];
+        } else {
+          updatedFilteringData[key] = selectedDegreeNames;
+        }
+        return updatedFilteringData;
+      });
+
       if (key === "university") {
-        setUniversitySelected(selectedDegreeNames)
+        setUniversitySelected(selectedDegreeNames);
       } else if (key === "state") {
-        setStateSelected(selectedDegreeNames)
+        setStateSelected(selectedDegreeNames);
       }
     } else {
-      setFilteringData(prevFilteringData => ({
-        ...prevFilteringData,
-        degree: selectedDegreeNames,
-      }));
+      setFilteringData(prevFilteringData => {
+        const updatedFilteringData = { ...prevFilteringData };
+        if (selectedDegreeNames.length === 0) {
+          delete updatedFilteringData.parameter;
+        } else {
+          updatedFilteringData.parameter = selectedDegreeNames;
+        }
+        return updatedFilteringData;
+      });
     }
-
   };
+
   return (
     <GlobalContext.Provider value={{
       selectedBranch,
@@ -94,7 +107,8 @@ const GlobalContextProvider = ({ children }) => {
       ststeSelected,
       size,
       setSize,
-      handleCommonFilter
+      handleCommonFilter,
+      handleScroll
     }}>{children}</GlobalContext.Provider>
   );
 };

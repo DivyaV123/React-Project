@@ -1,12 +1,20 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import PlacementContent from "./PlacementContent";
 import './PlacementSidebar.scss';
 import { Skeleton } from "@/components/ui/skeleton";
+import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const PlacementSideBar = () => {
+  const [accumulatedData, setAccumulatedData] = useState([]);
+  const { filteringData, page, size, setPage, setSize, handleScroll } = useContext(GlobalContext)
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements")
-
+  const { data: counsellorFilterResponse, error, refetch } = useFetchCounsellorsQuery({
+    pageNumber: page,
+    pageSize: size,
+    bodyData: filteringData
+  });
   const sideBar = [{
     title: "Recent Placements",
     icon: "../../icon_arrow_white.svg",
@@ -45,6 +53,16 @@ const PlacementSideBar = () => {
       setisLoading(false)
     }, 2000);
   }, [])
+
+  useEffect(() => {
+    refetch();
+  }, [page, size]);
+
+  // useEffect(() => {
+  //   if (counsellorFilterResponse) {
+  //     setAccumulatedData(prevData => [...prevData, ...counsellorFilterResponse.response.content]);
+  //   }
+  // }, [counsellorFilterResponse]);
   return (
     <section className="flex ml-16 mb-8 h-[58.889vh]">
       {isloading ?
@@ -97,8 +115,12 @@ const PlacementSideBar = () => {
           </div>
         </section>
         :
-        <section className='ml-6 w-[71.641vw] h-full overflow-y-scroll myscrollbar'>
-          <PlacementContent />
+        <section
+          onScroll={(event) => {
+            handleScroll(event, page, setPage, counsellorFilterResponse)
+          }}
+          className='ml-6 w-[71.641vw] h-full overflow-y-scroll myscrollbar'>
+          <PlacementContent counsellorFilterResponse={counsellorFilterResponse?.response?.content} />
         </section>
       }
 
