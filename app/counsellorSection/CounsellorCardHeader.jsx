@@ -18,7 +18,7 @@ const CounsellorCardHeader = () => {
   const { data: counsellorFilterResponse, error, refetch } = useFetchCounsellorsQuery({
     pageNumber: page,
     pageSize: size,
-    parameter: "it",
+    parameter: "",
     bodyData: filteringData
   });
   useEffect(() => {
@@ -38,7 +38,7 @@ const CounsellorCardHeader = () => {
       Math.ceil(target.scrollTop + target.clientHeight) > target.scrollHeight - 1;
     console.log("handleScroll is calaing", scrolledToBottom)
     if (scrolledToBottom) {
-      if (!counsellorFilterResponse.response.last) {
+      if (!counsellorFilterResponse?.response?.last) {
         setPage(page + 1)
       }
     };
