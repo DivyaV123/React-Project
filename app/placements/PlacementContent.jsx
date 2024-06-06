@@ -32,7 +32,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
       "POLITICAL SCIENCE": "PS",
     };
 
-    return mapping[inputString.toUpperCase()] || inputString;
+    return mapping[inputString?.toUpperCase()] || inputString;
   };
 
   return (
