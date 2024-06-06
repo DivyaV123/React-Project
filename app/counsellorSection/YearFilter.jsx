@@ -11,8 +11,7 @@ import {
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllPlacementBranchQuery } from "@/redux/queries/getBranches";
 import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
-import dayjs from "dayjs";
-
+import BranchTypeFilter from "./BranchTypeFilter";
 const YearFilter = () => {
   const [selectedBranch, setSelectedBranch] = useState([]);
   const { filteringData, setFilteringData, handleCommonFilter } = useContext(GlobalContext);
@@ -106,11 +105,12 @@ const YearFilter = () => {
           />
         ))}
       </>
+      <BranchTypeFilter />
       <div className="flex justify-between pb-[1.111vh]">
         <p className="text-[0.938vw] text-[#002248] font-semibold">Branch</p>
         <img src="../../down.svg" />
-      </div>
-      <>
+       </div>
+       <>
         {BranchList?.map((item, index) => (
           <Checkbox
             key={index}
@@ -123,7 +123,7 @@ const YearFilter = () => {
                 selectedBranch,
                 setSelectedBranch,
                 BranchList,
-                'branchLocation'
+                "branchLocation"
               )
             }
           />

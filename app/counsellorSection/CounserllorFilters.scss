@@ -19,6 +19,14 @@
   padding-bottom: 0.665vh;
   padding-right: 5.938vw;
   font-size: 0.781vw;
+  outline: none;
+}
+.filterInput{
+  @extend .filterButton;
+  padding-right: 0;
+}
+.filterInput::placeholder{
+  color: black;
 }
 .timePeriod {
   border-bottom: 1px solid lightgrey;

@@ -7,7 +7,7 @@ const TotalPlacedCard = ({allCounts,handleRefresh,handleParameter}) => {
   const handleClick = () => {
     handleRefresh()
     handleParameter('')
-    setFilteringData({})
+    // setFilteringData({})
     setPlacedCheckedIcon(true)
     setLessCheckedIcon(false)
     setThroughCheckedIcon(false)
