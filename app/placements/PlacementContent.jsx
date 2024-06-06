@@ -1,47 +1,45 @@
 import React, { useState } from "react";
 import "./PlacementSidebar.scss";
-import {
-  AlertDialog,
-  AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import ImagePopup from "./ImagePopup";
 import VideoPopup from "./VideoPopup";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
+import Link from "next/link";
 const PlacementContent = ({ counsellorFilterResponse }) => {
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
   const openImageDialog = () => {
     setImageDialog(true);
-    setVideoDialog(false); 
+    setVideoDialog(false);
   };
   const openVideoDialog = () => {
     setVideoDialog(true);
-    setImageDialog(false); 
+    setImageDialog(false);
   };
   const convertStream = (inputString) => {
     const mapping = {
       "INFORMATION TECHNOLOGY": "IT",
       "CIVIL ENGINEERING": "Civil",
-      "COMPUTER SCIENCE AND ENGINEERING":"CSE",
-      "MICROSYSTEMS ENGINEERING":"MIE",
-      "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING":"AI&ML",
-      "MECHANICAL ENGINEERING":"MECH",
-      "ELECTRONICS AND COMMUNICATION ENGINEERING":"ECE",
-      "AERONAUTICAL ENGINEERINGNAUTICAL ENGINEERING":"AEE",
-      "BIOMEDICAL ENGINEERING":"BIE",
-      "MINING ENGINEERING":"ME",
-      "AERONAUTICAL ENGINEERING":"AE",
-      "POLITICAL SCIENCE":"PS"
+      "COMPUTER SCIENCE AND ENGINEERING": "CSE",
+      "MICROSYSTEMS ENGINEERING": "MIE",
+      "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING": "AI&ML",
+      "MECHANICAL ENGINEERING": "MECH",
+      "ELECTRONICS AND COMMUNICATION ENGINEERING": "ECE",
+      "AERONAUTICAL ENGINEERINGNAUTICAL ENGINEERING": "AEE",
+      "BIOMEDICAL ENGINEERING": "BIE",
+      "MINING ENGINEERING": "ME",
+      "AERONAUTICAL ENGINEERING": "AE",
+      "POLITICAL SCIENCE": "PS",
     };
 
     return mapping[inputString.toUpperCase()] || inputString;
   };
-  
+
   return (
     <>
       {counsellorFilterResponse?.map((student) => (
         <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh] h-[32.083vh]">
-          <AlertDialog popup='imagepopup'>
+          <AlertDialog popup="imagepopup">
             <div className="w-[15.547vw] ">
               <img
                 src={student?.photoLink}
@@ -54,7 +52,9 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                 <div className="flex gap-1 studentDetails">
                   <div>
                     <div className="studentDetails flex justify-center">
-                      {student?.mastersDegree?.mastersDegreeName ? student?.mastersDegree?.mastersDegreeName : student?.degree?.degreeName}
+                      {student?.mastersDegree?.mastersDegreeName
+                        ? student?.mastersDegree?.mastersDegreeName
+                        : student?.degree?.degreeName}
                     </div>
                     <div className="educationDetails">Degree</div>
                   </div>
@@ -68,7 +68,9 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   <div>|</div>
                   <div>
                     <div className="studentDetails flex justify-center">
-                      {student?.mastersDegree?.mastersDegreeAggregate ? student?.mastersDegree?.mastersDegreeAggregate : student?.degree?.degreeAggregate}
+                      {student?.mastersDegree?.mastersDegreeAggregate
+                        ? student?.mastersDegree?.mastersDegreeAggregate
+                        : student?.degree?.degreeAggregate}
                     </div>
                     <div className="educationDetails">Aggregate</div>
                   </div>
@@ -91,13 +93,19 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   Reviews :
                 </div>
                 <div className="iconContainer">
-                  <img src="../google 1.svg" />
+                  <Link href={student?.testimonial?.googleReview} target="_blank">
+                    <img src="../google 1.svg" />
+                  </Link>
                 </div>
                 <div className="iconContainer">
-                  <img src="../facebook 1.svg" />
+                  <Link href={student?.testimonial?.fbReview} target="_blank">
+                    <img src="../facebook 1.svg" />
+                  </Link>
                 </div>
                 <div className="iconContainer">
-                  <img src="../youtube 1.svg" />
+                  <Link href={student?.testimonial?.youtubeReview} target="_blank">
+                    <img src="../youtube 1.svg" />
+                  </Link>
                 </div>
                 <div className="iconContainer">
                   <img src="../share 1.svg" />
@@ -106,22 +114,28 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
             </div>
             <div className="pl-[3.125vw] pt-[2.222vh] flex flex-col gap-3">
               <AlertDialogTrigger asChild>
-                <img onClick={openImageDialog} src={student?.testimonial?.testimonialLink} className="imageBox cursor-pointer" />
+                <img
+                  onClick={openImageDialog}
+                  src={student?.testimonial?.testimonialLink}
+                  className="imageBox cursor-pointer"
+                />
               </AlertDialogTrigger>
               <AlertDialogTrigger asChild>
-                <img onClick={openVideoDialog} typeof="foaf:Image" className="videoBox cursor-pointer" />
+                <img
+                  onClick={openVideoDialog}
+                  typeof="foaf:Image"
+                  className="videoBox cursor-pointer"
+                />
               </AlertDialogTrigger>
             </div>
-            {
-              imageDialog && (
-                <ImagePopup testimonialLink={student?.testimonial?.testimonialLink} />
-              )
-            }
-            {
-              videoDialog && (
-                <VideoPopup videoLink={student?.testimonial?.youtubeReview} />
-              )
-            }
+            {imageDialog && (
+              <ImagePopup
+                testimonialLink={student?.testimonial?.testimonialLink}
+              />
+            )}
+            {videoDialog && (
+              <VideoPopup videoLink={student?.testimonial?.youtubeReview} />
+            )}
           </AlertDialog>
         </section>
       ))}
