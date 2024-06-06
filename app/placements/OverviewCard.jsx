@@ -1,8 +1,23 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./PlacementCards.scss";
-const OverviewCard = ({allCounts}) => {
+import { GlobalContext } from "@/components/Context/GlobalContext";
+const OverviewCard = ({allCounts,handleParameter,isEmptyObject}) => {
+  const { setThroughCheckedIcon,setLessCheckedIcon,throughcheckedIcon ,setPlacedCheckedIcon,setPage,setFilteringData} = useContext(GlobalContext)
+  const handleClick = () => {
+    // if(!isEmptyObject) return
+    handleParameter("throughoutsixty");
+    setPage(0)
+    setFilteringData({})
+    setThroughCheckedIcon(true)
+    setPlacedCheckedIcon(false)
+    setLessCheckedIcon(false)
+  };
   return (
-    <div className="overviewCard">
+    <div className="overviewCard relative cursor-pointer" onClick={handleClick}>
+        {
+throughcheckedIcon &&
+      <img src="../../checked.svg" className="absolute -right-[7px] -top-[9px]"/>
+      }
       <div className="flex h-full">
         <div className="flex flex-col justify-between ">
           <p className="font-medium pl-[1.563vw] pt-[2.778vh] text-[1.094vw]">

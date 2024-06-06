@@ -1,8 +1,23 @@
-import React from "react";
+import React,{useContext} from "react";
 import "./PlacementCards.scss";
-const DegreeCard = ({allCounts}) => {
+import { GlobalContext } from "@/components/Context/GlobalContext";
+const DegreeCard = ({allCounts,handleParameter,isEmptyObject}) => {
+  const { setThroughCheckedIcon,setLessCheckedIcon ,lesscheckedIcon,setPlacedCheckedIcon,setFilteringData,setPage} = useContext(GlobalContext)
+  const handleClick = () => {
+    // if(!isEmptyObject) return
+    handleParameter("lessthansixty");
+    setPage(0)
+    setFilteringData({})
+    setLessCheckedIcon(true)
+    setPlacedCheckedIcon(false)
+    setThroughCheckedIcon(false)
+  };
   return (
-    <div className="degreeCard">
+    <div className="degreeCard cursor-pointer relative" onClick={handleClick} >
+      {
+lesscheckedIcon &&
+      <img src="../../checked.svg" className="absolute -right-[7px] -top-[9px]"/>
+      }
       <div className="flex h-full">
         <div className="flex flex-col gap-2 justify-between">
           <p className="font-medium pl-[1.563vw] pt-[2.778vh] text-[1.094vw] text-[#191919]">
@@ -12,9 +27,6 @@ const DegreeCard = ({allCounts}) => {
             {allCounts?.response?.lessThanSixtyPercent}
           </p>
         </div>
-        {/* <div>
-              <img className="h-full object-cover object-right" src="../red_card.png" />
-            </div> */}
       </div>
     </div>
   );

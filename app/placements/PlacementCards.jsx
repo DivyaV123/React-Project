@@ -9,6 +9,7 @@ import BranchCard from "./BranchCard";
 import OverviewCard from "./OverviewCard";
 import Degree_Branch_Passout from "./Degree_Branch_Passout";
 import PlacementSideBar from "./PlacementSideBar";
+import CardSkeleton from "@/components/skeletons/CardSkeleton";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import { useGetItandNonItQuery } from "@/redux/queries/getItandNonIt";
 import { useGetLessthanSixtyQuery } from "@/redux/queries/getLessthanSixty";
@@ -36,54 +37,22 @@ const PlacementCards = () => {
           <TotalPlacedCard allCounts={allCounts} />
         )}
         {isloading ? (
-          <div className="flex flex-col gap-2 justify-around w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
-            <div className="flex justify-between">
-              <div className="flex flex-col gap-3">
-                <Skeleton className="h-7 w-[7vw] ml-2 mt-2" />
-                <Skeleton className="h-10 w-[10vw] ml-2 mt-3" />
-              </div>
-              <Skeleton className="h-[8vw] w-[25%] mr-2" />
-            </div>
-          </div>
+          <CardSkeleton/>
         ) : (
           <DegreeCard allCounts={allCounts} />
         )}
         {isloading ? (
-          <div className="flex flex-col gap-2 justify-around w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
-            <div className="flex justify-between">
-              <div className="flex flex-col gap-3">
-                <Skeleton className="h-7 w-[7vw] ml-2 mt-2" />
-                <Skeleton className="h-10 w-[10vw] ml-2 mt-3" />
-              </div>
-              <Skeleton className="h-[8vw] w-[25%] mr-2" />
-            </div>
-          </div>
+          <CardSkeleton/>
         ) : (
           <NonItCard allCounts={allCounts} />
         )}
         {isloading ? (
-          <div className="flex flex-col gap-2 justify-around w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
-            <div className="flex justify-between">
-              <div className="flex flex-col gap-3">
-                <Skeleton className="h-7 w-[7vw] ml-2 mt-2" />
-                <Skeleton className="h-10 w-[10vw] ml-2 mt-3" />
-              </div>
-              <Skeleton className="h-[8vw] w-[25%] mr-2" />
-            </div>
-          </div>
+          <CardSkeleton/>
         ) : (
           <BranchCard allCounts={allCounts} />
         )}
         {isloading ? (
-          <div className="flex flex-col gap-2 justify-around w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
-            <div className="flex justify-between">
-              <div className="flex flex-col gap-3">
-                <Skeleton className="h-7 w-[7vw] ml-2 mt-2" />
-                <Skeleton className="h-10 w-[10vw] ml-2 mt-3" />
-              </div>
-              <Skeleton className="h-[8vw] w-[25%] mr-2" />
-            </div>
-          </div>
+          <CardSkeleton/>
         ) : (
           <OverviewCard allCounts={allCounts} />
         )}

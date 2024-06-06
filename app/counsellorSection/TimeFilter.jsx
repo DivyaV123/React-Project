@@ -90,7 +90,6 @@ const TimeFilter = () => {
     setFromValue(newValue);
     setFromCalender(false)
   };
-  console.log(formattedStartDate, toValue, "jhgfdfghjkjhgfg");
   const today = dayjs()
   const [selectedDate, setSelectedDate] = useState('')
   const weekEnd = today.subtract(1, "week").format("YYYY-MM-DD");

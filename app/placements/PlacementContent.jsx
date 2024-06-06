@@ -6,33 +6,41 @@ import {
 } from "@/components/ui/alert-dialog"
 import ImagePopup from "./ImagePopup";
 import VideoPopup from "./VideoPopup";
-import Link from "next/link";
+import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 const PlacementContent = ({ counsellorFilterResponse }) => {
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
-  console.log(videoDialog, "videoDialog")
   const openImageDialog = () => {
     setImageDialog(true);
-    setVideoDialog(false); // Close video dialog if open
+    setVideoDialog(false); 
   };
   const openVideoDialog = () => {
     setVideoDialog(true);
-    setImageDialog(false); // Close image dialog if open
+    setImageDialog(false); 
   };
   const convertStream = (inputString) => {
     const mapping = {
       "INFORMATION TECHNOLOGY": "IT",
       "CIVIL ENGINEERING": "Civil",
-      "COMPUTER SCIENCE AND ENGINEERING": "CSE"
+      "COMPUTER SCIENCE AND ENGINEERING":"CSE",
+      "MICROSYSTEMS ENGINEERING":"MIE",
+      "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING":"AI&ML",
+      "MECHANICAL ENGINEERING":"MECH",
+      "ELECTRONICS AND COMMUNICATION ENGINEERING":"ECE",
+      "AERONAUTICAL ENGINEERINGNAUTICAL ENGINEERING":"AEE",
+      "BIOMEDICAL ENGINEERING":"BIE",
+      "MINING ENGINEERING":"ME",
+      "AERONAUTICAL ENGINEERING":"AE",
+      "POLITICAL SCIENCE":"PS"
     };
 
     return mapping[inputString.toUpperCase()] || inputString;
   };
+  
   return (
     <>
       {counsellorFilterResponse?.map((student) => (
         <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh] h-[32.083vh]">
-          {console.log(student?.testimonial?.youtubeReview, "youtubereview")}
           <AlertDialog popup='imagepopup'>
             <div className="w-[15.547vw] ">
               <img
@@ -46,7 +54,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                 <div className="flex gap-1 studentDetails">
                   <div>
                     <div className="studentDetails flex justify-center">
-                      {student?.degree?.degreeName}
+                      {student?.mastersDegree?.mastersDegreeName ? student?.mastersDegree?.mastersDegreeName : student?.degree?.degreeName}
                     </div>
                     <div className="educationDetails">Degree</div>
                   </div>
@@ -60,7 +68,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   <div>|</div>
                   <div>
                     <div className="studentDetails flex justify-center">
-                      {student?.degree?.degreeAggregate}
+                      {student?.mastersDegree?.mastersDegreeAggregate ? student?.mastersDegree?.mastersDegreeAggregate : student?.degree?.degreeAggregate}
                     </div>
                     <div className="educationDetails">Aggregate</div>
                   </div>
