@@ -58,11 +58,11 @@ const PlacementSideBar = () => {
     refetch();
   }, [page, size]);
 
-  // useEffect(() => {
-  //   if (counsellorFilterResponse) {
-  //     setAccumulatedData(prevData => [...prevData, ...counsellorFilterResponse.response.content]);
-  //   }
-  // }, [counsellorFilterResponse]);
+  useEffect(() => {
+    if (counsellorFilterResponse) {
+      setAccumulatedData(prevData => [...prevData, ...counsellorFilterResponse.response.content]);
+    }
+  }, [counsellorFilterResponse]);
   return (
     <section className="flex ml-16 mb-8 h-[58.889vh]">
       {isloading ?
