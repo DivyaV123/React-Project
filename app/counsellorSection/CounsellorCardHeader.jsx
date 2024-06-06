@@ -23,6 +23,7 @@ const CounsellorCardHeader = () => {
     setThroughCheckedIcon,
     setLessCheckedIcon,
     setPlacedCheckedIcon,
+    isEmptyObject,
   } = useContext(GlobalContext);
   const {
     data: allCounts,
@@ -30,7 +31,6 @@ const CounsellorCardHeader = () => {
     isError,
     refetch: countrefresh,
   } = useGetAllPlacementCountQuery();
-  const isEmptyObject = Object.keys(filteringData).length === 0;
   const {
     data: counsellorFilterResponse,
     error,

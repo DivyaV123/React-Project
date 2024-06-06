@@ -23,7 +23,7 @@ const GlobalContextProvider = ({ children }) => {
   const [lesscheckedIcon, setLessCheckedIcon] = useState(false)
   const [throughcheckedIcon, setThroughCheckedIcon] = useState(false)
   const [scrollConst, setScrollConst] = useState()
-
+  const isEmptyObject = Object.keys(filteringData).length === 0;
   const handleScroll = (event, page, setPage, repData) => {
     const target = event.target;
     const scrolledToBottom =
@@ -114,8 +114,10 @@ const GlobalContextProvider = ({ children }) => {
 
   useEffect(() => {
     const searchParams = constructSearchParams()
-    const fullURL = `${COUNSELLOR_SECTION}/${searchParams ? `?${searchParams}` : ''}`;
-    router.push(fullURL);
+  const fullURL = `${COUNSELLOR_SECTION}/${searchParams ? `?${searchParams}` : ''}`;
+if(!isEmptyObject){
+  router.push(fullURL);
+}
   }, [filteringData]);
 
   const constructSearchParams = () => {
