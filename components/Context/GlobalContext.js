@@ -60,75 +60,57 @@ const GlobalContextProvider = ({ children }) => {
   const handleCommonFilter = (index, items, setItems, response, key) => {
     setPage(0);
     let updatedSelectedItems = [...items];
-
+  
     if (index === -1) {
-        // Handle calendar date range selection
-        setItems([]);
-        updatedSelectedItems = response; // response contains the date range for calendar selection
+      // Handle calendar or dropdown selection
+      setItems([]);
+      updatedSelectedItems = response; // response contains the date range for calendar or dropdown selection
     } else {
-        // Handle checkbox selection
-        if (updatedSelectedItems.includes(index)) {
-            updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
-        } else {
-            updatedSelectedItems.push(index);
-        }
-        setItems(updatedSelectedItems);
+      // Handle checkbox selection
+      if (updatedSelectedItems.includes(index)) {
+        updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
+      } else {
+        updatedSelectedItems.push(index);
+      }
+      setItems(updatedSelectedItems);
     }
-
+  
     let selectedFilterData;
     if (index === -1) {
-        selectedFilterData = updatedSelectedItems; // Use the date range directly
+      selectedFilterData = updatedSelectedItems; // Use the date range directly
     } else {
-        selectedFilterData = updatedSelectedItems.map(idx => response[idx]);
+      selectedFilterData = updatedSelectedItems.map(idx => response[idx]);
     }
-
+  
     if (key) {
-        setFilteringData(prevFilteringData => {
-            const updatedFilteringData = { ...prevFilteringData };
-            if (selectedFilterData.length === 0) {
-                delete updatedFilteringData[key];
-            } else {
-                if (key === 'timePeriod') {
-                    if (index === -1) {
-                        // Calendar selection
-                        updatedFilteringData[key] = selectedFilterData;
-                    } else {
-                        // Checkbox selection, get the largest period
-                        const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
-                        const largestPeriod = response[sortedPeriods[0]];
-                        const today = dayjs().format("YYYY-MM-DD");
-                        const timePeriods = {
-                            "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),
-                            "Last month": dayjs().subtract(1, "month").format("YYYY-MM-DD"),
-                            "Last 3 months": dayjs().subtract(3, "month").format("YYYY-MM-DD"),
-                            "Last 6 months": dayjs().subtract(6, "month").format("YYYY-MM-DD"),
-                        };
-                        updatedFilteringData[key] = [timePeriods[largestPeriod], today];
-                    }
-                } else {
-                    updatedFilteringData[key] = selectedFilterData;
-                }
-            }
-            return updatedFilteringData;
-        });
-
-        if (key === "university") {
-            setUniversitySelected(selectedFilterData);
-        } else if (key === "state") {
-            setStateSelected(selectedFilterData);
+      setFilteringData(prevFilteringData => {
+        const updatedFilteringData = { ...prevFilteringData };
+        if (selectedFilterData.length === 0) {
+          delete updatedFilteringData[key];
+        } else {
+          updatedFilteringData[key] = selectedFilterData;
         }
+        return updatedFilteringData;
+      });
+  
+      if (key === "university") {
+        setUniversitySelected(selectedFilterData);
+      } else if (key === "state") {
+        setStateSelected(selectedFilterData);
+      }
     } else {
-        setFilteringData(prevFilteringData => {
-            const updatedFilteringData = { ...prevFilteringData };
-            if (selectedFilterData.length === 0) {
-                delete updatedFilteringData.parameter;
-            } else {
-                updatedFilteringData.parameter = selectedFilterData;
-            }
-            return updatedFilteringData;
-        });
+      setFilteringData(prevFilteringData => {
+        const updatedFilteringData = { ...prevFilteringData };
+        if (selectedFilterData.length === 0) {
+          delete updatedFilteringData.parameter;
+        } else {
+          updatedFilteringData.parameter = selectedFilterData;
+        }
+        return updatedFilteringData;
+      });
     }
-};
+  };
+  
 
   useEffect(() => {
     const searchParams = constructSearchParams()
