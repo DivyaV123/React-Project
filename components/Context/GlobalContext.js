@@ -3,6 +3,8 @@ import React, { createContext, useState ,useEffect} from "react";
 import { useRouter } from "next/navigation";
 import { COUNSELLOR_SECTION } from "@/lib/RouteConstants";
 export const GlobalContext = createContext();
+import dayjs from "dayjs";
+
 const initalFilter = {}
 const GlobalContextProvider = ({ children }) => {
   const router=useRouter()
@@ -11,7 +13,7 @@ const GlobalContextProvider = ({ children }) => {
 
   const [selectedBatch, setSelectedBatch] = useState("Bengalore")
   const [selectedClassMode, setSelectedClassMode] = useState("offline")
-
+  const todayDate = dayjs().format("YYYY-MM-DD")
   const [filteringData, setFilteringData] = useState(initalFilter)
   const [page, setPage] = useState(0)
   const [size, setSize] = useState(5)
@@ -57,49 +59,77 @@ const GlobalContextProvider = ({ children }) => {
   };
   const handleCommonFilter = (index, items, setItems, response, key) => {
     setPage(0);
-    const updatedSelectedItems = [...items];
-    if (updatedSelectedItems.includes(index)) {
-      updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
-     } else {
-      updatedSelectedItems.push(index);
+    let updatedSelectedItems = [...items];
+
+    if (index === -1) {
+        // Handle calendar date range selection
+        setItems([]);
+        updatedSelectedItems = response; // response contains the date range for calendar selection
+    } else {
+        // Handle checkbox selection
+        if (updatedSelectedItems.includes(index)) {
+            updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
+        } else {
+            updatedSelectedItems.push(index);
+        }
+        setItems(updatedSelectedItems);
     }
-    setItems(updatedSelectedItems);
 
-    let selectedDegreeNames = updatedSelectedItems.map(index => response[index]);
-
-    // Flatten the array if the key is "timePeriods"
-    if (key === "timePeriod" && selectedDegreeNames.length > 0 && Array.isArray(selectedDegreeNames[0])) {
-      selectedDegreeNames = selectedDegreeNames.flat();
+    let selectedFilterData;
+    if (index === -1) {
+        selectedFilterData = updatedSelectedItems; // Use the date range directly
+    } else {
+        selectedFilterData = updatedSelectedItems.map(idx => response[idx]);
     }
 
     if (key) {
-      setFilteringData(prevFilteringData => {
-        const updatedFilteringData = { ...prevFilteringData };
-        if (selectedDegreeNames.length === 0) {
-          delete updatedFilteringData[key];
-        } else {
-          updatedFilteringData[key] = selectedDegreeNames;
-        }
-        return updatedFilteringData;
-      });
+        setFilteringData(prevFilteringData => {
+            const updatedFilteringData = { ...prevFilteringData };
+            if (selectedFilterData.length === 0) {
+                delete updatedFilteringData[key];
+            } else {
+                if (key === 'timePeriod') {
+                    if (index === -1) {
+                        // Calendar selection
+                        updatedFilteringData[key] = selectedFilterData;
+                    } else {
+                        // Checkbox selection, get the largest period
+                        const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
+                        const largestPeriod = response[sortedPeriods[0]];
+                        const today = dayjs().format("YYYY-MM-DD");
+                        const timePeriods = {
+                            "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),
+                            "Last month": dayjs().subtract(1, "month").format("YYYY-MM-DD"),
+                            "Last 3 months": dayjs().subtract(3, "month").format("YYYY-MM-DD"),
+                            "Last 6 months": dayjs().subtract(6, "month").format("YYYY-MM-DD"),
+                        };
+                        updatedFilteringData[key] = [timePeriods[largestPeriod], today];
+                    }
+                } else {
+                    updatedFilteringData[key] = selectedFilterData;
+                }
+            }
+            return updatedFilteringData;
+        });
 
-      if (key === "university") {
-        setUniversitySelected(selectedDegreeNames);
-      } else if (key === "state") {
-        setStateSelected(selectedDegreeNames);
-      }
-    } else {
-      setFilteringData(prevFilteringData => {
-        const updatedFilteringData = { ...prevFilteringData };
-        if (selectedDegreeNames.length === 0) {
-          delete updatedFilteringData.parameter;
-        } else {
-          updatedFilteringData.parameter = selectedDegreeNames;
+        if (key === "university") {
+            setUniversitySelected(selectedFilterData);
+        } else if (key === "state") {
+            setStateSelected(selectedFilterData);
         }
-        return updatedFilteringData;
-      });
+    } else {
+        setFilteringData(prevFilteringData => {
+            const updatedFilteringData = { ...prevFilteringData };
+            if (selectedFilterData.length === 0) {
+                delete updatedFilteringData.parameter;
+            } else {
+                updatedFilteringData.parameter = selectedFilterData;
+            }
+            return updatedFilteringData;
+        });
     }
-  };
+};
+
   useEffect(() => {
     const searchParams = constructSearchParams()
     const fullURL = `${COUNSELLOR_SECTION}/${searchParams ? `?${searchParams}` : ''}`;
