@@ -14,7 +14,7 @@ import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import BranchTypeFilter from "./BranchTypeFilter";
 const YearFilter = () => {
   const [selectedBranch, setSelectedBranch] = useState([]);
-  const { filteringData, setFilteringData, handleCommonFilter } = useContext(GlobalContext);
+  const { handleCommonFilter } = useContext(GlobalContext);
   const [fromYear, setFromYear] = useState('');
   const [toYear, setToYear] = useState('');
   const { data: PlacementBranchData } = useGetAllPlacementBranchQuery();
@@ -22,7 +22,7 @@ const YearFilter = () => {
   const [selectedYop, setSelectedYop] = useState([]);
   const { data: YearOfPassoutData } = useGetAllYearOfPassoutQuery();
   const YopList = YearOfPassoutData?.response;
-  
+
   const handleFromYearChange = (year) => {
     setFromYear(year);
     setToYear('');
@@ -63,7 +63,7 @@ const YearFilter = () => {
       <div className="flex gap-2.5 pb-[1.111vh]">
         <DropdownMenu>
           <DropdownMenuTrigger className="filterButton">
-            From
+            {fromYear ? fromYear : "From"}
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <div className="w-[100%] bg-white">
@@ -79,7 +79,9 @@ const YearFilter = () => {
           </DropdownMenuContent>
         </DropdownMenu>
         <DropdownMenu>
-          <DropdownMenuTrigger className="filterButton">To</DropdownMenuTrigger>
+          <DropdownMenuTrigger className="filterButton">
+            {toYear ? toYear : "To"}
+          </DropdownMenuTrigger>
           <DropdownMenuContent>
             <div className="w-[100%] bg-white flex flex-col item-center">
               {YopList?.map((year) => (
@@ -109,8 +111,8 @@ const YearFilter = () => {
       <div className="flex justify-between pb-[1.111vh]">
         <p className="text-[0.938vw] text-[#002248] font-semibold">Branch</p>
         <img src="../../down.svg" />
-       </div>
-       <>
+      </div>
+      <>
         {BranchList?.map((item, index) => (
           <Checkbox
             key={index}

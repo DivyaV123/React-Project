@@ -74,7 +74,7 @@ const TimeFilter = () => {
       </div>
       <div className="flex gap-2.5 pb-[1.111vh] relative">
         <button onClick={handleFromCalendar} className="filterButton">
-          From
+          {formattedStartDate != "Invalid Date" ? formattedStartDate : "From"}
         </button>
         {fromCalender && (
           <div className="calenderStyle">
@@ -85,7 +85,7 @@ const TimeFilter = () => {
           </div>
         )}
         <button onClick={handleToCalendar} className="filterButton">
-          To
+          {formattedEndDate != "Invalid Date" ? formattedEndDate : "To"}
         </button>
         {toCalender && (
           <div className="calenderStyle">
