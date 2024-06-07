@@ -2,6 +2,7 @@
 import React, { useState, useContext } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
+import ExpandableList from './ExpandableList';
 import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 import { GlobalContext } from "@/components/Context/GlobalContext";
@@ -9,7 +10,6 @@ import { useGetAllCitiesQuery } from '@/redux/queries/getAllCities';
 const StateFilter = () => {
   const { filteringData, setFilteringData, handleCommonFilter } = useContext(GlobalContext);
   const { data: statesData, error, isLoading } = useGetAllStatesQuery();
-  const { data: cityData, error: cityError, isLoading: cityIsLoading } = useGetAllCitiesQuery();
   const statesList = statesData?.response;
   const [stateItems, setStateItems] = useState([])
   return (

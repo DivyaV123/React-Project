@@ -30,6 +30,8 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
       "MINING ENGINEERING": "ME",
       "AERONAUTICAL ENGINEERING": "AE",
       "POLITICAL SCIENCE": "PS",
+      "Electronics & Communication(E&C)":"E&C",
+      "Mechanical(ME)":"Mech"
     };
 
     return mapping[inputString?.toUpperCase()] || inputString;
