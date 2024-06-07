@@ -31,15 +31,15 @@ const CounsellorFilters = () => {
       {/* {isLoading ? (
         <FilterSkeleton />
       ) : ( */}
-        <>
-          <YearFilter />
-          <StateFilter />
-          <UniversityFilter />
-          <CollegeFilter />
-          <DegreeFilter degreeList={degreeList} />
-          <StreamFilter streamList={streamList} />
-          <PercentageFilter />
-        </>
+      <>
+        <YearFilter />
+        <StateFilter />
+        <UniversityFilter />
+        <CollegeFilter />
+        <DegreeFilter degreeList={degreeList} />
+        <StreamFilter streamList={streamList} />
+        <PercentageFilter />
+      </>
       {/* )} */}
     </aside>
   );
