@@ -13,7 +13,7 @@ import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import { COUNSELLOR_SECTION } from "@/lib/RouteConstants";
 import { useRouter } from "next/navigation";
 const CounsellorCardHeader = () => {
-  const router=useRouter()
+  const router = useRouter()
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
 
@@ -37,7 +37,7 @@ const CounsellorCardHeader = () => {
     isError,
     refetch: countrefresh,
   } = useGetAllPlacementCountQuery();
-  
+
   const {
     data: counsellorFilterResponse,
     error,
@@ -56,19 +56,39 @@ const CounsellorCardHeader = () => {
       setLessCheckedIcon(false);
       setThroughCheckedIcon(false);
     }
-    setAccumulatedData(counsellorFilterResponse?.response?.content || []);
+    // setAccumulatedData(counsellorFilterResponse?.response?.content || []);
+    if (counsellorFilterResponse) {
+      setAccumulatedData((prevData) => [
+        ...prevData,
+        ...counsellorFilterResponse?.response?.content,
+      ]);
+    }
   }, [filteringData, page, size, filterParameter]);
 
   useEffect(() => {
-    if (counsellorFilterResponse && page > 0) {
-      setAccumulatedData((prevData) => [
-        ...(prevData || []),
-        ...counsellorFilterResponse?.response?.content,
-      ]);
-    } else {
-      setAccumulatedData(counsellorFilterResponse?.response?.content);
+    if (counsellorFilterResponse) {
+      if (page > 0) {
+        setAccumulatedData((prevData) => [
+          ...prevData,
+          ...counsellorFilterResponse?.response?.content,
+        ]);
+      } else {
+        setAccumulatedData(counsellorFilterResponse?.response?.content || []);
+      }
     }
   }, [counsellorFilterResponse]);
+
+
+  // useEffect(() => {
+  //   if (counsellorFilterResponse && page > 0) {
+  //     setAccumulatedData((prevData) => [
+  //       ...(prevData || []),
+  //       ...counsellorFilterResponse?.response?.content,
+  //     ]);
+  //   } else {
+  //     setAccumulatedData(counsellorFilterResponse?.response?.content);
+  //   }
+  // }, [counsellorFilterResponse]);
 
   const handleParameter = (param) => {
     setFilterParamter(param);
@@ -77,9 +97,8 @@ const CounsellorCardHeader = () => {
   const emptyObj = Object.keys(filteringData).length === 0;
   useEffect(() => {
     const searchParams = constructSearchParams();
-    const fullURL = `${COUNSELLOR_SECTION}/${
-      searchParams ? `?${searchParams}` : ""
-    }`;
+    const fullURL = `${COUNSELLOR_SECTION}/${searchParams ? `?${searchParams}` : ""
+      }`;
     if (!emptyObj) {
       router.push(fullURL);
     } else {
