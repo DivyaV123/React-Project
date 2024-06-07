@@ -30,13 +30,29 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
       "MINING ENGINEERING": "ME",
       "AERONAUTICAL ENGINEERING": "AE",
       "POLITICAL SCIENCE": "PS",
-      "Electronics & Communication(E&C)":"E&C",
-      "Mechanical(ME)":"Mech"
+      "AERONAUTICAL ENGINEERING": 'AER',
+      "MECHANICAL ENGINEERING": "ME",
+      "MECHANICAL ENGINEERING TECHNOLOGY": 'MEL',
+      "MICROSYSTEMS ENGINEERING": "MicroE",
+      'MINING ENGINEERING': "ME",
     };
 
-    return mapping[inputString?.toUpperCase()] || inputString;
+    return mapping[inputString.toUpperCase()] || inputString;
   };
 
+  function extractText(data) {
+    const match = data.match(/\(([^)]+)\)/);
+    if (match) {
+      return match[1];
+    }
+
+    if (data = "Information Technology") {
+      data = 'IT'
+    }
+   
+    return data;
+
+  }
   return (
     <>
       {counsellorFilterResponse?.map((student) => (
@@ -63,7 +79,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   <div>|</div>
                   <div>
                     <div className="studentDetails flex justify-center">
-                      {convertStream(student?.degree?.degreeStream)}
+                      {extractText(student?.degree?.degreeStream)}
                     </div>
                     <div className="educationDetails">Stream</div>
                   </div>
@@ -79,7 +95,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   <div>|</div>
                   <div>
                     <div className="studentDetails flex justify-center">
-                      {student?.mastersDegree?.mastersDegreeYop ? student?.mastersDegree?.mastersDegreeYop : student?.degree?.degreeYop}
+                      {student?.degree?.degreeYop}
                     </div>
                     <div className="educationDetails">YOP</div>
                   </div>
