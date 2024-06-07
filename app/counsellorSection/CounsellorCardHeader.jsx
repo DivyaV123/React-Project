@@ -57,12 +57,12 @@ const CounsellorCardHeader = () => {
       setThroughCheckedIcon(false);
     }
     // setAccumulatedData(counsellorFilterResponse?.response?.content || []);
-    if (counsellorFilterResponse) {
-      setAccumulatedData((prevData) => [
-        ...prevData,
-        ...counsellorFilterResponse?.response?.content,
-      ]);
-    }
+    // if (counsellorFilterResponse) {
+    //   setAccumulatedData((prevData) => [
+    //     ...prevData,
+    //     ...counsellorFilterResponse?.response?.content,
+    //   ]);
+    // }
   }, [filteringData, page, size, filterParameter]);
 
   useEffect(() => {
