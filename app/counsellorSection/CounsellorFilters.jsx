@@ -12,8 +12,8 @@ import PercentageFilter from "./PercentageFilter";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 const CounsellorFilters = () => {
   const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
-  const degreeList = degreeAndStreamdata?.response.degreeList;
-  const streamList = degreeAndStreamdata?.response.streamList;
+  const degreeList = degreeAndStreamdata?.response.degreeList.filter(degree => degree !== "");
+  const streamList = degreeAndStreamdata?.response.streamList.filter(stream => stream !== "");
   const filterClass = "text-[#002248] text-[1.25vw] font-semibold";
   return (
     <>

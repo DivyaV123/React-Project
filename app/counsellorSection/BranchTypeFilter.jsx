@@ -8,7 +8,7 @@ const BranchTypeFilter = () => {
   const branchType = ["Jspiders", "Qspiders","Pyspiders","Prospiders"];
   return (
     <>  
-      <div className="flex justify-between pb-[1.111vh]">
+      <div className="flex justify-between pb-[1.111vh] mt-[1.111vh]">
         <p className="text-[0.938vw] text-[#002248] font-semibold">
           BranchType
         </p>

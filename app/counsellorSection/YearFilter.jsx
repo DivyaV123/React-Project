@@ -1,6 +1,7 @@
 "use client";
 import React, { useState, useContext } from "react";
 import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
+import ExpandableList from "./ExpandableList";
 import "./CounserllorFilters.scss";
 import {
   DropdownMenu,
@@ -12,11 +13,12 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllPlacementBranchQuery } from "@/redux/queries/getBranches";
 import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import BranchTypeFilter from "./BranchTypeFilter";
+
 const YearFilter = () => {
   const [selectedBranch, setSelectedBranch] = useState([]);
   const { handleCommonFilter } = useContext(GlobalContext);
-  const [fromYear, setFromYear] = useState('');
-  const [toYear, setToYear] = useState('');
+  const [fromYear, setFromYear] = useState("");
+  const [toYear, setToYear] = useState("");
   const { data: PlacementBranchData } = useGetAllPlacementBranchQuery();
   const BranchList = PlacementBranchData?.response;
   const [selectedYop, setSelectedYop] = useState([]);
@@ -25,7 +27,7 @@ const YearFilter = () => {
 
   const handleFromYearChange = (year) => {
     setFromYear(year);
-    setToYear('');
+    setToYear("");
     setSelectedYop([]);
   };
 
@@ -43,17 +45,21 @@ const YearFilter = () => {
   };
 
   const handleCommonFilterForYear = (yearRange) => {
-    handleCommonFilter(-1, [], setSelectedYop, yearRange, 'yop');
+    handleCommonFilter(-1, [], setSelectedYop, yearRange, "yop");
   };
 
-  const handleCheckboxChange = (index) => {
-    setFromYear('');
-    setToYear('');
-    handleCommonFilter(index, selectedYop, setSelectedYop, YopList, 'yop');
-  };
+  const renderCheckbox = (item, index, selected, setSelected, items) => (
+    <Checkbox
+      key={index}
+      id={index}
+      label={item}
+      checked={selected.includes(index)}
+      onChange={() => handleCommonFilter(index, selected, setSelected, items, "yop")}
+    />
+  );
 
   return (
-    <div className="px-[1.875vw] pt-[2.778vh] timePeriod">
+    <div className="px-[1.875vw] pt-[2.778vh] timePeriod pb-[1.111vh]">
       <div className="flex justify-between pb-[1.111vh]">
         <p className="text-[0.938vw] text-[#002248] font-semibold">
           Year of Passing
@@ -96,41 +102,19 @@ const YearFilter = () => {
           </DropdownMenuContent>
         </DropdownMenu>
       </div>
-      <>
-        {YopList?.map((item, index) => (
-          <Checkbox
-            key={index}
-            id={index}
-            label={item}
-            checked={selectedYop.includes(index)}
-            onChange={() => handleCheckboxChange(index)}
-          />
-        ))}
-      </>
+      <ExpandableList
+        items={YopList}
+        renderItem={(item, index) => renderCheckbox(item, index, selectedYop, setSelectedYop, YopList)}
+      />
       <BranchTypeFilter />
       <div className="flex justify-between pb-[1.111vh]">
         <p className="text-[0.938vw] text-[#002248] font-semibold">Branch</p>
         <img src="../../down.svg" />
       </div>
-      <>
-        {BranchList?.map((item, index) => (
-          <Checkbox
-            key={index}
-            id={index}
-            label={item}
-            checked={selectedBranch.includes(index)}
-            onChange={() =>
-              handleCommonFilter(
-                index,
-                selectedBranch,
-                setSelectedBranch,
-                BranchList,
-                "branchLocation"
-              )
-            }
-          />
-        ))}
-      </>
+      <ExpandableList
+        items={BranchList}
+        renderItem={(item, index) => renderCheckbox(item, index, selectedBranch, setSelectedBranch, BranchList)}
+      />
     </div>
   );
 };
