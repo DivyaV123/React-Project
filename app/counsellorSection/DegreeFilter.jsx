@@ -7,14 +7,17 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 const DegreeFilter = ({ degreeList }) => {
     const { handleCommonFilter } = useContext(GlobalContext);
     const [selectedDegrees, setSelectedDegrees] = useState([]);
-
+    const [searchQuery, setSearchQuery] = useState("");
+const searchDegreeList=degreeList?.filter((degree) =>
+    degree.toLowerCase().includes(searchQuery.toLowerCase())
+  );
     const renderCheckbox = (item, index) => (
         <Checkbox
             key={index}
             id={index}
             label={item}
             checked={selectedDegrees.includes(index)}
-            onChange={() => handleCommonFilter(index, selectedDegrees, setSelectedDegrees, degreeList, 'degree')}
+            onChange={() => handleCommonFilter(index, selectedDegrees, setSelectedDegrees, searchDegreeList, 'degree')}
         />
     );
 
@@ -25,11 +28,17 @@ const DegreeFilter = ({ degreeList }) => {
                 <img src="../../down.svg" />
             </div>
             <div className="search-container pb-[1.111vh]">
-                <input type="text" placeholder="search..." className="text-[0.781vw]" />
+            <input
+          type="text"
+          placeholder="search..."
+          className="text-[0.781vw]"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
                 <div className="search-icon"></div>
             </div>
             <ExpandableList
-                items={degreeList}
+                items={searchDegreeList}
                 renderItem={(item, index) => renderCheckbox(item, index)}
             />
         </div>

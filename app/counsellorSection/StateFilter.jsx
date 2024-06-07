@@ -10,8 +10,23 @@ import { useGetAllCitiesQuery } from '@/redux/queries/getAllCities';
 const StateFilter = () => {
   const { filteringData, setFilteringData, handleCommonFilter } = useContext(GlobalContext);
   const { data: statesData, error, isLoading } = useGetAllStatesQuery();
-  const statesList = statesData?.response;
   const [stateItems, setStateItems] = useState([])
+  const [searchQuery, setSearchQuery] = useState("");
+  const statesList = statesData?.response.filter((state) => state !== "")
+  .filter((states) =>
+    states.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+  const renderCheckbox = (item, index) => (
+    <Checkbox
+      key={index}
+      id={index}
+      label={item}
+      checked={stateItems.includes(index)}
+      onChange={() =>
+        handleCommonFilter(index, stateItems, setStateItems, statesList, 'state')
+      }
+    />
+  );
   return (
     <>
       <div className="px-[1.875vw] pt-[2.778vh]">
@@ -22,21 +37,19 @@ const StateFilter = () => {
           <img src="../../down.svg" />
         </div>
         <div className="search-container pb-[1.111vh]">
-          <input type="text" placeholder="search..." className="text-[0.781vw]" />
+        <input
+          type="text"
+          placeholder="search..."
+          className="text-[0.781vw]"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
           <div class="search-icon"></div>
         </div>
-        <>
-          {statesList?.map((item, index) => (
-            <Checkbox
-              key={index}
-              id={index}
-              label={item}
-              checked={stateItems.includes(index)}
-              onChange={() =>
-                handleCommonFilter(index, stateItems, setStateItems, statesList, 'state')}
-            />
-          ))}
-        </>
+        <ExpandableList
+        items={statesList}
+        renderItem={(item, index) => renderCheckbox(item, index)}
+      />
       </div>
       <CityFilter selectedState={stateItems} />
     </>
