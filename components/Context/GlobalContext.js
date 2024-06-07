@@ -1,13 +1,13 @@
 'use client'
 import React, { createContext, useState ,useEffect} from "react";
-import { useRouter } from "next/navigation";
-import { COUNSELLOR_SECTION } from "@/lib/RouteConstants";
+
+
 export const GlobalContext = createContext();
 import dayjs from "dayjs";
 
 const initalFilter = {}
 const GlobalContextProvider = ({ children }) => {
-  const router=useRouter()
+
   const [selectedBranch, setSelectedBranch] = useState('Bengalore')
   const [selectedCourseId, setSelectedCourseId] = useState('1')
 
@@ -23,7 +23,7 @@ const GlobalContextProvider = ({ children }) => {
   const [lesscheckedIcon, setLessCheckedIcon] = useState(false)
   const [throughcheckedIcon, setThroughCheckedIcon] = useState(false)
   const [scrollConst, setScrollConst] = useState()
-  const isEmptyObject = Object.keys(filteringData).length === 0;
+
   const handleScroll = (event, page, setPage, repData) => {
     const target = event.target;
     const scrolledToBottom =
@@ -86,12 +86,31 @@ const GlobalContextProvider = ({ children }) => {
       setFilteringData(prevFilteringData => {
         const updatedFilteringData = { ...prevFilteringData };
         if (selectedFilterData.length === 0) {
-          delete updatedFilteringData[key];
+            delete updatedFilteringData[key];
         } else {
-          updatedFilteringData[key] = selectedFilterData;
+            if (key === 'timePeriod') {
+                if (index === -1) {
+                    // Calendar selection
+                    updatedFilteringData[key] = selectedFilterData;
+                } else {
+                    // Checkbox selection, get the largest period
+                    const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
+                    const largestPeriod = response[sortedPeriods[0]];
+                    const today = dayjs().format("YYYY-MM-DD");
+                    const timePeriods = {
+                        "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),
+                        "Last month": dayjs().subtract(1, "month").format("YYYY-MM-DD"),
+                        "Last 3 months": dayjs().subtract(3, "month").format("YYYY-MM-DD"),
+                        "Last 6 months": dayjs().subtract(6, "month").format("YYYY-MM-DD"),
+                    };
+                    updatedFilteringData[key] = [timePeriods[largestPeriod], today];
+                }
+            } else {
+                updatedFilteringData[key] = selectedFilterData;
+            }
         }
         return updatedFilteringData;
-      });
+    });
   
       if (key === "university") {
         setUniversitySelected(selectedFilterData);
@@ -100,38 +119,17 @@ const GlobalContextProvider = ({ children }) => {
       }
     } else {
       setFilteringData(prevFilteringData => {
-        const updatedFilteringData = { ...prevFilteringData };
-        if (selectedFilterData.length === 0) {
-          delete updatedFilteringData.parameter;
-        } else {
-          updatedFilteringData.parameter = selectedFilterData;
-        }
-        return updatedFilteringData;
+          const updatedFilteringData = { ...prevFilteringData };
+          if (selectedFilterData.length === 0) {
+              delete updatedFilteringData.parameter;
+          } else {
+              updatedFilteringData.parameter = selectedFilterData;
+          }
+          return updatedFilteringData;
       });
     }
   };
-  
-
-  useEffect(() => {
-    const searchParams = constructSearchParams()
-  const fullURL = `${COUNSELLOR_SECTION}/${searchParams ? `?${searchParams}` : ''}`;
-if(!isEmptyObject){
-  router.push(fullURL);
-}
-  }, [filteringData]);
-
-  const constructSearchParams = () => {
-    let searchParams = '';
-    for (const key in filteringData) {
-      if (filteringData.hasOwnProperty(key)) {
-        if (searchParams !== '') {
-          searchParams += '&';
-        }
-        searchParams += key + '=' + filteringData[key].join(',');
-      }
-    }
-    return searchParams;
-  };
+ 
   
   return (
     <GlobalContext.Provider value={{

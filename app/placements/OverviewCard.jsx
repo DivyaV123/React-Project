@@ -1,7 +1,7 @@
 import React,{useContext} from "react";
 import "./PlacementCards.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-const OverviewCard = ({allCounts,handleParameter,isEmptyObject}) => {
+const OverviewCard = ({allCounts,handleParameter}) => {
   const { setThroughCheckedIcon,setLessCheckedIcon,throughcheckedIcon ,setPlacedCheckedIcon,setPage,setFilteringData} = useContext(GlobalContext)
   const handleClick = () => {
     // if(!isEmptyObject) return
