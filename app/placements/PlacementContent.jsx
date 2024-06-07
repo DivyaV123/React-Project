@@ -77,7 +77,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   <div>|</div>
                   <div>
                     <div className="studentDetails flex justify-center">
-                      {student?.degree?.degreeYop}
+                      {student?.mastersDegree?.mastersDegreeYop ? student?.mastersDegree?.mastersDegreeYop : student?.degree?.degreeYop}
                     </div>
                     <div className="educationDetails">YOP</div>
                   </div>

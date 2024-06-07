@@ -10,9 +10,13 @@ import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import CardSkeleton from "@/components/skeletons/CardSkeleton";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
+import { COUNSELLOR_SECTION } from "@/lib/RouteConstants";
+import { useRouter } from "next/navigation";
 const CounsellorCardHeader = () => {
+  const router=useRouter()
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
+
   const {
     filteringData,
     page,
@@ -23,14 +27,17 @@ const CounsellorCardHeader = () => {
     setThroughCheckedIcon,
     setLessCheckedIcon,
     setPlacedCheckedIcon,
-    isEmptyObject,
   } = useContext(GlobalContext);
+
+  const isEmptyObject = Object.keys(filteringData).length === 0;
+
   const {
     data: allCounts,
     isLoading,
     isError,
     refetch: countrefresh,
   } = useGetAllPlacementCountQuery();
+  
   const {
     data: counsellorFilterResponse,
     error,
@@ -66,6 +73,32 @@ const CounsellorCardHeader = () => {
   const handleParameter = (param) => {
     setFilterParamter(param);
   };
+
+  const emptyObj = Object.keys(filteringData).length === 0;
+  useEffect(() => {
+    const searchParams = constructSearchParams();
+    const fullURL = `${COUNSELLOR_SECTION}/${
+      searchParams ? `?${searchParams}` : ""
+    }`;
+    if (!emptyObj) {
+      router.push(fullURL);
+    } else {
+      router.push(COUNSELLOR_SECTION);
+    }
+  }, [filteringData]);
+
+  const constructSearchParams = () => {
+    let searchParams = "";
+    for (const key in filteringData) {
+      if (filteringData.hasOwnProperty(key)) {
+        if (searchParams !== "") {
+          searchParams += "&";
+        }
+        searchParams += key + "=" + filteringData[key].join(",");
+      }
+    }
+    return searchParams;
+  };
   return (
     <>
       <section className="px-[6.641vw] flex gap-6 pb-[3.333vh] items-center">
@@ -98,7 +131,6 @@ const CounsellorCardHeader = () => {
           <OverviewCard
             allCounts={allCounts}
             handleParameter={handleParameter}
-            isEmptyObject={isEmptyObject}
           />
         )}
       </section>
@@ -110,7 +142,6 @@ const CounsellorCardHeader = () => {
       >
         {isLoading ? (
           <CardContentSkeleton />
-          
         ) : (
           <PlacementContent counsellorFilterResponse={accumulatedData} />
         )}
