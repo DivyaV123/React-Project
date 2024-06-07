@@ -2,7 +2,7 @@
 import React, { useState, useContext } from 'react'
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
 import "./CounserllorFilters.scss";
-import ExpandableList from './ExpandableList';
+import ExpandableList from '../../components/commonComponents/ExpandableList/ExpandableList';
 import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 import { GlobalContext } from "@/components/Context/GlobalContext";

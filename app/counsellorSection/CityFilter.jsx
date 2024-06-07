@@ -1,7 +1,7 @@
 'use client'
 import React, { useState, useContext, useEffect } from 'react';
 import Checkbox from '@/components/commonComponents/checkbox/Checkbox';
-import ExpandableList from './ExpandableList';
+import ExpandableList from '../../components/commonComponents/ExpandableList/ExpandableList';
 import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllCitiesQuery } from '@/redux/queries/getAllCities';
