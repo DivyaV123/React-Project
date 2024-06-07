@@ -8,14 +8,17 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 const StreamFilter = ({ streamList }) => {
     const { handleCommonFilter } = useContext(GlobalContext);
     const [selectedStream, setSelectedStream] = useState([]);
-
+    const [searchQuery, setSearchQuery] = useState("");
+const searchStreamList=streamList?.filter((degree) =>
+    degree.toLowerCase().includes(searchQuery.toLowerCase())
+  );
     const renderCheckbox = (item, index) => (
         <Checkbox
             key={index}
             id={index}
             label={item}
             checked={selectedStream.includes(index)}
-            onChange={() => handleCommonFilter(index, selectedStream, setSelectedStream, streamList, 'stream')}
+            onChange={() => handleCommonFilter(index, selectedStream, setSelectedStream, searchStreamList, 'stream')}
         />
     );
 
@@ -26,11 +29,17 @@ const StreamFilter = ({ streamList }) => {
                 <img src="../../down.svg" />
             </div>
             <div className="search-container pb-[1.111vh]">
-                <input type="text" placeholder="search..." className="text-[0.781vw]" />
+            <input
+          type="text"
+          placeholder="search..."
+          className="text-[0.781vw]"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
                 <div className="search-icon"></div>
             </div>
             <ExpandableList
-                items={streamList}
+                items={searchStreamList}
                 renderItem={(item, index) => renderCheckbox(item, index)}
             />
         </div>

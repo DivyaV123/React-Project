@@ -18,7 +18,7 @@ const GlobalContextProvider = ({ children }) => {
   const [page, setPage] = useState(0)
   const [size, setSize] = useState(5)
   const [universitySelected, setUniversitySelected] = useState([])
-  const [ststeSelected, setStateSelected] = useState([])
+  const [stateSelected, setStateSelected] = useState([])
   const [placeCheckedIcon,setPlacedCheckedIcon]=useState(true)
   const [lesscheckedIcon, setLessCheckedIcon] = useState(false)
   const [throughcheckedIcon, setThroughCheckedIcon] = useState(false)
@@ -57,6 +57,8 @@ const GlobalContextProvider = ({ children }) => {
       [field]: selectedValues,
     }));
   };
+
+  
   const handleCommonFilter = (index, items, setItems, response, key) => {
     setPage(0);
     let updatedSelectedItems = [...items];
@@ -147,7 +149,7 @@ const GlobalContextProvider = ({ children }) => {
       page,
       setPage,
       universitySelected,
-      ststeSelected,
+      stateSelected,
       size,
       setSize,
       scrollConst,

@@ -8,9 +8,10 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const UniversityFilter = () => {
   const [selectedUniversity, setSelectedUniversity] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
   const { handleCommonFilter } = useContext(GlobalContext);
   const { data: universityData } = useGetAllUniversitiesQuery();
-  const universityList = universityData?.response.filter(university => university !== "");
+  const universityList = universityData?.response.filter(university => university !== "").filter(university => university.toLowerCase().includes(searchQuery.toLowerCase()));
 
   const renderCheckbox = (item, index) => (
     <Checkbox
@@ -31,7 +32,13 @@ const UniversityFilter = () => {
         <img src="../../down.svg" />
       </div>
       <div className="search-container pb-[1.111vh]">
-        <input type="text" placeholder="search..." className="text-[0.781vw]" />
+        <input 
+          type="text" 
+          placeholder="search..." 
+          className="text-[0.781vw]" 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
         <div className="search-icon"></div>
       </div>
       <ExpandableList
