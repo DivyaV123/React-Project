@@ -24,7 +24,7 @@ const YearFilter = () => {
   const [selectedYop, setSelectedYop] = useState([]);
   const { data: YearOfPassoutData } = useGetAllYearOfPassoutQuery();
   const YopList = YearOfPassoutData?.response;
-
+  const sortedYearList = [...YopList||[]].sort((a, b) => b - a);
   const handleFromYearChange = (year) => {
     setFromYear(year);
     setToYear("");
@@ -103,8 +103,8 @@ const YearFilter = () => {
         </DropdownMenu>
       </div>
       <ExpandableList
-        items={YopList}
-        renderItem={(item, index) => renderCheckbox(item, index, selectedYop, setSelectedYop, YopList)}
+        items={sortedYearList}
+        renderItem={(item, index) => renderCheckbox(item, index, selectedYop, setSelectedYop, sortedYearList)}
       />
       <BranchTypeFilter />
       <div className="flex justify-between pb-[1.111vh]">

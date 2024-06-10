@@ -22,6 +22,7 @@
 }
 .filterInput{
   @extend .filterButton;
+  width: 7.75vw;
   padding-right: 0;
 }
 .filterInput::placeholder{
