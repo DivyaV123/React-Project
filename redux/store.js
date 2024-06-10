@@ -27,6 +27,7 @@ import YearOfPassoutReducer from './slices/placementCount/YearOfPassoutSlice';
 import { YearOfPassoutApi } from './queries/getYearOfPassout';
 import PlacedDateBetweenReducer from './slices/placementCount/PlacedDateBetweenSlice';
 import { PlacedDateBetweenApi } from './queries/getPlacedDateBetween';
+import { LoginApi } from './queries/loginApi';
 const store = configureStore({
   reducer: {
     [courseApi.reducerPath]: courseApi.reducer,
@@ -70,10 +71,12 @@ const store = configureStore({
     [PlacedDateBetweenApi.reducerPath]: PlacedDateBetweenApi.reducer,
     getPlacedBetween: PlacedDateBetweenReducer,
 
+    [LoginApi.reducerPath]: LoginApi.reducer,
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
-       ItandNonItApi.middleware,counsellorsApi.middleware,PlacementBranchApi.middleware,YearOfPassoutApi.middleware,PlacedDateBetweenApi.middleware),
+      ItandNonItApi.middleware, counsellorsApi.middleware, PlacementBranchApi.middleware, YearOfPassoutApi.middleware, PlacedDateBetweenApi.middleware, LoginApi.middleware),
 });
 
-export default store;
+export default store; 
