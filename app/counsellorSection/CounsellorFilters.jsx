@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./CounserllorFilters.scss";
 import StateFilter from "./StateFilter";
 import YearFilter from "./YearFilter";
@@ -14,9 +14,34 @@ import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStrea
 
 const CounsellorFilters = () => {
   const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
-  const degreeList = degreeAndStreamdata?.response.degreeList.filter(degree => degree !== "")
+  const degreeList = degreeAndStreamdata?.response.degreeList.filter(degree => degree !== "");
   const streamList = degreeAndStreamdata?.response.streamList.filter(stream => stream !== "");
   const filterClass = "text-[#002248] text-[1.25vw] font-semibold";
+  
+  const [isPercentageFilterVisible, setIsPercentageFilterVisible] = useState(false);
+  const collegeFilterRef = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          setIsPercentageFilterVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    if (collegeFilterRef.current) {
+      observer.observe(collegeFilterRef.current);
+    }
+
+    return () => {
+      if (collegeFilterRef.current) {
+        observer.unobserve(collegeFilterRef.current);
+      }
+    };
+  }, []);
 
   return (
     <aside className="filterSidebar myscrollbar">
@@ -28,19 +53,17 @@ const CounsellorFilters = () => {
         <button className={filterClass}>Clear</button>
       </div>
       <TimeFilter isLoading={isLoading} />
-      {/* {isLoading ? (
-        <FilterSkeleton />
-      ) : ( */}
       <>
         <YearFilter />
         <StateFilter />
         <UniversityFilter />
-        <CollegeFilter />
+        <div ref={collegeFilterRef}>
+          <CollegeFilter />
+        </div>
         <DegreeFilter degreeList={degreeList} />
         <StreamFilter streamList={streamList} />
-        <PercentageFilter />
+        {isPercentageFilterVisible && <PercentageFilter />}
       </>
-      {/* )} */}
     </aside>
   );
 };

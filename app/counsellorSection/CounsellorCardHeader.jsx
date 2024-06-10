@@ -56,7 +56,7 @@ const CounsellorCardHeader = () => {
       setLessCheckedIcon(false);
       setThroughCheckedIcon(false);
     }
-    setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content || []);
+    // setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content || []);
     // if (counsellorFilterResponse) {
     //   setAccumulatedData((prevData) => [
     //     ...prevData,
@@ -65,30 +65,30 @@ const CounsellorCardHeader = () => {
     // }
   }, [filteringData, page, size, filterParameter]);
 
-  // useEffect(() => {
-  //   if (counsellorFilterResponse) {
-  //     if (page > 0) {
-  //       setAccumulatedData((prevData) => [
-  //         ...prevData,
-  //         ...counsellorFilterResponse?.response?.content,
-  //       ]);
-  //     } else {
-  //       setAccumulatedData(counsellorFilterResponse?.response?.content || []);
-  //     }
-  //   }
-  // }, [counsellorFilterResponse]);
-
-
   useEffect(() => {
-    if (counsellorFilterResponse && page > 0) {
-      setAccumulatedData((prevData) => [
-        ...(prevData || []),
-        ...counsellorFilterResponse?.response?.candidates?.content,
-      ]);
-    } else {
-      setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content);
+    if (counsellorFilterResponse) {
+      if (page > 0) {
+        setAccumulatedData((prevData) => [
+          ...prevData,
+          ...counsellorFilterResponse?.response?.candidates?.content ,
+        ]);
+      } else {
+        setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content  || []);
+      }
     }
   }, [counsellorFilterResponse]);
+
+
+  // useEffect(() => {
+  //   if (counsellorFilterResponse && page > 0) {
+  //     setAccumulatedData((prevData) => [
+  //       ...(prevData || []),
+  //       ...counsellorFilterResponse?.response?.candidates?.content,
+  //     ]);
+  //   } else {
+  //     setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content);
+  //   }
+  // }, [counsellorFilterResponse]);
 
   const handleParameter = (param) => {
     setFilterParamter(param);
