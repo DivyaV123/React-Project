@@ -3,17 +3,17 @@ import "./PlacementCards.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const DegreeCard = ({allCounts,handleParameter,isEmptyObject}) => {
   const { setThroughCheckedIcon,setLessCheckedIcon ,lesscheckedIcon,setPlacedCheckedIcon,setFilteringData,setPage} = useContext(GlobalContext)
-  const handleClick = () => {
-    // if(!isEmptyObject) return
-    handleParameter("lessthansixty");
-    setPage(0)
-    setFilteringData({})
-    setLessCheckedIcon(true)
-    setPlacedCheckedIcon(false)
-    setThroughCheckedIcon(false)
-  };
+  // const handleClick = () => {
+  //   // if(!isEmptyObject) return
+  //   handleParameter("lessthansixty");
+  //   setPage(0)
+  //   setFilteringData({})
+  //   setLessCheckedIcon(true)
+  //   setPlacedCheckedIcon(false)
+  //   setThroughCheckedIcon(false)
+  // };
   return (
-    <div className="degreeCard cursor-pointer relative" onClick={handleClick} >
+    <div className="degreeCard cursor-pointer relative" >
       {
 lesscheckedIcon &&
       <img src="../../checked.svg" className="absolute -right-[7px] -top-[9px]"/>
@@ -24,7 +24,7 @@ lesscheckedIcon &&
             Less than 60% in <br /> Degree
           </p>
           <p className="font-bold text-[1.875vw] text-[#F28C21] pl-[1.563vw] pb-[2.778vh]">
-            {allCounts?.response?.lessThanSixtyPercent}
+            {allCounts?.response?.filterDataCounts?.lessThanSixty}
           </p>
         </div>
       </div>

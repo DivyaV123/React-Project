@@ -61,8 +61,8 @@ const PlacementSideBar = () => {
 
   useEffect(() => {
     if (counsellorFilterResponse) {
-      setAccumulatedData(prevData => [...prevData, ...counsellorFilterResponse.response.content]);
-    }
+      setAccumulatedData(prevData => [...prevData, ...counsellorFilterResponse?.response?.candidates?.content||[]]);
+    } 
   }, [counsellorFilterResponse]);
   return (
     <section className="flex ml-16 mb-8 h-[58.889vh]">
@@ -103,7 +103,7 @@ const PlacementSideBar = () => {
             handleScroll(event, page, setPage, counsellorFilterResponse)
           }}
           className='ml-6 w-[71.641vw] h-full overflow-y-scroll myscrollbar'>
-          <PlacementContent counsellorFilterResponse={counsellorFilterResponse?.response?.content} />
+          <PlacementContent counsellorFilterResponse={counsellorFilterResponse?.response?.candidates?.content} />
         </section>
       }
 

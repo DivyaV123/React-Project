@@ -84,53 +84,43 @@ const GlobalContextProvider = ({ children }) => {
       selectedFilterData = updatedSelectedItems.map(idx => response[idx]);
     }
   
-    if (key) {
-      setFilteringData(prevFilteringData => {
-        const updatedFilteringData = { ...prevFilteringData };
-        if (selectedFilterData.length === 0) {
-            delete updatedFilteringData[key];
+    setFilteringData(prevFilteringData => {
+      const updatedFilteringData = { ...prevFilteringData };
+      if (selectedFilterData?.length === 0) {
+        delete updatedFilteringData[key];
+      } else {
+        if (key === 'timePeriod') {
+          if (index === -1) {
+            // Calendar selection
+            updatedFilteringData[key] = selectedFilterData;
+          } else {
+            // Checkbox selection, get the largest period
+            const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
+            const largestPeriod = response[sortedPeriods[0]];
+            const today = dayjs().format("YYYY-MM-DD");
+            const timePeriods = {
+              "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),
+              "Last month": dayjs().subtract(1, "month").format("YYYY-MM-DD"),
+              "Last 3 months": dayjs().subtract(3, "month").format("YYYY-MM-DD"),
+              "Last 6 months": dayjs().subtract(6, "month").format("YYYY-MM-DD"),
+            };
+            updatedFilteringData[key] = [timePeriods[largestPeriod], today];
+          }
         } else {
-            if (key === 'timePeriod') {
-                if (index === -1) {
-                    // Calendar selection
-                    updatedFilteringData[key] = selectedFilterData;
-                } else {
-                    // Checkbox selection, get the largest period
-                    const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
-                    const largestPeriod = response[sortedPeriods[0]];
-                    const today = dayjs().format("YYYY-MM-DD");
-                    const timePeriods = {
-                        "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),
-                        "Last month": dayjs().subtract(1, "month").format("YYYY-MM-DD"),
-                        "Last 3 months": dayjs().subtract(3, "month").format("YYYY-MM-DD"),
-                        "Last 6 months": dayjs().subtract(6, "month").format("YYYY-MM-DD"),
-                    };
-                    updatedFilteringData[key] = [timePeriods[largestPeriod], today];
-                }
-            } else {
-                updatedFilteringData[key] = selectedFilterData;
-            }
+          updatedFilteringData[key] = selectedFilterData;
         }
-        return updatedFilteringData;
+      }
+      return updatedFilteringData;
     });
   
-      if (key === "university") {
-        setUniversitySelected(selectedFilterData);
-      } else if (key === "state") {
-        setStateSelected(selectedFilterData);
-      }
-    } else {
-      setFilteringData(prevFilteringData => {
-          const updatedFilteringData = { ...prevFilteringData };
-          if (selectedFilterData.length === 0) {
-              delete updatedFilteringData.parameter;
-          } else {
-              updatedFilteringData.parameter = selectedFilterData;
-          }
-          return updatedFilteringData;
-      });
+    if (key === "university") {
+      setUniversitySelected(selectedFilterData);
+    } else if (key === "state") {
+      setStateSelected(selectedFilterData);
     }
   };
+  
+  
  
   
   return (
