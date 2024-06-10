@@ -1,5 +1,5 @@
 'use client'
-import React, { createContext, useState ,useEffect} from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 
 export const GlobalContext = createContext();
@@ -19,10 +19,11 @@ const GlobalContextProvider = ({ children }) => {
   const [size, setSize] = useState(5)
   const [universitySelected, setUniversitySelected] = useState([])
   const [stateSelected, setStateSelected] = useState([])
-  const [placeCheckedIcon,setPlacedCheckedIcon]=useState(true)
+  const [placeCheckedIcon, setPlacedCheckedIcon] = useState(true)
   const [lesscheckedIcon, setLessCheckedIcon] = useState(false)
   const [throughcheckedIcon, setThroughCheckedIcon] = useState(false)
   const [scrollConst, setScrollConst] = useState()
+
 
   const handleScroll = (event, page, setPage, repData) => {
     const target = event.target;
@@ -58,11 +59,11 @@ const GlobalContextProvider = ({ children }) => {
     }));
   };
 
-  
+
   const handleCommonFilter = (index, items, setItems, response, key) => {
     setPage(0);
     let updatedSelectedItems = [...items];
-  
+
     if (index === -1) {
       // Handle calendar or dropdown selection
       setItems([]);
@@ -76,7 +77,7 @@ const GlobalContextProvider = ({ children }) => {
       }
       setItems(updatedSelectedItems);
     }
-  
+
     let selectedFilterData;
     if (index === -1) {
       selectedFilterData = updatedSelectedItems; // Use the date range directly
@@ -150,7 +151,7 @@ const GlobalContextProvider = ({ children }) => {
       lesscheckedIcon,
       setLessCheckedIcon,
       throughcheckedIcon,
-      setThroughCheckedIcon
+      setThroughCheckedIcon,
     }}>{children}</GlobalContext.Provider>
   );
 };

@@ -1,14 +1,23 @@
-import React from "react";
+'use client'
+import React, { useEffect, useState } from "react";
 import "./SigninLanding.scss";
 import SignInForm from "./SignInForm";
 import Link from "next/link";
-import { HOME_PATH } from "@/lib/RouteConstants";
+import { HOME_PATH, COURSEADDER_HOME } from "@/lib/RouteConstants";
 const SigninLanding = () => {
+  const [token, setToken] = useState(null);
+
+  useEffect(() => {
+    // This will run only on the client side
+    const storedToken = localStorage.getItem('authToken');
+    setToken(storedToken);
+  }, []);
+
   return (
     <section className="initialPage h-[100vh] overflow-hidden">
       <div className="flex h-full w-full relative">
         <div className="theorySection mt-[4.188vh] ml-[9.125rem]">
-          <Link href={HOME_PATH}>
+          <Link href={token === 'COURSEADDER' ? COURSEADDER_HOME : HOME_PATH}>
             <img
               className="w-[7.5vw] h-[8.333vh]"
               src="../../signin_logo.svg"
