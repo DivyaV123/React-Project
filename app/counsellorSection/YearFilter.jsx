@@ -57,6 +57,15 @@ const YearFilter = () => {
       onChange={() => handleCommonFilter(index, selected, setSelected, items, "yop")}
     />
   );
+  const renderBranchCheckbox = (item, index, selected, setSelected, items) => (
+    <Checkbox
+      key={index}
+      id={index}
+      label={item}
+      checked={selected.includes(index)}
+      onChange={() => handleCommonFilter(index, selected, setSelected, items, "branchLocation")}
+    />
+  );
 
   return (
     <div className="px-[1.875vw] pt-[2.778vh] timePeriod pb-[1.111vh]">
@@ -113,7 +122,7 @@ const YearFilter = () => {
       </div>
       <ExpandableList
         items={BranchList}
-        renderItem={(item, index) => renderCheckbox(item, index, selectedBranch, setSelectedBranch, BranchList)}
+        renderItem={(item, index) => renderBranchCheckbox(item, index, selectedBranch, setSelectedBranch, BranchList)}
       />
     </div>
   );
