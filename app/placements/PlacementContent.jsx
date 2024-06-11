@@ -24,7 +24,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
   return (
     <>
       {counsellorFilterResponse?.map((student) => (
-        <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh] h-[32.083vh]">
+        <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh]">
           <AlertDialog popup="imagepopup">
             <div className="w-[15.547vw] ">
               <div className="h-[24.861vh] overflow-hidden w-full">
