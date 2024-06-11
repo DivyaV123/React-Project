@@ -3,8 +3,8 @@ import React, { useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "@/components/commonComponents/button/Button";
-import ReactQuill from "react-quill";
-import "../../node_modules/react-quill/dist/quill.snow.css"
+// import ReactQuill from "react-quill";
+// import "../../node_modules/react-quill/dist/quill.snow.css"
 import Input from "@/components/commonComponents/input/Input";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
 
