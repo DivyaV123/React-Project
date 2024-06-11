@@ -180,7 +180,7 @@ function CourseFormLanding() {
                                     formikDetails.setFieldValue("aboutCourse", value)
                                 }
                             />
-                            {formikDetails.touched.aboutCourse &&
+                             {formikDetails.touched.aboutCourse &&
                                 formikDetails.errors.aboutCourse ? (
                                 <div className="text-red-500">
                                     {formikDetails.errors.aboutCourse}
