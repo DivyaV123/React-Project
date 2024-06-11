@@ -5,6 +5,7 @@ import ImagePopup from "./ImagePopup";
 import VideoPopup from "./VideoPopup";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import Link from "next/link";
+import { branchAbbreviations } from "./Degree_Branch_Passout";
 const PlacementContent = ({ counsellorFilterResponse }) => {
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
@@ -16,41 +17,9 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
     setVideoDialog(true);
     setImageDialog(false);
   };
-  const convertStream = (inputString) => {
-    const mapping = {
-      "INFORMATION TECHNOLOGY": "IT",
-      "CIVIL ENGINEERING": "Civil",
-      "COMPUTER SCIENCE AND ENGINEERING": "CSE",
-      "MICROSYSTEMS ENGINEERING": "MIE",
-      "ARTIFICIAL INTELLIGENCE AND MACHINE LEARNING": "AI&ML",
-      "MECHANICAL ENGINEERING": "MECH",
-      "ELECTRONICS AND COMMUNICATION ENGINEERING": "ECE",
-      "AERONAUTICAL ENGINEERINGNAUTICAL ENGINEERING": "AEE",
-      "BIOMEDICAL ENGINEERING": "BIE",
-      "MINING ENGINEERING": "ME",
-      "AERONAUTICAL ENGINEERING": "AE",
-      "POLITICAL SCIENCE": "PS",
-      "AERONAUTICAL ENGINEERING": "AER",
-      "MECHANICAL ENGINEERING": "ME",
-      "MECHANICAL ENGINEERING TECHNOLOGY": "MEL",
-      "MICROSYSTEMS ENGINEERING": "MicroE",
-      "MINING ENGINEERING": "ME",
-    };
-
-    return mapping[inputString.toUpperCase()] || inputString;
-  };
 
   function extractText(data) {
-    const match = data.match(/\(([^)]+)\)/);
-    if (match) {
-      return match[1];
-    }
-
-    if ((data = "Information Technology")) {
-      data = "IT";
-    }
-
-    return data;
+   return branchAbbreviations[data] || data
   }
   return (
     <>
@@ -58,12 +27,14 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
         <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh] h-[32.083vh]">
           <AlertDialog popup="imagepopup">
             <div className="w-[15.547vw] ">
-              <img
+              <div className="h-[24.861vh] overflow-hidden w-full">
+               <img
                 src={student?.photoLink}
-                className="w-full h-[24.861vh] object-cover"
-              />
+                className="w-full"
+               />
+              </div>             
               <div className="imageCard">
-                <header className="studentName font-semibold py-[1.111vh]">
+                <header className="studentName font-semibold py-[1.111vh] text-center">
                   {student?.name}
                 </header>
                 <div className="flex gap-1 studentDetails">

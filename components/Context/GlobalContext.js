@@ -78,38 +78,38 @@ const GlobalContextProvider = ({ children }) => {
 
 
 
-  const handleCommonFilter = (index, items, setItems, response, key) => {
+  const handleCommonFilter = (value, items, setItems, response, key) => {
     setPage(0);
     let updatedSelectedItems = [...items];
-
-    if (index === -1) {
+  
+    if (value === -1) {
       // Handle calendar or dropdown selection
       setItems([]);
       updatedSelectedItems = response; // response contains the date range for calendar or dropdown selection
     } else {
       // Handle checkbox selection
-      if (updatedSelectedItems.includes(index)) {
-        updatedSelectedItems.splice(updatedSelectedItems.indexOf(index), 1);
+      if (updatedSelectedItems.includes(value)) {
+        updatedSelectedItems = updatedSelectedItems.filter(item => item !== value);
       } else {
-        updatedSelectedItems.push(index);
+        updatedSelectedItems.push(value);
       }
       setItems(updatedSelectedItems);
     }
-
+  
     let selectedFilterData;
-    if (index === -1) {
+    if (value === -1) {
       selectedFilterData = updatedSelectedItems; // Use the date range directly
     } else {
-      selectedFilterData = updatedSelectedItems.map(idx => response[idx]);
+      selectedFilterData = updatedSelectedItems;
     }
-
+  
     setFilteringData(prevFilteringData => {
       const updatedFilteringData = { ...prevFilteringData };
-      if (selectedFilterData?.length === 0) {
+      if (selectedFilterData.length === 0) {
         delete updatedFilteringData[key];
       } else {
         if (key === 'timePeriod') {
-          if (index === -1) {
+          if (value === -1) {
             // Calendar selection
             updatedFilteringData[key] = selectedFilterData;
           } else {
@@ -131,13 +131,14 @@ const GlobalContextProvider = ({ children }) => {
       }
       return updatedFilteringData;
     });
-
+  
     if (key === "university") {
       setUniversitySelected(selectedFilterData);
     } else if (key === "state") {
       setStateSelected(selectedFilterData);
     }
   };
+  
 
 
 

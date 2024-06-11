@@ -120,6 +120,7 @@ const CounsellorCardHeader = () => {
     }
     return searchParams;
   };
+
   return (
     <>
       <section className="px-[6.641vw] flex gap-6 pb-[3.333vh] items-center">

@@ -52,24 +52,24 @@ const YearFilter = () => {
 
   const renderCheckbox = (item, index, selected, setSelected, items) => (
     <Checkbox
-      key={index}
-      id={index}
+      key={item}
+      id={item}
       label={item}
-      checked={selected?.includes(index)}
+      checked={selected?.includes(item)}
       onChange={() => {
         clearYearRange();
-        handleCommonFilter(index, selected, setSelected, items, "yop");
+        handleCommonFilter(item, selected, setSelected, items, "yop");
       }}
     />
   );
 
   const renderBranchCheckbox = (item, index, selected, setSelected, items) => (
     <Checkbox
-      key={index}
-      id={index}
+      key={item}
+      id={item}
       label={item}
-      checked={selected?.includes(index)}
-      onChange={() => handleCommonFilter(index, selected, setSelected, items, "branchLocation")}
+      checked={selected?.includes(item)}
+      onChange={() => handleCommonFilter(item, selected, setSelected, items, "branchLocation")}
     />
   );
 

@@ -1,10 +1,30 @@
-import React, { useState,useContext } from "react";
+import React, { useState, useContext } from "react";
 import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+
 const BranchTypeFilter = () => {
-  const {handleCommonFilter ,selectedBranchType,setSelectedBranchType} =
+  const { handleCommonFilter, selectedBranchType, setSelectedBranchType } =
     useContext(GlobalContext);
-  const branchType = ["Jspiders", "Qspiders","Pyspiders","Prospiders"];
+  const branchType = ["Jspiders", "Qspiders", "Pyspiders", "Prospiders"];
+
+  const renderCheckbox = (item) => (
+    <Checkbox
+      key={item}
+      id={item}  // Use branch type value as the id
+      label={item}
+      checked={selectedBranchType.includes(item)}
+      onChange={() =>
+        handleCommonFilter(
+          item,  // Pass the branch type value instead of index
+          selectedBranchType,
+          setSelectedBranchType,
+          branchType,  // Use the full branchType array for response
+          "branchType"
+        )
+      }
+    />
+  );
+
   return (
     <>  
       <div className="flex justify-between pb-[1.111vh] mt-[1.111vh]">
@@ -14,23 +34,7 @@ const BranchTypeFilter = () => {
         <img src="../../down.svg" />
       </div>
       <>
-        {branchType?.map((item, index) => (
-          <Checkbox
-            key={index}
-            id={index}
-            label={item}
-            checked={selectedBranchType.includes(index)}
-            onChange={() =>
-              handleCommonFilter(
-                index,
-                selectedBranchType,
-                setSelectedBranchType,
-                branchType,
-                "branchType"
-              )
-            }
-          />
-        ))}
+        {branchType?.map((item) => renderCheckbox(item))}
       </>
     </>
   );
