@@ -21,7 +21,7 @@ throughcheckedIcon &&
       <div className="flex h-full">
         <div className="flex flex-col justify-between ">
           <p className="font-medium pl-[1.563vw] pt-[2.778vh] text-[1.094vw]">
-            Throughout 60% in degree
+            Throughout 60% in Degree
           </p>
           <p className="font-bold text-[1.875vw] text-[#002248] pl-[1.563vw] pb-[2.778vh]">
             {allCounts?.response?.filterDataCounts?.throughOutSixty}

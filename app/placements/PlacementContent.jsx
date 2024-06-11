@@ -113,15 +113,27 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                 </div>
                 <div className="iconContainer">
                   <Link
-                    href={student?.testimonial?.googleReview}
+                    href={student?.testimonial?.googleReview || "#"}
                     target="_blank"
                   >
-                    <img src="../google 1.svg" />
+                    <img src="../google 1.svg" 
+                    alt="Google review"
+                    onClick={(e) => {
+                      if (!student?.testimonial?.googleReview) {
+                        e.preventDefault();
+                      }
+                    }} />
                   </Link>
                 </div>
                 <div className="iconContainer">
-                  <Link href={student?.testimonial?.fbReview} target="_blank">
-                    <img src="../facebook 1.svg" />
+                  <Link href={student?.testimonial?.fbReview || "#"} target="_blank">
+                    <img src="../facebook 1.svg"
+                    alt="Facebook Review"
+                    onClick={(e) => {
+                      if (!student?.testimonial?.fbReview) {
+                        e.preventDefault();
+                      }
+                    }} />
                   </Link>
                 </div>
                 <div className="iconContainer">
