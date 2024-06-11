@@ -4,10 +4,13 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "@/components/commonComponents/button/Button";
 import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
+import "../../node_modules/react-quill/dist/quill.snow.css"
 import Input from "@/components/commonComponents/input/Input";
+import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
 
 function CourseFormLanding() {
+    const { data: courseList, error, isLoading } = useGetAllCategoriesInCourseQuery()
+    // console.log(courseList,"courseListcourseListF")
     const [faqs, setFaqs] = useState([]);
     const [editIndex, setEditIndex] = useState(null);
 
@@ -64,8 +67,8 @@ function CourseFormLanding() {
                             <Input
                                 error={formikDetails.errors.name && formikDetails.touched.name}
                                 className={`${formikDetails.touched.course && formikDetails.errors.course
-                                        ? "border-red-500"
-                                        : " border-gray-400"
+                                    ? "border-red-500"
+                                    : " border-gray-400"
                                     }`}
                                 name="course"
                                 value={formikDetails.values.course}
@@ -86,8 +89,8 @@ function CourseFormLanding() {
                                     formikDetails.touched.subCourse
                                 }
                                 className={`${formikDetails.touched.course && formikDetails.errors.course
-                                        ? "border-red-500"
-                                        : " border-gray-400"
+                                    ? "border-red-500"
+                                    : " border-gray-400"
                                     }`}
                                 name="subCourse"
                                 value={formikDetails.values.subCourse}
@@ -110,8 +113,8 @@ function CourseFormLanding() {
                             onChange={formikDetails.handleChange}
                             onBlur={formikDetails.handleBlur}
                             className={`${formikDetails.touched.course && formikDetails.errors.course
-                                    ? "border-red-500"
-                                    : " border-gray-400"
+                                ? "border-red-500"
+                                : " border-gray-400"
                                 }`}
                         />
                         {formikDetails.touched.courseName &&
@@ -130,8 +133,8 @@ function CourseFormLanding() {
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
                                 className={`${formikDetails.touched.course && formikDetails.errors.course
-                                        ? "border-red-500"
-                                        : " border-gray-400"
+                                    ? "border-red-500"
+                                    : " border-gray-400"
                                     }`}
                             />
 
@@ -150,8 +153,8 @@ function CourseFormLanding() {
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
                                 className={`${formikDetails.touched.course && formikDetails.errors.course
-                                        ? "border-red-500"
-                                        : " border-gray-400"
+                                    ? "border-red-500"
+                                    : " border-gray-400"
                                     }`}
                             />
                             {formikDetails.touched.courseSummary &&
@@ -216,9 +219,9 @@ function CourseFormLanding() {
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
                                 className={`${formikDetails.touched.question &&
-                                        formikDetails.errors.question
-                                        ? "border-red-500"
-                                        : " border-gray-400"
+                                    formikDetails.errors.question
+                                    ? "border-red-500"
+                                    : " border-gray-400"
                                     }`}
                             />
                         </div>
@@ -232,8 +235,8 @@ function CourseFormLanding() {
                                 }}
                                 onBlur={formikDetails.handleBlur}
                                 className={`${formikDetails.touched.answer && formikDetails.errors.answer
-                                        ? "border-red-500"
-                                        : " border-gray-400"
+                                    ? "border-red-500"
+                                    : " border-gray-400"
                                     }`}
                             />
                         </div>
