@@ -8,9 +8,8 @@ import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllCitiesQuery } from '@/redux/queries/getAllCities';
 const StateFilter = () => {
-  const { filteringData, setFilteringData, handleCommonFilter } = useContext(GlobalContext);
+  const { filteringData, setFilteringData, handleCommonFilter,stateItems,setStateItems } = useContext(GlobalContext);
   const { data: statesData, error, isLoading } = useGetAllStatesQuery();
-  const [stateItems, setStateItems] = useState([])
   const [searchQuery, setSearchQuery] = useState("");
   const statesList = statesData?.response.filter((state) => state !== "")
   .filter((states) =>
@@ -39,7 +38,7 @@ const StateFilter = () => {
         <div className="search-container pb-[1.111vh]">
         <input
           type="text"
-          placeholder="search..."
+          placeholder="Search..."
           className="text-[0.781vw]"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

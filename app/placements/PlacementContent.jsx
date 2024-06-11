@@ -30,11 +30,11 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
       "MINING ENGINEERING": "ME",
       "AERONAUTICAL ENGINEERING": "AE",
       "POLITICAL SCIENCE": "PS",
-      "AERONAUTICAL ENGINEERING": 'AER',
+      "AERONAUTICAL ENGINEERING": "AER",
       "MECHANICAL ENGINEERING": "ME",
-      "MECHANICAL ENGINEERING TECHNOLOGY": 'MEL',
+      "MECHANICAL ENGINEERING TECHNOLOGY": "MEL",
       "MICROSYSTEMS ENGINEERING": "MicroE",
-      'MINING ENGINEERING': "ME",
+      "MINING ENGINEERING": "ME",
     };
 
     return mapping[inputString.toUpperCase()] || inputString;
@@ -46,12 +46,11 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
       return match[1];
     }
 
-    if (data = "Information Technology") {
-      data = 'IT'
+    if ((data = "Information Technology")) {
+      data = "IT";
     }
-   
-    return data;
 
+    return data;
   }
   return (
     <>
@@ -95,7 +94,9 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   <div>|</div>
                   <div>
                     <div className="studentDetails flex justify-center">
-                    {student?.mastersDegree?.mastersDegreeYop ? student?.mastersDegree?.mastersDegreeYop : student?.degree?.degreeYop}
+                      {student?.mastersDegree?.mastersDegreeYop
+                        ? student?.mastersDegree?.mastersDegreeYop
+                        : student?.degree?.degreeYop}
                     </div>
                     <div className="educationDetails">YOP</div>
                   </div>
@@ -111,7 +112,10 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   Reviews :
                 </div>
                 <div className="iconContainer">
-                  <Link href={student?.testimonial?.googleReview} target="_blank">
+                  <Link
+                    href={student?.testimonial?.googleReview}
+                    target="_blank"
+                  >
                     <img src="../google 1.svg" />
                   </Link>
                 </div>
@@ -121,8 +125,19 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   </Link>
                 </div>
                 <div className="iconContainer">
-                  <Link href={student?.testimonial?.youtubeReview} target="_blank">
-                    <img src="../youtube 1.svg" />
+                  <Link
+                    href={student?.testimonial?.youtubeReview || "#"}
+                    target="_blank"
+                  >
+                    <img
+                      src="../youtube 1.svg"
+                      alt="YouTube Review"
+                      onClick={(e) => {
+                        if (!student?.testimonial?.youtubeReview) {
+                          e.preventDefault();
+                        }
+                      }}
+                    />
                   </Link>
                 </div>
                 <div className="iconContainer">
