@@ -12,7 +12,6 @@ const OverviewCard = ({allCounts,handleParameter}) => {
   //   setPlacedCheckedIcon(false)
   //   setLessCheckedIcon(false)
   // };
-  console.log(allCounts?.response?.filterDataCounts?.throughOutSixty,"allcounts")
   return (
     <div className="overviewCard relative cursor-pointer" >
         {
