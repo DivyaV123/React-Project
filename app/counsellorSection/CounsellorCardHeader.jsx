@@ -12,6 +12,7 @@ import CardSkeleton from "@/components/skeletons/CardSkeleton";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import { COUNSELLOR_SECTION } from "@/lib/RouteConstants";
 import { useRouter } from "next/navigation";
+import BlinkingDots from "@/components/skeletons/BlinkingDots";
 const CounsellorCardHeader = () => {
   const router = useRouter()
   const [accumulatedData, setAccumulatedData] = useState([]);
@@ -33,7 +34,6 @@ const CounsellorCardHeader = () => {
 
   const {
     data: allCounts,
-    isLoading,
     isError,
     refetch: countrefresh,
   } = useGetAllPlacementCountQuery();
@@ -42,6 +42,8 @@ const CounsellorCardHeader = () => {
     data: counsellorFilterResponse,
     error,
     refetch,
+    isLoading,
+    isFetching,
   } = useFetchCounsellorsQuery({
     pageNumber: page,
     pageSize: size,
@@ -164,6 +166,10 @@ const CounsellorCardHeader = () => {
         ) : (
           <PlacementContent counsellorFilterResponse={accumulatedData} />
         )}
+        {
+          isFetching &&
+          <BlinkingDots/>
+        }
       </div>
     </>
   );

@@ -63,6 +63,7 @@ const PercentageFilter = () => {
       percentage: [selectedValue]
     }));
   };
+  const isApplyDisabled = fromPercentage && toPercentage;
 
   return (
     <div className="px-[1.875vw] py-[2.778vh] timePeriod">
@@ -90,7 +91,7 @@ const PercentageFilter = () => {
           onChange={handleToChange}
           onBlur={() => setErrorMessage(validateTo(toPercentage))}
         />
-        <img src="../../checked.svg" onClick={handleApplyFilter} className="applyFilterButton cursor-pointer w-[1.875vw] h-[3.333vh]"/>
+        <img src="../../checked.svg" onClick={isApplyDisabled ? handleApplyFilter : null} className={`applyFilterButton cursor-pointer w-[1.875vw] h-[3.333vh] ${!isApplyDisabled ? 'disabled' : ''}`}/>
       </div>
       {errorMessage && (
         <div className="pb-[3.111vh]">
