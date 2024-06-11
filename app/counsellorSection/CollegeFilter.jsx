@@ -7,9 +7,9 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllCollegesQuery } from "@/redux/queries/getAllColleges";
 
 const CollegeFilter = () => {
-  const { handleCommonFilter, universitySelected } = useContext(GlobalContext);
+  const { handleCommonFilter, universitySelected,selectedCollege, setSelectedCollege } = useContext(GlobalContext);
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedCity, setSelectedCity] = useState([]);
+
   const { data: collegeData, refetch } =
     useGetAllCollegesQuery(universitySelected);
   const collegeList = collegeData?.response
@@ -26,12 +26,12 @@ const CollegeFilter = () => {
       key={index}
       id={index}
       label={item}
-      checked={selectedCity.includes(index)}
+      checked={selectedCollege.includes(index)}
       onChange={() =>
         handleCommonFilter(
           index,
-          selectedCity,
-          setSelectedCity,
+          selectedCollege,
+          setSelectedCollege,
           collegeList,
           "college"
         )
@@ -48,7 +48,7 @@ const CollegeFilter = () => {
       <div className="search-container pb-[1.111vh]">
         <input
           type="text"
-          placeholder="search..."
+          placeholder="Search..."
           className="text-[0.781vw]"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

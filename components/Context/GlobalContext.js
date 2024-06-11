@@ -24,6 +24,44 @@ const GlobalContextProvider = ({ children }) => {
   const [throughcheckedIcon, setThroughCheckedIcon] = useState(false)
   const [scrollConst, setScrollConst] = useState()
 
+  //daterange
+  const [fromValue, setFromValue] = useState('');
+  const [toValue, setToValue] = useState('');
+  const [selectedDate, setSelectedDate] = useState([]);
+
+  //yearRange
+  const [fromYear, setFromYear] = useState("");
+  const [toYear, setToYear] = useState("");
+  const [selectedYop, setSelectedYop] = useState([]);
+
+  //branch
+  const [selectedBranchFilter, setSelectedBranchFilter] = useState([]);
+
+  //branchType
+  const [selectedBranchType, setSelectedBranchType] = useState([]);
+
+  //stateType
+  const [stateItems, setStateItems] = useState([])
+
+  //cityType
+  const [selectedCity, setSelectedCity] = useState([]);
+
+  //universityType
+  const [selectedUniversity, setSelectedUniversity] = useState([]);
+
+  //collegeType
+  const [selectedCollege, setSelectedCollege] = useState([]);
+
+  //degreeType
+  const [selectedDegrees, setSelectedDegrees] = useState([]);
+
+  //streamType
+  const [selectedStream, setSelectedStream] = useState([]);
+
+  //percentage
+  const [fromPercentage, setFromPercentage] = useState("");
+  const [toPercentage, setToPercentage] = useState("");
+  const [selectedPercentage, setSelectedPercentage] = useState(null);
 
   const handleScroll = (event, page, setPage, repData) => {
     const target = event.target;
@@ -38,26 +76,6 @@ const GlobalContextProvider = ({ children }) => {
     };
   }
 
-  const handleFilter = (index, items, setItems, field) => {
-    const newItems = items.map((item, idx) => {
-      if (idx === index) {
-        return {
-          ...item,
-          checked: !item.checked,
-        };
-      } else {
-        return item;
-      }
-    });
-    setItems(newItems);
-    const selectedValues = newItems
-      .filter(item => item.checked)
-      .map(item => item.label);
-    setFilteringData(prevFilteringData => ({
-      ...prevFilteringData,
-      [field]: selectedValues,
-    }));
-  };
 
 
   const handleCommonFilter = (index, items, setItems, response, key) => {
@@ -84,7 +102,7 @@ const GlobalContextProvider = ({ children }) => {
     } else {
       selectedFilterData = updatedSelectedItems.map(idx => response[idx]);
     }
-  
+
     setFilteringData(prevFilteringData => {
       const updatedFilteringData = { ...prevFilteringData };
       if (selectedFilterData?.length === 0) {
@@ -113,17 +131,17 @@ const GlobalContextProvider = ({ children }) => {
       }
       return updatedFilteringData;
     });
-  
+
     if (key === "university") {
       setUniversitySelected(selectedFilterData);
     } else if (key === "state") {
       setStateSelected(selectedFilterData);
     }
   };
-  
-  
- 
-  
+
+
+
+
   return (
     <GlobalContext.Provider value={{
       selectedBranch,
@@ -136,7 +154,6 @@ const GlobalContextProvider = ({ children }) => {
       setSelectedClassMode,
       filteringData,
       setFilteringData,
-      handleFilter,
       page,
       setPage,
       universitySelected,
@@ -152,6 +169,17 @@ const GlobalContextProvider = ({ children }) => {
       setLessCheckedIcon,
       throughcheckedIcon,
       setThroughCheckedIcon,
+       fromValue, setFromValue, toValue, setToValue, selectedDate, setSelectedDate,
+       fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,
+       selectedBranchFilter,setSelectedBranchFilter,
+       selectedBranchType,setSelectedBranchType,
+       stateItems,setStateItems,
+       selectedCity,setSelectedCity,
+       selectedUniversity, setSelectedUniversity,
+       selectedCollege, setSelectedCollege,
+       selectedDegrees, setSelectedDegrees,
+       selectedStream, setSelectedStream,
+       fromPercentage, setFromPercentage,toPercentage, setToPercentage,selectedPercentage, setSelectedPercentage
     }}>{children}</GlobalContext.Provider>
   );
 };

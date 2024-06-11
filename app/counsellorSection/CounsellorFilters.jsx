@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState ,useContext} from "react";
 import "./CounserllorFilters.scss";
 import StateFilter from "./StateFilter";
 import YearFilter from "./YearFilter";
@@ -11,8 +11,12 @@ import StreamFilter from "./StreamFilter";
 import PercentageFilter from "./PercentageFilter";
 import FilterSkeleton from "@/components/skeletons/FilterSkeleton";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
-
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const CounsellorFilters = () => {
+
+  const {setFromValue,setToValue,setSelectedDate,setFilteringData,setFromYear,setToYear,setSelectedYop,setSelectedBranchFilter,
+    setSelectedBranchType,setStateItems,setSelectedCity,setSelectedUniversity,setSelectedCollege,
+    setSelectedDegrees,setSelectedStream,setSelectedPercentage,setToPercentage,setFromPercentage}=useContext(GlobalContext)
   const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
   const degreeList = degreeAndStreamdata?.response.degreeList.filter(degree => degree !== "");
   const streamList = degreeAndStreamdata?.response.streamList.filter(stream => stream !== "");
@@ -43,6 +47,27 @@ const CounsellorFilters = () => {
     };
   }, []);
 
+  const clearFilters = () => {
+    setFilteringData({})
+    setFromValue('')
+    setToValue('')
+    setSelectedDate([])
+    setFromYear('')
+    setToYear('')
+    setSelectedYop([])
+    setSelectedBranchFilter([])
+    setSelectedBranchType([])
+    setStateItems([])
+    setSelectedCity([])
+    setSelectedUniversity([])
+    setSelectedCollege([])
+    setSelectedDegrees([])
+    setSelectedStream([])
+    setFromPercentage('')
+    setToPercentage('')
+    setSelectedPercentage(null)
+  };
+
   return (
     <aside className="filterSidebar myscrollbar">
       <div className="flex pb-[2.222vh] px-[1.875vw] pt-[3.333vh] justify-between filterHeader">
@@ -50,7 +75,7 @@ const CounsellorFilters = () => {
           <button className={filterClass}>Filter</button>
           <img src="../../filter.svg" alt="Filter Icon" />
         </div>
-        <button className={filterClass}>Clear</button>
+        <button onClick={clearFilters} className={filterClass}>Clear</button>
       </div>
       <TimeFilter isLoading={isLoading} />
       <>
