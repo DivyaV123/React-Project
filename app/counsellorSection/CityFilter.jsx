@@ -22,15 +22,15 @@ const CityFilter = ({ selectedState }) => {
   const renderCheckbox = (item, index) => (
     <Checkbox
       key={index}
-      id={index}
+      id={item}
       label={item}
-      checked={selectedCity.includes(index)}
+      checked={selectedCity.includes(item)}
       onChange={() =>
         handleCommonFilter(
-          index,
+          item,
           selectedCity,
           setSelectedCity,
-          cityList,
+          cityData,
           "city"
         )
       }

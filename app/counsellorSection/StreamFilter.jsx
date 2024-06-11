@@ -14,10 +14,10 @@ const searchStreamList=streamList?.filter((degree) =>
     const renderCheckbox = (item, index) => (
         <Checkbox
             key={index}
-            id={index}
+            id={item}
             label={item}
-            checked={selectedStream.includes(index)}
-            onChange={() => handleCommonFilter(index, selectedStream, setSelectedStream, searchStreamList, 'stream')}
+            checked={selectedStream.includes(item)}
+            onChange={() => handleCommonFilter(item, selectedStream, setSelectedStream, streamList, 'stream')}
         />
     );
 

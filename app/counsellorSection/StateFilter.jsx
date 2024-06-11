@@ -6,7 +6,6 @@ import ExpandableList from '../../components/commonComponents/ExpandableList/Exp
 import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import { useGetAllCitiesQuery } from '@/redux/queries/getAllCities';
 const StateFilter = () => {
   const { filteringData, setFilteringData, handleCommonFilter,stateItems,setStateItems } = useContext(GlobalContext);
   const { data: statesData, error, isLoading } = useGetAllStatesQuery();
@@ -18,11 +17,11 @@ const StateFilter = () => {
   const renderCheckbox = (item, index) => (
     <Checkbox
       key={index}
-      id={index}
+      id={item}
       label={item}
-      checked={stateItems.includes(index)}
+      checked={stateItems.includes(item)}
       onChange={() =>
-        handleCommonFilter(index, stateItems, setStateItems, statesList, 'state')
+        handleCommonFilter(item, stateItems, setStateItems, statesData, 'state')
       }
     />
   );
