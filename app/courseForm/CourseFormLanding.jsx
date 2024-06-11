@@ -5,8 +5,6 @@ import * as Yup from "yup";
 import Button from "@/components/commonComponents/button/Button";
 import Input from "@/components/commonComponents/input/Input";
 import TextArea from "@/components/commonComponents/textArea/TextArea";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 
 function CourseFormLanding() {
   const [faqs, setFaqs] = useState([]);
