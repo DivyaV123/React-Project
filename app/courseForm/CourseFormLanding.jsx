@@ -165,49 +165,9 @@ function CourseFormLanding() {
                             ) : null}
                         </div>
                     </div>
-                    <div className="flex justify-between mb-[4.444vh]">
-                        <div className="w-[33vw]">
-                            <p className={commonLabelStyles}>About the Course</p>
-                            {/* <textarea
-                                name="aboutCourse"
-                                value={formikDetails.values.aboutCourse}
-                                onChange={formikDetails.handleChange}
-                                onBlur={formikDetails.handleBlur}
-                            ></textarea> */}
-                            <ReactQuill
-                                value={formikDetails.values.aboutCourse}
-                                onChange={(value) =>
-                                    formikDetails.setFieldValue("aboutCourse", value)
-                                }
-                            />
-                             {formikDetails.touched.aboutCourse &&
-                                formikDetails.errors.aboutCourse ? (
-                                <div className="text-red-500">
-                                    {formikDetails.errors.aboutCourse}
-                                </div>
-                            ) : null}
-                        </div>
-                        <div className="w-[33vw]">
-                            <p className={commonLabelStyles}>Course Highlights</p>
-                            {/* <textarea
-                                name="courseHighlights"
-                                value={formikDetails.values.courseHighlights}
-                                onChange={formikDetails.handleChange}
-                                onBlur={formikDetails.handleBlur}
-                            ></textarea> */}
-                            <ReactQuill
-                                value={formikDetails.values.courseHighlights}
-                                onChange={(value) =>
-                                    formikDetails.setFieldValue("courseHighlights", value)
-                                }
-                            />
-                            {formikDetails.touched.courseHighlights &&
-                                formikDetails.errors.courseHighlights ? (
-                                <div className="text-red-500">
-                                    {formikDetails.errors.courseHighlights}
-                                </div>
-                            ) : null}
-                        </div>
+                    <div className='w-[33vw] ' >
+                        <p className={`${commonLabelStyles}`}>Sub Course</p>
+                        <Input />
                     </div>
                     <p className={commonLabelStyles}>FAQ</p>
                     <div className="mb-[4.444vh] border border-2 rounded-md p-[4.444vh] flex flex-col justify-center">
@@ -240,64 +200,16 @@ function CourseFormLanding() {
                                     }`}
                             />
                         </div>
-                        <div className="flex justify-end gap-2  px-[1.5vw] pt-[1.5vw] ">
-                            <div>
-                                <Button
-                                    title="Add"
-                                    className="py-[0.5vw] px-[1vw] bg-gradient rounded-md text-white"
-                                />
-                            </div>
-                            <div>
-                                <Button
-                                    title="Edit"
-                                    className="py-[0.5vw] px-[1vw] bg-slate-500 rounded-md text-white"
-                                />
-                            </div>
-                        </div>
-                        <div></div>
-                        {formikDetails.touched.faqs && formikDetails.errors.faqs ? (
-                            <div className="text-red-500">{formikDetails.errors.faqs}</div>
-                        ) : null}
-                    </div>
-
-                    <div className="px-[1.5vw] pt-[1.5vw]">
-                        <p>Organisation</p>
-                    </div>
-                    <div className="flex flex-col">
-                        {["Jspiders", "Qspiders", "PySpiders"].map((org) => (
-                            <label key={org}>
-                                <input
-                                    type="checkbox"
-                                    name="organisation"
-                                    value={org}
-                                    onChange={(e) => {
-                                        formikDetails.handleChange(e);
-                                    }}
-                                    checked={formikDetails.values.organisation.includes(org)}
-                                />
-                                {org}
-                            </label>
-                        ))}
-                        {formikDetails.touched.organisation &&
-                            formikDetails.errors.organisation ? (
-                            <div className="text-red-500">
-                                {formikDetails.errors.organisation}
-                            </div>
-                        ) : null}
-                    </div>
-                    <div className="flex justify-center mt-8">
-                        <button
-                            type="submit"
-                            onClick={formikDetails.handleSubmit}
-                            className="py-2 px-4 bg-blue-500 text-white rounded-md"
-                        >
-                            Submit
-                        </button>
                     </div>
                 </form>
+                <div>
+                    <div className='px-[1.5vw] pt-[1.5vw] '>
+                        <p>Organisation</p>
+                    </div>
+                </div>
             </article>
         </section>
-    );
+    )
 }
 
-export default CourseFormLanding;
+export default CourseFormLanding
