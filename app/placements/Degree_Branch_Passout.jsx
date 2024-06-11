@@ -5,7 +5,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 
-const branchAbbreviations = {
+export const branchAbbreviations = {
   "Aero Space Engineering": "Aero",
   "Aeronautical Engineering(AE)": "AE",
   "Architecture": "Arch",
