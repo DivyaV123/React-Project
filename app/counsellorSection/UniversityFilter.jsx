@@ -5,6 +5,7 @@ import ExpandableList from "../../components/commonComponents/ExpandableList/Exp
 import "./CounserllorFilters.scss";
 import { useGetAllUniversitiesQuery } from "@/redux/queries/getAllUniversities";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { Item } from "@radix-ui/react-accordion";
 
 const UniversityFilter = () => {
   const [searchQuery, setSearchQuery] = useState("");
@@ -15,11 +16,11 @@ const UniversityFilter = () => {
   const renderCheckbox = (item, index) => (
     <Checkbox
       key={index}
-      id={index}
+      id={item}
       label={item}
-      checked={selectedUniversity.includes(index)}
+      checked={selectedUniversity.includes(item)}
       onChange={() =>
-        handleCommonFilter(index, selectedUniversity, setSelectedUniversity, universityList, "university")
+        handleCommonFilter(item, selectedUniversity, setSelectedUniversity, universityData, "university")
       }
     />
   );

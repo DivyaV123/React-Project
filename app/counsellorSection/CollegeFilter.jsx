@@ -24,15 +24,15 @@ const CollegeFilter = () => {
   const renderCheckbox = (item, index) => (
     <Checkbox
       key={index}
-      id={index}
+      id={item}
       label={item}
-      checked={selectedCollege.includes(index)}
+      checked={selectedCollege.includes(item)}
       onChange={() =>
         handleCommonFilter(
-          index,
+          item,
           selectedCollege,
           setSelectedCollege,
-          collegeList,
+          collegeData,
           "college"
         )
       }

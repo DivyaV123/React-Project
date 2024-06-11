@@ -153,7 +153,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   </Link>
                 </div>
                 <div className="iconContainer">
-                  <img src="../share 1.svg" />
+                  <img src="../share 1.svg" className="cursor-pointer"/>
                 </div>
               </div>
             </div>
