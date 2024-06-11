@@ -6,8 +6,7 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const StreamFilter = ({ streamList }) => {
-    const { handleCommonFilter } = useContext(GlobalContext);
-    const [selectedStream, setSelectedStream] = useState([]);
+    const { handleCommonFilter,selectedStream, setSelectedStream } = useContext(GlobalContext);
     const [searchQuery, setSearchQuery] = useState("");
 const searchStreamList=streamList?.filter((degree) =>
     degree.toLowerCase().includes(searchQuery.toLowerCase())
@@ -31,7 +30,7 @@ const searchStreamList=streamList?.filter((degree) =>
             <div className="search-container pb-[1.111vh]">
             <input
           type="text"
-          placeholder="search..."
+          placeholder="Search..."
           className="text-[0.781vw]"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

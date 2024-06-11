@@ -7,9 +7,8 @@ import { useGetAllUniversitiesQuery } from "@/redux/queries/getAllUniversities";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const UniversityFilter = () => {
-  const [selectedUniversity, setSelectedUniversity] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
-  const { handleCommonFilter } = useContext(GlobalContext);
+  const { handleCommonFilter,selectedUniversity, setSelectedUniversity } = useContext(GlobalContext);
   const { data: universityData } = useGetAllUniversitiesQuery();
   const universityList = universityData?.response.filter(university => university !== "").filter(university => university.toLowerCase().includes(searchQuery.toLowerCase()));
 
@@ -34,7 +33,7 @@ const UniversityFilter = () => {
       <div className="search-container pb-[1.111vh]">
         <input 
           type="text" 
-          placeholder="search..." 
+          placeholder="Search..." 
           className="text-[0.781vw]" 
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}

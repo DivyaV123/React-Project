@@ -2,9 +2,8 @@ import React, { useState,useContext } from "react";
 import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const BranchTypeFilter = () => {
-  const {handleCommonFilter } =
+  const {handleCommonFilter ,selectedBranchType,setSelectedBranchType} =
     useContext(GlobalContext);
-  const [selectedType, setSelectedType] = useState([]);
   const branchType = ["Jspiders", "Qspiders","Pyspiders","Prospiders"];
   return (
     <>  
@@ -20,12 +19,12 @@ const BranchTypeFilter = () => {
             key={index}
             id={index}
             label={item}
-            checked={selectedType.includes(index)}
+            checked={selectedBranchType.includes(index)}
             onChange={() =>
               handleCommonFilter(
                 index,
-                selectedType,
-                setSelectedType,
+                selectedBranchType,
+                setSelectedBranchType,
                 branchType,
                 "branchType"
               )

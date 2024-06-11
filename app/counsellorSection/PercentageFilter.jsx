@@ -4,13 +4,13 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const PercentageFilter = () => {
-  const { filteringData, setFilteringData, handleCommonFilter } =
+  const { filteringData, setFilteringData, handleCommonFilter,fromPercentage, setFromPercentage,
+    toPercentage, setToPercentage,selectedPercentage, setSelectedPercentage
+   } =
     useContext(GlobalContext);
-  const [fromValue, setFromValue] = useState("");
-  const [toValue, setToValue] = useState("");
+
   const [errorMessage, setErrorMessage] = useState("");
-  const [selectedPercentage, setSelectedPercentage] = useState(null);
-  const percentageType = ["lessthansixty", "throughoutsixty"];
+  const percentageType = ["Lessthansixty", "Throughoutsixty"];
 
   const validateFrom = (value) => {
     if (isNaN(value) || value < 0 || value > 100) {
@@ -22,7 +22,7 @@ const PercentageFilter = () => {
   const validateTo = (value) => {
     if (isNaN(value) || value < 0 || value > 100) {
       return "To value should be between 0 and 100";
-    } else if (fromValue >= value) {
+    } else if (fromPercentage >= value) {
       if (value !== "") {
         return "To value should be greater than From value";
       }
@@ -32,21 +32,21 @@ const PercentageFilter = () => {
 
   const handleFromChange = (e) => {
     const value = e.target.value;
-    setFromValue(value);
+    setFromPercentage(value);
     setErrorMessage(validateFrom(value));
     setSelectedPercentage(null);
   };
 
   const handleToChange = (e) => {
     const value = e.target.value;
-    setToValue(value);
+    setToPercentage(value);
     setErrorMessage(validateTo(value));
     setSelectedPercentage(null);
   };
 
   const handleApplyFilter = () => {
-    if (validateFrom(fromValue) === '' && (validateTo(toValue) === '' || toValue === '')) {
-      const percentageRange = toValue !== '' ? [fromValue, toValue] : [fromValue];
+    if (validateFrom(fromPercentage) === '' && (validateTo(toPercentage) === '' || toPercentage === '')) {
+      const percentageRange = toPercentage !== '' ? [fromPercentage, toPercentage] : [fromPercentage];
       handleCommonFilter(-1, [], setFilteringData, percentageRange, 'percentage');
     } else {
       setErrorMessage('Please enter valid percentage values');
@@ -55,9 +55,9 @@ const PercentageFilter = () => {
 
   const handleRadioChange = (index) => {
     setSelectedPercentage(index);
-    setFromValue("");
-    setToValue("");
-    const selectedValue = percentageType[index];
+    setFromPercentage("");
+    setToPercentage("");
+    const selectedValue = percentageType[index].toLowerCase();
     setFilteringData(prevFilteringData => ({
       ...prevFilteringData,
       percentage: [selectedValue]
@@ -78,17 +78,17 @@ const PercentageFilter = () => {
           placeholder="From"
           autoFocus
           className="filterInput w-[7.75vw] pl-[0.625vw]"
-          value={fromValue}
+          value={fromPercentage}
           onChange={handleFromChange}
-          onBlur={() => setErrorMessage(validateFrom(fromValue))}
+          onBlur={() => setErrorMessage(validateFrom(fromPercentage))}
         />
         <input
           type="number"
           placeholder="To"
           className="filterInput w-[7.75vw] pl-[0.625vw]"
-          value={toValue}
+          value={toPercentage}
           onChange={handleToChange}
-          onBlur={() => setErrorMessage(validateTo(toValue))}
+          onBlur={() => setErrorMessage(validateTo(toPercentage))}
         />
         <img src="../../checked.svg" onClick={handleApplyFilter} className="applyFilterButton cursor-pointer w-[1.875vw] h-[3.333vh]"/>
       </div>

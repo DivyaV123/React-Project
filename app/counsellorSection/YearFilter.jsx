@@ -15,16 +15,13 @@ import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import BranchTypeFilter from "./BranchTypeFilter";
 
 const YearFilter = () => {
-  const [selectedBranch, setSelectedBranch] = useState([]);
-  const { handleCommonFilter } = useContext(GlobalContext);
-  const [fromYear, setFromYear] = useState("");
-  const [toYear, setToYear] = useState("");
+  const { handleCommonFilter,fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,selectedBranchFilter,setSelectedBranchFilter } = useContext(GlobalContext);
   const { data: PlacementBranchData } = useGetAllPlacementBranchQuery();
   const BranchList = PlacementBranchData?.response;
-  const [selectedYop, setSelectedYop] = useState([]);
   const { data: YearOfPassoutData } = useGetAllYearOfPassoutQuery();
   const YopList = YearOfPassoutData?.response;
-  const sortedYearList = [...YopList||[]].sort((a, b) => b - a);
+  const sortedYearList = [...YopList || []].sort((a, b) => b - a);
+
   const handleFromYearChange = (year) => {
     setFromYear(year);
     setToYear("");
@@ -48,21 +45,30 @@ const YearFilter = () => {
     handleCommonFilter(-1, [], setSelectedYop, yearRange, "yop");
   };
 
+  const clearYearRange = () => {
+    setFromYear("");
+    setToYear("");
+  };
+
   const renderCheckbox = (item, index, selected, setSelected, items) => (
     <Checkbox
       key={index}
       id={index}
       label={item}
-      checked={selected.includes(index)}
-      onChange={() => handleCommonFilter(index, selected, setSelected, items, "yop")}
+      checked={selected?.includes(index)}
+      onChange={() => {
+        clearYearRange();
+        handleCommonFilter(index, selected, setSelected, items, "yop");
+      }}
     />
   );
+
   const renderBranchCheckbox = (item, index, selected, setSelected, items) => (
     <Checkbox
       key={index}
       id={index}
       label={item}
-      checked={selected.includes(index)}
+      checked={selected?.includes(index)}
       onChange={() => handleCommonFilter(index, selected, setSelected, items, "branchLocation")}
     />
   );
@@ -77,7 +83,7 @@ const YearFilter = () => {
       </div>
       <div className="flex gap-2.5 pb-[1.111vh]">
         <DropdownMenu>
-          <DropdownMenuTrigger className="filterButton">
+          <DropdownMenuTrigger className="filterButton text-left pl-[0.938vw]">
             {fromYear ? fromYear : "From"}
           </DropdownMenuTrigger>
           <DropdownMenuContent>
@@ -94,7 +100,7 @@ const YearFilter = () => {
           </DropdownMenuContent>
         </DropdownMenu>
         <DropdownMenu>
-          <DropdownMenuTrigger className="filterButton">
+          <DropdownMenuTrigger className="filterButton text-left pl-[0.938vw]">
             {toYear ? toYear : "To"}
           </DropdownMenuTrigger>
           <DropdownMenuContent>
@@ -122,7 +128,7 @@ const YearFilter = () => {
       </div>
       <ExpandableList
         items={BranchList}
-        renderItem={(item, index) => renderBranchCheckbox(item, index, selectedBranch, setSelectedBranch, BranchList)}
+        renderItem={(item, index) => renderBranchCheckbox(item, index, selectedBranchFilter, setSelectedBranchFilter, BranchList)}
       />
     </div>
   );

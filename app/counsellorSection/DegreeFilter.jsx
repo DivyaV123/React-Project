@@ -5,8 +5,7 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const DegreeFilter = ({ degreeList }) => {
-    const { handleCommonFilter } = useContext(GlobalContext);
-    const [selectedDegrees, setSelectedDegrees] = useState([]);
+    const { handleCommonFilter,selectedDegrees, setSelectedDegrees } = useContext(GlobalContext);
     const [searchQuery, setSearchQuery] = useState("");
 const searchDegreeList=degreeList?.filter((degree) =>
     degree.toLowerCase().includes(searchQuery.toLowerCase())
@@ -30,7 +29,7 @@ const searchDegreeList=degreeList?.filter((degree) =>
             <div className="search-container pb-[1.111vh]">
             <input
           type="text"
-          placeholder="search..."
+          placeholder="Search..."
           className="text-[0.781vw]"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
