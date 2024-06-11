@@ -5,7 +5,7 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import { COURSE_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
-import { useGetAllCoursesQuery } from "@/redux/queries/getAllCourses";
+import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 const Courses = () => {
   const courses = [
     {
@@ -251,28 +251,29 @@ const Courses = () => {
       arrow: "/arrowIconDark.svg",
     },
   ];
-  const {data,isLoading,error}=useGetAllCoursesQuery()
+  const { data: response, isLoading, error } = useGetAllCategoriesQuery()
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
+  console.log(response?.data, "data from Menu")
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar ">
       <div className="menuSidebar pt-2  xl:w-[18.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] ">
-        {courses.map((courseItem, index) => (
+        {response?.data?.map((courseItem, index) => (
           <div
             key={index}
             onMouseEnter={() => setHoveredIndex(index)}
-            className={`flex ${hoveredIndex  === index  ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
+            className={`flex ${hoveredIndex === index ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
           >
-            {/* <img src={courseItem.icon} /> */}
-            <Svg
+            <img src={courseItem.icon} />
+            {/* <Svg
               width={svgicons[courseItem?.icon][0]}
               height={svgicons[courseItem?.icon][1]}
               viewBox={svgicons[courseItem?.icon][2]}
               icon={svgicons[courseItem?.icon][3]}
-            />
+            /> */}
             <div className="flex justify-between grow">
               <button className="p-2 text-sm">{courseItem.title}</button>
-              <img src={courseItem.arrow} className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
+              <img src='/arrowIconDark.svg' className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
             </div>
           </div>
         ))}
@@ -280,44 +281,43 @@ const Courses = () => {
       <div className="xl:w-[62.34vw] 2xl:w-[66.34vw] 3xl:w-[70.34vw] flex ">
         {hoveredIndex !== null && courses[hoveredIndex].list && (
           <div className="xl:w-[20.31vw] 2xl:w-[18.5vw]  3xl:w-[13.6vw]  pt-2 menuSidebar">
-            {courses[hoveredIndex].list.map((item, itemIndex) => (
+            {console.log(response?.data[hoveredIndex], "response?.data[hoveredIndex]?.list")}
+            {response?.data[hoveredIndex]?.subCourse?.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className={`flex justify-between grow pl-2 ${hoveredItemIndex  === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
+                className={`flex justify-between grow pl-2 ${hoveredItemIndex === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
                 onMouseEnter={() => setHoveredItemIndex(itemIndex)}
-                onMouseLeave={() => {}}
+                onMouseLeave={() => { }}
               >
-                {/* <img src={item.icon} /> */}
-                <Svg
+                <img src={item.icon} />
+                {/* <Svg
                   width={svgicons[item?.icon][0]}
                   height={svgicons[item?.icon][1]}
                   viewBox={svgicons[item?.icon][2]}
                   icon={svgicons[item?.icon][3]}
-                />
+                /> */}
                 <div className="flex justify-between grow">
                   <button className="p-2 text-sm">{item.title}</button>
-                  <img src={item.arrow} className={`${hoveredItemIndex === itemIndex ? 'visible' : 'invisible'} w-4`} />
+                  <img src='/arrowIconDark.svg' className={`${hoveredItemIndex === itemIndex ? 'visible' : 'invisible'} w-4`} />
                 </div>
               </div>
             ))}
           </div>
         )}
         <div
-          className={`${
-            hoveredIndex !== null && courses[hoveredIndex].list
-              ? "courselist pl-4 pt-2"
-              : "coursefull p-3"
-          }   flex flex-wrap  h-fit gap-4 `}
+          className={`${hoveredIndex !== null && courses[hoveredIndex].list
+            ? "courselist pl-4 pt-2"
+            : "coursefull p-3"
+            }   flex flex-wrap  h-fit gap-4 `}
         >
-          {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
+          {(response?.data[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
-             <Link href={COURSE_PATH}> <div
+              <Link href={COURSE_PATH}> <div
                 key={index}
-                className={`${
-                  hoveredIndex !== null && courses[hoveredIndex].list
-                    ? "courseMedium"
-                    : "courseinitial"
-                }  p-2 branchOverlay h-fit`}
+                className={`${hoveredIndex !== null && courses[hoveredIndex].list
+                  ? "courseMedium"
+                  : "courseinitial"
+                  }  p-2 branchOverlay h-fit`}
               >
                 <div className="flex h-10 gap-1.5 ">
                   <img className="h-8 w-8" src={content.image} />
@@ -329,7 +329,7 @@ const Courses = () => {
                   <article className=" text-sm titleText">{content.description}</article>
                 </div>
               </div></Link>
-          ))}
+            ))}
         </div>
       </div>
     </div>
