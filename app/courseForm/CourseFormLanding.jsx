@@ -175,12 +175,12 @@ function CourseFormLanding() {
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
                             ></textarea> */}
-              <ReactQuill
+              {/* <ReactQuill
                 value={formikDetails.values.aboutCourse}
                 onChange={(value) =>
                   formikDetails.setFieldValue("aboutCourse", value)
                 }
-              />
+              /> */}
               {formikDetails.touched.aboutCourse &&
               formikDetails.errors.aboutCourse ? (
                 <div className="text-red-500">
@@ -196,12 +196,12 @@ function CourseFormLanding() {
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
                             ></textarea> */}
-              <ReactQuill
+              {/* <ReactQuill
                 value={formikDetails.values.courseHighlights}
                 onChange={(value) =>
                   formikDetails.setFieldValue("courseHighlights", value)
                 }
-              />
+              /> */}
               {formikDetails.touched.courseHighlights &&
               formikDetails.errors.courseHighlights ? (
                 <div className="text-red-500">
