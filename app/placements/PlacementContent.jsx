@@ -19,20 +19,20 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
   };
 
   function extractText(data) {
-   return branchAbbreviations[data] || data
+    return branchAbbreviations[data] || data
   }
   return (
     <>
       {counsellorFilterResponse?.map((student) => (
-        <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh]">
+        <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] h-[32.083vh] mt-[0.556vh]">
           <AlertDialog popup="imagepopup">
             <div className="w-[15.547vw] ">
               <div className="h-[24.861vh] overflow-hidden w-full">
-               <img
-                src={student?.photoLink}
-                className="w-full"
-               />
-              </div>             
+                <img
+                  src={student?.photoLink}
+                  className="w-full"
+                />
+              </div>
               <div className="imageCard">
                 <header className="studentName font-semibold py-[1.111vh] text-center">
                   {student?.name}
@@ -87,24 +87,24 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                     href={student?.testimonial?.googleReview || "#"}
                     target="_blank"
                   >
-                    <img src="../google 1.svg" 
-                    alt="Google review"
-                    onClick={(e) => {
-                      if (!student?.testimonial?.googleReview) {
-                        e.preventDefault();
-                      }
-                    }} />
+                    <img src="../google 1.svg"
+                      alt="Google review"
+                      onClick={(e) => {
+                        if (!student?.testimonial?.googleReview) {
+                          e.preventDefault();
+                        }
+                      }} />
                   </Link>
                 </div>
                 <div className="iconContainer">
                   <Link href={student?.testimonial?.fbReview || "#"} target="_blank">
                     <img src="../facebook 1.svg"
-                    alt="Facebook Review"
-                    onClick={(e) => {
-                      if (!student?.testimonial?.fbReview) {
-                        e.preventDefault();
-                      }
-                    }} />
+                      alt="Facebook Review"
+                      onClick={(e) => {
+                        if (!student?.testimonial?.fbReview) {
+                          e.preventDefault();
+                        }
+                      }} />
                   </Link>
                 </div>
                 <div className="iconContainer">
@@ -124,7 +124,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   </Link>
                 </div>
                 <div className="iconContainer">
-                  <img src="../share 1.svg" className="cursor-pointer"/>
+                  <img src="../share 1.svg" className="cursor-pointer" />
                 </div>
               </div>
             </div>
