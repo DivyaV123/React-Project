@@ -7,9 +7,8 @@ import Input from "@/components/commonComponents/input/Input";
 import TextArea from "@/components/commonComponents/textArea/TextArea";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
-import 'react-quill/dist/quill.snow.css';
-import ReactQuill from "react-quill";
-import dynamic from 'next/dynamic';
+// import 'react-quill/dist/quill.snow.css';
+// import ReactQuill from "react-quill";
 
 function CourseFormLanding() {
     const { data: courseData, error, isLoading } = useGetAllCategoriesInCourseQuery()
@@ -182,18 +181,18 @@ function CourseFormLanding() {
                     <div className="flex justify-between mb-[4.444vh]">
                         <div className="w-[33vw]">
                             <p className={commonLabelStyles}>About the Course</p>
-                            {/* <textarea
+                            <textarea
                                 name="aboutCourse"
                                 value={formikDetails.values.aboutCourse}
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
-                            ></textarea> */}
-                            <ReactQuill
+                            ></textarea>
+                            {/* <ReactQuill
                                 value={formikDetails.values.aboutCourse}
                                 onChange={(value) =>
                                     formikDetails.setFieldValue("aboutCourse", value)
                                 }
-                            />
+                            /> */}
                             {formikDetails.touched.aboutCourse &&
                                 formikDetails.errors.aboutCourse ? (
                                 <div className="text-red-500">
@@ -203,18 +202,18 @@ function CourseFormLanding() {
                         </div>
                         <div className="w-[33vw]">
                             <p className={commonLabelStyles}>Course Highlights</p>
-                            {/* <textarea
+                            <textarea
                                 name="courseHighlights"
                                 value={formikDetails.values.courseHighlights}
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
-                            ></textarea> */}
-                            <ReactQuill
+                            ></textarea>
+                            {/* <ReactQuill
                                 value={formikDetails.values.courseHighlights}
                                 onChange={(value) =>
                                     formikDetails.setFieldValue("courseHighlights", value)
                                 }
-                            />
+                            /> */}
                             {formikDetails.touched.courseHighlights &&
                                 formikDetails.errors.courseHighlights ? (
                                 <div className="text-red-500">
