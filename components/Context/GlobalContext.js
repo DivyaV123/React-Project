@@ -63,25 +63,46 @@ const GlobalContextProvider = ({ children }) => {
   const [toPercentage, setToPercentage] = useState("");
   const [selectedPercentage, setSelectedPercentage] = useState(null);
 
-  const handleScroll = (event, page, setPage, repData) => {
+  function debounce(func, wait) {
+    let timeout;
+    return function (...args) {
+      clearTimeout(timeout);
+      timeout = setTimeout(() => func.apply(this, args), wait);
+    };
+  }
+
+  const handleScroll = debounce((event, page, setPage, repData) => {
     const target = event.target;
     const scrolledToBottom =
       Math.ceil(target?.scrollTop + target?.clientHeight) > target?.scrollHeight - 1;
-    setScrollConst(scrolledToBottom)
+    setScrollConst(scrolledToBottom);
     if (scrolledToBottom) {
-      console.log("handleScroll is calaing", scrolledToBottom)
+      console.log("handleScroll is calling", scrolledToBottom);
       if (!repData.response.last) {
-        setPage(page + 1)
+        setPage(page + 1);
       }
     };
-  }
+  }, 300);
+
+  // const handleScroll = (event, page, setPage, repData) => {
+  //   const target = event.target;
+  //   const scrolledToBottom =
+  //     Math.ceil(target?.scrollTop + target?.clientHeight) > target?.scrollHeight - 1;
+  //   setScrollConst(scrolledToBottom)
+  //   if (scrolledToBottom) {
+  //     console.log("handleScroll is calaing", scrolledToBottom)
+  //     if (!repData.response.last) {
+  //       setPage(page + 1)
+  //     }
+  //   };
+  // }
 
 
 
   const handleCommonFilter = (value, items, setItems, response, key) => {
     setPage(0);
     let updatedSelectedItems = [...items];
-  
+
     if (value === -1) {
       // Handle calendar or dropdown selection
       setItems([]);
@@ -95,14 +116,14 @@ const GlobalContextProvider = ({ children }) => {
       }
       setItems(updatedSelectedItems);
     }
-  
+
     let selectedFilterData;
     if (value === -1) {
       selectedFilterData = updatedSelectedItems; // Use the date range directly
     } else {
       selectedFilterData = updatedSelectedItems;
     }
-  
+
     setFilteringData(prevFilteringData => {
       const updatedFilteringData = { ...prevFilteringData };
       if (selectedFilterData.length === 0) {
@@ -131,14 +152,14 @@ const GlobalContextProvider = ({ children }) => {
       }
       return updatedFilteringData;
     });
-  
+
     if (key === "university") {
       setUniversitySelected(selectedFilterData);
     } else if (key === "state") {
       setStateSelected(selectedFilterData);
     }
   };
-  
+
 
 
 
@@ -170,17 +191,17 @@ const GlobalContextProvider = ({ children }) => {
       setLessCheckedIcon,
       throughcheckedIcon,
       setThroughCheckedIcon,
-       fromValue, setFromValue, toValue, setToValue, selectedDate, setSelectedDate,
-       fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,
-       selectedBranchFilter,setSelectedBranchFilter,
-       selectedBranchType,setSelectedBranchType,
-       stateItems,setStateItems,
-       selectedCity,setSelectedCity,
-       selectedUniversity, setSelectedUniversity,
-       selectedCollege, setSelectedCollege,
-       selectedDegrees, setSelectedDegrees,
-       selectedStream, setSelectedStream,
-       fromPercentage, setFromPercentage,toPercentage, setToPercentage,selectedPercentage, setSelectedPercentage
+      fromValue, setFromValue, toValue, setToValue, selectedDate, setSelectedDate,
+      fromYear, setFromYear, toYear, setToYear, selectedYop, setSelectedYop,
+      selectedBranchFilter, setSelectedBranchFilter,
+      selectedBranchType, setSelectedBranchType,
+      stateItems, setStateItems,
+      selectedCity, setSelectedCity,
+      selectedUniversity, setSelectedUniversity,
+      selectedCollege, setSelectedCollege,
+      selectedDegrees, setSelectedDegrees,
+      selectedStream, setSelectedStream,
+      fromPercentage, setFromPercentage, toPercentage, setToPercentage, selectedPercentage, setSelectedPercentage
     }}>{children}</GlobalContext.Provider>
   );
 };

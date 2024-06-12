@@ -251,88 +251,93 @@ const Courses = () => {
       arrow: "/arrowIconDark.svg",
     },
   ];
-  const { data: response, isLoading, error } = useGetAllCategoriesQuery()
-  const [hoveredIndex, setHoveredIndex] = useState(0);
-  const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
-  console.log(response?.data, "data from Menu")
+  const { data: response, isLoading, error } = useGetAllCategoriesQuery();
+  const [hoveredCourseIndex, setHoveredCourseIndex] = useState(0);
+  const [hoveredSubCourseIndex, setHoveredSubCourseIndex] = useState(0);
+  const [activeResponses, setActiveResponses] = useState([]);
+
+  const handleCourseHover = (courseIndex, courseResponses) => {
+    setHoveredCourseIndex(courseIndex);
+    setHoveredSubCourseIndex(0); // Reset sub-course hover
+    setActiveResponses(courseResponses); // Set default course responses
+  };
+
+  const handleSubCourseHover = (subCourseIndex, subCourseResponses) => {
+    setHoveredSubCourseIndex(subCourseIndex);
+    setActiveResponses(subCourseResponses); // Set sub-course responses on hover
+  };
+
+  const handleSubCourseLeave = () => {
+    setHoveredSubCourseIndex(0);
+    if (hoveredCourseIndex !== null) {
+      // Reset to course responses if a course is still hovered
+      setActiveResponses(response?.data[hoveredCourseIndex]?.courseResponse || []);
+    }
+  };
+
   return (
-    <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar ">
-      <div className="menuSidebar pt-2  xl:w-[18.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] ">
-        {response?.data?.map((courseItem, index) => (
+    <div className="flex w-[81.09vw] lg:h-[500px] overflow-auto myscrollbar">
+      <div className="menuSidebar pt-2 xl:w-[18.75vw] 2xl:w-[14.75vw] 3xl:w-[11.75vw]">
+        {response?.data?.map((courseItem, courseIndex) => (
           <div
-            key={index}
-            onMouseEnter={() => setHoveredIndex(index)}
-            className={`flex ${hoveredIndex === index ? 'menuItem' : 'menuItemdisable'}  pl-4 pr-2 items-center`}
+            key={courseIndex}
+            onMouseEnter={() => handleCourseHover(courseIndex, courseItem.courseResponse)}
+            className={`flex ${hoveredCourseIndex === courseIndex ? 'menuItem' : 'menuItemdisable'} pl-4 pr-2 items-center`}
           >
             <img src={courseItem.icon} />
-            {/* <Svg
-              width={svgicons[courseItem?.icon][0]}
-              height={svgicons[courseItem?.icon][1]}
-              viewBox={svgicons[courseItem?.icon][2]}
-              icon={svgicons[courseItem?.icon][3]}
-            /> */}
             <div className="flex justify-between grow">
               <button className="p-2 text-sm">{courseItem.title}</button>
-              <img src='/arrowIconDark.svg' className={`${hoveredIndex === index ? 'visible' : 'invisible'} w-4`} />
+              <img src='/arrowIconDark.svg' className={`${hoveredCourseIndex === courseIndex ? 'visible' : 'invisible'} w-4`} />
             </div>
           </div>
         ))}
       </div>
-      <div className="xl:w-[62.34vw] 2xl:w-[66.34vw] 3xl:w-[70.34vw] flex ">
-        {hoveredIndex !== null && courses[hoveredIndex].list && (
-          <div className="xl:w-[20.31vw] 2xl:w-[18.5vw]  3xl:w-[13.6vw]  pt-2 menuSidebar">
-            {console.log(response?.data[hoveredIndex], "response?.data[hoveredIndex]?.list")}
-            {response?.data[hoveredIndex]?.subCourse?.map((item, itemIndex) => (
+
+      <div className="xl:w-[62.34vw] 2xl:w-[66.34vw] 3xl:w-[70.34vw] flex">
+        {hoveredCourseIndex !== null && response?.data[hoveredCourseIndex]?.subCourse?.length !== 0 && (
+          <div className="xl:w-[20.31vw] 2xl:w-[18.5vw] 3xl:w-[13.6vw] pt-2 menuSidebar">
+            {response?.data[hoveredCourseIndex]?.subCourse?.map((subCourseItem, subCourseIndex) => (
               <div
-                key={itemIndex}
-                className={`flex justify-between grow pl-2 ${hoveredItemIndex === itemIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
-                onMouseEnter={() => setHoveredItemIndex(itemIndex)}
-                onMouseLeave={() => { }}
+                key={subCourseIndex}
+                className={`flex justify-between grow pl-2 ${hoveredSubCourseIndex === subCourseIndex ? 'menuItem' : 'menuItemdisable'} pr-2 items-center`}
+                onMouseEnter={() => handleSubCourseHover(subCourseIndex, subCourseItem.subCourseResponse)}
+                onMouseLeave={handleSubCourseLeave}
               >
-                <img src={item.icon} />
-                {/* <Svg
-                  width={svgicons[item?.icon][0]}
-                  height={svgicons[item?.icon][1]}
-                  viewBox={svgicons[item?.icon][2]}
-                  icon={svgicons[item?.icon][3]}
-                /> */}
+                <img src={subCourseItem.icon} />
                 <div className="flex justify-between grow">
-                  <button className="p-2 text-sm">{item.title}</button>
-                  <img src='/arrowIconDark.svg' className={`${hoveredItemIndex === itemIndex ? 'visible' : 'invisible'} w-4`} />
+                  <button className="p-2 text-sm">{subCourseItem.title}</button>
+                  <img src='/arrowIconDark.svg' className={`${hoveredSubCourseIndex === subCourseIndex ? 'visible' : 'invisible'} w-4`} />
                 </div>
               </div>
             ))}
           </div>
         )}
-        <div
-          className={`${hoveredIndex !== null && courses[hoveredIndex].list
-            ? "courselist pl-4 pt-2"
-            : "coursefull p-3"
-            }   flex flex-wrap  h-fit gap-4 `}
-        >
-          {(response?.data[hoveredIndex] ?? courses[0])?.sublist?.map(
-            (content, index) => (
-              <Link href={COURSE_PATH}> <div
-                key={index}
-                className={`${hoveredIndex !== null && courses[hoveredIndex].list
-                  ? "courseMedium"
-                  : "courseinitial"
-                  }  p-2 branchOverlay h-fit`}
-              >
-                <div className="flex h-10 gap-1.5 ">
-                  <img className="h-8 w-8" src={content.image} />
+        <div className={`${hoveredCourseIndex !== null && activeResponses.length
+          ? "courselist pl-4 pt-2"
+          : "coursefull p-3"
+          } flex flex-wrap h-fit gap-4`}>
+          {activeResponses.map((content, index) => (
+            <Link href={COURSE_PATH} key={index}>
+              <div className={`${hoveredCourseIndex !== null && activeResponses.length
+                ? "courseMedium"
+                : "courseinitial"
+                } p-2 branchOverlay h-fit`}>
+                <div className="flex h-10 gap-1.5">
+                  <img className="h-8 w-8" src={content.icon} />
                   <h3 className="text-left h-8 text-sm font-bold items-center flex">
                     {content.title}
                   </h3>
                 </div>
                 <div>
-                  <article className=" text-sm titleText">{content.description}</article>
+                  <article className="text-sm titleText">{content.description}</article>
                 </div>
-              </div></Link>
-            ))}
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
     </div>
+
   );
 };
 
