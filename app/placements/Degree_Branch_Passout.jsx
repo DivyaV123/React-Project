@@ -8,14 +8,21 @@ import { branchAbbreviations } from "@/lib/utils";
 import BarSkeleton from "@/components/skeletons/BarSkeleton";
 
 const Degree_Branch_Passout = () => {
-  const [degreeButton, setDegreeButton] = useState("");
-  const [branchButton, setBranchButton] = useState("");
-  const [passOutButton, setPassOutButton] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
   const [isBranchMoreOpen, setIsBranchMoreOpen] = useState(false);
   const [isPassOutMoreOpen, setIsPassOutMoreOpen] = useState(false);
-  const { setFilterPlacementData } = useContext(GlobalContext);
+  const {
+    setFilterPlacementData,
+    setSalariedParam,
+    degreeButton,
+    setDegreeButton,
+    branchButton,
+    setBranchButton,
+    passOutButton,
+    setPassOutButton,
+    setSideBarBtn,
+  } = useContext(GlobalContext);
 
   const {
     data: degreeAndStreamdata,
@@ -61,11 +68,22 @@ const Degree_Branch_Passout = () => {
     } else {
       setButtonState(item);
     }
-    setFilterPlacementData((prevData) => ({
-      ...prevData,
+    setSalariedParam('');
+    setFilterPlacementData({
       [key]: [item],
-    }));
+    });
   };
+
+  const handleButtonClick = (item, setButtonState, setOtherButtonStates, key) => {
+    setButtonState(item);
+    setOtherButtonStates.forEach(setState => setState(''));
+    setSalariedParam('');
+    setSideBarBtn('');
+    setFilterPlacementData({
+      [key]: [item],
+    });
+  };
+
   const renderButtonSection = (
     items,
     buttonState,
@@ -74,7 +92,8 @@ const Degree_Branch_Passout = () => {
     setMoreState,
     setItems,
     abbreviations,
-    key
+    key,
+    setOtherButtonStates
   ) => (
     <div className="bg-white h-[2.65vw] flex w-full buttonSection relative">
       {items.slice(0, 6).map((item, index) => (
@@ -83,13 +102,7 @@ const Degree_Branch_Passout = () => {
           className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
             item == buttonState ? "activeButton font-medium" : ""
           }`}
-          onClick={() => {
-            setButtonState(item);
-            setFilterPlacementData((prevData) => ({
-              ...prevData,
-              [key]: [item],
-            }));
-          }}
+          onClick={() => handleButtonClick(item, setButtonState, setOtherButtonStates, key)}
         >
           {abbreviations[item] || item}
         </button>
@@ -120,6 +133,7 @@ const Degree_Branch_Passout = () => {
       )}
     </div>
   );
+
   return (
     <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2">
       {isLoading ? (
@@ -138,7 +152,8 @@ const Degree_Branch_Passout = () => {
               setIsDegreeMoreOpen,
               setDegreeList,
               {},
-              "degree"
+              "degree",
+              [setBranchButton, setPassOutButton]
             )}
           </div>
           <div className="w-[31.328vw]">
@@ -153,7 +168,8 @@ const Degree_Branch_Passout = () => {
               setIsBranchMoreOpen,
               setBranchList,
               branchAbbreviations,
-              "stream"
+              "stream",
+              [setDegreeButton, setPassOutButton]
             )}
           </div>
           <div className="w-[31.328vw]">
@@ -168,7 +184,8 @@ const Degree_Branch_Passout = () => {
               setIsPassOutMoreOpen,
               setYopList,
               {},
-              "yop"
+              "yop",
+              [setDegreeButton, setBranchButton]
             )}
           </div>
         </>

@@ -19,7 +19,6 @@ const PlacementCards = () => {
   const router = useRouter()
   const {filterPlacementData,setFilterPlacementData,salariedParam,page,size}=useContext(GlobalContext)
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
-  const isEmptyObject = Object.keys(salariedParam).length === 0;
   const {
     data: counsellorFilterResponse,
     error,
@@ -29,7 +28,7 @@ const PlacementCards = () => {
   } = useFetchCounsellorsQuery({
     pageNumber: page,
     pageSize: size,
-    parameter:isEmptyObject ? salariedParam : "",
+    parameter: salariedParam,
     bodyData:filterPlacementData
   });
   const [isloading, setisLoading] = useState(true);
