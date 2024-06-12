@@ -68,6 +68,9 @@ const GlobalContextProvider = ({ children }) => {
   const [filterPlacementData,setFilterPlacementData] = useState({})
   const [salariedParam,setSalariedParam]=useState('')
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
+  const [degreeButton, setDegreeButton] = useState("");
+  const [branchButton, setBranchButton] = useState("");
+  const [passOutButton, setPassOutButton] = useState("");
 
   function debounce(func, wait) {
     let timeout;
@@ -168,22 +171,27 @@ const GlobalContextProvider = ({ children }) => {
 
   const handlePlacementCommonFilter = (title) => {
     setSideBarBtn(title);
+    setDegreeButton('')
+    setBranchButton('')
+    setPassOutButton('')
     switch (title) {
       case "Recent Placements":
         setFilterPlacementData({});
+        setSalariedParam('')
         break;
       case "Top Salaries":
         setSalariedParam("topsalaried");
+        break;
       case "Last week":
       case "Last month":
       case "Last 3 months":
       case "Last 6 months":
         const startDate = timePeriods[title];
         const endDate = dayjs().format("YYYY-MM-DD");
-        setFilterPlacementData((prevData) => ({
-          ...prevData,
+        setSalariedParam('')
+        setFilterPlacementData({
           timePeriod: [startDate, endDate] 
-        }))
+        })
         break;
       default:
         break;
@@ -231,7 +239,8 @@ console.log(filterPlacementData,"filterPlacementData");
        fromPercentage, setFromPercentage,toPercentage, setToPercentage,
        selectedPercentage, setSelectedPercentage,
        filterPlacementData,setFilterPlacementData,setSalariedParam,
-       salariedParam,sideBarBtn, setSideBarBtn,handlePlacementCommonFilter
+       salariedParam,sideBarBtn, setSideBarBtn,handlePlacementCommonFilter,
+       degreeButton, setDegreeButton,branchButton, setBranchButton,passOutButton, setPassOutButton
 
     }}>{children}</GlobalContext.Provider>
   );
