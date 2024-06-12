@@ -13,7 +13,10 @@ import CardSkeleton from "@/components/skeletons/CardSkeleton";
 import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { PLACEMENT_PATH } from "@/lib/RouteConstants";
+import { useRouter } from "next/navigation";
 const PlacementCards = () => {
+  const router = useRouter()
   const {filterPlacementData,setFilterPlacementData,salariedParam,page,size}=useContext(GlobalContext)
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const isEmptyObject = Object.keys(salariedParam).length === 0;
@@ -38,6 +41,32 @@ const PlacementCards = () => {
   useEffect(() => {
     refetch()
   },[filterPlacementData])
+
+
+  const emptyObj = Object.keys(filterPlacementData).length === 0;
+  useEffect(() => {
+    const searchParams = constructSearchParams();
+    const fullURL = `${PLACEMENT_PATH}/${searchParams ? `?${searchParams}` : ""
+      }`;
+    if (!emptyObj) {
+      router.push(fullURL);
+    } else {
+      router.push(PLACEMENT_PATH);
+    }
+  }, [filterPlacementData]);
+
+  const constructSearchParams = () => {
+    let searchParams = "";
+    for (const key in filterPlacementData) {
+      if (filterPlacementData.hasOwnProperty(key)) {
+        if (searchParams !== "") {
+          searchParams += "&";
+        }
+        searchParams += key + "=" + filterPlacementData[key].join(",");
+      }
+    }
+    return searchParams;
+  };
   return (
     <>
       <div className="flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-[1.875rem]">

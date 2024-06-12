@@ -180,7 +180,10 @@ const GlobalContextProvider = ({ children }) => {
       case "Last 6 months":
         const startDate = timePeriods[title];
         const endDate = dayjs().format("YYYY-MM-DD");
-        setFilterPlacementData({ timePeriod: [startDate, endDate] });
+        setFilterPlacementData((prevData) => ({
+          ...prevData,
+          timePeriod: [startDate, endDate] 
+        }))
         break;
       default:
         break;
