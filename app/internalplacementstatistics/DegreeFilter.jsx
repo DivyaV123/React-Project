@@ -1,26 +1,32 @@
-"use client";
 import React, { useState, useContext } from "react";
 import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 import ExpandableList from "../../components/commonComponents/ExpandableList/ExpandableList";
 import "./CounserllorFilters.scss";
-import { useGetAllUniversitiesQuery } from "@/redux/queries/getAllUniversities";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import { Item } from "@radix-ui/react-accordion";
 
-const UniversityFilter = () => {
+const DegreeFilter = ({ degreeList }) => {
+  const { handleCounsellorCommonFilter, selectedDegrees, setSelectedDegrees } =
+    useContext(GlobalContext);
   const [searchQuery, setSearchQuery] = useState("");
-  const { handleCommonFilter,selectedUniversity, setSelectedUniversity } = useContext(GlobalContext);
-  const { data: universityData } = useGetAllUniversitiesQuery();
-  const universityList = universityData?.response.filter(university => university !== "").filter(university => university.toLowerCase().includes(searchQuery.toLowerCase()));
+
+  const searchDegreeList = degreeList?.filter((degree) =>
+    degree.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   const renderCheckbox = (item, index) => (
     <Checkbox
       key={index}
-      id={item}
+      id={item}  // Use degree value as the id
       label={item}
-      checked={selectedUniversity.includes(item)}
+      checked={selectedDegrees.includes(item)}
       onChange={() =>
-        handleCommonFilter(item, selectedUniversity, setSelectedUniversity, universityData, "university")
+        handleCounsellorCommonFilter(
+          item,  // Pass the degree value instead of index
+          selectedDegrees,
+          setSelectedDegrees,
+          degreeList,  // Use the full degreeList for response
+          "degree"
+        )
       }
     />
   );
@@ -28,25 +34,27 @@ const UniversityFilter = () => {
   return (
     <div className="px-[1.875vw] pt-[2.778vh]">
       <div className="flex justify-between pb-[1.111vh]">
-        <p className="text-[0.938vw] text-[#002248] font-semibold">University</p>
+        <p className="text-[0.938vw] text-[#002248] font-semibold">
+          Degree/Masters
+        </p>
         <img src="../../down.svg" />
       </div>
       <div className="search-container pb-[1.111vh]">
-        <input 
-          type="text" 
-          placeholder="Search..." 
-          className="text-[0.781vw]" 
+        <input
+          type="text"
+          placeholder="Search..."
+          className="text-[0.781vw]"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
         <div className="search-icon"></div>
       </div>
       <ExpandableList
-        items={universityList}
+        items={searchDegreeList}
         renderItem={(item, index) => renderCheckbox(item, index)}
       />
     </div>
   );
 };
 
-export default UniversityFilter;
+export default DegreeFilter;

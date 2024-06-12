@@ -2,7 +2,7 @@
 import React,{useContext,useEffect} from "react";
 import "./PlacementCards.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-const TotalPlacedCard = ({allCounts,handleRefresh,handleParameter}) => {
+const TotalPlacedCard = ({allCounts,handleParameter}) => {
   const { setThroughCheckedIcon,setLessCheckedIcon, setPlacedCheckedIcon,placeCheckedIcon,setFilteringData} = useContext(GlobalContext)
   // const handleClick = () => {
   //   handleRefresh()

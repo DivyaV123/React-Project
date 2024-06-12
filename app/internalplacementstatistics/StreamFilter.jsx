@@ -6,7 +6,7 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const StreamFilter = ({ streamList }) => {
-    const { handleCommonFilter,selectedStream, setSelectedStream } = useContext(GlobalContext);
+    const { handleCounsellorCommonFilter,selectedStream, setSelectedStream } = useContext(GlobalContext);
     const [searchQuery, setSearchQuery] = useState("");
 const searchStreamList=streamList?.filter((degree) =>
     degree.toLowerCase().includes(searchQuery.toLowerCase())
@@ -17,7 +17,7 @@ const searchStreamList=streamList?.filter((degree) =>
             id={item}
             label={item}
             checked={selectedStream.includes(item)}
-            onChange={() => handleCommonFilter(item, selectedStream, setSelectedStream, streamList, 'stream')}
+            onChange={() => handleCounsellorCommonFilter(item, selectedStream, setSelectedStream, streamList, 'stream')}
         />
     );
 

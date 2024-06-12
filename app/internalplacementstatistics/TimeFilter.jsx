@@ -9,7 +9,7 @@ import dayjs from "dayjs";
 import FilterSkeleton from "@/components/skeletons/FilterSkeleton";
 
 const TimeFilter = ({ isLoading }) => {
-  const { filteringData, setFilteringData, handleCommonFilter,fromValue,setFromValue,toValue,setToValue,selectedDate ,setSelectedDate} = useContext(GlobalContext);
+  const { filteringData, setFilteringData, handleCounsellorCommonFilter,fromValue,setFromValue,toValue,setToValue,selectedDate ,setSelectedDate} = useContext(GlobalContext);
   const [fromCalender, setFromCalender] = useState(false);
   const [toCalender, setToCalender] = useState(false);
   const [errorMessage, setErrorMessage] = useState('');
@@ -61,13 +61,13 @@ const TimeFilter = ({ isLoading }) => {
   };
 
   const handleCommonFilterForCalendar = (dateRange) => {
-    handleCommonFilter(-1, [], setSelectedDate, dateRange, 'timePeriod');
+    handleCounsellorCommonFilter(-1, [], setSelectedDate, dateRange, 'timePeriod');
   };
 
   const handleCheckboxChange = (index) => {
     setFromValue('');
     setToValue('');
-    handleCommonFilter(index, selectedDate, setSelectedDate, periodValues, 'timePeriod');
+    handleCounsellorCommonFilter(index, selectedDate, setSelectedDate, periodValues, 'timePeriod');
     setErrorMessage('');
   };
 

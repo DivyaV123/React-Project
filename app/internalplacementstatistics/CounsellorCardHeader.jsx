@@ -5,7 +5,6 @@ import { Skeleton } from "@/components/ui/skeleton";
 import DegreeCard from "../placements/DegreeCard";
 import OverviewCard from "../placements/OverviewCard";
 import PlacementContent from "../placements/PlacementContent";
-import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import CardSkeleton from "@/components/skeletons/CardSkeleton";
@@ -32,11 +31,6 @@ const CounsellorCardHeader = () => {
 
   const isEmptyObject = Object.keys(filteringData).length === 0;
 
-  const {
-    data: allCounts,
-    isError,
-    refetch: countrefresh,
-  } = useGetAllPlacementCountQuery();
 
   const {
     data: counsellorFilterResponse,
@@ -132,7 +126,6 @@ const CounsellorCardHeader = () => {
         ) : (
           <TotalPlacedCard
             allCounts={counsellorFilterResponse}
-            handleRefresh={countrefresh}
             handleCandidates={refetch}
             handleParameter={handleParameter}
           />

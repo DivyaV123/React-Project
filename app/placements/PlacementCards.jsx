@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext} from "react";
 import "./PlacementCards.scss";
 import { Skeleton } from "@/components/ui/skeleton";
 import TotalPlacedCard from "./TotalPlacedCard";
@@ -10,21 +10,34 @@ import OverviewCard from "./OverviewCard";
 import Degree_Branch_Passout from "./Degree_Branch_Passout";
 import PlacementSideBar from "./PlacementSideBar";
 import CardSkeleton from "@/components/skeletons/CardSkeleton";
+import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
-import { useGetItandNonItQuery } from "@/redux/queries/getItandNonIt";
-import { useGetLessthanSixtyQuery } from "@/redux/queries/getLessthanSixty";
-import { useGetThroughOutSixtyQuery } from "@/redux/queries/getThroughOutSixty";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const PlacementCards = () => {
-  const { data: allCounts, isLoading } = useGetAllPlacementCountQuery();
-  const {data:lessthanSixty}=useGetLessthanSixtyQuery()
-  const {data:ThroughoutSixty}=useGetThroughOutSixtyQuery()
-  const {data:getItandNonit}=useGetItandNonItQuery('it')
+  const {filterPlacementData,setFilterPlacementData,salariedParam,page,size}=useContext(GlobalContext)
+  const { data: allPlacementCount } = useGetAllPlacementCountQuery();
+  const isEmptyObject = Object.keys(salariedParam).length === 0;
+  const {
+    data: counsellorFilterResponse,
+    error,
+    refetch,
+    isLoading,
+    isFetching,
+  } = useFetchCounsellorsQuery({
+    pageNumber: page,
+    pageSize: size,
+    parameter:isEmptyObject ? salariedParam : "",
+    bodyData:filterPlacementData
+  });
   const [isloading, setisLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
       setisLoading(false);
     }, 2000);
   }, []);
+  useEffect(() => {
+    refetch()
+  },[filterPlacementData])
   return (
     <>
       <div className="flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-[1.875rem]">
@@ -34,31 +47,31 @@ const PlacementCards = () => {
             <Skeleton className="h-10 w-[70%] ml-2" />
           </div>
         ) : (
-          <TotalPlacedCard allCounts={allCounts} />
+          <TotalPlacedCard allCounts={counsellorFilterResponse} />
         )}
         {isloading ? (
           <CardSkeleton/>
         ) : (
-          <DegreeCard allCounts={allCounts} />
+          <DegreeCard allCounts={counsellorFilterResponse} />
         )}
         {isloading ? (
           <CardSkeleton/>
         ) : (
-          <NonItCard allCounts={allCounts} />
+          <NonItCard allCounts={allPlacementCount} />
         )}
         {isloading ? (
           <CardSkeleton/>
         ) : (
-          <BranchCard allCounts={allCounts} />
+          <BranchCard allCounts={allPlacementCount} />
         )}
         {isloading ? (
           <CardSkeleton/>
         ) : (
-          <OverviewCard allCounts={allCounts} />
+          <OverviewCard allCounts={counsellorFilterResponse} />
         )}
       </div>
       <Degree_Branch_Passout />
-      <PlacementSideBar />
+      <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching}/>
     </>
   );
 };

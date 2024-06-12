@@ -7,7 +7,7 @@ import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const StateFilter = () => {
-  const { filteringData, setFilteringData, handleCommonFilter,stateItems,setStateItems } = useContext(GlobalContext);
+  const { filteringData, setFilteringData, handleCounsellorCommonFilter,stateItems,setStateItems } = useContext(GlobalContext);
   const { data: statesData, error, isLoading } = useGetAllStatesQuery();
   const [searchQuery, setSearchQuery] = useState("");
   const statesList = statesData?.response.filter((state) => state !== "")
@@ -21,7 +21,7 @@ const StateFilter = () => {
       label={item}
       checked={stateItems.includes(item)}
       onChange={() =>
-        handleCommonFilter(item, stateItems, setStateItems, statesData, 'state')
+        handleCounsellorCommonFilter(item, stateItems, setStateItems, statesData, 'state')
       }
     />
   );
