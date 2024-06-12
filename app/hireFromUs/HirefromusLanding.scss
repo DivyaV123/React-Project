@@ -1,11 +1,76 @@
-.hireFromSection{
-  background-image: url('../../public/hirefrombg.svg'), linear-gradient(180deg, rgba(255, 201, 151, 0.3) 0%, rgba(255, 255, 255, 0.76) 78.2%);
+.hireFromSection {
+  background-image: url("../../public/hirefrombg.svg"),
+    linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.3) 0%,
+      rgba(255, 255, 255, 0.76) 78.2%
+    );
   background-repeat: no-repeat;
-  height: 87vh;
-  background-size: contain;
+  height: 84vh;
+
+  background-position: bottom right;
+  background-size: auto 100%;
 }
-.textgradient{
-  background: linear-gradient(96.77deg, #F09819 -28.03%, #FF512F 134.69%);
+.textgradient {
+  background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+}
+.clientTestimonial {
+  height: 55.8vh;
+  height: 55.8vh;
+  padding-left: 60px;
+  padding-right: 60px;
+  header {
+    .testimonials-text {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 20px 0px;
+    }
+  }
+  .header-wrapper {
+    margin-top: 20px;
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 3vh;
+    margin-left: 2vh;
+  }
+
+  .carousel-item {
+    border: 1px solid #00000040;
+    width: 393px;
+    height: 240px;
+    border-radius: 12px;
+    text-wrap: wrap;
+    overflow: hidden;
+  }
+  .custom-quote {
+    color: orange;
+    height: 52px;
+    font-size: 50px;
+
+    display: inline-block;
+  }
+
+  .left-arrow {
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+
+  .right-arrow {
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+  .quotes {
+    color: #575757;
+    font-size: 15px;
+  }
 }
