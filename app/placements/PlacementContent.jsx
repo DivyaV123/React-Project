@@ -5,7 +5,7 @@ import ImagePopup from "./ImagePopup";
 import VideoPopup from "./VideoPopup";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import Link from "next/link";
-import { branchAbbreviations } from "./Degree_Branch_Passout";
+import { branchAbbreviations } from "@/lib/utils";
 const PlacementContent = ({ counsellorFilterResponse }) => {
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
@@ -24,7 +24,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
   return (
     <>
       {counsellorFilterResponse?.map((student) => (
-        <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] h-[32.083vh] mt-[0.556vh]">
+        <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh] ">
           <AlertDialog popup="imagepopup">
             <div className="w-[15.547vw] ">
               <div className="h-[24.861vh] overflow-hidden w-full">

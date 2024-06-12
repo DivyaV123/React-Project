@@ -63,6 +63,12 @@ const GlobalContextProvider = ({ children }) => {
   const [toPercentage, setToPercentage] = useState("");
   const [selectedPercentage, setSelectedPercentage] = useState(null);
 
+
+  //placement general login
+  const [filterPlacementData,setFilterPlacementData] = useState({})
+  const [salariedParam,setSalariedParam]=useState('')
+  const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
+
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
@@ -81,7 +87,7 @@ const GlobalContextProvider = ({ children }) => {
       if (!repData.response.last) {
         setPage(page + 1);
       }
-    };
+    }
   }, 300);
 
   // const handleScroll = (event, page, setPage, repData) => {
@@ -97,9 +103,15 @@ const GlobalContextProvider = ({ children }) => {
   //   };
   // }
 
+  const timePeriods = {
+    "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),
+    "Last month": dayjs().subtract(1, "month").format("YYYY-MM-DD"),
+    "Last 3 months": dayjs().subtract(3, "month").format("YYYY-MM-DD"),
+    "Last 6 months": dayjs().subtract(6, "month").format("YYYY-MM-DD"),
+  };
 
 
-  const handleCommonFilter = (value, items, setItems, response, key) => {
+  const handleCounsellorCommonFilter = (value, items, setItems, response, key) => {
     setPage(0);
     let updatedSelectedItems = [...items];
 
@@ -138,12 +150,6 @@ const GlobalContextProvider = ({ children }) => {
             const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
             const largestPeriod = response[sortedPeriods[0]];
             const today = dayjs().format("YYYY-MM-DD");
-            const timePeriods = {
-              "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),
-              "Last month": dayjs().subtract(1, "month").format("YYYY-MM-DD"),
-              "Last 3 months": dayjs().subtract(3, "month").format("YYYY-MM-DD"),
-              "Last 6 months": dayjs().subtract(6, "month").format("YYYY-MM-DD"),
-            };
             updatedFilteringData[key] = [timePeriods[largestPeriod], today];
           }
         } else {
@@ -160,10 +166,28 @@ const GlobalContextProvider = ({ children }) => {
     }
   };
 
+  const handlePlacementCommonFilter = (title) => {
+    setSideBarBtn(title);
+    switch (title) {
+      case "Recent Placements":
+        setFilterPlacementData({});
+        break;
+      case "Top Salaries":
+        setSalariedParam("topsalaried");
+      case "Last week":
+      case "Last month":
+      case "Last 3 months":
+      case "Last 6 months":
+        const startDate = timePeriods[title];
+        const endDate = dayjs().format("YYYY-MM-DD");
+        setFilterPlacementData({ timePeriod: [startDate, endDate] });
+        break;
+      default:
+        break;
+    }
+  };
 
-
-
-
+console.log(filterPlacementData,"filterPlacementData");
   return (
     <GlobalContext.Provider value={{
       selectedBranch,
@@ -183,7 +207,7 @@ const GlobalContextProvider = ({ children }) => {
       size,
       setSize,
       scrollConst,
-      handleCommonFilter,
+      handleCounsellorCommonFilter,
       handleScroll,
       placeCheckedIcon,
       setPlacedCheckedIcon,
@@ -191,17 +215,21 @@ const GlobalContextProvider = ({ children }) => {
       setLessCheckedIcon,
       throughcheckedIcon,
       setThroughCheckedIcon,
-      fromValue, setFromValue, toValue, setToValue, selectedDate, setSelectedDate,
-      fromYear, setFromYear, toYear, setToYear, selectedYop, setSelectedYop,
-      selectedBranchFilter, setSelectedBranchFilter,
-      selectedBranchType, setSelectedBranchType,
-      stateItems, setStateItems,
-      selectedCity, setSelectedCity,
-      selectedUniversity, setSelectedUniversity,
-      selectedCollege, setSelectedCollege,
-      selectedDegrees, setSelectedDegrees,
-      selectedStream, setSelectedStream,
-      fromPercentage, setFromPercentage, toPercentage, setToPercentage, selectedPercentage, setSelectedPercentage
+       fromValue, setFromValue, toValue, setToValue, selectedDate, setSelectedDate,
+       fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,
+       selectedBranchFilter,setSelectedBranchFilter,
+       selectedBranchType,setSelectedBranchType,
+       stateItems,setStateItems,
+       selectedCity,setSelectedCity,
+       selectedUniversity, setSelectedUniversity,
+       selectedCollege, setSelectedCollege,
+       selectedDegrees, setSelectedDegrees,
+       selectedStream, setSelectedStream,
+       fromPercentage, setFromPercentage,toPercentage, setToPercentage,
+       selectedPercentage, setSelectedPercentage,
+       filterPlacementData,setFilterPlacementData,setSalariedParam,
+       salariedParam,sideBarBtn, setSideBarBtn,handlePlacementCommonFilter
+
     }}>{children}</GlobalContext.Provider>
   );
 };

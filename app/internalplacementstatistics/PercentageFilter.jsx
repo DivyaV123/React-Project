@@ -4,7 +4,7 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const PercentageFilter = () => {
-  const { filteringData, setFilteringData, handleCommonFilter,fromPercentage, setFromPercentage,
+  const { filteringData, setFilteringData, handleCounsellorCommonFilter,fromPercentage, setFromPercentage,
     toPercentage, setToPercentage,selectedPercentage, setSelectedPercentage
    } =
     useContext(GlobalContext);
@@ -47,7 +47,7 @@ const PercentageFilter = () => {
   const handleApplyFilter = () => {
     if (validateFrom(fromPercentage) === '' && (validateTo(toPercentage) === '' || toPercentage === '')) {
       const percentageRange = toPercentage !== '' ? [fromPercentage, toPercentage] : [fromPercentage];
-      handleCommonFilter(-1, [], setFilteringData, percentageRange, 'percentage');
+      handleCounsellorCommonFilter(-1, [], setFilteringData, percentageRange, 'percentage');
     } else {
       setErrorMessage('Please enter valid percentage values');
     }

@@ -1,6 +1,5 @@
 "use client";
-import React, { useEffect, useState, useContext } from "react";
-import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
+import React, { useState, useContext } from "react";
 import { Checkbox } from "@/components/ui/checkbox";
 import WebLayout from "@/components/commonComponents/webLayout/WebLayout";
 import {

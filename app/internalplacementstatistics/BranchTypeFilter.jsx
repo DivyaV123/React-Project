@@ -3,7 +3,7 @@ import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const BranchTypeFilter = () => {
-  const { handleCommonFilter, selectedBranchType, setSelectedBranchType } =
+  const { handleCounsellorCommonFilter, selectedBranchType, setSelectedBranchType } =
     useContext(GlobalContext);
   const branchType = ["Jspiders", "Qspiders", "Pyspiders", "Prospiders"];
 
@@ -14,7 +14,7 @@ const BranchTypeFilter = () => {
       label={item}
       checked={selectedBranchType.includes(item)}
       onChange={() =>
-        handleCommonFilter(
+        handleCounsellorCommonFilter(
           item,  // Pass the branch type value instead of index
           selectedBranchType,
           setSelectedBranchType,

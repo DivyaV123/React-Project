@@ -4,36 +4,34 @@ import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 import ExpandableList from "../../components/commonComponents/ExpandableList/ExpandableList";
 import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import { useGetAllCollegesQuery } from "@/redux/queries/getAllColleges";
+import { useGetAllCitiesQuery } from "@/redux/queries/getAllCities";
 
-const CollegeFilter = () => {
-  const { handleCommonFilter, universitySelected,selectedCollege, setSelectedCollege } = useContext(GlobalContext);
+const CityFilter = ({ selectedState }) => {
   const [searchQuery, setSearchQuery] = useState("");
-
-  const { data: collegeData, refetch } =
-    useGetAllCollegesQuery(universitySelected);
-  const collegeList = collegeData?.response
-    .filter((college) => college !== "")
-    .filter((college) =>
-      college.toLowerCase().includes(searchQuery.toLowerCase())
+  const { handleCounsellorCommonFilter, stateSelected,selectedCity,setSelectedCity } = useContext(GlobalContext);
+  const { data: cityData, refetch } = useGetAllCitiesQuery(stateSelected);
+  const cityList = cityData?.response
+    .filter((city) => city !== "")
+    .filter((cities) =>
+      cities.toLowerCase().includes(searchQuery.toLowerCase())
     );
   useEffect(() => {
     refetch();
-  }, [universitySelected]);
+  }, [stateSelected, refetch]);
 
   const renderCheckbox = (item, index) => (
     <Checkbox
       key={index}
       id={item}
       label={item}
-      checked={selectedCollege.includes(item)}
+      checked={selectedCity.includes(item)}
       onChange={() =>
-        handleCommonFilter(
+        handleCounsellorCommonFilter(
           item,
-          selectedCollege,
-          setSelectedCollege,
-          collegeData,
-          "college"
+          selectedCity,
+          setSelectedCity,
+          cityData,
+          "city"
         )
       }
     />
@@ -42,7 +40,7 @@ const CollegeFilter = () => {
   return (
     <div className="px-[1.875vw] pt-[2.778vh]">
       <div className="flex justify-between pb-[1.111vh]">
-        <p className="text-[0.938vw] text-[#002248] font-semibold">College</p>
+        <p className="text-[0.938vw] text-[#002248] font-semibold">City</p>
         <img src="../../down.svg" />
       </div>
       <div className="search-container pb-[1.111vh]">
@@ -56,11 +54,11 @@ const CollegeFilter = () => {
         <div className="search-icon"></div>
       </div>
       <ExpandableList
-        items={collegeList}
+        items={cityList}
         renderItem={(item, index) => renderCheckbox(item, index)}
       />
     </div>
   );
 };
 
-export default CollegeFilter;
+export default CityFilter;

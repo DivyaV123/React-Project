@@ -15,13 +15,15 @@ import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import BranchTypeFilter from "./BranchTypeFilter";
 
 const YearFilter = () => {
-  const { handleCommonFilter,fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,selectedBranchFilter,setSelectedBranchFilter } = useContext(GlobalContext);
+  const [searchQuery, setSearchQuery] = useState("");
+  const { handleCounsellorCommonFilter,fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,selectedBranchFilter,setSelectedBranchFilter } = useContext(GlobalContext);
   const { data: PlacementBranchData } = useGetAllPlacementBranchQuery();
   const BranchList = PlacementBranchData?.response;
   const { data: YearOfPassoutData } = useGetAllYearOfPassoutQuery();
   const YopList = YearOfPassoutData?.response;
   const sortedYearList = [...YopList || []].sort((a, b) => b - a);
-
+  const searchBranchList = BranchList?.filter(branch => branch !== "").filter(ele => ele.toLowerCase().includes(searchQuery.toLowerCase()));
+ 
   const handleFromYearChange = (year) => {
     setFromYear(year);
     setToYear("");
@@ -42,7 +44,7 @@ const YearFilter = () => {
   };
 
   const handleCommonFilterForYear = (yearRange) => {
-    handleCommonFilter(-1, [], setSelectedYop, yearRange, "yop");
+    handleCounsellorCommonFilter(-1, [], setSelectedYop, yearRange, "yop");
   };
 
   const clearYearRange = () => {
@@ -58,7 +60,7 @@ const YearFilter = () => {
       checked={selected?.includes(item)}
       onChange={() => {
         clearYearRange();
-        handleCommonFilter(item, selected, setSelected, items, "yop");
+        handleCounsellorCommonFilter(item, selected, setSelected, items, "yop");
       }}
     />
   );
@@ -69,7 +71,7 @@ const YearFilter = () => {
       id={item}
       label={item}
       checked={selected?.includes(item)}
-      onChange={() => handleCommonFilter(item, selected, setSelected, items, "branchLocation")}
+      onChange={() => handleCounsellorCommonFilter(item, selected, setSelected, items, "branchLocation")}
     />
   );
 
@@ -126,8 +128,18 @@ const YearFilter = () => {
         <p className="text-[0.938vw] text-[#002248] font-semibold">Branch</p>
         <img src="../../down.svg" />
       </div>
+      <div className="search-container pb-[1.111vh]">
+        <input 
+          type="text" 
+          placeholder="Search..." 
+          className="text-[0.781vw]" 
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+        />
+        <div className="search-icon"></div>
+      </div>
       <ExpandableList
-        items={BranchList}
+        items={searchBranchList}
         renderItem={(item, index) => renderBranchCheckbox(item, index, selectedBranchFilter, setSelectedBranchFilter, BranchList)}
       />
     </div>
