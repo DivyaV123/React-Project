@@ -87,7 +87,7 @@ const YearFilter = () => {
             {fromYear ? fromYear : "From"}
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <div className="w-[100%] bg-white">
+            <div className="w-[100%] max-h-60 myscrollbar overflow-y-auto  bg-white">
               {YopList?.map((year, index) => (
                 <DropdownMenuItem
                   key={year}
@@ -104,7 +104,7 @@ const YearFilter = () => {
             {toYear ? toYear : "To"}
           </DropdownMenuTrigger>
           <DropdownMenuContent>
-            <div className="w-[100%] bg-white flex flex-col item-center">
+            <div className="w-[100%] bg-white flex flex-col max-h-60 myscrollbar overflow-y-auto item-center">
               {YopList?.map((year) => (
                 <DropdownMenuItem
                   key={year}
