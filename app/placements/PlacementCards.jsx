@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState ,useContext} from "react";
+import React, { useEffect ,useContext} from "react";
 import "./PlacementCards.scss";
 import { Skeleton } from "@/components/ui/skeleton";
 import TotalPlacedCard from "./TotalPlacedCard";
@@ -17,7 +17,7 @@ import { PLACEMENT_PATH } from "@/lib/RouteConstants";
 import { useRouter } from "next/navigation";
 const PlacementCards = () => {
   const router = useRouter()
-  const {filterPlacementData,setFilterPlacementData,salariedParam,page,size}=useContext(GlobalContext)
+  const {filterPlacementData,setFilterPlacementData,placementParam,page,size}=useContext(GlobalContext)
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const {
     data: counsellorFilterResponse,
@@ -28,18 +28,12 @@ const PlacementCards = () => {
   } = useFetchCounsellorsQuery({
     pageNumber: page,
     pageSize: size,
-    parameter: salariedParam,
+    parameter: placementParam,
     bodyData:filterPlacementData
   });
-  const [isloading, setisLoading] = useState(true);
-  useEffect(() => {
-    setTimeout(() => {
-      setisLoading(false);
-    }, 2000);
-  }, []);
   useEffect(() => {
     refetch()
-  },[filterPlacementData])
+  },[filterPlacementData,placementParam])
 
 
   const emptyObj = Object.keys(filterPlacementData).length === 0;
@@ -69,36 +63,36 @@ const PlacementCards = () => {
   return (
     <>
       <div className="flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-[1.875rem]">
-        {isloading ? (
+        {isLoading ? (
           <div className=" flex flex-col gap-2 justify-center  w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
             <Skeleton className="h-7 w-[50%] ml-2" />
             <Skeleton className="h-10 w-[70%] ml-2" />
           </div>
         ) : (
-          <TotalPlacedCard allCounts={counsellorFilterResponse} />
+          <TotalPlacedCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
         )}
-        {isloading ? (
+        {isLoading ? (
           <CardSkeleton/>
         ) : (
-          <DegreeCard allCounts={counsellorFilterResponse} />
+          <DegreeCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
         )}
-        {isloading ? (
+        {isLoading ? (
           <CardSkeleton/>
         ) : (
-          <NonItCard allCounts={allPlacementCount} />
+          <NonItCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
         )}
-        {isloading ? (
+        {isLoading ? (
           <CardSkeleton/>
         ) : (
-          <BranchCard allCounts={allPlacementCount} />
+          <BranchCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
         )}
-        {isloading ? (
+        {isLoading ? (
           <CardSkeleton/>
         ) : (
-          <OverviewCard allCounts={counsellorFilterResponse} />
+          <OverviewCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
         )}
       </div>
-      <Degree_Branch_Passout />
+      <Degree_Branch_Passout isLoading={isLoading}/>
       <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching}/>
     </>
   );

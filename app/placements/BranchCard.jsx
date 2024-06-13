@@ -1,8 +1,34 @@
-import React from "react";
+import React,{useContext} from 'react'
 import "./PlacementCards.scss";
-const BranchCard = ({allCounts}) => {
+import { GlobalContext } from '@/components/Context/GlobalContext';
+const BranchCard = ({allCounts,placementPage}) => {
+  const {
+    setThroughCheckedIcon,
+    setLessCheckedIcon,
+    itCheckedIcon,
+    setPlacedCheckedIcon,
+    setNonItCheckedIcon,
+    setItCheckedIcon,
+    setPlacementParam,
+  } = useContext(GlobalContext);
+  const handleClick = () => {
+    if (placementPage === "GeneralPlacements") {
+      setPlacementParam("it");
+      setItCheckedIcon(true);
+      setNonItCheckedIcon(false);
+      setThroughCheckedIcon(false);
+      setPlacedCheckedIcon(false);
+      setLessCheckedIcon(false);
+    } else return;
+  };
   return (
-    <div className="branchCard">
+    <div className="branchCard cursor-pointer relative" onClick={handleClick}>
+      {itCheckedIcon && placementPage === "GeneralPlacements" && (
+        <img
+          src="../../checked.svg"
+          className="absolute -right-[7px] -top-[9px]"
+        />
+      )}
       <div className="flex h-full">
         <div className="flex flex-col justify-between ">
           <p className="font-medium pl-[1.563vw] pt-[2.778vh]  text-[1.094vw]">

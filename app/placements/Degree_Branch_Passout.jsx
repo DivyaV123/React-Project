@@ -7,14 +7,13 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { branchAbbreviations } from "@/lib/utils";
 import BarSkeleton from "@/components/skeletons/BarSkeleton";
 
-const Degree_Branch_Passout = () => {
-  const [isLoading, setIsLoading] = useState(true);
+const Degree_Branch_Passout = ({isLoading}) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
   const [isBranchMoreOpen, setIsBranchMoreOpen] = useState(false);
   const [isPassOutMoreOpen, setIsPassOutMoreOpen] = useState(false);
   const {
     setFilterPlacementData,
-    setSalariedParam,
+    setPlacementParam,
     degreeButton,
     setDegreeButton,
     branchButton,
@@ -27,12 +26,10 @@ const Degree_Branch_Passout = () => {
   const {
     data: degreeAndStreamdata,
     error,
-    isLoading: isLoadingDegreeAndStream,
   } = useGetAllDegreeAndStreamQuery();
   const {
     data: yopData,
     error: yopError,
-    isLoading: isLoadingYOP,
   } = useGetAllYearOfPassoutQuery();
 
   const [degreeList, setDegreeList] = useState([]);
@@ -47,13 +44,17 @@ const Degree_Branch_Passout = () => {
     if (yopData) {
       setYopList([...(yopData?.response || [])].sort((a, b) => b - a));
     }
-    setTimeout(() => {
-      setIsLoading(false);
-    }, 2000);
   }, [degreeAndStreamdata, yopData]);
 
-  const handleToggleMore = (setMoreOpen) => {
+  const handleToggleMore = (setMoreOpen, otherSetMoreStates) => {
     setMoreOpen((prevState) => !prevState);
+    otherSetMoreStates.forEach(setState => setState(false));
+  };
+
+  const resetButtonStates = (exceptKey) => {
+    if (exceptKey !== 'degree') setDegreeButton('');
+    if (exceptKey !== 'stream') setBranchButton('');
+    if (exceptKey !== 'yop') setPassOutButton('');
   };
 
   const handleItemClick = (item, items, setItems, setButtonState, key) => {
@@ -68,16 +69,17 @@ const Degree_Branch_Passout = () => {
     } else {
       setButtonState(item);
     }
-    setSalariedParam('');
+    setPlacementParam('');
     setFilterPlacementData({
       [key]: [item],
     });
+    resetButtonStates(key);
   };
 
-  const handleButtonClick = (item, setButtonState, setOtherButtonStates, key) => {
+  const handleButtonClick = (item, setButtonState, key) => {
+    resetButtonStates(key);
     setButtonState(item);
-    setOtherButtonStates.forEach(setState => setState(''));
-    setSalariedParam('');
+    setPlacementParam('');
     setSideBarBtn('');
     setFilterPlacementData({
       [key]: [item],
@@ -93,30 +95,30 @@ const Degree_Branch_Passout = () => {
     setItems,
     abbreviations,
     key,
-    setOtherButtonStates
+    otherSetMoreStates
   ) => (
     <div className="bg-white h-[2.65vw] flex w-full buttonSection relative">
       {items.slice(0, 6).map((item, index) => (
         <button
           key={index}
           className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
-            item == buttonState ? "activeButton font-medium" : ""
+            item === buttonState ? "activeButton font-medium" : ""
           }`}
-          onClick={() => handleButtonClick(item, setButtonState, setOtherButtonStates, key)}
+          onClick={() => handleButtonClick(item, setButtonState, key)}
         >
           {abbreviations[item] || item}
         </button>
       ))}
       {items.length > 6 && (
         <button
-          className="flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] text-[#4987CE]"
-          onClick={() => handleToggleMore(setMoreState)}
+          className="flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] text-[#4987CE] font-extrabold"
+          onClick={() => handleToggleMore(setMoreState, otherSetMoreStates)}
         >
-          {moreState ? "Less" : "More"}
+          {moreState ? "Less..." : "More..."}
         </button>
       )}
       {moreState && (
-        <ul className="additional-years-list">
+        <ul className="additional-years-list max-h-60 overflow-y-scroll myscrollbar">
           {items.slice(6).map((item, index) => (
             <li
               key={index}
@@ -153,12 +155,12 @@ const Degree_Branch_Passout = () => {
               setDegreeList,
               {},
               "degree",
-              [setBranchButton, setPassOutButton]
+              [setIsBranchMoreOpen, setIsPassOutMoreOpen]
             )}
           </div>
           <div className="w-[31.328vw]">
             <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-              Branch
+              Stream
             </p>
             {renderButtonSection(
               branchList,
@@ -169,7 +171,7 @@ const Degree_Branch_Passout = () => {
               setBranchList,
               branchAbbreviations,
               "stream",
-              [setDegreeButton, setPassOutButton]
+              [setIsDegreeMoreOpen, setIsPassOutMoreOpen]
             )}
           </div>
           <div className="w-[31.328vw]">
@@ -185,7 +187,7 @@ const Degree_Branch_Passout = () => {
               setYopList,
               {},
               "yop",
-              [setDegreeButton, setBranchButton]
+              [setIsDegreeMoreOpen, setIsBranchMoreOpen]
             )}
           </div>
         </>
