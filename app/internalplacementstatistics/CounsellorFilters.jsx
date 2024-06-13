@@ -73,9 +73,9 @@ const CounsellorFilters = () => {
       <div className="flex pb-[2.222vh] px-[1.875vw] pt-[3.333vh] justify-between filterHeader">
         <div className="flex gap-2">
           <button className={filterClass}>Filter</button>
-          <img src="../../filter.svg" alt="Filter Icon" />
+          <img src="../../filter.svg" alt="Filter Icon" onClick={clearFilters} />
         </div>
-        <button onClick={clearFilters} className={filterClass}>Clear</button>
+        <button className={filterClass}>Clear</button>
       </div>
       <TimeFilter isLoading={isLoading} />
       <>

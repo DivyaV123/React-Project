@@ -21,6 +21,11 @@ const Degree_Branch_Passout = ({isLoading}) => {
     passOutButton,
     setPassOutButton,
     setSideBarBtn,
+    setThroughCheckedIcon,
+    setLessCheckedIcon,
+    setPlacedCheckedIcon,
+    setNonItCheckedIcon,
+    setItCheckedIcon,
   } = useContext(GlobalContext);
 
   const {
@@ -81,6 +86,11 @@ const Degree_Branch_Passout = ({isLoading}) => {
     setButtonState(item);
     setPlacementParam('');
     setSideBarBtn('');
+    setPlacedCheckedIcon(true);
+    setLessCheckedIcon(false);
+    setThroughCheckedIcon(false);
+    setNonItCheckedIcon(false);
+    setItCheckedIcon(false);
     setFilterPlacementData({
       [key]: [item],
     });
