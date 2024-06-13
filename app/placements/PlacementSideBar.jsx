@@ -7,6 +7,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import dayjs from "dayjs";
 import BlinkingDots from "@/components/skeletons/BlinkingDots";
+import PlacementSidebarSkeleton from "@/components/skeletons/PlacementSidebarSkeleton";
 
 const PlacementSideBar = ({ counsellorFilterResponse ,isFetching,isLoading}) => {
   const [accumulatedData, setAccumulatedData] = useState([]);
@@ -71,14 +72,7 @@ const PlacementSideBar = ({ counsellorFilterResponse ,isFetching,isLoading}) => 
   return (
     <section className="flex ml-16 mb-8 h-[58.889vh]">
       {isLoading ? (
-        <section className="flex flex-col justify-start items-end pt-8 w-[15%] gap-3 mb-8 h-[58.889vh]  border rounded-xl">
-          <Skeleton className="h-9  w-full" />
-          <Skeleton className="h-9 w-full" />
-          <Skeleton className="h-9 w-full" />
-          <Skeleton className="h-9  w-full" />
-          <Skeleton className="h-9  w-full" />
-          <Skeleton className="h-9  w-full" />
-        </section>
+        <PlacementSidebarSkeleton/>
       ) : (
         <aside className="sidebarContainer pt-[3.333vh]">
           {sideBar.map((classItem, index) => (
