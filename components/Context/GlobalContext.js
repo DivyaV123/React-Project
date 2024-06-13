@@ -22,6 +22,8 @@ const GlobalContextProvider = ({ children }) => {
   const [placeCheckedIcon, setPlacedCheckedIcon] = useState(true)
   const [lesscheckedIcon, setLessCheckedIcon] = useState(false)
   const [throughcheckedIcon, setThroughCheckedIcon] = useState(false)
+  const [itCheckedIcon, setItCheckedIcon] = useState(false)
+  const [nonItCheckedIcon, setNonItCheckedIcon] = useState(false)
   const [scrollConst, setScrollConst] = useState()
 
   //daterange
@@ -66,7 +68,7 @@ const GlobalContextProvider = ({ children }) => {
 
   //placement general login
   const [filterPlacementData,setFilterPlacementData] = useState({})
-  const [salariedParam,setSalariedParam]=useState('')
+  const [placementParam,setPlacementParam]=useState('')
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
   const [degreeButton, setDegreeButton] = useState("");
   const [branchButton, setBranchButton] = useState("");
@@ -177,18 +179,18 @@ const GlobalContextProvider = ({ children }) => {
     switch (title) {
       case "Recent Placements":
         setFilterPlacementData({});
-        setSalariedParam('')
+        setPlacementParam('')
         break;
-      case "Top Salaries":
-        setSalariedParam("topsalaried");
-        break;
+      // case "Top Salaries":
+      //   setPlacementParam("topsalaried");
+      //   break;
       case "Last week":
       case "Last month":
       case "Last 3 months":
       case "Last 6 months":
         const startDate = timePeriods[title];
         const endDate = dayjs().format("YYYY-MM-DD");
-        setSalariedParam('')
+        setPlacementParam('')
         setFilterPlacementData({
           timePeriod: [startDate, endDate] 
         })
@@ -198,7 +200,6 @@ const GlobalContextProvider = ({ children }) => {
     }
   };
 
-console.log(filterPlacementData,"filterPlacementData");
   return (
     <GlobalContext.Provider value={{
       selectedBranch,
@@ -238,9 +239,10 @@ console.log(filterPlacementData,"filterPlacementData");
        selectedStream, setSelectedStream,
        fromPercentage, setFromPercentage,toPercentage, setToPercentage,
        selectedPercentage, setSelectedPercentage,
-       filterPlacementData,setFilterPlacementData,setSalariedParam,
-       salariedParam,sideBarBtn, setSideBarBtn,handlePlacementCommonFilter,
-       degreeButton, setDegreeButton,branchButton, setBranchButton,passOutButton, setPassOutButton
+       filterPlacementData,setFilterPlacementData,setPlacementParam,
+       placementParam,sideBarBtn, setSideBarBtn,handlePlacementCommonFilter,
+       degreeButton, setDegreeButton,branchButton, setBranchButton,passOutButton, setPassOutButton,
+       nonItCheckedIcon, setNonItCheckedIcon,itCheckedIcon, setItCheckedIcon
 
     }}>{children}</GlobalContext.Provider>
   );

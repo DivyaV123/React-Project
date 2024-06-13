@@ -2,14 +2,16 @@
 import React, { useContext, useEffect, useState } from "react";
 import PlacementContent from "./PlacementContent";
 import "./PlacementSidebar.scss";
-import { Skeleton } from "@/components/ui/skeleton";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
-import dayjs from "dayjs";
 import BlinkingDots from "@/components/skeletons/BlinkingDots";
 import PlacementSidebarSkeleton from "@/components/skeletons/PlacementSidebarSkeleton";
 
-const PlacementSideBar = ({ counsellorFilterResponse ,isFetching,isLoading}) => {
+const PlacementSideBar = ({
+  counsellorFilterResponse,
+  isFetching,
+  isLoading,
+}) => {
   const [accumulatedData, setAccumulatedData] = useState([]);
   const {
     page,
@@ -19,8 +21,11 @@ const PlacementSideBar = ({ counsellorFilterResponse ,isFetching,isLoading}) => 
     handleScroll,
     filterPlacementData,
     setFilterPlacementData,
-    setSalariedParam,
-    salariedParam,sideBarBtn, setSideBarBtn,handlePlacementCommonFilter
+    setPlacementParam,
+    placementParam,
+    sideBarBtn,
+    setSideBarBtn,
+    handlePlacementCommonFilter,
   } = useContext(GlobalContext);
 
   const sideBar = [
@@ -29,11 +34,11 @@ const PlacementSideBar = ({ counsellorFilterResponse ,isFetching,isLoading}) => 
       icon: "../../icon_arrow_white.svg",
       blackIcon: "../../icon_arrow.svg",
     },
-    {
-      title: "Top Salaries",
-      icon: "../../icon_arrow_white.svg",
-      blackIcon: "../../icon_arrow.svg",
-    },
+    // {
+    //   title: "Top Salaries",
+    //   icon: "../../icon_arrow_white.svg",
+    //   blackIcon: "../../icon_arrow.svg",
+    // },
     {
       title: "Last week",
       icon: "../../icon_arrow_white.svg",
@@ -61,18 +66,19 @@ const PlacementSideBar = ({ counsellorFilterResponse ,isFetching,isLoading}) => 
       if (page > 0) {
         setAccumulatedData((prevData) => [
           ...prevData,
-          ...counsellorFilterResponse?.response?.candidates?.content ,
+          ...(counsellorFilterResponse?.response?.candidates?.content || []),
         ]);
       } else {
-        setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content  || []);
+        setAccumulatedData(
+          counsellorFilterResponse?.response?.candidates?.content || []
+        );
       }
     }
   }, [counsellorFilterResponse]);
-
   return (
     <section className="flex ml-16 mb-8 h-[58.889vh]">
       {isLoading ? (
-        <PlacementSidebarSkeleton/>
+        <PlacementSidebarSkeleton />
       ) : (
         <aside className="sidebarContainer pt-[3.333vh]">
           {sideBar.map((classItem, index) => (
@@ -98,7 +104,6 @@ const PlacementSideBar = ({ counsellorFilterResponse ,isFetching,isLoading}) => 
           ))}
         </aside>
       )}
-      {/* {islo} */}
 
       {isLoading ? (
         <CardContentSkeleton />
@@ -111,13 +116,12 @@ const PlacementSideBar = ({ counsellorFilterResponse ,isFetching,isLoading}) => 
         >
           <PlacementContent
             counsellorFilterResponse={
-              accumulatedData
+              placementParam !== ""
+                ? counsellorFilterResponse?.response?.content
+                : accumulatedData
             }
           />
-          {
-          isFetching &&
-          <BlinkingDots/>
-        }
+          {isFetching && <BlinkingDots />}
         </section>
       )}
     </section>
