@@ -8,7 +8,10 @@ function TextArea(
         placeholder = '',
         iconPath = '',
         textAreaStyle = '',
-        iconStyle = ''
+        iconStyle = '',
+        value,
+        name = '',
+        onBlur
     }
 
 ) {
@@ -17,7 +20,7 @@ function TextArea(
             {iconPath &&
                 <img src={iconPath} alt="icon" className={`${iconStyle} absolute left-[0.938vw] top-[1.389vh] w-[2.778vh] h-[2.778vh]`}></img>
             }
-            <textarea className={`${textAreaStyle} w-full ${iconPath ? 'py-[1.25vh] px-[0.938vw] pl-[2.6vw]' : 'py-[1.25vh] px-[0.938vw]'} border border-gray-300 rounded`} type={type} onChange={onChange} placeholder={placeholder} />
+            <textarea className={`${textAreaStyle} w-full ${iconPath ? 'py-[1.25vh] px-[0.938vw] pl-[2.6vw]' : 'py-[1.25vh] px-[0.938vw]'} border border-gray-300 rounded`} type={type} onChange={onChange} placeholder={placeholder} name={name} value={value} onBlur={onBlur} />
         </section>
     )
 }
