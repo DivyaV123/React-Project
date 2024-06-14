@@ -3,69 +3,47 @@ import styles from './Accordion.module.css'; // Import CSS module
 import Svg from '../commonComponents/Svg/Svg';
 import { svgicons } from '../assets/icons/svgassets';
 
-function NestedAccordion({ data, page, parentAccordianStyle }) {
-    const [activeSections, setActiveSections] = useState([]);
-    const [accordianArrow, setAccordianArrow] = useState([]);
+const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
+    const [activeSections, setActiveSections] = useState({});
+    const [accordianArrow, setAccordianArrow] = useState({});
 
     const handleClick = (index) => {
-        setActiveSections((prevActiveSections) => {
-            if (prevActiveSections.includes(index)) {
-                // If section is already active, close it
-                return prevActiveSections.filter((activeIndex) => activeIndex !== index);
-            } else {
-                // If section is not active, open it
-                return [...prevActiveSections, index];
-            }
-        });
-        setAccordianArrow((prevActiveSections) => {
-            if (prevActiveSections.includes(index)) {
-                // If section is already active, close it
-                return prevActiveSections.filter((activeIndex) => activeIndex !== index);
-            } else {
-                // If section is not active, open it
-                return [...prevActiveSections, index];
-            }
-        });
+        setActiveSections((prevActiveSections) => ({
+            ...prevActiveSections,
+            [index]: !prevActiveSections[index],
+        }));
+        setAccordianArrow((prevAccordianArrow) => ({
+            ...prevAccordianArrow,
+            [index]: !prevAccordianArrow[index],
+        }));
     };
 
-    const handleSubsectionClick = (e) => {
-        e.stopPropagation();
-        const subsectionIndex = e.target.dataset.subsection;
-        setActiveSections((prevActiveSections) => {
-            if (!prevActiveSections.includes(subsectionIndex)) {
-                // If the subsection is not active, open it
-                return [...prevActiveSections, subsectionIndex];
-            } else {
-                // If the subsection is active, toggle its state
-                return prevActiveSections.filter((activeIndex) => activeIndex !== subsectionIndex);
-            }
-        });
-        setAccordianArrow((prevActiveSections) => {
-            if (!prevActiveSections.includes(subsectionIndex)) {
-                // If the subsection is not active, open it
-                return [...prevActiveSections, subsectionIndex];
-            } else {
-                // If the subsection is active, toggle its state
-                return prevActiveSections.filter((activeIndex) => activeIndex !== subsectionIndex);
-            }
-        });
+    const handleSubsectionClick = (sectionIndex, subsectionIndex) => {
+        const combinedIndex = `${sectionIndex}-${subsectionIndex}`;
+        setActiveSections((prevActiveSections) => ({
+            ...prevActiveSections,
+            [combinedIndex]: !prevActiveSections[combinedIndex],
+        }));
+        setAccordianArrow((prevAccordianArrow) => ({
+            ...prevAccordianArrow,
+            [combinedIndex]: !prevAccordianArrow[combinedIndex],
+        }));
     };
 
     const renderContent = (content, sectionIndex) => {
         if (Array.isArray(content)) {
             return content.map((item, index) => {
-                if (typeof item === 'object') {
-                    // Render subsection
+                if (typeof item === 'object' && item !== null) {
                     const subsectionKey = Object.keys(item)[0];
                     const subsectionContent = item[subsectionKey];
                     const subsectionIndex = `${sectionIndex}-${index}`;
                     return (
-                        <div key={subsectionIndex} onClick={handleSubsectionClick} className='my-[0.833vh] ml-[1.875vw]'>
+                        <div key={subsectionIndex} className='my-[0.833vh] ml-[1.875vw]'>
                             <button
-                                className={page === 'course' ? `${styles.accordion} flex items-center   gap-x-[0.938vw]` : ''}
-                                data-subsection={subsectionIndex}
+                                className={page === 'course' ? `${styles.accordion} flex items-center gap-x-[0.938vw]` : ''}
+                                onClick={() => handleSubsectionClick(sectionIndex, index)}
                             >
-                                {(accordianArrow.includes(subsectionIndex) && page === 'course') ? (
+                                {(accordianArrow[subsectionIndex] && page === 'course') ? (
                                     <Svg
                                         className=''
                                         width={svgicons.accordianArrowDown[0]}
@@ -85,23 +63,20 @@ function NestedAccordion({ data, page, parentAccordianStyle }) {
                                     />
                                 )}
                                 <div>
-
-                                {subsectionKey}
+                                    {subsectionKey}
                                 </div>
-
                             </button>
-                            <div className={`${styles.panel} ${activeSections.includes(subsectionIndex) ? styles.active : ''}`}>
+                            <div className={`${styles.panel} ${activeSections[subsectionIndex] ? styles.active : ''}`}>
                                 {renderContent(subsectionContent, subsectionIndex)}
                             </div>
-                        </div >
+                        </div>
                     );
                 } else {
-                    // Render string content
                     return (
                         <>
                             {item !== "" && (
                                 <article className='flex justify-between pl-[2.813vw] py-[1.667vh] items-center pr-[1.875vw]'>
-                                    {page === 'course' ?
+                                    {page === 'course' ? (
                                         <>
                                             <h1 className='flex items-center gap-x-[0.625vw]'>
                                                 <span>
@@ -113,7 +88,7 @@ function NestedAccordion({ data, page, parentAccordianStyle }) {
                                                         color={svgicons.courseVideoIcon[4]}
                                                     />
                                                 </span>
-                                                <span className=' text-dark-gray font medium text-[1.094vw]'>{item}</span>
+                                                <span className='text-dark-gray font-medium text-[1.094vw]'>{item}</span>
                                             </h1>
                                             <h1 className='flex items-center gap-x-[0.625vw]'>
                                                 <span>
@@ -124,14 +99,15 @@ function NestedAccordion({ data, page, parentAccordianStyle }) {
                                                         icon={svgicons.courseVideoIcon[3]}
                                                         color={svgicons.courseVideoIcon[4]}
                                                     />
-                                                </span><span className=' text-dark-gray font medium text-[1.094vw]'>Preview</span><span className=' text-dark-gray font medium text-[1.094vw]'>4 min</span>
+                                                </span>
+                                                <span className='text-dark-gray font-medium text-[1.094vw]'>Preview</span>
+                                                <span className='text-dark-gray font-medium text-[1.094vw]'>4 min</span>
                                             </h1>
-                                        </> :
-                                        <span className=' text-dark-gray font medium text-[1.094vw]'>{item}</span>
-                                    }
+                                        </>
+                                    ) : (
+                                        <span className='text-dark-gray font-medium text-[1.094vw]'>{item}</span>
+                                    )}
                                 </article>
-
-
                             )}
                         </>
                     );
@@ -144,10 +120,10 @@ function NestedAccordion({ data, page, parentAccordianStyle }) {
 
     return (
         <div>
-            {data.map((section, index) => (
+            {data?.map((section, index) => (
                 <div key={index} className={page === 'course' ? 'border border-[#EBEBEB] my-[0.833vh] rounded-md' : `${parentAccordianStyle}`}>
-                    <button className={page === 'course'? `${styles.accordion} flex items-center  gap-x-[0.938vw]` : 'flex'} onClick={() => handleClick(index)}>
-                        {accordianArrow.includes(index) ? (
+                    <button className={page === 'course' ? `${styles.accordion} flex items-center gap-x-[0.938vw]` : 'flex'} onClick={() => handleClick(index)}>
+                        {accordianArrow[index] ? (
                             <Svg
                                 className=''
                                 width={svgicons.accordianArrowDown[0]}
@@ -167,16 +143,16 @@ function NestedAccordion({ data, page, parentAccordianStyle }) {
                             />
                         )}
                         <div className='text-[1.25vw]'>
-                        {Object.keys(section)[0]}
+                            {Object.keys(section)[0]}
                         </div>
                     </button>
-                    <div className={`${styles.panel} ${activeSections.includes(index) ? styles.active : ''}`}>
+                    <div className={`${styles.panel} ${activeSections[index] ? styles.active : ''}`}>
                         {renderContent(Object.values(section)[0], index)}
                     </div>
                 </div>
             ))}
         </div>
     );
-}
+};
 
 export default NestedAccordion;

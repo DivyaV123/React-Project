@@ -1,5 +1,5 @@
-.classTypes{
-  border: 1px solid #E0E0E0;
+.classTypes {
+  border: 1px solid #e0e0e0;
   border-radius: 6px;
 }
 .courseButton {
@@ -12,11 +12,11 @@
   color: #ffffff;
 }
 .ratingButton {
+  min-width: 10vw;
   height: 3.12vw;
   font-size: 0.875rem;
   line-height: 1.125rem;
-  background: #FFE8D3;
-
+  background: #ffe8d3;
 }
 .EnrollButton {
   background: transparent linear-gradient(112deg, #f09819 0%, #ff512f 100%) 0%
@@ -104,13 +104,18 @@
   border-radius: 0.5rem;
   box-shadow: 0px 0px 24px -6px rgba(0, 0, 0, 0.25);
 }
-.courseBackgroundwave{
-  background-image:url(../../public/course_bg_wave.svg), linear-gradient(180deg, rgba(255, 201, 151, 0.3) 0%, rgba(255, 255, 255, 0.76) 78.2%);
+.courseBackgroundwave {
+  background-image: url(../../public/course_bg_wave.svg),
+    linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.3) 0%,
+      rgba(255, 255, 255, 0.76) 78.2%
+    );
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: bottom; 
+  background-position: bottom;
 }
 
-.testinomialShadow{
+.testinomialShadow {
   box-shadow: 0px 0px 12px -6px #00000040;
 }

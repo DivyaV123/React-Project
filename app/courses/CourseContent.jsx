@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     Accordion,
     AccordionContent,
@@ -10,9 +10,12 @@ import CoursePageContainer from './CoursePageContainer';
 import Svg from '@/components/commonComponents/Svg/Svg';
 import { svgicons } from '@/components/assets/icons/svgassets';
 import NestedAccordion from '@/components/ui/NestedAccordion';
+import { GlobalContext } from '@/components/Context/GlobalContext';
 
 function CourseContent() {
-    const courseContentdata = [
+    const { selectedCourseDetails } = useContext(GlobalContext);
+    console.log(selectedCourseDetails, "selectedCourseDetails.........")
+    const courseContentdatas = [
         {
             "Manual Testing": [
                 {
@@ -29,6 +32,23 @@ function CourseContent() {
         { "Manual Testing": [''] }
     ];
 
+    const transformData = (subjects) => {
+        return subjects?.flatMap(subject => {
+            return subject?.chapters?.map(chapter => {
+                return {
+                    [chapter.chapterTitle]: chapter?.topics.map(topic => {
+                        return {
+                            [topic.topicTitle]: topic?.subTopics?.map(subTopic => subTopic?.subTopicTitle)
+                        };
+                    })
+                };
+            });
+        });
+    };
+
+    const courseContentdata = transformData(selectedCourseDetails?.data?.subjects)
+    console.log(selectedCourseDetails?.data?.subjects[0]?.chapters, "courseContentdatacourseContentdata")
+
     const [openIndex, setOpenIndex] = useState(-1);
 
     const handleAccordionToggle = (index) => {
@@ -39,7 +59,7 @@ function CourseContent() {
         if (!Array.isArray(data)) {
             return null; // Return null if data is not an array
         }
-        return data.map((item, index) => {
+        return data?.map((item, index) => {
             const key = parentKey ? `${parentKey}-accordion-${index}` : `accordion-${index}`;
             if (typeof item === 'object' && !Array.isArray(item)) {
                 const [keyName] = Object.keys(item);
@@ -114,8 +134,8 @@ function CourseContent() {
                 Course Content
             </header>
             <article className='my-[2.778vh] mr-[1.563vw]'>
-                <NestedAccordion data={courseContentdata} 
-                page='course'/>
+                <NestedAccordion data={courseContentdata}
+                    page='course' />
             </article>
         </CoursePageContainer>
     )
