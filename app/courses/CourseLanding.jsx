@@ -1,12 +1,17 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
 import "./CourseLanding.scss";
 import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
+import { useGetAllCourseDetailsQuery } from "@/redux/queries/getCoursedetails";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const CourseLanding = ({ page }) => {
+  const { selectedCourseDetailsId } = useContext(GlobalContext);
+  const { data: courseDetails, error, isLoading, refetch } = useGetAllCourseDetailsQuery(selectedCourseDetailsId)
+  console.log(courseDetails, "courseDEtailscourseDEtailscourseDEtails")
   const typesOfClasses = [
     {
       title: "Offline Classes",
@@ -43,6 +48,11 @@ const CourseLanding = ({ page }) => {
     page === "tution" ? "Experiential Learning" : "Offline Classes"
   );
 
+  useEffect(() => {
+    refetch()
+
+  }, [selectedCourseDetailsId])
+
   return (
     <MaxWebWidth
       sectionStyling=" max-w-full overflow-hidden courseBackgroundwave "
@@ -66,7 +76,7 @@ const CourseLanding = ({ page }) => {
           </div>
           <div className="py-[1.389vh] flex gap-6 items-center">
             <h1 className="font-bold text-left text-[3.75vw]">
-              Software Testing
+              {courseDetails?.data?.courseName}
             </h1>
             <button className="ratingButton flex justify-center items-center py-2 px-4 font-semibold rounded text-ash">
               <span className="flex text-[1.25vw] py-[0.556vh] px-[0.313vw]">
@@ -91,10 +101,10 @@ const CourseLanding = ({ page }) => {
           <article className="flex pb-[5.556vh]">
             {statisticsData.map((ele, index) => (
               <div key={index} className=" ">
-                <h1 className={`text-left font-bold text-[1.875vw]  pb-[0.556vh] headerText ${ele.number !== "15,000+" ? "pr-[2.5vw]" :""}`}>
+                <h1 className={`text-left font-bold text-[1.875vw]  pb-[0.556vh] headerText ${ele.number !== "15,000+" ? "pr-[2.5vw]" : ""}`}>
                   {ele.number}
                 </h1>
-                <p className={`text-left font-medium text-[1.094vw]  headerText ${ele.text !== "IT Students placed" ? "pr-[2.5vw]" :""}`}>
+                <p className={`text-left font-medium text-[1.094vw]  headerText ${ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""}`}>
                   {ele.text}
                 </p>
               </div>

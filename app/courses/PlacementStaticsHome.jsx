@@ -6,8 +6,11 @@ import { Badge } from "@/components/ui/badge"
 import HiringPartners from '@/components/hiringPartners/hiringPartners'
 import CoursePageContainer from './CoursePageContainer'
 import { Skeleton } from "@/components/ui/skeleton"
+import { useGetAllPlacementCountQuery } from '@/redux/queries/getAllPlacementCount'
 
 function PlacementStaticsHome({ path }) {
+    const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
+    console.log(countDetails, "countDetailscountDetails")
     const [isloading, setisLoading] = useState(true)
     const svgPath = [
         { src: "../compLogo01.svg" },
@@ -37,22 +40,22 @@ function PlacementStaticsHome({ path }) {
     ]
     const statistics = [
         {
-            count: '94,860',
+            count: `${countDetails?.response?.allPlacedCount}`,
             info: 'Students who have throughout 60% Aggregate',
             icon: './placementIcon1.svg'
         },
         {
-            count: '42,992',
+            count: `${countDetails?.response?.nonItCount}`,
             info: 'Students who have graduated in Non - IT',
             icon: './staticsIcon02.svg'
         },
         {
-            count: '68,481',
+            count: `${countDetails?.response?.itCount}`,
             info: 'Students who have graduated in IT/CS/IS',
             icon: './placementIcon03.svg'
         },
         {
-            count: '15,024',
+            count: `${countDetails?.response?.lessThanSixtyPercent}`,
             info: 'Students who have less than 60% Aggregate',
             icon: './placementIcon04.svg'
         },
