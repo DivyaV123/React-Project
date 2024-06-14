@@ -70,12 +70,13 @@ const [generateLink,setGenerateLink] = useState(false);
 const [generatedPath,setGeneratedPath] = useState("")
 
   //placement general login
-  const [filterPlacementData,setFilterPlacementData] = useState({})
-  const [placementParam,setPlacementParam]=useState('')
+  const [filterPlacementData, setFilterPlacementData] = useState({})
+  const [placementParam, setPlacementParam] = useState('')
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
   const [degreeButton, setDegreeButton] = useState("");
   const [branchButton, setBranchButton] = useState("");
   const [passOutButton, setPassOutButton] = useState("");
+  const [selectedCourseDetailsId, setSelectedCoursDetailseId] = useState(null)
 
   function debounce(func, wait) {
     let timeout;
@@ -195,7 +196,7 @@ const [generatedPath,setGeneratedPath] = useState("")
         const endDate = dayjs().format("YYYY-MM-DD");
         setPlacementParam('')
         setFilterPlacementData({
-          timePeriod: [startDate, endDate] 
+          timePeriod: [startDate, endDate]
         })
         break;
       default:
@@ -230,24 +231,25 @@ const [generatedPath,setGeneratedPath] = useState("")
       setLessCheckedIcon,
       throughcheckedIcon,
       setThroughCheckedIcon,
-       fromValue, setFromValue, toValue, setToValue, selectedDate, setSelectedDate,
-       fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,
-       selectedBranchFilter,setSelectedBranchFilter,
-       selectedBranchType,setSelectedBranchType,
-       stateItems,setStateItems,
-       selectedCity,setSelectedCity,
-       selectedUniversity, setSelectedUniversity,
-       selectedCollege, setSelectedCollege,
-       selectedDegrees, setSelectedDegrees,
-       selectedStream, setSelectedStream,
-       fromPercentage, setFromPercentage,toPercentage, setToPercentage,
-       selectedPercentage, setSelectedPercentage,
-       filterPlacementData,setFilterPlacementData,setPlacementParam,
-       placementParam,sideBarBtn, setSideBarBtn,handlePlacementCommonFilter,
-       degreeButton, setDegreeButton,branchButton, setBranchButton,passOutButton, setPassOutButton,
-       nonItCheckedIcon, setNonItCheckedIcon,itCheckedIcon, setItCheckedIcon,
-       generateLink,setGenerateLink,generatedPath,setGeneratedPath
-
+      fromValue, setFromValue, toValue, setToValue, selectedDate, setSelectedDate,
+      fromYear, setFromYear, toYear, setToYear, selectedYop, setSelectedYop,
+      selectedBranchFilter, setSelectedBranchFilter,
+      selectedBranchType, setSelectedBranchType,
+      stateItems, setStateItems,
+      selectedCity, setSelectedCity,
+      selectedUniversity, setSelectedUniversity,
+      selectedCollege, setSelectedCollege,
+      selectedDegrees, setSelectedDegrees,
+      selectedStream, setSelectedStream,
+      fromPercentage, setFromPercentage, toPercentage, setToPercentage,
+      selectedPercentage, setSelectedPercentage,
+      filterPlacementData, setFilterPlacementData, setPlacementParam,
+      placementParam, sideBarBtn, setSideBarBtn, handlePlacementCommonFilter,
+      degreeButton, setDegreeButton, branchButton, setBranchButton, passOutButton, setPassOutButton,
+      nonItCheckedIcon, setNonItCheckedIcon, itCheckedIcon, setItCheckedIcon,
+       generateLink,setGenerateLink,generatedPath,setGeneratedPath,
+      setSelectedCoursDetailseId,
+      selectedCourseDetailsId
     }}>{children}</GlobalContext.Provider>
   );
 };

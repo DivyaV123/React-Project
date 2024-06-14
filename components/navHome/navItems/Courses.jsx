@@ -1,12 +1,14 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './navitems.scss'
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import { COURSE_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const Courses = () => {
+  const { setSelectedCoursDetailseId } = useContext(GlobalContext);
   const courses = [
     {
       icon: "softwareArchIcon",
@@ -255,7 +257,7 @@ const Courses = () => {
   const [hoveredCourseIndex, setHoveredCourseIndex] = useState(0);
   const [hoveredSubCourseIndex, setHoveredSubCourseIndex] = useState(0);
   const [activeResponses, setActiveResponses] = useState([]);
-
+  console.log(setSelectedCoursDetailseId, "setSelectedCoursDetailseId")
   const handleCourseHover = (courseIndex, courseResponses) => {
     setHoveredCourseIndex(courseIndex);
     setHoveredSubCourseIndex(0); // Reset sub-course hover
@@ -318,10 +320,13 @@ const Courses = () => {
           } flex flex-wrap h-fit gap-4`}>
           {activeResponses.map((content, index) => (
             <Link href={COURSE_PATH} key={index}>
-              <div className={`${hoveredCourseIndex !== null && activeResponses.length
-                ? "courseMedium"
-                : "courseinitial"
-                } p-2 branchOverlay h-fit`}>
+              {console.log(content, "content from click")}
+              <div
+                onClick={() => { setSelectedCoursDetailseId(content.courseResponseId) }}
+                className={`${hoveredCourseIndex !== null && activeResponses.length
+                  ? "courseMedium"
+                  : "courseinitial"
+                  } p-2 branchOverlay h-fit`}>
                 <div className="flex h-10 gap-1.5">
                   <img className="h-8 w-8" src={content.icon} />
                   <h3 className="text-left h-8 text-sm font-bold items-center flex">

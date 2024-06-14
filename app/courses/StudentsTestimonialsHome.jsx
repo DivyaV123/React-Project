@@ -13,7 +13,7 @@ import {
 import CoursePageContainer from './CoursePageContainer'
 import TestimonialsSkeletonCard from './TestimonialsSkeletonCard'
 
-function StudentsTestimonialsHome({ page }) {
+function StudentsTestimonialsHome({ page, testimonialsData }) {
     const [isloading, setisLoading] = useState(true)
     useEffect(() => {
         setTimeout(() => {
@@ -32,16 +32,19 @@ function StudentsTestimonialsHome({ page }) {
                 <article className={page === "branch" ? '' : 'w-[93%] overflow-hide'}>
                     <Carousel>
                         <CarouselContent className='bg-[#F9F9F9]'>
-                            {Array.from({ length: 4 }, (value, index) => (
-                                <CarouselItem className={page === 'branch' ? 'basis-[33%]' : "basis-[57%]"} >
-                                    <article className='flex gap-4 pb-3'>
-                                        {isloading ? <TestimonialsSkeletonCard /> : < TestimonialsCard />}
-                                    </article>
-                                    <article className='flex gap-4'>
-                                        {isloading ? <TestimonialsSkeletonCard /> : < TestimonialsCard />}
-                                    </article>
-                                </CarouselItem>
-                            ))}
+                            {testimonialsData?.map((element, index) => {
+                                return (
+                                    <CarouselItem className={page === 'branch' ? 'basis-[33%]' : "basis-[57%]"} >
+                                        <article className='flex gap-4 pb-3'>
+                                            {isloading ? <TestimonialsSkeletonCard /> : < TestimonialsCard testimonialsData={index % 2 !== 0 && element} />}
+                                        </article>
+                                        <article className='flex gap-4'>
+                                            {isloading ? <TestimonialsSkeletonCard /> : < TestimonialsCard testimonialsData={index % 2 === 0 && element} />}
+                                        </article>
+                                    </CarouselItem>
+                                );
+                            })}
+
                         </CarouselContent>
                         <CarouselPrevious />
                         <CarouselNext />

@@ -25,8 +25,6 @@ const Courses = () => {
       <PlacementStaticsHome />
       <HiringPartnersHome />
       <StudentsPlacedHome />
-      <CourseHighlites />
-      <StudentsTestimonialsHome />
       <CoursesFaq />
     </WebLayout>
   )

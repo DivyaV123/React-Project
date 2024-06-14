@@ -2,7 +2,8 @@ import { svgicons } from '@/components/assets/icons/svgassets'
 import Svg from '@/components/commonComponents/Svg/Svg'
 import React from 'react'
 
-function TestimonialsCard() {
+function TestimonialsCard({ testimonialsData }) {
+    console.log(testimonialsData, "testimonialsData")
     return (
         <article className='flex justify-around w-[28.906vw] bg-white rounded-xl py-3 px-1 overflow-hide'>
             <article className='base-[35%]'>
@@ -16,10 +17,10 @@ function TestimonialsCard() {
             <article className='basis-[65%]'>
                 <header>
                     <h1 className='font-bold pb-1 text-dark-gray'>
-                        Neha Patel
+                        {testimonialsData?.name}
                     </h1>
                     <p className='text-[0.75rem] text-ash'>
-                        The software testing course exceeded my expectations. The instructor's expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that..
+                        {testimonialsData?.testimonial?.writtenTestimonial.length > 150 ? testimonialsData?.testimonial?.writtenTestimonial.substring(0, 150) + "..." : testimonialsData?.testimonial?.writtenTestimonial}
                     </p>
                 </header>
                 <p>
