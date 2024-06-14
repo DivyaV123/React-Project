@@ -23,7 +23,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                     isloading ? <TrainingCardSkeleton /> : <section className={`flex testinomialShadow ${page === 'branch' ? "w-[20.469vw]" : " w-[14.688vw]"}`}>
                         <article className={page !== 'branch' ? 'bg-white py-[1.667vh] px-[0.859vw] w-full rounded-lg' : 'bg-white pb-[7.639vh] pt-[3.75vh] px-[3.75vw] rounded-lg '} >
                             <figure className='flex justify-center pb-[2.222vh]'>
-                                <img className='w-20 h-20  rounded-full' src={element.photoLink} alt='Student image' />
+                                <img className='w-20 h-20  rounded-full' src={element.photoLink.length ? element.photoLink : '../../images/user.jpg'} alt='no image' />
                             </figure>
                             <header>
                                 <h1 title={element.name} className={`flex justify-center  font-semibold text-dark-gray text-[1.563vw] test-center ${page !== 'branch' ? "pb-[3.333vh]" : "pb-[2.222vh] "}`}>

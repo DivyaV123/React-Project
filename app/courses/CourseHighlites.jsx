@@ -1,10 +1,12 @@
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import { List } from 'lucide-react'
-import React from 'react'
+import React, { useContext } from 'react'
 import './CourseHighlites.scss'
 import CoursePageContainer from './CoursePageContainer'
+import { GlobalContext } from '@/components/Context/GlobalContext'
 
 function CourseHighlites(props) {
+    const { selectedCourseDetails } = useContext(GlobalContext)
     const courseContent = [
         {
             question: 'Who this course is for?',
@@ -38,12 +40,25 @@ function CourseHighlites(props) {
             ]
         }
     ]
+    const inputText = selectedCourseDetails?.data?.courseHighlight;
+
+    const sections = inputText?.split(';'); // Splits sections at semicolons
+    const courseContents = sections?.map(section => {
+        const [question, ...bulletParts] = section.split(':');
+        const bulletPoints = bulletParts.join(':').split('.').filter(Boolean).map(point => point.trim());
+        return {
+            question: question.trim(),
+            bulletPoints: bulletPoints
+        };
+    });
+
+    console.log(courseContents, "courseContentscourseContents")
     return (
         <CoursePageContainer>
             <header>
                 <h1 className='font-bold text-black text-[1.5rem] py-5'>Highlights about the Course</h1>
             </header>
-            {courseContent.map((element) => (
+            {courseContents?.map((element) => (
                 <article className='bg-[#FFFCF9] px-5 pointsList mb-3 rounded-xl'>
                     <header className='py-5 font-bold text-xl text-dark-gray'>
                         {element.question}

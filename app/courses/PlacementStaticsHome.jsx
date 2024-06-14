@@ -1,16 +1,18 @@
 'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import PlaceMentStatistics from '@/components/placementstatistics/placeMentStatistics'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Badge } from "@/components/ui/badge"
 import HiringPartners from '@/components/hiringPartners/hiringPartners'
 import CoursePageContainer from './CoursePageContainer'
 import { Skeleton } from "@/components/ui/skeleton"
 import { useGetAllPlacementCountQuery } from '@/redux/queries/getAllPlacementCount'
+import { GlobalContext } from '@/components/Context/GlobalContext'
 
 function PlacementStaticsHome({ path }) {
+    const { setAllStaticsCount } = useContext(GlobalContext)
     const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
-    console.log(countDetails, "countDetailscountDetails")
+    setAllStaticsCount(countDetails)
     const [isloading, setisLoading] = useState(true)
     const svgPath = [
         { src: "../compLogo01.svg" },

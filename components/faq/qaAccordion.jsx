@@ -22,7 +22,7 @@ function Qaccordion({ qaList }) {
     <>
       <Fade top duration={1000} delay={0}>
         <Accordion className='w-full' defaultIndex={[0]} type="single" collapsible>
-          {qaList.map((element, index) => (
+          {qaList?.map((element, index) => (
             <AccordionItem className='pb-2 min-h-[4.375vw]' key={index} value={index + 1}>
               <AccordionTrigger onClick={() => handleAccordionToggle(index)}>{element.question}</AccordionTrigger>
               <AccordionContent>

@@ -319,7 +319,7 @@ const Courses = () => {
           : "coursefull p-3"
           } flex flex-wrap h-fit gap-4`}>
           {activeResponses.map((content, index) => (
-            <Link href={COURSE_PATH} key={index}>
+            <Link href={`${COURSE_PATH}`} key={index}>
               {console.log(content, "content from click")}
               <div
                 onClick={() => { setSelectedCoursDetailseId(content.courseResponseId) }}
@@ -334,7 +334,7 @@ const Courses = () => {
                   </h3>
                 </div>
                 <div>
-                  <article className="text-sm titleText">{content.description}</article>
+                  <article title={content.description} className="text-sm titleText">{content.description.length > 85 ? content.description.substring(0, 85) + '...' : content.description}</article>
                 </div>
               </div>
             </Link>
