@@ -13,10 +13,7 @@ import ImageScroller from "./ImageScroller";
 const CourseLanding = ({ page }) => {
   const { selectedCourseDetailsId, selectedCourseDetails, allStaticsCount, setSelectedCourseDetails } = useContext(GlobalContext);
   const { data: courseDetails, error, isLoading, refetch } = useGetAllCourseDetailsQuery(selectedCourseDetailsId)
-<<<<<<< HEAD
-=======
   setSelectedCourseDetails(courseDetails)
->>>>>>> aead4cda7a950df51c408e994354f9d3a6152040
   const typesOfClasses = [
     {
       title: "Offline Classes",
