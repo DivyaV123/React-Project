@@ -18,6 +18,7 @@ const CounsellorCardHeader = () => {
   const pathname = usePathname();
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
+
   const {
     filteringData,
     page,
@@ -47,7 +48,7 @@ const CounsellorCardHeader = () => {
     parameter: isEmptyObject ? filterParameter : "",
     bodyData: filteringData,
   });
-
+  const [isFetchData,setIsFetchData]=useState(isFetching)
   useEffect(() => {
     refetch();
     if (!isEmptyObject) {
@@ -156,7 +157,8 @@ const CounsellorCardHeader = () => {
         </section>
         <div
           onScroll={(event) => {
-            handleScroll(event, page, setPage, counsellorFilterResponse);
+       
+            handleScroll(event, page, setPage, counsellorFilterResponse,setIsFetchData);
           }}
           className="h-[58.889vh] overflow-auto myscrollbar w-[69.063vw] ml-[1.875vw] rounded-2xl"
          >
@@ -165,7 +167,10 @@ const CounsellorCardHeader = () => {
           ) : (
             <PlacementContent counsellorFilterResponse={accumulatedData} />
           )}
-          {isFetching && <BlinkingDots />}
+          {
+          isFetchData &&
+          <BlinkingDots/>
+        }
         </div>
       </div>
     </div>

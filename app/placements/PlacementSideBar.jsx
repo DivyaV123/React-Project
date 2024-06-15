@@ -27,7 +27,7 @@ const PlacementSideBar = ({
     setSideBarBtn,
     handlePlacementCommonFilter,
   } = useContext(GlobalContext);
-
+  const [isFetchData,setIsFetchData]=useState(isFetching)
   const sideBar = [
     {
       title: "Recent Placements",
@@ -110,7 +110,8 @@ const PlacementSideBar = ({
       ) : (
         <section
           onScroll={(event) => {
-            handleScroll(event, page, setPage, counsellorFilterResponse);
+           
+            handleScroll(event, page, setPage, counsellorFilterResponse,setIsFetchData);
           }}
           className="ml-6 w-[71.641vw] h-full overflow-y-scroll myscrollbar"
         >
@@ -121,7 +122,10 @@ const PlacementSideBar = ({
                 : accumulatedData
             }
           />
-          {isFetching && <BlinkingDots />}
+          {
+          isFetchData &&
+          <BlinkingDots/>
+        }
         </section>
       )}
     </section>
