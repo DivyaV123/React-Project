@@ -36,10 +36,10 @@ function StudentsTestimonialsHome({ page, testimonialsData }) {
                                 return (
                                     <CarouselItem className={page === 'branch' ? 'basis-[33%]' : "basis-[57%]"} >
                                         <article className='flex gap-4 pb-3'>
-                                            {isloading ? <TestimonialsSkeletonCard /> : < TestimonialsCard testimonialsData={index % 2 !== 0 && element} />}
+                                            {isloading && index % 2 === 0 ? <TestimonialsSkeletonCard /> : < TestimonialsCard testimonialsData={element} />}
                                         </article>
                                         <article className='flex gap-4'>
-                                            {isloading ? <TestimonialsSkeletonCard /> : < TestimonialsCard testimonialsData={index % 2 === 0 && element} />}
+                                            {isloading && index % 2 !== 0 ? <TestimonialsSkeletonCard /> : < TestimonialsCard testimonialsData={element} />}
                                         </article>
                                     </CarouselItem>
                                 );

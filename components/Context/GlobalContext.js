@@ -25,6 +25,8 @@ const GlobalContextProvider = ({ children }) => {
   const [itCheckedIcon, setItCheckedIcon] = useState(false)
   const [nonItCheckedIcon, setNonItCheckedIcon] = useState(false)
   const [scrollConst, setScrollConst] = useState()
+  const [allStaticsCount, setAllStaticsCount] = useState({})
+  const [selectedCourseDetails, setSelectedCourseDetails] = useState({})
 
   //daterange
   const [fromValue, setFromValue] = useState('');
@@ -66,8 +68,8 @@ const GlobalContextProvider = ({ children }) => {
   const [selectedPercentage, setSelectedPercentage] = useState(null);
 
   //generate link
-const [generateLink,setGenerateLink] = useState(false);
-const [generatedPath,setGeneratedPath] = useState("")
+  const [generateLink, setGenerateLink] = useState(false);
+  const [generatedPath, setGeneratedPath] = useState("")
 
   //placement general login
   const [filterPlacementData, setFilterPlacementData] = useState({})
@@ -246,9 +248,12 @@ const [generatedPath,setGeneratedPath] = useState("")
       placementParam, sideBarBtn, setSideBarBtn, handlePlacementCommonFilter,
       degreeButton, setDegreeButton, branchButton, setBranchButton, passOutButton, setPassOutButton,
       nonItCheckedIcon, setNonItCheckedIcon, itCheckedIcon, setItCheckedIcon,
-       generateLink,setGenerateLink,generatedPath,setGeneratedPath,
+      generateLink, setGenerateLink, generatedPath, setGeneratedPath,
       setSelectedCoursDetailseId,
-      selectedCourseDetailsId
+      selectedCourseDetailsId,
+      allStaticsCount,
+      setAllStaticsCount,
+      selectedCourseDetails, setSelectedCourseDetails
     }}>{children}</GlobalContext.Provider>
   );
 };

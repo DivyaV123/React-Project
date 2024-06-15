@@ -1,11 +1,14 @@
 'use client'
 import { WidthIcon } from '@radix-ui/react-icons'
-import React from 'react'
+import React, { useCallback, useContext } from 'react'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import Qaccordion from './qaAccordion'
 import { Slide } from 'react-reveal'
+import { GlobalContext } from '../Context/GlobalContext'
 
 function FaqHome({ page, questions }) {
+    const { selectedCourseDetails } = useContext(GlobalContext)
+    console.log(selectedCourseDetails?.data?.faqs, "selectedCourseDetails")
 
     const qaList = [
         {
@@ -38,7 +41,7 @@ function FaqHome({ page, questions }) {
                 )}
             </header>
             <article className={`${page === 'course' ? 'w-[51.56vw]' : 'pb-8'}`}>
-                <Qaccordion qaList={qaList} />
+                <Qaccordion qaList={selectedCourseDetails?.data?.faqs} />
             </article>
         </MaxWebWidth>
     )

@@ -332,7 +332,7 @@ const Courses = () => {
                   </h3>
                 </div>
                 <div>
-                  <article className="text-sm titleText">{content.description}</article>
+                  <article title={content.description} className="text-sm titleText">{content.description.length > 85 ? content.description.substring(0, 85) + '...' : content.description}</article>
                 </div>
               </div>
             </Link>

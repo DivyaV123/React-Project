@@ -1,17 +1,21 @@
-import React, { useRef, useEffect, useState } from "react";
+import React, { useRef, useEffect, useState, useCallback, useContext } from "react";
 import "./CourseLanding.scss";
 import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 
-const ImageScroller = ({ onRightBarFix, isRightBarFixed }) => {
+const ImageScroller = ({ onRightBarFix, isRightBarFixed, cardData }) => {
+  const { allStaticsCount } = useContext(GlobalContext)
   const statisticsData = [
-    { number: "25,000+", text: "Student placed" },
-    { number: "180+", text: "Hiring Companies" },
-    { number: "10,000+", text: "Non IT Students placed" },
-    { number: "15,000+", text: "IT Students placed" },
+    { number: `${allStaticsCount?.response?.allPlacedCount}+`, text: "Student placed" },
+    { number: "4870+", text: "Hiring Companies" },
+    { number: `${allStaticsCount?.response?.nonItCount}+`, text: "Non IT Students placed" },
+    { number: `${allStaticsCount?.response?.itCount}+`, text: "IT Students placed" },
   ];
+
+  console.log(cardData, allStaticsCount, "courseDetailscourseDetails......")
   const section2Ref = useRef(null);
   const [section1Height, setSection1Height] = useState(0);
   const [isAbsoluteBar, setIsAbsoluteBar] = useState(false);
@@ -54,17 +58,16 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed }) => {
 
   return (
     <div
-      className={`right-bar ${isRightBarFixed ? "fixedbar" : ""} ${
-        isRightBarFixed && isAbsoluteBar ? "absolutebar" : ""
-      }`}
+      className={`right-bar ${isRightBarFixed ? "fixedbar" : ""} ${isRightBarFixed && isAbsoluteBar ? "absolutebar" : ""
+        }`}
     >
       <div ref={section2Ref}>
-        <img src="../courseLanding.png" alt="courseLanding" />
+        <img src={cardData?.courseImage} alt="courseLanding" />
         {isRightBarFixed && (
           <div className="py-[2.222vh] px-[1.25vw]">
             <div className="flex  justify-between items-center">
-              <h1 className="font-bold  text-left text-[1.875vw]">
-                Software Testing
+              <h1 title={cardData?.courseName} className="font-bold  text-left text-[1.875vw]">
+                {cardData?.courseName?.length > 14 ? cardData?.courseName?.substring(0, 14) + "..." : cardData?.courseName}
               </h1>
               <button className=" flex gap-2 text-[1.25vw] justify-center items-center py-[1.111vh] px-[0.938vw] font-medium rounded">
                 <Svg
@@ -79,24 +82,21 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed }) => {
             </div>
             <div>
               <p className="text-left font-medium text-[1.094vw]  headerText pt-[0.781vw] pb-[2.031vw]">
-                Explore the dynamic world of software testing with our
-                comprehensive course.
+                {cardData?.courseSummary}
               </p>
             </div>
             <article className="flex  pb-[4.444vh]">
               {statisticsData.map((ele, index) => (
                 <div key={index}>
                   <h1
-                    className={`text-left font-bold text-[1.094vw]  headerText ${
-                      ele.number !== "15,000+" ? "pr-[0.781vw]" : ""
-                    }`}
+                    className={`text-left font-bold text-[1.094vw]  headerText ${ele.number !== "15,000+" ? "pr-[0.781vw]" : ""
+                      }`}
                   >
                     {ele.number}
                   </h1>
                   <p
-                    className={`text-left font-medium text-[0.781vw] tracking-tighter  headerText pt-[0.417vh] ${
-                      ele.text !== "IT Students placed" ? "pr-[0.781vw]" : ""
-                    }`}
+                    className={`text-left font-medium text-[0.781vw] tracking-tighter  headerText pt-[0.417vh] ${ele.text !== "IT Students placed" ? "pr-[0.781vw]" : ""
+                      }`}
                   >
                     {ele.text}
                   </p>
