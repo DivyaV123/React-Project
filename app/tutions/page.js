@@ -1,5 +1,4 @@
 'use client'
-import WebLayout from '@/components/commonComponents/webLayout/WebLayout';
 import React, { useState } from 'react'
 import CourseLanding from '../courses/CourseLanding';
 import ImageScroller from '../courses/ImageScroller';
@@ -7,6 +6,7 @@ import CourseContent from '../courses/CourseContent';
 import CourseHighlites from '../courses/CourseHighlites';
 import StudentsTestimonialsHome from '../courses/StudentsTestimonialsHome';
 import CoursesFaq from '../courses/CoursesFaq';
+import WebLayout from '@/components/commonComponents/webLayout/WebLayout';
 
 
 const Tutions = () => {
