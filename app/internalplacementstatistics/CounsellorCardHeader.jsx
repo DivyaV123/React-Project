@@ -118,11 +118,11 @@ const CounsellorCardHeader = () => {
           : ""
       }`}
     >
-      {pathname === "/internalplacementstatistics" && (
+      {pathname === "/internalplacementstatistics" ? (
         <div>
           <CounsellorFilters />
         </div>
-      )}
+      ) : ""}
 
       <div
         className={`${
