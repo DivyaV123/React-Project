@@ -1,7 +1,6 @@
 "use client";
 import React, { useContext, useEffect, useState } from "react";
 import TotalPlacedCard from "../placements/TotalPlacedCard";
-import { Skeleton } from "@/components/ui/skeleton";
 import DegreeCard from "../placements/DegreeCard";
 import OverviewCard from "../placements/OverviewCard";
 import PlacementContent from "../placements/PlacementContent";
@@ -12,15 +11,11 @@ import BlinkingDots from "@/components/skeletons/BlinkingDots";
 import { COUNSELLOR_SECTION, INTERNAL_STATS } from "@/lib/RouteConstants";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
-import { useParams,useSearchParams } from 'next/navigation'
 import CounsellorFilters from "./CounsellorFilters";
 import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
 const CounsellorCardHeader = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const params = useParams()
-  const searchParams = useSearchParams()
-  const search = searchParams.get('yop')
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
   const {
@@ -103,10 +98,12 @@ const CounsellorCardHeader = () => {
       searchParams ? `?${searchParams}` : ""
     }`;
     setGeneratedPath(statsURL);
-    if (!isEmptyObject && pathname !== "/internalStats") {
-      router.push(fullURL);
-    } else if(isEmptyObject && pathname !== "/internalStats"){
-      router.push(COUNSELLOR_SECTION);
+    if (typeof window !== "undefined") {
+      if (!isEmptyObject && pathname !== "/internalStats") {
+        router.push(fullURL);
+      } else if (isEmptyObject && pathname !== "/internalStats") {
+        router.push(COUNSELLOR_SECTION);
+      }
     }
   }, [filteringData]);
 

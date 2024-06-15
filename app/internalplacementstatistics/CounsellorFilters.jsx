@@ -9,15 +9,10 @@ import CollegeFilter from "./CollegeFilter";
 import DegreeFilter from "./DegreeFilter";
 import StreamFilter from "./StreamFilter";
 import PercentageFilter from "./PercentageFilter";
-import FilterSkeleton from "@/components/skeletons/FilterSkeleton";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import Link from "next/link";
-import { useRouter,useSearchParams } from "next/navigation";
 
-const CounsellorFilters = ({refetch}) => {
-  const router = useRouter();
-  const searchParams = useSearchParams()
+const CounsellorFilters = () => {
   const {
     setFromValue, setToValue, setSelectedDate, setFilteringData, setFromYear, setToYear,
     setSelectedYop, setSelectedBranchFilter, setSelectedBranchType, setStateItems,
