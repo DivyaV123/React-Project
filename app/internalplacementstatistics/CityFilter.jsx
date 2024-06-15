@@ -7,13 +7,13 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllCitiesQuery } from "@/redux/queries/getAllCities";
 
 const CityFilter = ({ selectedState }) => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const { handleCounsellorCommonFilter, stateSelected,selectedCity,setSelectedCity } = useContext(GlobalContext);
+
+  const { handleCounsellorCommonFilter, stateSelected,selectedCity,setSelectedCity ,citySearchQuery,setCitySearchQuery,} = useContext(GlobalContext);
   const { data: cityData, refetch } = useGetAllCitiesQuery(stateSelected);
   const cityList = cityData?.response
     .filter((city) => city !== "")
     .filter((cities) =>
-      cities.toLowerCase().includes(searchQuery.toLowerCase())
+      cities.toLowerCase().includes(citySearchQuery.toLowerCase())
     );
   useEffect(() => {
     refetch();
@@ -48,8 +48,8 @@ const CityFilter = ({ selectedState }) => {
           type="text"
           placeholder="Search..."
           className="text-[0.781vw]"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={citySearchQuery}
+          onChange={(e) => setCitySearchQuery(e.target.value)}
         />
         <div className="search-icon"></div>
       </div>

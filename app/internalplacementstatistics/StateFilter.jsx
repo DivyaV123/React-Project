@@ -7,12 +7,11 @@ import CityFilter from './CityFilter';
 import { useGetAllStatesQuery } from '@/redux/queries/getAllStates';
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const StateFilter = () => {
-  const { filteringData, setFilteringData, handleCounsellorCommonFilter,stateItems,setStateItems } = useContext(GlobalContext);
+  const { filteringData, setFilteringData, handleCounsellorCommonFilter,stateItems,setStateItems,stateSearchQuery,setStateSearchQuery, } = useContext(GlobalContext);
   const { data: statesData, error, isLoading } = useGetAllStatesQuery();
-  const [searchQuery, setSearchQuery] = useState("");
   const statesList = statesData?.response.filter((state) => state !== "")
   .filter((states) =>
-    states.toLowerCase().includes(searchQuery.toLowerCase())
+    states.toLowerCase().includes(stateSearchQuery.toLowerCase())
   );
   const renderCheckbox = (item, index) => (
     <Checkbox
@@ -39,8 +38,8 @@ const StateFilter = () => {
           type="text"
           placeholder="Search..."
           className="text-[0.781vw]"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={stateSearchQuery}
+          onChange={(e) => setStateSearchQuery(e.target.value)}
         />
           <div class="search-icon"></div>
         </div>

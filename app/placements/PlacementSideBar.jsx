@@ -26,6 +26,10 @@ const PlacementSideBar = ({
     sideBarBtn,
     setSideBarBtn,
     handlePlacementCommonFilter,
+    lesscheckedIcon,
+    throughcheckedIcon,
+    itCheckedIcon,
+    nonItCheckedIcon
   } = useContext(GlobalContext);
   const [isFetchData,setIsFetchData]=useState(isFetching)
   const sideBar = [
@@ -85,7 +89,7 @@ const PlacementSideBar = ({
             <button
               key={index}
               className={`flex justify-between items-center px-[1.25vw] py-[2.222vh] mb-[0.833vh] w-full text-[1.094vw] ${
-                classItem.title === sideBarBtn
+                classItem.title === sideBarBtn && !lesscheckedIcon && !throughcheckedIcon && !itCheckedIcon && !nonItCheckedIcon
                   ? "sideBarButton font-medium"
                   : ""
               }`}

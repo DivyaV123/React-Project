@@ -7,15 +7,15 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useGetAllCollegesQuery } from "@/redux/queries/getAllColleges";
 
 const CollegeFilter = () => {
-  const { handleCounsellorCommonFilter, universitySelected,selectedCollege, setSelectedCollege } = useContext(GlobalContext);
-  const [searchQuery, setSearchQuery] = useState("");
+  const { handleCounsellorCommonFilter, universitySelected,selectedCollege, setSelectedCollege ,collegeSearchQuery,setCollegeSearchQuery,} = useContext(GlobalContext);
+
 
   const { data: collegeData, refetch } =
     useGetAllCollegesQuery(universitySelected);
   const collegeList = collegeData?.response
     .filter((college) => college !== "")
     .filter((college) =>
-      college.toLowerCase().includes(searchQuery.toLowerCase())
+      college.toLowerCase().includes(collegeSearchQuery.toLowerCase())
     );
   useEffect(() => {
     refetch();
@@ -50,8 +50,8 @@ const CollegeFilter = () => {
           type="text"
           placeholder="Search..."
           className="text-[0.781vw]"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={collegeSearchQuery}
+          onChange={(e) => setCollegeSearchQuery(e.target.value)}
         />
         <div className="search-icon"></div>
       </div>

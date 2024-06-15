@@ -5,13 +5,11 @@ import ExpandableList from "../../components/commonComponents/ExpandableList/Exp
 import "./CounserllorFilters.scss";
 import { useGetAllUniversitiesQuery } from "@/redux/queries/getAllUniversities";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import { Item } from "@radix-ui/react-accordion";
 
 const UniversityFilter = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const { handleCounsellorCommonFilter,selectedUniversity, setSelectedUniversity } = useContext(GlobalContext);
+  const { handleCounsellorCommonFilter,selectedUniversity, setSelectedUniversity,universitySearchQuery,setUniversitySearchQuery, } = useContext(GlobalContext);
   const { data: universityData } = useGetAllUniversitiesQuery();
-  const universityList = universityData?.response.filter(university => university !== "").filter(university => university.toLowerCase().includes(searchQuery.toLowerCase()));
+  const universityList = universityData?.response.filter(university => university !== "").filter(university => university.toLowerCase().includes(universitySearchQuery.toLowerCase()));
 
   const renderCheckbox = (item, index) => (
     <Checkbox
@@ -36,8 +34,8 @@ const UniversityFilter = () => {
           type="text" 
           placeholder="Search..." 
           className="text-[0.781vw]" 
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={universitySearchQuery}
+          onChange={(e) => setUniversitySearchQuery(e.target.value)}
         />
         <div className="search-icon"></div>
       </div>

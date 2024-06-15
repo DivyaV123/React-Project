@@ -25,6 +25,13 @@ const GlobalContextProvider = ({ children }) => {
   const [scrollConst, setScrollConst] = useState();
   const [allStaticsCount, setAllStaticsCount] = useState({});
   const [selectedCourseDetails, setSelectedCourseDetails] = useState({});
+  const [citySearchQuery,setCitySearchQuery] = useState("");
+  const [collegeSearchQuery,setCollegeSearchQuery] = useState("");
+  const [degreeSearchQuery,setDegreeSearchQuery] = useState("");
+  const [stateSearchQuery,setStateSearchQuery] = useState("");
+  const [universitySearchQuery,setUniversitySearchQuery] = useState("");
+  const [yearSearchQuery,setYearSearchQuery] = useState("");
+  const [streamSearchQuery,setStreamSearchQuery] = useState("");
 
   //daterange
   const [fromValue, setFromValue] = useState("");
@@ -77,6 +84,10 @@ const GlobalContextProvider = ({ children }) => {
   const [branchButton, setBranchButton] = useState("");
   const [passOutButton, setPassOutButton] = useState("");
   const [selectedCourseDetailsId, setSelectedCoursDetailseId] = useState(null);
+
+  const emptySearch=citySearchQuery===""&&stateSearchQuery===""&&citySearchQuery===""&&
+  universitySearchQuery===""&&streamSearchQuery===""&&yearSearchQuery===""
+
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
@@ -188,6 +199,11 @@ const GlobalContextProvider = ({ children }) => {
 
   const handlePlacementCommonFilter = (title) => {
     setSideBarBtn(title);
+    setPlacedCheckedIcon(false);
+    setLessCheckedIcon(false);
+    setThroughCheckedIcon(false);
+    setNonItCheckedIcon(false);
+    setItCheckedIcon(false);
     setDegreeButton("");
     setBranchButton("");
     setPassOutButton("");
@@ -304,6 +320,13 @@ const GlobalContextProvider = ({ children }) => {
         setAllStaticsCount,
         selectedCourseDetails,
         setSelectedCourseDetails,
+        citySearchQuery,setCitySearchQuery,
+        collegeSearchQuery,setCollegeSearchQuery,
+        degreeSearchQuery,setDegreeSearchQuery,
+        stateSearchQuery,setStateSearchQuery,
+        universitySearchQuery,setUniversitySearchQuery,
+        yearSearchQuery,setYearSearchQuery,
+        streamSearchQuery,setStreamSearchQuery,emptySearch
       }}
     >
       {children}

@@ -15,14 +15,13 @@ import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import BranchTypeFilter from "./BranchTypeFilter";
 
 const YearFilter = () => {
-  const [searchQuery, setSearchQuery] = useState("");
-  const { handleCounsellorCommonFilter,fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,selectedBranchFilter,setSelectedBranchFilter } = useContext(GlobalContext);
+  const { handleCounsellorCommonFilter,fromYear,setFromYear,toYear,setToYear,selectedYop,setSelectedYop,selectedBranchFilter,setSelectedBranchFilter, yearSearchQuery,setYearSearchQuery, } = useContext(GlobalContext);
   const { data: PlacementBranchData } = useGetAllPlacementBranchQuery();
   const BranchList = PlacementBranchData?.response;
   const { data: YearOfPassoutData } = useGetAllYearOfPassoutQuery();
   const YopList = YearOfPassoutData?.response;
   const sortedYearList = [...YopList || []].sort((a, b) => b - a);
-  const searchBranchList = BranchList?.filter(branch => branch !== "").filter(ele => ele.toLowerCase().includes(searchQuery.toLowerCase()));
+  const searchBranchList = BranchList?.filter(branch => branch !== "").filter(ele => ele.toLowerCase().includes(yearSearchQuery.toLowerCase()));
  
   const handleFromYearChange = (year) => {
     setFromYear(year);
@@ -133,8 +132,8 @@ const YearFilter = () => {
           type="text" 
           placeholder="Search..." 
           className="text-[0.781vw]" 
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={yearSearchQuery}
+          onChange={(e) => setYearSearchQuery(e.target.value)}
         />
         <div className="search-icon"></div>
       </div>
