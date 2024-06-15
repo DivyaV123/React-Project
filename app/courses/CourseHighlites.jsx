@@ -52,7 +52,7 @@ function CourseHighlites(props) {
         };
     });
 
-    console.log(courseContents, "courseContentscourseContents")
+
     return (
         <CoursePageContainer>
             <header>

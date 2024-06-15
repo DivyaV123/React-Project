@@ -8,7 +8,6 @@ import { GlobalContext } from '../Context/GlobalContext'
 
 function FaqHome({ page, questions }) {
     const { selectedCourseDetails } = useContext(GlobalContext)
-    console.log(selectedCourseDetails?.data?.faqs, "selectedCourseDetails")
 
     const qaList = [
         {

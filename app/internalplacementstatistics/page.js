@@ -1,12 +1,12 @@
 import React from 'react'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import CounsellorLanding from './CounsellorLanding'
-const counsellorSection = () => {
+import CounsellorCardHeader from './CounsellorCardHeader'
+const Internalplacementstatistics = () => {
   return (
     <WebLayout>
-      <CounsellorLanding />
+      < CounsellorCardHeader/>
     </WebLayout>
   )
 }
 
-export default counsellorSection
+export default Internalplacementstatistics

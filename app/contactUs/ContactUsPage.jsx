@@ -52,7 +52,6 @@ function ContactUsPage() {
       };
 
       const response = await postContact(payload);
-      console.log({ response });
       if (response.data.statusCode === 201) {
         formikDetails.setFieldValue("name", "");
         formikDetails.setFieldValue("email", "");
@@ -72,7 +71,6 @@ function ContactUsPage() {
     } catch (err) {
       console.error(err, "Error from contact api");
     }
-    console.log(values);
   };
   const contactInfo = [
     {
@@ -188,7 +186,6 @@ function ContactUsPage() {
                         formikDetails.setFieldValue("phone", e);
                         setPhoneValue(e);
                         setCountryCode(country.dialCode);
-                        console.log({ country });
                       }}
                       //   defaultCountry={"IN"}
                       style={{

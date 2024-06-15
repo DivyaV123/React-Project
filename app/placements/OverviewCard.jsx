@@ -22,7 +22,7 @@ const OverviewCard = ({ allCounts, placementPage }) => {
     } else return;
   };
   return (
-    <div className="overviewCard relative cursor-pointer" onClick={handleClick}>
+    <div className={`${placementPage === "GeneralPlacements" ?'overviewCard' :'overviewInternal'} relative cursor-pointe`} onClick={handleClick}>
       {throughcheckedIcon && placementPage === "GeneralPlacements" && (
         <img
           src="../../checked.svg"

@@ -51,7 +51,6 @@ function CourseFormLanding() {
             ...values,
             faqs: faqs,
         };
-        console.log(values, formikDetails, "asd", updatedValues);
     };
 
     const formikDetails = useFormik({

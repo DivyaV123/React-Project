@@ -7,7 +7,6 @@ import { SectionIcon } from '@radix-ui/react-icons'
 import './CourseLanding.scss';
 
 function StudentsPlacedCard({ studentsInfo, page }) {
-    console.log(studentsInfo, "studentsInfo")
     const [isloading, setisLoading] = useState(true)
     useEffect(() => {
         setTimeout(() => {

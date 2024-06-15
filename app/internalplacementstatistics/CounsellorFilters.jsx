@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useRef, useState ,useContext} from "react";
+import React, { useEffect, useRef, useState, useContext } from "react";
 import "./CounserllorFilters.scss";
 import StateFilter from "./StateFilter";
 import YearFilter from "./YearFilter";
@@ -9,19 +9,23 @@ import CollegeFilter from "./CollegeFilter";
 import DegreeFilter from "./DegreeFilter";
 import StreamFilter from "./StreamFilter";
 import PercentageFilter from "./PercentageFilter";
-import FilterSkeleton from "@/components/skeletons/FilterSkeleton";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-const CounsellorFilters = () => {
 
-  const {setFromValue,setToValue,setSelectedDate,setFilteringData,setFromYear,setToYear,setSelectedYop,setSelectedBranchFilter,
-    setSelectedBranchType,setStateItems,setSelectedCity,setSelectedUniversity,setSelectedCollege,
-    setSelectedDegrees,setSelectedStream,setSelectedPercentage,setToPercentage,setFromPercentage}=useContext(GlobalContext)
+const CounsellorFilters = () => {
+  const {
+    setFromValue, setToValue, setSelectedDate, setFilteringData, setFromYear, setToYear,
+    setSelectedYop, setSelectedBranchFilter, setSelectedBranchType, setStateItems,
+    setSelectedCity, setSelectedUniversity, setSelectedCollege, setSelectedDegrees,
+    setSelectedStream, setSelectedPercentage, setToPercentage, setFromPercentage,
+    setGenerateLink, generatedPath, filteringData,generateLink
+  } = useContext(GlobalContext);
+
   const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
   const degreeList = degreeAndStreamdata?.response.degreeList.filter(degree => degree !== "");
   const streamList = degreeAndStreamdata?.response.streamList.filter(stream => stream !== "");
   const filterClass = "text-[#002248] text-[1.25vw] font-semibold";
-  
+
   const [isPercentageFilterVisible, setIsPercentageFilterVisible] = useState(false);
   const collegeFilterRef = useRef(null);
 
@@ -48,24 +52,33 @@ const CounsellorFilters = () => {
   }, []);
 
   const clearFilters = () => {
-    setFilteringData({})
-    setFromValue('')
-    setToValue('')
-    setSelectedDate([])
-    setFromYear('')
-    setToYear('')
-    setSelectedYop([])
-    setSelectedBranchFilter([])
-    setSelectedBranchType([])
-    setStateItems([])
-    setSelectedCity([])
-    setSelectedUniversity([])
-    setSelectedCollege([])
-    setSelectedDegrees([])
-    setSelectedStream([])
-    setFromPercentage('')
-    setToPercentage('')
-    setSelectedPercentage(null)
+    setFilteringData({});
+    setFromValue('');
+    setToValue('');
+    setSelectedDate([]);
+    setFromYear('');
+    setToYear('');
+    setSelectedYop([]);
+    setSelectedBranchFilter([]);
+    setSelectedBranchType([]);
+    setStateItems([]);
+    setSelectedCity([]);
+    setSelectedUniversity([]);
+    setSelectedCollege([]);
+    setSelectedDegrees([]);
+    setSelectedStream([]);
+    setFromPercentage('');
+    setToPercentage('');
+    setSelectedPercentage(null);
+  };
+
+  const isEmptyObject = Object.keys(filteringData).length === 0;  
+  const handleGenerateLink = (e) => {
+    if (isEmptyObject) {
+      e.preventDefault();
+      return;
+    }
+    setGenerateLink(true); 
   };
 
   return (
@@ -75,7 +88,13 @@ const CounsellorFilters = () => {
           <button className={filterClass}>Filter</button>
           <img src="../../filter.svg" alt="Filter Icon" onClick={clearFilters} />
         </div>
-        <button className={filterClass}>Clear</button>
+        {isEmptyObject ? (
+          <button className={`${filterClass} pointer-events-none opacity-50`}>Generate Link</button>
+        ) : (
+          <a href={generatedPath} target="_blank"  onClick={handleGenerateLink}   className={`${filterClass} cursor-pointer`}>
+            Generate Link
+          </a>
+        )}
       </div>
       <TimeFilter isLoading={isLoading} />
       <>

@@ -42,7 +42,6 @@ const CourseLanding = ({ page }) => {
   const tutionClasses = selectedCourseDetails?.data?.courseAbout;
   let splitText = tutionClasses?.split('.');
   const resources = splitText?.filter(s => s)
-  console.log(courseDetails, "splits")
   const [btnState, setBtnState] = useState(
     page === "tution" ? "Experiential Learning" : "OFFLINECLASSES"
   );

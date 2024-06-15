@@ -5,6 +5,10 @@
   border-radius: 1rem;
   margin-top: 0.5rem;
 }
+.internalStats{
+  @extend .placedCard ;
+  width: 21.719vw;
+}
 .degreeCard {
   @extend .placedCard;
   background: #fff0f2;
@@ -13,6 +17,10 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+}
+.degreeInternal{
+  @extend .degreeCard;
+  width: 21.719vw;
 }
 .nonItCard {
   @extend .placedCard;
@@ -32,6 +40,10 @@
   @extend .placedCard;
   background: #E4FFE8;
 
+}
+.overviewInternal{
+  @extend .overviewCard;
+  width: 21.719vw;
 }
 .imagePopup{
   width: 100%;

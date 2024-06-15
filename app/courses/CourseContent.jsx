@@ -14,7 +14,7 @@ import { GlobalContext } from '@/components/Context/GlobalContext';
 
 function CourseContent() {
     const { selectedCourseDetails } = useContext(GlobalContext);
-    console.log(selectedCourseDetails, "selectedCourseDetails.........")
+
     const courseContentdatas = [
         {
             "Manual Testing": [
@@ -47,7 +47,7 @@ function CourseContent() {
     };
 
     const courseContentdata = transformData(selectedCourseDetails?.data?.subjects)
-    console.log(selectedCourseDetails?.data?.subjects[0]?.chapters, "courseContentdatacourseContentdata")
+
 
     const [openIndex, setOpenIndex] = useState(-1);
 
