@@ -257,7 +257,6 @@ const Courses = () => {
   const [hoveredCourseIndex, setHoveredCourseIndex] = useState(0);
   const [hoveredSubCourseIndex, setHoveredSubCourseIndex] = useState(0);
   const [activeResponses, setActiveResponses] = useState([]);
-  console.log(setSelectedCoursDetailseId, "setSelectedCoursDetailseId")
   const handleCourseHover = (courseIndex, courseResponses) => {
     setHoveredCourseIndex(courseIndex);
     setHoveredSubCourseIndex(0); // Reset sub-course hover
@@ -320,7 +319,6 @@ const Courses = () => {
           } flex flex-wrap h-fit gap-4`}>
           {activeResponses.map((content, index) => (
             <Link href={COURSE_PATH} key={index}>
-              {console.log(content, "content from click")}
               <div
                 onClick={() => { setSelectedCoursDetailseId(content.courseResponseId) }}
                 className={`${hoveredCourseIndex !== null && activeResponses.length

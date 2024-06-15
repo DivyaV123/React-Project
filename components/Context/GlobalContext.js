@@ -10,7 +10,7 @@ const GlobalContextProvider = ({ children }) => {
 
   const [selectedBranch, setSelectedBranch] = useState('Bengalore')
   const [selectedCourseId, setSelectedCourseId] = useState('1')
-
+ 
   const [selectedBatch, setSelectedBatch] = useState("Bengalore")
   const [selectedClassMode, setSelectedClassMode] = useState("offline")
   const todayDate = dayjs().format("YYYY-MM-DD")
@@ -77,7 +77,6 @@ const [generatedPath,setGeneratedPath] = useState("")
   const [branchButton, setBranchButton] = useState("");
   const [passOutButton, setPassOutButton] = useState("");
   const [selectedCourseDetailsId, setSelectedCoursDetailseId] = useState(null)
-
   function debounce(func, wait) {
     let timeout;
     return function (...args) {

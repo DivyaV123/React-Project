@@ -24,7 +24,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
     } else return;
   };
   return (
-    <div className="placedCard relative cursor-pointer" onClick={handleClick}>
+    <div className={`${placementPage === "GeneralPlacements" ?'placedCard' :'internalStats'} relative cursor-pointe`} onClick={handleClick}>
       {placeCheckedIcon && placementPage === "GeneralPlacements" && (
         <img
           src="../../checked.svg"

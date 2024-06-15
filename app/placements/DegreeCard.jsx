@@ -22,7 +22,7 @@ const DegreeCard = ({ allCounts,placementPage }) => {
     } else return;
   };
   return (
-    <div className="degreeCard cursor-pointer relative" onClick={handleClick}>
+    <div className={`${placementPage === "GeneralPlacements" ?'degreeCard' :'degreeInternal'} relative cursor-pointe`} onClick={handleClick}>
       {lesscheckedIcon && placementPage === "GeneralPlacements" && (
         <img
           src="../../checked.svg"

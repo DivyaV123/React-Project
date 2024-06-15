@@ -3,7 +3,6 @@ import Svg from '@/components/commonComponents/Svg/Svg'
 import React from 'react'
 
 function TestimonialsCard({ testimonialsData }) {
-    console.log(testimonialsData, "testimonialsData")
     return (
         <article className='flex justify-around w-[28.906vw] bg-white rounded-xl py-3 px-1 overflow-hide'>
             <article className='base-[35%]'>

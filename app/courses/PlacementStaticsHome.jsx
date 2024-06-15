@@ -10,7 +10,6 @@ import { useGetAllPlacementCountQuery } from '@/redux/queries/getAllPlacementCou
 
 function PlacementStaticsHome({ path }) {
     const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
-    console.log(countDetails, "countDetailscountDetails")
     const [isloading, setisLoading] = useState(true)
     const svgPath = [
         { src: "../compLogo01.svg" },

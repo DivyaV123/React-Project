@@ -2,7 +2,7 @@ import React from "react";
 import { Skeleton } from "../ui/skeleton";
 const CardContentSkeleton = () => {
   return (
-    <section className="ml-6 w-[71.641vw] h-full flex overflow-y-scroll myscrollbar rounded border ">
+    <section className=" w-[69.063vw] h-full flex ">
       <div className="w-[15.547vw] flex m-3">
         <Skeleton className="h-[15vw] w-[71vw]" />
       </div>

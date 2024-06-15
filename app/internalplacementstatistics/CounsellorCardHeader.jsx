@@ -7,16 +7,22 @@ import OverviewCard from "../placements/OverviewCard";
 import PlacementContent from "../placements/PlacementContent";
 import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import CardSkeleton from "@/components/skeletons/CardSkeleton";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
-import { COUNSELLOR_SECTION } from "@/lib/RouteConstants";
-import { useRouter } from "next/navigation";
 import BlinkingDots from "@/components/skeletons/BlinkingDots";
+import { COUNSELLOR_SECTION, INTERNAL_STATS } from "@/lib/RouteConstants";
+import { useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
+import { useParams,useSearchParams } from 'next/navigation'
+import CounsellorFilters from "./CounsellorFilters";
+import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
 const CounsellorCardHeader = () => {
-  const router = useRouter()
+  const router = useRouter();
+  const pathname = usePathname();
+  const params = useParams()
+  const searchParams = useSearchParams()
+  const search = searchParams.get('yop')
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
-
   const {
     filteringData,
     page,
@@ -27,10 +33,12 @@ const CounsellorCardHeader = () => {
     setThroughCheckedIcon,
     setLessCheckedIcon,
     setPlacedCheckedIcon,
+    setGeneratedPath,
+    generateLink,
+    generatedPath,
   } = useContext(GlobalContext);
 
   const isEmptyObject = Object.keys(filteringData).length === 0;
-
 
   const {
     data: counsellorFilterResponse,
@@ -52,13 +60,6 @@ const CounsellorCardHeader = () => {
       setLessCheckedIcon(false);
       setThroughCheckedIcon(false);
     }
-    // setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content || []);
-    // if (counsellorFilterResponse) {
-    //   setAccumulatedData((prevData) => [
-    //     ...prevData,
-    //     ...counsellorFilterResponse?.response?.content,
-    //   ]);
-    // }
   }, [filteringData, page, size, filterParameter]);
 
   useEffect(() => {
@@ -66,41 +67,19 @@ const CounsellorCardHeader = () => {
       if (page > 0) {
         setAccumulatedData((prevData) => [
           ...prevData,
-          ...counsellorFilterResponse?.response?.candidates?.content ,
+          ...counsellorFilterResponse?.response?.candidates?.content,
         ]);
       } else {
-        setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content  || []);
+        setAccumulatedData(
+          counsellorFilterResponse?.response?.candidates?.content || []
+        );
       }
     }
   }, [counsellorFilterResponse]);
 
-
-  // useEffect(() => {
-  //   if (counsellorFilterResponse && page > 0) {
-  //     setAccumulatedData((prevData) => [
-  //       ...(prevData || []),
-  //       ...counsellorFilterResponse?.response?.candidates?.content,
-  //     ]);
-  //   } else {
-  //     setAccumulatedData(counsellorFilterResponse?.response?.candidates?.content);
-  //   }
-  // }, [counsellorFilterResponse]);
-
   const handleParameter = (param) => {
     setFilterParamter(param);
   };
-
-  const emptyObj = Object.keys(filteringData).length === 0;
-  useEffect(() => {
-    const searchParams = constructSearchParams();
-    const fullURL = `${COUNSELLOR_SECTION}/${searchParams ? `?${searchParams}` : ""
-      }`;
-    if (!emptyObj) {
-      router.push(fullURL);
-    } else {
-      router.push(COUNSELLOR_SECTION);
-    }
-  }, [filteringData]);
 
   const constructSearchParams = () => {
     let searchParams = "";
@@ -115,57 +94,84 @@ const CounsellorCardHeader = () => {
     return searchParams;
   };
 
-  return (
-    <>
-      <section className="px-[6.641vw] flex gap-6 pb-[3.333vh] items-center">
-        {isLoading ? (
-          <div className=" flex flex-col gap-2 justify-center  w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
-            <Skeleton className="h-7 w-[50%] ml-2" />
-            <Skeleton className="h-10 w-[70%] ml-2" />
-          </div>
-        ) : (
-          <TotalPlacedCard
-            allCounts={counsellorFilterResponse}
-            handleCandidates={refetch}
-            handleParameter={handleParameter}
-          />
-        )}
+  useEffect(() => {
+    const searchParams = constructSearchParams();
+    const fullURL = `${COUNSELLOR_SECTION}/${
+      searchParams ? `?${searchParams}` : ""
+    }`;
+    const statsURL = `${INTERNAL_STATS}${
+      searchParams ? `?${searchParams}` : ""
+    }`;
+    setGeneratedPath(statsURL);
+    if (!isEmptyObject && pathname !== "/internalStats") {
+      router.push(fullURL);
+    } else if(isEmptyObject && pathname !== "/internalStats"){
+      router.push(COUNSELLOR_SECTION);
+    }
+  }, [filteringData]);
 
-        {isLoading ? (
-          <CardSkeleton />
-        ) : (
-          <DegreeCard
-            allCounts={counsellorFilterResponse}
-            handleParameter={handleParameter}
-            isEmptyObject={isEmptyObject}
-          />
-        )}
-        {isLoading ? (
-          <CardSkeleton />
-        ) : (
-          <OverviewCard
-            allCounts={counsellorFilterResponse}
-            handleParameter={handleParameter}
-          />
-        )}
-      </section>
+  return (
+    <div
+      className={`${
+        pathname === "/internalplacementstatistics"
+          ? "px-[1.875vw] pt-[3.333vh] pb-[6.528vh] flex"
+          : ""
+      }`}
+    >
+      {pathname === "/internalplacementstatistics" && (
+        <div>
+          <CounsellorFilters />
+        </div>
+      )}
+
       <div
-        onScroll={(event) => {
-          handleScroll(event, page, setPage, counsellorFilterResponse);
-        }}
-        className="h-[58.889vh] overflow-auto myscrollbar"
+        className={`${
+          pathname === "/internalplacementstatistics" ? "pl-[1.875vw]" : ""
+        }`}
       >
-        {isLoading ? (
-          <CardContentSkeleton />
-        ) : (
-          <PlacementContent counsellorFilterResponse={accumulatedData} />
-        )}
-        {
-          isFetching &&
-          <BlinkingDots/>
-        }
+        <section className="px-[1.875vw] flex gap-5 pb-[3.333vh] items-center">
+          {isLoading ? (
+            <LinkCardSkeleton/>
+          ) : (
+            <TotalPlacedCard
+              allCounts={counsellorFilterResponse}
+              handleCandidates={refetch}
+              handleParameter={handleParameter}
+            />
+          )}
+          {isLoading ? (
+            <LinkCardSkeleton />
+          ) : (
+            <DegreeCard
+              allCounts={counsellorFilterResponse}
+              handleParameter={handleParameter}
+              isEmptyObject={isEmptyObject}
+            />
+          )}
+          {isLoading ? (
+            <LinkCardSkeleton />
+          ) : (
+            <OverviewCard
+              allCounts={counsellorFilterResponse}
+              handleParameter={handleParameter}
+            />
+          )}
+        </section>
+        <div
+          onScroll={(event) => {
+            handleScroll(event, page, setPage, counsellorFilterResponse);
+          }}
+          className="h-[58.889vh] overflow-auto myscrollbar w-[69.063vw] ml-[1.875vw] rounded-2xl"
+         >
+          {isLoading ? (
+            <CardContentSkeleton />
+          ) : (
+            <PlacementContent counsellorFilterResponse={accumulatedData} />
+          )}
+          {isFetching && <BlinkingDots />}
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 

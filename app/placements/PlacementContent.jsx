@@ -24,10 +24,10 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
   return (
     <>
       {counsellorFilterResponse?.map((student) => (
-        <section className="w-full contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh] ">
+        <section className="w-[99.4%] contentCard flex pt-[0.556vh] pl-[0.469vw] pb-[1.111vh] mb-[3.333vh] mt-[0.556vh] ml-[0.078vw]">
           <AlertDialog popup="imagepopup">
             <div className="w-[15.547vw] ">
-              <div className="h-[24.861vh] overflow-hidden w-full">
+              <div className="h-[24.861vh] overflow-hidden w-full rounded-2xl">
                 <img
                   src={student?.photoLink}
                   className="w-full"
@@ -128,7 +128,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                 </div>
               </div>
             </div>
-            <div className="pl-[3.125vw] pt-[2.222vh] flex flex-col gap-3">
+            <div className="pl-[1.125vw] pr-[1vw] pt-[2.222vh] flex flex-col gap-3">
               <AlertDialogTrigger asChild>
                 <img
                   onClick={openImageDialog}

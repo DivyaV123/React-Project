@@ -13,7 +13,6 @@ import StudentsTestimonialsHome from './StudentsTestimonialsHome'
 function StudentsPlacedHome({ page }) {
     let bodyData = { branchType: ["Jspiders", "Qspiders"] }
     const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 15, bodyData: bodyData })
-    console.log(studentsList, "studentsListstudentsList")
     const studentsInfo = [
         {
             image: '../images/user_profile.png',

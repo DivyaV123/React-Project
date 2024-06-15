@@ -11,7 +11,6 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 const CourseLanding = ({ page }) => {
   const { selectedCourseDetailsId } = useContext(GlobalContext);
   const { data: courseDetails, error, isLoading, refetch } = useGetAllCourseDetailsQuery(selectedCourseDetailsId)
-  console.log(courseDetails, "courseDEtailscourseDEtailscourseDEtails")
   const typesOfClasses = [
     {
       title: "Offline Classes",
