@@ -1,7 +1,6 @@
 import React from 'react'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
 import GenerateLinkSidebar from './GenerateLinkSidebar'
-import CounsellorCardHeader from '../internalplacementstatistics/CounsellorCardHeader'
 import GenerateLinkHeader from './GenerateLinkHeader'
 const InternalStats = () => {
   return (
@@ -13,7 +12,6 @@ const InternalStats = () => {
 
         <div className="pl-[1.875vw]">
           <GenerateLinkHeader />
-          {/* <CounsellorCardHeader/> */}
         </div>
       </div>
     </WebLayout>
