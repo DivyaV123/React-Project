@@ -12,6 +12,8 @@ import {
 } from "@/components/ui/carousel"
 import CoursePageContainer from './CoursePageContainer'
 import TestimonialsSkeletonCard from './TestimonialsSkeletonCard'
+import Link from 'next/link'
+import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 
 function StudentsTestimonialsHome({ page, testimonialsData }) {
     const [isloading, setisLoading] = useState(true)
@@ -33,32 +35,44 @@ function StudentsTestimonialsHome({ page, testimonialsData }) {
                     <Carousel>
                         <CarouselContent className='bg-[#F9F9F9]'>
                             {testimonialsData?.map((element, index) => {
+                                const firstCardData = testimonialsData[index * 2];
+                                const secondCardData = testimonialsData[index * 2 + 1];
+
                                 return (
-                                    <CarouselItem className={page === 'branch' ? 'basis-[33%]' : "basis-[57%]"} >
+                                    <CarouselItem className={page === 'branch' ? 'basis-[33%]' : 'basis-[57%]'} key={index}>
                                         <article className='flex gap-4 pb-3'>
-                                            {isloading && index % 2 === 0 ? <TestimonialsSkeletonCard /> : < TestimonialsCard testimonialsData={element} />}
+                                            {isloading && index % 2 === 0 ? (
+                                                <TestimonialsSkeletonCard />
+                                            ) : (
+                                                firstCardData && <TestimonialsCard testimonialsData={firstCardData} compleateData={testimonialsData} />
+                                            )}
                                         </article>
                                         <article className='flex gap-4'>
-                                            {isloading && index % 2 !== 0 ? <TestimonialsSkeletonCard /> : < TestimonialsCard testimonialsData={element} />}
+                                            {isloading && index % 2 !== 0 ? (
+                                                <TestimonialsSkeletonCard />
+                                            ) : (
+                                                secondCardData && <TestimonialsCard testimonialsData={secondCardData} compleateData={testimonialsData} />
+                                            )}
                                         </article>
                                     </CarouselItem>
                                 );
                             })}
-
                         </CarouselContent>
                         <CarouselPrevious />
                         <CarouselNext />
                     </Carousel>
                 </article>
-                <article className={page === "branch" ? 'flex justify-center mt-3 pb-5' : 'flex justify-center mt-3 w-[51.56vw] pb-5'}>
-                    <Button
-                        className='bg-gradient h-[2.656vw] font-medium w-[9.375vw] text-[0.75rem] text-white rounded-md'
-                        title="View More"
-                        onClick={() => { }}
-                    />
-                </article>
+                <Link href={PLACEMENT_PATH}>
+                    <article className={page === "branch" ? 'flex justify-center mt-3 pb-5' : 'flex justify-center mt-3 w-[51.56vw] pb-5'}>
+                        <Button
+                            className='bg-gradient h-[2.656vw] font-medium w-[9.375vw] text-[0.75rem] text-white rounded-md'
+                            title="View More"
+                            onClick={() => { }}
+                        />
+                    </article>
+                </Link>
             </article>
-        </CoursePageContainer>
+        </CoursePageContainer >
     )
 }
 

@@ -3,12 +3,8 @@ import { WidthIcon } from '@radix-ui/react-icons'
 import React, { useCallback, useContext } from 'react'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import Qaccordion from './qaAccordion'
-import { Slide } from 'react-reveal'
-import { GlobalContext } from '../Context/GlobalContext'
 
-function FaqHome({ page, questions }) {
-    const { selectedCourseDetails } = useContext(GlobalContext)
-
+function FaqHome({ page, questions, courseDetails }) {
     const qaList = [
         {
             question: 'How do I create an employer account with Qspiders hiring?',
@@ -40,7 +36,7 @@ function FaqHome({ page, questions }) {
                 )}
             </header>
             <article className={`${page === 'course' ? 'w-[51.56vw]' : 'pb-8'}`}>
-                <Qaccordion qaList={selectedCourseDetails?.data?.faqs} />
+                <Qaccordion qaList={courseDetails?.faqs} />
             </article>
         </MaxWebWidth>
     )

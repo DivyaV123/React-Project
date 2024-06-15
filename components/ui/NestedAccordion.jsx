@@ -6,7 +6,6 @@ import { svgicons } from '../assets/icons/svgassets';
 const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
     const [activeSections, setActiveSections] = useState({});
     const [accordianArrow, setAccordianArrow] = useState({});
-
     const handleClick = (index) => {
         setActiveSections((prevActiveSections) => ({
             ...prevActiveSections,

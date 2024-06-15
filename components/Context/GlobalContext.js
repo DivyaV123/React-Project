@@ -10,7 +10,7 @@ const GlobalContextProvider = ({ children }) => {
 
   const [selectedBranch, setSelectedBranch] = useState('Bengalore')
   const [selectedCourseId, setSelectedCourseId] = useState('1')
- 
+
   const [selectedBatch, setSelectedBatch] = useState("Bengalore")
   const [selectedClassMode, setSelectedClassMode] = useState("offline")
   const todayDate = dayjs().format("YYYY-MM-DD")
@@ -93,7 +93,6 @@ const GlobalContextProvider = ({ children }) => {
       Math.ceil(target?.scrollTop + target?.clientHeight) > target?.scrollHeight - 1;
     setScrollConst(scrolledToBottom);
     if (scrolledToBottom) {
-      console.log("handleScroll is calling", scrolledToBottom);
       if (!repData.response.last) {
         setPage(page + 1);
       }
