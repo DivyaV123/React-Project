@@ -43,7 +43,7 @@ const GenerateLinkHeader = () => {
     parameter: isEmptyObject ? filterParameter : "",
     bodyData: queryParams,
   });
-
+  const [isFetchData,setIsFetchData]=useState(isFetching)
   useEffect(() => {
     if (counsellorFilterResponse) {
       if (page > 0) {
@@ -114,7 +114,7 @@ const GenerateLinkHeader = () => {
       </section>
       <div
         onScroll={(event) => {
-          handleScroll(event, page, setPage, counsellorFilterResponse);
+          handleScroll(event, page, setPage, counsellorFilterResponse,setIsFetchData);
         }}
         className="h-[58.889vh] overflow-auto myscrollbar w-[69.063vw] ml-[1.875vw] rounded-2xl"
       >
@@ -123,7 +123,10 @@ const GenerateLinkHeader = () => {
         ) : (
           <PlacementContent counsellorFilterResponse={accumulatedData} />
         )}
-        {isFetching && <BlinkingDots />}
+        {
+          isFetchData &&
+          <BlinkingDots/>
+        }
       </div>
     </>
   );
