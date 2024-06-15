@@ -25,7 +25,7 @@ const CourseLanding = ({ courseDetails }) => {
   ];
 
   const imageSrc = "../illustrate_tickmark.svg";
-  const tutionClasses = courseDetails.courseAbout;
+  const tutionClasses = courseDetails?.courseAbout;
   let splitText = tutionClasses?.split('.');
   const resources = splitText?.filter(s => s)
   const [btnState, setBtnState] = useState(
@@ -47,7 +47,7 @@ const CourseLanding = ({ courseDetails }) => {
         <aside className="flex pt-[6.944vh] justify-between">
           <article className="w-[51.56vw] flex flex-col ">
             <div className="bg-white flex w-fit classTypes">
-              {courseDetails.mode?.map((classItem, index) => (
+              {courseDetails?.mode?.map((classItem, index) => (
                 <button
                   key={index}
                   className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === btnState ? "activecourseButton" : ""}`}
@@ -61,7 +61,7 @@ const CourseLanding = ({ courseDetails }) => {
             </div>
             <div className="py-[1.389vh] flex gap-6 items-center">
               <h1 title={courseDetails?.courseName} className="font-bold text-left text-[3.75vw] flex">
-                {courseDetails?.courseName?.length > 25 ? courseDetails.courseName.substring(0, 25) + "..." : courseDetails.courseName}
+                {courseDetails?.courseName?.length > 25 ? courseDetails.courseName.substring(0, 25) + "..." : courseDetails?.courseName}
                 <button className="ratingButton flex justify-center items-center py-2 px-4 font-semibold rounded text-ash">
                   <span className="flex text-[1.25vw] py-[0.556vh] px-[0.313vw]">
                     <Svg
@@ -78,7 +78,7 @@ const CourseLanding = ({ courseDetails }) => {
             </div>
             <div className="pb-[5.556vh]">
               <p className="headerText text-left font-medium text-[1.563vw] leading-[1.875rem]">
-                {courseDetails.courseSummary}
+                {courseDetails?.courseSummary}
               </p>
             </div>
             <article className="flex pb-[5.556vh]">
