@@ -1,36 +1,34 @@
-'use client'
+"use client";
 import React, { createContext, useState, useEffect } from "react";
-
 
 export const GlobalContext = createContext();
 import dayjs from "dayjs";
 
-const initalFilter = {}
+const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
+  const [selectedBranch, setSelectedBranch] = useState("Bengalore");
+  const [selectedCourseId, setSelectedCourseId] = useState("1");
 
-  const [selectedBranch, setSelectedBranch] = useState('Bengalore')
-  const [selectedCourseId, setSelectedCourseId] = useState('1')
- 
-  const [selectedBatch, setSelectedBatch] = useState("Bengalore")
-  const [selectedClassMode, setSelectedClassMode] = useState("offline")
-  const todayDate = dayjs().format("YYYY-MM-DD")
-  const [filteringData, setFilteringData] = useState(initalFilter)
-  const [page, setPage] = useState(0)
-  const [size, setSize] = useState(5)
-  const [universitySelected, setUniversitySelected] = useState([])
-  const [stateSelected, setStateSelected] = useState([])
-  const [placeCheckedIcon, setPlacedCheckedIcon] = useState(true)
-  const [lesscheckedIcon, setLessCheckedIcon] = useState(false)
-  const [throughcheckedIcon, setThroughCheckedIcon] = useState(false)
-  const [itCheckedIcon, setItCheckedIcon] = useState(false)
-  const [nonItCheckedIcon, setNonItCheckedIcon] = useState(false)
-  const [scrollConst, setScrollConst] = useState()
-  const [allStaticsCount, setAllStaticsCount] = useState({})
-  const [selectedCourseDetails, setSelectedCourseDetails] = useState({})
+  const [selectedBatch, setSelectedBatch] = useState("Bengalore");
+  const [selectedClassMode, setSelectedClassMode] = useState("offline");
+  const todayDate = dayjs().format("YYYY-MM-DD");
+  const [filteringData, setFilteringData] = useState(initalFilter);
+  const [page, setPage] = useState(0);
+  const [size, setSize] = useState(5);
+  const [universitySelected, setUniversitySelected] = useState([]);
+  const [stateSelected, setStateSelected] = useState([]);
+  const [placeCheckedIcon, setPlacedCheckedIcon] = useState(true);
+  const [lesscheckedIcon, setLessCheckedIcon] = useState(false);
+  const [throughcheckedIcon, setThroughCheckedIcon] = useState(false);
+  const [itCheckedIcon, setItCheckedIcon] = useState(false);
+  const [nonItCheckedIcon, setNonItCheckedIcon] = useState(false);
+  const [scrollConst, setScrollConst] = useState();
+  const [allStaticsCount, setAllStaticsCount] = useState({});
+  const [selectedCourseDetails, setSelectedCourseDetails] = useState({});
 
   //daterange
-  const [fromValue, setFromValue] = useState('');
-  const [toValue, setToValue] = useState('');
+  const [fromValue, setFromValue] = useState("");
+  const [toValue, setToValue] = useState("");
   const [selectedDate, setSelectedDate] = useState([]);
 
   //yearRange
@@ -45,7 +43,7 @@ const GlobalContextProvider = ({ children }) => {
   const [selectedBranchType, setSelectedBranchType] = useState([]);
 
   //stateType
-  const [stateItems, setStateItems] = useState([])
+  const [stateItems, setStateItems] = useState([]);
 
   //cityType
   const [selectedCity, setSelectedCity] = useState([]);
@@ -69,16 +67,16 @@ const GlobalContextProvider = ({ children }) => {
 
   //generate link
   const [generateLink, setGenerateLink] = useState(false);
-  const [generatedPath, setGeneratedPath] = useState("")
+  const [generatedPath, setGeneratedPath] = useState("");
 
   //placement general login
-  const [filterPlacementData, setFilterPlacementData] = useState({})
-  const [placementParam, setPlacementParam] = useState('')
+  const [filterPlacementData, setFilterPlacementData] = useState({});
+  const [placementParam, setPlacementParam] = useState("");
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
   const [degreeButton, setDegreeButton] = useState("");
   const [branchButton, setBranchButton] = useState("");
   const [passOutButton, setPassOutButton] = useState("");
-  const [selectedCourseDetailsId, setSelectedCoursDetailseId] = useState(null)
+  const [selectedCourseDetailsId, setSelectedCoursDetailseId] = useState(null);
   function debounce(func, wait) {
     let timeout;
     return function (...args) {
@@ -87,18 +85,23 @@ const GlobalContextProvider = ({ children }) => {
     };
   }
 
-  const handleScroll = debounce((event, page, setPage, repData) => {
-    const target = event.target;
-    const scrolledToBottom =
-      Math.ceil(target?.scrollTop + target?.clientHeight) > target?.scrollHeight - 1;
-    setScrollConst(scrolledToBottom);
-    if (scrolledToBottom) {
-      console.log("handleScroll is calling", scrolledToBottom);
-      if (!repData.response.last) {
-        setPage(page + 1);
+  const handleScroll = debounce(
+    (event, page, setPage, repData, setIsFetchData) => {
+      const target = event.target;
+      const scrolledToBottom =
+        Math.ceil(target?.scrollTop + target?.clientHeight) >=
+        target?.scrollHeight - 1;
+      setScrollConst(scrolledToBottom);
+
+      if (scrolledToBottom) {
+        if (!repData.response.last) {
+          setIsFetchData(true);
+          setPage(page + 1);
+        }
       }
-    }
-  }, 300);
+    },
+    300
+  );
 
   // const handleScroll = (event, page, setPage, repData) => {
   //   const target = event.target;
@@ -120,8 +123,13 @@ const GlobalContextProvider = ({ children }) => {
     "Last 6 months": dayjs().subtract(6, "month").format("YYYY-MM-DD"),
   };
 
-
-  const handleCounsellorCommonFilter = (value, items, setItems, response, key) => {
+  const handleCounsellorCommonFilter = (
+    value,
+    items,
+    setItems,
+    response,
+    key
+  ) => {
     setPage(0);
     let updatedSelectedItems = [...items];
 
@@ -132,7 +140,9 @@ const GlobalContextProvider = ({ children }) => {
     } else {
       // Handle checkbox selection
       if (updatedSelectedItems.includes(value)) {
-        updatedSelectedItems = updatedSelectedItems.filter(item => item !== value);
+        updatedSelectedItems = updatedSelectedItems.filter(
+          (item) => item !== value
+        );
       } else {
         updatedSelectedItems.push(value);
       }
@@ -146,12 +156,12 @@ const GlobalContextProvider = ({ children }) => {
       selectedFilterData = updatedSelectedItems;
     }
 
-    setFilteringData(prevFilteringData => {
+    setFilteringData((prevFilteringData) => {
       const updatedFilteringData = { ...prevFilteringData };
       if (selectedFilterData.length === 0) {
         delete updatedFilteringData[key];
       } else {
-        if (key === 'timePeriod') {
+        if (key === "timePeriod") {
           if (value === -1) {
             // Calendar selection
             updatedFilteringData[key] = selectedFilterData;
@@ -178,13 +188,13 @@ const GlobalContextProvider = ({ children }) => {
 
   const handlePlacementCommonFilter = (title) => {
     setSideBarBtn(title);
-    setDegreeButton('')
-    setBranchButton('')
-    setPassOutButton('')
+    setDegreeButton("");
+    setBranchButton("");
+    setPassOutButton("");
     switch (title) {
       case "Recent Placements":
         setFilterPlacementData({});
-        setPlacementParam('')
+        setPlacementParam("");
         break;
       // case "Top Salaries":
       //   setPlacementParam("topsalaried");
@@ -195,10 +205,10 @@ const GlobalContextProvider = ({ children }) => {
       case "Last 6 months":
         const startDate = timePeriods[title];
         const endDate = dayjs().format("YYYY-MM-DD");
-        setPlacementParam('')
+        setPlacementParam("");
         setFilterPlacementData({
-          timePeriod: [startDate, endDate]
-        })
+          timePeriod: [startDate, endDate],
+        });
         break;
       default:
         break;
@@ -206,56 +216,99 @@ const GlobalContextProvider = ({ children }) => {
   };
 
   return (
-    <GlobalContext.Provider value={{
-      selectedBranch,
-      setSelectedBranch,
-      selectedCourseId,
-      setSelectedCourseId,
-      selectedBatch,
-      setSelectedBatch,
-      selectedClassMode,
-      setSelectedClassMode,
-      filteringData,
-      setFilteringData,
-      page,
-      setPage,
-      universitySelected,
-      stateSelected,
-      size,
-      setSize,
-      scrollConst,
-      handleCounsellorCommonFilter,
-      handleScroll,
-      placeCheckedIcon,
-      setPlacedCheckedIcon,
-      lesscheckedIcon,
-      setLessCheckedIcon,
-      throughcheckedIcon,
-      setThroughCheckedIcon,
-      fromValue, setFromValue, toValue, setToValue, selectedDate, setSelectedDate,
-      fromYear, setFromYear, toYear, setToYear, selectedYop, setSelectedYop,
-      selectedBranchFilter, setSelectedBranchFilter,
-      selectedBranchType, setSelectedBranchType,
-      stateItems, setStateItems,
-      selectedCity, setSelectedCity,
-      selectedUniversity, setSelectedUniversity,
-      selectedCollege, setSelectedCollege,
-      selectedDegrees, setSelectedDegrees,
-      selectedStream, setSelectedStream,
-      fromPercentage, setFromPercentage, toPercentage, setToPercentage,
-      selectedPercentage, setSelectedPercentage,
-      filterPlacementData, setFilterPlacementData, setPlacementParam,
-      placementParam, sideBarBtn, setSideBarBtn, handlePlacementCommonFilter,
-      degreeButton, setDegreeButton, branchButton, setBranchButton, passOutButton, setPassOutButton,
-      nonItCheckedIcon, setNonItCheckedIcon, itCheckedIcon, setItCheckedIcon,
-      generateLink, setGenerateLink, generatedPath, setGeneratedPath,
-      setSelectedCoursDetailseId,
-      selectedCourseDetailsId,
-      allStaticsCount,
-      setAllStaticsCount,
-      selectedCourseDetails, setSelectedCourseDetails
-    }}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider
+      value={{
+        selectedBranch,
+        setSelectedBranch,
+        selectedCourseId,
+        setSelectedCourseId,
+        selectedBatch,
+        setSelectedBatch,
+        selectedClassMode,
+        setSelectedClassMode,
+        filteringData,
+        setFilteringData,
+        page,
+        setPage,
+        universitySelected,
+        stateSelected,
+        size,
+        setSize,
+        scrollConst,
+        handleCounsellorCommonFilter,
+        handleScroll,
+        placeCheckedIcon,
+        setPlacedCheckedIcon,
+        lesscheckedIcon,
+        setLessCheckedIcon,
+        throughcheckedIcon,
+        setThroughCheckedIcon,
+        fromValue,
+        setFromValue,
+        toValue,
+        setToValue,
+        selectedDate,
+        setSelectedDate,
+        fromYear,
+        setFromYear,
+        toYear,
+        setToYear,
+        selectedYop,
+        setSelectedYop,
+        selectedBranchFilter,
+        setSelectedBranchFilter,
+        selectedBranchType,
+        setSelectedBranchType,
+        stateItems,
+        setStateItems,
+        selectedCity,
+        setSelectedCity,
+        selectedUniversity,
+        setSelectedUniversity,
+        selectedCollege,
+        setSelectedCollege,
+        selectedDegrees,
+        setSelectedDegrees,
+        selectedStream,
+        setSelectedStream,
+        fromPercentage,
+        setFromPercentage,
+        toPercentage,
+        setToPercentage,
+        selectedPercentage,
+        setSelectedPercentage,
+        filterPlacementData,
+        setFilterPlacementData,
+        setPlacementParam,
+        placementParam,
+        sideBarBtn,
+        setSideBarBtn,
+        handlePlacementCommonFilter,
+        degreeButton,
+        setDegreeButton,
+        branchButton,
+        setBranchButton,
+        passOutButton,
+        setPassOutButton,
+        nonItCheckedIcon,
+        setNonItCheckedIcon,
+        itCheckedIcon,
+        setItCheckedIcon,
+        generateLink,
+        setGenerateLink,
+        generatedPath,
+        setGeneratedPath,
+        setSelectedCoursDetailseId,
+        selectedCourseDetailsId,
+        allStaticsCount,
+        setAllStaticsCount,
+        selectedCourseDetails,
+        setSelectedCourseDetails,
+      }}
+    >
+      {children}
+    </GlobalContext.Provider>
   );
 };
 
-export default GlobalContextProvider; 
+export default GlobalContextProvider;
