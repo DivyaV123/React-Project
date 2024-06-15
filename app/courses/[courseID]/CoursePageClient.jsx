@@ -37,7 +37,7 @@ const CoursePageClient = () => {
       <PlacementStaticsHome courseDetails={courseDetails} />
       <HiringPartnersHome courseDetails={courseDetails} />
       <StudentsPlacedHome courseDetails={courseDetails} />
-      <CoursesFaq courseDetails={courseDetails} />
+      <CoursesFaq courseDetails={courseDetails.data} />
     </WebLayout>
   )
 }
