@@ -13,6 +13,7 @@ import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
 import CounsellorFilters from "./CounsellorFilters";
 import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
+import NoContent from "./NoContent";
 const CounsellorCardHeader = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -48,7 +49,7 @@ const CounsellorCardHeader = () => {
     parameter: isEmptyObject ? filterParameter : "",
     bodyData: filteringData,
   });
-  const [isFetchData,setIsFetchData]=useState(isFetching)
+  const [isFetchData, setIsFetchData] = useState(isFetching);
   useEffect(() => {
     refetch();
     if (!isEmptyObject) {
@@ -120,7 +121,9 @@ const CounsellorCardHeader = () => {
         <div>
           <CounsellorFilters />
         </div>
-      ) : ""}
+      ) : (
+        ""
+      )}
 
       <div
         className={`${
@@ -129,7 +132,7 @@ const CounsellorCardHeader = () => {
       >
         <section className="px-[1.875vw] flex gap-5 pb-[3.333vh] items-center">
           {isLoading ? (
-            <LinkCardSkeleton/>
+            <LinkCardSkeleton />
           ) : (
             <TotalPlacedCard
               allCounts={counsellorFilterResponse}
@@ -157,20 +160,33 @@ const CounsellorCardHeader = () => {
         </section>
         <div
           onScroll={(event) => {
-       
-            handleScroll(event, page, setPage, counsellorFilterResponse,setIsFetchData);
+            handleScroll(
+              event,
+              page,
+              setPage,
+              counsellorFilterResponse,
+              setIsFetchData
+            );
           }}
           className="h-[58.889vh] overflow-auto myscrollbar w-[69.063vw] ml-[1.875vw] rounded-2xl"
-         >
-          {isLoading ? (
-            <CardContentSkeleton />
+        >
+          {accumulatedData.length > 0 ? (
+            isLoading ? (
+              <CardContentSkeleton />
+            ) : (
+              <>
+                <PlacementContent counsellorFilterResponse={accumulatedData} />
+                {isFetchData && <BlinkingDots />}
+              </>
+            )
           ) : (
-            <PlacementContent counsellorFilterResponse={accumulatedData} />
+            <>
+            <div className="relative top-[50%] -translate-y-[50%] left-[42%]">
+
+            <NoContent />
+            </div>
+            </>
           )}
-          {
-          isFetchData &&
-          <BlinkingDots/>
-        }
         </div>
       </div>
     </div>

@@ -5,12 +5,11 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const DegreeFilter = ({ degreeList }) => {
-  const { handleCounsellorCommonFilter, selectedDegrees, setSelectedDegrees } =
+  const { handleCounsellorCommonFilter, selectedDegrees, setSelectedDegrees ,degreeSearchQuery,setDegreeSearchQuery,} =
     useContext(GlobalContext);
-  const [searchQuery, setSearchQuery] = useState("");
 
   const searchDegreeList = degreeList?.filter((degree) =>
-    degree.toLowerCase().includes(searchQuery.toLowerCase())
+    degree.toLowerCase().includes(degreeSearchQuery.toLowerCase())
   );
 
   const renderCheckbox = (item, index) => (
@@ -44,8 +43,8 @@ const DegreeFilter = ({ degreeList }) => {
           type="text"
           placeholder="Search..."
           className="text-[0.781vw]"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={degreeSearchQuery}
+          onChange={(e) => setDegreeSearchQuery(e.target.value)}
         />
         <div className="search-icon"></div>
       </div>

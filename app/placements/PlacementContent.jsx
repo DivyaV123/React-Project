@@ -89,6 +89,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   >
                     <img src="../google 1.svg"
                       alt="Google review"
+                      className={`${!student?.testimonial?.googleReview ? "opacity-30 pointer-events-none":""}`}
                       onClick={(e) => {
                         if (!student?.testimonial?.googleReview) {
                           e.preventDefault();
@@ -100,6 +101,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   <Link href={student?.testimonial?.fbReview || "#"} target="_blank">
                     <img src="../facebook 1.svg"
                       alt="Facebook Review"
+                      className={`${!student?.testimonial?.fbReview ? "opacity-30 pointer-events-none":""}`}
                       onClick={(e) => {
                         if (!student?.testimonial?.fbReview) {
                           e.preventDefault();
@@ -115,6 +117,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                     <img
                       src="../youtube 1.svg"
                       alt="YouTube Review"
+                      className={`${!student?.testimonial?.youtubeReview ? "opacity-30 pointer-events-none":""}`}
                       onClick={(e) => {
                         if (!student?.testimonial?.youtubeReview) {
                           e.preventDefault();

@@ -10,6 +10,7 @@ const NonItCard = ({allCounts,placementPage}) => {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setPlacementParam,
+    setSideBarBtn
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
@@ -19,6 +20,7 @@ const NonItCard = ({allCounts,placementPage}) => {
       setPlacedCheckedIcon(false);
       setLessCheckedIcon(false);
       setItCheckedIcon(false);
+      setSideBarBtn('')
     } else return;
   };
   return (

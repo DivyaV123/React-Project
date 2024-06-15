@@ -6,10 +6,9 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const StreamFilter = ({ streamList }) => {
-    const { handleCounsellorCommonFilter,selectedStream, setSelectedStream } = useContext(GlobalContext);
-    const [searchQuery, setSearchQuery] = useState("");
+    const { handleCounsellorCommonFilter,selectedStream, setSelectedStream,streamSearchQuery,setStreamSearchQuery } = useContext(GlobalContext);
 const searchStreamList=streamList?.filter((degree) =>
-    degree.toLowerCase().includes(searchQuery.toLowerCase())
+    degree.toLowerCase().includes(streamSearchQuery.toLowerCase())
   );
     const renderCheckbox = (item, index) => (
         <Checkbox
@@ -32,8 +31,8 @@ const searchStreamList=streamList?.filter((degree) =>
           type="text"
           placeholder="Search..."
           className="text-[0.781vw]"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
+          value={streamSearchQuery}
+          onChange={(e) => setStreamSearchQuery(e.target.value)}
         />
                 <div className="search-icon"></div>
             </div>

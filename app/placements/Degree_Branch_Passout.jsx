@@ -26,6 +26,11 @@ const Degree_Branch_Passout = ({isLoading}) => {
     setPlacedCheckedIcon,
     setNonItCheckedIcon,
     setItCheckedIcon,
+    lesscheckedIcon,
+    throughcheckedIcon,
+    itCheckedIcon,
+    nonItCheckedIcon,
+    placeCheckedIcon
   } = useContext(GlobalContext);
 
   const {
@@ -86,7 +91,7 @@ const Degree_Branch_Passout = ({isLoading}) => {
     setButtonState(item);
     setPlacementParam('');
     setSideBarBtn('');
-    setPlacedCheckedIcon(true);
+    setPlacedCheckedIcon(false);
     setLessCheckedIcon(false);
     setThroughCheckedIcon(false);
     setNonItCheckedIcon(false);
@@ -112,7 +117,7 @@ const Degree_Branch_Passout = ({isLoading}) => {
         <button
           key={index}
           className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
-            item === buttonState ? "activeButton font-medium" : ""
+            item === buttonState && !lesscheckedIcon && !throughcheckedIcon && !itCheckedIcon && !nonItCheckedIcon && !placeCheckedIcon ? "activeButton font-medium" : ""
           }`}
           onClick={() => handleButtonClick(item, setButtonState, key)}
         >

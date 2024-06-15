@@ -22,13 +22,12 @@ const PercentageFilter = () => {
   const validateTo = (value) => {
     if (isNaN(value) || value < 0 || value > 100) {
       return "To value should be between 0 and 100";
-    } else if (fromPercentage >= value) {
-      if (value !== "") {
-        return "To value should be greater than From value";
-      }
+    } else if (fromPercentage !== "" && parseFloat(fromPercentage) >= parseFloat(value)) {
+      return "To value should be greater than From value";
     }
     return "";
   };
+  
 
   const handleFromChange = (e) => {
     const value = e.target.value;
@@ -47,7 +46,10 @@ const PercentageFilter = () => {
   const handleApplyFilter = () => {
     if (validateFrom(fromPercentage) === '' && (validateTo(toPercentage) === '' || toPercentage === '')) {
       const percentageRange = toPercentage !== '' ? [fromPercentage, toPercentage] : [fromPercentage];
-      handleCounsellorCommonFilter(-1, [], setFilteringData, percentageRange, 'percentage');
+      setFilteringData(prevFilteringData => ({
+        ...prevFilteringData,
+        percentage: percentageRange
+      }));
     } else {
       setErrorMessage('Please enter valid percentage values');
     }
@@ -63,7 +65,13 @@ const PercentageFilter = () => {
       percentage: [selectedValue]
     }));
   };
-  const isApplyDisabled = fromPercentage && toPercentage;
+  const isApplyDisabled = !(
+    fromPercentage !== "" &&
+    toPercentage !== "" &&
+    parseFloat(fromPercentage) < parseFloat(toPercentage) &&
+    errorMessage === ""
+  );
+  
 
   return (
     <div className="px-[1.875vw] py-[2.778vh] timePeriod">
@@ -91,10 +99,10 @@ const PercentageFilter = () => {
           onChange={handleToChange}
           onBlur={() => setErrorMessage(validateTo(toPercentage))}
         />
-        <img src="../../checked.svg" onClick={isApplyDisabled ? handleApplyFilter : null} className={`applyFilterButton cursor-pointer w-[1.875vw] h-[3.333vh] ${!isApplyDisabled ? 'disabled' : ''}`}/>
+        <img src="../../checked.svg" onClick={!isApplyDisabled ? handleApplyFilter : null} className={`applyFilterButton cursor-pointer w-[1.875vw] h-[3.333vh] ${isApplyDisabled ? 'disabled' : ''}`}/>
       </div>
       {errorMessage && (
-        <div className="pb-[3.111vh]">
+        <div className="">
           <p className="text-red-500 font-bold text-[0.625vw]">
             {errorMessage}
           </p>

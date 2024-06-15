@@ -10,6 +10,7 @@ const DegreeCard = ({ allCounts,placementPage }) => {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setPlacementParam,
+    setSideBarBtn
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
@@ -19,10 +20,11 @@ const DegreeCard = ({ allCounts,placementPage }) => {
       setThroughCheckedIcon(false);
       setItCheckedIcon(false);
       setNonItCheckedIcon(false);
+      setSideBarBtn('')
     } else return;
   };
   return (
-    <div className={`${placementPage === "GeneralPlacements" ?'degreeCard' :'degreeInternal'} relative cursor-pointe`} onClick={handleClick}>
+    <div className={`${placementPage === "GeneralPlacements" ?'degreeCard' :'degreeInternal'} relative cursor-pointer`} onClick={handleClick}>
       {lesscheckedIcon && placementPage === "GeneralPlacements" && (
         <img
           src="../../checked.svg"

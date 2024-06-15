@@ -14,19 +14,52 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const CounsellorFilters = () => {
   const {
-    setFromValue, setToValue, setSelectedDate, setFilteringData, setFromYear, setToYear,
-    setSelectedYop, setSelectedBranchFilter, setSelectedBranchType, setStateItems,
-    setSelectedCity, setSelectedUniversity, setSelectedCollege, setSelectedDegrees,
-    setSelectedStream, setSelectedPercentage, setToPercentage, setFromPercentage,
-    setGenerateLink, generatedPath, filteringData,generateLink
+    setFromValue,
+    setToValue,
+    setSelectedDate,
+    setFilteringData,
+    setFromYear,
+    setToYear,
+    setSelectedYop,
+    setSelectedBranchFilter,
+    setSelectedBranchType,
+    setStateItems,
+    setSelectedCity,
+    setSelectedUniversity,
+    setSelectedCollege,
+    setSelectedDegrees,
+    setSelectedStream,
+    setSelectedPercentage,
+    setToPercentage,
+    setFromPercentage,
+    setGenerateLink,
+    generatedPath,
+    filteringData,
+    setCitySearchQuery,
+    setCollegeSearchQuery,
+    setDegreeSearchQuery,
+    setStateSearchQuery,
+    setUniversitySearchQuery,
+    setYearSearchQuery,
+    setStreamSearchQuery,
+    emptySearch
   } = useContext(GlobalContext);
 
-  const { data: degreeAndStreamdata, error, isLoading } = useGetAllDegreeAndStreamQuery();
-  const degreeList = degreeAndStreamdata?.response.degreeList.filter(degree => degree !== "");
-  const streamList = degreeAndStreamdata?.response.streamList.filter(stream => stream !== "");
+  const {
+    data: degreeAndStreamdata,
+    error,
+    isLoading,
+  } = useGetAllDegreeAndStreamQuery();
+  const degreeList = degreeAndStreamdata?.response.degreeList.filter(
+    (degree) => degree !== ""
+  );
+  const streamList = degreeAndStreamdata?.response.streamList.filter(
+    (stream) => stream !== ""
+  );
   const filterClass = "text-[#002248] text-[1.25vw] font-semibold";
 
-  const [isPercentageFilterVisible, setIsPercentageFilterVisible] = useState(false);
+  const [isPercentageFilterVisible, setIsPercentageFilterVisible] =
+    useState(false);
   const collegeFilterRef = useRef(null);
 
   useEffect(() => {
@@ -53,11 +86,11 @@ const CounsellorFilters = () => {
 
   const clearFilters = () => {
     setFilteringData({});
-    setFromValue('');
-    setToValue('');
+    setFromValue("");
+    setToValue("");
     setSelectedDate([]);
-    setFromYear('');
-    setToYear('');
+    setFromYear("");
+    setToYear("");
     setSelectedYop([]);
     setSelectedBranchFilter([]);
     setSelectedBranchType([]);
@@ -67,18 +100,25 @@ const CounsellorFilters = () => {
     setSelectedCollege([]);
     setSelectedDegrees([]);
     setSelectedStream([]);
-    setFromPercentage('');
-    setToPercentage('');
+    setFromPercentage("");
+    setToPercentage("");
     setSelectedPercentage(null);
+    setCitySearchQuery('')
+    setCollegeSearchQuery('')
+    setDegreeSearchQuery('')
+    setStateSearchQuery('')
+    setUniversitySearchQuery('')
+    setYearSearchQuery('')
+    setStreamSearchQuery('')
   };
 
-  const isEmptyObject = Object.keys(filteringData).length === 0;  
+  const isEmptyObject = Object.keys(filteringData).length === 0;
   const handleGenerateLink = (e) => {
     if (isEmptyObject) {
       e.preventDefault();
       return;
     }
-    setGenerateLink(true); 
+    setGenerateLink(true);
   };
 
   return (
@@ -86,12 +126,29 @@ const CounsellorFilters = () => {
       <div className="flex pb-[2.222vh] px-[1.875vw] pt-[3.333vh] justify-between filterHeader">
         <div className="flex gap-2">
           <button className={filterClass}>Filter</button>
-          <img src="../../filter.svg" alt="Filter Icon" onClick={clearFilters} />
+          {!isEmptyObject || !emptySearch ? (
+            <img
+            src="../../fillfilter.svg"
+            className="cursor-pointer"
+            alt="Filter Icon"
+            onClick={clearFilters}
+          />
+            
+          ) : (
+            <img src="../../filter.svg" alt="Filter Icon" />
+          )}
         </div>
         {isEmptyObject ? (
-          <button className={`${filterClass} pointer-events-none opacity-50`}>Generate Link</button>
+          <button className={`${filterClass} pointer-events-none opacity-50`}>
+            Generate Link
+          </button>
         ) : (
-          <a href={generatedPath} target="_blank"  onClick={handleGenerateLink}   className={`${filterClass} cursor-pointer`}>
+          <a
+            href={generatedPath}
+            target="_blank"
+            onClick={handleGenerateLink}
+            className={`${filterClass} cursor-pointer`}
+          >
             Generate Link
           </a>
         )}

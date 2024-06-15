@@ -11,7 +11,11 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
     setFilterPlacementData,
     setNonItCheckedIcon,
     setItCheckedIcon,
-    setPlacementParam
+    degreeButton,
+    branchButton,
+    passOutButton,
+    setPlacementParam,
+    setSideBarBtn
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
@@ -21,10 +25,11 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
       setThroughCheckedIcon(false);
       setNonItCheckedIcon(false);
       setItCheckedIcon(false);
+      setSideBarBtn("")
     } else return;
   };
   return (
-    <div className={`${placementPage === "GeneralPlacements" ?'placedCard' :'internalStats'} relative cursor-pointe`} onClick={handleClick}>
+    <div className={`${placementPage === "GeneralPlacements" ?'placedCard' :'internalStats'} relative cursor-pointer`} onClick={handleClick}>
       {placeCheckedIcon && placementPage === "GeneralPlacements" && (
         <img
           src="../../checked.svg"
