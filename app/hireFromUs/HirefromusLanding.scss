@@ -75,8 +75,16 @@
   }
 }
 .findingCandidate {
-  height: 643px;
-  background: #fff8f0;
+  height: auto;
+  background-image: url(/_next/static/media/hireUsBg.f7f01ec0.png),
+    linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.3) 0%,
+      rgba(255, 255, 255, 0.76) 78.2%
+    );
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: cover;
   .city-selector {
     h2 {
       // font-family: "poppins";
@@ -91,6 +99,13 @@
       &:hover {
         background-color: #ffffff;
         box-shadow: 0px 0px 12px -4px #00000040;
+        .image img {
+          filter: brightness(0) saturate(100%) invert(55%) sepia(92%)
+            saturate(2145%) hue-rotate(353deg) brightness(99%) contrast(102%);
+        }
+        .cityName {
+          color: #f77423;
+        }
       }
     }
   }
@@ -124,17 +139,17 @@
     .domain-card {
       // transition: background-color 0.3s;
       border-bottom: 2px solid #ff512f;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.76) 0%,
+        rgba(255, 201, 151, 0.1) 100%
+      );
 
       margin-bottom: 10px;
       transition: transform 0.3s, background-color 0.3s;
       border-radius: 0px 0px 16px 16px;
       border: 0px 0px 2px 0px;
       opacity: 0px;
-
-      &:hover {
-        background-color: #f8f8f8;
-        transform: scale(1.05);
-      }
     }
   }
   .card_candidate {
