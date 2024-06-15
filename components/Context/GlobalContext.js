@@ -310,5 +310,4 @@ const GlobalContextProvider = ({ children }) => {
     </GlobalContext.Provider>
   );
 };
-
 export default GlobalContextProvider;

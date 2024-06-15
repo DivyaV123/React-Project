@@ -8,9 +8,11 @@ import TrainingCardSkeleton from '@/components/ourBranches/trainingMode/Training
 import { useFetchCounsellorsQuery } from '@/redux/queries/counsellorsApi'
 import CourseHighlites from './CourseHighlites'
 import StudentsTestimonialsHome from './StudentsTestimonialsHome'
+import Link from 'next/link'
+import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 
 
-function StudentsPlacedHome({ page }) {
+function StudentsPlacedHome({ page, courseDetails }) {
     let bodyData = { branchType: ["Jspiders", "Qspiders"] }
     const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 15, bodyData: bodyData })
     const studentsInfo = [
@@ -74,16 +76,18 @@ function StudentsPlacedHome({ page }) {
                         </h1>
                     </header>
                     <StudentsPlacedCard page={page} studentsInfo={studentsList?.response.candidates.content} />
-                    <article className={`flex justify-center  ${page === 'branch' ? 'mt-[5.278vh] pb-[1.111vh]' : 'mt-[1.667vh] pb-[1.667vh]'}`}>
-                        <Button
-                            className='bg-gradient py-[1.111vh] px-[1.406vw] text-[0.938vw] text-white font-medium rounded-md'
-                            title="View More"
-                            onClick={() => { }}
-                        />
-                    </article>
+                    <Link href={PLACEMENT_PATH} >
+                        <article className={`flex justify-center  ${page === 'branch' ? 'mt-[5.278vh] pb-[1.111vh]' : 'mt-[1.667vh] pb-[1.667vh]'}`}>
+                            <Button
+                                className='bg-gradient py-[1.111vh] px-[1.406vw] text-[0.938vw] text-white font-medium rounded-md'
+                                title="View More"
+                                onClick={() => { }}
+                            />
+                        </article>
+                    </Link>
                 </article>
             </CoursePageContainer>
-            <CourseHighlites />
+            <CourseHighlites courseDetails={courseDetails} />
             <StudentsTestimonialsHome testimonialsData={studentsList?.response.candidates.content} />
         </>
     )

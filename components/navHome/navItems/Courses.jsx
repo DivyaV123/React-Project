@@ -7,269 +7,27 @@ import { COURSE_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+
 const Courses = () => {
   const { setSelectedCoursDetailseId } = useContext(GlobalContext);
-  const courses = [
-    {
-      icon: "softwareArchIcon",
-      title: "Software Architecture",
-      arrow: "/arrowIconDark.svg",
-      sublist: [
-        {
-          image: "/systemDesign.svg",
-          title: "System Design for Architects",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/advanceSystemDesign.svg",
-          title: "Advance System Design for Senior Architects",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/uiDesign.svg",
-          title: "ui Design for Architects",
-          description: "Software testing course is more of job oriented training which is designed",
-        }, {
-          image: "/testAutomation.svg",
-          title: "Test Automation Architect",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/performanceTest.svg",
-          title: "Performance Test Architect",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/cloudPlatform.svg",
-          title: "Cloud Platform/Infra Architect-AWS,GCP & Azure",
-          description: "Software testing course is more of job oriented training which is designed",
-        }, {
-          image: "/cloudSolutionAWS.svg",
-          title: "Cloud Solution Architect-AWS",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/cloudSolutionGCP.svg",
-          title: "Cloud Solution Architect-GCP",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/cloudSolutionArchitect.svg",
-          title: "Cloud Solution Architect-Azure",
-          description: "Software testing course is more of job oriented training which is designed",
-        }, {
-          image: "/advanceDevops.svg",
-          title: "Advance Devops course for Architects",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/securityTechArchitect.svg",
-          title: "Security Test Architect",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/advanceDataStructure.svg",
-          title: "Advance Data Structure",
-          description: "Software testing course is more of job oriented training which is designed",
-        }
-      ]
-    },
-    {
-      icon: "softwaredevicon",
-      title: "Software Development",
-      arrow: "/arrowIconDark.svg",
-      sublist: [
-        {
-          image: "/networksupport.svg",
-          title: "Software Architecture",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        }, {
-          image: "/networksupport.svg",
-          title: "Software Architecture",
-          description: "Software testing course is more of job oriented training which is designed",
-        }, {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        }, {
-          image: "/networksupport.svg",
-          title: "Software Architecture",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        }, {
-          image: "/networksupport.svg",
-          title: "Software Architecture",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        }
-      ]
-    },
-    {
-      icon: "softwareTestingIcon",
-      title: "Software Testing",
-      list: [
-        { icon: "emailIcon", title: "Software Testing Master Course", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Automation With Selenium", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Advance Test Automation - SDET", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Automation Architect", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Performance Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Web Service / API Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Mobile App Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Security Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Manual Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Specialised Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "Domain Testing", arrow: "/arrowIconDark.svg" },
-        { icon: "emailIcon", title: "ISTQB Testing", arrow: "/arrowIconDark.svg" },
-      ],
-      arrow: "/arrowIconDark.svg",
-      sublist: [
-        {
-          image: "/networksupport.svg",
-          title: "Software Architecture",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        }, {
-          image: "/networksupport.svg",
-          title: "Software Architecture",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        },
-        {
-          image: "/technicalsupport.svg",
-          title: "Software Development",
-          description: "Software testing course is more of job oriented training which is designed",
-        }
-      ]
-    },
-    {
-      icon: "cloudComputingIcon",
-      title: "Devops",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "dataScienceIcon",
-      title: "DevOps",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "aimlIcon",
-      title: "Cloud Computing",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "cyberSecurityIcon",
-      title: "Data Science",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "bankingIcon",
-      title: "AI/ML",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "projectManagementIcon",
-      title: "Cyber Security",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "agileScrumIcon",
-      title: "Banking",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "supportIcon",
-      title: "Project Management",
-      arrow: "/arrowIconDark.svg",
-    },
-    {
-      icon: "abroadStudiesICon",
-      title: "Agile Scrum",
-      arrow: "/arrowIconDark.svg",
-    }, {
-      icon: "emailIcon",
-      title: "Support",
-      arrow: "/arrowIconDark.svg",
-    }, {
-      icon: "emailIcon",
-      title: "Abroad Studies",
-      arrow: "/arrowIconDark.svg",
-    }, {
-      icon: "emailIcon",
-      title: "HR",
-      arrow: "/arrowIconDark.svg",
-    }, {
-      icon: "emailIcon",
-      title: "SAP",
-      arrow: "/arrowIconDark.svg",
-    }, {
-      icon: "emailIcon",
-      title: "Salesforce",
-      arrow: "/arrowIconDark.svg",
-    },
-  ];
   const { data: response, isLoading, error } = useGetAllCategoriesQuery();
   const [hoveredCourseIndex, setHoveredCourseIndex] = useState(0);
   const [hoveredSubCourseIndex, setHoveredSubCourseIndex] = useState(0);
   const [activeResponses, setActiveResponses] = useState([]);
+
   const handleCourseHover = (courseIndex, courseResponses) => {
     setHoveredCourseIndex(courseIndex);
-    setHoveredSubCourseIndex(0); // Reset sub-course hover
-    setActiveResponses(courseResponses); // Set default course responses
+    setHoveredSubCourseIndex(null); // Reset sub-course hover
+    setActiveResponses(courseResponses || []); // Set default course responses
   };
 
   const handleSubCourseHover = (subCourseIndex, subCourseResponses) => {
     setHoveredSubCourseIndex(subCourseIndex);
-    setActiveResponses(subCourseResponses); // Set sub-course responses on hover
+    setActiveResponses(subCourseResponses || []); // Set sub-course responses on hover
   };
 
   const handleSubCourseLeave = () => {
-    setHoveredSubCourseIndex(0);
+    setHoveredSubCourseIndex(null);
     if (hoveredCourseIndex !== null) {
       // Reset to course responses if a course is still hovered
       setActiveResponses(response?.data[hoveredCourseIndex]?.courseResponse || []);
@@ -318,13 +76,8 @@ const Courses = () => {
           : "coursefull p-3"
           } flex flex-wrap h-fit gap-4`}>
           {activeResponses.map((content, index) => (
-            <Link href={COURSE_PATH} key={index}>
-              <div
-                onClick={() => { setSelectedCoursDetailseId(content.courseResponseId) }}
-                className={`${hoveredCourseIndex !== null && activeResponses.length
-                  ? "courseMedium"
-                  : "courseinitial"
-                  } p-2 branchOverlay h-fit`}>
+            <Link href={`/courses/${content.courseResponseId}`} key={index}>
+              <div className={`${hoveredCourseIndex !== null && activeResponses.length ? "courseMedium" : "courseinitial"} p-2 branchOverlay h-fit`}>
                 <div className="flex h-10 gap-1.5">
                   <img className="h-8 w-8" src={content.icon} />
                   <h3 className="text-left h-8 text-sm font-bold items-center flex">
@@ -332,7 +85,9 @@ const Courses = () => {
                   </h3>
                 </div>
                 <div>
-                  <article title={content.description} className="text-sm titleText">{content.description.length > 85 ? content.description.substring(0, 85) + '...' : content.description}</article>
+                  <article title={content.description} className="text-sm titleText">
+                    {content.description.length > 85 ? content.description.substring(0, 85) + '...' : content.description}
+                  </article>
                 </div>
               </div>
             </Link>
@@ -340,7 +95,6 @@ const Courses = () => {
         </div>
       </div>
     </div>
-
   );
 };
 

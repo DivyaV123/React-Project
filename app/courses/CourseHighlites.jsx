@@ -5,8 +5,7 @@ import './CourseHighlites.scss'
 import CoursePageContainer from './CoursePageContainer'
 import { GlobalContext } from '@/components/Context/GlobalContext'
 
-function CourseHighlites(props) {
-    const { selectedCourseDetails } = useContext(GlobalContext)
+function CourseHighlites({ courseDetails }) {
     const courseContent = [
         {
             question: 'Who this course is for?',
@@ -40,7 +39,7 @@ function CourseHighlites(props) {
             ]
         }
     ]
-    const inputText = selectedCourseDetails?.data?.courseHighlight;
+    const inputText = courseDetails?.data?.courseHighlight;
 
     const sections = inputText?.split(';'); // Splits sections at semicolons
     const courseContents = sections?.map(section => {
@@ -51,8 +50,6 @@ function CourseHighlites(props) {
             bulletPoints: bulletPoints
         };
     });
-
-
     return (
         <CoursePageContainer>
             <header>

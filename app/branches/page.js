@@ -3,12 +3,13 @@ import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
 import React from 'react'
 import BranchesLandingPage from './BranchesLandingPage'
 import BranchesCourse from './BranchesCourse'
+import UpCommingBatches from './UpCommingBatches'
 import PlacementStatisticsHome from '@/components/placementstatistics/placementStatisticsHome'
 import HiringPartners from '@/components/hiringPartners/hiringPartners'
 import StidentsPlaced from './StidentsPlaced'
 import Testimonials from './Testimonials'
 import FaqHome from '@/components/faq/faqHome'
-import UpCommingBatches from './UpCommingBatches'
+
 
 
 function Branches() {

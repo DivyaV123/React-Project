@@ -10,11 +10,8 @@ import CoursePageContainer from './CoursePageContainer';
 import Svg from '@/components/commonComponents/Svg/Svg';
 import { svgicons } from '@/components/assets/icons/svgassets';
 import NestedAccordion from '@/components/ui/NestedAccordion';
-import { GlobalContext } from '@/components/Context/GlobalContext';
 
-function CourseContent() {
-    const { selectedCourseDetails } = useContext(GlobalContext);
-
+function CourseContent({ courseDetails }) {
     const courseContentdatas = [
         {
             "Manual Testing": [
@@ -46,8 +43,7 @@ function CourseContent() {
         });
     };
 
-    const courseContentdata = transformData(selectedCourseDetails?.data?.subjects)
-
+    const courseContentdata = transformData(courseDetails?.data?.subjects)
 
     const [openIndex, setOpenIndex] = useState(-1);
 
