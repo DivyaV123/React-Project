@@ -15,7 +15,7 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed, cardData }) => {
     { number: `${allStaticsCount?.response?.itCount}+`, text: "IT Students placed" },
   ];
 
-  console.log(cardData, allStaticsCount, "courseDetailscourseDetails......")
+
   const section2Ref = useRef(null);
   const [section1Height, setSection1Height] = useState(0);
   const [isAbsoluteBar, setIsAbsoluteBar] = useState(false);
