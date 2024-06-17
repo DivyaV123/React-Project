@@ -4,12 +4,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "@/components/commonComponents/button/Button";
 import Input from "@/components/commonComponents/input/Input";
-import TextArea from "@/components/commonComponents/textArea/TextArea";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
-import TextEditor from "@/components/commonComponents/editor/TextEditor";
-// import 'react-quill/dist/quill.snow.css';
-// import ReactQuill from "react-quill";
+
 
 function CourseFormLanding() {
     const { data: courseData, error, isLoading } = useGetAllCategoriesInCourseQuery()
@@ -188,7 +185,7 @@ function CourseFormLanding() {
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
                             ></textarea> */}
-                            <TextEditor value={formikDetails.values.aboutCourse} onChange={formikDetails.handleChange} />
+                            {/* <TextEditor value={formikDetails.values.aboutCourse} onChange={formikDetails.handleChange} /> */}
                             <div>
                                 <h2>Editor Content:</h2>
                                 <div dangerouslySetInnerHTML={{ __html: editorValue }} />
