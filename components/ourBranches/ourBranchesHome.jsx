@@ -139,7 +139,7 @@ function OurBranchesHome({ page }) {
 
         <article
           className={`${page === "course" && btnState === "OfflineClasses"
-            ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh] pr-[1.563vw]"
+            ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh]"
             : "flex flex-wrap  gap-x-[1.094vw] gap-y-[1.944vh] justify-center"
             }`}
         >
@@ -221,7 +221,7 @@ function OurBranchesHome({ page }) {
       </section>
       {/* </MaxWebWidth > */}
       {page !== "course" && (
-        <MaxWebWidth sectionStyling="bg-backgroundBlue  bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain  bg-cover my-[6.667vh]">
+        <MaxWebWidth sectionStyling="bg-[#F6F6F6]  bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain  bg-cover my-[6.667vh]">
           <section >
             <TrainingMode />
           </section>

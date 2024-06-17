@@ -15,61 +15,12 @@ import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 function StudentsPlacedHome({ page, courseDetails }) {
     let bodyData = { branchType: ["Jspiders", "Qspiders"] }
     const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 16, bodyData: bodyData })
-    const studentsInfo = [
-        {
-            image: '../images/user_profile.png',
-            name: 'Rahul Kumar',
-            batch: 'BSC (64%) - 2018',
-            course: 'Computer Science (CS)'
-        },
-        {
-            image: '../images/user_profile.png',
-            name: 'Rahul Kumar',
-            batch: 'BSC (64%) - 2018',
-            course: 'Computer Science (CS)'
-        },
-        {
-            image: '../images/user_profile.png',
-            name: 'Rahul Kumar',
-            batch: 'BSC (64%) - 2018',
-            course: 'Computer Science (CS)'
-        },
-        {
-            image: '../images/user_profile.png',
-            name: 'Rahul Kumar',
-            batch: 'BSC (64%) - 2018',
-            course: 'Computer Science (CS)'
-        },
-        {
-            image: '../images/user_profile.png',
-            name: 'Rahul Kumar',
-            batch: 'BSC (64%) - 2018',
-            course: 'Computer Science (CS)'
-        },
-        {
-            image: '../images/user_profile.png',
-            name: 'Rahul Kumar',
-            batch: 'BSC (64%) - 2018',
-            course: 'Computer Science (CS)'
-        },
-        {
-            image: '../images/user_profile.png',
-            name: 'Rahul Kumar',
-            batch: 'BSC (64%) - 2018',
-            course: 'Computer Science (CS)'
-        },
-        {
-            image: '../images/user_profile.png',
-            name: 'Rahul Kumar',
-            batch: 'BSC (64%) - 2018',
-            course: 'Computer Science (CS)'
-        },
-    ]
+   
 
     return (
         <>
-            <MaxWebWidth>
-                <article className={page === 'branch' ? '' : 'w-[51.56vw]'}>
+            <section className='w-full bg-[#F6F6F6]'>
+                <article className={page === 'branch' ? 'w-[87.5vw] m-auto' : 'w-[51.56vw]'}>
                     <header>
                         <h1 className={`${page === 'branch' ? "text-[2.5vw] py-[1.563vw]" : "text-[1.875vw] pt-[3.611vh] pb-[3.056vh]"} font-bold`}>
                             {`${page === 'branch' ? "Students placed through this branch" : "Students placed through this course"}`}
@@ -86,7 +37,7 @@ function StudentsPlacedHome({ page, courseDetails }) {
                         </article>
                     </Link>
                 </article>
-            </MaxWebWidth>
+            </section>
             {page === "course" &&
                 <>
                     <CourseHighlites courseDetails={courseDetails} />

@@ -1,9 +1,6 @@
 'use client'
 import React, { useEffect, useState } from 'react'
-import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import TrainingCardSkeleton from '@/components/ourBranches/trainingMode/TrainingCardSkeleton'
-import { Button } from '@/components/ui/button'
-import { SectionIcon } from '@radix-ui/react-icons'
 import './CourseLanding.scss';
 
 function StudentsPlacedCard({ studentsInfo, page }) {
@@ -19,8 +16,8 @@ function StudentsPlacedCard({ studentsInfo, page }) {
             {studentsInfo?.map((element) => {
                 let detail = `${element.degree.degreeName}(${element.degree.degreeAggregate}%)- ${element.degree.degreeYop}`
                 return (
-                    isloading ? <TrainingCardSkeleton /> : <section className={`flex testinomialShadow ${page === 'branch' ? "w-[20.469vw]" : " w-[14.688vw]"}`}>
-                        <article className={page !== 'branch' ? 'bg-white py-[1.667vh] px-[0.859vw] w-full rounded-lg' : 'bg-white pb-[7.639vh] pt-[3.75vh] px-[3.75vw] rounded-lg '} >
+                    isloading ? <TrainingCardSkeleton /> : <section className="flex testinomialShadow w-[20.469vw]" >
+                        <article className="bg-white pb-[7.639vh] pt-[3.75vh] px-[3.75vw] rounded-lg w-full" >
                             <figure className='flex justify-center pb-[2.222vh]'>
                                 <img className='w-20 h-20  rounded-full' src={element.photoLink.length ? element.photoLink : '../../images/user.jpg'} alt='no image' />
                             </figure>

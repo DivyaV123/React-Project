@@ -130,7 +130,7 @@ function CourseContent({ courseDetails }) {
             <header className='text-[1.875vw] font-bold pt-[2.778vh] pb-[2.778vh]'>
                 Course Content
             </header>
-            <article className='my-[2.778vh] mr-[1.563vw]'>
+            <article className='my-[2.778vh]'>
                 <NestedAccordion data={courseContentdata}
                     page='course' />
             </article>

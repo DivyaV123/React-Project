@@ -24,7 +24,7 @@ function FaqHome({ page, questions, courseDetails }) {
         }
     ]
     return (
-        <MaxWebWidth sectionStyling='bg-backgroundBlue'>
+        <MaxWebWidth sectionStyling='bg-[#F6F6F6]'>
             <header className={`mt-8 p-5`}>
                 <h1 className={`font-bold text-[2rem] justify-center flex  align-center`}>
                     {'FAQ’s'}
