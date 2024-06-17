@@ -2,7 +2,7 @@ import Button from '@/components/commonComponents/button/Button';
 import React, { useEffect, useState } from 'react'
 
 
-function CoursePagePop() {
+function CoursePagePop({courseDetails}) {
     const [showDiv, setShowDiv] = useState(false);
 
     useEffect(() => {
@@ -21,8 +21,8 @@ function CoursePagePop() {
     };
     return (
         <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className='bg-[#FEF2E7] w-[100%] flex justify-between align-item-center z-10 sticky px-[4.1667vw] fixed bottom-0'>
-            <p className='text-[24px] font-bold leading-[36px] py-[1.15vw]'>
-                Data Science with Neural Networks & Deep Learning
+            <p className='text-[1.875vw] font-bold leading-[36px] py-[1.15vw]'>
+                {courseDetails?.courseName}
             </p>
             <div className='flex justify-cnter py-[1.15vw]'>
                 <div className='flex gap-3'>

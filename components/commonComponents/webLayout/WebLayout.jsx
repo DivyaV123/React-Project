@@ -5,7 +5,7 @@ import FooterHome from "@/components/footer/footerHome";
 import NavHome from "@/components/navHome/navHome";
 import React from "react";
 
-function WebLayout({ children, page }) {
+function WebLayout({ children, page,courseDetails }) {
   return (
     <>
       <NavHome />
@@ -17,7 +17,7 @@ function WebLayout({ children, page }) {
             <ContactSection />
           ) : page === 'course' ?
             (
-              <CoursePagePop />
+              <CoursePagePop courseDetails={courseDetails}/>
             ) : (<></>)
       }
     </>
