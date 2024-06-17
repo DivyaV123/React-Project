@@ -100,9 +100,9 @@ const CourseLanding = ({ courseDetails }) => {
                 </div>
                 <article className="flex pb-[5.556vh]">
                   {statisticsData.map((ele, index) => (
-                    <div key={index} className=" ">
+                    <div key={index} className="courseStats">
                       <h1
-                        className={`text-left font-bold text-[1.875vw] pb-[0.556vh] headerText ${
+                        className={`text-left font-bold text-[1.875vw] pb-[0.556vh]  ${
                           ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
                         }`}
                       >

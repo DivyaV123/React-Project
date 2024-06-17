@@ -13,14 +13,15 @@ function CoursePagePop({courseDetails}) {
     }, []);
     const handleScroll = () => {
         // Adjust the value (in pixels) based on how far down you want to scroll before showing the div
-        if (window.scrollY > 60) {
+        if (window.scrollY > 90) {
             setShowDiv(true);
         } else {
             setShowDiv(false);
         }
     };
+
     return (
-        <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className='bg-[#FEF2E7] w-[100%] flex justify-between align-item-center z-10 sticky px-[4.1667vw] fixed bottom-0'>
+        <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className='bg-[#FEF2E7] w-[100%] flex justify-between align-item-center   px-[4.1667vw] fixed top-[7.5vw]'>
             <p className='text-[1.875vw] font-bold leading-[36px] py-[1.15vw]'>
                 {courseDetails?.courseName}
             </p>
