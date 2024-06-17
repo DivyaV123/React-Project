@@ -74,7 +74,12 @@ function PlacementStatisticsHome({ page }) {
                     <PlaceMentStatistics path={page} statistics={statistics} />
 
                 </aside>
-                <aside className='pr-[2.188vw] pb-[5.556vh]'>
+                <section className='relative p-2'>
+                    <figure className='absolute top-[-18%] left-[50%]'>
+                        <img className='w-[90%]' src={page === "branch" || page === "course" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img>
+                    </figure>
+                    
+                 <aside className='pr-[2.188vw] pb-[5.556vh]'>
                     <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
                         From Various Degree
                     </h1>
@@ -104,6 +109,7 @@ function PlacementStatisticsHome({ page }) {
                         </div>
                     </aside>
                 </aside>
+                </section>
             </article>
 
         </MaxWebWidth>

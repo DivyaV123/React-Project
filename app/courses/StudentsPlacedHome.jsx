@@ -38,14 +38,21 @@ function StudentsPlacedHome({ page, courseDetails }) {
                     </Link>
                 </article>
             </section>
-            {page === "course" &&
+            {page === "course" ?
                 <>
                     <CourseHighlites courseDetails={courseDetails} />
                     <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
-                        <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response.candidates.content} />
+                        <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response?.candidates?.content} />
                     </MaxWebWidth>
 
                 </>
+                :
+                <>
+                <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
+                    <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response?.candidates?.content} />
+                </MaxWebWidth>
+
+            </>
             }
 
         </>
