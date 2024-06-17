@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Skeleton } from "@/components/ui/skeleton"
+import Link from 'next/link';
+import { PLACEMENT_PATH } from '@/lib/RouteConstants';
 
 function PlaceMentStatistics({ className, path, statistics }) {
     const [isloading, setisLoading] = useState(true)
@@ -29,7 +31,7 @@ function PlaceMentStatistics({ className, path, statistics }) {
                         </>
 
                         :
-                        <>
+                        <Link href={PLACEMENT_PATH}>
                             <div className='flex aligen-items jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl w-[24.531vw]'>
                                 <figure>
                                     <img className='h-full' src={item.icon}></img>
@@ -39,7 +41,7 @@ function PlaceMentStatistics({ className, path, statistics }) {
                                     <p className='text-dark-gray text-[1.094vw]' dangerouslySetInnerHTML={{ __html: content }} />
                                 </div>
                             </div>
-                        </>
+                        </Link>
                 )
             })}
         </div >

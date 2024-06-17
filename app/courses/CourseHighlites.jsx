@@ -51,12 +51,12 @@ function CourseHighlites({ courseDetails }) {
         };
     });
     return (
-        <CoursePageContainer>
+        <MaxWebWidth sectionStyling='bg-[#FFFCF9]'>
             <header>
                 <h1 className='font-bold text-black text-[1.5rem] py-5'>Highlights about the Course</h1>
             </header>
             {courseContents?.map((element) => (
-                <article className='bg-[#FFFCF9] px-5 pointsList mb-3 rounded-xl'>
+                <article className=' px-5 pointsList mb-3 rounded-xl'>
                     <header className='py-5 font-bold text-xl text-dark-gray'>
                         {element.question}
                     </header>
@@ -72,7 +72,7 @@ function CourseHighlites({ courseDetails }) {
 
                 </article>
             ))}
-        </CoursePageContainer>
+        </MaxWebWidth>
     )
 }
 

@@ -31,7 +31,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                                 <article className='flex justify-center'>
                                     <div>
                                         <p className='flex justify-center text-dark-gray pb-[0.556vh] text-[1.094vw]'>{detail}</p>
-                                        <p title={element.degree.degreeStream} className='flex justify-center text-dark-gray text-[1.094vw]'>{element.degree.degreeStream.length > 20 ? element.degree.degreeStream.substring(0, 20) + '...' : element.degree.degreeStream}</p>
+                                        <p title={element.degree.degreeStream} className='flex justify-center text-dark-gray text-[1.094vw]'>{element.degree.degreeStream.length > 18 ? element.degree.degreeStream.substring(0, 18) + '...' : element.degree.degreeStream}</p>
                                     </div>
                                 </article>
                             </header>

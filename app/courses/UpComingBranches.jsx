@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import OurBranchesHome from '@/components/ourBranches/ourBranchesHome'
 import CoursePageContainer from './CoursePageContainer'
+import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth';
 
 function UpComingBranches() {
     const [isRightBarFixed, setIsRightBarFixed] = useState(false);
@@ -9,9 +10,9 @@ function UpComingBranches() {
         setIsRightBarFixed(fixed);
     }
     return (
-        <CoursePageContainer>
+        <MaxWebWidth>
             <OurBranchesHome page='course' onRightBarFix={handleRightBarFix} />
-        </CoursePageContainer>
+        </MaxWebWidth>
 
     )
 }

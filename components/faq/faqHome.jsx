@@ -24,19 +24,19 @@ function FaqHome({ page, questions, courseDetails }) {
         }
     ]
     return (
-        <MaxWebWidth sectionStyling={`${page === 'course' ? '' : 'bg-backgroundBlue'}`}>
-            <header className={`${page === 'course' ? 'w-[51.56vw] mt-8 p-5' : 'mt-8 p-5'}`}>
-                <h1 className={`font-bold ${page === 'course' ? 'text-[1.5rem] justify-start' : 'text-[2rem] justify-center'} flex  align-center `}>
-                    {page === 'course' ? 'Frequently Asked Questions' : page === 'branch' ? 'Frequently Asked Questions' : 'FAQ’s'}
+        <MaxWebWidth sectionStyling='bg-backgroundBlue'>
+            <header className={`mt-8 p-5`}>
+                <h1 className={`font-bold text-[2rem] justify-center flex  align-center`}>
+                    {'FAQ’s'}
                 </h1>
-                {page !== 'course' && page !== 'branch' && (
-                    <span className='text-[0.875rem] text-dark-gray font-normal flex justify-center items-center'>
-                        Often asked questions from our wonderful partners
-                    </span>
-                )}
+                {/* {page !== 'course' && page !== 'branch' && ( */}
+                <span className='text-[0.875rem] text-dark-gray font-normal flex justify-center items-center'>
+                    Often asked questions from our wonderful partners
+                </span>
+                {/* )} */}
             </header>
-            <article className={`${page === 'course' ? 'w-[51.56vw]' : 'pb-8'}`}>
-                <Qaccordion qaList={courseDetails?.faqs} />
+            <article className={`pb-8`}>
+                <Qaccordion qaList={courseDetails?.faqs.length > 0 ? courseDetails?.faqs : qaList} />
             </article>
         </MaxWebWidth>
     )

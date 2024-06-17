@@ -10,6 +10,7 @@ import CoursePageContainer from './CoursePageContainer';
 import Svg from '@/components/commonComponents/Svg/Svg';
 import { svgicons } from '@/components/assets/icons/svgassets';
 import NestedAccordion from '@/components/ui/NestedAccordion';
+import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth';
 
 function CourseContent({ courseDetails }) {
     const courseContentdatas = [
@@ -125,15 +126,15 @@ function CourseContent({ courseDetails }) {
     };
 
     return (
-        <CoursePageContainer className=''>
-            <header className='text-[1.875vw] font-bold pt-[2.778vh] pr-[1.563vw] pb-[2.778vh]'>
+        <MaxWebWidth>
+            <header className='text-[1.875vw] font-bold pt-[2.778vh] pb-[2.778vh]'>
                 Course Content
             </header>
             <article className='my-[2.778vh] mr-[1.563vw]'>
                 <NestedAccordion data={courseContentdata}
                     page='course' />
             </article>
-        </CoursePageContainer>
+        </MaxWebWidth>
     )
 }
 export default CourseContent

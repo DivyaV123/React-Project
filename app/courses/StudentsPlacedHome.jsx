@@ -14,7 +14,7 @@ import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 
 function StudentsPlacedHome({ page, courseDetails }) {
     let bodyData = { branchType: ["Jspiders", "Qspiders"] }
-    const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 15, bodyData: bodyData })
+    const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 16, bodyData: bodyData })
     const studentsInfo = [
         {
             image: '../images/user_profile.png',
@@ -68,7 +68,7 @@ function StudentsPlacedHome({ page, courseDetails }) {
 
     return (
         <>
-            <CoursePageContainer className={page === 'branch' ? '!w-full !p-0 ' : 'bg-[#F9F9F9] pb-5'}>
+            <MaxWebWidth>
                 <article className={page === 'branch' ? '' : 'w-[51.56vw]'}>
                     <header>
                         <h1 className={`${page === 'branch' ? "text-[2.5vw] py-[1.563vw]" : "text-[1.875vw] pt-[3.611vh] pb-[3.056vh]"} font-bold`}>
@@ -86,9 +86,17 @@ function StudentsPlacedHome({ page, courseDetails }) {
                         </article>
                     </Link>
                 </article>
-            </CoursePageContainer>
-            <CourseHighlites courseDetails={courseDetails} />
-            <StudentsTestimonialsHome testimonialsData={studentsList?.response.candidates.content} />
+            </MaxWebWidth>
+            {page === "course" &&
+                <>
+                    <CourseHighlites courseDetails={courseDetails} />
+                    <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
+                        <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response.candidates.content} />
+                    </MaxWebWidth>
+
+                </>
+            }
+
         </>
     )
 }

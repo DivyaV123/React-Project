@@ -12,25 +12,42 @@ import { COURSEADDER_HOME } from '@/lib/RouteConstants';
 function SignInForm() {
     const router = useRouter()
     const [login, { data: loginData, error, isLoading }] = useLoginMutation();
+    const usernameOrEmailValidation = Yup.string()
+        .test('test-usernameOrEmail', 'Invalid email address or mobile number', function (value) {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            const mobileRegex = /^\d{10}$/; // Example for a 10 digit mobile number
+            if (emailRegex.test(value) || mobileRegex.test(value)) {
+                return true;
+            }
+            return false;
+        })
+        .required('Username, Email, or Mobile Number is required');
     const formik = useFormik({
         initialValues: {
             usernameOrEmail: '',
             password: '',
         },
         validationSchema: Yup.object({
-            usernameOrEmail: Yup.string()
-                .email('Invalid email address')
-                .required('UserName or Email is required'),
+            usernameOrEmail: usernameOrEmailValidation,
             password: Yup.string()
                 .min(6, 'Password must be at least 6 characters')
                 .required('Password is Required'),
         }),
         onSubmit: async (values) => {
+            let userData = {}
+            const isNumeric = () => !isNaN(values.usernameOrEmail) && Number.isInteger(parseFloat(values.usernameOrEmail));
             try {
-                const userData = {
-                    email: values.usernameOrEmail,
-                    password: values.password,
-                };
+                if (isNumeric()) {
+                    userData = {
+                        phoneNumber: values.usernameOrEmail,
+                        password: values.password,
+                    };
+                } else {
+                    userData = {
+                        email: values.usernameOrEmail,
+                        password: values.password,
+                    };
+                }
                 const response = await login(userData).unwrap();
                 const token = response?.data?.token
                 const role = response?.data?.role
@@ -53,12 +70,12 @@ function SignInForm() {
                 </h1>
                 <form className='mt-[4.444vh]' onSubmit={formik.handleSubmit}>
                     <div className='mb-[3.333vh]'>
-                        <div className='font-semibold text-darl-gray pb-[1.389vh]'>User name / Email</div>
+                        <div className='font-semibold text-darl-gray pb-[1.389vh]'>Email/ Mobile</div>
                         <Input
                             name='usernameOrEmail'
                             type='text'
                             inputStyle='w-full text-[#A8A8A8] text-[0.938vw] h-[6.667vh] outline-none'
-                            placeholder='Enter your username or email'
+                            placeholder='Enter your email or Mobile Number'
                             value={formik.values.usernameOrEmail}
                             onChange={formik.handleChange}
                             onBlur={formik.handleBlur}
