@@ -8,9 +8,20 @@ import TextArea from "@/components/commonComponents/textArea/TextArea";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
 import "react-quill/dist/quill.snow.css";
-import ReactQuill from "react-quill";
-import "react-quill/dist/quill.snow.css";
 
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.snow.css";
+import "react-quill/dist/quill.bubble.css";
+
+const ReactQuill = dynamic(
+  async () => {
+    const { default: RQ } = await import("react-quill");
+    return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
+  },
+  {
+    ssr: false,
+  }
+);
 function CourseFormLanding() {
   const {
     data: courseData,
