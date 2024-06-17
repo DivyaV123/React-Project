@@ -3,7 +3,7 @@ import "./HirefromusLanding.scss";
 const Hiringprocess = () => {
   return (
     <section className="hiringprocessbg">
-      <img className="w-full" src="../../hiring_process.svg" />
+      <img className="w-full" src="../../hiring_processNew.svg" />
     </section>
   );
 };

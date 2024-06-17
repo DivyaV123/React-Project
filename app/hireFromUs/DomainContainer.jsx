@@ -1,14 +1,14 @@
 import React from 'react'
 import "./HirefromusLanding.scss";
 const domains = [
-  { name: 'Software Testing', image: '../../course_icon.png' },
-  { name: 'UX designer', image:  '../../course_icon.png' },
-  { name: 'Cybersecurity', image:  '../../course_icon.png' },
-  { name: 'Cloud Computing', image: '../../course_icon.png' },
-  { name: 'Networking', image: '../../course_icon.png' },
-  { name: 'DevOps', image: '../../course_icon.png' },
-  { name: 'Blockchain', image: '../../course_icon.png'},
-  { name: 'Business Analyst', image: '../../course_icon.png'},
+  { name: 'Software Developer', image: '../../developer.png' },
+  { name: 'UI/UX designer', image:  '../../designer.png' },
+  { name: 'DevOps', image: '../../devops.png' },
+  { name: 'Data Science', image: '../../data.png' },
+  { name: 'Project Management', image: '../../project-management.png' },
+  { name: 'Cyber Security', image:  '../../cyber-security.png' },
+  { name: 'Support', image: '../../customer-service.png'},
+  { name: 'AI/ML', image: '../../AiML.png'},
 ];
 const DomainContainer = () => {
   return (
