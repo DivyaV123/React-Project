@@ -75,24 +75,24 @@ function ContactUsPage() {
   const contactInfo = [
     {
       country: "India",
-      call: "+91 XXXXX XXXXX",
-      mail: "Contact@qspider.com",
+      call: "+918951965854, +919686111919, +919108993972",
+      mail: "enquiry@qspiders.com",
       address:
-        "Lorem ipsum dolor sit amet consectetur. Amet at at pellentesque urna. Lorem ipsum dolor sit amet consectetur.",
+        " No. 01, 3rd Cross Basappa Layout, Gavipuram Extn, Kempegowda Nagar, Bengaluru, Karnataka - 560019",
     },
     {
-      country: "Canada",
-      call: "+91 XXXXX XXXXX",
-      mail: "Contact@qspider.com",
+      country: "United States",
+      call: "+14154293957",
+      mail: "enquiry@qspiders.com",
       address:
-        "Lorem ipsum dolor sit amet consectetur. Amet at at pellentesque urna. Lorem ipsum dolor sit amet consectetur.",
+        "99 South Almaden Blvd, Suite 600, San Jose, CA 95113, USA",
     },
     {
       country: "United Kingdom",
-      call: "+91 XXXXX XXXXX",
-      mail: "Contact@qspider.com",
+      call: "+443332423091",
+      mail: "enquiry@qspiders.com",
       address:
-        "Lorem ipsum dolor sit amet consectetur. Amet at at pellentesque urna. Lorem ipsum dolor sit amet consectetur.",
+        "99 South Almaden Blvd, Suite 600, San Jose, CA 95113, UK",
     },
   ];
   const formikDetails = useFormik({
@@ -158,16 +158,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw]">
                     <span className="text-[0.938vw] font-normal">Mobile</span>
-                    {/* <Input
-                                                inputStyle={`${contactUsInput}`}
-                                                iconPath='/mobilefieldicon.svg'
-                                                type='text'
-                                                 name="phone"
-                                                placeholder='Enter your phone number'
-                                                onChange={formikDetails.handleChange}
-                                                onBlur={formikDetails.handleBlur}
-                                                value={formikDetails.values.phone}
-                                            /> */}
+                    
                     <PhoneInput
                       type="text"
                       // placeholder="Enter phone number"
@@ -323,14 +314,14 @@ function ContactUsPage() {
                     </div>
                     <div className={`${contentStyle}`}>
                       <Svg
-                        className="basis-[15%]"
+                        className="basis-[8%]"
                         width={svgicons.contactUsAdressSvg[0]}
                         height={svgicons.contactUsAdressSvg[1]}
                         viewBox={svgicons.contactUsAdressSvg[2]}
                         icon={svgicons.contactUsAdressSvg[3]}
                         color={svgicons.contactUsAdressSvg[4]}
                       />
-                      <div className="text-white  text-[0.938vw] px-[0.625vw]">
+                      <div className="text-white  text-[0.938vw] pr-[0.625vw]">
                         {data.address}
                       </div>
                     </div>

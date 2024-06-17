@@ -76,7 +76,7 @@
 }
 .findingCandidate {
   height: auto;
-  background-image: url(/_next/static/media/hireUsBg.f7f01ec0.png),
+  background-image: url("../../public/hireUsBg.png"),
     linear-gradient(
       180deg,
       rgba(255, 201, 151, 0.3) 0%,
@@ -161,5 +161,38 @@
     font-weight: 600;
     line-height: 24px;
     text-align: center;
+  }
+}
+.hiringFromUsComponent{
+  input::placeholder {
+    font-size: 14px; 
+  }
+  .react-tel-input .form-control {
+    width: -webkit-fill-available;
+    height: 30px;
+  }
+  .custom-grid-form {
+    @apply grid grid-cols-1 md:grid-cols-2;
+    gap: 1rem; // general gap
+  
+    @media (min-width: 768px) {
+      column-gap: 3rem; // increased gap between columns for medium screens and up
+    }
+  }
+  
+  .btnComponent{
+        
+        position: relative;
+        top: 7vh;
+        display: flex;
+        height: 48px;
+  
+        justify-content: end;
+        button{
+         height: inherit;
+    width: 107px;
+    justify-content: end;
+    background: linear-gradient(96.77deg, #F09819 -28.03%, #FF512F 134.69%);
+        }
   }
 }
