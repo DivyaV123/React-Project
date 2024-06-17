@@ -2,10 +2,10 @@
 import React, { useState } from "react";
 import './navitems.scss'
 import Link from "next/link";
-import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
+// import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { truncateText } from "@/lib/utils";
-const Courses = () => {
-  const {data:courseResponse,isLoading,error}=useGetAllCategoriesQuery()
+const Courses = ({courseResponse}) => {
+  // const {data:courseResponse,isLoading,error}=useGetAllCategoriesQuery()
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
   const getAllCourses=courseResponse?.data
