@@ -13,11 +13,14 @@ import Link from "next/link";
 import Input from "../commonComponents/input/Input";
 import { Skeleton } from "@/components/ui/skeleton";
 import CourseCardSkeleton from "../commonComponents/courseCard/CourseCardSkeleton";
+import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
+
 
 function OurCourse({ page }) {
+  const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery()
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
-  const [isloading, setisLoading] = useState(true);
+  // const [isloading, setisLoading] = useState(true);
   const typesOfClasses = [
     {
       title: "Offline Classes",
@@ -224,12 +227,6 @@ function OurCourse({ page }) {
     { number: "15,000+", text: "IT Students placed" },
   ];
 
-  useEffect(() => {
-    setTimeout(() => {
-      setisLoading(false);
-    }, 500);
-  }, []);
-
   return (
     <MaxWebWidth>
       {page !== "explore" && (
@@ -272,11 +269,10 @@ function OurCourse({ page }) {
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center px-4 py-2 font-medium text-[0.75rem] text-dark-gray ${
-                  classItem.title === btnState
-                    ? "bg-gradient text-white rounded p-2"
-                    : ""
-                } `}
+                className={`flex justify-center items-center px-4 py-2 font-medium text-[0.75rem] text-dark-gray ${classItem.title === btnState
+                  ? "bg-gradient text-white rounded p-2"
+                  : ""
+                  } `}
                 onClick={() => {
                   setBtnState(classItem.title);
                 }}
@@ -290,7 +286,7 @@ function OurCourse({ page }) {
       <aside className="flex h-[132.222vh]">
         <article className="justify-start w-[20.70vw] h-full overflow-auto courseScroll">
           <div className="w-full">
-            {courses.map((item, itemIndex) => {
+            {AllCourse?.data?.map((item, itemIndex) => {
               return isloading ? (
                 <div
                   className={`bg-orange hover:font-semibold hover:text-white w-full  flex  gradient-bg cursor-pointer `}
@@ -307,13 +303,12 @@ function OurCourse({ page }) {
                   key={itemIndex}
                   onMouseEnter={() => setHoveredIndex(itemIndex)}
                   onMouseLeave={() => setHoveredIndex(0)}
-                  className={`bg-orange hover:font-semibold hover:text-white w-full flex  gradient-bg cursor-pointer  ${
-                    hoveredIndex === itemIndex ? "bg-gradient" : ""
-                  }`}
+                  className={`bg-orange hover:font-semibold hover:text-white w-full flex  gradient-bg cursor-pointer  ${hoveredIndex === itemIndex ? "bg-gradient" : ""
+                    }`}
                 >
                   <div className="flex  items-center py-[2.222vh] px-[1.25vw] w-full">
                     <picture className="flex justify-start w-[89%]">
-                      <Svg
+                      {/* <Svg
                         width={
                           hoveredIndex === itemIndex
                             ? svgicons[item?.iconlite][0]
@@ -339,13 +334,13 @@ function OurCourse({ page }) {
                             ? svgicons[item?.iconlite][4]
                             : svgicons[item?.icon][4]
                         }
-                      />
+                      /> */}
+                      <img src={item.icon} />
                       <aside
-                        className={` pl-[1.25vw] text-[1.094vw] text-dark-gray   w-full ${
-                          hoveredIndex === itemIndex
-                            ? "text-white"
-                            : "text-black"
-                        }`}
+                        className={` pl-[1.25vw] text-[1.094vw] text-dark-gray   w-full ${hoveredIndex === itemIndex
+                          ? "text-white"
+                          : "text-black"
+                          }`}
                       >
                         <h1>{item.title}</h1>
                       </aside>
@@ -413,8 +408,8 @@ function OurCourse({ page }) {
                   : "./arrowIconOrange.svg"
               }
               iconPosition="right"
-              // onMouseEnter={() => { setviewAllCoursesHover(true) }}
-              // onMouseLeave={() => { setviewAllCoursesHover(false) }}
+            // onMouseEnter={() => { setviewAllCoursesHover(true) }}
+            // onMouseLeave={() => { setviewAllCoursesHover(false) }}
             />
           </article>
         </Link>

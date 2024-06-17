@@ -99,7 +99,7 @@ function OurBranchesHome({ page }) {
       <section>
         <header>
           {page === "course" ? (
-            <article className="flex justify-between w-[100 %] pr-[1.563vw] pt-[2.778vh] pb-[1.667vh] items-center">
+            <article className="flex justify-between w-[100%] pt-[2.778vh] pb-[1.667vh] items-center">
               <h1 className="flex justify-start text-[1.875vw] items-center font-bold py-[2.778vh]">
                 Upcoming Batches
               </h1>
@@ -138,11 +138,10 @@ function OurBranchesHome({ page }) {
         </header>
 
         <article
-          className={`${
-            page === "course" && btnState === "OfflineClasses"
-              ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh] pr-[1.563vw]"
-              : "flex flex-wrap  gap-x-[1.094vw] gap-y-[1.944vh] justify-center"
-          }`}
+          className={`${page === "course" && btnState === "OfflineClasses"
+            ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh] pr-[1.563vw]"
+            : "flex flex-wrap  gap-x-[1.094vw] gap-y-[1.944vh] justify-center"
+            }`}
         >
           {btnState === "OfflineClasses" ? (
             branchCards.map((elements) => {
@@ -162,9 +161,8 @@ function OurBranchesHome({ page }) {
                     ) : page === "course" ? (
                       <div
                         onClick={(e) => handleImageRoute(e, elements.city)}
-                        className={`${
-                          elements.city !== "AllCities" ? " imgstyling" : ""
-                        }  h-[7.813vw] w-[15.625vw] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
+                        className={`${elements.city !== "AllCities" ? " imgstyling" : ""
+                          }  h-[7.813vw] w-[15.625vw] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
                         style={{
                           backgroundImage: `url(${elements.path})`,
                           backgroundRepeat: "no-repeat",
@@ -185,9 +183,8 @@ function OurBranchesHome({ page }) {
                     ) : (
                       <div
                         onClick={(e) => handleImageRoute(e, elements.city)}
-                        className={`${
-                          elements.city !== "AllCities" ? " imgstyling" : ""
-                        } w-full h-[7.813vw] !w-[20.469vw] rounded-lg flex flex-col justify-center items-center`}
+                        className={`${elements.city !== "AllCities" ? " imgstyling" : ""
+                          } w-full h-[7.813vw] !w-[20.469vw] rounded-lg flex flex-col justify-center items-center`}
                         style={{
                           backgroundImage: `url(${elements.path})`,
                           backgroundRepeat: "no-repeat",
@@ -213,7 +210,7 @@ function OurBranchesHome({ page }) {
           ) : (
             <>
               <OnlineLiveClasses page="course" className="" />
-              <div className="w-[42.03vw] flex justify-end py-[2.222vh]">
+              <div className="flex-col justify-end py-[2.222vh]">
                 <button className="py-[1.111vh] px-[1.406vw] text-[1.094vw] font-semibold EnrollButton">
                   View More
                 </button>

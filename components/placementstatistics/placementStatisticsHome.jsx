@@ -8,6 +8,8 @@ import { Skeleton } from "@/components/ui/skeleton"
 import Counter from '../commonComponents/counterAnimation/Counter';
 import PlaceMentStatistics from './placeMentStatistics';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
+import { PLACEMENT_PATH } from '@/lib/RouteConstants';
 
 function PlacementStatisticsHome({ page }) {
     const [isloading, setisLoading] = useState(true)
@@ -59,20 +61,20 @@ function PlacementStatisticsHome({ page }) {
                 <aside className='p-2'>
                     <Fade left duration={1000} deley={0}>
                         <figure className='absolute top-[-4%] left-[-6.5%]'>
-                            <img className='w-[75%]' src={page === "branch" ? '../graduationCapIcon.svg' : './graduationCapIcon.svg'}></img>
+                            <img className='w-[75%]' src={page === "branch" || page === "course" ? '../graduationCapIcon.svg' : './graduationCapIcon.svg'}></img>
                         </figure>
                     </Fade>
 
-                
-                        <PlaceMentStatistics path='branch' statistics={statistics} />
-                    
+
+                    <PlaceMentStatistics path={page} statistics={statistics} />
+
                 </aside>
                 <asides className='relative p-2'>
-                    <Fade right duration={1000} delay={0}>
-                        <figure className='absolute top-[-18%] left-[50%]'>
-                            <img className='w-[90%]' src={page === "branch" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img>
-                        </figure>
-                    </Fade>
+                    {/* <Fade right duration={1000} delay={0}> */}
+                    <figure className='absolute top-[-18%] left-[50%]'>
+                        <img className='w-[90%]' src={page === "branch" || page === "course" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img>
+                    </figure>
+                    {/* </Fade> */}
                     <aside className='p-7'>
                         <h1 className='font-bold text-xl pb-5'>
                             From Various Degree
@@ -80,7 +82,10 @@ function PlacementStatisticsHome({ page }) {
                         <div className='grid grid-cols-3 gap-4'>
                             {degrees.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
+                                    <Link href={PLACEMENT_PATH}>
+                                        <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
+                                    </Link>
+
                                 )
                             })
                             }
@@ -93,7 +98,10 @@ function PlacementStatisticsHome({ page }) {
                         <div className='grid grid-cols-3 gap-4'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
+                                    <Link href={PLACEMENT_PATH}>
+                                        <Badge variant="" className='font-bold text-[1.125rem]'>{element}</Badge>
+                                    </Link>
+
                                 )
                             })
                             }

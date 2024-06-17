@@ -8,6 +8,8 @@ import CoursePageContainer from './CoursePageContainer'
 import { Skeleton } from "@/components/ui/skeleton"
 import { useGetAllPlacementCountQuery } from '@/redux/queries/getAllPlacementCount'
 import { GlobalContext } from '@/components/Context/GlobalContext'
+import Link from 'next/link'
+import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 
 function PlacementStaticsHome({ path }) {
     const { setAllStaticsCount } = useContext(GlobalContext)
@@ -68,17 +70,13 @@ function PlacementStaticsHome({ path }) {
         }, 500);
     }, [])
     return (
-        <CoursePageContainer className='bg-Pinkgradient'>
+        <MaxWebWidth sectionStyling='bg-Pinkgradient'>
             <article className='w-[51.56vw]'>
                 <h1 className='font-bold text-[1.875vw] text-black flex justicy-start pb-[4.167vh] pt-[3.611vh] '>
                     Our Placement Statistics
                 </h1>
 
-                <PlaceMentStatistics
-                    statistics={statistics}
-                    className='flex flex-wrap'
-                    path='course'
-                />
+                <PlaceMentStatistics path='branch' statistics={statistics} />
 
                 <aside className='pr-[2.188vw] pb-[5.556vh] pt-[8.333vh]'>
                     <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
@@ -87,7 +85,9 @@ function PlacementStaticsHome({ path }) {
                     <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
                         {degrees.map((element) => {
                             return (
-                                <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
+                                <Link href={PLACEMENT_PATH}>
+                                    <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
+                                </Link>
                             )
                         })
                         }
@@ -99,7 +99,9 @@ function PlacementStaticsHome({ path }) {
                         <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
                             {branches.map((element) => {
                                 return (
-                                    <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
+                                    <Link href={PLACEMENT_PATH}>
+                                        <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
+                                    </Link>
                                 )
                             })
                             }
@@ -107,7 +109,7 @@ function PlacementStaticsHome({ path }) {
                     </aside>
                 </aside>
             </article>
-        </CoursePageContainer>
+        </MaxWebWidth>
     )
 }
 

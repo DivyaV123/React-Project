@@ -66,7 +66,7 @@ function TestimonialsCard({ testimonialsData, compleateData }) {
                         {testimonialsData?.testimonial?.writtenTestimonial.length > 150 ? testimonialsData?.testimonial?.writtenTestimonial.substring(0, 150) + "..." : testimonialsData?.testimonial?.writtenTestimonial ? testimonialsData?.testimonial?.writtenTestimonial : "Thank you for being a valued member of our community! Your feedback is important to us."}
                     </p>
                 </header>
-                <p>
+                {/* <p>
                     <span className='flex text-[0.875rem] gap-1 font-bold justify-end items-baseline'><span className='font-bold'>4.5</span> <Svg
                         className='mt-[0.15rem]'
                         width={svgicons.ratingStar[0]}
@@ -75,7 +75,7 @@ function TestimonialsCard({ testimonialsData, compleateData }) {
                         icon={svgicons.ratingStar[3]}
                         color={svgicons.ratingStar[4]}
                     /></span>
-                </p>
+                </p> */}
             </article>
         </AlertDialog>
     )

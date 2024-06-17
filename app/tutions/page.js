@@ -18,10 +18,10 @@ const Tutions = () => {
     return (
         <WebLayout>
             <CourseLanding page='tution' />
-            <ImageScroller onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} />
+            {/* <ImageScroller onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} /> */}
             <CourseContent />
             <CourseHighlites />
-            <StudentsTestimonialsHome />
+            <StudentsTestimonialsHome page='tution' />
             <CoursesFaq />
         </WebLayout>
     )
