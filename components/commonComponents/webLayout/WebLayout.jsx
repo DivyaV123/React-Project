@@ -1,4 +1,5 @@
 'use client'
+import CoursePagePop from "@/app/courses/CoursePagePop";
 import ContactSection from "@/components/carosalHome/ContactSection";
 import FooterHome from "@/components/footer/footerHome";
 import NavHome from "@/components/navHome/navHome";
@@ -11,10 +12,13 @@ function WebLayout({ children, page }) {
       <div className="relative">{children}</div>
       <FooterHome />
       {
-        page === 'main' &&
-        (
-          <ContactSection />
-        )
+        page === 'main' ?
+          (
+            <ContactSection />
+          ) : page === 'course' ?
+            (
+              <CoursePagePop />
+            ) : (<></>)
       }
     </>
   );

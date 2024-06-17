@@ -7,6 +7,7 @@ import Input from "@/components/commonComponents/input/Input";
 import TextArea from "@/components/commonComponents/textArea/TextArea";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
+import TextEditor from "@/components/commonComponents/editor/TextEditor";
 // import 'react-quill/dist/quill.snow.css';
 // import ReactQuill from "react-quill";
 
@@ -19,6 +20,7 @@ function CourseFormLanding() {
     const [selectedSubCourse, setSelectedSubCourse] = useState('');
     const [subCourseOptions, setSubCourseOptions] = useState([]);
     const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);
+    const [editorValue, setEditorValue] = useState('');
 
     const validationSchema = Yup.object({
         course: Yup.string().required("Course is required"),
@@ -180,18 +182,17 @@ function CourseFormLanding() {
                     <div className="flex justify-between mb-[4.444vh]">
                         <div className="w-[33vw]">
                             <p className={commonLabelStyles}>About the Course</p>
-                            <textarea
+                            {/* <textarea
                                 name="aboutCourse"
                                 value={formikDetails.values.aboutCourse}
                                 onChange={formikDetails.handleChange}
                                 onBlur={formikDetails.handleBlur}
-                            ></textarea>
-                            {/* <ReactQuill
-                                value={formikDetails.values.aboutCourse}
-                                onChange={(value) =>
-                                    formikDetails.setFieldValue("aboutCourse", value)
-                                }
-                            /> */}
+                            ></textarea> */}
+                            <TextEditor value={formikDetails.values.aboutCourse} onChange={formikDetails.handleChange} />
+                            <div>
+                                <h2>Editor Content:</h2>
+                                <div dangerouslySetInnerHTML={{ __html: editorValue }} />
+                            </div>
                             {formikDetails.touched.aboutCourse &&
                                 formikDetails.errors.aboutCourse ? (
                                 <div className="text-red-500">
