@@ -30,7 +30,7 @@ const CoursePageClient = () => {
 
 
   return (
-    <WebLayout page='course'>
+    <WebLayout page='course' courseDetails={courseDetails.data}>
       <CourseLanding courseDetails={courseDetails.data} />
       <CourseContent courseDetails={courseDetails} />
       <UpComingBranches courseDetails={courseDetails.data} />
