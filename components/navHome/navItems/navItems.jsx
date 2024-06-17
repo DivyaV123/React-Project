@@ -14,17 +14,19 @@ import Tutions from "./Tutions";
 import Link from "next/link";
 import { InputIcon } from "@radix-ui/react-icons";
 import { CONTACT_US_PATH, PLACEMENT_PATH,HIREFROMUS_PATH } from "@/lib/RouteConstants";
+import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 
+
+function NavItems() {
+  const {data:courseResponse,isLoading,error}=useGetAllCategoriesQuery()
 const navItems = [
-  { id: 1, name: "Courses", content: <Courses /> },
+  { id: 1, name: "Courses", content: <Courses courseResponse={courseResponse}/> },
   { id: 2, name: "Branches", content: <Branches /> },
   { id: 3, name: "Tuitions", content: <Tutions /> },
   { id: 4, name: "Hire From Us", content: "" },
   { id: 5, name: "Placements", content: "" },
   { id: 6, name: "Contact us", content: "" },
 ];
-
-function NavItems() {
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {
