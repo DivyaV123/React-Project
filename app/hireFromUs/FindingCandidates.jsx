@@ -1,6 +1,7 @@
 'use client'
-import React from 'react'
+import React, { useState } from 'react';
 import "./HirefromusLanding.scss";
+import HiringModal from './Modal/HiringModal';
 
 const FindingCandidates = () => {
   const cities = [
@@ -13,23 +14,54 @@ const FindingCandidates = () => {
     { name: 'Gurugram', image: '../../Icon_gurugram.png'},
   ];
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [activeTab, setActiveTab] = useState('Hire From Us');
+
+  const handleCardClick = (city) => {
+    setSelectedCity(city);
+    setIsModalOpen(true);
+    setActiveTab('Hire From Us');
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCity(null);
+  };
+
   return (
     <section className="findingCandidate">
-    <div className="city-selector container mx-auto  p-4">
-      <h2 className="text-center  mt-8 mb-8">Find Candidates In Your Cities</h2>
-      <div className="grid grid-cols-2 md:grid-cols-4  ml-[130px] card_candidate">
-        {cities.map((city) => (
-          <div key={city.name} className="city-card p-4  rounded text-center h-[200px] w-[180px] hover:bg-gray-200 cursor-pointer">
-          <div className="image mb-2 flex justify-center" >
-                <img src={city.image} alt={city.name} className="h-[120px] mt-1 w-[120px] object-cover rounded" />
+      <div className="city-selector container mx-auto p-4">
+        <h2 className="text-center mt-8 mb-8">Find Candidates In Your Cities</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 ml-[130px] card_candidate">
+          {cities.map((city) => (
+            <div
+              key={city.name}
+              className="city-card p-4 rounded text-center h-[200px] w-[180px] hover:bg-gray-200 cursor-pointer"
+              onClick={() => handleCardClick(city)}
+            >
+              <div className="image mb-2 flex justify-center">
+                <img
+                  src={city.image}
+                  alt={city.name}
+                  className="h-[120px] mt-1 w-[120px] object-cover rounded"
+                />
               </div>
               <div className="cityName">{city.name}</div>
-          </div>
-        ))}
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-  </section>
-  )
-}
 
-export default FindingCandidates
+      <HiringModal
+        isModalOpen={isModalOpen}
+        selectedCity={selectedCity}
+        activeTab={activeTab}
+        handleCloseModal={handleCloseModal}
+        setActiveTab={setActiveTab}
+      />
+    </section>
+  );
+};
+
+export default FindingCandidates;
