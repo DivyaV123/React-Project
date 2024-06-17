@@ -17,7 +17,7 @@ const DomainContainer = () => {
       <h2 className="text-center  mt-8 mb-8">Find Our Talents in Different Domains</h2>
       <div className="grid grid-cols-2 md:grid-cols-4   domain_candidate">
         {domains.map((domain) => (
-          <div key={domain.name} className="domain-card p-4  rounded text-center h-[160px] w-[260px] hover:bg-gray-200 cursor-pointer">
+          <div key={domain.name} className="domain-card p-4  rounded text-center h-[160px] w-[auto] hover:bg-gray-200 cursor-pointer">
           <div className="image mb-2 flex justify-center" >
                 <img src={domain.image} alt={domain.name} className="h-[36px] mt-1 w-[36px] object-cover rounded" />
               </div>
