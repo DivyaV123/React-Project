@@ -135,11 +135,11 @@ const CourseLanding = ({ courseDetails }) => {
                 </article>
                 <section className="flex gap-6 pb-[7.222vh]">
                   <button className="EnrollButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw]">
-                    Enroll now
+                    Enroll For Demo Class
                   </button>
-                  <button className="EnquireButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw] relative">
+                  {/* <button className="EnquireButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw] relative">
                     <span>Know more</span>
-                  </button>
+                  </button> */}
                 </section>
               </div>
               <div>

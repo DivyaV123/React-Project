@@ -63,7 +63,7 @@ function StudentsTestimonialsHome({ page, testimonialsData }) {
                     </Carousel>
                 </article>
                 <Link href={PLACEMENT_PATH}>
-                    <article className={page === "branch" ? 'flex justify-center mt-3 pb-5' : 'flex justify-center mt-3 w-[51.56vw] pb-5'}>
+                    <article className={page === "branch" ? 'flex justify-center mt-[4.444vh] pb-[4.444vh]' : 'flex justify-center mt-[2.778vh] w-[51.56vw] pb-[2.778vh]'}>
                         <Button
                             className='bg-gradient h-[2.656vw] font-medium w-[9.375vw] text-[0.75rem] text-white rounded-md'
                             title="View More"
