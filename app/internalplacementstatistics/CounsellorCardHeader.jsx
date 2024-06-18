@@ -140,7 +140,7 @@ const CounsellorCardHeader = () => {
               handleParameter={handleParameter}
             />
           )}
-          {isLoading ? (
+          {isLoading ?? isFetching ? (
             <LinkCardSkeleton />
           ) : (
             <DegreeCard
@@ -176,7 +176,7 @@ const CounsellorCardHeader = () => {
             ) : (
               <>
                 <PlacementContent counsellorFilterResponse={accumulatedData} />
-                {isFetchData && <BlinkingDots />}
+                {isFetching &&  <BlinkingDots /> }
               </>
             )
           ) : (
