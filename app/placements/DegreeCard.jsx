@@ -10,7 +10,8 @@ const DegreeCard = ({ allCounts,placementPage }) => {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setPlacementParam,
-    setSideBarBtn
+    setSideBarBtn,
+    setFilteringData
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
@@ -21,6 +22,7 @@ const DegreeCard = ({ allCounts,placementPage }) => {
       setItCheckedIcon(false);
       setNonItCheckedIcon(false);
       setSideBarBtn('')
+      setFilteringData({})
     } else return;
   };
   return (

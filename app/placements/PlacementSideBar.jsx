@@ -6,7 +6,6 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import BlinkingDots from "@/components/skeletons/BlinkingDots";
 import PlacementSidebarSkeleton from "@/components/skeletons/PlacementSidebarSkeleton";
-import NoContent from "../internalplacementstatistics/NoContent";
 
 const PlacementSideBar = ({
   counsellorFilterResponse,
@@ -30,9 +29,9 @@ const PlacementSideBar = ({
     lesscheckedIcon,
     throughcheckedIcon,
     itCheckedIcon,
-    nonItCheckedIcon,
+    nonItCheckedIcon
   } = useContext(GlobalContext);
-  const [isFetchData, setIsFetchData] = useState(isFetching);
+  const [isFetchData,setIsFetchData]=useState(isFetching)
   const sideBar = [
     {
       title: "Recent Placements",
@@ -90,11 +89,7 @@ const PlacementSideBar = ({
             <button
               key={index}
               className={`flex justify-between items-center px-[1.25vw] py-[2.222vh] mb-[0.833vh] w-full text-[1.094vw] ${
-                classItem.title === sideBarBtn &&
-                !lesscheckedIcon &&
-                !throughcheckedIcon &&
-                !itCheckedIcon &&
-                !nonItCheckedIcon
+                classItem.title === sideBarBtn && !lesscheckedIcon && !throughcheckedIcon && !itCheckedIcon && !nonItCheckedIcon
                   ? "sideBarButton font-medium"
                   : ""
               }`}
@@ -116,16 +111,11 @@ const PlacementSideBar = ({
 
       {isLoading ? (
         <CardContentSkeleton />
-      ) : accumulatedData.length > 0 ? (
+      ) : (
         <section
           onScroll={(event) => {
-            handleScroll(
-              event,
-              page,
-              setPage,
-              counsellorFilterResponse,
-              setIsFetchData
-            );
+           
+            handleScroll(event, page, setPage, counsellorFilterResponse,setIsFetchData);
           }}
           className="ml-6 w-[71.641vw] h-full overflow-y-scroll myscrollbar"
         >
@@ -136,13 +126,11 @@ const PlacementSideBar = ({
                 : accumulatedData
             }
           />
-          {isFetchData && <BlinkingDots />}
+          {
+          isFetchData &&
+          <BlinkingDots/>
+        }
         </section>
-      ) : (
-        <div className="w-[79.609vw] flex justify-center items-center">
-
-          <NoContent />
-        </div>
       )}
     </section>
   );
