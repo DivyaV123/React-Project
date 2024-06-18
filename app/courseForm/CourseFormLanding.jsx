@@ -12,6 +12,7 @@ import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
+import { useCourseAdderMutation } from "@/redux/queries/courseAdderApi";
 
 const ReactQuill = dynamic(
   async () => {
@@ -28,6 +29,7 @@ function CourseFormLanding() {
     error,
     isLoading,
   } = useGetAllCategoriesInCourseQuery();
+  const [addCourse, { data: courseAdd, error: courseError, isLoading: courseAdderLoad }] = useCourseAdderMutation();
 
   const [faqs, setFaqs] = useState([]);
   const [faqEditIndex, setFaqEditIndex] = useState(null);
@@ -44,7 +46,6 @@ function CourseFormLanding() {
     course: Yup.string().required("Course is required"),
     // subCourse: Yup.string().required("Sub Course is required"),
     courseName: Yup.string().required("Course Name is required"),
-    courseImage: Yup.string().required("Course image is required"),
     courseDescription: Yup.string().required("Course Description is required"),
     courseSummary: Yup.string().required("Course Summary is required"),
     aboutCourse: Yup.string().required("About the Course is required"),
@@ -65,7 +66,6 @@ function CourseFormLanding() {
     course: "",
     subCourse: "",
     courseName: "",
-    courseImage: "",
     courseDescription: "",
     courseSummary: "",
     aboutCourse: "",
@@ -77,30 +77,33 @@ function CourseFormLanding() {
     mode: [],
   };
 
-  const onSubmit = (values) => {
-    const payload = {
-      courseName: values.courseName,
-      courseImage: values.courseImage,
-      courseDescription: values.courseDescription,
-      branchType: values.organisation,
-      mode: ["ONLINECLASSES", "OFFLINECLASSES"], // hardcoded for now
-      courseSummary: values.courseSummary,
-      courseAbout: values.aboutCourse,
-      courseHighlight: values.courseHighlights,
-      faqs: values.faqs.map((faq) => ({
-        question: faq.question,
-        answer: faq.answer,
-        faqType: "COURSE",
-      })),
-    };
-
-    console.log({ payload });
-  };
-
   const formikDetails = useFormik({
     initialValues,
-    onSubmit,
     validationSchema,
+    onSubmit: async (values) => {
+      let subCourse = values.subCourse != "" ? `&subCategoryId=${values.subCourse}` : ''
+      const payload = {
+        courseName: values.courseName,
+        courseDescription: values.courseDescription,
+        branchType: values.organisation,
+        mode: values.mode,
+        courseSummary: values.courseSummary,
+        courseAbout: values.aboutCourse,
+        courseHighlight: values.courseHighlights,
+        faqs: values.faqs.map((faq) => ({
+          question: faq.question,
+          answer: faq.answer,
+          faqType: "COURSE",
+        })),
+      };
+
+      try {
+        const response = await addCourse({ bodyData: payload, courseId: values.course, subcourseId: subCourse }).unwrap();
+        console.log(response);
+      } catch (err) {
+        console.error(err, "Error from loginAPI");
+      }
+    },
   });
 
   const commonLabelStyles = "pb-[1.111vh]";
@@ -241,7 +244,7 @@ function CourseFormLanding() {
                 disabled={isSubCourseDisabled}
               />
               {formikDetails.touched.subCourse &&
-              formikDetails.errors.subCourse ? (
+                formikDetails.errors.subCourse ? (
                 <div className="text-red-500 text-sm ">
                   {formikDetails.errors.subCourse}
                 </div>
@@ -256,41 +259,19 @@ function CourseFormLanding() {
                 value={formikDetails.values.courseName}
                 onChange={formikDetails.handleChange}
                 onBlur={formikDetails.handleBlur}
-                className={`${
-                  formikDetails.touched.courseName &&
+                className={`${formikDetails.touched.courseName &&
                   formikDetails.errors.courseName
-                    ? "border-red-500"
-                    : " border-gray-400"
-                }`}
+                  ? "border-red-500"
+                  : " border-gray-400"
+                  }`}
               />
               {formikDetails.touched.courseName &&
-              formikDetails.errors.courseName ? (
+                formikDetails.errors.courseName ? (
                 <div className="text-red-500">
                   {formikDetails.errors.courseName}
                 </div>
               ) : null}
             </div>
-            {/* <div className="w-[33vw] mb-[4.444vh]">
-              <p className={commonLabelStyles}>Course Image</p>
-              <Input
-                name="courseImage"
-                value={formikDetails.values.courseImage}
-                onChange={formikDetails.handleChange}
-                onBlur={formikDetails.handleBlur}
-                className={`${
-                  formikDetails.touched.courseImage &&
-                  formikDetails.errors.courseImage
-                    ? "border-red-500"
-                    : " border-gray-400"
-                }`}
-              />
-              {formikDetails.touched.courseImage &&
-              formikDetails.errors.courseImage ? (
-                <div className="text-red-500">
-                  {formikDetails.errors.courseImage}
-                </div>
-              ) : null}
-            </div> */}
             <div className="w-[33vw]">
               <p className={commonLabelStyles}>Course Summary</p>
               <Input
@@ -298,15 +279,14 @@ function CourseFormLanding() {
                 value={formikDetails.values.courseSummary}
                 onChange={formikDetails.handleChange}
                 onBlur={formikDetails.handleBlur}
-                className={`${
-                  formikDetails.touched.courseSummary &&
+                className={`${formikDetails.touched.courseSummary &&
                   formikDetails.errors.courseSummary
-                    ? "border-red-500"
-                    : " border-gray-400"
-                }`}
+                  ? "border-red-500"
+                  : " border-gray-400"
+                  }`}
               />
               {formikDetails.touched.courseSummary &&
-              formikDetails.errors.courseSummary ? (
+                formikDetails.errors.courseSummary ? (
                 <div className="text-red-500">
                   {formikDetails.errors.courseSummary}
                 </div>
@@ -322,21 +302,20 @@ function CourseFormLanding() {
                 value={formikDetails.values.courseDescription}
                 onChange={formikDetails.handleChange}
                 onBlur={formikDetails.handleBlur}
-                className={`${
-                  formikDetails.touched.courseDescription &&
+                className={`${formikDetails.touched.courseDescription &&
                   formikDetails.errors.courseDescription
-                    ? "border-red-500"
-                    : " border-gray-400"
-                }`}
+                  ? "border-red-500"
+                  : " border-gray-400"
+                  }`}
               />
               {formikDetails.touched.courseDescription &&
-              formikDetails.errors.courseDescription ? (
+                formikDetails.errors.courseDescription ? (
                 <div className="text-red-500">
                   {formikDetails.errors.courseDescription}
                 </div>
               ) : null}
             </div>
-            
+
           </div>
           <div className="flex justify-between mb-[4.444vh]">
             <div className="w-[33vw]">
@@ -348,7 +327,7 @@ function CourseFormLanding() {
                 }
               />
               {formikDetails.touched.aboutCourse &&
-              formikDetails.errors.aboutCourse ? (
+                formikDetails.errors.aboutCourse ? (
                 <div className="text-red-500">
                   {formikDetails.errors.aboutCourse}
                 </div>
@@ -363,7 +342,7 @@ function CourseFormLanding() {
                 }
               />
               {formikDetails.touched.courseHighlights &&
-              formikDetails.errors.courseHighlights ? (
+                formikDetails.errors.courseHighlights ? (
                 <div className="text-red-500">
                   {formikDetails.errors.courseHighlights}
                 </div>
@@ -379,12 +358,11 @@ function CourseFormLanding() {
                 value={formikDetails.values.question}
                 onChange={formikDetails.handleChange}
                 onBlur={formikDetails.handleBlur}
-                className={`${
-                  formikDetails.touched.question &&
+                className={`${formikDetails.touched.question &&
                   formikDetails.errors.question
-                    ? "border-red-500"
-                    : " border-gray-400"
-                }`}
+                  ? "border-red-500"
+                  : " border-gray-400"
+                  }`}
               />
               {formikDetails.touched.question &&
                 formikDetails.errors.question && (
@@ -400,11 +378,10 @@ function CourseFormLanding() {
                 value={formikDetails.values.answer}
                 onChange={formikDetails.handleChange}
                 onBlur={formikDetails.handleBlur}
-                className={`${
-                  formikDetails.touched.answer && formikDetails.errors.answer
-                    ? "border-red-500"
-                    : " border-gray-400"
-                }`}
+                className={`${formikDetails.touched.answer && formikDetails.errors.answer
+                  ? "border-red-500"
+                  : " border-gray-400"
+                  }`}
               />
               {formikDetails.touched.answer && formikDetails.errors.answer && (
                 <div className="text-red-500">
@@ -505,10 +482,11 @@ function CourseFormLanding() {
           <section className="flex justify-around">
             <aside>
               <div className="pt-[1.5vw] font-bold">
-                <p>Organisation</p>
+
+                <p onClick={() => { console.log(formikDetails, "details") }}>Organisation</p>
               </div>
               <div className="flex flex-col">
-                {["Jspiders", "Qspiders", "PySpiders"].map((org) => (
+                {["JSP", "QSP", "PYSP"].map((org) => (
                   <label key={org}>
                     <input
                       type="checkbox"
@@ -522,7 +500,7 @@ function CourseFormLanding() {
                   </label>
                 ))}
                 {formikDetails.touched.organisation &&
-                formikDetails.errors.organisation ? (
+                  formikDetails.errors.organisation ? (
                   <div className="text-red-500">
                     {formikDetails.errors.organisation}
                   </div>
