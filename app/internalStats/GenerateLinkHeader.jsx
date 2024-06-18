@@ -11,6 +11,7 @@ import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import PlacementContent from "../placements/PlacementContent";
 import BlinkingDots from "@/components/skeletons/BlinkingDots";
 import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
+import NoContent from "../internalplacementstatistics/NoContent";
 const GenerateLinkHeader = () => {
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
@@ -43,7 +44,7 @@ const GenerateLinkHeader = () => {
     parameter: isEmptyObject ? filterParameter : "",
     bodyData: queryParams,
   });
-  const [isFetchData,setIsFetchData]=useState(isFetching)
+  const [isFetchData, setIsFetchData] = useState(isFetching);
   useEffect(() => {
     if (counsellorFilterResponse) {
       if (page > 0) {
@@ -86,7 +87,7 @@ const GenerateLinkHeader = () => {
     <>
       <section className="px-[1.875vw] flex gap-5 pb-[3.333vh] items-center">
         {isLoading ? (
-          <LinkCardSkeleton/>
+          <LinkCardSkeleton />
         ) : (
           <TotalPlacedCard
             allCounts={counsellorFilterResponse}
@@ -114,19 +115,34 @@ const GenerateLinkHeader = () => {
       </section>
       <div
         onScroll={(event) => {
-          handleScroll(event, page, setPage, counsellorFilterResponse,setIsFetchData);
+          handleScroll(
+            event,
+            page,
+            setPage,
+            counsellorFilterResponse,
+            setIsFetchData
+          );
         }}
         className="h-[58.889vh] overflow-auto myscrollbar w-[69.063vw] ml-[1.875vw] rounded-2xl"
       >
         {isLoading ? (
           <CardContentSkeleton />
         ) : (
-          <PlacementContent counsellorFilterResponse={accumulatedData} />
+          <>
+            {accumulatedData.length > 0 ? (
+              <>
+                <PlacementContent counsellorFilterResponse={accumulatedData} />
+                {isFetchData && <BlinkingDots />}
+              </>
+            ) : (
+              <>
+                <div className="w-full h-full flex justify-center items-center">
+                  <NoContent />
+                </div>
+              </>
+            )}
+          </>
         )}
-        {
-          isFetchData &&
-          <BlinkingDots/>
-        }
       </div>
     </>
   );

@@ -181,7 +181,7 @@ const CounsellorCardHeader = () => {
             )
           ) : (
             <>
-            <div className="relative top-[50%] -translate-y-[50%] left-[42%]">
+            <div className="w-full h-full flex justify-center items-center">
 
             <NoContent />
             </div>
