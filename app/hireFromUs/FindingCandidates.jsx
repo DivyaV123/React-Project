@@ -12,6 +12,7 @@ const FindingCandidates = () => {
     { name: 'New Delhi', image: '../../Icon_newdelhi.png' },
     { name: 'Noida', image: '../../Icon_noida.png' },
     { name: 'Gurugram', image: '../../Icon_gurugram.png'},
+    { name: 'Pune', image: '../../Icon_pune.svg'},
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);

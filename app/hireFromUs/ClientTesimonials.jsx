@@ -21,42 +21,42 @@ const ClientTesimonials = () => {
     {
       quote:
         "The software testing course exceeded my expectations. The instructor’s expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that.",
-      company: "VAIO",
+      company: "../../htc.svg",
     },
     {
       quote:
         "The software testing course exceeded my expectations. The instructor’s expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that.",
-      company: "AECOM",
+      company: "../../Aecom.svg",
     },
     {
       quote:
         "The software testing course exceeded my expectations. The instructor’s expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that.",
-      company: "HBO",
+      company: "../../Hbo.svg",
     },
     {
       quote:
         "The software testing course exceeded my expectations. The instructor’s expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that.",
-      company: "HTC",
+      company: "../../vaio.svg",
     },
     {
       quote:
         "The software testing course exceeded my expectations. The instructor’s expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that.",
-      company: "HTC",
+      company: "../../htc.svg",
     },
     {
       quote:
         "The software testing course exceeded my expectations. The instructor’s expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that.",
-      company: "HTC",
+      company: "../../Aecom.svg",
     },
     {
       quote:
         "The software testing course exceeded my expectations. The instructor’s expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that.",
-      company: "HTC",
+      company: "../../Hbo.svg",
     },
     {
       quote:
         "The software testing course exceeded my expectations. The instructor’s expertise made complex concepts easy to understand, and the hands-on approach was invaluable. I gained practical skills and knowledge that.",
-      company: "HTC",
+      company: "../../vaio.svg",
     },
   ];
 
@@ -80,13 +80,28 @@ const ClientTesimonials = () => {
         >
           <CarouselContent>
             {testimonials.map((testimonial, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div className="p-1 carousel-item">
-                  <div className="mx-2 my-2 quotes">
-                    <span className="custom-quote">“</span>
+              <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
+                <div className="carousel-item">
+                  <img
+                    src={testimonial.company}
+                    className="pl-[1.25vw] pt-[3.333vh]"
+                  />
+                  <img
+                    className="pl-[1.25vw] pt-[2.222vh]"
+                    src="../../quote.svg"
+                  />
+                  <div className="pl-[2.656vw] pr-[1.172vw] quotes pb-[3.333vh]">
                     {testimonial.quote}
                   </div>
-                  <p className="companylogo mx-2 my-2">{testimonial.company}</p>
+                  <div className="flex pl-[2.656vw] gap-2 pb-[2.778vh]">
+                    <div>
+                      <img src="../../clientImage.png" />
+                    </div>
+                    <div>
+                      <p className="text-[#575757] font-bold text-[0.938vw]">Andy Jassy</p>
+                      <p className="text-[0.938vw] text-[#575757]">Amazon</p>
+                    </div>
+                  </div>
                 </div>
               </CarouselItem>
             ))}
