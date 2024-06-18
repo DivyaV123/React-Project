@@ -16,8 +16,7 @@ function StudentsPlacedHome({ page, courseDetails }) {
     const pathName=usePathname()
     let bodyData = { branchType: ["Jspiders", "Qspiders"] }
     const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 16, bodyData: bodyData })
-   
-
+    const pathname = usePathname()
     return (
         <>
             <section className='w-full bg-[#F6F6F6]'>
@@ -39,7 +38,7 @@ function StudentsPlacedHome({ page, courseDetails }) {
                     </Link>
                 </article>
             </section>
-            {page === "course" ?
+            {pathname.includes("courses") ?
                 <>
                     <CourseHighlites courseDetails={courseDetails} />
                     <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
@@ -49,11 +48,11 @@ function StudentsPlacedHome({ page, courseDetails }) {
                 </>
                 :
                 <>
-                <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
-                    <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response?.candidates?.content} />
-                </MaxWebWidth>
+                    <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
+                        <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response?.candidates?.content} />
+                    </MaxWebWidth>
 
-            </>
+                </>
             }
 
         </>

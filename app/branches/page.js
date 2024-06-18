@@ -23,7 +23,7 @@ function Branches() {
                 <HiringPartners page='branch' />
             </section>
             <StidentsPlaced />
-            <Testimonials />
+            {/* <Testimonials /> */}
             <FaqHome page='branch' />
         </WebLayout>
     )
