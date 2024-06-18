@@ -80,7 +80,7 @@ const PlacementSideBar = ({
     }
   }, [counsellorFilterResponse]);
   return (
-    <section className="flex ml-16 mb-8 h-[58.889vh]">
+    <section className="flex ml-[1.875vw] mb-[1.111vh] h-[58.889vh]">
       {isLoading ? (
         <PlacementSidebarSkeleton />
       ) : (

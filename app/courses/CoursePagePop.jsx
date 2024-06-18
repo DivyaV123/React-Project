@@ -1,6 +1,6 @@
 import Button from '@/components/commonComponents/button/Button';
 import React, { useEffect, useState } from 'react'
-
+import "./CourseLanding.scss";
 
 function CoursePagePop({courseDetails}) {
     const [showDiv, setShowDiv] = useState(false);
@@ -28,13 +28,13 @@ function CoursePagePop({courseDetails}) {
             <div className='flex justify-cnter py-[1.15vw]'>
                 <div className='flex gap-3'>
                     <Button
-                        title='Enroll now'
-                        className='bg-gradient text-white pt-[0.52vw] pr-[1.25vw] pb-[0.52vw] pl-[1.25vw] rounded'
+                        title='Enroll For Demo Class'
+                        className='EnrollButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw]'
                     />
-                    <Button
+                    {/* <Button
                         title="Demo class"
                         className='border border-orange-500 text-orange-500 pt-[0.52vw] pr-[1.25vw] pb-[0.52vw] pl-[1.25vw] rounded '
-                    />
+                    /> */}
                 </div>
             </div>
         </article>

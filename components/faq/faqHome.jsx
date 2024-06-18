@@ -25,7 +25,7 @@ function FaqHome({ page, questions, courseDetails }) {
     ]
     return (
         <MaxWebWidth sectionStyling='bg-[#F6F6F6]'>
-            <header className={`mt-8 p-5`}>
+            <header className={`mt-[4.444vh] px-[1.563vw] py-[2.778vh]`}>
                 <h1 className={`font-bold text-[2rem] justify-center flex  align-center`}>
                     {'FAQ’s'}
                 </h1>
@@ -35,7 +35,7 @@ function FaqHome({ page, questions, courseDetails }) {
                 </span>
                 {/* )} */}
             </header>
-            <article className={`pb-8`}>
+            <article className={`pb-[4.444vh]`}>
                 <Qaccordion qaList={courseDetails?.faqs.length > 0 ? courseDetails?.faqs : qaList} />
             </article>
         </MaxWebWidth>

@@ -132,16 +132,15 @@ const CounsellorFilters = () => {
             className="cursor-pointer"
             alt="Filter Icon"
             onClick={clearFilters}
+            title="Clear All"
           />
             
           ) : (
-            <img src="../../filter.svg" alt="Filter Icon" />
+            <img  src="../../filter.svg" alt="Filter Icon" />
           )}
         </div>
         {isEmptyObject ? (
-          <button className={`${filterClass} pointer-events-none opacity-50`}>
-            Generate Link
-          </button>
+          <img  src="../../icon_link.svg" className={`${filterClass} pointer-events-none opacity-50`}/>
         ) : (
           <a
             href={generatedPath}
@@ -149,7 +148,7 @@ const CounsellorFilters = () => {
             onClick={handleGenerateLink}
             className={`${filterClass} cursor-pointer`}
           >
-            Generate Link
+           <img title="Generate Link" src="../../icon_link.svg"/>
           </a>
         )}
       </div>

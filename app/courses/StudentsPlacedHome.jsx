@@ -12,8 +12,8 @@ import Link from 'next/link'
 import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 import { usePathname } from 'next/navigation'
 
-
 function StudentsPlacedHome({ page, courseDetails }) {
+    const pathName=usePathname()
     let bodyData = { branchType: ["Jspiders", "Qspiders"] }
     const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 16, bodyData: bodyData })
     const pathname = usePathname()
@@ -23,14 +23,14 @@ function StudentsPlacedHome({ page, courseDetails }) {
                 <article className={page === 'branch' ? 'w-[87.5vw] m-auto' : 'w-[51.56vw]'}>
                     <header>
                         <h1 className={`${page === 'branch' ? "text-[2.5vw] py-[1.563vw]" : "text-[1.875vw] pt-[3.611vh] pb-[3.056vh]"} font-bold`}>
-                            {`${page === 'branch' ? "Students placed through this branch" : "Students placed through this course"}`}
+                            {`${pathName.includes('courses') ? "Students placed through this course" : "Students placed through this branch"}`}
                         </h1>
                     </header>
                     <StudentsPlacedCard page={page} studentsInfo={studentsList?.response.candidates.content} />
                     <Link href={PLACEMENT_PATH} >
-                        <article className={`flex justify-center  ${page === 'branch' ? 'mt-[5.278vh] pb-[1.111vh]' : 'mt-[1.667vh] pb-[1.667vh]'}`}>
+                        <article className={`flex justify-center  ${page === 'branch' ? 'mt-[5.278vh] pb-[4.444vh]' : 'mt-[1.667vh] pb-[1.667vh]'}`}>
                             <Button
-                                className='bg-gradient py-[1.111vh] px-[1.406vw] text-[0.938vw] text-white font-medium rounded-md'
+                                className='bg-gradient h-[2.656vw] font-medium w-[9.375vw] text-[0.75rem] text-white rounded-md'
                                 title="View More"
                                 onClick={() => { }}
                             />
