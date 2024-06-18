@@ -249,7 +249,7 @@ function CourseFormLanding() {
             </div>
           </div>
           <div className="flex justify-between mb-[4.444vh]">
-            <div className="w-[33vw] mb-[4.444vh]">
+            <div className="w-[33vw]">
               <p className={commonLabelStyles}>Course Name</p>
               <Input
                 name="courseName"
@@ -270,7 +270,7 @@ function CourseFormLanding() {
                 </div>
               ) : null}
             </div>
-            <div className="w-[33vw] mb-[4.444vh]">
+            {/* <div className="w-[33vw] mb-[4.444vh]">
               <p className={commonLabelStyles}>Course Image</p>
               <Input
                 name="courseImage"
@@ -288,6 +288,27 @@ function CourseFormLanding() {
               formikDetails.errors.courseImage ? (
                 <div className="text-red-500">
                   {formikDetails.errors.courseImage}
+                </div>
+              ) : null}
+            </div> */}
+            <div className="w-[33vw]">
+              <p className={commonLabelStyles}>Course Summary</p>
+              <Input
+                name="courseSummary"
+                value={formikDetails.values.courseSummary}
+                onChange={formikDetails.handleChange}
+                onBlur={formikDetails.handleBlur}
+                className={`${
+                  formikDetails.touched.courseSummary &&
+                  formikDetails.errors.courseSummary
+                    ? "border-red-500"
+                    : " border-gray-400"
+                }`}
+              />
+              {formikDetails.touched.courseSummary &&
+              formikDetails.errors.courseSummary ? (
+                <div className="text-red-500">
+                  {formikDetails.errors.courseSummary}
                 </div>
               ) : null}
             </div>
@@ -315,27 +336,7 @@ function CourseFormLanding() {
                 </div>
               ) : null}
             </div>
-            <div className="w-[33vw]">
-              <p className={commonLabelStyles}>Course Summary</p>
-              <Input
-                name="courseSummary"
-                value={formikDetails.values.courseSummary}
-                onChange={formikDetails.handleChange}
-                onBlur={formikDetails.handleBlur}
-                className={`${
-                  formikDetails.touched.courseSummary &&
-                  formikDetails.errors.courseSummary
-                    ? "border-red-500"
-                    : " border-gray-400"
-                }`}
-              />
-              {formikDetails.touched.courseSummary &&
-              formikDetails.errors.courseSummary ? (
-                <div className="text-red-500">
-                  {formikDetails.errors.courseSummary}
-                </div>
-              ) : null}
-            </div>
+            
           </div>
           <div className="flex justify-between mb-[4.444vh]">
             <div className="w-[33vw]">
