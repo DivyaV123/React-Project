@@ -33,7 +33,7 @@ const FindingCandidates = () => {
   return (
     <section className="findingCandidate">
       <div className="city-selector container mx-auto p-4">
-        <h2 className="text-center mt-8 mb-8">Find Candidates In Your Cities</h2>
+        <h2 className="text-center mt-8 mb-8">Hire Talents From Any Location</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 ml-[130px] card_candidate">
           {cities.map((city) => (
             <div

@@ -14,7 +14,7 @@ const DomainContainer = () => {
   return (
     <section className="domainContainer">
     <div className="domain-selector container mx-auto  p-4">
-      <h2 className="text-center  mt-8 mb-8">Find Our Talents in Different Domains</h2>
+      <h2 className="text-center  mt-8 mb-8">Hire Talents For Any Domains</h2>
       <div className="grid grid-cols-2 md:grid-cols-4   domain_candidate">
         {domains.map((domain) => (
           <div key={domain.name} className="domain-card p-4  rounded text-center h-[160px] w-[auto] hover:bg-gray-200 cursor-pointer">
