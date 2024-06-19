@@ -7,10 +7,12 @@ import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import BlinkingDots from "@/components/skeletons/BlinkingDots";
 import PlacementSidebarSkeleton from "@/components/skeletons/PlacementSidebarSkeleton";
 import LineLoader from "@/components/skeletons/LineLoader";
+import NoContent from "../internalplacementstatistics/NoContent";
 const PlacementSideBar = ({
   counsellorFilterResponse,
   isFetching,
   isLoading,
+  refetch,
 }) => {
   const [accumulatedData, setAccumulatedData] = useState([]);
   const {
@@ -29,9 +31,10 @@ const PlacementSideBar = ({
     lesscheckedIcon,
     throughcheckedIcon,
     itCheckedIcon,
-    nonItCheckedIcon
+    nonItCheckedIcon,
+    activeSidebarBtn,
   } = useContext(GlobalContext);
-  const [isFetchData,setIsFetchData]=useState(isFetching)
+  const [isFetchData, setIsFetchData] = useState(isFetching);
   const sideBar = [
     {
       title: "Recent Placements",
@@ -64,21 +67,49 @@ const PlacementSideBar = ({
       blackIcon: "../../icon_arrow.svg",
     },
   ];
-
+  // useEffect(() => {
+  //   if (counsellorFilterResponse) {
+  //     const content = placementParam !== ""
+  //       ? counsellorFilterResponse?.response?.content
+  //       : counsellorFilterResponse?.response?.candidates?.content;
+  
+  //     if (page > 0) {
+  //       setAccumulatedData((prevData) => [
+  //         ...prevData,
+  //         ...(content || []),
+  //       ]);
+  //     } else {
+  //       setAccumulatedData(content || []);
+  //     }
+  //   }
+  // }, [counsellorFilterResponse, placementParam, page]);
+  
   useEffect(() => {
     if (counsellorFilterResponse) {
       if (page > 0) {
-        setAccumulatedData((prevData) => [
-          ...prevData,
-          ...(counsellorFilterResponse?.response?.candidates?.content || []),
-        ]);
+        if (placementParam !== "") {
+          setAccumulatedData((prevData) => [
+            ...prevData,
+            ...(counsellorFilterResponse?.response?.content || []),
+          ]);
+        } else {
+          setAccumulatedData((prevData) => [
+            ...prevData,
+            ...(counsellorFilterResponse?.response?.candidates?.content || []),
+          ]);
+        }
       } else {
-        setAccumulatedData(
-          counsellorFilterResponse?.response?.candidates?.content || []
-        );
+        if (placementParam !== "") {
+          setAccumulatedData(counsellorFilterResponse?.response?.content || []);
+        } else {
+          setAccumulatedData(
+            counsellorFilterResponse?.response?.candidates?.content || []
+          );
+        }
       }
     }
-  }, [counsellorFilterResponse]);
+  }, [counsellorFilterResponse,placementParam]);
+
   return (
     <section className="flex ml-[1.875vw] mb-[1.111vh] h-[58.889vh]">
       {isLoading ? (
@@ -89,7 +120,11 @@ const PlacementSideBar = ({
             <button
               key={index}
               className={`flex justify-between items-center px-[1.25vw] py-[2.222vh] mb-[0.833vh] w-full text-[1.094vw] ${
-                classItem.title === sideBarBtn && !lesscheckedIcon && !throughcheckedIcon && !itCheckedIcon && !nonItCheckedIcon
+                classItem.title === sideBarBtn &&
+                !lesscheckedIcon &&
+                !throughcheckedIcon &&
+                !itCheckedIcon &&
+                !nonItCheckedIcon
                   ? "sideBarButton font-medium"
                   : ""
               }`}
@@ -114,22 +149,29 @@ const PlacementSideBar = ({
       ) : (
         <section
           onScroll={(event) => {
-           
-            handleScroll(event, page, setPage, counsellorFilterResponse,setIsFetchData);
+            handleScroll(
+              event,
+              page,
+              setPage,
+              counsellorFilterResponse,
+              setIsFetchData
+            );
           }}
           className="ml-6 w-[71.641vw] h-full overflow-y-scroll myscrollbar"
         >
           <PlacementContent
             counsellorFilterResponse={
-              placementParam !== ""
-                ? counsellorFilterResponse?.response?.content
-                : accumulatedData
+              accumulatedData
             }
           />
-          {
-          isFetching && 
-          <LineLoader/>
-        }
+
+          {isFetchData && accumulatedData.length>0 ?<LineLoader /> :
+          <>
+           <div className="w-full h-full flex justify-center items-center">
+          <NoContent/>
+          </div>
+          </>
+          }
         </section>
       )}
     </section>

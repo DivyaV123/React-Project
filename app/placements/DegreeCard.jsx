@@ -3,6 +3,7 @@ import "./PlacementCards.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const DegreeCard = ({ allCounts,placementPage }) => {
   const {
+    setPage,
     setThroughCheckedIcon,
     setLessCheckedIcon,
     lesscheckedIcon,
@@ -11,10 +12,11 @@ const DegreeCard = ({ allCounts,placementPage }) => {
     setItCheckedIcon,
     setPlacementParam,
     setSideBarBtn,
-    setFilteringData
+    setFilteringData,
+    setFilterPlacementData
   } = useContext(GlobalContext);
   const handleClick = () => {
-    if (placementPage === "GeneralPlacements") {
+    if (placementPage === "GeneralPlacements") {     
       setPlacementParam("lessthansixty");
       setLessCheckedIcon(true);
       setPlacedCheckedIcon(false);
@@ -22,7 +24,8 @@ const DegreeCard = ({ allCounts,placementPage }) => {
       setItCheckedIcon(false);
       setNonItCheckedIcon(false);
       setSideBarBtn('')
-      setFilteringData({})
+      setFilterPlacementData({})
+      setPage(0)
     } else return;
   };
   return (

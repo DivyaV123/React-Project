@@ -8,14 +8,12 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
     setLessCheckedIcon,
     setPlacedCheckedIcon,
     placeCheckedIcon,
-    setFilterPlacementData,
     setNonItCheckedIcon,
     setItCheckedIcon,
-    degreeButton,
-    branchButton,
-    passOutButton,
     setPlacementParam,
-    setSideBarBtn
+    setSideBarBtn,
+    setFilterPlacementData,
+    setPage
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
@@ -26,6 +24,8 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
       setNonItCheckedIcon(false);
       setItCheckedIcon(false);
       setSideBarBtn("")
+      setFilterPlacementData({})
+      setPage(0)
     } else return;
   };
   return (
