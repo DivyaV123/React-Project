@@ -25,13 +25,13 @@ const GlobalContextProvider = ({ children }) => {
   const [scrollConst, setScrollConst] = useState();
   const [allStaticsCount, setAllStaticsCount] = useState({});
   const [selectedCourseDetails, setSelectedCourseDetails] = useState({});
-  const [citySearchQuery,setCitySearchQuery] = useState("");
-  const [collegeSearchQuery,setCollegeSearchQuery] = useState("");
-  const [degreeSearchQuery,setDegreeSearchQuery] = useState("");
-  const [stateSearchQuery,setStateSearchQuery] = useState("");
-  const [universitySearchQuery,setUniversitySearchQuery] = useState("");
-  const [yearSearchQuery,setYearSearchQuery] = useState("");
-  const [streamSearchQuery,setStreamSearchQuery] = useState("");
+  const [citySearchQuery, setCitySearchQuery] = useState("");
+  const [collegeSearchQuery, setCollegeSearchQuery] = useState("");
+  const [degreeSearchQuery, setDegreeSearchQuery] = useState("");
+  const [stateSearchQuery, setStateSearchQuery] = useState("");
+  const [universitySearchQuery, setUniversitySearchQuery] = useState("");
+  const [yearSearchQuery, setYearSearchQuery] = useState("");
+  const [streamSearchQuery, setStreamSearchQuery] = useState("");
 
   //daterange
   const [fromValue, setFromValue] = useState("");
@@ -84,9 +84,9 @@ const GlobalContextProvider = ({ children }) => {
   const [branchButton, setBranchButton] = useState("");
   const [passOutButton, setPassOutButton] = useState("");
   const [selectedCourseDetailsId, setSelectedCoursDetailseId] = useState(null);
-
-  const emptySearch=citySearchQuery===""&&stateSearchQuery===""&&citySearchQuery===""&&
-  universitySearchQuery===""&&streamSearchQuery===""&&yearSearchQuery===""
+  const [activeSidebarBtn, setActiveSidebarBtn] = useState(false)
+  const emptySearch = citySearchQuery === "" && stateSearchQuery === "" && citySearchQuery === "" &&
+    universitySearchQuery === "" && streamSearchQuery === "" && yearSearchQuery === ""
 
   function debounce(func, wait) {
     let timeout;
@@ -96,6 +96,47 @@ const GlobalContextProvider = ({ children }) => {
     };
   }
 
+  // const handleScroll = debounce(
+  //   (event, page, setPage, repData, setIsFetchData) => {
+  //     const target = event.target;
+  //     const scrolledToBottom =
+  //       Math.ceil(target?.scrollTop + target?.clientHeight) >=
+  //       target?.scrollHeight - 1;
+  //     setScrollConst(scrolledToBottom);
+
+  //     if (scrolledToBottom) {
+  //       if (placementParam !== "") {
+  //         console.log(!repData.response.last,placementParam !== "","placementParam")
+  //         if (!repData?.response?.last) {
+  //           setIsFetchData(true);
+  //           setPage(page + 1);
+  //         }
+  //       }
+  //       else if (!repData?.response?.candidates?.last) {
+  //         setIsFetchData(true);
+  //         setPage(page + 1);
+  //       }
+  //     }
+  //   },
+  //   100
+  // );
+  // const handleScroll = debounce(
+  //   (event, page, setPage, repData, setIsFetchData) => {
+  //     const target = event.target;
+  //     const scrolledToBottom =
+  //       Math.ceil(target?.scrollTop + target?.clientHeight) >=
+  //       target?.scrollHeight - 1;
+  //     setScrollConst(scrolledToBottom);
+
+  //     if (scrolledToBottom) {
+  //       if (!repData.response.last) {
+  //         setIsFetchData(true);
+  //         setPage(page + 1);
+  //       }
+  //     }
+  //   },
+  //   300
+  // );
   const handleScroll = debounce(
     (event, page, setPage, repData, setIsFetchData) => {
       const target = event.target;
@@ -105,14 +146,22 @@ const GlobalContextProvider = ({ children }) => {
       setScrollConst(scrolledToBottom);
 
       if (scrolledToBottom) {
-        if (!repData.response.last) {
-          setIsFetchData(true);
-          setPage(page + 1);
+        if (placementParam !== "") {
+          if (repData?.response?.last === false) {
+            setIsFetchData(true);
+            setPage(page + 1);
+          }
+        } else {
+          if (repData?.response?.candidates?.last === false) {
+            setIsFetchData(true);
+            setPage(page + 1);
+          }
         }
       }
     },
     300
   );
+
 
   // const handleScroll = (event, page, setPage, repData) => {
   //   const target = event.target;
@@ -207,9 +256,12 @@ const GlobalContextProvider = ({ children }) => {
     setDegreeButton("");
     setBranchButton("");
     setPassOutButton("");
+    setPage(0);
+    setActiveSidebarBtn(true);
     switch (title) {
       case "Recent Placements":
         setFilterPlacementData({});
+        setPage(0)
         setPlacementParam("");
         break;
       // case "Top Salaries":
@@ -220,6 +272,7 @@ const GlobalContextProvider = ({ children }) => {
       case "Last 3 months":
       case "Last 6 months":
         const startDate = timePeriods[title];
+        setPage(0)
         const endDate = dayjs().format("YYYY-MM-DD");
         setPlacementParam("");
         setFilterPlacementData({
@@ -320,13 +373,13 @@ const GlobalContextProvider = ({ children }) => {
         setAllStaticsCount,
         selectedCourseDetails,
         setSelectedCourseDetails,
-        citySearchQuery,setCitySearchQuery,
-        collegeSearchQuery,setCollegeSearchQuery,
-        degreeSearchQuery,setDegreeSearchQuery,
-        stateSearchQuery,setStateSearchQuery,
-        universitySearchQuery,setUniversitySearchQuery,
-        yearSearchQuery,setYearSearchQuery,
-        streamSearchQuery,setStreamSearchQuery,emptySearch
+        citySearchQuery, setCitySearchQuery,
+        collegeSearchQuery, setCollegeSearchQuery,
+        degreeSearchQuery, setDegreeSearchQuery,
+        stateSearchQuery, setStateSearchQuery,
+        universitySearchQuery, setUniversitySearchQuery,
+        yearSearchQuery, setYearSearchQuery,
+        streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn
       }}
     >
       {children}

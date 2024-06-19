@@ -176,7 +176,7 @@ const CounsellorCardHeader = () => {
             ) : (
               <>
                 <PlacementContent counsellorFilterResponse={accumulatedData} />
-                {isFetching &&  <BlinkingDots /> }
+                {isFetchData &&  <BlinkingDots /> }
               </>
             )
           ) : (
