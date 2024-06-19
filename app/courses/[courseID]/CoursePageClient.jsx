@@ -34,9 +34,9 @@ const CoursePageClient = () => {
       <CourseLanding courseDetails={courseDetails.data} />
       <CourseContent courseDetails={courseDetails} />
       <UpComingBranches courseDetails={courseDetails.data} />
-      <div className='mb-9'>
+      {/* <div className='mb-9'>
         <PlacementStatisticsHome page="course" courseDetails={courseDetails} />
-      </div>
+      </div> */}
       <div className='mb-9'>
         <HiringPartnersHome courseDetails={courseDetails} />
       </div>

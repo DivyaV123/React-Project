@@ -61,7 +61,7 @@ function CourseHighlites({ courseDetails }) {
                         {element.question}
                     </header>
                     {element.bulletPoints.map((points) => (
-                        <ul className={"list-disc list-inside w-[91%] pb-[3.333vh]"}>
+                        <ul className={"list-disc list-inside w-[91%] pb-[1.333vh]"}>
                             <li>
                                 <span className='text-ash text-base'>
                                     {points}
