@@ -1,45 +1,91 @@
-'use client'
-import React ,{useState} from 'react';
+  'use client';
+import React, { useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
-import { isValidPhoneNumber } from "react-phone-number-input";
-import PhoneInput from "react-phone-input-2";
-import "react-phone-input-2/lib/material.css";
+import { isValidPhoneNumber } from 'react-phone-number-input';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/material.css';
 
-const HiringFromUsForm = () => {
-    const [phoneValue, setPhoneValue] = useState();
-    const [error, setError] = useState({ mobileNumber: false, validPhone: false });
-    const [countryCode, setCountryCode] = useState("");
-    const inputBorder = "1px solid #26428B80";
-    const inputBorderErr = "1px solid #ea0322";
+const HiringFromUsForm = ({ activeTab }) => {
+  const [phoneValue, setPhoneValue] = useState('');
+  const [error, setError] = useState({ mobileNumber: false, validPhone: false });
+  const inputBorder = '1px solid #26428B80';
+  const inputBorderErr = '1px solid #ea0322';
+
+  const getInitialValues = () => {
+    switch (activeTab) {
+      case 'Corporate Training':
+        return {
+          fullName: '',
+          mobileNumber: '',
+          requiredTraining: '',
+          email: '',
+          message: '',
+        };
+      case 'General Enquiries':
+        return {
+          fullName: '',
+          mobileNumber: '',
+          email: '',
+          message: '',
+        };
+      default:
+        return {
+          fullName: '',
+          mobileNumber: '',
+          companyName: '',
+          email: '',
+          message: '',
+        };
+    }
+  };
+
+  const getValidationSchema = () => {
+    switch (activeTab) {
+      case 'Corporate Training':
+        return Yup.object({
+          fullName: Yup.string().required('Full Name is required'),
+          mobileNumber: Yup.string().required('Phone number is required'),
+          requiredTraining: Yup.string().required('Required Training is required'),
+          email: Yup.string().email('Invalid email address').required('Email is required'),
+          message: Yup.string().required('Message is required'),
+        });
+      case 'General Enquiries':
+        return Yup.object({
+          fullName: Yup.string().required('Full Name is required'),
+          mobileNumber: Yup.string().required('Phone number is required'),
+          email: Yup.string().email('Invalid email address').required('Email is required'),
+          message: Yup.string().required('Message is required'),
+        });
+      default:
+        return Yup.object({
+          fullName: Yup.string().required('Full Name is required'),
+          mobileNumber: Yup.string().required('Phone number is required'),
+          companyName: Yup.string().required('Company Name is required'),
+          email: Yup.string().email('Invalid email address').required('Email is required'),
+          message: Yup.string().required('Message is required'),
+        });
+    }
+  };
+
   const formik = useFormik({
-    initialValues: {
-      fullName: '',
-      mobileNumber: '',
-      companyName: '',
-      email: '',
-      message: '',
-    },
-    validationSchema: Yup.object({
-      fullName: Yup.string().required('FullName is required'),
-      mobileNumber: Yup.string().required('Phone number is required'),
-      companyName: Yup.string().required('CompanyName is required'),
-      email: Yup.string().email('Invalid email address').required('Email id is required'),
-      message: Yup.string().required('Message is required'),
-    }),
+    initialValues: getInitialValues(),
+    validationSchema: getValidationSchema(),
     onSubmit: (values) => {
       console.log(values);
     },
   });
+
   const handleOnBlur = (id) => {
     if (!phoneValue) {
       setError({ ...error, [id]: true });
-    } else if (!isValidPhoneNumber("+" + phoneValue?.toString())) {
+    } else if (!isValidPhoneNumber('+' + phoneValue.toString())) {
       setError({ ...error, [id]: false, validPhone: true });
     } else {
       setError({ ...error, [id]: false, validPhone: false });
     }
   };
+
   return (
     <div className="container mx-auto p-4 hiringFromUsComponent">
       <form onSubmit={formik.handleSubmit} className="custom-grid-form grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -53,87 +99,100 @@ const HiringFromUsForm = () => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.fullName}
-            className="w-full border border-gray-300 p-2 rounded"
+            className={`w-full border p-2 rounded ${formik.touched.fullName && formik.errors.fullName ? 'border-red-500' : 'border-gray-300'}`}
           />
           {formik.touched.fullName && formik.errors.fullName ? (
-            <div className="text-red-500 text-sm absolute">{formik.errors.fullName}</div>
+            <div className="text-red-500 text-sm">{formik.errors.fullName}</div>
           ) : null}
         </div>
 
         <div className="mb-2">
           <label htmlFor="mobileNumber" className="block font-bold mb-2">Mobile Number</label>
-         
           <PhoneInput
-                      type="text"
-                      placeholder="Enter phone number"
-
-                      searchPlaceholder="Search..."
-                      searchNotFound="No Countries Found"
-                      specialLabel=""
-                      autoFormat={false}
-                      enableAreaCodeStretch
-                      country={"in"}
-                      name="mobileNumber"
-                      id="mobileNumber"
-                      value={formik.values.mobileNumber}
-                      className=" outline-none"
-                      onChange={(e, country) => {
-                        formik.setFieldValue("mobileNumber", e);
-                        setPhoneValue(e);
-                        setCountryCode(country.dialCode);
-                      }}
-                      
-                    //   style={{
-                    //     border: `${
-                    //       error.mobileNumber || error.validPhone
-                    //         ? inputBorderErr
-                    //         : inputBorder
-                    //     }`,
-                    //     borderRadius: "5px",
-                    //   }}
-                      enableSearch
-                      international
-                      inputProps={{
-                       
-                        style: {
-                         
-                          height: "0.43em !important",
-                        },
-                      }}
-                      autoComplete="off"
-                      onBlur={() => handleOnBlur("mobileNumber")}
-                      countryCodeEditable={false}
-                    />
-                    {(error.mobileNumber ||
-                      (formik.errors.mobileNumber &&
-                        formik.touched.mobileNumber)) && (
-                      <div className="text-red-500 text-sm absolute">
-                        Phone number is required
-                      </div>
-                    )}
-                    {error.validPhone && !error.mobileNumber && (
-                      <div className="text-red-500 text-sm absolute">
-                        Invalid phone number
-                      </div>
-                    )}
-        </div>
-
-        <div className="mb-2">
-          <label htmlFor="companyName" className="block font-bold mb-2">Company Name</label>
-          <input
-            id="companyName"
-            name="companyName"
             type="text"
-            placeholder='Enter your company name'
-            onChange={formik.handleChange}
-            onBlur={formik.handleBlur}
-            value={formik.values.companyName}
-            className="w-full border border-gray-300 p-2 rounded"
+            placeholder="Enter phone number"
+            searchPlaceholder="Search..."
+            searchNotFound="No Countries Found"
+            specialLabel=""
+            autoFormat={false}
+            enableAreaCodeStretch
+            country={"in"}
+            name="mobileNumber"
+            id="mobileNumber"
+            value={formik.values.mobileNumber}
+            className="outline-none"
+            onChange={(e, country) => {
+              formik.setFieldValue("mobileNumber", e);
+              setPhoneValue(e);
+            }}
+            // style={{
+            //   border: `${error.mobileNumber || error.validPhone ? inputBorderErr : inputBorder}`,
+            //   borderRadius: "5px",
+            // }}
+            style={{
+                        border: `${
+                          error.phone || error.validPhone
+                            ? inputBorderErr
+                            : inputBorder
+                        }`,
+                        borderRadius: "5px",
+                      }}
+            enableSearch
+            international
+            inputProps={{
+              style: {
+                height: "0.43em !important",
+              },
+            }}
+            autoComplete="off"
+            onBlur={() => handleOnBlur("mobileNumber")}
+            countryCodeEditable={false}
           />
-          {formik.touched.companyName && formik.errors.companyName ? (
-            <div className="text-red-500 text-sm absolute">{formik.errors.companyName}</div>
-          ) : null}
+          {(error.mobileNumber || (formik.errors.mobileNumber && formik.touched.mobileNumber)) && (
+            <div className="text-red-500 text-sm">Phone number is required</div>
+          )}
+          {error.validPhone && !error.mobileNumber && (
+            <div className="text-red-500 text-sm">Invalid phone number</div>
+          )}
         </div>
+
+        {activeTab === 'Corporate Training' && (
+          <div className="mb-2">
+            <label htmlFor="requiredTraining" className="block font-bold mb-2">Required Training</label>
+            <input
+              id="requiredTraining"
+              name="requiredTraining"
+              type="text"
+              placeholder='Enter required training'
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.requiredTraining}
+              className={`w-full border p-2 rounded ${formik.touched.requiredTraining && formik.errors.requiredTraining ? 'border-red-500' : 'border-gray-300'}`}
+            />
+            {formik.touched.requiredTraining && formik.errors.requiredTraining ? (
+              <div className="text-red-500 text-sm">{formik.errors.requiredTraining}</div>
+            ) : null}
+          </div>
+        )}
+
+        {activeTab === 'Hire From Us' && (
+          <div className="mb-2">
+            <label htmlFor="companyName" className="block font-bold mb-2">Company Name</label>
+            <input
+              id="companyName"
+              name="companyName"
+              type="text"
+              placeholder='Enter your company name'
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.companyName}
+              className={`w-full border p-2 rounded ${formik.touched.companyName && formik.errors.companyName ? 'border-red-500' : 'border-gray-300'}`}
+            />
+            {formik.touched.companyName && formik.errors.companyName ? (
+              <div className="text-red-500 text-sm">{formik.errors.companyName}</div>
+            ) : null}
+          </div>
+        )}
 
         <div className="mb-2">
           <label htmlFor="email" className="block font-bold mb-2">Email</label>
@@ -141,14 +200,14 @@ const HiringFromUsForm = () => {
             id="email"
             name="email"
             type="email"
+            placeholder='Enter your email'
             onChange={formik.handleChange}
-            placeholder='Enter your email Id'
             onBlur={formik.handleBlur}
             value={formik.values.email}
-            className="w-full border border-gray-300 p-2 rounded"
+            className={`w-full border p-2 rounded ${formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-gray-300'}`}
           />
           {formik.touched.email && formik.errors.email ? (
-            <div className="text-red-500 text-sm absolute">{formik.errors.email}</div>
+            <div className="text-red-500 text-sm">{formik.errors.email}</div>
           ) : null}
         </div>
 
@@ -157,18 +216,19 @@ const HiringFromUsForm = () => {
           <textarea
             id="message"
             name="message"
+            placeholder='Enter your message'
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            placeholder='Type here...'
             value={formik.values.message}
-            className="w-full border border-gray-300 p-2 rounded"
-          ></textarea>
+            className={`w-full border p-2 rounded ${formik.touched.message && formik.errors.message ? 'border-red-500' : 'border-gray-300'}`}
+          />
           {formik.touched.message && formik.errors.message ? (
-            <div className="text-red-500 text-sm absolute">{formik.errors.message}</div>
+            <div className="text-red-500 text-sm">{formik.errors.message}</div>
           ) : null}
         </div>
 
-        <div className="mb-2 btnComponent" >
+        <div  className={`${activeTab === "General Enquiries" ? "mb-2 md:col-span-2 btnComponent" : "mb-2 btnComponent"}`}
+>
           <button type="submit" className=" text-white py-2 px-4 rounded hover:bg-orange-600">
             Submit
           </button>
