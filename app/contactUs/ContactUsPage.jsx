@@ -179,21 +179,21 @@ function ContactUsPage() {
                         setCountryCode(country.dialCode);
                       }}
                       //   defaultCountry={"IN"}
-                      style={{
-                        border: `${
-                          error.phone || error.validPhone
-                            ? inputBorderErr
-                            : inputBorder
-                        }`,
-                        borderRadius: "5px",
-                      }}
+                      // style={{
+                      //   border: `${
+                      //     error.phone || error.validPhone
+                      //       ? inputBorderErr
+                      //       : inputBorder
+                      //   }`,
+                      //   borderRadius: "5px",
+                      // }}
                       enableSearch
                       international
                       inputProps={{
                         // className: cx(`!text-xs impFont_14px boxedInput `),
                         style: {
                           // padding: "9.5px 14px",
-                          height: "0.43em !important",
+                         
                         },
                       }}
                       autoComplete="off"
@@ -286,7 +286,7 @@ function ContactUsPage() {
                     <h1 className="text-white pb-[0.625vw] text-[1.563vw]  font-bold">
                       {data.country}
                     </h1>
-                    <div className={`${contentStyle}`}>
+                    <div className={`${contentStyle} gap-[0.5vw]` }>
                       <Svg
                         className=""
                         width={svgicons.contactUsCallSvg[0]}
@@ -299,11 +299,11 @@ function ContactUsPage() {
                         {data.call}
                       </div>
                     </div>
-                    <div className={`${contentStyle}`}>
+                    <div className={`${contentStyle} gap-[0.8vw]`}>
                       <Svg
                         className=""
                         width={svgicons.contactUsMail[0]}
-                        height={svgicons.contactUsMail[1]}
+                        height={16}
                         viewBox={svgicons.contactUsMail[2]}
                         icon={svgicons.contactUsMail[3]}
                         color={svgicons.contactUsMail[4]}
@@ -312,16 +312,16 @@ function ContactUsPage() {
                         {data.mail}
                       </div>
                     </div>
-                    <div className={`${contentStyle}`}>
+                    <div className={`${contentStyle}  gap-[0.8vw]`}>
                       <Svg
-                        className="basis-[8%]"
+                        className="basis-[6%]"
                         width={svgicons.contactUsAdressSvg[0]}
                         height={svgicons.contactUsAdressSvg[1]}
                         viewBox={svgicons.contactUsAdressSvg[2]}
                         icon={svgicons.contactUsAdressSvg[3]}
                         color={svgicons.contactUsAdressSvg[4]}
                       />
-                      <div className="text-white  text-[0.938vw] pr-[0.625vw]">
+                      <div className="text-white w-fit text-[0.938vw] pr-[0.625vw]">
                         {data.address}
                       </div>
                     </div>

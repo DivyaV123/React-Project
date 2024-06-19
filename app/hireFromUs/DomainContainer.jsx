@@ -1,5 +1,7 @@
-import React from 'react'
+'use client'
+import React,{useState} from 'react'
 import "./HirefromusLanding.scss";
+import HiringModal from './Modal/HiringModal';
 const domains = [
   { name: 'Software Developer', image: '../../developer.png' },
   { name: 'UI/UX designer', image:  '../../designer.png' },
@@ -11,13 +13,27 @@ const domains = [
   { name: 'AI/ML', image: '../../AiML.png'},
 ];
 const DomainContainer = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedCity, setSelectedCity] = useState(null);
+  const [activeTab, setActiveTab] = useState('Hire From Us');
+
+  const handleCardClick = (city) => {
+    setSelectedCity(city);
+    setIsModalOpen(true);
+    setActiveTab('Hire From Us');
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedCity(null);
+  };
   return (
     <section className="domainContainer">
     <div className="domain-selector container mx-auto  p-4">
       <h2 className="text-center  mt-8 mb-8">Hire Talents For Any Domains</h2>
       <div className="grid grid-cols-2 md:grid-cols-4   domain_candidate">
         {domains.map((domain) => (
-          <div key={domain.name} className="domain-card p-4  rounded text-center h-[160px] w-[auto] hover:bg-gray-200 cursor-pointer">
+          <div  onClick={() => handleCardClick(domain)} key={domain.name} className="domain-card p-4  rounded text-center h-[160px] w-[auto] hover:bg-gray-200 cursor-pointer">
           <div className="image mb-2 flex justify-center" >
                 <img src={domain.image} alt={domain.name} className="h-[36px] mt-1 w-[36px] object-cover rounded" />
               </div>
@@ -26,6 +42,13 @@ const DomainContainer = () => {
         ))}
       </div>
     </div>
+    <HiringModal
+        isModalOpen={isModalOpen}
+        selectedCity={selectedCity}
+        activeTab={activeTab}
+        handleCloseModal={handleCloseModal}
+        setActiveTab={setActiveTab}
+      />
   </section>
   )
 }
