@@ -107,9 +107,8 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize }) => {
           </>
         ) : (
           <section
-            className={`${
-              page === "course" ? className : branchCard
-            } flex flex-wrap`}
+            className={`${page === "course" ? className : branchCard
+              } flex flex-wrap`}
             key={index}
           >
             <div
@@ -174,7 +173,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize }) => {
                 <button
                   className={`${enrollEnquire} EnrollButton bg-gradient rounded text-white`}
                 >
-                  Demo Class
+                  Enroll Now
                 </button>
                 <button
                   className={`${enrollEnquire} EnquireButton rounded border border-orange-500 text-orange-500`}

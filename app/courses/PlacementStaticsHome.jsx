@@ -12,7 +12,7 @@ import Link from 'next/link'
 import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 
 function PlacementStaticsHome({ path }) {
-    const { setAllStaticsCount } = useContext(GlobalContext)
+    const { setAllStaticsCount, setPlacementParam, setLessCheckedIcon, setNonItCheckedIcon } = useContext(GlobalContext)
     const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
     setAllStaticsCount(countDetails)
     const [isloading, setisLoading] = useState(true)
@@ -37,7 +37,7 @@ function PlacementStaticsHome({ path }) {
         { src: "../compLogo-04.svg" },
     ];
     const degrees = [
-        'BE/BTech', 'BCA/Bsc', 'B.Com', 'MCA', 'ME/M.Tech', 'MBA', 'Msc', 'MS', 'More...'
+        'BE', 'BCA', 'B.Com', 'MCA', 'M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
     const branches = [
         'CSE', 'ISE', 'ECE', 'Civil', 'EEE', 'Mech', 'AE', 'CH', "More..."
@@ -46,22 +46,30 @@ function PlacementStaticsHome({ path }) {
         {
             count: `${countDetails?.response?.allPlacedCount}`,
             info: 'Students who have throughout 60% Aggregate',
-            icon: '../placementIcon1.svg'
+            icon: '../placementIcon1.svg',
+            key: "throughoutsixty",
+            toSet: setNonItCheckedIcon
         },
         {
             count: `${countDetails?.response?.nonItCount}`,
             info: 'Students who have graduated in Non - IT',
-            icon: '../staticsIcon02.svg'
+            icon: '../staticsIcon02.svglx',
+            key: "nonit",
+            toSet: setNonItCheckedIcon
         },
         {
             count: `${countDetails?.response?.itCount}`,
             info: 'Students who have graduated in IT/CS/IS',
-            icon: '../placementIcon03.svg'
+            icon: '../placementIcon03.svg',
+            key: "it",
+            toSet: setNonItCheckedIcon
         },
         {
             count: `${countDetails?.response?.lessThanSixtyPercent}`,
             info: 'Students who have less than 60% Aggregate',
-            icon: '../placementIcon04.svg'
+            icon: '../placementIcon04.svg',
+            key: "lessthansixty",
+            toSet: setLessCheckedIcon
         },
     ]
     useEffect(() => {

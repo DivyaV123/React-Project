@@ -1,15 +1,44 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Skeleton } from "@/components/ui/skeleton"
 import Link from 'next/link';
 import { PLACEMENT_PATH } from '@/lib/RouteConstants';
+import { GlobalContext } from '../Context/GlobalContext';
 
 function PlaceMentStatistics({ className, path, statistics }) {
     const [isloading, setisLoading] = useState(true)
+    const { setPlacementParam, setNonItCheckedIcon, setThroughCheckedIcon, setPlacedCheckedIcon, setLessCheckedIcon, setItCheckedIcon } = useContext(GlobalContext)
     useEffect(() => {
         setTimeout(() => {
             setisLoading(false)
         }, 1000);
     }, [])
+    const handleState = (state) => {
+        if (state === "lessthansixty") {
+            setNonItCheckedIcon(false);
+            setThroughCheckedIcon(false);
+            setPlacedCheckedIcon(false);
+            setLessCheckedIcon(true);
+            setItCheckedIcon(false);
+        } else if (state == "nonit") {
+            setNonItCheckedIcon(true);
+            setThroughCheckedIcon(false);
+            setPlacedCheckedIcon(false);
+            setLessCheckedIcon(false);
+            setItCheckedIcon(false);
+        } else if (state === "it") {
+            setNonItCheckedIcon(false);
+            setThroughCheckedIcon(false);
+            setPlacedCheckedIcon(false);
+            setLessCheckedIcon(false);
+            setItCheckedIcon(true);
+        } else if (state === "throughoutsixty") {
+            setNonItCheckedIcon(false);
+            setThroughCheckedIcon(true);
+            setPlacedCheckedIcon(false);
+            setLessCheckedIcon(false);
+            setItCheckedIcon(false);
+        }
+    }
     return (
         <div className={className}>
             {statistics.map((item, index) => {
@@ -32,7 +61,10 @@ function PlaceMentStatistics({ className, path, statistics }) {
 
                         :
                         <Link href={PLACEMENT_PATH}>
-                            <div className='flex aligen-items jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl w-[24.531vw]'>
+                            <div onClick={() => {
+                                setPlacementParam(item.key);
+                                handleState(item.key)
+                            }} className='flex aligen-items jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl w-[24.531vw]'>
                                 <figure>
                                     <img className='h-full' src={item.icon}></img>
                                 </figure>

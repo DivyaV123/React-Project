@@ -3,6 +3,7 @@ import React from 'react'
 import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
 import Counter from '../commonComponents/counterAnimation/Counter'
+import './chooseUS.scss'
 
 function ExperiencedFaculty() {
     const content = [
@@ -31,7 +32,7 @@ function ExperiencedFaculty() {
                     <h1 className='font-bold text-black text-2xl text-center flex justify-center mb-6'>
                         Get Experienced Faculty <br /> Guidance
                     </h1>
-                    <p className='text-dark-gray text-center text-[18px] mt-6'>
+                    <p id="tagline" className='text-dark-gray fulljustify text-[18px] mt-6'>
                         Our dedicated placement cell works tirelessly to connect our students with leading IT companies for job opportunities. With a strong network of corporate partners and recruitment drives to ensure maximum exposure for our students.
                     </p>
                     <article className='grid md:grid-cols-3 xs:grid-cols-1 sm:grid-cols-auto gap-2 mt-6 w-full'>

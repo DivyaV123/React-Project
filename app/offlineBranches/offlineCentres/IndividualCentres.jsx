@@ -39,15 +39,15 @@ const IndividualCentres = () => {
                   onClick={() => setSelectedCourseId(item.id)}
                   key={index}
                   className={`w-full pr-6 pl-4 py-3 flex items-center gap-2 cursor-pointer ${String(item.id) === String(selectedCourseId)
-                      ? "courseName"
-                      : ""
+                    ? "courseName"
+                    : ""
                     }`}
                 >
                   <img src={item.image} alt={item.title} className="h-6 w-6" />
                   <h3
                     className={`text-[0.75rem] font-medium ${String(item.id) === String(selectedCourseId)
-                        ? "text-white"
-                        : "text-[#454545]"
+                      ? "text-white"
+                      : "text-[#454545]"
                       }`}
                   >
                     {item.title}
@@ -55,7 +55,7 @@ const IndividualCentres = () => {
                 </div>
               ))}
           </div>
-          <CommonBranch selectedId={selectedId} />
+          <CommonBranch selectedId={selectedId} page='NotofflineBranches' />
         </section>
       </section>
     </div>
