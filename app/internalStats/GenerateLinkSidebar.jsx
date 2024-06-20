@@ -16,7 +16,7 @@ const GenerateLinkSidebar = () => {
 
 
   return (
-    <section>
+    <section className="mt-[1.111vh]">
       {data.map((item, index) => (
         <article
           key={index}

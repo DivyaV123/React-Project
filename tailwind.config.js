@@ -63,6 +63,7 @@ module.exports = {
         sm: "calc(var(--radius) - 4px)",
       }, screens: {
         '3xl': '1920px',
+        mobile:{'max': '639px'},
       },
       keyframes: {
         "accordion-down": {
