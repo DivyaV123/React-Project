@@ -15,19 +15,17 @@ function Qaccordion({ qaList }) {
 
   const handleAccordionToggle = (index) => {
     setOpenIndex(index === openIndex ? -1 : index);
-
   };
+ 
 
   return (
     <>
       <Fade top duration={1000} delay={0}>
-        <Accordion className='w-full' defaultIndex={[0]} type="single" collapsible>
+        <Accordion defaultValue="hello" className="w-full" type="single" collapsible>
           {qaList?.map((element, index) => (
-            <AccordionItem className='pb-2 min-h-[4.375vw]' key={index} value={index + 1}>
+            <AccordionItem className="pb-2 min-h-[4.375vw]" key={index} value={index === 0 ? "hello" : index}>
               <AccordionTrigger onClick={() => handleAccordionToggle(index)}>{element.question}</AccordionTrigger>
-              <AccordionContent>
-                {element.answer}
-              </AccordionContent>
+              <AccordionContent>{element.answer}</AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>

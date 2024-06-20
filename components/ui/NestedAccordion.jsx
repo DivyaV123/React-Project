@@ -19,6 +19,19 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
         }));
     };
 
+    const handleSubsectionClick = (sectionIndex, subsectionIndex) => {
+        console.log(sectionIndex, subsectionIndex, "sectionIndex, subsectionIndex")
+        const combinedIndex = `${sectionIndex}-${subsectionIndex}`;
+        setActiveSections((prevActiveSections) => ({
+            ...prevActiveSections,
+            [combinedIndex]: !prevActiveSections[combinedIndex],
+        }));
+        setAccordianArrow((prevAccordianArrow) => ({
+            ...prevAccordianArrow,
+            [combinedIndex]: !prevAccordianArrow[combinedIndex],
+        }));
+    };
+
     const renderContent = (content, sectionIndex) => {
         if (Array.isArray(content) && content.length > 0) {
             return content.map((item, index) => {

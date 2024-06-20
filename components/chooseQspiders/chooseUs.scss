@@ -1,0 +1,12 @@
+.fulljustify {
+  text-align: justify;
+}
+.fulljustify:after {
+  content: "";
+  display: inline-block;
+  width: 100%;
+}
+#tagline {
+  overflow: hidden;
+  line-height: 28px; /* vert-center */
+}
