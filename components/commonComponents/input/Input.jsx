@@ -15,7 +15,7 @@ function Input(
     }
 ) {
     return (
-        <section className={`${sectionStyle} relative h-[2.969vw]`}>
+        <section className={`${sectionStyle} relative `}>
             {iconPath &&
                 <img src={iconPath} alt="icon" className={`${iconStyle} absolute left-3 top-1/2 transform -translate-y-1/2 w-[2.778vh] h-[2.778vh]`}></img>
             }
