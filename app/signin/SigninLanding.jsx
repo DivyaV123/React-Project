@@ -20,7 +20,7 @@ const SigninLanding = () => {
           <Link href={token === 'COURSEADDER' ? COURSEADDER_HOME : HOME_PATH}>
             <img
               className="w-[7.5vw] h-[8.333vh]"
-              src="../../signin_logo.svg"
+              src="../../QSPLogo.png"
             />
           </Link>
           <article className="font-bold text-[2.813vw] text-[#FFFFFF] mt-[9.722vh]">
