@@ -32,19 +32,19 @@ function CarosalFooter() {
     ]
     return (
 
-        <MaxWebWidth sectionStyling='z-100 flex justify-center absolute top-[74%] w-full bottom-2 w-full h-[10vw] 2xl:[8vw] 3xl:h-[7vw]' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3 h-[10vw] 3xl:h-[7vw] 2xl:[8vw] items-center'>
+        <MaxWebWidth sectionStyling='z-100 flex justify-center sm:absolute sm:top-[74%] w-full sm:bottom-2 ' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3  items-center'>
             <Fade bottom duration={1000} delay={0} >
-                <div className='grid md:grid-cols-6'>
+                <div className='grid md:grid-cols-6 mobile:flex mobile:flex-wrap   mobile:py-[2.039vh]'>
                     {
                         detail.map((element) => {
                             let content = element.details.replace(/#/g, "<br/>")
                             return (
-                                <div className='p-2'>
+                                <div className='sm:p-2 mobile:w-[50%]  mobile:py-[2.039vh] mobile:pr-[5.581vw] mobile:pl-[3.721vw]'>
                                     <article>
-                                        <h1 className=' gradient-text text-[2rem] text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
+                                        <h1 className=' gradient-text text-[2.5vw] mobile:text-[7.442vw] text-orange-600 subHead text-header-orange font-extra-bold flex justify-center'>
                                             <Counter initialValue={0} targetValue={50} label={element.count} />
                                         </h1>
-                                        <p className='text-white text-[0.75rem] font-semibold flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />
+                                        <p className='text-white text-[0.938vw] mobile:text-[2.791vw] font-semibold flex justify-center text-center ' dangerouslySetInnerHTML={{ __html: content }} />
                                     </article>
                                 </div>
                             )

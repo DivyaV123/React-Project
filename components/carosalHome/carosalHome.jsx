@@ -24,7 +24,7 @@ function CarosalHome() {
   // ]
   let logo = () => {
     return (
-      <article >
+      <article className='mobile:hidden'>
         <figure className='absolute right-[-11%] hover:right-[-10.5%] cursor-pointer'>
           <img className='w-[71%] hover:w-[73%]' src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
         </figure>
@@ -47,7 +47,6 @@ function CarosalHome() {
       >
         {logo()}
         <LandingCarosal />
-        <CarosalFooter />
       </MaxWebWidth>
       <MaxWebWidth sectionStyling='bg-white' articalStyling='flex justify-center'>
       </MaxWebWidth>
