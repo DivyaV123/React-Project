@@ -217,6 +217,7 @@ function OurCourse({ page }) {
       arrow: "./arrowIconDark.svg",
     },
   ];
+  const [searchTerm, setSearchTerm] = useState('');
 
   const tutionClasses =
     page === "tution" ? typesOfClasses.slice(2, 4) : typesOfClasses;
@@ -226,7 +227,11 @@ function OurCourse({ page }) {
     { number: "10,000+", text: "Non IT Students placed" },
     { number: "15,000+", text: "IT Students placed" },
   ];
+  const filteredCourses = courseCard.filter(course =>
+    course.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
+  console.log(filteredCourses, "filteredCourses")
   return (
     <MaxWebWidth>
       {page !== "explore" && (
@@ -258,6 +263,7 @@ function OurCourse({ page }) {
           {page === "explore" && (
             <article className="pr-2 pt-[1px]">
               <Input
+                onChange={(e) => setSearchTerm(e.target.value)}
                 inputStyle="searchField p-2 text-sm"
                 placeholder="Search"
                 iconPath="../images/shape.png"
@@ -382,7 +388,7 @@ function OurCourse({ page }) {
         </article>
         <article className="h-full overflow-hidden  w-[66.797vw]">
           <div className="flex flex-wrap  gap-y-[2.222vh] justify-between w-full h-full overflow-y-scroll courseScroll pt-[1.667vh] pl-[0.938vw] pr-[0.156vw]">
-            {courseCard.map((element) => {
+            {filteredCourses.map((element) => {
               return (
                 <div className="courseCard ">
                   {isloading ? (

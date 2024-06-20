@@ -1,13 +1,17 @@
-import React from 'react'
+'use client'
+import React, { useEffect } from 'react'
 import './IndividualCentres.scss'
-const CommonBranch = ({ selectedId, page = '' }) => {
+const CommonBranch = ({ selectedId, page }) => {
+  useEffect(() => {
+  }, [selectedId])
+
   return (
-    <section className={` mt-6  flex  gap-4   ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 overflow-x-scroll offlineScrollbar' : "w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
+    <section className={` mt-6  flex  gap-4  ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 h-full overflow-x-scroll offlineScrollbar' : "w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
       {selectedId &&
         selectedId?.branchCentre?.map((branch, branchIndex) => (
           <div
             key={branchIndex}
-            className={`branchCard w-[23.438vw] h-[26.875vw] p-2 courseSidebar rounded-md ${page === 'offlineBranches' ? "flex-shrink-0" : ""} `}
+            className={` w-[23.438vw] h-[26.875vw] p-2 courseSidebar rounded-md ${page === 'offlineBranches' ? "flex-shrink-0" : ""} `}
           >
             <img
               src="../../../../Frame 41334.png"

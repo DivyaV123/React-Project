@@ -10,8 +10,10 @@ import {
 import Svg from '@/components/commonComponents/Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import './branchesLandingPage.scss'
+import { useGetAllBranchesQuery } from '@/redux/queries/getAllBranchData'
 
 function BranchesLandingPage() {
+    const { data, error, isLoading } = useGetAllBranchesQuery()
     const [selectedImg, setSelectedImg] = useState('../images/Frame 22.png')
     const corosalImgs = [
         '../images/branchesCorosalImg1.png',

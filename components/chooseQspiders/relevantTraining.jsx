@@ -2,6 +2,7 @@
 import React from 'react'
 import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
+import './chooseUs.scss'
 
 
 function RelevantTraining() {
@@ -14,8 +15,8 @@ function RelevantTraining() {
                             <h1 className='font-bold text-black text-header flex justify-center mb-6'>
                                 Industry-Relevant Training
                             </h1>
-                            <p className='text-dark-gray flex text-center text-[18px] mt-6'>
-                            At QSpiders, we are committed to providing industry-relevant training that aligns with the current trends and technologies in the IT sector.
+                            <p id="tagline" className='text-dark-gray flex-col item-center fulljustify text-[18px] mt-6'>
+                                At QSpiders, we are committed to providing industry-relevant training that aligns with the current trends and technologies in the IT sector.
                             </p>
                         </header>
                         <article className='flex justify-start align-start mt-6'>
@@ -27,13 +28,13 @@ function RelevantTraining() {
                                 }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center'>
                                     2.5Lac+
                                 </h1>
-                                <p className='text-brown txet-normal flex justify-center  text-center'>Total no of <br/> students placed</p>
+                                <p className='text-brown txet-normal flex justify-center  text-center'>Total no of <br /> students placed</p>
                             </aside>
                             <aside className='w-[100%]'>
                                 <h1 className='gradient-text text-base font-extra-bold text-xl opacity-100 flex justify-center'>
                                     4,100+
                                 </h1>
-                                <p className='text-brown text-normal flex justify-center  text-center'>MNC Companies <br/> hire from us</p>
+                                <p className='text-brown text-normal flex justify-center  text-center'>MNC Companies <br /> hire from us</p>
                             </aside>
                         </article>
                         <article className='flex justify-center mt-6'>

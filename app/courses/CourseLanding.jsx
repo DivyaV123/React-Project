@@ -5,11 +5,9 @@ import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-import ImageScroller from "./ImageScroller";
-import { GlobalContext } from "@/components/Context/GlobalContext";
-import Image from "next/image";
+import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 const CourseLanding = ({ courseDetails }) => {
-  const { allStaticsCount } = useContext(GlobalContext);
+  const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
   const typesOfClasses = [
     { title: "Offline Classes" },
     { title: "Online Live Classes" },
@@ -19,16 +17,16 @@ const CourseLanding = ({ courseDetails }) => {
 
   const statisticsData = [
     {
-      number: `${allStaticsCount?.response?.allPlacedCount}+`,
+      number: `${countDetails?.response?.allPlacedCount}+`,
       text: "Student placed",
     },
     { number: "4870+", text: "Hiring Companies" },
     {
-      number: `${allStaticsCount?.response?.nonItCount}+`,
+      number: `${countDetails?.response?.nonItCount}+`,
       text: "Non IT Students placed",
     },
     {
-      number: `${allStaticsCount?.response?.itCount}+`,
+      number: `${countDetails?.response?.itCount}+`,
       text: "IT Students placed",
     },
   ];
@@ -54,41 +52,40 @@ const CourseLanding = ({ courseDetails }) => {
         <aside className="flex pt-[6.944vh] justify-between">
           <article className="w-[87.5vw] flex flex-col ">
             <div className="flex justify-between">
-            <div className="bg-white flex w-fit classTypes">
-              {courseDetails?.mode?.map((classItem, index) => (
-                <button
-                  key={index}
-                  className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${
-                    classItem === btnState ? "activecourseButton" : ""
-                  }`}
-                  onClick={() => {
-                    setBtnState(classItem);
-                  }}
-                >
-                  {classItem}
-                </button>
-              ))}
+              <div className="bg-white flex w-fit classTypes">
+                {courseDetails?.mode?.map((classItem, index) => (
+                  <button
+                    key={index}
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === btnState ? "activecourseButton" : ""
+                      }`}
+                    onClick={() => {
+                      setBtnState(classItem);
+                    }}
+                  >
+                    {classItem}
+                  </button>
+                ))}
+              </div>
+              <button className="ratingButton flex justify-center items-center py-2 px-4 font-semibold rounded text-ash">
+                <span className="flex text-[1.25vw] py-[0.556vh] px-[0.313vw]">
+                  <Svg
+                    width={svgicons.ratingStar[0]}
+                    height={svgicons.ratingStar[1]}
+                    viewBox={svgicons.ratingStar[2]}
+                    icon={svgicons.ratingStar[3]}
+                    color={svgicons.ratingStar[4]}
+                  />
+                </span>{" "}
+                4.6 Rating
+              </button>
             </div>
-            <button className="ratingButton flex justify-center items-center py-2 px-4 font-semibold rounded text-ash">
-                  <span className="flex text-[1.25vw] py-[0.556vh] px-[0.313vw]">
-                    <Svg
-                      width={svgicons.ratingStar[0]}
-                      height={svgicons.ratingStar[1]}
-                      viewBox={svgicons.ratingStar[2]}
-                      icon={svgicons.ratingStar[3]}
-                      color={svgicons.ratingStar[4]}
-                    />
-                  </span>{" "}
-                  4.6 Rating
-                </button>
-                </div>
             <div className="py-[1.389vh] flex gap-6 items-center">
               <h1
                 title={courseDetails?.courseName}
                 className="font-bold text-left text-[3.75vw] flex"
               >
                 {courseDetails?.courseName}
-                
+
               </h1>
             </div>
             <section className="flex justify-between ">
@@ -102,16 +99,14 @@ const CourseLanding = ({ courseDetails }) => {
                   {statisticsData.map((ele, index) => (
                     <div key={index} className="courseStats">
                       <h1
-                        className={`text-left font-bold text-[1.875vw] pb-[0.556vh]  ${
-                          ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
-                        }`}
+                        className={`text-left font-bold text-[1.875vw] pb-[0.556vh]  ${ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
+                          }`}
                       >
                         {ele.number}
                       </h1>
                       <p
-                        className={`text-left font-medium text-[1.094vw] headerText ${
-                          ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
-                        }`}
+                        className={`text-left font-medium text-[1.094vw] headerText ${ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
+                          }`}
                       >
                         {ele.text}
                       </p>

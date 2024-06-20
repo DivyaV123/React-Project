@@ -4,6 +4,7 @@ import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
 import Slide from "react-reveal/Slide";
 import Counter from '../commonComponents/counterAnimation/Counter';
+import './chooseUs.scss'
 
 
 function PlacementAssistance() {
@@ -22,11 +23,11 @@ function PlacementAssistance() {
                         <header className='font-bold text-black  text-[1.75rem]  flex justify-center'>
                             <p >Placement Assistance</p>
                         </header>
-                        <p className='text-dark-gray text-center text-[18px] mt-6'>
-                            Our dedicated placement cell works tirelessly to connect <br />
-                            our students with leading IT companies for job<br />
-                            opportunities. With a strong network of corporate partners<br />
-                            and recruitment drives to ensure maximum exposure for<br />
+                        <p id="tagline" className='text-dark-gray fulljustify text-[18px] mt-6'>
+                            Our dedicated placement cell works tirelessly to connect
+                            our students with leading IT companies for job
+                            opportunities. With a strong network of corporate partners
+                            and recruitment drives to ensure maximum exposure for
                             our students.
                         </p>
                         <article className='flex justify-center align-center mt-6'>

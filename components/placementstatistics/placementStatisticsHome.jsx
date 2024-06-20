@@ -1,12 +1,12 @@
 'use client'
-import { useEffect, useState,useContext } from 'react';
+import { useEffect, useState, useContext } from 'react';
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import Slide from "react-reveal/Slide";
 import './PlacementStatisticsHome.scss'
 import { Badge } from "@/components/ui/badge"
 import { Fade } from 'react-reveal';
 import { Skeleton } from "@/components/ui/skeleton"
-import Counter from '../commonComponents/counterAnimation/Counter'; 
+import Counter from '../commonComponents/counterAnimation/Counter';
 import PlaceMentStatistics from './placeMentStatistics';
 import Link from 'next/link';
 import { useGetAllPlacementCountQuery } from '@/redux/queries/getAllPlacementCount'
@@ -14,12 +14,12 @@ import { GlobalContext } from '@/components/Context/GlobalContext'
 import { PLACEMENT_PATH } from '@/lib/RouteConstants';
 
 function PlacementStatisticsHome({ page }) {
-    const { setAllStaticsCount } = useContext(GlobalContext)
+    const { setAllStaticsCount, setNonItCheckedIcon, setLessCheckedIcon } = useContext(GlobalContext)
     const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
     setAllStaticsCount(countDetails)
     const [isloading, setisLoading] = useState(true)
     const degrees = [
-        'BE/BTech', 'BCA/Bsc', 'B.Com', 'MCA', 'ME/M.Tech', 'MBA', 'Msc', 'MS', 'More...'
+        'BE', 'BCA', 'B.Com', 'MCA', 'M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
     const branches = [
         'CSE', 'ISE', 'ECE', 'Civil', 'EEE', 'Mech', 'AE', 'CH', "More..."
@@ -27,23 +27,31 @@ function PlacementStatisticsHome({ page }) {
     const statistics = [
         {
             count: `${countDetails?.response?.allPlacedCount}`,
-            info: 'Students who have throughout # 60% Aggregate',
-            icon: '../placementIcon1.svg'
+            info: 'Students who have throughout 60% Aggregate',
+            icon: '../placementIcon1.svg',
+            key: "throughoutsixty",
+            toSet: setNonItCheckedIcon
         },
         {
             count: `${countDetails?.response?.nonItCount}`,
-            info: 'Students who have graduated # in Non - IT',
-            icon: '../staticsIcon02.svg'
+            info: 'Students who have graduated in Non - IT',
+            icon: '../staticsIcon02.svg',
+            key: "nonit",
+            toSet: setNonItCheckedIcon
         },
         {
             count: `${countDetails?.response?.itCount}`,
-            info: 'Students who have graduated # in IT / CS / IS',
-            icon: '../placementIcon03.svg'
+            info: 'Students who have graduated in IT/CS/IS',
+            icon: '../placementIcon03.svg',
+            key: "it",
+            toSet: setNonItCheckedIcon
         },
         {
             count: `${countDetails?.response?.lessThanSixtyPercent}`,
-            info: 'Students who have less than # 60% Aggregate',
-            icon: '../placementIcon04.svg'
+            info: 'Students who have less than 60% Aggregate',
+            icon: '../placementIcon04.svg',
+            key: "lessthansixty",
+            toSet: setLessCheckedIcon
         },
     ]
 
@@ -78,27 +86,13 @@ function PlacementStatisticsHome({ page }) {
                     <figure className='absolute top-[-18%] left-[50%]'>
                         <img className='w-[90%]' src={page === "branch" || page === "course" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img>
                     </figure>
-                    
-                 <aside className='pr-[2.188vw] pb-[5.556vh]'>
-                    <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
-                        From Various Degree
-                    </h1>
-                    <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
-                        {degrees.map((element) => {
-                            return (
-                                <Link href={PLACEMENT_PATH}>
-                                    <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
-                                </Link>
-                            )
-                        })
-                        }
-                    </div>
-                    <aside className='pt-[8.333vh]'>
+
+                    <aside className='pr-[2.188vw] pb-[5.556vh]'>
                         <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
-                            From Various Branches
+                            From Various Degree
                         </h1>
                         <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
-                            {branches.map((element) => {
+                            {degrees.map((element) => {
                                 return (
                                     <Link href={PLACEMENT_PATH}>
                                         <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
@@ -107,8 +101,22 @@ function PlacementStatisticsHome({ page }) {
                             })
                             }
                         </div>
+                        <aside className='pt-[8.333vh]'>
+                            <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
+                                From Various Branches
+                            </h1>
+                            <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
+                                {branches.map((element) => {
+                                    return (
+                                        <Link href={PLACEMENT_PATH}>
+                                            <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
+                                        </Link>
+                                    )
+                                })
+                                }
+                            </div>
+                        </aside>
                     </aside>
-                </aside>
                 </section>
             </article>
 
