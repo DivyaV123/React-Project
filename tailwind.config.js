@@ -61,8 +61,9 @@ module.exports = {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      }, screens: {
+      },screens: {
         '3xl': '1920px',
+        mobile:{'max': '639px'},
       },
       keyframes: {
         "accordion-down": {
