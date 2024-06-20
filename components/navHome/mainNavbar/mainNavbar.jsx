@@ -14,13 +14,14 @@ function MainNavbar() {
   return (
     <>
       <MaxWebWidth
-        sectionStyling={`_navbarBlock flex`}
+        sectionStyling={`_navbarBlock h-[5.31vw] mobile:h-[5.579vh] flex`}
         articalStyling={"flex items-center justify-between h-full"}
       >
         <aside className="flex justify-between">
           <figure>
             <Link href={HOME_PATH} >
               <Svg
+              className={`mobile:w-[13.953vw] mobile:h-[4.077vh]`}
                 width={svgicons.qspiderslogo[0]}
                 height={svgicons.qspiderslogo[1]}
                 viewBox={svgicons.qspiderslogo[2]}
