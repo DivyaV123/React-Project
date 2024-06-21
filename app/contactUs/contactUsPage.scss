@@ -5,4 +5,17 @@
         font-size: 12px;
         height: 6.167vh;
     }
+    @media (max-width: 639px) {
+        .react-tel-input .form-control {
+          padding: 14px 20px 15px 58px;
+          height: 1vh;
+          font-size: 2.591vw;;
+        }
+      }
+      .locationCard{
+        .cardBody{
+          background: linear-gradient(96.77deg, #F09819 -28.03%, #FF512F 134.69%);
+
+        }
+      }
 }
