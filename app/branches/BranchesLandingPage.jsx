@@ -33,12 +33,12 @@ function BranchesLandingPage() {
         }
     ]
     return (
-        <MaxWebWidth sectionStyling='bg-coursegradient' articalStyling='flex justify-between'>
-            <section className='basis-[50%] pt-[11.111vh] pb-[8.889vh]'>
+        <MaxWebWidth sectionStyling='bg-coursegradient ' articalStyling='flex justify-between mobile:flex-col'>
+            <section className='basis-[50%] pt-[11.111vh] sm:pb-[8.889vh] mobile:py-[2.575vh]'>
                 <figure className=''>
-                    <img className='h-[25vw]  w-[49.219vw] rounded-2xl' src={selectedImg} />
+                    <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full' src={selectedImg} />
                 </figure>
-                <article className='flex gap-2 pt-[2.222vh]'>
+                <article className='flex gap-2 pt-[2.222vh] mobile:hidden'>
                     <div>
                         <Svg
                             className=''
@@ -76,13 +76,13 @@ function BranchesLandingPage() {
                     </div>
                 </article>
             </section>
-            <section className='basis-[50%] pl-[3.047vw] pt-[11.111vh] pb-[3.333vh]'>
+             <section className='basis-[50%] sm:pl-[3.047vw] sm:pt-[11.111vh] pb-[3.333vh] mobile:pb-[1.717vh]'>
                 <header>
-                    <div className='font-bold text-[3.75vw]'>
+                    <div className='font-bold text-[3.75vw] mobile:text-[7.442vw] mobile:pb-[1.717vh]'>
                         Basavanagudi
                     </div>
                 </header>
-                <article className='flex font-medium text-[1.25vw] pt-[3.333vh]'>
+                <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg
                             width={svgicons.locationIcon[0]}
@@ -92,11 +92,11 @@ function BranchesLandingPage() {
                             color={svgicons.locationIcon[4]}
                         />
                     </span>
-                    <p className='font-medium text-[1.25vw] pl-[0.625vw]'>
+                    <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw]'>
                         01, Hayavadana Rao Rd, Basappa Layout, Gavipuram Extension, Gavipuram Extention, Kempegowda Nagar, Bengaluru, Karnataka 560019
                     </p>
                 </article>
-                <article className='flex font-medium text-[1.25vw] pt-[3.333vh]'>
+                <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg
                             width={svgicons.phoneCall[0]}
@@ -106,11 +106,11 @@ function BranchesLandingPage() {
                             color={svgicons.phoneCall[4]}
                         />
                     </span>
-                    <p className='font-medium text-[1.25vw] pl-[0.625vw]'>
+                    <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
                         +91 8265-569-845
                     </p>
                 </article>
-                <article className='flex font-medium text-[1.25vw] pt-[3.333vh]'>
+                <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg
                             width={svgicons.calender[0]}
@@ -120,11 +120,11 @@ function BranchesLandingPage() {
                             color={svgicons.calender[4]}
                         />
                     </span>
-                    <p className='font-medium text-[1.25vw] pl-[0.625vw]'>
+                    <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
                         12 Upcoming Batches
                     </p>
                 </article>
-                <article className='flex font-medium text-[1.25vw] pt-[3.333vh]'>
+                <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg
                             width={svgicons.calenderTicked[0]}
@@ -134,7 +134,7 @@ function BranchesLandingPage() {
                             color={svgicons.calenderTicked[4]}
                         />
                     </span>
-                    <p className='font-medium text-[1.25vw] pl-[0.625vw]'>
+                    <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
                         06 Ongoing Batches
                     </p>
                 </article>

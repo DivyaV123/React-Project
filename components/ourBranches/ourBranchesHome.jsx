@@ -130,7 +130,7 @@ function OurBranchesHome({ page }) {
             </article>
           ) : (
             <Slide top cascade>
-              <h1 className="flex justify-center text-[2rem] m-2 font-bold p-5">
+              <h1 className="flex justify-center text-[2.5vw] mobile:text-[5.581vw] sm:m-2 font-bold sm:p-5 mobile:py-[2.575vh]">
                 Our Offline Branches
               </h1>
             </Slide>
@@ -184,7 +184,7 @@ function OurBranchesHome({ page }) {
                       <div
                         onClick={(e) => handleImageRoute(e, elements.city)}
                         className={`${elements.city !== "AllCities" ? " imgstyling" : ""
-                          } w-full h-[7.813vw] !w-[20.469vw] rounded-lg flex flex-col justify-center items-center`}
+                          }  h-[7.813vw] w-[20.469vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center`}
                         style={{
                           backgroundImage: `url(${elements.path})`,
                           backgroundRepeat: "no-repeat",
@@ -193,10 +193,10 @@ function OurBranchesHome({ page }) {
                       >
                         {elements.city !== "AllCities" && (
                           <p>
-                            <h1 className="font-bold text-white text-[1.875vw] flex flex-col justify-center items-center">
+                            <h1 className="font-bold text-white text-[1.875vw] mobile:text-[4.651vw] flex flex-col justify-center items-center">
                               {elements.city}
                             </h1>
-                            <h1 className="text-white text-[1.094vw] flex flex-col justify-center items-center">
+                            <h1 className="text-white text-[1.094vw] mobile:text-[3.256vw] flex flex-col justify-center items-center">
                               {elements.branchCount} Branches
                             </h1>
                           </p>
@@ -221,7 +221,7 @@ function OurBranchesHome({ page }) {
       </section>
       {/* </MaxWebWidth > */}
       {page !== "course" && (
-        <MaxWebWidth sectionStyling="bg-[#F6F6F6]  bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain  bg-cover my-[6.667vh]">
+        <MaxWebWidth sectionStyling="sm:bg-[#F6F6F6]  bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain  bg-cover sm:my-[6.667vh]">
           <section >
             <TrainingMode />
           </section>

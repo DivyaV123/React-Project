@@ -1,5 +1,8 @@
 .courseCard {
   width: 21.016vw;
+  @media (max-width: 639px) {
+    width: 60.93vw;
+  }
   .cardStyle {
     //   width: 40%;
     //   height: auto;
@@ -10,4 +13,11 @@
     opacity: 1;
   }
 }
+.offlineScrollbar::-webkit-scrollbar{
+  visibility: hidden;
+  }
+  .offlineScrollbar{
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 

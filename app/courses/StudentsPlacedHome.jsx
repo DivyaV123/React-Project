@@ -19,7 +19,7 @@ function StudentsPlacedHome({ page, courseDetails }) {
     const pathname = usePathname()
     return (
         <>
-            <section className='w-full bg-[#F6F6F6]'>
+            <section className='w-full bg-[#F6F6F6] '>
                 <article className={page === 'branch' ? 'w-[87.5vw] m-auto' : 'w-[51.56vw]'}>
                     <header>
                         <h1 className={`${page === 'branch' ? "text-[2.5vw] py-[1.563vw]" : "text-[1.875vw] pt-[3.611vh] pb-[3.056vh]"} font-bold`}>
