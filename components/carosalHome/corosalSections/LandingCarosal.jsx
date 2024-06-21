@@ -30,9 +30,7 @@ function LandingCarosal() {
               </h1>
               {/* <h1 className=' text-xl gradient-text  text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>TRAINING ORGANIZATION</h1> */}
               <p className="paragraph text-[1.25vw] mobile:text-[2.791vw] font-medium pb-[2.222vh] text-ash mobile:pb-[1.717vh]">
-                Innovating methodologies and tools to ensure flawless software
-                performance. Your partner in achieving unparalleled quality
-                assurance standards
+              World's premier software training institution, dedicated to bridging the gap between industry demands and academic curricula. With centers worldwide, QSpiders provides a platform for young minds to cultivate successful careers.
               </p>
               <article className="sm:pb-[2.222vh] mobile:pb-[4.292vh]">
                 <Button
