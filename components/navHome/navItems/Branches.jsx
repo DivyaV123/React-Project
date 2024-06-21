@@ -5,7 +5,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { BRANCH_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
-const Branches = () => {
+const Branches = ({ BranchResponse }) => {
   const Branches = [
     {
       icon: "bengaloreIcon",
@@ -283,10 +283,9 @@ const Branches = () => {
             <div
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
-              className={`flex ${
-                hoveredIndex === index ? "menuItem" : "menuItemdisable"
-              }  pl-4 pr-2 items-center`}
-              // onMouseLeave={() => setHoveredIndex()}
+              className={`flex ${hoveredIndex === index ? "menuItem" : "menuItemdisable"
+                }  pl-4 pr-2 items-center`}
+            // onMouseLeave={() => setHoveredIndex()}
             >
               {/* <img src={courseItem.icon} /> */}
               <Svg
@@ -300,9 +299,8 @@ const Branches = () => {
                 <button className="p-2 text-sm">{courseItem.title}</button>
                 <img
                   src={courseItem.arrow}
-                  className={`${
-                    hoveredIndex === index ? "visible" : "invisible"
-                  } w-4`}
+                  className={`${hoveredIndex === index ? "visible" : "invisible"
+                    } w-4`}
                 />
               </div>
             </div>
@@ -315,13 +313,12 @@ const Branches = () => {
             {Branches[hoveredIndex].list.map((item, itemIndex) => (
               <div
                 key={itemIndex}
-                className={`flex justify-between grow pl-2 ${
-                  hoveredItemIndex === itemIndex
-                    ? "menuItem"
-                    : "menuItemdisable"
-                } pr-2 items-center`}
+                className={`flex justify-between grow pl-2 ${hoveredItemIndex === itemIndex
+                  ? "menuItem"
+                  : "menuItemdisable"
+                  } pr-2 items-center`}
                 onMouseEnter={() => setHoveredItemIndex(itemIndex)}
-                onMouseLeave={() => {}}
+                onMouseLeave={() => { }}
               >
                 {/* <img src={item.icon} /> */}
                 <div className="flex justify-between grow ">
@@ -330,9 +327,8 @@ const Branches = () => {
                   </button>
                   <img
                     src={item.arrow}
-                    className={`${
-                      hoveredItemIndex === itemIndex ? "visible" : "invisible"
-                    } w-4`}
+                    className={`${hoveredItemIndex === itemIndex ? "visible" : "invisible"
+                      } w-4`}
                   />
                 </div>
               </div>
@@ -340,22 +336,20 @@ const Branches = () => {
           </div>
         )}
         <div
-          className={`${
-            hoveredIndex !== null && Branches[hoveredIndex].list
-              ? "branchlist pl-4 pt-2"
-              : "coursefull p-3"
-          }   flex flex-wrap  h-fit gap-4`}
+          className={`${hoveredIndex !== null && Branches[hoveredIndex].list
+            ? "branchlist pl-4 pt-2"
+            : "coursefull p-3"
+            }   flex flex-wrap  h-fit gap-4`}
         >
           {(Branches[hoveredIndex] ?? Branches[0])?.sublist?.map(
             (content, index) => (
-              <Link href={BRANCH_PATH}>
+              <Link href="/branches/76,96">
                 <div
                   key={index}
-                  className={`${
-                    hoveredIndex !== null && Branches[hoveredIndex].list
-                      ? "branchMedium"
-                      : "branchinitial"
-                  } p-2 branchOverlay h-fit`}
+                  className={`${hoveredIndex !== null && Branches[hoveredIndex].list
+                    ? "branchMedium"
+                    : "branchinitial"
+                    } p-2 branchOverlay h-fit`}
                 >
                   <div className="flex h-10 gap-x-2.5">
                     <img className="h-9 w-9" src={content.image} />
