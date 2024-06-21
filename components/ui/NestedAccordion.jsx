@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import styles from './Accordion.module.css'; // Import CSS module
 import Svg from '../commonComponents/Svg/Svg';
 import { svgicons } from '../assets/icons/svgassets';
-import { array } from 'yup';
 
 const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
     const [activeSections, setActiveSections] = useState({});
@@ -20,7 +19,6 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
     };
 
     const handleSubsectionClick = (sectionIndex, subsectionIndex) => {
-        console.log(sectionIndex, subsectionIndex, "sectionIndex, subsectionIndex")
         const combinedIndex = `${sectionIndex}-${subsectionIndex}`;
         setActiveSections((prevActiveSections) => ({
             ...prevActiveSections,
@@ -32,14 +30,41 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
         }));
     };
 
+    const renderThirdLayerContent = (content, sectionIndex) => {
+        return (
+            <div className='my-[0.833vh] ml-[1.875vw]'>
+                <article className='flex justify-between pl-[2.813vw] py-[1.667vh] items-center pr-[1.875vw]'>
+                    {page === 'course' ? (
+                        <>
+                            <h1 className='flex items-center gap-x-[0.625vw]'>
+                                <span>
+                                    <Svg
+                                        width={svgicons.smallDoc[0]}
+                                        height={svgicons.smallDoc[1]}
+                                        viewBox={svgicons.smallDoc[2]}
+                                        icon={svgicons.smallDoc[3]}
+                                        color={svgicons.smallDoc[4]}
+                                    />
+                                </span>
+                                <span className='text-dark-gray font-medium text-[1.094vw]'>{content}</span>
+                            </h1>
+                        </>
+                    ) : (
+                        <span className='text-dark-gray font-medium text-[1.094vw]'>{content}</span>
+                    )}
+                </article>
+            </div>
+        );
+    };
+
     const renderContent = (content, sectionIndex) => {
         if (Array.isArray(content) && content.length > 0) {
             return content.map((item, index) => {
-                const key = Object.keys(item)[0];
-                const subsectionContent = item[key];
+                const key = typeof item === 'object' && item !== null ? Object.keys(item)[0] : index;
+                const subsectionContent = typeof item === 'object' && item !== null ? item[key] : item;
                 const subsectionIndex = `${sectionIndex}-${index}`;
 
-                if (Array.isArray(subsectionContent) && subsectionContent.length > 0) {
+                if (typeof item === 'object' && item !== null && Array.isArray(subsectionContent) && subsectionContent.length > 0) {
                     return (
                         <div key={subsectionIndex} className='my-[0.833vh] ml-[1.875vw]'>
                             <button
@@ -74,8 +99,10 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
                             </div>
                         </div>
                     );
+                } else if (!Array.isArray(subsectionContent)) {
+                    return renderThirdLayerContent(subsectionContent, subsectionIndex);
                 } else {
-                    return (
+                    return  (
                         <div key={subsectionIndex} className='my-[0.833vh] ml-[1.875vw]'>
                             <article className='flex justify-between pl-[2.813vw] py-[1.667vh] items-center pr-[1.875vw]'>
                                 {page === 'course' ? (
@@ -158,7 +185,30 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
                     </div>
                 );
             } else {
-                return null;
+                return (
+                    <div key={index} className='my-[0.833vh]'>
+                        <article className='flex justify-between pl-[2.813vw] py-[1.667vh] items-center pr-[1.875vw]'>
+                            {page === 'course' ? (
+                                <>
+                                    <h1 className='flex items-center gap-x-[0.625vw]'>
+                                        <span>
+                                            <Svg
+                                                width={svgicons.smallDoc[0]}
+                                                height={svgicons.smallDoc[1]}
+                                                viewBox={svgicons.smallDoc[2]}
+                                                icon={svgicons.smallDoc[3]}
+                                                color={svgicons.smallDoc[4]}
+                                            />
+                                        </span>
+                                        <span className='text-dark-gray font-medium text-[1.094vw]'>{sectionKey}</span>
+                                    </h1>
+                                </>
+                            ) : (
+                                <span className='text-dark-gray font-medium text-[1.094vw]'>{sectionKey}</span>
+                            )}
+                        </article>
+                    </div>
+                );
             }
         });
     };
