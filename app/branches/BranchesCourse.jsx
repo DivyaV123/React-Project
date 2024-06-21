@@ -81,12 +81,12 @@ function BranchesCourse() {
         <>
             <MaxWebWidth>
                 <header>
-                    <h1 className='font-bold text-[2rem] pt-4 pb-4'>
+                    <h1 className='font-bold text-[2.5vw] mobile:text-[4.651vw] pt-4 pb-4'>
                         Courses
                     </h1>
                 </header>
             </MaxWebWidth>
-            <MaxWebWidth articalStyling='flex flex-wrap justify-around gap-3'>
+            <MaxWebWidth articalStyling='flex sm:flex-wrap sm:justify-around gap-3 mobile:overflow-x-scroll mobile:offlineScrollbar'>
                 {courseCard.map((element) => {
                     return (<div className='courseCard'>
                         <article className='w-full '>

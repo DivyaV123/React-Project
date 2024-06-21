@@ -18,6 +18,9 @@
   left: 5rem;
   animation: reversecolor 800ms 1;
   border-radius: 50%;
+  @media (max-width: 639px) {
+    left: 3.8rem;
+  }
 }
 .trainingContainer {
   overflow: hidden;
@@ -98,4 +101,7 @@
   100% {
     width: 3.75rem;
   }
+}
+.mobileBackground{
+  background: linear-gradient(180deg, rgba(240, 152, 25, 0.8) 0%, rgba(255, 81, 47, 0.8) 100%);
 }
