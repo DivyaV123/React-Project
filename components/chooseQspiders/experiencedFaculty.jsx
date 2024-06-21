@@ -3,7 +3,7 @@ import React from 'react'
 import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
 import Counter from '../commonComponents/counterAnimation/Counter'
-import './chooseUS.scss'
+import './chooseUs.scss'
 
 function ExperiencedFaculty() {
     const content = [
