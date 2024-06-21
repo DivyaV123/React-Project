@@ -18,7 +18,6 @@ import Loading from '@/lib/Loading'
 function BatchCourseAPiById() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
-
     console.log(pathname, "pathname");
     const params = pathname.split('/').pop();
     const [branchId, courseID] = params.split(',');
