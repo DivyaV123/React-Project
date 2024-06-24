@@ -184,3 +184,10 @@
 .menuItem:hover button {
   letter-spacing: -0.7px;
 }
+.branchMenuCard {
+  box-shadow: 0px 0px 24px -10px #00000040;
+}
+.branchMenuCard:hover {
+  border-radius: 0.938vw;
+  border: 1px solid orange
+}
