@@ -2,7 +2,7 @@ import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import OnlineLiveClasses from '@/components/ourBranches/OnlineLiveClasses'
 import React from 'react'
 
-function UpCommingBatches() {
+function UpCommingBatches({ branchesData, branchName }) {
     return (
         <>
             <MaxWebWidth>
@@ -13,7 +13,7 @@ function UpCommingBatches() {
                 </header>
             </MaxWebWidth>
             <MaxWebWidth sectionStyling='sm:pb-5' articalStyling='flex sm:flex-wrap mobile:overflow-x-scroll mobile:offlineScrollbar'>
-                <OnlineLiveClasses page='course' className='border m-2 rounded shadow shadow-gray-500/50' />
+                <OnlineLiveClasses branchName={branchName} branchesData={branchesData} page='course' className='border m-2 rounded shadow shadow-gray-500/50' />
             </MaxWebWidth>
             <MaxWebWidth sectionStyling="mobile:hidden">
                 <div className="flex justify-end pt-4">

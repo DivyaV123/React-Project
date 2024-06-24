@@ -85,6 +85,8 @@ const GlobalContextProvider = ({ children }) => {
   const [passOutButton, setPassOutButton] = useState("");
   const [selectedCourseDetailsId, setSelectedCoursDetailseId] = useState(null);
   const [activeSidebarBtn, setActiveSidebarBtn] = useState(false)
+  const [upComingBatches, setupComingBatches] = useState(null)
+  const [onGoingBatches, setOnGoingBatches] = useState(null)
   const emptySearch = citySearchQuery === "" && stateSearchQuery === "" && citySearchQuery === "" &&
     universitySearchQuery === "" && streamSearchQuery === "" && yearSearchQuery === ""
 
@@ -379,7 +381,8 @@ const GlobalContextProvider = ({ children }) => {
         stateSearchQuery, setStateSearchQuery,
         universitySearchQuery, setUniversitySearchQuery,
         yearSearchQuery, setYearSearchQuery,
-        streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn
+        streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
+        onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches
       }}
     >
       {children}

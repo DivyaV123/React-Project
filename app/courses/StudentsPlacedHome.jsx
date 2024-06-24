@@ -12,9 +12,9 @@ import Link from 'next/link'
 import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 import { usePathname } from 'next/navigation'
 
-function StudentsPlacedHome({ page, courseDetails }) {
-    const pathName=usePathname()
-    let bodyData = { branchType: ["Jspiders", "Qspiders"] }
+function StudentsPlacedHome({ page, courseDetails, branchName }) {
+    const pathName = usePathname()
+    const bodyData = pathName.includes('branches') ? { branchLocation: [branchName] } : { branchType: ["Jspiders", "Qspiders"] }
     const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 16, bodyData: bodyData })
     const pathname = usePathname()
     return (

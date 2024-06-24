@@ -1,5 +1,5 @@
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import {
     Carousel,
     CarouselContent,
@@ -11,9 +11,11 @@ import Svg from '@/components/commonComponents/Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import './branchesLandingPage.scss'
 import { useGetAllBranchesQuery } from '@/redux/queries/getAllBranchData'
+import { GlobalContext } from '@/components/Context/GlobalContext'
 
-function BranchesLandingPage() {
-    const { data, error, isLoading } = useGetAllBranchesQuery()
+function BranchesLandingPage({ BranchDetails }) {
+    const branchData = BranchDetails?.data
+    const { onGoingBatches, upComingBatches } = useContext(GlobalContext)
     const [selectedImg, setSelectedImg] = useState('../images/Frame 22.png')
     const corosalImgs = [
         '../images/branchesCorosalImg1.png',
@@ -76,10 +78,10 @@ function BranchesLandingPage() {
                     </div>
                 </article>
             </section>
-             <section className='basis-[50%] sm:pl-[3.047vw] sm:pt-[11.111vh] pb-[3.333vh] mobile:pb-[1.717vh]'>
+            <section className='basis-[50%] sm:pl-[3.047vw] sm:pt-[11.111vh] pb-[3.333vh] mobile:pb-[1.717vh]'>
                 <header>
                     <div className='font-bold text-[3.75vw] mobile:text-[7.442vw] mobile:pb-[1.717vh]'>
-                        Basavanagudi
+                        {branchData.name}
                     </div>
                 </header>
                 <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
@@ -93,7 +95,7 @@ function BranchesLandingPage() {
                         />
                     </span>
                     <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw]'>
-                        01, Hayavadana Rao Rd, Basappa Layout, Gavipuram Extension, Gavipuram Extention, Kempegowda Nagar, Bengaluru, Karnataka 560019
+                        {branchData?.address?.location}
                     </p>
                 </article>
                 <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
@@ -107,7 +109,7 @@ function BranchesLandingPage() {
                         />
                     </span>
                     <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
-                        +91 8265-569-845
+                        {branchData?.contacts && branchData?.contacts[0]}
                     </p>
                 </article>
                 <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
@@ -121,7 +123,7 @@ function BranchesLandingPage() {
                         />
                     </span>
                     <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
-                        12 Upcoming Batches
+                        {upComingBatches} Upcoming Batches
                     </p>
                 </article>
                 <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
@@ -135,7 +137,7 @@ function BranchesLandingPage() {
                         />
                     </span>
                     <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
-                        06 Ongoing Batches
+                        {onGoingBatches} Ongoing Batches
                     </p>
                 </article>
             </section>

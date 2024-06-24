@@ -230,9 +230,7 @@ function OurCourse({ page }) {
   const filteredCourses = courseCard.filter(course =>
     course.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
-
-
-  return (  
+  return (
     <MaxWebWidth>
       {page !== "explore" && (
         <aside className="flex justify-center align-center mb-8 mt-8">

@@ -6,7 +6,7 @@ import React, { useEffect, useState } from 'react'
 import './branchesCourseCard.scss'
 import CourseCardSkeleton from '@/components/commonComponents/courseCard/CourseCardSkeleton'
 
-function BranchesCourse() {
+function BranchesCourse({ branchCourseData }) {
     const [isloading, setisLoading] = useState(true)
     const courseCard = [
         {
@@ -87,7 +87,14 @@ function BranchesCourse() {
                 </header>
             </MaxWebWidth>
             <MaxWebWidth articalStyling='flex sm:flex-wrap sm:justify-around gap-3 mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[3.97vh] mobile:mt-[1.717vh]'>
-                {courseCard.map((element) => {
+                {branchCourseData.length > 0 ? branchCourseData.map((element) => {
+                    return (<div className='courseCard'>
+                        <article className='w-full '>
+                            {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
+                            <div className='viewmore'></div>
+                        </article>
+                    </div>)
+                }) : courseCard.map((element) => {
                     return (<div className='courseCard'>
                         <article className='w-full '>
                             {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}

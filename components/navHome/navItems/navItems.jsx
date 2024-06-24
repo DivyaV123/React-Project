@@ -13,20 +13,22 @@ import Branches from "./Branches";
 import Tutions from "./Tutions";
 import Link from "next/link";
 import { InputIcon } from "@radix-ui/react-icons";
-import { CONTACT_US_PATH, PLACEMENT_PATH,HIREFROMUS_PATH } from "@/lib/RouteConstants";
+import { CONTACT_US_PATH, PLACEMENT_PATH, HIREFROMUS_PATH } from "@/lib/RouteConstants";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
+import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 
 
 function NavItems() {
-  const {data:courseResponse,isLoading,error}=useGetAllCategoriesQuery()
-const navItems = [
-  { id: 1, name: "Courses", content: <Courses courseResponse={courseResponse}/> },
-  { id: 2, name: "Branches", content: <Branches /> },
-  { id: 3, name: "Tuitions", content: <Tutions /> },
-  { id: 4, name: "Hire From Us", content: "" },
-  { id: 5, name: "Placements", content: "" },
-  { id: 6, name: "Contact us", content: "" },
-];
+  const { data: courseResponse, isLoading: CourseIsLoading, error: CourseError } = useGetAllCategoriesQuery()
+  const { data: BranchResponse, error: branchError, isLoading: branchIsLoading } = useGetAllBranchesQuery()
+  const navItems = [
+    { id: 1, name: "Courses", content: <Courses courseResponse={courseResponse} /> },
+    { id: 2, name: "Branches", content: <Branches BranchResponse={BranchResponse} /> },
+    { id: 3, name: "Tuitions", content: <Tutions /> },
+    { id: 4, name: "Hire From Us", content: "" },
+    { id: 5, name: "Placements", content: "" },
+    { id: 6, name: "Contact us", content: "" },
+  ];
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {
@@ -49,7 +51,7 @@ const navItems = [
       <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
         <NavigationMenuList>
           {navItems.map((navItem) => (
-            <Link href={navItem.name === 'Contact us' ? CONTACT_US_PATH : navItem.name === 'Placements' ? PLACEMENT_PATH : navItem.name === 'Hire From Us' ? HIREFROMUS_PATH:""}>
+            <Link href={navItem.name === 'Contact us' ? CONTACT_US_PATH : navItem.name === 'Placements' ? PLACEMENT_PATH : navItem.name === 'Hire From Us' ? HIREFROMUS_PATH : ""}>
               <NavigationMenuItem key={navItem.id}
                 onMouseEnter={() => handleItemHover(navItem.name)}
                 onMouseLeave={handleItemLeave}
