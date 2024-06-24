@@ -7,15 +7,15 @@ function UpCommingBatches() {
         <>
             <MaxWebWidth>
                 <header>
-                    <h1 className='font-bold text-[2rem] pb-5'>
+                    <h1 className='font-bold text-[2rem] mobile:text-[4.651vw] sm:pb-5 mobile:pb-[3.433vh]'>
                         Upcoming Batches
                     </h1>
                 </header>
             </MaxWebWidth>
-            <MaxWebWidth sectionStyling='pb-5' articalStyling='flex flex-wrap'>
+            <MaxWebWidth sectionStyling='sm:pb-5' articalStyling='flex sm:flex-wrap mobile:overflow-x-scroll mobile:offlineScrollbar'>
                 <OnlineLiveClasses page='course' className='border m-2 rounded shadow shadow-gray-500/50' />
             </MaxWebWidth>
-            <MaxWebWidth>
+            <MaxWebWidth sectionStyling="mobile:hidden">
                 <div className="flex justify-end pt-4">
                     <button className=" bg-gradient rounded text-white py-[1.111vh] px-[1.406vw] text-sm font-semibold EnrollButton">
                         View More

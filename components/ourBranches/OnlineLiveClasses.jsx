@@ -71,7 +71,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize }) => {
     },
   ];
   const enrollEnquire =
-    "py-[1.389vh] px-[0.781vw] w-[8.359375vw] text-[1.094vw] font-semibold";
+    "py-[1.389vh] px-[0.781vw] mobile:px-[2.791vw] mobile:py-[1.073vh] mobile:w-[24.884vw] mobile:text-[3.256vw] w-[8.359375vw] text-[1.094vw] font-semibold";
   const dateAndTime =
     "flex text-[0.938vw] font-medium text-dark-gray gap-y-[0.469vw] items-center";
   useEffect(() => {
@@ -88,7 +88,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize }) => {
               className={
                 page === "branch"
                   ? { cardSize }
-                  : "h-[13.672vw] w-[20.469vw]  upcomingBatches py-[2.222vh] px-[1.25vw]"
+                  : "h-[13.672vw] w-[20.469vw] mobile:w-[60.93vw] upcomingBatches py-[2.222vh] px-[1.25vw]"
               }
             >
               <Skeleton className="h-4 w-[70%] mb-3" />
@@ -115,59 +115,60 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize }) => {
               className={
                 page === "branch"
                   ? { cardSize }
-                  : "w-[20.46vw] upcomingBatches py-[2.222vh] px-[1.25vw]"
+                  : "w-[20.46vw] mobile:w-[60.93vw] upcomingBatches py-[2.222vh] px-[1.25vw] mobile:px-[3.488vw] mobile:py-[1.717vh]"
               }
             >
-              <header className="font-bold text-[1.25vw] pb-[0.833vh]">
+              <header className="font-bold text-[1.25vw] pb-[0.833vh] mobile:text-[3.721vw] mobile:pb-[0.644vh]">
                 {batch.course}
               </header>
-              <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh]">
+              <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh] mobile:text-[2.791vw] mobile:pb-[2.146vh]">
                 By: {batch.trainer}
               </p>
-              <div className="flex pb-[1.389vh] gap-y-[0.469vw] items-center  justify-between">
+              <div className="flex mobile:pb-[1.073vh] pb-[1.389vh] gap-y-[0.469vw] items-center  justify-between">
                 <div className={`${dateAndTime}`}>
                   <Svg
-                    className=" pr-[0.469vw]"
+                    className=" pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
                     width={svgicons.calender[0]}
                     height={svgicons.calender[1]}
                     viewBox={svgicons.calender[2]}
                     icon={svgicons.calender[3]}
                     color={svgicons.calender[4]}
                   />
-                  <div>{batch.date}</div>
+                  <div className="mobile:text-[2.791vw]">{batch.date}</div>
                 </div>
                 <div className={`${dateAndTime}`}>
                   <Svg
+                  className="mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
                     width={svgicons.icontime[0]}
                     height={svgicons.icontime[1]}
                     viewBox={svgicons.icontime[2]}
                     icon={svgicons.icontime[3]}
                     color={svgicons.icontime[4]}
                   />
-                  <div>{batch.time}</div>
+                  <div className="mobile:text-[2.791vw]">{batch.time}</div>
                 </div>
               </div>
-              <div className={`${dateAndTime} pb-[1.389vh]`}>
+              <div className={`${dateAndTime} pb-[1.389vh] mobile:pb-[1.073vh]`}>
                 <Svg
-                  className=" pr-[0.469vw]"
+                  className=" pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
                   width={svgicons.branchLocation[0]}
                   height={svgicons.branchLocation[1]}
                   viewBox={svgicons.branchLocation[2]}
                   icon={svgicons.branchLocation[3]}
                   color={svgicons.branchLocation[4]}
                 />
-                <div>{batch.place}</div>
+                <div className="mobile:text-[2.791vw]">{batch.place}</div>
               </div>
-              <div className={`${dateAndTime} pb-[1.389vh]`}>
+              <div className={`${dateAndTime} pb-[1.389vh] mobile:pb-[1.073vh]`}>
                 <Svg
-                  className=" pr-[0.469vw]"
+                  className=" pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
                   width={svgicons.calender[0]}
                   height={svgicons.calender[1]}
                   viewBox={svgicons.calender[2]}
                   icon={svgicons.calender[3]}
                   color={svgicons.calender[4]}
                 />
-                <div>{batch.day}</div>
+                <div className="mobile:text-[2.791vw]">{batch.day}</div>
               </div>
               <div className="flex justify-between">
                 <button

@@ -62,18 +62,18 @@ function PlacementStatisticsHome({ page }) {
     }, [])
 
     return (
-        <MaxWebWidth sectionStyling=" flex align-ceneter mt-8" >
+        <section className="sm:w-[87.5vw] sm:m-auto mobile:w-full  align-center sm:mt-8 " >
             <header>
                 <Slide top cascade>
-                    <h1 className='font-bold text-[2rem] text-black flex justify-start  mb-8 mt-8 h-12'>
+                    <h1 className='font-bold text-[2rem] mobile:text-[5.581vw] text-black flex justify-start  sm:mb-8 sm:mt-8 sm:h-12 mobile:bg-Pinkgradient  mobile:pt-[2.575vh] mobile:pb-[1.717vh] mobile:pl-[5.581vw]'>
                         Our Placement Statistics
                     </h1>
                 </Slide>
             </header>
-            <article className='bg-Pinkgradient rounded-b-2xl relative rounded-r-2xl flex justify-between rounded-tl-[120px] mt-8 p-[5%]'>
-                <aside className='p-2'>
+            <article className='bg-Pinkgradient sm:rounded-b-2xl relative sm:rounded-r-2xl flex mobile:flex-col justify-between sm:rounded-tl-[120px] sm:mt-8 sm:p-[5%] mobile:px-[2.326vw]'>
+                <aside className='sm:p-2 '>
                     <Fade left duration={1000} deley={0}>
-                        <figure className='absolute top-[-4%] left-[-6.5%]'>
+                        <figure className='absolute top-[-4%] left-[-6.5%] mobile:hidden'>
                             <img className='w-[75%]' src={page === "branch" || page === "course" ? '../graduationCapIcon.svg' : './graduationCapIcon.svg'}></img>
                         </figure>
                     </Fade>
@@ -82,34 +82,34 @@ function PlacementStatisticsHome({ page }) {
                     <PlaceMentStatistics path={page} statistics={statistics} />
 
                 </aside>
-                <section className='relative p-2'>
-                    <figure className='absolute top-[-18%] left-[50%]'>
+                <section className='relative sm:p-2'>
+                    <figure className='absolute top-[-18%] left-[50%] mobile:hidden'>
                         <img className='w-[90%]' src={page === "branch" || page === "course" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img>
                     </figure>
 
-                    <aside className='pr-[2.188vw] pb-[5.556vh]'>
-                        <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
+                    <aside className='sm:pr-[2.188vw] sm:pb-[5.556vh] mobile:pt-[4.292vh]'>
+                        <h1 className='font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw]'>
                             From Various Degree
                         </h1>
-                        <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
+                        <div className='flex flex-wrap mobile:gap-[0.75rem] gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[4.292vh]'>
                             {degrees.map((element) => {
                                 return (
                                     <Link href={PLACEMENT_PATH}>
-                                        <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
+                                        <Badge variant="" className='font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh]'>{element}</Badge>
                                     </Link>
                                 )
                             })
                             }
                         </div>
-                        <aside className='pt-[8.333vh]'>
-                            <h1 className='font-bold text-[1.563vw] pb-[4.861vh]'>
+                        <aside className='sm:pt-[8.333vh]'>
+                            <h1 className='font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw]'>
                                 From Various Branches
                             </h1>
-                            <div className='flex flex-wrap  gap-[1.125rem] w-[37.094vw]'>
+                            <div className='flex flex-wrap mobile:gap-[0.75rem]  sm:gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[9.442vh]'>
                                 {branches.map((element) => {
                                     return (
                                         <Link href={PLACEMENT_PATH}>
-                                            <Badge variant="" className='font-bold text-[1.563vw]'>{element}</Badge>
+                                            <Badge variant="" className='font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh]'>{element}</Badge>
                                         </Link>
                                     )
                                 })
@@ -120,7 +120,7 @@ function PlacementStatisticsHome({ page }) {
                 </section>
             </article>
 
-        </MaxWebWidth>
+        </section>
     )
 }
 

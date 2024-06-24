@@ -231,8 +231,8 @@ function OurCourse({ page }) {
     course.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  console.log(filteredCourses, "filteredCourses")
-  return (
+
+  return (  
     <MaxWebWidth>
       {page !== "explore" && (
         <aside className="flex justify-center align-center mb-8 mt-8">
