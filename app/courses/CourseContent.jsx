@@ -127,10 +127,10 @@ function CourseContent({ courseDetails }) {
 
     return (
         <MaxWebWidth>
-            <header className='text-[1.875vw] font-bold pt-[2.778vh] pb-[2.778vh]'>
+            <header className='text-[1.875vw] font-bold sm:pt-[2.778vh] pb-[2.778vh] mobile:pb-[1.717vh] mobile:text-[4.651vw]'>
                 Course Content
             </header>
-            <article className='my-[2.778vh]'>
+            <article className='sm:my-[2.778vh]'>
                 <NestedAccordion data={courseContentdata}
                     page='course' />
             </article>

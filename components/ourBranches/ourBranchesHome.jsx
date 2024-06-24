@@ -99,16 +99,16 @@ function OurBranchesHome({ page }) {
       <section>
         <header>
           {page === "course" ? (
-            <article className="flex justify-between w-[100%] pt-[2.778vh] pb-[1.667vh] items-center">
-              <h1 className="flex justify-start text-[1.875vw] items-center font-bold py-[2.778vh]">
+            <article className="sm:flex justify-between w-[100%] pt-[2.778vh] pb-[1.667vh] items-center mobile:pt-[2.575vh] ">
+              <h1 className="flex justify-start text-[1.875vw] items-center font-bold sm:py-[2.778vh] mobile:text-[4.651vw] mobile:pb-[3.648vh]">
                 Upcoming Batches
               </h1>
-              <article className="flex bg-white  py-[2.778vh]">
+              <article className="flex justify-end bg-white  sm:py-[2.778vh]">
                 <Button
                   className={
                     btnState === "OfflineClasses"
-                      ? "font-semibold bg-orange-500 bg-gradient text-white w-[9.609vw] rounded px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw]"
-                      : "w-[9.609vw] rounded-s px-[1.25vw] py-[1.111vh]  bg-[#F9F9F9] text-[0.938vw] text-dark-gray font-medium"
+                      ? "font-semibold bg-orange-500 bg-gradient text-white sm:w-[9.609vw]  mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] rounded px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw]"
+                      : "sm:w-[9.609vw] rounded-s px-[1.25vw] py-[1.111vh]  mobile:py-[0.858vh] mobile:px-[3.721vw]  bg-[#F9F9F9] text-[0.938vw] text-dark-gray font-medium mobile:text-[2.791vw]"
                   }
                   onClick={() => {
                     setBtnState("OfflineClasses");
@@ -121,8 +121,8 @@ function OurBranchesHome({ page }) {
                   }}
                   className={
                     btnState === "OnlineLiveClasses"
-                      ? "font-semibold bg-orange-500 text-white  rounded px-[1.25vw] py-[1.111vh]  bg-[#F9F9F9] text-[0.938vw]"
-                      : " rounded-e px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw] text-dark-gray font-medium"
+                      ? "font-semibold bg-orange-500 text-white  rounded px-[1.25vw] py-[1.111vh] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw]  bg-[#F9F9F9] text-[0.938vw]"
+                      : " rounded-e px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] text-dark-gray font-medium"
                   }
                   title="Online Live Classes"
                 ></Button>
@@ -153,7 +153,7 @@ function OurBranchesHome({ page }) {
                   <div
                     className={
                       "hover:-translate-y-1 delay-300 duration-300 " +
-                      (page !== "course" ? "cursor-pointer" : "w-[15.625vw] ")
+                      (page !== "course" ? "cursor-pointer" : "w-[15.625vw] mobile:w-[44.186vw]")
                     }
                   >
                     {isloading ? (
@@ -162,7 +162,7 @@ function OurBranchesHome({ page }) {
                       <div
                         onClick={(e) => handleImageRoute(e, elements.city)}
                         className={`${elements.city !== "AllCities" ? " imgstyling" : ""
-                          }  h-[7.813vw] w-[15.625vw] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
+                          }  h-[7.813vw] w-[15.625vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
                         style={{
                           backgroundImage: `url(${elements.path})`,
                           backgroundRepeat: "no-repeat",
@@ -171,10 +171,10 @@ function OurBranchesHome({ page }) {
                       >
                         {elements.city !== "AllCities" && (
                           <p>
-                            <h1 className="font-bold text-white text-[1.875vw] flex flex-col justify-center items-center">
+                            <h1 className="font-bold text-white text-[1.875vw] mobile:text-[4.651vw] flex flex-col justify-center items-center">
                               {elements.city}
                             </h1>
-                            <h1 className="text-white text-[1.094vw] flex flex-col justify-center items-center">
+                            <h1 className="text-white text-[1.094vw] mobile:text-[3.256vw] flex flex-col justify-center items-center">
                               {elements.branchCount} Branches
                             </h1>
                           </p>

@@ -4,7 +4,7 @@ import { svgicons } from "../assets/icons/svgassets";
 import { Skeleton } from "../ui/skeleton";
 const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData, branchName }) => {
   const [isloading, setisLoading] = useState(true);
-  const upcomingBatchesData = branchesData.length > 0 ? branchesData : [
+  const upcomingBatchesData = branchesData?.length > 0 ? branchesData : [
     {
       course: "Advanced React",
       trainer: "shashi kunal",
