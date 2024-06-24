@@ -22,7 +22,7 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
             <section className='w-full sm:bg-[#F6F6F6] '>
                 <article className={page === 'branch' ? 'sm:w-[87.5vw] sm:m-auto' : 'w-[51.56vw]'}>
                     <header>
-                        <h1 className={`${page === 'branch' ? "text-[2.5vw] py-[1.563vw] mobile:pb-[1.717vh] mobile:text-[4.651vw]" : "text-[1.875vw] pt-[3.611vh] pb-[3.056vh]"} font-bold`}>
+                        <h1 className={`${page === 'branch' ? "text-[2.5vw] py-[1.563vw] mobile:pb-[1.717vh] mobile:text-[4.651vw]  mobile:ml-[5.581vw]" : "text-[1.875vw] pt-[3.611vh] pb-[3.056vh]"} font-bold`}>
                             {`${pathName.includes('courses') ? "Students placed through this course" : "Students placed through this branch"}`}
                         </h1>
                     </header>

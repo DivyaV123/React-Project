@@ -32,8 +32,8 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
 
     const renderThirdLayerContent = (content, sectionIndex) => {
         return (
-            <div className='my-[0.833vh] ml-[1.875vw]'>
-                <article className='flex justify-between pl-[2.813vw] py-[1.667vh] items-center pr-[1.875vw]'>
+            <div className='my-[0.833vh] ml-[1.875vw] mobile:my-[1.717vh]'>
+                <article className='flex justify-between pl-[2.813vw] py-[1.667vh] items-center sm:pr-[1.875vw] mobile:pl-[3.721vw] mobile:py-[1.717vh]'>
                     {page === 'course' ? (
                         <>
                             <h1 className='flex items-center gap-x-[0.625vw]'>
@@ -46,11 +46,11 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
                                         color={svgicons.smallDoc[4]}
                                     />
                                 </span>
-                                <span className='text-dark-gray font-medium text-[1.094vw]'>{content}</span>
+                                <span className='text-dark-gray font-medium text-[1.094vw] mobile:text-[2.791vw]'>{content}</span>
                             </h1>
                         </>
                     ) : (
-                        <span className='text-dark-gray font-medium text-[1.094vw]'>{content}</span>
+                        <span className='text-dark-gray font-medium text-[1.094vw] mobile:text-[2.791vw]'>{content}</span>
                     )}
                 </article>
             </div>
@@ -103,13 +103,14 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
                     return renderThirdLayerContent(subsectionContent, subsectionIndex);
                 } else {
                     return  (
-                        <div key={subsectionIndex} className='my-[0.833vh] ml-[1.875vw]'>
-                            <article className='flex justify-between pl-[2.813vw] py-[1.667vh] items-center pr-[1.875vw]'>
+                        <div key={subsectionIndex} className='sm:my-[0.833vh] ml-[1.875vw]'>
+                            <article className='flex justify-between pl-[2.813vw] py-[1.667vh] items-center sm:pr-[1.875vw] mobile:py-[1.288vh] mobile:pl-[3.256vw]'>
                                 {page === 'course' ? (
                                     <>
-                                        <h1 className='flex items-center gap-x-[0.625vw]'>
+                                        <h1 className='flex items-center gap-x-[0.625vw] gap-2'>
                                             <span>
                                                 <Svg
+                                                className="w-[5.581vw] h-[2.575vh]"
                                                     width={svgicons.smallDoc[0]}
                                                     height={svgicons.smallDoc[1]}
                                                     viewBox={svgicons.smallDoc[2]}
@@ -117,7 +118,7 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
                                                     color={svgicons.smallDoc[4]}
                                                 />
                                             </span>
-                                            <span className='text-dark-gray font-medium text-[1.094vw]'>{key}</span>
+                                            <span className='text-dark-gray font-medium text-[1.094vw] mobile:text-[2.791vw]'>{key}</span>
                                         </h1>
                                         {/* <h1 className='flex items-center gap-x-[0.625vw]'>
                                             <span>
@@ -134,7 +135,7 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
                                         </h1> */}
                                     </>
                                 ) : (
-                                    <span className='text-dark-gray font-medium text-[1.094vw]'>{item}</span>
+                                    <span className='text-dark-gray font-medium text-[1.094vw] mobile:text-[2.791vw]'>{item}</span>
                                 )}
                             </article>
                         </div>
@@ -155,10 +156,10 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
             if (Array.isArray(sectionContent) && sectionContent.length > 0) {
                 return (
                     <div key={index} className={page === 'course' ? 'border border-[#EBEBEB] my-[0.833vh] rounded-md' : `${parentAccordianStyle}`}>
-                        <button className={page === 'course' ? `${styles.accordion} flex items-center gap-x-[0.938vw]` : 'flex'} onClick={() => handleClick(index)}>
+                        <button className={page === 'course' ? `${styles.accordion} flex items-center gap-x-[0.938vw] mobile:gap-2` : 'flex'} onClick={() => handleClick(index)}>
                             {accordianArrow[index] ? (
                                 <Svg
-                                    className=''
+                                    className='mobile:h-[1.931vh] mobile:w-[4.186vw]'
                                     width={svgicons.accordianArrowDown[0]}
                                     height={svgicons.accordianArrowDown[1]}
                                     viewBox={svgicons.accordianArrowDown[2]}
@@ -167,7 +168,7 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
                                 />
                             ) : (
                                 <Svg
-                                    className=''
+                                    className='mobile:h-[1.931vh] mobile:w-[4.186vw]'
                                     width={svgicons.accordianArrowSide[0]}
                                     height={svgicons.accordianArrowSide[1]}
                                     viewBox={svgicons.accordianArrowSide[2]}
@@ -175,7 +176,7 @@ const NestedAccordion = ({ data, page, parentAccordianStyle }) => {
                                     color={svgicons.accordianArrowSide[4]}
                                 />
                             )}
-                            <div className='text-[1.25vw] text-[#454545] font-semibold'>
+                            <div className='text-[1.25vw] text-[#454545] font-semibold mobile:text-[2.791vw]'>
                                 {sectionKey}
                             </div>
                         </button>

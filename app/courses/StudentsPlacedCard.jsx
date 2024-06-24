@@ -12,7 +12,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
     }, [])
 
     return (
-        <section className={`flex flex-wrap sm:gap-y-[1.25vw] mobile:gap-4 mobile:py-[1.717vh] ${page === 'branch' ? "justify-between" : "px-[1.25vw] py-[2.222vh] gap-x-[2.222vh]"}`}>
+        <section className={`flex flex-wrap sm:gap-y-[1.25vw] mobile:gap-4 mobile:py-[1.717vh] mobile:mx-[4.651vw] ${page === 'branch' ? "justify-between" : "px-[1.25vw] py-[2.222vh] gap-x-[2.222vh]"}`}>
             {studentsInfo?.map((element) => {
                 let detail = `${element.degree.degreeName}(${element.degree.degreeAggregate}%)- ${element.degree.degreeYop}`
                 return (
