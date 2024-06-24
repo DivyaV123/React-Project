@@ -327,7 +327,7 @@ const Branches = ({ BranchResponse }) => {
                 onMouseLeave={() => { }}
               >
                 <div className="flex justify-between grow ">
-                  <button className="p-2 text-sm text-left">
+                  <button className="p-2 text-[#454545] text-bold text-sm text-left">
                     {item.courseName}
                   </button>
                   <img
@@ -350,36 +350,51 @@ const Branches = ({ BranchResponse }) => {
             finalContent?.map
               (
                 (content, index) => {
+                  console.log(content, "content")
                   setOnGoingBatches(content.ongoingBatches)
                   setupComingBatches(content.upcomingBatches)
                   return (
                     <Link href={`/branches/${content.branchId}-branchId,${BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex].courseId}-courseId`}>
-                      <div
-                        key={index}
-                        className={`${hoveredIndex !== null && finalContent
-                          ? "branchMedium"
-                          : "branchinitial"
-                          } p-2 branchOverlay h-fit`}
-                      >
-                        <div className="flex h-10 gap-x-2.5">
-                          <img className="h-9 w-9" src={content.branchImage} />
-                          <div>
-                            <h3 className="text-left h-5 text-sm font-bold">
+                      <div className="flex branchMenuCard bg-[#FFFFFF] max-w-[19.922vw] rounded-xl px-[1.389vh] py-[0.781vw]" key={index}>
+                        <div>
+                          <img className="rounded max-h-[2.813vw] max-w-[2.813vw]" src={content.branchImage} alt="" />
+                        </div>
+                        <div className="pl-[0.781vw]">
+                          <div className="flex justify-between pb-[1.111vh]">
+                            <h3 className="text-left h-5 text-[0.938vw] font-bold">
                               {content.branchName}
                             </h3>
-                            <p className="text-left h-5 text-xs text-amber-800">
-                              {getContact(content.phoneNumber)}
-                            </p>
+                            <button onClick={() => window.open(content.location, "_blank")} className="flex gap-1 text-xs text z-1">
+                              <p className="text-[#7298FF] text-[0.703vw] p-[0.156vw]">Get Directions</p>
+                              <img src="/DirectionIcon.svg" className="h-4 w-4" />
+                            </button>
                           </div>
-                        </div>
-                        <div className="flex justify-between items-center">
-                          <div className="text-sm p-1 titleText">
-                            <p>{content.upcomingBatches} Upcoming Batches</p>
-                            <p>{content.ongoingBatches} Ongoing Batches</p>
-                          </div>
-                          <div className=" flex gap-1 text-xs directions p-2">
-                            <p>Get Directions</p>
-                            <img src="/DirectionIcon.svg" className="h-4 w-4" />
+                          <p className="text-[0.781vw] text-[#575757] pb-[1.094vw] flex-col align-center">
+                            {getContact(content.phoneNumber)}
+                          </p>
+                          <div className="flex pb-[0.556vh]">
+                            <div className="flex gap-1.5 justify-center">
+                              <Svg
+                                className="pr-[0.469vw]"
+                                width={svgicons.calender[0]}
+                                height={svgicons.calender[1]}
+                                viewBox={svgicons.calender[2]}
+                                icon={svgicons.calender[3]}
+                                color={svgicons.calender[4]}
+                              />
+                              <p className="text-[0.781vw]">{content.upcomingBatches} Upcoming Batches</p>
+                            </div>
+                            <div className="flex gap-1.5 justify-center">
+                              <Svg
+                                className=''
+                                width={svgicons.icontime[0]}
+                                height={svgicons.icontime[1]}
+                                viewBox={svgicons.icontime[2]}
+                                icon={svgicons.icontime[3]}
+                                color={svgicons.icontime[4]}
+                              />
+                              <p className="text-[0.781vw] pl-[0.469vw]">{content.ongoingBatches} Ongoing Batches</p>
+                            </div>
                           </div>
                         </div>
                       </div>

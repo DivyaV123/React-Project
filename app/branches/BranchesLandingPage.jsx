@@ -16,7 +16,7 @@ import { GlobalContext } from '@/components/Context/GlobalContext'
 function BranchesLandingPage({ BranchDetails }) {
     const branchData = BranchDetails?.data
     const { onGoingBatches, upComingBatches } = useContext(GlobalContext)
-    const [selectedImg, setSelectedImg] = useState('../images/Frame 22.png')
+    const [selectedImg, setSelectedImg] = useState(branchData.branchImage != "" ? branchData.branchImage : '../images/Frame 22.png')
     const corosalImgs = [
         '../images/branchesCorosalImg1.png',
         '../images/branchesCorosamg2.png',
@@ -34,6 +34,31 @@ function BranchesLandingPage({ BranchDetails }) {
             onGoingBaches: '06 Ongoing Batches'
         }
     ]
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [currentSlide, setCurrentSlide] = useState(0);
+
+    // Assume 4 images per slide
+    const imagesPerSlide = 4;
+    const gallery = BranchDetails?.data?.branchGallery.length > 0
+        ? BranchDetails.data.branchGallery
+        : corosalImgs;
+
+    // Calculate the number of slides
+    const totalSlides = Math.ceil(gallery.length / imagesPerSlide);
+
+    const handlePrevious = () => {
+        setCurrentSlide((prev) => (prev > 0 ? prev - 1 : totalSlides - 1));
+    };
+
+    const handleNext = () => {
+        setCurrentSlide((prev) => (prev < totalSlides - 1 ? prev + 1 : 0));
+    };
+
+    // Determine the images for the current slide
+    const currentImages = gallery.slice(
+        currentSlide * imagesPerSlide,
+        (currentSlide + 1) * imagesPerSlide
+    );
     return (
         <MaxWebWidth sectionStyling='bg-coursegradient ' articalStyling='flex justify-between mobile:flex-col'>
             <section className='basis-[50%] pt-[11.111vh] sm:pb-[8.889vh] mobile:py-[2.575vh]'>
@@ -41,7 +66,7 @@ function BranchesLandingPage({ BranchDetails }) {
                     <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full' src={selectedImg} />
                 </figure>
                 <article className='flex gap-2 pt-[2.222vh] mobile:hidden'>
-                    <div>
+                    <div onClick={handlePrevious}>
                         <Svg
                             className=''
                             width={svgicons.corasalArrowLeft[0]}
@@ -53,20 +78,29 @@ function BranchesLandingPage({ BranchDetails }) {
                     </div>
                     <Carousel>
                         <CarouselContent>
-                            <CarouselItem >
+                            <CarouselItem>
                                 <div className='flex w-full justify-center gap-4'>
-                                    {corosalImgs.map((image) => (
-                                        <figure className='' onClick={() => { setSelectedImg(image) }}>
-                                            <img className={selectedImg === image ? 'border-2 rounded-md border-orange-500  w-[7.813vw] rounded' : ' w-[7.813vw] rounded'} src={image} alt='image' />
+                                    {currentImages.map((image) => (
+                                        <figure
+                                            className=''
+                                            onClick={() => { setSelectedImg(image) }}
+                                            key={image}
+                                        >
+                                            <img
+                                                className={selectedImg === image
+                                                    ? 'border-2 rounded-md border-orange-500 w-[7.813vw] h-[4.563vw] rounded'
+                                                    : 'w-[7.813vw] rounded h-[4.563vw]'
+                                                }
+                                                src={image}
+                                                alt='image'
+                                            />
                                         </figure>
                                     ))}
                                 </div>
                             </CarouselItem>
                         </CarouselContent>
-                        {/* <CarouselPrevious />
-                        <CarouselNext /> */}
                     </Carousel>
-                    <div>
+                    <div onClick={handleNext}>
                         <Svg
                             className=''
                             width={svgicons.corasalArrowRight[0]}
@@ -95,7 +129,12 @@ function BranchesLandingPage({ BranchDetails }) {
                         />
                     </span>
                     <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw]'>
-                        {branchData?.address?.location}
+                        {[
+                            branchData?.address?.street,
+                            branchData?.address?.city,
+                            branchData?.address?.state,
+                            branchData?.address?.pincode
+                        ].filter(Boolean).join(' ')}
                     </p>
                 </article>
                 <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
