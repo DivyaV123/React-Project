@@ -33,19 +33,19 @@ function TestimonialsCard({ testimonialsData, compleateData }) {
                     <img className='w-full' src='../images/TestimonialImage2.png' />
                 </figure>
             </article> */}
-            <div className="pl-[3.125vw] pt-[2.222vh] flex flex-col gap-3">
+            <div className="pl-[3.125vw] pt-[2.222vh] flex flex-col gap-3 mobile:pt-[1.717vh] mobile:pl-[3.721vw] mobile:w-[21.395vw]">
                 <AlertDialogTrigger asChild>
                     <img
                         onClick={openImageDialog}
                         src={testimonialsData?.testimonial?.testimonialLink}
-                        className="imageBox cursor-pointer"
+                        className="imageBox cursor-pointer "
                     />
                 </AlertDialogTrigger>
                 <AlertDialogTrigger asChild>
                     <img
                         onClick={openVideoDialog}
                         typeof="foaf:Image"
-                        className="videoBox cursor-pointer"
+                        className="videoBox cursor-pointer "
                     />
                 </AlertDialogTrigger>
             </div>
@@ -57,12 +57,12 @@ function TestimonialsCard({ testimonialsData, compleateData }) {
             {videoDialog && (
                 <VideoPopup videoLink={testimonialsData?.testimonial?.youtubeReview} />
             )}
-            <article className='basis-[65%]'>
+            <article className='sm:basis-[65%] mobile:w-[60.93vw] mobile:py-[1.717vh] mobile:pr-[3.721vw] '>
                 <header>
-                    <h1 className='font-bold pb-1 text-dark-gray'>
+                    <h1 className='font-bold pb-1 text-dark-gray mobile:text-[3.721vw]'>
                         {testimonialsData?.name}
                     </h1>
-                    <p className='text-[0.75rem] text-ash'>
+                    <p className='text-[0.75rem] text-ash mobile:text-[2.791vw]'>
                         {testimonialsData?.testimonial?.writtenTestimonial.length > 150 ? testimonialsData?.testimonial?.writtenTestimonial.substring(0, 150) + "..." : testimonialsData?.testimonial?.writtenTestimonial ? testimonialsData?.testimonial?.writtenTestimonial : "Thank you for being a valued member of our community! Your feedback is important to us."}
                     </p>
                 </header>

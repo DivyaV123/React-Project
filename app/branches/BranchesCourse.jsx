@@ -86,7 +86,7 @@ function BranchesCourse({ branchCourseData }) {
                     </h1>
                 </header>
             </MaxWebWidth>
-            <MaxWebWidth articalStyling='flex sm:flex-wrap sm:justify-around gap-3 mobile:overflow-x-scroll mobile:offlineScrollbar'>
+            <MaxWebWidth articalStyling='flex sm:flex-wrap sm:justify-around gap-3 mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[3.97vh] mobile:mt-[1.717vh]'>
                 {branchCourseData.length > 0 ? branchCourseData.map((element) => {
                     return (<div className='courseCard'>
                         <article className='w-full '>
@@ -103,7 +103,7 @@ function BranchesCourse({ branchCourseData }) {
                     </div>)
                 })}
             </MaxWebWidth>
-            <MaxWebWidth articalStyling='flex justify-end pb-5'>
+            <MaxWebWidth articalStyling='flex justify-end pb-5 mobile:hidden'>
                 <article className='flex justify-center mt-2'>
                     <Button
                         className='bg-gradient w-[9.375vw] h-[5.694vh] text-[0.938vw] text-white rounded-md'

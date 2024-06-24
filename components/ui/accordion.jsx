@@ -14,7 +14,7 @@ const AccordionTrigger = React.forwardRef(({ className, children, ...props }, re
   <AccordionPrimitive.Header className="flex">
     <AccordionPrimitive.Trigger
       className={cn(
-        "flex flex-1 rounded-lg min-h-11 text-dark-gray text-[1.25vw] font-medium rounded-b-none items-center justify-between py-[2.222vh] transition-all bg-white px-[1.25vw] [&[data-state=open]>svg]:rotate-180",
+        "flex flex-1 rounded-lg min-h-11 text-dark-gray text-[1.25vw] mobile:text-[2.791vw] font-medium rounded-b-none items-center justify-between mobile:px-[3.721vw] py-[2.222vh] mobile:py-[0.966vh] transition-all bg-white px-[1.25vw] [&[data-state=open]>svg]:rotate-180",
         className
       )}
       {...props}
@@ -29,10 +29,10 @@ AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 const AccordionContent = React.forwardRef(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className="text-ash font-normal rounded-lg rounded-t-none overflow-hidden bg-white py-[1.111vh] px-[1.25vw] text-[0.938vw] transition-all"
+    className="text-ash font-normal rounded-lg mobile:text-[2.791vw] rounded-t-none overflow-hidden bg-white mobile:pt-[0.751vh] mobile:pb-[1.931vh] sm:py-[1.111vh] px-[1.25vw] mobile:px-[3.721vw] text-[0.938vw] transition-all"
     {...props}
   >
-    <div className={cn("pb-[2.222vh] pt-0", className)}>{children}</div>
+    <div className={cn("sm:pb-[2.222vh] pt-0", className)}>{children}</div>
   </AccordionPrimitive.Content>
 ));
 AccordionContent.displayName = AccordionPrimitive.Content.displayName;

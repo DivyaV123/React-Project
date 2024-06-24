@@ -25,12 +25,12 @@ function FaqHome({ page, questions, courseDetails, faqData }) {
     ]
     return (
         <MaxWebWidth sectionStyling='bg-[#F6F6F6]'>
-            <header className={`mt-[4.444vh] px-[1.563vw] py-[2.778vh]`}>
-                <h1 className={`font-bold text-[2rem] justify-center flex  align-center`}>
+            <header className={`sm:mt-[4.444vh] sm:px-[1.563vw] sm:py-[2.778vh] mobile:pt-[2.575vh] mobile:pb-[3.433vh] `}>
+                <h1 className={`font-bold text-[2rem] mobile:text-[5.581vw] justify-center flex  align-center`}>
                     {'FAQ’s'}
                 </h1>
                 {/* {page !== 'course' && page !== 'branch' && ( */}
-                <span className='text-[0.875rem] text-dark-gray font-normal flex justify-center items-center'>
+                <span className='text-[0.875rem] mobile:text-[3.256vw] text-dark-gray font-normal flex justify-center items-center'>
                     Often asked questions from our wonderful partners
                 </span>
                 {/* )} */}

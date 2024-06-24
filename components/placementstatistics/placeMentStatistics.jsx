@@ -64,13 +64,13 @@ function PlaceMentStatistics({ className, path, statistics }) {
                             <div onClick={() => {
                                 setPlacementParam(item.key);
                                 handleState(item.key)
-                            }} className='flex aligen-items jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl w-[24.531vw]'>
+                            }} className='flex  jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl sm:w-[24.531vw]'>
                                 <figure>
                                     <img className='h-full' src={item.icon}></img>
                                 </figure>
-                                <div className='py-[1.944vh] px-[0.938vw]'>
-                                    <h1 className='font-bold text-[2.813vw]'>{item.count}</h1>
-                                    <p className='text-dark-gray text-[1.094vw]' dangerouslySetInnerHTML={{ __html: content }} />
+                                <div className='py-[1.944vh] px-[0.938vw] mobile:px-[2.791vw] mobile:py-[1.502vh]'>
+                                    <h1 className='font-bold text-[2.813vw] mobile:text-[8.372vw]'>{item.count}</h1>
+                                    <p className='text-dark-gray text-[1.094vw] mobile:text-[3.721vw]' dangerouslySetInnerHTML={{ __html: content }} />
                                 </div>
                             </div>
                         </Link>
