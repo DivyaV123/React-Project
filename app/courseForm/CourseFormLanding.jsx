@@ -483,7 +483,7 @@ function CourseFormLanding() {
             <aside>
               <div className="pt-[1.5vw] font-bold">
 
-                <p onClick={() => { console.log(formikDetails, "details") }}>Organisation</p>
+                <p>Organisation</p>
               </div>
               <div className="flex flex-col">
                 {["JSP", "QSP", "PYSP"].map((org) => (

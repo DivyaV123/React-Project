@@ -18,7 +18,6 @@ const DomainContainer = () => {
   const [activeTab, setActiveTab] = useState('Hire From Us');
 
   const handleCardClick = (city) => {
-    console.log(city, "citycitycity")
     setSelectedCity(city);
     setIsModalOpen(true);
     setActiveTab('Hire From Us');

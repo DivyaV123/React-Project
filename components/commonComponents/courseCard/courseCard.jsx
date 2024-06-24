@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useCallback, useContext, useState } from 'react'
 import './courseCard.scss'
 import Button from '../button/Button'
 import Svg from '../Svg/Svg'
+import { truncateText } from '@/lib/utils'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import EnrollPopUp from './EnrollPopUp'
 import {
@@ -18,20 +19,21 @@ import {
 
 
 function CourseCard({ cardData }) {
-    const [openDialog, setOpenDialog] = useState('false')
+    const [openDialog, setOpenDialog] =
+        useState('false')
     return (
         <>
             <section className='cardStyle justify-center   justify-items-stretch'>
                 <AlertDialog>
                     <picture className='flex justify-gf-center  w-full '>
-                        <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full mobile:p-0' src={cardData.image} alt='image'></img>
+                        <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full  mobile:p-0' src={cardData.image ? cardData.image : cardData.homePageCourseImage} alt='image'></img>
                     </picture>
                     <div>
                     </div>
                     <aside className='sm:px-[0.781vw] pt-[1.389vh] mobile:pt-[1.717vh] mobile:pl-[3.721vw] mobile:pr-[3.721vw]'>
-                        <h3 className='font-bold text-[1.25vw] mobile:text-[3.721vw]'>Test Architect</h3>
-                        <p className='flex headerText justify-start pt-[0.833vh]  text-[0.938vw] mobile:text-[3.256vw] mobile:pt-[0.858vh] text-ash  '>
-                            Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.
+                        <h3 className='font-bold text-[1.25vw] mobile:text-[3.721vw]'>{cardData.courseName ? cardData.courseName : "Test Architect"}</h3>
+                        <p title={cardData.courseDescription} className='flex headerText justify-start pt-[0.833vh]  text-[0.938vw] mobile:text-[3.256vw] mobile:pt-[0.858vh] text-ash  '>
+                            {cardData.courseDescription ? truncateText(cardData.courseDescription, 150) : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards."}
                         </p>
                         <div className='flex pt-[0.833vh] mobile:pt-[0.644vh]'>
                             <span className='flex text-[0.938vw] mobile:text-[3.256vw] font-bold items-baseline'><span className='font-bold'>4.5</span> <Svg

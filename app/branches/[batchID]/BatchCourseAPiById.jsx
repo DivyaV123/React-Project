@@ -18,33 +18,33 @@ import Loading from '@/lib/Loading'
 function BatchCourseAPiById() {
     const pathname = usePathname();
     const searchParams = useSearchParams();
-    console.log(pathname, "pathname");
     const params = pathname.split('/').pop();
-    const [branchId, courseID] = params.split(',');
+    const digitIds = params.match(/\b\d+\b/g);
 
-    console.log(branchId, courseID, "branchId, courseID");
+    const branchId = digitIds[0];
+    const courseID = digitIds[1];
 
-    const { data: courseDetails, error, isLoading } = useGetAllBranchDetailsQuery({ courseId: "96", branchId: "76" }, {
-        skip: !courseID,
+    const { data: BranchDetails, error, isLoading } = useGetAllBranchDetailsQuery({ courseId: courseID, branchId: branchId }, {
+        skip: !courseID || !branchId,
     });
 
     if (isLoading) return <div>
         <Loading />
     </div>
     if (error) return <div>Error: {error.message}</div>
-    if (!courseDetails) return <div>No course details found.</div>
+    if (!BranchDetails) return <div>No course details found.</div>
     return (
         <WebLayout>
-            <BranchesLandingPage />
-            <BranchesCourse />
-            <UpCommingBatches />
+            <BranchesLandingPage BranchDetails={BranchDetails} />
+            <BranchesCourse branchCourseData={BranchDetails?.data?.courses} />
+            <UpCommingBatches branchName={BranchDetails?.data?.name} branchesData={BranchDetails?.data?.batches} />
             <PlacementStatisticsHome page='branch' />
             <section className='mb-4 mt-5'>
                 <HiringPartners page='branch' />
             </section>
-            <StidentsPlaced />
+            <StidentsPlaced branchName={BranchDetails?.data?.name} />
             {/* <Testimonials /> */}
-            <FaqHome page='branch' />
+            <FaqHome page='branch' faqData={BranchDetails?.data?.faqs} />
         </WebLayout>
     )
 }
