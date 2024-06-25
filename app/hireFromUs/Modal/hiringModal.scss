@@ -24,7 +24,7 @@
     position: relative;
     top: 12px;
   }
-
+ 
   .modal-header {
     display: flex;
     justify-content: end;
@@ -71,6 +71,21 @@
 
   .tab-content {
     margin-top: 20px;
+  }
+  @media only screen and (max-width:639px) {
+    .modal{
+      width: 100vw;
+      height: -webkit-fill-available;
+      top: 0px;
+    }
+    
+    .modal-overlay {
+      display: block;
+    }
+    .tabs {
+       font-size: 2.791vw;
+       gap: 0px;
+    }
   }
 }
 .no-scroll {

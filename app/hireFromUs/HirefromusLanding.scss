@@ -11,6 +11,9 @@
   background-position: bottom right;
   background-size: auto 100%;
 }
+
+
+
 .textgradient {
   background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
   -webkit-background-clip: text;
@@ -40,7 +43,7 @@
 
   .carousel-item {
     border: 1px solid #00000040;
-    width: 20.313vw;
+    // width: 20.313vw;
     // height: 240px;
     border-radius: 12px;
     text-wrap: wrap;
@@ -85,6 +88,8 @@
   background-repeat: no-repeat;
   background-position: bottom left;
   background-size: cover;
+  // padding-left: 9.813vw;
+  // padding-right: 9.813vw;
   .city-selector {
     h2 {
       // font-family: "poppins";
@@ -196,5 +201,21 @@
     justify-content: end;
     background: linear-gradient(96.77deg, #F09819 -28.03%, #FF512F 134.69%);
         }
+  }
+}
+@media only screen and (max-width:639px) {
+  .hireFromSection{
+    height: 45.708vh;
+    width: 100vw;
+    background: linear-gradient(180deg, rgba(255, 201, 151, 0.1) 0%, rgba(255, 255, 255, 0.76) 100%);
+  }
+  .carousel-item{
+    width: auto !important;
+  }
+  .clientTestimonial header .testimonials-text {
+    font-size: 21px !important;
+  }
+  .btnComponent{
+    top: 1px !important;
   }
 }
