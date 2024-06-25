@@ -1,31 +1,93 @@
-import React from 'react'
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+'use client'
+import React ,{useEffect,useState,useRef}from 'react'
+import "./enrollPopup.scss"
+import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import { isValidPhoneNumber } from 'react-phone-number-input';
+import PhoneInput from 'react-phone-input-2';
+import 'react-phone-input-2/lib/material.css';
 import Svg from '../Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import Input from '../input/Input'
 import TextArea from '../textArea/TextArea'
 
 
-function EnrollPopUp() {
+function EnrollPopUp({isModalOpen,handleCloseModal}) {
+  const modalRef = useRef(null);
+  const [phoneValue, setPhoneValue] = useState('');
+    const [error, setError] = useState({ mobileNumber: false, validPhone: false });
+    const inputBorder = '1px solid #26428B80';
+    const inputBorderErr = '1px solid #ea0322';
+    const initialValues = {
+      fullName: '',
+            mobileNumber: '',
+            course: '',
+            email: '',
+            message: '',
+    };
+   
+  
+   
+  
+    const validationSchema = Yup.object({
+      fullName: Yup.string().required('Full Name is required'),
+            mobileNumber: Yup.string().required('Phone number is required'),
+            course: Yup.string().required('course is required'),
+            email: Yup.string().email('Invalid email address').required('Email is required'),
+            message: Yup.string().required('Message is required'),
+    });
+  
+    const formik = useFormik({
+      initialValues: initialValues,
+      validationSchema: validationSchema,
+      onSubmit: (values) => {
+        console.log(values);
+      },
+    });
+  
+    const handleOnBlur = (id) => {
+      if (!phoneValue) {
+        setError({ ...error, [id]: true });
+      } else if (!isValidPhoneNumber('+' + phoneValue.toString())) {
+        setError({ ...error, [id]: false, validPhone: true });
+      } else {
+        setError({ ...error, [id]: false, validPhone: false });
+      }
+    };
+
+  useEffect(() => {
+    const body = document.body;
+    const scrollbarWidth = window.innerWidth - body.clientWidth;
+
+    if (isModalOpen) {
+      body.style.overflow = 'hidden';
+      body.style.paddingRight = `${scrollbarWidth}px`;
+      if (modalRef.current) {
+        modalRef.current.scrollTop = 0;  
+      }
+    } else {
+      body.style.overflow = '';
+      body.style.paddingRight = '';
+    }
+
+    return () => {
+      body.style.overflow = '';
+      body.style.paddingRight = '';
+    };
+  }, [isModalOpen]);
+
+  if (!isModalOpen) return null;
     return (
-        <div className=''>
-            <AlertDialogContent className="max-w-[62.5vw] px-[5.556vh] rounded-xl mobile:max-w-[100vw] mobile:w-[100vw]  mobile:fixed mobile:translate-x-[-48vw] mobile:left-[23vh] mobile:h-[100vh] mobile:rounded-none">
-                <AlertDialogHeader className=''>
-                    <AlertDialogTitle className='flex justify-between pt-[4.444vh]'>
-                        <h1 className='font-bold text-[1.875vw] pb-[4.444vh]'>
+        <div className='enroll_modal '>
+         <div className="modal-overlay">
+         <div className="modal" ref={modalRef}>
+         <div className="max-w-[62.5vw] px-[5.556vh] rounded-xl mobile:max-w-none mobile:px-[2.556vh]">
+                <div className=''>
+                    <div className='flex justify-between pt-[4.444vh] mobile:pt-0'>
+                        <h1 className='font-bold text-[1.875vw] pb-[4.444vh] mobile:text-[4.651vw]'>
                             Enroll now
                         </h1>
-                        <AlertDialogCancel className='border-none hover:bg-white p-0'>
+                        <div  onClick={handleCloseModal} className='border-none cursor-pointer hover:bg-white p-0'>
                             <Svg
                                 width={svgicons.cancelButtonIcon[0]}
                                 height={svgicons.cancelButtonIcon[1]}
@@ -33,12 +95,12 @@ function EnrollPopUp() {
                                 icon={svgicons.cancelButtonIcon[3]}
                                 color={svgicons.cancelButtonIcon[4]}
                             />
-                        </AlertDialogCancel>
-                    </AlertDialogTitle>
-                    <AlertDialogDescription>
-                        <div className='flex justify-between pb-[3.333vh]'>
+                        </div>
+                    </div>
+                    {/* <div>
+                        <div className='flex mobile:flex-col justify-between pb-[3.333vh]'>
                             <div>
-                                <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Mobile number</p>
+                                <p className='text-[1.25vw] mobile:justify-start font-semibold pb-[1.389vh] text-black' >Mobile number</p>
                                 <Input
                                     inputStyle='h-[5.833vh] !w-[25vw] text-[0.938vw]'
                                     placeholder='Enter your phone number'
@@ -52,7 +114,7 @@ function EnrollPopUp() {
                                 />
                             </div>
                         </div>
-                        <div className='flex justify-between pb-[3.333vh]'>
+                        <div className='flex mobile:flex-col justify-between mobile:col-sm pb-[3.333vh]'>
                             <div>
                                 <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Course</p>
                                 <Input
@@ -68,7 +130,7 @@ function EnrollPopUp() {
                                 />
                             </div>
                         </div>
-                        <div className='flex justify-between pb-[8.611vh]'>
+                        <div className='flex mobile:flex-col mobile:col-sm justify-between pb-[8.611vh]'>
                             <div>
                                 <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Message</p>
                                 <TextArea
@@ -77,14 +139,148 @@ function EnrollPopUp() {
                                 />
                             </div>
                             <div className='relative'>
-                                <AlertDialogAction className='bg-gradient text-white absolute right-0 bottom-0 !py-[1.667vh] !px-[1.875vw]'>
+                                <button className='bg-gradient text-white absolute right-0 bottom-0 !py-[1.667vh] !px-[1.875vw]'>
                                     <span className='text-[1.25vw] '>Submit</span>
-                                </AlertDialogAction>
+                                </button>
                             </div>
                         </div>
-                    </AlertDialogDescription>
-                </AlertDialogHeader>
-            </AlertDialogContent>
+                    </div> */}
+                    <form onSubmit={formik.handleSubmit} className="custom-grid-form grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div className="mb-2">
+          <label htmlFor="mobileNumber" className="block font-bold mb-2">Mobile Number</label>
+          <PhoneInput
+            type="text"
+            placeholder="Enter phone number"
+            searchPlaceholder="Search..."
+            searchNotFound="No Countries Found"
+            specialLabel=""
+            autoFormat={false}
+            enableAreaCodeStretch
+            country={"in"}
+            name="mobileNumber"
+            id="mobileNumber"
+            value={formik.values.mobileNumber}
+            className="outline-none"
+            onChange={(e, country) => {
+              formik.setFieldValue("mobileNumber", e);
+              setPhoneValue(e);
+            }}
+            // style={{
+            //   border: `${error.mobileNumber || error.validPhone ? inputBorderErr : inputBorder}`,
+            //   borderRadius: "5px",
+            // }}
+            style={{
+                        border: `${
+                          error.phone || error.validPhone
+                            ? inputBorderErr
+                            : inputBorder
+                        }`,
+                        borderRadius: "5px",
+                      }}
+            enableSearch
+            international
+            inputProps={{
+              style: {
+                height: "0.43em !important",
+              },
+            }}
+            autoComplete="off"
+            onBlur={() => handleOnBlur("mobileNumber")}
+            countryCodeEditable={false}
+          />
+          {(error.mobileNumber || (formik.errors.mobileNumber && formik.touched.mobileNumber)) && (
+            <div className="text-red-500 absolute text-sm">Phone number is required</div>
+          )}
+          {error.validPhone && !error.mobileNumber && (
+            <div className="text-red-500 absolute text-sm">Invalid phone number</div>
+          )}
+        </div>
+        <div className="mb-2">
+          <label htmlFor="email" className="block font-bold mb-2">Email</label>
+          <input
+            id="email"
+            name="email"
+            type="email"
+            placeholder='Enter your email'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.email}
+            className={`w-full border p-2 rounded ${formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-gray-300'}`}
+          />
+          {formik.touched.email && formik.errors.email ? (
+            <div className="text-red-500 absolute text-sm">{formik.errors.email}</div>
+          ) : null}
+        </div>
+        <div className="mb-2">
+            <label htmlFor="course" className="block font-bold mb-2">Course</label>
+            <input
+              id="course"
+              name="course"
+              type="text"
+              placeholder='-Select-'
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+              value={formik.values.course}
+              className={`w-full border p-2 rounded ${formik.touched.course && formik.errors.course ? 'border-red-500' : 'border-gray-300'}`}
+            />
+            {formik.touched.course && formik.errors.course ? (
+              <div className="text-red-500 absolute text-sm">{formik.errors.course}</div>
+            ) : null}
+          </div>
+        
+        <div className="mb-2">
+          <label htmlFor="fullName" className="block font-bold mb-2 text-left">Full Name</label>
+          <input
+            id="fullName"
+            name="fullName"
+            type="text"
+            placeholder='Enter your full name'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.fullName}
+            className={`w-full border p-2 rounded ${formik.touched.fullName && formik.errors.fullName ? 'border-red-500' : 'border-gray-300'}`}
+          />
+          {formik.touched.fullName && formik.errors.fullName ? (
+            <div className="text-red-500 absolute  text-sm">{formik.errors.fullName}</div>
+          ) : null}
+        </div>
+
+        
+
+       
+
+       
+          
+
+       
+        <div className="mb-2 ">
+          <label htmlFor="message" className="block font-bold mb-2">Message</label>
+          <textarea
+            id="message"
+            name="message"
+            placeholder='Enter your message'
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            value={formik.values.message}
+            className={`w-full border p-2 rounded ${formik.touched.message && formik.errors.message ? 'border-red-500' : 'border-gray-300'}`}
+          />
+          {formik.touched.message && formik.errors.message ? (
+            <div className="text-red-500 absolute text-sm">{formik.errors.message}</div>
+          ) : null}
+        </div>
+
+        <div  className="mb-2 btnComponent mobile:top-[0vh]">
+          <button type="submit" className=" text-white py-2 px-4 rounded ">
+            Submit
+          </button>
+        </div>
+      </form>
+    
+                </div>
+            </div>
+         </div>
+         </div>
+           
         </div>
     )
 }

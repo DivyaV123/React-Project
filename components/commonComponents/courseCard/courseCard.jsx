@@ -1,3 +1,4 @@
+'use client'
 import React, { useCallback, useContext, useState } from 'react'
 import './courseCard.scss'
 import Button from '../button/Button'
@@ -5,26 +6,27 @@ import Svg from '../Svg/Svg'
 import { truncateText } from '@/lib/utils'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import EnrollPopUp from './EnrollPopUp'
-import {
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    AlertDialogTrigger,
-} from "@/components/ui/alert-dialog"
+
+
 
 
 function CourseCard({ cardData }) {
-    const [openDialog, setOpenDialog] =
-        useState('false')
+ 
+        const [isModalOpen, setIsModalOpen] = useState(false);
+        const handleCardClick = () => {
+            
+            setIsModalOpen(true);
+            
+          };
+        
+          const handleCloseModal = () => {
+            setIsModalOpen(false);
+            
+          };
     return (
         <>
             <section className='cardStyle justify-center   justify-items-stretch'>
-                <AlertDialog>
+                
                     <picture className='flex justify-gf-center  w-full '>
                         <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full  mobile:p-0' src={cardData.image ? cardData.image : cardData.homePageCourseImage} alt='image'></img>
                     </picture>
@@ -48,20 +50,18 @@ function CourseCard({ cardData }) {
 
                         <div className='flex justify-center gap-2 py-[1.389vh]  '>
                             <aside>
-                                <AlertDialogTrigger asChild>
-                                    <Button onClick={() => { setOpenDialog(true) }} className="courseCardBtn text-[1.094vw] mobile:text-[2.791vw]  font-semibold text-white bg-gradient rounded-md" title='Enroll now' />
-                                </AlertDialogTrigger>
+                               
+                                    <Button onClick={() => handleCardClick()} className="courseCardBtn text-[1.094vw] mobile:text-[2.791vw]  font-semibold text-white bg-gradient rounded-md" title='Enroll now' />
+                               
                             </aside>
                             <aside>
                                 <Button className="courseCardBtn buttonTextColour  text-[1.094vw] mobile:text-[2.791vw]  font-semibold border border-orange-500 rounded-md" title='Request call' />
                             </aside>
                         </div>
                     </aside>
-                    {openDialog && (
-                        <EnrollPopUp />
-                    )}
-                </AlertDialog>
-
+                   
+                
+                    <EnrollPopUp isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}/>
             </section>
 
 
