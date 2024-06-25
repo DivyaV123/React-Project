@@ -1,0 +1,140 @@
+.enroll_modal {
+  z-index: 1000;
+  .modal-overlay {
+    position: fixed;
+    top: 0%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal {
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    width: 100%;
+    max-width: 800px;
+    height: 500px;
+    z-index: 1010;
+    position: relative;
+    top: 12px;
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+  }
+
+  .close-button {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .tabs {
+    width: auto;
+    height: auto;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    position: relative;
+    border-width: 2px;
+    border-style: solid;
+    border-color: #f09819;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: left;
+    gap: 10px;
+    border-image-slice: 1;
+  }
+
+  .tab {
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .tab.active {
+    background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+    color: #ffffff;
+    border-radius: 5px;
+  }
+
+  .tab-content {
+    margin-top: 20px;
+  }
+  @media only screen and (max-width: 639px) {
+    .modal {
+      width: 100vw;
+      height: -webkit-fill-available;
+      top: 0px;
+    }
+
+    .modal-overlay {
+      display: block;
+    }
+    .tabs {
+      font-size: 2.791vw;
+      gap: 0px;
+    }
+  }
+
+  input::placeholder {
+    font-size: 14px;
+  }
+  .react-tel-input .form-control {
+    width: -webkit-fill-available;
+    height: 30px;
+  }
+  .custom-grid-form {
+    @apply grid grid-cols-1 md:grid-cols-2;
+    gap: 1rem; // general gap
+
+    @media (min-width: 768px) {
+      column-gap: 3rem; // increased gap between columns for medium screens and up
+    }
+  }
+
+  .btnComponent {
+    position: relative;
+    top: 7vh;
+    display: flex;
+    height: 48px;
+
+    justify-content: end;
+    button {
+      height: inherit;
+      width: 107px;
+      justify-content: end;
+      background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+    }
+  }
+  @media only screen and (max-width: 639px) {
+    .btnComponent {
+      position: relative;
+      top: 0vh;
+      display: flex;
+      height: 48px;
+
+      justify-content: end;
+      button {
+        height: inherit;
+        width: 107px;
+        justify-content: end;
+        background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+      }
+    }
+  }
+}
+.no-scroll {
+  overflow: hidden;
+}
