@@ -19,7 +19,7 @@ import TextArea from '../textArea/TextArea'
 function EnrollPopUp() {
     return (
         <div className=''>
-            <AlertDialogContent className="max-w-[62.5vw] px-[5.556vh] rounded-xl">
+            <AlertDialogContent className="max-w-[62.5vw] px-[5.556vh] rounded-xl mobile:max-w-[100vw] mobile:w-[100vw]  mobile:fixed mobile:translate-x-[-48vw] mobile:left-[23vh] mobile:h-[100vh] mobile:rounded-none">
                 <AlertDialogHeader className=''>
                     <AlertDialogTitle className='flex justify-between pt-[4.444vh]'>
                         <h1 className='font-bold text-[1.875vw] pb-[4.444vh]'>

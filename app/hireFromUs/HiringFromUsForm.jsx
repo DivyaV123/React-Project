@@ -102,7 +102,7 @@ const HiringFromUsForm = ({ activeTab }) => {
             className={`w-full border p-2 rounded ${formik.touched.fullName && formik.errors.fullName ? 'border-red-500' : 'border-gray-300'}`}
           />
           {formik.touched.fullName && formik.errors.fullName ? (
-            <div className="text-red-500 text-sm">{formik.errors.fullName}</div>
+            <div className="text-red-500 absolute  text-sm">{formik.errors.fullName}</div>
           ) : null}
         </div>
 
@@ -149,10 +149,10 @@ const HiringFromUsForm = ({ activeTab }) => {
             countryCodeEditable={false}
           />
           {(error.mobileNumber || (formik.errors.mobileNumber && formik.touched.mobileNumber)) && (
-            <div className="text-red-500 text-sm">Phone number is required</div>
+            <div className="text-red-500 absolute text-sm">Phone number is required</div>
           )}
           {error.validPhone && !error.mobileNumber && (
-            <div className="text-red-500 text-sm">Invalid phone number</div>
+            <div className="text-red-500 absolute text-sm">Invalid phone number</div>
           )}
         </div>
 
@@ -170,7 +170,7 @@ const HiringFromUsForm = ({ activeTab }) => {
               className={`w-full border p-2 rounded ${formik.touched.requiredTraining && formik.errors.requiredTraining ? 'border-red-500' : 'border-gray-300'}`}
             />
             {formik.touched.requiredTraining && formik.errors.requiredTraining ? (
-              <div className="text-red-500 text-sm">{formik.errors.requiredTraining}</div>
+              <div className="text-red-500 absolute text-sm">{formik.errors.requiredTraining}</div>
             ) : null}
           </div>
         )}
@@ -189,7 +189,7 @@ const HiringFromUsForm = ({ activeTab }) => {
               className={`w-full border p-2 rounded ${formik.touched.companyName && formik.errors.companyName ? 'border-red-500' : 'border-gray-300'}`}
             />
             {formik.touched.companyName && formik.errors.companyName ? (
-              <div className="text-red-500 text-sm">{formik.errors.companyName}</div>
+              <div className="text-red-500 absolute text-sm">{formik.errors.companyName}</div>
             ) : null}
           </div>
         )}
@@ -207,7 +207,7 @@ const HiringFromUsForm = ({ activeTab }) => {
             className={`w-full border p-2 rounded ${formik.touched.email && formik.errors.email ? 'border-red-500' : 'border-gray-300'}`}
           />
           {formik.touched.email && formik.errors.email ? (
-            <div className="text-red-500 text-sm">{formik.errors.email}</div>
+            <div className="text-red-500 absolute text-sm">{formik.errors.email}</div>
           ) : null}
         </div>
 
@@ -223,7 +223,7 @@ const HiringFromUsForm = ({ activeTab }) => {
             className={`w-full border p-2 rounded ${formik.touched.message && formik.errors.message ? 'border-red-500' : 'border-gray-300'}`}
           />
           {formik.touched.message && formik.errors.message ? (
-            <div className="text-red-500 text-sm">{formik.errors.message}</div>
+            <div className="text-red-500 absolute text-sm">{formik.errors.message}</div>
           ) : null}
         </div>
 
