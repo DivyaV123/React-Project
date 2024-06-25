@@ -2,7 +2,7 @@ import React from "react";
 import * as AccordionPrimitive from "@radix-ui/react-accordion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";
-
+import "./button.scss";
 const Accordion = AccordionPrimitive.Root;
 
 const AccordionItem = React.forwardRef(({ className, ...props }, ref) => (
@@ -20,7 +20,7 @@ const AccordionTrigger = React.forwardRef(({ className, children, ...props }, re
       {...props}
     >
       {children}
-      <ChevronDown className="h-[2.778vh] w-[1.25vw] shrink-0 transition-transform duration-200" />
+      <ChevronDown className="h-[2.778vh] w-[1.25vw] mobile:w-[5.581vw] mobile:h-[2.575vh] shrink-0 transition-transform duration-200" />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
@@ -29,7 +29,7 @@ AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName;
 const AccordionContent = React.forwardRef(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className="text-ash font-normal rounded-lg mobile:text-[2.791vw] rounded-t-none overflow-hidden bg-white mobile:pt-[0.751vh] mobile:pb-[1.931vh] sm:py-[1.111vh] px-[1.25vw] mobile:px-[3.721vw] text-[0.938vw] transition-all"
+    className={`text-ash font-normal rounded-lg mobile:text-[2.791vw] rounded-t-none overflow-hidden mobile:bg-[#FEF2E7] bg-white mobile:pt-[0.751vh] mobile:pb-[1.931vh] sm:py-[1.111vh] px-[1.25vw] mobile:px-[3.721vw] text-[0.938vw] transition-all`}
     {...props}
   >
     <div className={cn("sm:pb-[2.222vh] pt-0", className)}>{children}</div>
