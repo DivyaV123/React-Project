@@ -5,7 +5,7 @@ import * as Yup from 'yup';
 import { isValidPhoneNumber } from 'react-phone-number-input';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
-
+import "./HirefromusLanding.scss"
 const HiringFromUsForm = ({ activeTab }) => {
   const [phoneValue, setPhoneValue] = useState('');
   const [error, setError] = useState({ mobileNumber: false, validPhone: false });
@@ -99,6 +99,7 @@ const HiringFromUsForm = ({ activeTab }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.fullName}
+            autoFocus
             className={`w-full border p-2 rounded ${formik.touched.fullName && formik.errors.fullName ? 'border-red-500' : 'border-gray-300'}`}
           />
           {formik.touched.fullName && formik.errors.fullName ? (

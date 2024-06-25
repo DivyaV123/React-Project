@@ -61,9 +61,9 @@ function CourseCard({ cardData }) {
                     </aside>
                    
                 
-                    <EnrollPopUp isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}/>
+                  
             </section>
-
+            <EnrollPopUp isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}/>
 
         </>
     )

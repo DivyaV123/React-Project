@@ -78,13 +78,18 @@
       height: -webkit-fill-available;
       top: 0px;
     }
-
+    input {
+      height: 6vh;
+    }
     .modal-overlay {
       display: block;
     }
     .tabs {
       font-size: 2.791vw;
       gap: 0px;
+    }
+    input::placeholder {
+      font-size: 12px;
     }
   }
 

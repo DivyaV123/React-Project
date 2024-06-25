@@ -97,57 +97,10 @@ function EnrollPopUp({isModalOpen,handleCloseModal}) {
                             />
                         </div>
                     </div>
-                    {/* <div>
-                        <div className='flex mobile:flex-col justify-between pb-[3.333vh]'>
-                            <div>
-                                <p className='text-[1.25vw] mobile:justify-start font-semibold pb-[1.389vh] text-black' >Mobile number</p>
-                                <Input
-                                    inputStyle='h-[5.833vh] !w-[25vw] text-[0.938vw]'
-                                    placeholder='Enter your phone number'
-                                />
-                            </div>
-                            <div>
-                                <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Email</p>
-                                <Input
-                                    inputStyle='h-[5.833vh] !w-[25vw] 0.938vw text-[0.938vw]'
-                                    placeholder='Enter your email'
-                                />
-                            </div>
-                        </div>
-                        <div className='flex mobile:flex-col justify-between mobile:col-sm pb-[3.333vh]'>
-                            <div>
-                                <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Course</p>
-                                <Input
-                                    inputStyle='h-[5.833vh] !w-[25vw] text-[0.938vw]'
-                                    placeholder='-Select-'
-                                />
-                            </div>
-                            <div>
-                                <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Full Name</p>
-                                <Input
-                                    inputStyle='h-[5.833vh] !w-[25vw] text-[0.938vw]'
-                                    placeholder='Enter your full name'
-                                />
-                            </div>
-                        </div>
-                        <div className='flex mobile:flex-col mobile:col-sm justify-between pb-[8.611vh]'>
-                            <div>
-                                <p className='text-[1.25vw] font-semibold pb-[1.389vh] text-black' >Message</p>
-                                <TextArea
-                                    placeholder='Enter your message...'
-                                    textAreaStyle='!h-full resize-none !w-[25vw] text-[0.938vw] '
-                                />
-                            </div>
-                            <div className='relative'>
-                                <button className='bg-gradient text-white absolute right-0 bottom-0 !py-[1.667vh] !px-[1.875vw]'>
-                                    <span className='text-[1.25vw] '>Submit</span>
-                                </button>
-                            </div>
-                        </div>
-                    </div> */}
+                    
                     <form onSubmit={formik.handleSubmit} className="custom-grid-form grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div className="mb-2">
-          <label htmlFor="mobileNumber" className="block font-bold mb-2">Mobile Number</label>
+          <label htmlFor="mobileNumber" className="block font-bold mb-2 mobile:text-[3.721vw]">Mobile Number</label>
           <PhoneInput
             type="text"
             placeholder="Enter phone number"
@@ -165,6 +118,9 @@ function EnrollPopUp({isModalOpen,handleCloseModal}) {
               formik.setFieldValue("mobileNumber", e);
               setPhoneValue(e);
             }}
+            inputExtraProps={{
+        autoFocus: true,
+      }}
             // style={{
             //   border: `${error.mobileNumber || error.validPhone ? inputBorderErr : inputBorder}`,
             //   borderRadius: "5px",
@@ -180,6 +136,7 @@ function EnrollPopUp({isModalOpen,handleCloseModal}) {
             enableSearch
             international
             inputProps={{
+              autoFocus: true,
               style: {
                 height: "0.43em !important",
               },
@@ -196,7 +153,7 @@ function EnrollPopUp({isModalOpen,handleCloseModal}) {
           )}
         </div>
         <div className="mb-2">
-          <label htmlFor="email" className="block font-bold mb-2">Email</label>
+          <label htmlFor="email" className="block font-bold mb-2 mobile:text-[3.721vw]">Email</label>
           <input
             id="email"
             name="email"
@@ -212,7 +169,7 @@ function EnrollPopUp({isModalOpen,handleCloseModal}) {
           ) : null}
         </div>
         <div className="mb-2">
-            <label htmlFor="course" className="block font-bold mb-2">Course</label>
+            <label htmlFor="course" className="block font-bold mb-2 mobile:text-[3.721vw]">Course</label>
             <input
               id="course"
               name="course"
@@ -229,7 +186,7 @@ function EnrollPopUp({isModalOpen,handleCloseModal}) {
           </div>
         
         <div className="mb-2">
-          <label htmlFor="fullName" className="block font-bold mb-2 text-left">Full Name</label>
+          <label htmlFor="fullName" className="block font-bold mb-2 text-left mobile:text-[3.721vw]">Full Name</label>
           <input
             id="fullName"
             name="fullName"
@@ -254,7 +211,7 @@ function EnrollPopUp({isModalOpen,handleCloseModal}) {
 
        
         <div className="mb-2 ">
-          <label htmlFor="message" className="block font-bold mb-2">Message</label>
+          <label htmlFor="message" className="block font-bold mb-2 mobile:text-[3.721vw]">Message</label>
           <textarea
             id="message"
             name="message"
@@ -270,7 +227,7 @@ function EnrollPopUp({isModalOpen,handleCloseModal}) {
         </div>
 
         <div  className="mb-2 btnComponent mobile:top-[0vh]">
-          <button type="submit" className=" text-white py-2 px-4 rounded ">
+          <button type="submit" className=" text-white py-2 px-4 mobile:text-[3.721vw] mobile:font-bold rounded ">
             Submit
           </button>
         </div>
