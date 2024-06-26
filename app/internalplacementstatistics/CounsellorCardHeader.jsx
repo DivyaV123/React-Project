@@ -14,12 +14,22 @@ import { usePathname } from "next/navigation";
 import CounsellorFilters from "./CounsellorFilters";
 import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
 import NoContent from "./NoContent";
+import CounsellorFilterModal from "./CounsellorFilterModal";
 const CounsellorCardHeader = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
-
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleModalOpen = () => {
+    
+    setIsModalOpen(true);
+    
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+   
+  };
   const {
     filteringData,
     page,
@@ -158,6 +168,16 @@ const CounsellorCardHeader = () => {
             />
           )}
         </section>
+        <div className="hidden mobile:block mobile:flex mobile:justify-between mobile:h-[5.579vh] mobile:w-[92.558vw] mobile:items-center">
+        <div>
+          <h2 className=" mobile:text-[3.721vw] mobile:font-bold ">Students Feedback</h2>
+        </div>
+        <div className=" mobile:flex ">
+         <section> <img  src="../../icon_link.svg" className={`text-[#002248] text-[1.25vw] font-semibold pointer-events-none opacity-50`}/></section>
+         <button  onClick={() => handleModalOpen()}  className=" mobile:w-[23.256vw] mobile:flex mobile:justify-center mobile:items-center mobile:h-[3.433vh] mobile:rounded	bg-gradient mobile:text-[3.256vw] mobile:text-[white]  "> <img  src="../../icon_link.svg" className={`text-[#002248] text-[1.25vw] font-semibold pointer-events-none opacity-50 mx-1`}/>Filter</button>
+        </div>
+
+        </div>
         <div
           onScroll={(event) => {
             handleScroll(
@@ -189,6 +209,7 @@ const CounsellorCardHeader = () => {
           )}
         </div>
       </div>
+      <CounsellorFilterModal isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}/>
     </div>
   );
 };

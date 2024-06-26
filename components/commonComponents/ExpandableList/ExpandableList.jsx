@@ -15,7 +15,7 @@ const ExpandableList = ({ items, renderItem }) => {
       {visibleItems?.map((item, index) => renderItem(item, index))}
       {items?.length > 5 && (
         <span
-          className="text-[#2874f0] text-[0.938vw] font-medium cursor-pointer"
+          className="text-[#2874f0] text-[0.938vw] font-medium cursor-pointer mobile:text-[3.421vw]"
           onClick={toggleExpand}
         >
           {expanded ? 'Show Less...' : 'Show More...'}
