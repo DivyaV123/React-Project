@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useContext } from "react";
 import "./navitems.scss";
 import {
   NavigationMenu,
@@ -16,9 +16,11 @@ import { InputIcon } from "@radix-ui/react-icons";
 import { CONTACT_US_PATH, PLACEMENT_PATH, HIREFROMUS_PATH } from "@/lib/RouteConstants";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 
 
 function NavItems() {
+  const { setHomeBranchData } = useContext(GlobalContext)
   const { data: courseResponse, isLoading: CourseIsLoading, error: CourseError } = useGetAllCategoriesQuery()
   const { data: BranchResponse, error: branchError, isLoading: branchIsLoading } = useGetAllBranchesQuery()
   const navItems = [
@@ -29,6 +31,7 @@ function NavItems() {
     { id: 5, name: "Placements", content: "" },
     { id: 6, name: "Contact us", content: "" },
   ];
+  setHomeBranchData(BranchResponse?.data[0]?.cities)
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {

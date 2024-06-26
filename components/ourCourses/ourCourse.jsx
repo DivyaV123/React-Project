@@ -158,7 +158,7 @@ function OurCourse({ page }) {
   const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
   const [courseCardData, setCourseCardData] = useState(initialCard);
   const [category, setCategory] = useState(initialCategory);
-  const [hoveredCategory, setHoveredCategory] = useState(null);
+  const [hoveredCategory, setHoveredCategory] = useState(initialCategory[0].title);
   const [hoveredIndex, setHoveredIndex] = useState(0);
   // const [isloading, setisLoading] = useState(true);
 

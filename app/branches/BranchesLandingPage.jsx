@@ -135,6 +135,10 @@ function BranchesLandingPage({ BranchDetails }) {
                             branchData?.address?.state,
                             branchData?.address?.pincode
                         ].filter(Boolean).join(' ')}
+                        <button onClick={() => window.open(branchData?.address.location, "_blank")} className="flex gap-1  text z-1">
+                            <p className="text-[#7298FF] text-[0.703vw] p-[0.156vw]">Get Directions</p>
+                            <img src="/DirectionIcon.svg" className="h-4 w-4" />
+                        </button>
                     </p>
                 </article>
                 <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
@@ -148,7 +152,11 @@ function BranchesLandingPage({ BranchDetails }) {
                         />
                     </span>
                     <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
-                        {branchData?.contacts && branchData?.contacts[0]}
+                        {branchData?.contacts && branchData?.contacts.map((cont) => {
+                            return (<span>
+                                {cont},{" "}
+                            </span>);
+                        })}
                     </p>
                 </article>
                 <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
