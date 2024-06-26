@@ -15,13 +15,13 @@ const Checkbox = ({ id, label, checked, onChange }) => {
     <div className="flex items-center space-x-2 pb-[1.111vh]">
       <input
         type="checkbox"
-        className="cursor-pointer"
+        className="cursor-pointer mobile:h-[4.186vh] mobile:w-[4.186vw]"
         id={`checkbox-${id}`}
         checked={checked}
         onChange={onChange}
         onClick={(event) => event.stopPropagation()}
       />
-      <label htmlFor={`checkbox-${id}`} className="text-[#002248] text-[0.938vw]" onClick={handleClick}>
+      <label htmlFor={`checkbox-${id}`} className="text-[#002248] text-[0.938vw] mobile:text-[4.256vw]" onClick={handleClick}>
         {label}
       </label>
     </div>
