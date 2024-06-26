@@ -8,7 +8,7 @@ const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
-
+  const [homeBranchData, setHomeBranchData] = useState([])
   const [selectedBatch, setSelectedBatch] = useState("Bengalore");
   const [selectedClassMode, setSelectedClassMode] = useState("offline");
   const todayDate = dayjs().format("YYYY-MM-DD");
@@ -382,7 +382,8 @@ const GlobalContextProvider = ({ children }) => {
         universitySearchQuery, setUniversitySearchQuery,
         yearSearchQuery, setYearSearchQuery,
         streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
-        onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches
+        onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
+        homeBranchData, setHomeBranchData
       }}
     >
       {children}

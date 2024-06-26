@@ -281,7 +281,7 @@ const Tutions = () => {
                   className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
                     ? "courseMedium"
                     : "courseinitial"
-                    }  p-2 branchOverlay h-fit`}
+                    }  p-2 branchMenuCard h-fit`}
                 >
                   <div className="flex h-10 gap-1.5">
                     <img className="h-8 w-8 " src={content.image} />

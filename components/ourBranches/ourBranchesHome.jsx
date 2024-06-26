@@ -17,7 +17,9 @@ import "./ourBranchesHome.scss";
 function OurBranchesHome({ page }) {
   const router = useRouter();
   const [isloading, setisLoading] = useState(true);
-  const { setSelectedBranch, setSelectedBatch } = useContext(GlobalContext);
+  const { setSelectedBranch, setSelectedBatch, homeBranchData } = useContext(GlobalContext);
+  console.log(homeBranchData, "homeBranchData")
+  let branchDetails = homeBranchData;
   const branchCards = [
     {
       path: "./images/bengaloreBg-Image.png",
@@ -73,18 +75,18 @@ function OurBranchesHome({ page }) {
   const btnHoverClass =
     "font-semibold bg-orange-500 bg-gradient text-white rounded";
 
-  if (page === "course") {
-    branchCards.pop();
+  if (page !== "course" && branchDetails?.length > 0) {
+    branchDetails = [...branchDetails, { cityImage: "./images/AllCitiesCard.png", cityName: "AllCities" }];
   }
-  const handleImageRoute = (e, city) => {
+  const handleImageRoute = (e, cityName) => {
     e.preventDefault();
-    if (page !== "course" && city !== "AllCities") {
-      setSelectedBranch(city);
+    if (page !== "course" && cityName !== "AllCities") {
+      setSelectedBranch(cityName);
       router.push(`${OFFLINE_BRANCHES}`);
     } else if (page === "course") {
-      setSelectedBatch(city);
+      setSelectedBatch(cityName);
       router.push(`${UPCOMING_BATCHES}`);
-    } else if (page !== "course" && city === "AllCities") {
+    } else if (page !== "course" && cityName === "AllCities") {
       router.push(`${COMBINED_BRANCHES}`);
     }
   };
@@ -144,10 +146,7 @@ function OurBranchesHome({ page }) {
             }`}
         >
           {btnState === "OfflineClasses" ? (
-            branchCards.map((elements) => {
-              if (page === "course") {
-                elements.path = "." + elements.path;
-              }
+            branchDetails?.length > 0 && branchDetails.map((elements) => {
               return (
                 <>
                   <div
@@ -160,19 +159,19 @@ function OurBranchesHome({ page }) {
                       <Skeleton className="h-[7.813vw] w-[15.625vw]" />
                     ) : page === "course" ? (
                       <div
-                        onClick={(e) => handleImageRoute(e, elements.city)}
-                        className={`${elements.city !== "AllCities" ? " imgstyling" : ""
+                        onClick={(e) => handleImageRoute(e, elements.cityName)}
+                        className={`${elements.cityName !== "AllCities" ? " imgstyling" : ""
                           }  h-[7.813vw] w-[15.625vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
                         style={{
-                          backgroundImage: `url(${elements.path})`,
+                          backgroundImage: `url(${elements.cityImage})`,
                           backgroundRepeat: "no-repeat",
                           backgroundSize: "cover",
                         }}
                       >
-                        {elements.city !== "AllCities" && (
+                        {elements.cityName !== "AllCities" && (
                           <p>
                             <h1 className="font-bold text-white text-[1.875vw] mobile:text-[4.651vw] flex flex-col justify-center items-center">
-                              {elements.city}
+                              {elements.cityName}
                             </h1>
                             <h1 className="text-white text-[1.094vw] mobile:text-[3.256vw] flex flex-col justify-center items-center">
                               {elements.branchCount} Branches
@@ -182,19 +181,19 @@ function OurBranchesHome({ page }) {
                       </div>
                     ) : (
                       <div
-                        onClick={(e) => handleImageRoute(e, elements.city)}
-                        className={`${elements.city !== "AllCities" ? " imgstyling" : ""
+                        onClick={(e) => handleImageRoute(e, elements.cityName)}
+                        className={`${elements.cityName !== "AllCities" ? " imgstyling" : ""
                           }  h-[7.813vw] w-[20.469vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center`}
                         style={{
-                          backgroundImage: `url(${elements.path})`,
+                          backgroundImage: `url(${elements.cityImage})`,
                           backgroundRepeat: "no-repeat",
                           backgroundSize: "cover",
                         }}
                       >
-                        {elements.city !== "AllCities" && (
+                        {elements.cityName !== "AllCities" && (
                           <p>
                             <h1 className="font-bold text-white text-[1.875vw] mobile:text-[4.651vw] flex flex-col justify-center items-center">
-                              {elements.city}
+                              {elements.cityName}
                             </h1>
                             <h1 className="text-white text-[1.094vw] mobile:text-[3.256vw] flex flex-col justify-center items-center">
                               {elements.branchCount} Branches
