@@ -285,7 +285,7 @@ const Branches = ({ BranchResponse }) => {
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <div
-        className={`menuSidebar  pt-2 xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] overflow-auto myscrollbar`}
+        className={`menuSidebar  pt-2 xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] overflow-auto branchesScroll`}
       >
         {cityData?.map((courseItem, index) => {
           return (

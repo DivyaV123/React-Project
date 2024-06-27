@@ -33,7 +33,7 @@ function ExperiencedFaculty() {
                         Get Experienced Faculty <br /> Guidance
                     </h1>
                     <p id="tagline" className='text-dark-gray fulljustify text-[18px] mobile:text-[4.186vw] mt-6 mobile:mt-[2.575vh]'>
-                        Our dedicated placement cell works tirelessly to connect our students with leading IT companies for job opportunities. With a strong network of corporate partners and recruitment drives to ensure maximum exposure for our students.
+                        Discover our team of experienced faculty who bring a wealth of teaching expertise and real-world knowledge to every classroom. With qualifications, teaching evaluations, and industry experience, they ensure effective instruction and mentorship for your academic journey.
                     </p>
                     <article className='sm:grid md:grid-cols-3 xs:grid-cols-1 sm:grid-cols-auto gap-2 mt-6 w-full mobile:flex mobile:mt-[2.575vh] mobile:gap-6'>
                         {
