@@ -380,13 +380,14 @@ function OurCourse({ page }) {
                   if (classItem.title === "Self Paced") {
                     mode = "SELFPACED";
                   } else if (classItem.title === "Experiential Learning") {
-                    mode = "EXPERIMENTALLEARNING";
+                    mode = "EXPERIENTIALLEARNING";
                   } else if (classItem.title === "Offline Classes") {
                     mode = "OFFLINECLASSES";
                   } else if (classItem.title === "Online Classes") {
                     mode = "ONLINECLASSES";
                   }
                   exploreCourseFilter(mode);
+                  console.log(mode, "modemode")
                 }}
               >
                 {classItem.title}
@@ -485,7 +486,7 @@ function OurCourse({ page }) {
                 >
                   <div className="flex  items-center py-[2.222vh] px-[1.25vw] w-full">
                     <picture className="flex justify-start w-[89%]">
-                      <img src={item.icon} />
+                      <img src={hoveredCategory === item.title ? item.icon : item.icon} />
                       <aside
                         className={` pl-[1.25vw] text-[1.094vw] text-dark-gray   w-full ${hoveredCategory === item.title
                           ? "text-white"

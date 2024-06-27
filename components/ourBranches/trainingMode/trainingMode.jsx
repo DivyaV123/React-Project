@@ -13,28 +13,28 @@ function TrainingMode() {
     const trainingDetails = [
         {
             mode: "Offline Classes",
-            detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
+            detail: "Offline classes involve face-to-face interaction, structured schedules, hands-on learning.",
             cardlogo: "./icon_filled_ofline_classes.svg",
             hoverLogo: 'hoverOfflineClassesIcon',
-            mobileLogo:"./mobile_offline.svg"
+            mobileLogo: "./mobile_offline.svg"
         }, {
             mode: "Online Live classes",
-            detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
+            detail: "Online classes provide remote learning flexibility through digital platforms.",
             cardlogo: "./icon_filled_online_live_classes.svg",
             hoverLogo: 'hoverOfflineClassesIcon',
-            mobileLogo:"./mobile_online.svg"
+            mobileLogo: "./mobile_online.svg"
         }, {
             mode: "Experiential Learning",
-            detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
+            detail: "Advance topics through hands-on learning, active , critical thinking, which masters skills.",
             cardlogo: "./icon_filled_experiential_learning.svg",
             hoverLogo: 'hoverOfflineClassesIcon',
-            mobileLogo:"./mobile_experiment.svg"
+            mobileLogo: "./mobile_experiment.svg"
         }, {
             mode: "Self paced",
-            detail: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor",
+            detail: "Learn at your own speed, offering flexibility and independence in your learning journey.",
             cardlogo: "./icon_filled_self_paced.svg",
             hoverLogo: 'hoverOfflineClassesIcon',
-            mobileLogo:"./mobile_self.svg"
+            mobileLogo: "./mobile_self.svg"
         },
     ]
     useEffect(() => {

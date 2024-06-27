@@ -24,11 +24,7 @@ function PlacementAssistance() {
                             <p >Placement Assistance</p>
                         </header>
                         <p id="tagline" className='text-dark-gray fulljustify text-[18px] mobile:text-[4.186vw] mt-6 mobile:mt-[2.575vh]'>
-                            Our dedicated placement cell works tirelessly to connect
-                            our students with leading IT companies for job
-                            opportunities. With a strong network of corporate partners
-                            and recruitment drives to ensure maximum exposure for
-                            our students.
+                            Our dedicated placement cell works tirelessly to connect our students with leading IT companies for job opportunities. With a strong network of corporate partners and frequent recruitment drives to ensure maximum exposure for our students, we achieve outstanding placement success.
                         </p>
                         <article className='flex justify-center align-center mt-6 mobile:mt-[2.575vh]'>
                             <aside className='w-[100%]'>

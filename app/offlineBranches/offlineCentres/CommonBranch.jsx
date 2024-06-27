@@ -4,7 +4,11 @@ import './IndividualCentres.scss'
 const CommonBranch = ({ selectedId, page }) => {
   useEffect(() => {
   }, [selectedId])
-  console.log(selectedId, "selectedId", selectedId?.branches)
+  function removeSpacesFromNumbers(phoneNumbers) {
+    return phoneNumbers.split(',')
+      .map(number => number.replace(/\s+/g, '').trim())
+      .join(', ');
+  }
   return (
     <section className={` mt-6  flex  gap-4  ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 h-full overflow-x-scroll offlineScrollbar' : "w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
       {selectedId &&
@@ -27,13 +31,18 @@ const CommonBranch = ({ selectedId, page }) => {
                 alt="Location"
               />
               <p className="text-[0.625rem] text-[#575757]">
-                {branch.location}
+                {[
+                  branch?.street,
+                  branch?.city,
+                  branch?.state,
+                  branch?.pincode
+                ].filter(Boolean).join(' ')}
               </p>
             </div>
             <div className="flex gap-3 pt-3">
               <img src="../../../../icon_call.svg" alt="Phone" />
               <p className="text-[0.75rem] text-[#107BD4] font-medium">
-                {branch.phoneNumber}
+                {removeSpacesFromNumbers(branch.phoneNumber)}
               </p>
             </div>
             <div className="flex gap-3 pt-3">
