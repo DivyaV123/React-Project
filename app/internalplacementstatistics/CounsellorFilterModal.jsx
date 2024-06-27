@@ -120,9 +120,14 @@ const CounsellorFilterModal = ({ isModalOpen,handleCloseModal }) => {
     setGenerateLink(true);
   };
   const headerData = [
-   
+    { label: "Time Period", component: <TimeFilter isLoading={isLoading} /> },
     { label: "Year of Passing", component: <YearFilter /> },
-    
+    { label: "State", component: <StateFilter /> },
+    { label: "University", component: <UniversityFilter /> },
+    { label: "College", component: <CollegeFilter /> },
+    { label: "Degree/Masters", component: <DegreeFilter degreeList={degreeList} /> },
+    { label: "Stream", component: <StreamFilter streamList={streamList} /> },
+    { label: "Percentage", component: <PercentageFilter /> },
   ];
   return (
     <div className="CounsellorFilterModal">
@@ -169,7 +174,7 @@ const CounsellorFilterModal = ({ isModalOpen,handleCloseModal }) => {
         </div>
 
             </div>
-            <div className="filterOption">
+            <div className="filterOptions">
               {headerData.map((item, index) => (
                 <div key={index}  className={`filterOption ${activeFilter === item.label ? "selected" : ""}`} onClick={() => setActiveFilter(item.label)}>
                   {item.label}

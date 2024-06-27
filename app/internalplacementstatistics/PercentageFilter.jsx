@@ -74,8 +74,8 @@ const PercentageFilter = () => {
   
 
   return (
-    <div className="px-[1.875vw] py-[2.778vh] timePeriod">
-      <div className="flex justify-between pb-[1.111vh]">
+    <div className="px-[1.875vw] py-[2.778vh] timePeriod mobile:px-[5.875vw] mobile:pt-[1.778vh]">
+      <div className="flex justify-between pb-[1.111vh] mobile:hidden">
         <p className="text-[0.938vw] text-[#002248] font-semibold">
           Percentage
         </p>
@@ -99,7 +99,7 @@ const PercentageFilter = () => {
           onChange={handleToChange}
           onBlur={() => setErrorMessage(validateTo(toPercentage))}
         />
-        <img src="../../checked.svg" onClick={!isApplyDisabled ? handleApplyFilter : null} className={`applyFilterButton cursor-pointer w-[1.875vw] h-[3.333vh] ${isApplyDisabled ? 'disabled' : ''}`}/>
+        <img src="../../checked.svg" onClick={!isApplyDisabled ? handleApplyFilter : null} className={`applyFilterButton mobile:w-[5.875vw] cursor-pointer w-[1.875vw] h-[3.333vh] ${isApplyDisabled ? 'disabled' : ''}`}/>
       </div>
       {errorMessage && (
         <div className="">

@@ -15,7 +15,7 @@ const Checkbox = ({ id, label, checked, onChange }) => {
     <div className="flex items-center space-x-2 pb-[1.111vh]">
       <input
         type="checkbox"
-        className="cursor-pointer mobile:h-[4.186vh] mobile:w-[4.186vw]"
+        className="cursor-pointer mobile:h-[4.186vh] "
         id={`checkbox-${id}`}
         checked={checked}
         onChange={onChange}
