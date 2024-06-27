@@ -114,11 +114,11 @@ function BranchesLandingPage({ BranchDetails }) {
             </section>
             <section className='basis-[50%] sm:pl-[3.047vw] sm:pt-[11.111vh] pb-[3.333vh] mobile:pb-[1.717vh]'>
                 <header>
-                    <div className='font-bold text-[3.75vw] mobile:text-[7.442vw] mobile:pb-[1.717vh]'>
+                    <div className='font-medium text-[3.75vw] mobile:text-[7.442vw] mobile:pb-[1.717vh]'>
                         {branchData.name}
                     </div>
                 </header>
-                <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
+                <article className='flex gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg
                             width={svgicons.locationIcon[0]}
@@ -128,16 +128,20 @@ function BranchesLandingPage({ BranchDetails }) {
                             color={svgicons.locationIcon[4]}
                         />
                     </span>
-                    <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw]'>
+                    <p className=' text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw]'>
                         {[
                             branchData?.address?.street,
                             branchData?.address?.city,
                             branchData?.address?.state,
                             branchData?.address?.pincode
                         ].filter(Boolean).join(' ')}
+                        <button onClick={() => window.open(branchData?.address.location, "_blank")} className="flex gap-1  text z-1">
+                            <p className="text-[#7298FF] text-[0.703vw] p-[0.156vw]">Get Directions</p>
+                            <img src="/DirectionIcon.svg" className="h-4 w-4" />
+                        </button>
                     </p>
                 </article>
-                <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
+                <article className='flex  gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg
                             width={svgicons.phoneCall[0]}
@@ -147,11 +151,15 @@ function BranchesLandingPage({ BranchDetails }) {
                             color={svgicons.phoneCall[4]}
                         />
                     </span>
-                    <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
-                        {branchData?.contacts && branchData?.contacts[0]}
+                    <p className=' text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
+                        {branchData?.contacts && branchData?.contacts.map((cont) => {
+                            return (<span>
+                                {cont},{" "}
+                            </span>);
+                        })}
                     </p>
                 </article>
-                <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
+                <article className='flex gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg
                             width={svgicons.calender[0]}
@@ -161,11 +169,11 @@ function BranchesLandingPage({ BranchDetails }) {
                             color={svgicons.calender[4]}
                         />
                     </span>
-                    <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
+                    <p className='text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
                         {upComingBatches} Upcoming Batches
                     </p>
                 </article>
-                <article className='flex font-medium gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
+                <article className='flex  gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg
                             width={svgicons.calenderTicked[0]}
@@ -175,7 +183,7 @@ function BranchesLandingPage({ BranchDetails }) {
                             color={svgicons.calenderTicked[4]}
                         />
                     </span>
-                    <p className='font-medium text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
+                    <p className='\ text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center'>
                         {onGoingBatches} Ongoing Batches
                     </p>
                 </article>

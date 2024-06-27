@@ -16,7 +16,7 @@ function RelevantTraining() {
                                 Industry-Relevant Training
                             </h1>
                             <p id="tagline" className='text-dark-gray flex-col item-center fulljustify text-[18px] mt-6 mobile:mt-[2.575vh] mobile:text-[4.186vw]'>
-                                At QSpiders, we are committed to providing industry-relevant training that aligns with the current trends and technologies in the IT sector.
+                                At QSpiders, we are committed to providing industry-relevant training that aligns with the current trends and technologies in the IT sector. Our expert-led courses ensure that students gain the practical, in-demand skills needed to excel in today's competitive job market.
                             </p>
                         </header>
                         <article className='flex justify-start align-start mt-6 mobile:mt-[2.575vh]'>

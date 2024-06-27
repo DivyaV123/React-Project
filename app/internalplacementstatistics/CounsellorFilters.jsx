@@ -122,7 +122,7 @@ const CounsellorFilters = () => {
   };
 
   return (
-    <aside className="filterSidebar myscrollbar mobile:hidden">
+    <aside className="filterSidebar myscrollbar mobile:hidden ">
       <div className="flex pb-[2.222vh] px-[1.875vw] pt-[3.333vh] justify-between filterHeader">
         <div className="flex gap-2">
           <button className={filterClass}>Filter</button>

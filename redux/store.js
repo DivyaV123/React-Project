@@ -35,6 +35,7 @@ import { courseDetailsApi } from './queries/getCoursedetails';
 import { courseAdderApi } from './queries/courseAdderApi';
 import { getAllBranchesApi } from './queries/getAllBranchData';
 import { beancheDetailsApi } from './queries/getBranchDetails';
+import { branchCourseApi } from './queries/getBranchCourseApi';
 
 
 const store = configureStore({
@@ -93,12 +94,14 @@ const store = configureStore({
 
     [getAllBranchesApi.reducerPath]: getAllBranchesApi.reducer,
 
-    [beancheDetailsApi.reducerPath]: beancheDetailsApi.reducer
+    [beancheDetailsApi.reducerPath]: beancheDetailsApi.reducer,
+
+    [branchCourseApi.reducerPath]: branchCourseApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
       ItandNonItApi.middleware, counsellorsApi.middleware, PlacementBranchApi.middleware, YearOfPassoutApi.middleware, PlacedDateBetweenApi.middleware, LoginApi.middleware, categoriesApi.middleware,
-      CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware),
+      CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware),
 });
 
 export default store; 

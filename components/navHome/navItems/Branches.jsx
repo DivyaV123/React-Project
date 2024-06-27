@@ -7,7 +7,7 @@ import { BRANCH_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const Branches = ({ BranchResponse }) => {
-  const { setOnGoingBatches, setupComingBatches } = useContext(GlobalContext)
+  const { setOnGoingBatches, setupComingBatches, setHomeBranchData } = useContext(GlobalContext)
   const Branches = [
     {
       icon: "bengaloreIcon",
@@ -272,7 +272,6 @@ const Branches = ({ BranchResponse }) => {
       arrow: "/arrowIconDark.svg",
     },
   ];
-
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
   const cityData = BranchResponse?.data[0]?.cities;
@@ -286,7 +285,7 @@ const Branches = ({ BranchResponse }) => {
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <div
-        className={`menuSidebar  pt-2 xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw]`}
+        className={`menuSidebar  pt-2 xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] overflow-auto branchesScroll`}
       >
         {cityData?.map((courseItem, index) => {
           return (

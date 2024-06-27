@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Svg from "../commonComponents/Svg/Svg";
 import { svgicons } from "../assets/icons/svgassets";
 import { Skeleton } from "../ui/skeleton";
+import { truncateText } from "@/lib/utils";
 const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData, branchName }) => {
   const [isloading, setisLoading] = useState(true);
   const upcomingBatchesData = branchesData?.length > 0 ? branchesData : [
@@ -138,8 +139,8 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
                   : "w-[20.46vw] mobile:w-[60.93vw] upcomingBatches py-[2.222vh] px-[1.25vw] mobile:px-[3.488vw] mobile:py-[1.717vh]"
               }
             >
-              <header className="font-bold text-[1.25vw] pb-[0.833vh] mobile:text-[3.721vw] mobile:pb-[0.644vh]">
-                {batch.course ? batch.course : batch.batchName}
+              <header title={batch.course ? batch.course : batch.batchName} className="font-bold text-[1.25vw] pb-[0.833vh] mobile:text-[3.721vw] mobile:pb-[0.644vh]">
+                {batch.course ? truncateText(batch.course, 22) : truncateText(batch.batchName, 22)}
               </header>
               <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh] mobile:text-[2.791vw] mobile:pb-[2.146vh]">
                 By: {batch.trainer ? batch.trainer : batch.trainerName}
@@ -158,7 +159,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
                 </div>
                 <div className={`${dateAndTime}`}>
                   <Svg
-                  className="mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
+                    className="mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
                     width={svgicons.icontime[0]}
                     height={svgicons.icontime[1]}
                     viewBox={svgicons.icontime[2]}
