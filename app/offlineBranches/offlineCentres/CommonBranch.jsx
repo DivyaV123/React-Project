@@ -6,7 +6,7 @@ const CommonBranch = ({ selectedId, page }) => {
   }, [selectedId])
 
   return (
-    <section className={` mt-6  flex  gap-4  ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 h-full overflow-x-scroll offlineScrollbar' : "w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
+    <section className={` mt-6 mobile:hidden  flex  gap-4  ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 h-full overflow-x-scroll offlineScrollbar' : "w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
       {selectedId &&
         selectedId?.branchCentre?.map((branch, branchIndex) => (
           <div

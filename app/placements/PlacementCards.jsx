@@ -62,14 +62,16 @@ const PlacementCards = () => {
   };
   return (
     <>
-      <div className="flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-[1.875rem]">
+      <div className="flex mobile:flex-wrap mb-4 sm:ml-[1.5rem] sm:mr-[2.25rem] sm:gap-[1.875rem]">
         {isLoading ? (
-          <div className=" flex flex-col gap-2 justify-center  w-[17.969vw]  h-[9.897vw] border rounded-2xl mt-3">
-            <Skeleton className="h-7 w-[50%] ml-2" />
-            <Skeleton className="h-10 w-[70%] ml-2" />
-          </div>
+          <CardSkeleton/>
         ) : (
+          <>
+          <section className="sm:hidden w-[95.349vw] h-[8.584vh] bg-[#DBECFF66] mx-[2.326vw] mt-[1.288vh] rounded-lg">
+
+          </section>
           <TotalPlacedCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
+          </>
         )}
         {isLoading ? (
           <CardSkeleton/>

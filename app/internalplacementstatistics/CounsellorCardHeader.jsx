@@ -113,7 +113,7 @@ const CounsellorCardHeader = () => {
     <div
       className={`${
         pathname === "/internalplacementstatistics"
-          ? "px-[1.875vw] pt-[3.333vh] pb-[6.528vh] flex"
+          ? "sm:px-[1.875vw] sm:pt-[3.333vh] sm:pb-[6.528vh] flex"
           : ""
       }`}
     >
@@ -130,7 +130,7 @@ const CounsellorCardHeader = () => {
           pathname === "/internalplacementstatistics" ? "pl-[1.875vw]" : ""
         }`}
       >
-        <section className="px-[1.875vw] flex gap-5 pb-[3.333vh] items-center">
+        <section className="sm:px-[1.875vw] flex mobile:flex-wrap sm:gap-5 sm:pb-[3.333vh] sm:items-center">
           {isLoading ? (
             <LinkCardSkeleton />
           ) : (
@@ -168,7 +168,7 @@ const CounsellorCardHeader = () => {
               setIsFetchData
             );
           }}
-          className="h-[58.889vh] overflow-auto myscrollbar w-[69.063vw] ml-[1.875vw] rounded-2xl"
+          className="sm:h-[58.889vh] overflow-auto myscrollbar sm:w-[69.063vw] ml-[1.875vw] rounded-2xl"
         >
           {accumulatedData.length > 0 ? (
             isLoading ? (

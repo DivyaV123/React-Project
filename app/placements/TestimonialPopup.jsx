@@ -1,46 +1,27 @@
-import React, { useState } from "react";
-import "./PlacementSidebar.scss";
-import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
-import ImagePopup from "./ImagePopup";
-import VideoPopup from "./VideoPopup";
-import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
+import React from "react";
+import {
+  AlertDialogCancel,
+  AlertDialogContent,
+} from "@/components/ui/alert-dialog";
+import "./PlacementCards.scss";
+import Svg from "@/components/commonComponents/Svg/Svg";
+import { svgicons } from "@/components/assets/icons/svgassets";
 import Link from "next/link";
-import { branchAbbreviations } from "@/lib/utils";
-import { truncateText } from "@/lib/utils";
-import TestimonialPopup from "./TestimonialPopup";
-const PlacementContent = ({ counsellorFilterResponse }) => {
-  const [imageDialog, setImageDialog] = useState(false);
-  const [videoDialog, setVideoDialog] = useState(false);
-  const [testimonialDialog,setTestimonialDialog]=useState(false)
-  const openImageDialog = () => {
-    setImageDialog(true);
-    setVideoDialog(false);
-  };
-  const openVideoDialog = () => {
-    setVideoDialog(true);
-    setImageDialog(false);
-  };
-
-  const extractText=(data)=>{
-    return branchAbbreviations[data] || data;
-  }
-const handleViewmore=()=>{
-  setTestimonialDialog(true)
-}
-
+const TestimonialPopup = ({student,extractText}) => {
   return (
-    <>
-      {counsellorFilterResponse?.map((student) => (
-        <section
-          className="w-[99.4%] mobile:w-[92.558vw]  contentCard flex mobile:flex-row-reverse sm:pt-[0.556vh]
-         sm:pl-[0.469vw] sm:pb-[1.111vh] sm:mb-[3.333vh] sm:mt-[0.556vh] sm:ml-[0.078vw] mobile:my-[2.575vh] mobile:gap-4 mobile:justify-end"
-        >
-          <AlertDialog popup="imagepopup">
-            <div className="mobile:flex mobile:flex-col flex mobile:w-full mobile:pr-[3.721vw]">
-              <div className="sm:w-[15.547vw] ">
-                <div className="h-[24.861vh] overflow-hidden w-full rounded-2xl mobile:hidden">
-                  <img src={student?.photoLink} className="w-full" />
-                </div>
+    <div>
+      <AlertDialogContent className="w-[92.558vw]">
+        <AlertDialogCancel className="border-none hover:bg-white p-0 top-0 absolute right-2">
+          <Svg
+            className="w-[6.512vw] h-[3.004vh] outline-none"
+            width={svgicons.cancelButtonIcon[0]}
+            height={svgicons.cancelButtonIcon[1]}
+            viewBox={svgicons.cancelButtonIcon[2]}
+            icon={svgicons.cancelButtonIcon[3]}
+            color={svgicons.cancelButtonIcon[4]}
+          />
+        </AlertDialogCancel>
+        <div className="mobile:flex mobile:flex-col flex mobile:w-full mobile:pr-[3.721vw]">
                 <div className="imageCard">
                   <header className="studentName font-semibold sm:py-[1.111vh] mobile:pt-[1.717vh] mobile:pb-[1.502vh] sm:text-center">
                     {student?.name}
@@ -81,29 +62,11 @@ const handleViewmore=()=>{
                     </div>
                   </div>
                 </div>
-              </div>
               <div className="sm:pl-[1.563vw] sm:w-[42.813vw] sm:pt-[2.222vh] flex flex-col justify-between">
-                <p className="studentReview mobile:hidden">
+                <p className="studentReview mobile:pb-[1.502vh]">
                   {student?.testimonial?.writtenTestimonial}
                 </p>
-               
-                <p className="studentReview mobile:pb-[1.502vh] sm:hidden">
-                  {student?.testimonial?.writtenTestimonial.length > 75 ? (
-                    <>
-                      {truncateText(student.testimonial.writtenTestimonial,75)}
-                      <AlertDialogTrigger asChild>
-                      <span className="text-[2.558vw] font-semibold" onClick={handleViewmore}>View more</span>
-                      </AlertDialogTrigger>
-                    </>
-                  ) : (
-                    student.testimonial.writtenTestimonial
-                  )}
-                </p>
-               
                 <div className="flex gap-2 items-center mb-[1.111vh] sm:pl-[5vw] mobile:mb-[1.824vh] mobile:gap-4 ">
-                  <div className="text-[0.781vw] text-[#201C19] pr-[1.563vw] mobile:hidden">
-                    Reviews :
-                  </div>
                   <div className="iconContainer ">
                     <Link
                       href={student?.testimonial?.googleReview || "#"}
@@ -173,40 +136,9 @@ const handleViewmore=()=>{
                 </div>
               </div>
             </div>
-            <div className="sm:pl-[1.125vw] sm:pr-[1vw] sm:pt-[2.222vh] flex flex-col gap-3  mobile:pt-[1.717vh]">
-              <AlertDialogTrigger asChild>
-                <img
-                  onClick={openImageDialog}
-                  src={student?.testimonial?.testimonialLink}
-                  className="imageBox cursor-pointer"
-                />
-              </AlertDialogTrigger>
-              <AlertDialogTrigger asChild>
-                <img
-                  onClick={openVideoDialog}
-                  typeof="foaf:Image"
-                  className="videoBox cursor-pointer"
-                />
-              </AlertDialogTrigger>
-            </div>
-            {imageDialog && (
-              <ImagePopup
-                testimonialLink={student?.testimonial?.testimonialLink}
-              />
-            )}
-            {videoDialog && (
-              <VideoPopup videoLink={student?.testimonial?.youtubeReview} />
-            )}
-            {
-              testimonialDialog &&(
-                <TestimonialPopup student={student} extractText={extractText}/>
-              )
-            }
-          </AlertDialog>
-        </section>
-      ))}
-    </>
+      </AlertDialogContent>
+    </div>
   );
 };
 
-export default PlacementContent;
+export default TestimonialPopup;
