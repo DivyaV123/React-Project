@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import TrainingCard from './trainingCard';
 import Slide from "react-reveal/Slide";
 import { Fade } from 'react-reveal';
-import { useSearchParams } from 'next/navigation';
 import TrainingCardSkeleton from './TrainingCardSkeleton';
 import './trainingCard.scss'
 
@@ -50,7 +49,7 @@ function TrainingMode() {
                 </Slide>
             </header>
             <Fade bottom duration={1000} delay={0}>
-                <article className='sm:grid grid-cols-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4  sm:gap-5 mobile:flex mobile:flex-wrap mobile:mobileBackground mobile:pb-[3.219vh]'>
+                <article className='sm:grid grid-cols-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4  sm:gap-5 mobile:flex mobile:flex-wrap mobileBackground mobile:pb-[3.219vh]'>
                     {trainingDetails.map((element) => {
                         return (isloading ?
                             <TrainingCardSkeleton />
@@ -64,4 +63,4 @@ function TrainingMode() {
     )
 }
 
-export default TrainingMode
+export default TrainingMode;

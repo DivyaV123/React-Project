@@ -3,6 +3,12 @@
   font-size: 1.406vw;
   margin-top: 4.167vh;
   margin-left: 4.375vw;
+  @media (max-width: 639px) {
+   font-size: 4.651vw;
+   margin-top: 2.682vh;
+   margin-bottom: 1.717vh;
+   margin-left: 3.721vw;
+  }
 }
 .cityNavbar {
   background: #f4f4f4;

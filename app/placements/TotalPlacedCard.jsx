@@ -29,7 +29,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
     } else return;
   };
   return (
-    <div className={`${placementPage === "GeneralPlacements" ?'placedCard' :'internalStats'} relative cursor-pointer`} onClick={handleClick}>
+    <div className={`${placementPage === "GeneralPlacements" ?'placedCard' :'internalStats'} relative cursor-pointer mobile:mx-[7.442vw]`} onClick={handleClick}>
       {placeCheckedIcon && placementPage === "GeneralPlacements" && (
         <img
           src="../../checked.svg"
@@ -37,10 +37,10 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
         />
       )}
       <div className="flex flex-col justify-between h-full">
-        <p className="font-medium pl-[1.563vw] pt-[2.778vh] text-[1.25vw] text-[#FAFAFA]">
+        <p className="font-medium pl-[1.563vw] pt-[2.778vh] text-[1.25vw] text-[#FAFAFA] mobile:text-[3.256vw] mobile:pl-[5.581vw] mobile:pt-[1.073vh] ">
           Total Placed
         </p>
-        <p className="font-bold text-[2.5vw] pl-[1.563vw] pb-[2.778vh] text-[#FAFAFA]">
+        <p className="font-bold text-[2.5vw] pl-[1.563vw] pb-[2.778vh] text-[#FAFAFA] mobile:text-[5.581vw] mobile:pl-[5.581vw] mobile:pb-[1.073vh] ">
           {placementPage === "GeneralPlacements"
             ? allCounts?.response?.allPlacedCount
             : allCounts?.response?.filterDataCounts?.total}

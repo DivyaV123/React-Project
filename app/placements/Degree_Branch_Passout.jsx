@@ -112,7 +112,7 @@ const Degree_Branch_Passout = ({isLoading}) => {
     key,
     otherSetMoreStates
   ) => (
-    <div className="bg-white h-[2.65vw] flex w-full buttonSection relative">
+    <div className="bg-white h-[2.65vw] flex w-full buttonSection relative mobile:hidden">
       {items.slice(0, 6).map((item, index) => (
         <button
           key={index}
@@ -152,7 +152,7 @@ const Degree_Branch_Passout = ({isLoading}) => {
   );
 
   return (
-    <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2">
+    <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2 mobile:hidden">
       {isLoading ? (
         <BarSkeleton />
       ) : (

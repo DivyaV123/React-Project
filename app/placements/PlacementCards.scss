@@ -4,23 +4,47 @@
   height: 9.897vw;
   border-radius: 1rem;
   margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 85.116vw;
+    height: 8.584vh;
+    margin-top: -7.296vh;
+  }
 }
 .internalStats{
   @extend .placedCard ;
   width: 21.719vw;
+  @media (max-width: 639px) {
+    width: 85.116vw;
+    height: 8.584vh;
+    margin-top: -7.296vh;
+  }
 }
 .degreeCard {
   @extend .placedCard;
   background: #fff0f2;
-  // width: 17.813vw;
   background-image: url(../../public/red_card.png);
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-left: 3.721vw;
+    margin-right: 6.047vw;
+  }
 }
 .degreeInternal{
   @extend .degreeCard;
   width: 21.719vw;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-left: 3.721vw;
+    margin-right: 6.047vw;
+  }
 }
 .nonItCard {
   @extend .placedCard;
@@ -30,20 +54,48 @@
   background-repeat: no-repeat;
   background-size: contain;
   background-position: right;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-right: 3.721vw;
+  }
 }
 .branchCard{
   @extend .placedCard;
   background: #FFF4F0;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-left: 3.721vw;
+    margin-right: 6.047vw;
+  }
 
 }
 .overviewCard{
   @extend .placedCard;
   background: #E4FFE8;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-right: 3.721vw;
+  }
 
 }
 .overviewInternal{
   @extend .overviewCard;
   width: 21.719vw;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-right: 3.721vw;
+  }
 }
 .imagePopup{
   width: 100%;

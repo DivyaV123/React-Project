@@ -103,5 +103,7 @@
   }
 }
 .mobileBackground{
-  background: linear-gradient(180deg, rgba(240, 152, 25, 0.8) 0%, rgba(255, 81, 47, 0.8) 100%);
+  @media (max-width: 639px) {
+    background: #FFF3E84D;
+  }
 }
