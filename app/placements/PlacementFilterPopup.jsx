@@ -20,23 +20,6 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
   const {
     setFilterPlacementData,
     setPlacementParam,
-    degreeButton,
-    setDegreeButton,
-    branchButton,
-    setBranchButton,
-    passOutButton,
-    setPassOutButton,
-    setSideBarBtn,
-    setThroughCheckedIcon,
-    setLessCheckedIcon,
-    setPlacedCheckedIcon,
-    setNonItCheckedIcon,
-    setItCheckedIcon,
-    lesscheckedIcon,
-    throughcheckedIcon,
-    itCheckedIcon,
-    nonItCheckedIcon,
-    placeCheckedIcon
   } = useContext(GlobalContext);
   const {
     data: degreeAndStreamdata,
@@ -52,21 +35,21 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
     setBranchList(false);
     setYopList(false);
     setPopupButton(key);
-    setSearchInput(""); // Reset search input
+    setSearchInput("");
   };
   const handleBranchList = (key) => {
     setBranchList(true);
     setDegreeList(false);
     setYopList(false);
     setPopupButton(key);
-    setSearchInput(""); // Reset search input
+    setSearchInput(""); 
   };
   const handleYopList = (key) => {
     setYopList(true);
     setBranchList(false);
     setDegreeList(false);
     setPopupButton(key);
-    setSearchInput(""); // Reset search input
+    setSearchInput(""); 
   };
 
   const handleItemClick = (key, value) => {

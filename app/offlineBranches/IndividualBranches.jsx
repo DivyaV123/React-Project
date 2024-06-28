@@ -98,32 +98,32 @@ const IndividualBranches = () => {
           </div>
         </div>
 
-        <div className="pt-[3.333vh]">
-          <p className="font-medium text-[0.938vw] text-[#4987CE]">
+        <div className="sm:pt-[3.333vh] mobile:py-[2.575vh]">
+          <p className="font-medium text-[0.938vw] text-[#4987CE] mobile:text-[2.791vw]">
             Select Course to View our offline Centres
           </p>
         </div>
-        <section className="w-[80vw] m-auto pt-[1.667vh] flex flex-wrap gap-4">
+        <section className="sm:w-[80vw] m-auto sm:pt-[1.667vh] flex sm:flex-wrap mobile:flex-col gap-4">
           {selectedCity &&
             selectedCity?.course?.map((course, index) => (
               <div
                 onClick={(e) => handleCourseRoute(e, course.courseId)}
                 key={index}
-                className="courseCard py-[1.111vh] px-[0.625vw] cursor-pointer"
+                className="BranchCard  py-[1.111vh] px-[0.625vw] mobile:px-[2.326vw] mobile:py-[1.073vh] cursor-pointer"
               >
                 <div className="flex items-center gap-2">
                   <img
-                    src={course.courseIcon}
-                    alt={course.courseName}
-                    className="h-[3.333vh] w-[1.875vw]"
+                    src={course.image}
+                    alt={course.title}
+                    className="h-[3.333vh] w-[1.875vw] mobile:w-[8.372vw] mobile:h-[3.863vh]"
                   />
-                  <h3 className="text-[0.938vw] text-[#454545] font-bold p-1">
-                    {course.courseName}
+                  <h3 className="text-[0.938vw] text-[#454545] font-bold mobile:text-[2.791vw]">
+                    {course.title}
                   </h3>
                 </div>
                 <div>
-                  <article title={course.courseDescription} className="text-[#575757] text-[0.866vw] pt-[2.222vh]">
-                    {truncateText(course.courseDescription, 100)}
+                  <article className="text-[#575757] text-[0.866vw] pt-[2.222vh] mobile:text-[2.558vw] mobile:pt-[0.858vh]">
+                    {course.description}
                   </article>
                 </div>
               </div>

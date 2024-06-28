@@ -142,9 +142,9 @@ function OurBranchesHome({ page }) {
         <article
           className={`${page === "course" && btnState === "OfflineClasses"
             ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh]"
-            : "flex flex-wrap  gap-x-[1.094vw] gap-y-[1.944vh] justify-center"
+            : "flex sm:flex-wrap mobile:overflow-y-scroll mobile:courseScroll  sm:gap-x-[1.094vw] sm:gap-y-[1.944vh] sm:justify-center gap-6"
             }`}
-        >
+         >
           {btnState === "OfflineClasses" ? (
             branchDetails?.length > 0 && branchDetails.map((elements) => {
               return (
@@ -209,7 +209,7 @@ function OurBranchesHome({ page }) {
           ) : (
             <>
               <OnlineLiveClasses page="course" className="" />
-              <div className="flex-col justify-end py-[2.222vh]">
+              <div className="flex-col justify-end py-[2.222vh] mobile:hidden">
                 <button className="py-[1.111vh] px-[1.406vw] text-[1.094vw] font-semibold EnrollButton">
                   View More
                 </button>

@@ -34,6 +34,15 @@
   background: linear-gradient(to right, #f09819, #ff512f);
   cursor: pointer;
   z-index: 1;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 4.721vh;
+    font-size: 3.721vw;
+    padding-top: 1.073vh;
+    padding-bottom: 1.073vh;
+    padding-left: 5.581vw;
+    padding-right: 5.581vw;
+  }
 }
 .primaryLogin::before {
   content: "";
@@ -87,6 +96,16 @@
     linear-gradient(123deg, rgba(240, 152, 25, 1) 0%, rgba(255, 81, 47, 1) 100%)
     0% 0% no-repeat padding-box;
   border: 1px solid orangered;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 4.721vh;
+    font-size: 3.721vw;
+    padding-top: 1.073vh;
+    padding-bottom: 1.073vh;
+    padding-left: 5.581vw;
+    padding-right: 5.581vw;
+  }
+
 }
 
 .primaryPlain {

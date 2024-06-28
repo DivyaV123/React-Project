@@ -35,8 +35,8 @@ const IndividualCentres = () => {
             </div>
           ))}
         </div>
-        <section className="flex gap-5 sm:h-[609px]">
-          <div className="sm:w-[20vw] mt-6  p-1 h-full sm:overflow-y-scroll sm:myscrollbar">
+        <section className="flex gap-5 h-[609px]">
+          <div className="w-[20vw] mt-6  p-1 h-full overflow-y-scroll myscrollbar">
             {selectedCity &&
               selectedCity?.courses?.map((item, index) => (
                 <section className="mobile:mb-[1.717vh] mobileCentre">
