@@ -2,6 +2,7 @@
 import React, { useEffect } from 'react'
 import './IndividualCentres.scss'
 const CommonBranch = ({ selectedId, page }) => {
+  console.log(selectedId, page, "selectedIdselectedId")
   useEffect(() => {
   }, [selectedId])
   function removeSpacesFromNumbers(phoneNumbers) {
