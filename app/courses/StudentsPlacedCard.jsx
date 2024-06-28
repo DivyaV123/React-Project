@@ -22,7 +22,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                                 <img className='w-20 h-20 mobile:w-[18.605vw] mobile:h-[8.584vh]  rounded-full' src={element.photoLink.length ? element.photoLink : '../../images/user.jpg'} alt='no image' />
                             </figure>
                             <header>
-                                <h1 title={element.name} className={`flex justify-center  font-semibold text-dark-gray text-[1.563vw] mobile:text-[3.721vw]  text-center ${page !== 'branch' ? "pb-[3.333vh] " : "pb-[2.222vh] mobile:pb-[2.361vh]"}`}>
+                                <h1 title={element.name} className={`flex justify-center  font-medium text-dark-gray text-[1vw] mobile:text-[3.721vw]  text-center ${page !== 'branch' ? "pb-[3.333vh] " : "pb-[2.222vh] mobile:pb-[2.361vh]"}`}>
                                     {element.name.length > 11 ? element.name.substring(0, 11) + '...' : element.name}
                                 </h1>
                                 <article className='flex justify-center'>

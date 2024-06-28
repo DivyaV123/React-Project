@@ -50,8 +50,8 @@ const Courses = ({ courseResponse }) => {
         )}
         <div
           className={`${hoveredIndex !== null && subCourse
-              ? "courselist pl-4 pt-2"
-              : "coursefull p-3"
+            ? "courselist pl-4 pt-2"
+            : "coursefull p-3"
             }   flex flex-wrap  h-fit gap-4 `}
         >
           {finalContent?.length > 0 &&
@@ -60,14 +60,14 @@ const Courses = ({ courseResponse }) => {
                 <Link href={`/courses/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}> <div
                   key={index}
                   className={`${hoveredIndex !== null && subCourse
-                      ? "courseMedium"
-                      : "courseinitial"
+                    ? "courseMedium"
+                    : "courseinitial"
                     }  p-2 branchMenuCard bg-[#FFFFFF] max-w-[19.922vw] rounded-xl px-[1.389vh] py-[0.781vw]`}
                 >
                   <div className="flex h-10 gap-1.5 ">
                     <img className="h-8 w-8" src={content?.icon} />
                     <h3 className="text-left h-8 text-sm font-bold items-center flex">
-                      {content?.title}
+                      {content?.title ? truncateText(content?.title, 28) : ""}
                     </h3>
                   </div>
                   <div>
