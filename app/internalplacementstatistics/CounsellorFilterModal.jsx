@@ -26,7 +26,12 @@ const CounsellorFilterModal = ({ isModalOpen,handleCloseModal }) => {
       const streamList = degreeAndStreamdata?.response.streamList.filter(
         (stream) => stream !== ""
       );
-      const [activeFilter, setActiveFilter] = useState(null);
+      const [activeFilter, setActiveFilter] = useState("Time Period");
+      useEffect(() => {
+        if (isModalOpen) {
+            setActiveFilter("Time Period");
+        }
+    }, [isModalOpen]);
   useEffect(() => {
     const body = document.body;
     const scrollbarWidth = window.innerWidth - body.clientWidth;
@@ -151,7 +156,7 @@ const CounsellorFilterModal = ({ isModalOpen,handleCloseModal }) => {
                   <img src="../../filter.svg" alt="Filter Icon" className="cursor-pointer h-[5.186vh] w-[5.186vw]" />
                 )}
               </div>
-              {isEmptyObject ? (
+              {/* {isEmptyObject ? (
                 <img
                   src="../../icon_link.svg"
                   className={`${filterClass} pointer-events-none opacity-50`}
@@ -165,7 +170,7 @@ const CounsellorFilterModal = ({ isModalOpen,handleCloseModal }) => {
                 >
                   <img title="Generate Link" src="../../icon_link.svg" />
                 </a>
-              )}
+              )} */}
               <div className="modal-header">
         
           <button className="close-button" onClick={()=>{setActiveFilter(null);handleCloseModal()}}>
