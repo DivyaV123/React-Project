@@ -7,13 +7,19 @@ import Fade from "react-reveal/Fade";
 import CarosalFooter from "../carosalFooter/CarosalFooter";
 import Counter from "@/components/commonComponents/counterAnimation/Counter";
 import LandingCarosalSkeleton from "./LandingCarosalSkeleton";
+import HiringModal from "@/app/hireFromUs/Modal/HiringModal";
 function LandingCarosal() {
   const [isloading, setisLoading] = useState(true);
+  const [active, setActive] = useState(false);
+  const [activeTab, setActiveTab] = useState('General Enquiries')
   useEffect(() => {
     setTimeout(() => {
       setisLoading(false);
     }, 500);
   }, []);
+  const handleCloseModal = () => {
+    setActive(false);
+  };
   return (
     // isloading ? <LandingCarosalSkeleton />
     //   :
@@ -30,10 +36,11 @@ function LandingCarosal() {
               </h1>
               {/* <h1 className=' text-xl gradient-text  text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>TRAINING ORGANIZATION</h1> */}
               <p className="paragraph text-[1.25vw] mobile:text-[2.791vw] font-medium pb-[2.222vh] text-ash mobile:pb-[1.717vh]">
-              World's premier software training institution, dedicated to bridging the gap between industry demands and academic curricula. With centers worldwide, QSpiders provides a platform for young minds to cultivate successful careers.
+                World's premier software training institution, dedicated to bridging the gap between industry demands and academic curricula. With centers worldwide, QSpiders provides a platform for young minds to cultivate successful careers.
               </p>
               <article className="sm:pb-[2.222vh] mobile:pb-[4.292vh]">
                 <Button
+                  onClick={() => setActive(true)}
                   className="primary text-[1.25vw] mobile:text-[3.721vw]"
                   title="Get Started"
                 />
@@ -130,6 +137,15 @@ function LandingCarosal() {
         </Fade>
       </div>
       <CarosalFooter />
+      {active && (
+        <HiringModal
+          isModalOpen={active}
+          activeTab={activeTab}
+          handleCloseModal={handleCloseModal}
+          setActiveTab={setActiveTab}
+        />
+      )
+      }
     </>
   );
 }

@@ -1,16 +1,19 @@
-  'use client';
-import React, { useState } from 'react';
+'use client';
+import React, { act, useContext, useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { isValidPhoneNumber } from 'react-phone-number-input';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import "./HirefromusLanding.scss"
+import { useEnquriesMutation } from '@/redux/queries/enquriesApi';
+import { GlobalContext } from '@/components/Context/GlobalContext';
 const HiringFromUsForm = ({ activeTab }) => {
   const [phoneValue, setPhoneValue] = useState('');
   const [error, setError] = useState({ mobileNumber: false, validPhone: false });
   const inputBorder = '1px solid #26428B80';
   const inputBorderErr = '1px solid #ea0322';
+
 
   const getInitialValues = () => {
     switch (activeTab) {
@@ -67,12 +70,44 @@ const HiringFromUsForm = ({ activeTab }) => {
         });
     }
   };
-
+  const [enquirie, { data: loginData, error: submitError, isLoading }] = useEnquriesMutation();
   const formik = useFormik({
     initialValues: getInitialValues(),
     validationSchema: getValidationSchema(),
-    onSubmit: (values) => {
-      console.log(values);
+    onSubmit: async (values) => {
+      let payload = {}
+      if (activeTab === "Corporate Training") {
+        payload = {
+          userName: values.fullName,
+          mobileNumber: `+${values.mobileNumber}`,
+          email: values.email,
+          message: values.message,
+          enquiryType: "CORPORATETRAINING",
+          requiredTraining: values.requiredTraining
+        }
+      } else if (activeTab === "General Enquiries") {
+        payload = {
+          userName: values.fullName,
+          mobileNumber: `+${values.mobileNumber}`,
+          email: values.email,
+          message: values.message,
+          enquiryType: "GENERALENQUIRIES"
+        }
+      } else {
+        payload = {
+          userName: values.fullName,
+          mobileNumber: `+${values.mobileNumber}`,
+          email: values.email,
+          message: values.message,
+          enquiryType: "HIREFROMUS",
+          companyName: values.companyName
+        }
+      }
+      try {
+        const response = await enquirie(payload).unwrap();
+      } catch (err) {
+        console.error(err, "error in the submit");
+      }
     },
   });
 
@@ -131,13 +166,12 @@ const HiringFromUsForm = ({ activeTab }) => {
             //   borderRadius: "5px",
             // }}
             style={{
-                        border: `${
-                          error.phone || error.validPhone
-                            ? inputBorderErr
-                            : inputBorder
-                        }`,
-                        borderRadius: "5px",
-                      }}
+              border: `${error.phone || error.validPhone
+                ? inputBorderErr
+                : inputBorder
+                }`,
+              borderRadius: "5px",
+            }}
             enableSearch
             international
             inputProps={{
@@ -221,15 +255,15 @@ const HiringFromUsForm = ({ activeTab }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.message}
-            className={`w-full border p-2 rounded ${formik.touched.message && formik.errors.message ? 'border-red-500' : 'border-gray-300'}`}
+            className={`w-full border p-2 rounded resize-none ${formik.touched.message && formik.errors.message ? 'border-red-500' : 'border-gray-300'}`}
           />
           {formik.touched.message && formik.errors.message ? (
             <div className="text-red-500 absolute text-sm">{formik.errors.message}</div>
           ) : null}
         </div>
 
-        <div  className={`${activeTab === "General Enquiries" ? "mb-2 md:col-span-2 btnComponent" : "mb-2 btnComponent"}`}
->
+        <div className={`${activeTab === "General Enquiries" ? "mb-2 md:col-span-2 btnComponent" : "mb-2 btnComponent"}`}
+        >
           <button type="submit" className=" text-white py-2 px-4 rounded hover:bg-orange-600">
             Submit
           </button>

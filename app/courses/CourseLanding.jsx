@@ -82,8 +82,8 @@ const CourseLanding = ({ courseDetails }) => {
             <div className="py-[1.389vh] flex gap-6 items-center mobile:hidden">
               <h1
                 title={courseDetails?.courseName}
-                className="font-bold text-left text-[3.75vw] flex"
-               >
+                className="font-medium text-left text-[3.75vw] flex"
+              >
                 {courseDetails?.courseName}
 
               </h1>
@@ -91,7 +91,7 @@ const CourseLanding = ({ courseDetails }) => {
             <section className="flex justify-between mobile:flex-col-reverse">
               <div className="w-[55.469vw] mobile:w-full">
                 <div className="pb-[5.556vh] mobile:pb-[2.575vh]">
-                  <p className="headerText text-left font-medium mobile:text-[2.791vw] text-[1.563vw] sm:leading-[1.875rem] sm:pt-[0.833vh]">
+                  <p className="headerText text-left mobile:text-[2.791vw] text-[1.563vw] sm:leading-[1.875rem] sm:pt-[0.833vh]">
                     {courseDetails?.courseSummary}
                   </p>
                 </div>
@@ -117,7 +117,7 @@ const CourseLanding = ({ courseDetails }) => {
                   {resources?.map((resource, index) => (
                     <div
                       key={index}
-                      className="flex text-left gap-4  items-center  pb-[2.778vh] mobile:pb-[1.073vh] font-semibold text-ash"
+                      className="flex text-left gap-4  items-center  pb-[2.778vh] mobile:pb-[1.073vh]  text-ash"
                     >
                       <figure>
                         <img src={imageSrc} alt={`resource-${index}`} />
