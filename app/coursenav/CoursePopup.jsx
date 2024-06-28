@@ -1,17 +1,33 @@
-import React from 'react'
+"use client";
+import React from "react";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-import Link from 'next/link';
-import { NAV_BAR } from '@/lib/RouteConstants';
+import Link from "next/link";
+import { NAV_BAR } from "@/lib/RouteConstants";
+import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
+import { useRouter } from "next/navigation";
 const CoursePopup = () => {
+  const router = useRouter();
+  const {
+    data: courseResponse,
+    isLoading: CourseIsLoading,
+    error: CourseError,
+  } = useGetAllCategoriesQuery();
+
+  const getAllCategories = courseResponse?.data;
+
+  const handleGetAllCategories = (id) => {
+    router.push(`/coursenav/${id}`);
+  };
+
   return (
     <section className="w-full h-full block">
       <section className="flex justify-between my-[2.575vh] mx-[3.721vw] items-center">
-      <Link className="flex items-center" href={NAV_BAR}>
+        <Link className="flex items-center" href={NAV_BAR}>
           <img className="" src="/icon_arrow_left.svg" />
           <div className="font-bold text-[3.256vw]">Courses</div>
         </Link>
-      <section className="border-none hover:bg-white p-0 ">
+        <div className="border-none hover:bg-white p-0 ">
           <Svg
             className="w-[6.512vw] h-[3.004vh] outline-none"
             width={svgicons.cancelButtonIcon[0]}
@@ -20,10 +36,26 @@ const CoursePopup = () => {
             icon={svgicons.cancelButtonIcon[3]}
             color={svgicons.cancelButtonIcon[4]}
           />
-        </section>
-        </section>
+        </div>
+      </section>
+      <section className="mx-[3.721vw] my-[0.858vh]">
+        {getAllCategories?.map((course) => (
+          <div
+            className="flex justify-between py-[1.073vh]"
+            onClick={() => handleGetAllCategories(course.courseId)}
+          >
+            <div key={course?.courseId} className="flex gap-4">
+              <img src={course.icon} />
+              <div>{course.title}</div>
+            </div>
+            <div>
+              <img src="/arrow_right.svg" />
+            </div>
+          </div>
+        ))}
+      </section>
     </section>
-  )
-}
+  );
+};
 
-export default CoursePopup
+export default CoursePopup;
