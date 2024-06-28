@@ -85,7 +85,10 @@ const GenerateLinkHeader = () => {
 
   return (
     <>
-      <section className="px-[1.875vw] flex gap-5 pb-[3.333vh] items-center">
+      <section 
+      // className="px-[1.875vw] flex gap-5 pb-[3.333vh] items-center"
+      className="sm:px-[1.875vw] mobile:w-fit flex mobile:flex-wrap sm:gap-5 sm:pb-[3.333vh] sm:items-center"
+      >
         {isLoading ? (
           <LinkCardSkeleton />
         ) : (
@@ -95,6 +98,7 @@ const GenerateLinkHeader = () => {
             handleParameter={handleParameter}
           />
         )}
+        
         {isLoading ? (
           <LinkCardSkeleton />
         ) : (
@@ -112,6 +116,7 @@ const GenerateLinkHeader = () => {
             handleParameter={handleParameter}
           />
         )}
+        
       </section>
       <div
         onScroll={(event) => {
@@ -123,7 +128,7 @@ const GenerateLinkHeader = () => {
             setIsFetchData
           );
         }}
-        className="h-[58.889vh] overflow-auto myscrollbar w-[69.063vw] ml-[1.875vw] rounded-2xl"
+        className="h-[58.889vh] overflow-auto myscrollbar mobile:w-fit w-[69.063vw] ml-[1.875vw] rounded-2xl"
       >
         {isLoading ? (
           <CardContentSkeleton />
