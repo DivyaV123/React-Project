@@ -87,8 +87,8 @@ const YearFilter = () => {
           <DropdownMenuTrigger className="filterButton text-left pl-[0.938vw]">
             {fromYear ? fromYear : "From"}
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <div className="w-[100%] max-h-60 myscrollbar overflow-y-auto  bg-white">
+          <DropdownMenuContent className="mobile:relative mobile:z-[40000]">
+            <div className="w-[100%]  mobile:relative mobile:z-[40000] max-h-60 myscrollbar overflow-y-auto  bg-white">
               {YopList?.map((year, index) => (
                 <DropdownMenuItem
                   key={year}
@@ -104,8 +104,8 @@ const YearFilter = () => {
           <DropdownMenuTrigger className="filterButton text-left pl-[0.938vw]">
             {toYear ? toYear : "To"}
           </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <div className="w-[100%] bg-white flex flex-col max-h-60 myscrollbar overflow-y-auto item-center">
+          <DropdownMenuContent className="mobile:relative mobile:z-[40000]">
+            <div className="w-[100%] mobile:relative mobile:z-[40000] bg-white flex flex-col max-h-60 myscrollbar overflow-y-auto item-center">
               {YopList?.map((year) => (
                 <DropdownMenuItem
                   key={year}
@@ -124,7 +124,7 @@ const YearFilter = () => {
       />
       <BranchTypeFilter />
       <div className="flex justify-between pb-[1.111vh]">
-        <p className="text-[0.938vw] text-[#002248] font-semibold">Branch</p>
+        <p className="text-[0.938vw] text-[#002248] mobile:text-[3.938vw] font-semibold">Branch</p>
         <img src="../../down.svg" />
       </div>
       <div className="search-container pb-[1.111vh]">
