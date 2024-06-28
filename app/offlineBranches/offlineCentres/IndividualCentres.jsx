@@ -31,31 +31,28 @@ const IndividualCentres = () => {
             </div>
           ))}
         </div>
-        <section className="flex gap-5 sm:h-[609px]">
-          <div className="sm:w-[20vw] mt-6  p-1 h-full sm:overflow-y-scroll sm:myscrollbar">
+        <section className="flex gap-5 h-[609px]">
+          <div className="w-[20vw] mt-6  p-1 h-full overflow-y-scroll myscrollbar">
             {selectedCity &&
               selectedCity?.sublist?.map((item, index) => (
-                <section className="mobile:mb-[1.717vh] mobileCentre">
                 <div
                   onClick={() => setSelectedCourseId(item.id)}
                   key={index}
-                  className={`w-full sm:pr-6 sm:pl-4 sm:py-3 flex items-center gap-2 cursor-pointer ${String(item.id) === String(selectedCourseId)
-                    ? "sm:courseName"
+                  className={`w-full pr-6 pl-4 py-3 flex items-center gap-2 cursor-pointer ${String(item.id) === String(selectedCourseId)
+                    ? "courseName"
                     : ""
                     }`}
                 >
-                  <img src={item.image} alt={item.title} className="h-6 w-6 mobile:h-[3.863vh] mobile:w-[8.372vw]" />
+                  <img src={item.image} alt={item.title} className="h-6 w-6" />
                   <h3
-                    className={`text-[0.75rem] mobile:text-[2.791vw] font-medium ${String(item.id) === String(selectedCourseId)
-                      ? "sm:text-white"
+                    className={`text-[0.75rem] font-medium ${String(item.id) === String(selectedCourseId)
+                      ? "text-white"
                       : "text-[#454545]"
                       }`}
                   >
                     {item.title}
                   </h3>
                 </div>
-                <div className="sm:hidden mobile:text-[2.558vw] mobile:pt-[1.931vh]">{item.description}</div>
-                </section>
               ))}
           </div>
           <CommonBranch selectedId={selectedId} page='NotofflineBranches' />

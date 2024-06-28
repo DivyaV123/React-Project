@@ -25,3 +25,12 @@
   background: #ffffff;
   border-radius: 6px;
 }
+.BranchCard {
+  width: 19.063vw;
+  border: 1px solid #c2c2c4;
+  background: #ffffff;
+  border-radius: 6px;
+  @media (max-width: 639px) {
+    width:100%;
+  }
+}
