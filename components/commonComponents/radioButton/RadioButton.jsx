@@ -10,7 +10,7 @@ const RadioButton = ({ id, label, checked, onChange }) => {
         checked={checked}  // This should correctly reflect the checked state from the parent
         onChange={onChange}
       />
-      <label htmlFor={id} className="text-[#002248] text-[0.938vw]">
+      <label htmlFor={id} className="text-[#002248] text-[0.938vw] mobile:text-[3.721vw]">
         {label}
       </label>
     </div>

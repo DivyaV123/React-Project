@@ -42,11 +42,12 @@ const CounsellorCardHeader = () => {
     setPlacedCheckedIcon,
     setGeneratedPath,
     generateLink,
+    setGenerateLink,
     generatedPath,
   } = useContext(GlobalContext);
 
   const isEmptyObject = Object.keys(filteringData).length === 0;
-
+  const filterClass = "text-[#002248] text-[1.25vw] font-semibold mobile:text-[4.651vw]";
   const {
     data: counsellorFilterResponse,
     error,
@@ -118,7 +119,13 @@ const CounsellorCardHeader = () => {
       }
     }
   }, [filteringData]);
-
+  const handleGenerateLink = (e) => {
+    if (isEmptyObject) {
+      e.preventDefault();
+      return;
+    }
+    setGenerateLink(true);
+  };
   return (
     <div
       className={`${
@@ -168,13 +175,30 @@ const CounsellorCardHeader = () => {
             />
           )}
         </section>
-        <div className="hidden mobile:block mobile:flex mobile:justify-between mobile:h-[5.579vh] mobile:w-[92.558vw] mobile:items-center">
+        <div className="hidden mobile:px-[1.875vw] mobile:mt-[1.5vh] mobile:mb-[1.5vh] mobile:block mobile:flex mobile:justify-between mobile:h-[5.579vh] mobile:w-[92.558vw] mobile:items-center">
         <div>
           <h2 className=" mobile:text-[3.721vw] mobile:font-bold ">Students Feedback</h2>
         </div>
-        <div className=" mobile:flex ">
-         <section> <img  src="../../icon_link.svg" className={`text-[#002248] text-[1.25vw] font-semibold pointer-events-none opacity-50`}/></section>
-         <button  onClick={() => handleModalOpen()}  className=" mobile:w-[23.256vw] mobile:flex mobile:justify-center mobile:items-center mobile:h-[3.433vh] mobile:rounded	bg-gradient mobile:text-[3.256vw] mobile:text-[white]  "> <img  src="../../icon_link.svg" className={`text-[#002248] text-[1.25vw] font-semibold pointer-events-none opacity-50 mx-1`}/>Filter</button>
+        <div className=" mobile:flex  mobile:gap-[5vh]">
+         <section> 
+         {/* <img  src="../../icon_link.svg" className={`text-[#002248] text-[1.25vw] font-semibold pointer-events-none opacity-50`}/> */}
+         {isEmptyObject ? (
+                <img
+                  src="../../icon_link.svg"
+                  className={`${filterClass} pointer-events-none opacity-50`}
+                />
+              ) : (
+                <a
+                  href={generatedPath}
+                  target="_blank"
+                  onClick={handleGenerateLink}
+                  className={`${filterClass} cursor-pointer`}
+                >
+                  <img title="Generate Link" src="../../icon_link.svg" />
+                </a>
+              )}
+         </section>
+         <button  onClick={() => handleModalOpen()}  className=" mobile:w-[24.556vw] mobile:gap-[1vw] mobile:flex mobile:justify-center mobile:items-center mobile:h-[4.133vh] mobile:rounded	bg-gradient mobile:text-[3.256vw] mobile:text-[white]  "> <img  src="../../icons_filters_mobile.png" className={`text-[#002248] text-[1.25vw] font-semibold pointer-events-none opacity-50 mx-1`}/>Filters</button>
         </div>
 
         </div>
@@ -188,7 +212,7 @@ const CounsellorCardHeader = () => {
               setIsFetchData
             );
           }}
-          className="sm:h-[58.889vh] overflow-auto myscrollbar sm:w-[69.063vw] ml-[1.875vw] rounded-2xl"
+          className="h-[58.889vh] overflow-auto myscrollbar mobile:w-[96vw] w-[69.063vw] ml-[1.875vw] rounded-2xl"
         >
           {accumulatedData.length > 0 ? (
             isLoading ? (

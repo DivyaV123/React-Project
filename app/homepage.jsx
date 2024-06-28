@@ -9,10 +9,12 @@ import TestimonialsHome from '../components/testimonials/testimonialsHome'
 import FaqHome from '../components/faq/faqHome'
 import WebLayout from '../components/commonComponents/webLayout/WebLayout'
 import HiringPartners from '../components/hiringPartners/hiringPartners'
+import { useGetAllFaqQuery } from '@/redux/queries/getAllFaq'
 
 
 function Homepage() {
-
+    const { data: faqData, error, isLoading } = useGetAllFaqQuery();
+    console.log(faqData, "faqData")
     return (
         <WebLayout page='main' >
             <CarosalHome />
@@ -22,7 +24,7 @@ function Homepage() {
             <ChooseQspidersHome />
             <PlacementStatisticsHome />
             {/* <TestimonialsHome /> */}
-            <FaqHome />
+            <FaqHome mainfaqData={faqData?.data} />
         </WebLayout>
     )
 }

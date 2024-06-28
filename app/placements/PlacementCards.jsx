@@ -67,9 +67,9 @@ const PlacementCards = () => {
           <CardSkeleton/>
         ) : (
           <>
-          <section className="sm:hidden w-[95.349vw] h-[8.584vh] bg-[#DBECFF66] mx-[2.326vw] mt-[1.288vh] rounded-lg">
+          {/* <section className="sm:hidden w-[95.349vw] h-[8.584vh] bg-[#DBECFF66] mx-[2.326vw] mt-[1.288vh] rounded-lg">
 
-          </section>
+          </section> */}
           <TotalPlacedCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
           </>
         )}
