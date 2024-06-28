@@ -4,7 +4,7 @@ import React, { useCallback, useContext } from 'react'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import Qaccordion from './qaAccordion'
 
-function FaqHome({ page, questions, courseDetails, faqData }) {
+function FaqHome({ page, questions, courseDetails, faqData, mainfaqData }) {
     const qaList = [
         {
             question: 'How do I create an employer account with Qspiders hiring?',
@@ -36,7 +36,7 @@ function FaqHome({ page, questions, courseDetails, faqData }) {
                 {/* )} */}
             </header>
             <article className={`pb-[4.444vh]`}>
-                <Qaccordion qaList={courseDetails?.faqs.length > 0 ? courseDetails?.faqs : faqData ? faqData : qaList} />
+                <Qaccordion qaList={courseDetails?.faqs.length > 0 ? courseDetails?.faqs : faqData ? faqData : mainfaqData} />
             </article>
         </MaxWebWidth>
     )

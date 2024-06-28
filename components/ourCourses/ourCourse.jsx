@@ -20,9 +20,12 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { useGetHomePageCourseQuery } from "@/redux/queries/getHomePageCourse";
 
 function OurCourse({ page }) {
   const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery();
+  const { data: homeCourse, error: homeCourseError, isloading: homeCourseLoading } = useGetHomePageCourseQuery();
+  console.log(homeCourse, "homeCoursehomeCourse")
   const [openIndex, setOpenIndex] = useState(0);
   const initialCard = [
     {
@@ -160,7 +163,6 @@ function OurCourse({ page }) {
   const [category, setCategory] = useState(initialCategory);
   const [hoveredCategory, setHoveredCategory] = useState(initialCategory[0].title);
   const [hoveredIndex, setHoveredIndex] = useState(0);
-  // const [isloading, setisLoading] = useState(true);
 
   const typesOfClasses = [
     {
