@@ -1,19 +1,21 @@
 'use client'
-import React from 'react'
+import React, { useContext } from 'react'
 import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
 import Slide from "react-reveal/Slide";
 import Counter from '../commonComponents/counterAnimation/Counter';
 import './chooseUs.scss'
+import { GlobalContext } from '../Context/GlobalContext';
 
 
 function PlacementAssistance() {
+    const { domainVariable } = useContext(GlobalContext)
     return (
         <section className='mt-6 mobile:mt-[3.219vh]'>
             <header>
                 <Slide top cascade>
                     <p className='font-bold text-[2rem] mobile:text-[5.581vw] text-black flex justify-center align-center sm:mb-8 sm:mt-8 mobile:mb-[1.717vh]'>
-                        Why Choose Qspiders
+                        Why Choose {domainVariable}
                     </p>
                 </Slide>
             </header>
