@@ -64,6 +64,9 @@ module.exports = {
       },screens: {
         '3xl': '1920px',
         mobile:{'max': '639px'},
+        tabView: { 'min': '744px', 'max': '1024px' },
+        
+       
       },
       keyframes: {
         "accordion-down": {
