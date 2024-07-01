@@ -21,7 +21,7 @@ const SubCourseResponseLanding = () => {
 
   const filterSubCourseTitle = filterSubCourseById?.[0]?.title;
   const getSubCourseResponse = filterSubCourseById?.[0]?.subCourseResponse || [];
-console.log(filterSubCourseTitle,getSubCourseResponse,"updatedcode")
+
   return (
     <section className="my-[1.717vh]">
             <Link

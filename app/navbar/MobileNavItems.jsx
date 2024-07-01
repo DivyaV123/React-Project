@@ -5,17 +5,16 @@ import {
   PLACEMENT_PATH,
   HIREFROMUS_PATH,
   CONTACT_US_PATH,
-  COURSE_NAV_BAR
+  COURSE_NAV_BAR,
+  BRANCH_NAV_BAR
 } from "@/lib/RouteConstants";
-import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import { useRouter } from 'next/navigation';
-import CoursePopup from '../coursenav/CoursePopup';
 const MobileNavItems = () => {
   const router = useRouter()
 const [coursePopup,setCoursePopup] = useState(false)
   const navItems = [
     { id: 1, name: "Courses", content: COURSE_NAV_BAR },
-    { id: 2, name: "Branches", content: "" },
+    { id: 2, name: "Branches", content: BRANCH_NAV_BAR },
     { id: 3, name: "Tuitions", content: "" },
     { id: 4, name: "Hire From Us", content: HIREFROMUS_PATH },
     { id: 5, name: "Placements", content: PLACEMENT_PATH },
