@@ -1,28 +1,29 @@
 "use client";
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 export const GlobalContext = createContext();
 import dayjs from "dayjs";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
   const [domainVariable, setDomainVariable] = useState('');
-  const routerName = window.location.hostname
-  switch (true) {
-    case routerName?.includes("qspiders"):
-      setDomainVariable("Qspiders");
-      break;
-    case routerName?.includes("jspiders"):
-      setDomainVariable("Jspiders");
-      break;
-    case routerName?.includes("pyspiders"):
-      setDomainVariable("Pyspiders");
-      break;
-    default:
-      setDomainVariable("Unknown Domain");
-  }
-  console.log(routerName, "router")
+  useEffect(() => {
+    const routerName = window.location.hostname;
+    console.log(routerName)
+    switch (true) {
+      case routerName?.includes("qspiders"):
+        setDomainVariable("Qspiders");
+        break;
+      case routerName?.includes("jspiders"):
+        setDomainVariable("Jspiders");
+        break;
+      case routerName?.includes("pyspiders"):
+        setDomainVariable("Pyspiders");
+        break;
+      default:
+        setDomainVariable("Unknown Domain");
+    }
+  }, []);
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
   const [homeBranchData, setHomeBranchData] = useState([])
