@@ -51,9 +51,10 @@ function MainNavbar() {
                     <Link href={HOME_PATH}>
                       <img src="../images/pypiders.png" />
                     </Link>
-                  </> :
-                  <>
-                    <Link href={HOME_PATH}>
+                  </> : domainVariable === "byspiders" ?
+                    <>
+                      <img src="../images/bspiders.png" />
+                    </> : <>  <Link href={HOME_PATH}>
                       <Svg
                         className={`mobile:w-[13.953vw] mobile:h-[4.077vh]`}
                         width={svgicons.qspiderslogo[0]}
@@ -62,8 +63,8 @@ function MainNavbar() {
                         icon={svgicons.qspiderslogo[3]}
                         color={svgicons.qspiderslogo[4]}
                       />
-                    </Link>
-                  </>
+                    </Link></>
+
             }
 
 

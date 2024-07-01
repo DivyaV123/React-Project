@@ -20,8 +20,11 @@ const GlobalContextProvider = ({ children }) => {
       case routerName?.includes("pyspiders"):
         setDomainVariable("Pyspiders");
         break;
+      case routerName?.includes("bspiders"):
+        setDomainVariable("Bspiders");
+        break;
       default:
-        setDomainVariable("Unknown Domain");
+        setDomainVariable("Qspiders");
     }
   }, []);
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
