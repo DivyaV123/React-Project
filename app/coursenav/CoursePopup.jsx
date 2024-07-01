@@ -28,7 +28,7 @@ const CoursePopup = () => {
       ) : (
         <>
           <section className="flex justify-between my-[2.575vh] mx-[3.721vw] items-center">
-            <Link className="flex items-center" href={NAVs_BAR}>
+            <Link className="flex items-center" href={NAV_BAR}>
               <img className="" src="/icon_arrow_left.svg" />
               <div className="font-bold text-[3.256vw]">Courses</div>
             </Link>
