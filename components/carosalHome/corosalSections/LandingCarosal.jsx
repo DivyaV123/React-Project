@@ -1,6 +1,6 @@
 "use client";
 import CarosalSection from "@/components/commonComponents/carosalSection/carosalSection";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./sections.scss";
 import Button from "@/components/commonComponents/button/Button";
 import Fade from "react-reveal/Fade";
@@ -8,7 +8,9 @@ import CarosalFooter from "../carosalFooter/CarosalFooter";
 import Counter from "@/components/commonComponents/counterAnimation/Counter";
 import LandingCarosalSkeleton from "./LandingCarosalSkeleton";
 import HiringModal from "@/app/hireFromUs/Modal/HiringModal";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 function LandingCarosal() {
+  const { domainVariable } = useContext(GlobalContext)
   const [isloading, setisLoading] = useState(true);
   const [active, setActive] = useState(false);
   const [activeTab, setActiveTab] = useState('General Enquiries')
@@ -36,7 +38,7 @@ function LandingCarosal() {
               </h1>
               {/* <h1 className=' text-xl gradient-text  text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>TRAINING ORGANIZATION</h1> */}
               <p className="paragraph text-[1.25vw] mobile:text-[2.791vw] font-medium pb-[2.222vh] text-ash mobile:pb-[1.717vh]">
-                World's premier software training institution, dedicated to bridging the gap between industry demands and academic curricula. With centers worldwide, QSpiders provides a platform for young minds to cultivate successful careers.
+                World's premier software training institution, dedicated to bridging the gap between industry demands and academic curricula. With centers worldwide, {domainVariable} provides a platform for young minds to cultivate successful careers.
               </p>
               <article className="sm:pb-[2.222vh] mobile:pb-[4.292vh]">
                 <Button

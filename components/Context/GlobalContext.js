@@ -3,9 +3,24 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const GlobalContext = createContext();
 import dayjs from "dayjs";
+import { usePathname } from "next/navigation";
 
 const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
+  const pathname = usePathname();
+  console.log(pathname, "pathname")
+  const [domainVariable, setdomainVariable] = useState('')
+  switch (true) {
+    case pathname.includes("qspiders"):
+      setdomainVariable("Qspiders");
+      break;
+    case pathname.includes("jspiders"):
+      setdomainVariable("Jspiders");
+      break;
+    case pathname.includes("pyspiders"):
+      setdomainVariable("Pyspiders");
+      break;
+  }
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
   const [homeBranchData, setHomeBranchData] = useState([])
@@ -383,7 +398,8 @@ const GlobalContextProvider = ({ children }) => {
         yearSearchQuery, setYearSearchQuery,
         streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
-        homeBranchData, setHomeBranchData
+        homeBranchData, setHomeBranchData,
+        domainVariable,
       }}
     >
       {children}
