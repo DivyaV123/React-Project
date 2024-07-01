@@ -19,7 +19,6 @@ const IndividualCentres = () => {
   const selectedId = selectedCity?.courses?.find(
     (item) => String(item.courseId) === String(selectedCourseId)
   );
-  console.log(selectedId, "navCities in...")
   return (
     <div className="w-full">
       <header className="offlineHeader">Our Offline Centres</header>
@@ -39,8 +38,7 @@ const IndividualCentres = () => {
           <div className="w-[20vw] mt-6  p-1 h-full overflow-y-scroll myscrollbar">
             {selectedCity &&
               selectedCity?.courses?.map((item, index) => (
-                <section className="mobile:mb-[1.717vh] mobileCentre">
-                  {console.log(item, "itemitem")}
+                <section className="mobile:mb-[1.717vh] mobileCentre">                  
                   <div
                     onClick={() => setSelectedCourseId(item.courseId)}
                     key={index}

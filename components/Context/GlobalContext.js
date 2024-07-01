@@ -3,24 +3,12 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const GlobalContext = createContext();
 import dayjs from "dayjs";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
-  const pathname = usePathname();
-  console.log(pathname, "pathname")
-  const [domainVariable, setdomainVariable] = useState('')
-  switch (true) {
-    case pathname.includes("qspiders"):
-      setdomainVariable("Qspiders");
-      break;
-    case pathname.includes("jspiders"):
-      setdomainVariable("Jspiders");
-      break;
-    case pathname.includes("pyspiders"):
-      setdomainVariable("Pyspiders");
-      break;
-  }
+  const router = useRouter();
+  const [domainVariable, setDomainVariable] = useState('');
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
   const [homeBranchData, setHomeBranchData] = useState([])
@@ -47,6 +35,7 @@ const GlobalContextProvider = ({ children }) => {
   const [universitySearchQuery, setUniversitySearchQuery] = useState("");
   const [yearSearchQuery, setYearSearchQuery] = useState("");
   const [streamSearchQuery, setStreamSearchQuery] = useState("");
+
 
   //daterange
   const [fromValue, setFromValue] = useState("");
@@ -300,6 +289,27 @@ const GlobalContextProvider = ({ children }) => {
         break;
     }
   };
+
+  useEffect(() => {
+    const { pathname } = router;
+    console.log(pathname, "pathname");
+
+    switch (true) {
+      case pathname?.includes("qspiders"):
+        setDomainVariable("Qspiders");
+        break;
+      case pathname?.includes("jspiders"):
+        setDomainVariable("Jspiders");
+        break;
+      case pathname?.includes("pyspiders"):
+        setDomainVariable("Pyspiders");
+        break;
+      default:
+        setDomainVariable("Unknown Domain");
+    }
+  }, [router]);
+
+  console.log(domainVariable, "domainVariable")
 
   return (
     <GlobalContext.Provider

@@ -349,7 +349,6 @@ const Branches = ({ BranchResponse }) => {
             finalContent?.map
               (
                 (content, index) => {
-                  console.log(content, "content")
                   setOnGoingBatches(content.ongoingBatches)
                   setupComingBatches(content.upcomingBatches)
                   return (
