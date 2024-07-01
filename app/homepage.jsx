@@ -14,7 +14,6 @@ import { useGetAllFaqQuery } from '@/redux/queries/getAllFaq'
 
 function Homepage() {
     const { data: faqData, error, isLoading } = useGetAllFaqQuery();
-    console.log(faqData, "faqData")
     return (
         <WebLayout page='main' >
             <CarosalHome />

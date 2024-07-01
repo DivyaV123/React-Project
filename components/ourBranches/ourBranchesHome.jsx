@@ -18,7 +18,6 @@ function OurBranchesHome({ page }) {
   const router = useRouter();
   const [isloading, setisLoading] = useState(true);
   const { setSelectedBranch, setSelectedBatch, homeBranchData } = useContext(GlobalContext);
-  console.log(homeBranchData, "homeBranchData")
   let branchDetails = homeBranchData;
   const branchCards = [
     {
@@ -142,7 +141,7 @@ function OurBranchesHome({ page }) {
         <article
           className={`${page === "course" && btnState === "OfflineClasses"
             ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh]"
-            : "flex sm:flex-wrap mobile:overflow-y-scroll mobile:courseScroll  sm:gap-x-[1.094vw] sm:gap-y-[1.944vh] sm:justify-center gap-6"
+            : "flex flex-wrap   sm:gap-x-[1.094vw] sm:gap-y-[1.944vh] justify-center gap-6"
             }`}
          >
           {btnState === "OfflineClasses" ? (

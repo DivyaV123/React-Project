@@ -33,7 +33,7 @@ const IndividualBranches = () => {
 
   const { selectedBranch, setSelectedBranch, setSelectedCourseId } = useContext(GlobalContext);
 
-  console.log(newNavCities, homeBranchData, "homeBranchData");
+
 
   const selectedCity = newNavCities?.find((city) => city.name === selectedBranch);
 

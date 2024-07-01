@@ -25,7 +25,6 @@ import { useGetHomePageCourseQuery } from "@/redux/queries/getHomePageCourse";
 function OurCourse({ page }) {
   const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery();
   const { data: homeCourse, error: homeCourseError, isloading: homeCourseLoading } = useGetHomePageCourseQuery();
-  console.log(homeCourse, "homeCoursehomeCourse")
   const [openIndex, setOpenIndex] = useState(0);
   const initialCard = [
     {
@@ -389,7 +388,6 @@ function OurCourse({ page }) {
                     mode = "ONLINECLASSES";
                   }
                   exploreCourseFilter(mode);
-                  console.log(mode, "modemode")
                 }}
               >
                 {classItem.title}

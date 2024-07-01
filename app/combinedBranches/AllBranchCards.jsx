@@ -15,7 +15,6 @@ const AllBranchCards = () => {
     "BTM Layout",
   ];
   const { data: branchData, error, isLoading } = useGetAllBranchCourseQuery();
-  console.log(branchData, "branchData");
   const AllBranchCourse = branchData?.data;
 
   return (
