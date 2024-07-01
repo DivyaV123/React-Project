@@ -2,15 +2,13 @@
 import React, { useEffect } from 'react'
 import './IndividualCentres.scss'
 const CommonBranch = ({ selectedId, page }) => {
-  console.log(selectedId, page, "selectedIdselectedId")
   useEffect(() => {
   }, [selectedId])
   function removeSpacesFromNumbers(phoneNumbers) {
     return phoneNumbers.split(',')
       .map(number => number.replace(/\s+/g, '').trim())
       .join(', ');
-  }
-  console.log(selectedId?.branches,"selected")
+  }  
   return (
     <section className={` mt-6   flex  gap-4  ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 h-full mobile:hidden overflow-x-scroll offlineScrollbar' : "w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
       {selectedId &&

@@ -18,7 +18,6 @@ function OurBranchesHome({ page }) {
   const router = useRouter();
   const [isloading, setisLoading] = useState(true);
   const { setSelectedBranch, setSelectedBatch, homeBranchData } = useContext(GlobalContext);
-  console.log(homeBranchData, "homeBranchData")
   let branchDetails = homeBranchData;
   const branchCards = [
     {
