@@ -1,5 +1,5 @@
 "use client";
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState } from "react";
 
 export const GlobalContext = createContext();
 import dayjs from "dayjs";
@@ -7,8 +7,23 @@ import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
-  const router = useRouter();
   const [domainVariable, setDomainVariable] = useState('');
+  const routerName = window.location.hostname
+  console.log(routePath, "pathname");
+  switch (true) {
+    case origin?.includes("qspiders"):
+      setDomainVariable("Qspiders");
+      break;
+    case origin?.includes("jspiders"):
+      setDomainVariable("Jspiders");
+      break;
+    case origin?.includes("pyspiders"):
+      setDomainVariable("Pyspiders");
+      break;
+    default:
+      setDomainVariable("Unknown Domain");
+  }
+  console.log(routerName, "router")
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
   const [homeBranchData, setHomeBranchData] = useState([])
@@ -290,24 +305,6 @@ const GlobalContextProvider = ({ children }) => {
     }
   };
 
-  useEffect(() => {
-    const { pathname } = router;
-    console.log(pathname, "pathname");
-
-    switch (true) {
-      case pathname?.includes("qspiders"):
-        setDomainVariable("Qspiders");
-        break;
-      case pathname?.includes("jspiders"):
-        setDomainVariable("Jspiders");
-        break;
-      case pathname?.includes("pyspiders"):
-        setDomainVariable("Pyspiders");
-        break;
-      default:
-        setDomainVariable("Unknown Domain");
-    }
-  }, [router]);
 
   console.log(domainVariable, "domainVariable")
 

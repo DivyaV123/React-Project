@@ -11,6 +11,7 @@ import HiringModal from "@/app/hireFromUs/Modal/HiringModal";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 function LandingCarosal() {
   const { domainVariable } = useContext(GlobalContext)
+  console.log(domainVariable, "domainVariable")
   const [isloading, setisLoading] = useState(true);
   const [active, setActive] = useState(false);
   const [activeTab, setActiveTab] = useState('General Enquiries')
