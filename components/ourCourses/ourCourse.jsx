@@ -157,11 +157,117 @@ function OurCourse({ page }) {
     }
   ];
 
+  const courses = [
+    {
+      icon: "popularCourseIcon",
+      iconlite: "popularCourseIconLite",
+      title: "Popular Courses",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "softwareArchIcon",
+      iconlite: "SoftwareArchitectureLote",
+      title: "Software Architecture",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "softwaredevicon",
+      iconlite: "SoftwareDevelopmentLite",
+      title: "Software Development",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "softwareTestingIcon",
+      title: "Software Testing",
+      iconlite: "SoftwareTestingLite",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "dataScienceIcon",
+      iconlite: "DevOpsLite",
+      title: "DevOps",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "aimlIcon",
+      iconlite: "CloudComputingLite",
+      title: "Cloud Computing",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "cyberSecurityIcon",
+      iconlite: "DataScienceLite",
+      title: "Data Science",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "bankingIcon",
+      iconlite: "AiMllite",
+      title: "AI/ML",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "projectManagementIcon",
+      iconlite: "CyberSecurityLite",
+      title: "Cyber Security",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "agileScrumIcon",
+      iconlite: "BankingLite",
+      title: "Banking",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "supportIcon",
+      iconlite: "ProjectManagemenLite",
+      title: "Project Management",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "abroadStudiesICon",
+      iconlite: "AgileScrumLite",
+      title: "Agile Scrum",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "supportIcon",
+      iconlite: "ProjectManagemenLite",
+      title: "Support",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "abroadStudiesICon",
+      iconlite: "AgileScrumLite",
+      title: "Abroad Studies",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "supportIcon",
+      iconlite: "ProjectManagemenLite",
+      title: "HR",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "supportIcon",
+      iconlite: "ProjectManagemenLite",
+      title: "SAP",
+      arrow: "./arrowIconDark.svg",
+    },
+    {
+      icon: "supportIcon",
+      iconlite: "ProjectManagemenLite",
+      title: "Salesforce",
+      arrow: "./arrowIconDark.svg",
+    },
+  ];
+
   const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
   const [courseCardData, setCourseCardData] = useState(initialCard);
-  const [category, setCategory] = useState(initialCategory);
-  const [hoveredCategory, setHoveredCategory] = useState(initialCategory[0].title);
+  const [category, setCategory] = useState(courses);
+  const [hoveredCategory, setHoveredCategory] = useState(courses[0].title);
   const [hoveredIndex, setHoveredIndex] = useState(0);
+  const [mouseHover, setMouseHover] = useState(0);
 
   const typesOfClasses = [
     {
@@ -270,6 +376,7 @@ function OurCourse({ page }) {
   const handleAccordionToggle = (index) => {
     setOpenIndex(index === openIndex ? -1 : index);
   };
+
   const exploreCourseFilter = (selectedMode) => {
     let categories = [];
     let cardData = [];
@@ -326,7 +433,7 @@ function OurCourse({ page }) {
 
     setCourseCardData(cardData);
     setCategory(uniqueCategories);
-    setHoveredCategory(uniqueCategories[0]?.title)
+    setHoveredCategory(courses[0]?.title)
   }
   return (
     <MaxWebWidth>
@@ -403,7 +510,7 @@ function OurCourse({ page }) {
           type="single"
           collapsible
         >
-          {category.map((item, itemIndex) => {
+          {courses.map((item, itemIndex) => {
             return isloading ? (
               <div
                 className={`bg-orange hover:font-semibold hover:text-white w-full  flex  gradient-bg cursor-pointer `}
@@ -427,7 +534,15 @@ function OurCourse({ page }) {
                 >
                   <div className="flex  items-center  w-full">
                     <picture className="flex justify-start">
-                      <img className="w-[5.581vw] h-[2.575vh]" src={item.icon} />
+                      {/* <img className="w-[5.581vw] h-[2.575vh]" src={[item.icon]} /> */}
+                      <Svg
+                        className=''
+                        width={svgicons[item.icon][0]}
+                        height={svgicons[item.icon][1]}
+                        viewBox={svgicons[item.icon][2]}
+                        icon={svgicons[item.icon][3]}
+                        color={svgicons[item.icon][4]}
+                      />
                       <aside>
                         <h1
                           className={`  text-dark-gray mobile:text-[3.256vw] mobile:pl-[2.791vw] w-full`}
@@ -465,7 +580,7 @@ function OurCourse({ page }) {
       <aside className="flex h-[132.222vh] mobile:hidden">
         <article className="justify-start w-[20.70vw] h-full overflow-auto courseScroll">
           <div className="w-full">
-            {category.map((item, itemIndex) => {
+            {courses.map((item, itemIndex) => {
               return isloading ? (
                 <div
                   className={`bg-orange hover:font-semibold hover:text-white w-full  flex  gradient-bg cursor-pointer `}
@@ -481,15 +596,34 @@ function OurCourse({ page }) {
                 <div
                   key={itemIndex}
                   onClick={() => setHoveredCategory(item.title)}
-                  className={`bg-orange hover:font-semibold hover:text-white w-full flex  gradient-bg cursor-pointer  ${hoveredCategory === item.title ? "bg-gradient" : ""
+                  className={`bg-orange hover:text-white hover:font-semibold  w-full flex  gradient-bg cursor-pointer  ${hoveredCategory === item.title ? "bg-gradient text-white font-semibold" : ""
                     }`}
                 >
                   <div className="flex  items-center py-[2.222vh] px-[1.25vw] w-full">
                     <picture className="flex justify-start w-[89%]">
-                      <img src={hoveredCategory === item.title ? item.icon : item.icon} />
+                      {/* <img src={hoveredCategory === item.title ? [item.icon] : [item.icon]} /> */}
+                      {hoveredCategory === item.title ?
+                        <Svg
+                          className=''
+                          width={svgicons[item.iconlite][0]}
+                          height={svgicons[item.iconlite][1]}
+                          viewBox={svgicons[item.iconlite][2]}
+                          icon={svgicons[item.iconlite][3]}
+                          color={svgicons[item.iconlite][4]}
+                        /> :
+                        <Svg
+                          className=''
+                          width={svgicons[item.icon][0]}
+                          height={svgicons[item.icon][1]}
+                          viewBox={svgicons[item.icon][2]}
+                          icon={svgicons[item.icon][3]}
+                          color={svgicons[item.icon][4]}
+                        />
+                      }
+
                       <aside
-                        className={` pl-[1.25vw] text-[1.094vw] text-dark-gray   w-full ${hoveredCategory === item.title
-                          ? "text-white"
+                        className={` pl-[1.25vw] text-[1.094vw] text-dark-gray w-full ${hoveredCategory === item.title
+                          ? "text-white font-semibold "
                           : "text-black"
                           }`}
                       >
@@ -553,7 +687,7 @@ function OurCourse({ page }) {
         <Link href="./exploreCourses">
           <article on className="flex justify-end mt-8 mb-8">
             <Button
-              className="border border-orange-500 rounded text-orange-500 p-2 hover:bg-gradient "
+              className="border border-orange-500 rounded text-orange-500 p-2  "
               title="View All Courses"
               icon={
                 viewAllCoursesHover
@@ -561,8 +695,8 @@ function OurCourse({ page }) {
                   : "./arrowIconOrange.svg"
               }
               iconPosition="right"
-            // onMouseEnter={() => { setviewAllCoursesHover(true) }}
-            // onMouseLeave={() => { setviewAllCoursesHover(false) }}
+            // onMouseEnter={() => { setMouseHover(true) }}
+            // onMouseLeave={() => { setMouseHover(false) }}
             />
           </article>
         </Link>

@@ -3,9 +3,12 @@ import React, { createContext, useState, useEffect } from "react";
 
 export const GlobalContext = createContext();
 import dayjs from "dayjs";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
 const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
+  const router = useRouter();
+  const [domainVariable, setDomainVariable] = useState('');
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
   const [homeBranchData, setHomeBranchData] = useState([])
@@ -32,6 +35,7 @@ const GlobalContextProvider = ({ children }) => {
   const [universitySearchQuery, setUniversitySearchQuery] = useState("");
   const [yearSearchQuery, setYearSearchQuery] = useState("");
   const [streamSearchQuery, setStreamSearchQuery] = useState("");
+
 
   //daterange
   const [fromValue, setFromValue] = useState("");
@@ -286,6 +290,27 @@ const GlobalContextProvider = ({ children }) => {
     }
   };
 
+  useEffect(() => {
+    const { pathname } = router;
+    console.log(pathname, "pathname");
+
+    switch (true) {
+      case pathname?.includes("qspiders"):
+        setDomainVariable("Qspiders");
+        break;
+      case pathname?.includes("jspiders"):
+        setDomainVariable("Jspiders");
+        break;
+      case pathname?.includes("pyspiders"):
+        setDomainVariable("Pyspiders");
+        break;
+      default:
+        setDomainVariable("Unknown Domain");
+    }
+  }, [router]);
+
+  console.log(domainVariable, "domainVariable")
+
   return (
     <GlobalContext.Provider
       value={{
@@ -383,7 +408,8 @@ const GlobalContextProvider = ({ children }) => {
         yearSearchQuery, setYearSearchQuery,
         streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
-        homeBranchData, setHomeBranchData
+        homeBranchData, setHomeBranchData,
+        domainVariable,
       }}
     >
       {children}
