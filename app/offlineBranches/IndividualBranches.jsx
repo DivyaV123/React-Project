@@ -103,7 +103,7 @@ const IndividualBranches = () => {
             Select Course to View our offline Centres
           </p>
         </div>
-        <section className="sm:w-[80vw] m-auto sm:pt-[1.667vh] flex sm:flex-wrap mobile:flex-col gap-4">
+        <section className="w-[80vw] m-auto pt-[1.667vh] flex flex-wrap mobile:flex-col gap-4">
           {selectedCity &&
             selectedCity?.course?.map((course, index) => (
               <div
@@ -113,17 +113,17 @@ const IndividualBranches = () => {
               >
                 <div className="flex items-center gap-2">
                   <img
-                    src={course.image}
-                    alt={course.title}
+                    src={course.courseIcon}
+                    alt={course.courseName}
                     className="h-[3.333vh] w-[1.875vw] mobile:w-[8.372vw] mobile:h-[3.863vh]"
                   />
-                  <h3 className="text-[0.938vw] text-[#454545] font-bold mobile:text-[2.791vw]">
-                    {course.title}
+                  <h3 className="text-[0.938vw] text-[#454545] font-bold mobile:text-[2.791vw] p-1">
+                    {course.courseName}
                   </h3>
                 </div>
                 <div>
-                  <article className="text-[#575757] text-[0.866vw] pt-[2.222vh] mobile:text-[2.558vw] mobile:pt-[0.858vh]">
-                    {course.description}
+                  <article title={course.courseDescription} className="text-[#575757] text-[0.866vw] pt-[2.222vh] mobile:text-[2.558vw] mobile:pt-[0.858vh]">
+                    {truncateText(course.courseDescription, 100)}
                   </article>
                 </div>
               </div>
