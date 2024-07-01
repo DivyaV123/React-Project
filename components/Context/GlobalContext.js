@@ -9,15 +9,14 @@ const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
   const [domainVariable, setDomainVariable] = useState('');
   const routerName = window.location.hostname
-  console.log(routerName, "pathname");
   switch (true) {
-    case origin?.includes("qspiders"):
+    case routerName?.includes("qspiders"):
       setDomainVariable("Qspiders");
       break;
-    case origin?.includes("jspiders"):
+    case routerName?.includes("jspiders"):
       setDomainVariable("Jspiders");
       break;
-    case origin?.includes("pyspiders"):
+    case routerName?.includes("pyspiders"):
       setDomainVariable("Pyspiders");
       break;
     default:
