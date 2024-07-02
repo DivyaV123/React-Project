@@ -18,6 +18,24 @@ import { GlobalContext } from '../Context/GlobalContext'
 
 function CarosalHome() {
   const { domainVariable } = useContext(GlobalContext)
+  const imgarray = [
+    {
+      imgSrc: './riteJspidersStickyLogo.png',
+      domine: "Jsp"
+    },
+    {
+      imgSrc: '../images/Variant3.png',
+      domine: "Qsp"
+    },
+    {
+      imgSrc: './pyside (1).svg',
+      domine: "Pysp"
+    },
+    {
+      imgSrc: './proside (1).svg',
+      domine: "prosp"
+    },
+  ]
   // let corosalsections = [
   //   { section: <Section1 /> },
   //   { section: <Section2 /> },
@@ -45,7 +63,7 @@ function CarosalHome() {
         }
 
         {domainVariable === "Pyspiders" &&
-          <figure className='absolute right-[-11.9%] top-[10.5%] hover:right-[-10.4%] cursor-pointer '>
+          <figure className='absolute right-[-11.9%] top-[9.5%] hover:right-[-10.4%] cursor-pointer '>
             <a href='http://testqsp.qspiders.com/' target='blank'>
               <img className='w-[59%] hover:w-[60%]' src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
             </a>

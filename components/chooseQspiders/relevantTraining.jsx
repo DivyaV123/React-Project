@@ -1,13 +1,24 @@
 'use client'
-import React, { useContext } from 'react'
+import React, { useContext, useState } from 'react'
 import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
 import './chooseUs.scss'
 import { GlobalContext } from '../Context/GlobalContext'
+import HiringModal from '@/app/hireFromUs/Modal/HiringModal'
 
 
 function RelevantTraining() {
     const { domainVariable } = useContext(GlobalContext)
+    const [active, setActive] = useState(false)
+    const [activeTab, setActiveTab] = useState("Corporate Training")
+    const handleCardClick = () => {
+        setActive(true);
+        setActiveTab('Corporate Training');
+    };
+
+    const handleCloseModal = () => {
+        setActive(false);
+    };
     return (
         <section className='sm:grid grid-cols-2 gap-4 mt-6 mb-8 mobile:flex mobile:flex-col-reverse'>
             <Fade left duration={1000} delay={0}>
@@ -43,7 +54,7 @@ function RelevantTraining() {
                             <Button
                                 className='bg-gradient text-white rounded w-[11.719vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw]'
                                 title="Know more"
-                                onClick={() => { }}
+                                onClick={handleCardClick}
                             />
                         </article>
                     </div>
@@ -56,6 +67,14 @@ function RelevantTraining() {
                     </figure>
                 </aside>
             </Fade>
+            {active && (
+                <HiringModal
+                    isModalOpen={active}
+                    activeTab={activeTab}
+                    handleCloseModal={handleCloseModal}
+                    setActiveTab={setActiveTab}
+                />
+            )}
         </section>
     )
 }

@@ -47,7 +47,7 @@ function ContactSection() {
                     </div>}
                     className='rounded-md border h-[2.656vw] w-[14.219vw] border-[#454545] text-[0.75rem] text-dark-gray'
                 />
-                <Button
+                {/* <Button
                     title={<div className='flex gap-2'>
                         <Svg
                             width={svgicons.litewhatsappIcon[0]}
@@ -59,7 +59,7 @@ function ContactSection() {
                         <span>Message on Whatsapp</span>
                     </div>}
                     className='w-[15.859vw] h-[2.656vw] rounded-md bg-[#25D366] text-[0.75rem] text-white'
-                />
+                /> */}
             </div>
             {active && (
                 <HiringModal
