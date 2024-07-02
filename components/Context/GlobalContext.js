@@ -9,7 +9,6 @@ const GlobalContextProvider = ({ children }) => {
   const [domainVariable, setDomainVariable] = useState('');
   useEffect(() => {
     const routerName = window.location.hostname;
-    console.log(routerName , "demo")
     switch (true) {
       case routerName?.includes("qspiders"):
         setDomainVariable("Qspiders");
