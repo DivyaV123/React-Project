@@ -148,7 +148,7 @@ const handleFilterButton=()=>{
           {mobileSidebar.map((classItem, index) => (
             <button
               key={index}
-              className={`flex justify-between items-center mobileRadius mobile:py-[0.429vh] mobile:px-[3.256vw] mb-[0.833vh] sm:w-full text-[1.094vw] mobile:text-[3.256vw] ${
+              className={`flex sm:hidden justify-between items-center mobileRadius mobile:py-[0.429vh] mobile:px-[3.256vw] mb-[0.833vh] sm:w-full text-[1.094vw] mobile:text-[3.256vw] ${
                 classItem.title === sideBarBtn &&
                 !lesscheckedIcon &&
                 !throughcheckedIcon &&

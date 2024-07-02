@@ -15,17 +15,21 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
   const openImageDialog = () => {
     setImageDialog(true);
     setVideoDialog(false);
+    setTestimonialDialog(false)
   };
   const openVideoDialog = () => {
     setVideoDialog(true);
     setImageDialog(false);
+    setTestimonialDialog(false)
   };
 
   const extractText=(data)=>{
     return branchAbbreviations[data] || data;
   }
 const handleViewmore=()=>{
-  setTestimonialDialog(true)
+  setTestimonialDialog(true);
+  setVideoDialog(false);
+  setImageDialog(false);
 }
 
   return (
