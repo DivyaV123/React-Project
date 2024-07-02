@@ -1,3 +1,4 @@
+'use client'
 import React, { useContext } from "react";
 import "../signin/SigninLanding.scss";
 import SignupForm from "./SignupForm";
