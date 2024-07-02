@@ -5,7 +5,7 @@ import Button from "@/components/commonComponents/button/Button";
 import Input from "@/components/commonComponents/input/Input";
 import TextArea from "@/components/commonComponents/textArea/TextArea";
 import WebLayout from "@/components/commonComponents/webLayout/WebLayout";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { isValidPhoneNumber } from "react-phone-number-input";
@@ -15,6 +15,7 @@ import "./contactUsPage.scss";
 import { usePostContactMutation } from "../../redux/queries/contactUSApi";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 
 function ContactUsPage() {
   const [error, setError] = useState({ phone: false, validPhone: false });
@@ -22,6 +23,7 @@ function ContactUsPage() {
   const [countryCode, setCountryCode] = useState("");
   const { toast } = useToast();
   const [isMobileView, setIsMobileView] = useState(false);
+  const { domainVariable } = useContext(GlobalContext)
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
@@ -94,20 +96,20 @@ function ContactUsPage() {
     {
       country: "India",
       call: "+918951965854, +919686111919, +919108993972",
-      mail: "enquiry@qspiders.com",
+      mail: `enquiry@${domainVariable}.com`,
       address:
         " No. 01, 3rd Cross Basappa Layout, Gavipuram Extn, Kempegowda Nagar, Bengaluru, Karnataka - 560019",
     },
     {
       country: "United States",
       call: "+14154293957",
-      mail: "enquiry@qspiders.com",
+      mail: `enquiry@${domainVariable}.com`,
       address: "99 South Almaden Blvd, Suite 600, San Jose, CA 95113, USA",
     },
     {
       country: "United Kingdom",
       call: "+443332423091",
-      mail: "enquiry@qspiders.com",
+      mail: `enquiry@${domainVariable}.com`,
       address: "99 South Almaden Blvd, Suite 600, San Jose, CA 95113, UK",
     },
   ];
@@ -216,10 +218,10 @@ function ContactUsPage() {
                     {(error.phone ||
                       (formikDetails.errors.phone &&
                         formikDetails.touched.phone)) && (
-                      <div className="text-red-500 mobile:text-[2.591vw] text-[0.75vw] absolute">
-                        Phone number is required
-                      </div>
-                    )}
+                        <div className="text-red-500 mobile:text-[2.591vw] text-[0.75vw] absolute">
+                          Phone number is required
+                        </div>
+                      )}
                     {error.validPhone && !error.phone && (
                       <div className="text-red-500 mobile:text-[2.591vw] text-[0.75vw] absolute">
                         Invalid phone number
@@ -240,7 +242,7 @@ function ContactUsPage() {
                       value={formikDetails.values.email}
                     />
                     {formikDetails.touched.email &&
-                    formikDetails.errors.email ? (
+                      formikDetails.errors.email ? (
                       <div className="text-red-500 absolute mobile:text-[2.591vw] text-[0.75vw]">
                         {formikDetails.errors.email}
                       </div>
@@ -261,7 +263,7 @@ function ContactUsPage() {
                       value={formikDetails.values.message}
                     />
                     {formikDetails.touched.message &&
-                    formikDetails.errors.message ? (
+                      formikDetails.errors.message ? (
                       <div className="text-red-500 absolute mobile:text-[2.591vw] text-[0.75vw]">
                         {formikDetails.errors.message}
                       </div>
@@ -294,11 +296,10 @@ function ContactUsPage() {
                 </h1>
                 {contactInfo.map((data) => (
                   <article
-                    className={`${
-                      data.country === "United Kingdom"
-                        ? "pb-[7px]"
-                        : "pb-[5px]"
-                    }`}
+                    className={`${data.country === "United Kingdom"
+                      ? "pb-[7px]"
+                      : "pb-[5px]"
+                      }`}
                   >
                     <h1 className="text-white pb-[0.625vw] text-[1.563vw]  font-bold">
                       {data.country}
