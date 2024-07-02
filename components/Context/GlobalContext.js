@@ -306,7 +306,7 @@ const GlobalContextProvider = ({ children }) => {
   };
 
 
-  console.log(domainVariable, "domainVariable")
+
 
   return (
     <GlobalContext.Provider

@@ -25,7 +25,7 @@ const BranchResponseLanding = () => {
     );
     return branches ? [branches] : [];
   }, [BranchResponse, branchName, branchId]);
-  console.log(filterBranchByCourse, "filterBranchByCourse");
+
   const getBranchResponse = filterBranchByCourse?.[0]?.branches || [];
   const getCourseId= filterBranchByCourse?.[0]?.courseId || "";
   const getBranchCourseTitle = filterBranchByCourse?.[0]?.courseName || "";

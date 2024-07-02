@@ -1,13 +1,14 @@
 "use client";
 import React, { useContext, useState } from "react";
-import "./IndividualBranches.scss";
+import "../IndividualBranches.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useRouter } from "next/navigation";
-import { OFFLINE_CENTRES } from "@/lib/RouteConstants";
+import { OFFLINE_CENTRES,OFFLINE_BRANCHES } from "@/lib/RouteConstants";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { truncateText } from "@/lib/utils";
+import { usePathname } from "next/navigation";
 import {
   Carousel,
   CarouselContent,
@@ -16,6 +17,8 @@ import {
 
 const IndividualBranches = () => {
   const router = useRouter();
+  const pathname = usePathname();
+  const [branchName] = pathname.split("/").slice(2);
   const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery();
   const [currentSlide, setCurrentSlide] = useState(0);
 
@@ -31,13 +34,13 @@ const IndividualBranches = () => {
   // Total cities
   const totalCities = newNavCities?.length;
 
-  const { selectedBranch, setSelectedBranch, setSelectedCourseId } = useContext(GlobalContext);
+  const {setSelectedCourseId } = useContext(GlobalContext);
 
-  const selectedCity = newNavCities?.find((city) => city.name === selectedBranch);
+  const selectedCity = newNavCities?.find((city) => city.name === branchName);
 
   const handleCourseRoute = (e, course) => {
     e.preventDefault();
-    router.push(`${OFFLINE_CENTRES}`);
+    router.push(`${OFFLINE_BRANCHES}/${branchName}/${course}`);
     setSelectedCourseId(course);
   };
 
@@ -54,11 +57,11 @@ const IndividualBranches = () => {
   return (
     <div className="w-full">
       <header className="offlineHeader">Our Offline Centres</header>
-      <section className="justify-center citySection w-[87.5vw] m-auto pt-[1.667vh] pb-[8.889vh]">
-        <div className="flex justify-center gap-1">
+      <section className="justify-center citySection w-[87.5vw]  mobile:w-[92.558vw] m-auto pt-[1.667vh] pb-[8.889vh]">
+        <div className="flex justify-between items-center gap-1">
           <div onClick={handlePrevious}>
             <Svg
-              className="pb-[2.939vh]"
+              className="h-[3.004vh] w-[3.86vw]"
               width={svgicons.corasalArrowLeft[0]}
               height={svgicons.corasalArrowLeft[1]}
               viewBox={svgicons.corasalArrowLeft[2]}
@@ -67,13 +70,13 @@ const IndividualBranches = () => {
             />
           </div>
           <Carousel>
-            <CarouselContent>
+            <CarouselContent page="offlineBranches">
               <CarouselItem>
                 <div className="flex items-center">
                   {currentCities?.map((ele, index) => (
                     <div
-                      onClick={() => setSelectedBranch(ele.name)}
-                      className={`cityNavbar flex justify-center p-1 items-center w-[8.359vw] py-[1.111vh] text-[0.938vw] ${ele.name === selectedBranch ? "activeCity" : ""
+                      onClick={() => router.push(`${OFFLINE_BRANCHES}/${ele.name}`)}
+                      className={`cityNavbar flex justify-center sm:p-1 items-center w-[8.359vw] mobile:w-[25vw] mobile:text-[2.791vw]  py-[1.111vh] mobile:py-[0.858vh] text-[0.938vw]  ${ele.name === branchName ? "activeCity" : ""
                         }`}
                       key={index}
                     >
@@ -86,7 +89,7 @@ const IndividualBranches = () => {
           </Carousel>
           <div onClick={handleNext}>
             <Svg
-              className="pb-[2.939vh]"
+              className="h-[3.004vh] w-[3.86vw]"
               width={svgicons.corasalArrowRight[0]}
               height={svgicons.corasalArrowRight[1]}
               viewBox={svgicons.corasalArrowRight[2]}

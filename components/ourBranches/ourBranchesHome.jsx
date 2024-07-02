@@ -81,7 +81,7 @@ function OurBranchesHome({ page }) {
     e.preventDefault();
     if (page !== "course" && cityName !== "AllCities") {
       setSelectedBranch(cityName);
-      router.push(`${OFFLINE_BRANCHES}`);
+      router.push(`${OFFLINE_BRANCHES}/${cityName}`);
     } else if (page === "course") {
       setSelectedBatch(cityName);
       router.push(`${UPCOMING_BATCHES}`);
