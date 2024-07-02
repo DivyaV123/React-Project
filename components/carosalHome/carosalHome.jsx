@@ -27,13 +27,14 @@ function CarosalHome() {
   let logo = () => {
     return (
       <article className='mobile:hidden'>
-        {domainVariable === "Qspiders" &&
+        {(domainVariable === "Qspiders") &&
           <figure className='absolute right-[-11%] hover:right-[-10.5%] cursor-pointer'>
             <a href='http://testjsp.jspiders.com/' target='_blank'>
               <img className='w-[71%] hover:w-[73%]' src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
             </a>
-          </figure>}
-        {domainVariable != "Qspiders" &&
+          </figure>
+        }
+        {(domainVariable != "Qspiders" || domainVariable != "Jspiders") &&
           <>
             <figure className='absolute right-[-10%] top-[15px]  hover:right-[-9.5%] cursor-pointer'>
               <a href='http://testqsp.qspiders.com/' target='blank'>
@@ -46,7 +47,7 @@ function CarosalHome() {
         {domainVariable === "Pyspiders" &&
           <figure className='absolute right-[-9.5%] top-[10.5%] hover:right-[-9%] cursor-pointer '>
             <a href='http://testqsp.qspiders.com/' target='blank'>
-              <img className='w-[71%] hover:w-[73%]' src='../images/Variant3.png' alt="riteJspidersStickyLogo"></img>
+              <img className='w-[71%] hover:w-[73%]' src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
             </a>
           </figure>}
         {
