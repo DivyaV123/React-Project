@@ -42,7 +42,7 @@ function MainNavbar() {
               </>
               : domainVariable === "Jspiders" ?
                 <>
-                  <Link href={""}>
+                  <Link href={HOME_PATH}>
                     <img src="../images/jpiders.png" />
                   </Link>
                 </>

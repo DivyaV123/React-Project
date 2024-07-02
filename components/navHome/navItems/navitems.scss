@@ -51,7 +51,8 @@
 }
 @media only screen and (min-width: 1920px) {
   .courseMedium {
-    width: 17.4vw;
+    min-width: 26.4vw;
+    height: 11vh;
   }
 }
 .courseinitial {
@@ -67,6 +68,7 @@
 @media only screen and (min-width: 1920px) {
   .courseinitial {
     width: 22.06vw;
+    height: 10vh;
   }
 }
 
