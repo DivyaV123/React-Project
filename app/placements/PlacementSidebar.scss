@@ -141,3 +141,13 @@
   right: 10px;
   transform: translateY(-71%);
 }
+
+
+/* Prevent body scroll when modal is open */
+
+  body.modal-open {
+    overflow: hidden;
+    width: 100vw;
+}
+
+

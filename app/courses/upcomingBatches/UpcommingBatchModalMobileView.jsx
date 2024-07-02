@@ -1,84 +1,62 @@
-"use client";
-import React, { useState, useContext } from "react";
-import { Checkbox } from "@/components/ui/checkbox";
-import WebLayout from "@/components/commonComponents/webLayout/WebLayout";
+'use client'
+import React ,{useState,useEffect}from 'react'
+import "./upComingBranches.scss"
 import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import "./upComingBranches.scss";
-import { GlobalContext } from "@/components/Context/GlobalContext";
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+  } from "@/components/ui/accordion";
+  import { Checkbox } from "@/components/ui/checkbox";
+  import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-import BatchesCard from "./BatchesCard";
-
-import UpcommingBatchModalMobileView from "./UpcommingBatchModalMobileView";
-
-function BranchWithFilter() {
-  const { selectedBatch, setSelectedBatch } = useContext(GlobalContext);
-  const [openIndex, setOpenIndex] = useState(-1);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const handleModalOpen = () => {
-    
-    setIsModalOpen(true);
-    
-  };
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
+const UpcommingBatchModalMobileView = ({isModalOpen,handleCloseModal,openIndex,handleAccordionToggle,handleCheckboxChange,selectedBatch,branchesList}) => {
    
-  };
-  const branchesList = [
-    {
-      Bengalore: [
-        "Basavanagudi",
-        "Old Airport Road",
-        "Rajajinagar",
-        "Hebbal",
-        "BTM Layout",
-      ],
-    },
-    { Hyderabad: [] },
-    { Chennai: [] },
-    { Pune: [] },
-    { Mumbai: [] },
-    { Noida: [] },
-    { Gurugram: [] },
-    { "New Delhi": [] },
-    { Bhubaneswar: [] },
-    { Kolkata: [] },
-    { Ahmedabad: [] },
-    { Chandigarh: [] },
-    { Tirupati: [] },
-    { Kochi: [] },
-    { Mysore: [] },
-    { "View all Cities": [] },
-  ];
-  const handleAccordionToggle = (index) => {
-    setOpenIndex(index === openIndex ? -1 : index);
-  };
-  // const handleCheckboxChange = (checked, id) => {
-  //   setSelectedBatch((prev) =>
-  //     checked ? [...prev, id] : prev?.filter((item) => item !== id)
-  //   );
-  // };
-  const handleCheckboxChange = (checked, id) => {
-    setSelectedBatch((prev) =>
-      Array.isArray(prev) ? (checked ? [...prev, id] : prev.filter((item) => item !== id)) : []
-    );
-  };
+  useEffect(() => {
+    const body = document.body;
+    const scrollbarWidth = window.innerWidth - body.clientWidth;
+
+    if (isModalOpen) {
+      body.style.overflow = "hidden";
+      body.style.paddingRight = `${scrollbarWidth}px`;
+    } else {
+      body.style.overflow = "";
+      body.style.paddingRight = "";
+    }
+
+    return () => {
+      body.style.overflow = "";
+      body.style.paddingRight = "";
+    };
+  }, [isModalOpen]);
+
+  if (!isModalOpen) return null;
+  const filterClass = "text-[#002248] text-[1.25vw] font-semibold mobile:text-[4.651vw]";
+  
   return (
-    <WebLayout>
-      <section className="bg-[#F9F9F9] pb-6 px-[3.125vw]">
-        <header className="font-bold text-[1.5rem] p-8 pl-0 mobile:text-[4.651vw] mobile:flex mobile:justify-between">
-          <p>Upcoming Batches</p>
-          <button  onClick={() => handleModalOpen()} className=" hidden mobile:flex mobile:gap-[1.163vw] rounded mobile:w-[23.256vw] mobile:bg-[#FFFFFF]  mobile:text-[3.956vw] mobile:justify-center mobile:items-center mobile:h-[4.841vh] mobile:text-[] mobile:font-bold"><span className="mobile:mx-1"><img src="../../icon_filter_black.png"/></span>Filter</button>
-        </header>
-        <section className="flex gap-x-[1.875vw] gap-y-[3.333vh]">
-          <aside className="mobile:hidden">
-            <article className="w-[18.984vw] h-[72.5vh] bg-[#FFFFFF] rounded overflow-y-scroll courseScroll">
-              <header className="font-bold p-3">Filter</header>
+    <div className="upcomingBatchFilterModal">
+      <div className="modal-overlay">
+        <div className="modal">
+        
+        <aside className="filterSidebar myscrollbar  ">
+            <div className="flex pb-[2.222vh] px-[1.875vw] bg-[#FFFFFF] mobile:px-[7.875vw] pt-[3.333vh] justify-between filterHeader">
+              <div className="flex gap-2">
+                <button className={filterClass}>Filter</button>
+                
+              </div>
+             
+              <div className="modal-header">
+        
+          <button className="close-button" onClick={()=>{handleCloseModal()}}>
+            &times;
+          </button>
+        </div>
+
+            </div>
+            <section className="flex gap-x-[1.875vw] gap-y-[3.333vh]">
+          <aside className="">
+            <article className="w-[100vw] h-[100vh] bg-[#FFFFFF] rounded overflow-y-visible courseScroll">
+              
               <h1 className="font-semibold text-black text-[0.875rem] bg-[#FFF9F4] w-full p-3 flex">
                 Mode of class
               </h1>
@@ -171,16 +149,15 @@ function BranchWithFilter() {
             </article>
             <article></article>
           </aside>
-          <aside className=" h-[72.5vh] overflow-hidden">
-            <div className=" mobile:block mobile:w-[auto] mobile:px-[1vw] flex flex-wrap gap-x-[1.563vw] gap-y-[2.778vh] w-[70.078vw]  h-full overflow-y-scroll courseScroll">
-              <BatchesCard />
-            </div>
-          </aside>
+          
         </section>
-      </section>
-      <UpcommingBatchModalMobileView openIndex={openIndex} handleCheckboxChange={handleCheckboxChange} handleAccordionToggle={handleAccordionToggle} selectedBatch={selectedBatch} branchesList={branchesList} isModalOpen={isModalOpen} handleCloseModal={handleCloseModal}/>
-    </WebLayout>
-  );
+           
+            
+          </aside>
+            </div>
+            </div>
+        </div>
+  )
 }
 
-export default BranchWithFilter;
+export default UpcommingBatchModalMobileView
