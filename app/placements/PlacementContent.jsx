@@ -194,9 +194,11 @@ const handleViewmore=()=>{
               </AlertDialogTrigger>
             </div>
             {imageDialog && (
+              
               <ImagePopup
                 testimonialLink={student?.testimonial?.testimonialLink}
               />
+             
             )}
             {videoDialog && (
               <VideoPopup videoLink={student?.testimonial?.youtubeReview} />

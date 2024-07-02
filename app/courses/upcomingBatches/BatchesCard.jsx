@@ -111,68 +111,69 @@ function BatchesCard() {
           <section className={`flex flex-wrap`} key={index}>
             <div
               className={
-                "w-[22.109vw] upcomingBatches py-[2.222vh] px-[1.25vw]"
+                "w-[22.109vw] mobile:px-[3.721vw] mobile:w-[92.558vw] mobile:my-2 upcomingBatches py-[2.222vh] px-[1.25vw]"
               }
             >
-              <header className="font-bold text-[1.25vw] pb-[0.833vh]">
+              <header className="font-bold text-[1.25vw] pb-[0.833vh] mobile:text-[3.721vw]">
                 {batch.course}
               </header>
-              <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh]">
+              <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh] mobile:text-[2.791vw]">
                 By: {batch.trainer}
               </p>
-              <div className="flex pb-[1.389vh] gap-y-[0.469vw] items-center  justify-between">
+              <div className="flex mobile:block pb-[1.389vh] gap-y-[0.469vw] items-center  justify-between">
                 <div className={`${dateAndTime}`}>
                   <Svg
-                    className=" pr-[0.469vw]"
+                    className=" pr-[0.469vw] mobile:w-[4.186vw]"
                     width={svgicons.calender[0]}
                     height={svgicons.calender[1]}
                     viewBox={svgicons.calender[2]}
                     icon={svgicons.calender[3]}
                     color={svgicons.calender[4]}
                   />
-                  <div>{batch.date}</div>
+                  <div className="mobile:text-[2.791vw] mobile:mx-1">{batch.date}</div>
                 </div>
-                <div className={`${dateAndTime}`}>
+                <div className={`${dateAndTime} mobile:mt-1`}>
                   <Svg
+                  className=" mobile:w-[4.186vw]"
                     width={svgicons.icontime[0]}
                     height={svgicons.icontime[1]}
                     viewBox={svgicons.icontime[2]}
                     icon={svgicons.icontime[3]}
                     color={svgicons.icontime[4]}
                   />
-                  <div>{batch.time}</div>
+                  <div className="mobile:text-[2.791vw] mobile:mx-1">{batch.time}</div>
                 </div>
               </div>
-              <div className={`${dateAndTime} pb-[1.389vh]`}>
+              <div className={`${dateAndTime} pb-[1.389vh] `}>
                 <Svg
-                  className=" pr-[0.469vw]"
+                  className=" pr-[0.469vw] mobile:w-[4.186vw]"
                   width={svgicons.branchLocation[0]}
                   height={svgicons.branchLocation[1]}
                   viewBox={svgicons.branchLocation[2]}
                   icon={svgicons.branchLocation[3]}
                   color={svgicons.branchLocation[4]}
                 />
-                <div>{batch.place}</div>
+                <div className="mobile:text-[2.791vw] mobile:mx-1">{batch.place}</div>
               </div>
-              <div className={`${dateAndTime} pb-[1.389vh]`}>
+              <div className={`${dateAndTime} pb-[1.389vh] mobile:hidden`}>
                 <Svg
-                  className=" pr-[0.469vw]"
+                  className=" pr-[0.469vw] mobile:w-[4.186vw]"
                   width={svgicons.calender[0]}
                   height={svgicons.calender[1]}
                   viewBox={svgicons.calender[2]}
                   icon={svgicons.calender[3]}
                   color={svgicons.calender[4]}
                 />
-                <div>{batch.day}</div>
+                <div className="mobile:text-[2.791vw]">{batch.day}</div>
               </div>
               <div className="flex justify-between">
                 <button
-                  className={`${enrollEnquire} EnrollButton bg-gradient rounded text-white`}
+                  className={`${enrollEnquire} mobile:text-[3.721vw] mobile:flex mobile:justify-center mobile:items-center mobile:w-[39.535vw] mobile:h-[4.731vh] EnrollButton bg-gradient rounded text-white`}
                 >
                   Demo Class
                 </button>
                 <button
-                  className={`${enrollEnquire} EnquireButton rounded border border-orange-500 text-orange-500`}
+                  className={`${enrollEnquire} mobile:text-[3.721vw] mobile:flex mobile:justify-center mobile:items-center mobile:w-[39.535vw] mobile:h-[4.731vh] EnquireButton rounded border border-orange-500 text-orange-500`}
                 >
                   Know more
                 </button>

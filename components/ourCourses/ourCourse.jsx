@@ -141,7 +141,7 @@ function OurCourse({ page }) {
   const courses = AllCourse?.data?.map((data) => {
     return ({
       icon: data.icon,
-      iconlite: "popularCourseIconLite",
+      iconlite: data.alternativeIcon,
       title: data.title,
       arrow: "./arrowIconDark.svg",
     }
