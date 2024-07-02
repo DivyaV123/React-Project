@@ -9,11 +9,11 @@ import { svgicons } from '@/components/assets/icons/svgassets'
 const ImagePopup = ({testimonialLink}) => {
   return (
     <div className=''>
-            <AlertDialogContent className="max-w-[62.5vw] px-[5.556vh] rounded-xl mobile:px-0 mobile:transform mobile:translate-x-[-100%] mobile:left-[58%] mobile:w-[92.558vw] mobile:max-w-[92.558vw] mobile:h-[53.978vh]">
+            <AlertDialogContent className="sm:max-w-[62.5vw] h-[80vh] sm:px-[5.556vh] rounded-xl mobile:h-[50vh] mobile:w-[80vw] mobile:p-0">
       
-                        <AlertDialogCancel className='border-none hover:bg-white p-0 absolute right-0'>
+                        <AlertDialogCancel className='border-none  p-0 absolute right-0 mobile:right-0 mobile:-top-[0.5rem]'>
                             <Svg
-                            className='w-[1.953vw] h-[3.472vh] mobile:w-[10.953vw] mobile:h-[4.472vh]'
+                            className='w-[1.953vw] h-[3.472vh] mobile:w-[5.953vw]'
                                 width={svgicons.cancelButtonIcon[0]}
                                 height={svgicons.cancelButtonIcon[1]}
                                 viewBox={svgicons.cancelButtonIcon[2]}

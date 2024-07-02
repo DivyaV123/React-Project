@@ -15,22 +15,21 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
   const openImageDialog = () => {
     setImageDialog(true);
     setVideoDialog(false);
-    document.body.classList.add('modal-open');
-  };
-    const closeImageDialog = () => {
-    setImageDialog(false);
-    document.body.classList.remove('modal-open'); // Enable body scroll
+    setTestimonialDialog(false)
   };
   const openVideoDialog = () => {
     setVideoDialog(true);
     setImageDialog(false);
+    setTestimonialDialog(false)
   };
 
   const extractText=(data)=>{
     return branchAbbreviations[data] || data;
   }
 const handleViewmore=()=>{
-  setTestimonialDialog(true)
+  setTestimonialDialog(true);
+  setVideoDialog(false);
+  setImageDialog(false);
 }
 
   return (

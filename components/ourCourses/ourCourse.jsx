@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./ourCourses.scss";
 import CourseCard from "../commonComponents/courseCard/courseCard";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import "../ui/button.scss";
 import Button from "../commonComponents/button/Button";
 import Slide from "react-reveal/Slide";
-import { Fade } from "react-reveal";
 import Svg from "../commonComponents/Svg/Svg";
 import { svgicons } from "../assets/icons/svgassets";
 import Link from "next/link";
@@ -137,131 +136,6 @@ function OurCourse({ page }) {
       category: "Popular Courses"
     }
   ];
-  const initialCategory = [
-    {
-      icon: "https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/Software+Development/2024-06-05T11%3A30%3A30.821485400_SoftwareDevelopment.svg",
-      iconlite: "",
-      title: "Software Development",
-      arrow: "./arrowIconDark.svg"
-    },
-    {
-      icon: "https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/Software%20Testing/2024-06-13T12%3A50%3A08.645801400_Softwaretesting.svg",
-      iconlite: "",
-      title: "Software Testing",
-      arrow: "./arrowIconDark.svg"
-    },
-    {
-      icon: "https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/Popular%20Courses/2024-06-24T23%3A11%3A19.263026500_popular%20courses.svg",
-      iconlite: "",
-      title: "Popular Courses",
-      arrow: "./arrowIconDark.svg"
-    }
-  ];
-
-  // const courses = [
-  //   {
-  //     icon: "popularCourseIcon",
-  //     iconlite: "popularCourseIconLite",
-  //     title: "Popular Courses",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "softwareArchIcon",
-  //     iconlite: "SoftwareArchitectureLote",
-  //     title: "Software Architecture",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "softwaredevicon",
-  //     iconlite: "SoftwareDevelopmentLite",
-  //     title: "Software Development",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "softwareTestingIcon",
-  //     title: "Software Testing",
-  //     iconlite: "SoftwareTestingLite",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "dataScienceIcon",
-  //     iconlite: "DevOpsLite",
-  //     title: "DevOps",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "aimlIcon",
-  //     iconlite: "CloudComputingLite",
-  //     title: "Cloud Computing",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "cyberSecurityIcon",
-  //     iconlite: "DataScienceLite",
-  //     title: "Data Science",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "bankingIcon",
-  //     iconlite: "AiMllite",
-  //     title: "AI/ML",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "projectManagementIcon",
-  //     iconlite: "CyberSecurityLite",
-  //     title: "Cyber Security",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "agileScrumIcon",
-  //     iconlite: "BankingLite",
-  //     title: "Banking",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "supportIcon",
-  //     iconlite: "ProjectManagemenLite",
-  //     title: "Project Management",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "abroadStudiesICon",
-  //     iconlite: "AgileScrumLite",
-  //     title: "Agile Scrum",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "supportIcon",
-  //     iconlite: "ProjectManagemenLite",
-  //     title: "Support",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "abroadStudiesICon",
-  //     iconlite: "AgileScrumLite",
-  //     title: "Abroad Studies",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "supportIcon",
-  //     iconlite: "ProjectManagemenLite",
-  //     title: "HR",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "supportIcon",
-  //     iconlite: "ProjectManagemenLite",
-  //     title: "SAP",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  //   {
-  //     icon: "supportIcon",
-  //     iconlite: "ProjectManagemenLite",
-  //     title: "Salesforce",
-  //     arrow: "./arrowIconDark.svg",
-  //   },
-  // ];
 
 
   const courses = AllCourse?.data?.map((data) => {

@@ -10,8 +10,8 @@ import Link from "next/link";
 const TestimonialPopup = ({student,extractText}) => {
   return (
     <div>
-      <AlertDialogContent className="w-[92.558vw]">
-        <AlertDialogCancel className="border-none hover:bg-white p-0 top-0 absolute right-2">
+      <AlertDialogContent className="w-[92.558vw] p-4">
+        <AlertDialogCancel className="border-none  p-0 top-0 absolute right-2">
           <Svg
             className="w-[6.512vw] h-[3.004vh] outline-none"
             width={svgicons.cancelButtonIcon[0]}

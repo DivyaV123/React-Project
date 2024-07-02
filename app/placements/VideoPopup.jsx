@@ -20,10 +20,10 @@ const VideoPopup = ({ videoLink }) => {
   }
   return (
     <div className="">
-      <AlertDialogContent className="max-w-[62.5vw] px-[5.556vh] rounded-xl">
-        <AlertDialogCancel className="border-none hover:bg-white p-0 absolute right-0">
+      <AlertDialogContent className="sm:max-w-[62.5vw] h-[80vh] sm:px-[5.556vh] rounded-xl mobile:h-[50vh] mobile:w-[80vw] mobile:p-0">
+        <AlertDialogCancel className="border-none  p-0 absolute right-0 mobile:right-0 mobile:-top-[0.5rem]">
           <Svg
-          className='w-[1.953vw] h-[3.472vh]'
+          className='w-[5.953vw] h-[3.472vh] sm:w-[1.953vw]'
             width={svgicons.cancelButtonIcon[0]}
             height={svgicons.cancelButtonIcon[1]}
             viewBox={svgicons.cancelButtonIcon[2]}
