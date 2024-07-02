@@ -66,12 +66,12 @@ const Courses = ({ courseResponse }) => {
                 >
                   <div className="flex h-10 gap-1.5 ">
                     <img className="h-8 w-8" src={content?.icon} />
-                    <h3 className="text-left h-8 text-sm font-bold items-center flex">
-                      {content?.title ? truncateText(content?.title, 28) : ""}
+                    <h3 className="text-left h-8 text-sm font-bold items-center flex pt-1">
+                      {content?.title ? content?.title : ""}
                     </h3>
                   </div>
                   <div>
-                    <article className=" text-sm titleText">{truncateText(content?.description, 100)}</article>
+                    <article className=" text-sm titleText pt-1">{truncateText(content?.description, 55)}</article>
                   </div>
                 </div></Link>
               ))}

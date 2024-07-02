@@ -8,9 +8,9 @@ function NavAuthButtons() {
             <Link href={SIGN_IN}>
                 <Button className="primaryLogin" title='Login'/> 
             </Link>
-            <Link href={SIGN_UP}>
+            {/* <Link href={SIGN_UP}>
                 <Button className='plainBtnReg' title='Register'/> 
-            </Link>
+            </Link> */}
         </div>
     )
 }

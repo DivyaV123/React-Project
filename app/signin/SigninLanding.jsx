@@ -1,10 +1,12 @@
 'use client'
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./SigninLanding.scss";
 import SignInForm from "./SignInForm";
 import Link from "next/link";
 import { HOME_PATH, COURSEADDER_HOME } from "@/lib/RouteConstants";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const SigninLanding = () => {
+  const { domainVariable } = useContext(GlobalContext)
   const [token, setToken] = useState(null);
 
   useEffect(() => {
@@ -28,19 +30,19 @@ const SigninLanding = () => {
           </article>
           <p className="mt-[5vh] tabView:hidden tabView:mt-[2vh] tabView:flex tabView:justify-center tabView:w-[69.22vw] tabView:relative tabView:left-[4.263vw] tabView:text-[2.151vw] font-semibold text-[1.25vw] text-white mobile:mt-[2.146vh] mobile:text-[2.791vw]">
             From dreams to reality, ignite your path to
-            <br /> success with Qspiders
+            <br /> success with {domainVariable}
           </p>
           <p className="mt-[5vh] hidden tabView:block tabView:mt-[2vh] tabView:flex tabView:justify-center tabView:w-[69.22vw] tabView:relative tabView:left-[11.263vw] tabView:text-[2.151vw] font-semibold text-[1.25vw] text-white mobile:mt-[2.146vh] mobile:text-[2.791vw]">
             From dreams to reality, ignite your path to
- success with <br />Qspiders
+            success with <br />{domainVariable}
           </p>
         </div>
         <div className="sm:top-[50%] tabView:left-[1.5vw] tabView:flex tabView:justify-center tabView:top-[35.193vh] sm:-translate-y-[50%] tabView:relative sm:absolute sm:right-[6%]  mobile:mx-[5.581vw]">
           <SignInForm />
         </div>
         <p className="text-white text-[0.938vw] tabView:bottom-[2.889vh] tabView:ml-0 tabView:w-[100vw] tabView:flex tabView:justify-center tabView:items-center tabView:text-[1.613vw] sm:absolute sm:bottom-[13.889vh] sm:ml-[9.125rem] mobile:text-[2.791vw] mobile:flex mobile:justify-center">
-            Copyright @ Qspiders All Rights Reserved{" "}
-          </p>
+          Copyright @ {domainVariable} All Rights Reserved{" "}
+        </p>
       </div>
     </section>
   );

@@ -9,7 +9,7 @@ const GlobalContextProvider = ({ children }) => {
   const [domainVariable, setDomainVariable] = useState('');
   useEffect(() => {
     const routerName = window.location.hostname;
-    console.log(routerName)
+    console.log(routerName , "demo")
     switch (true) {
       case routerName?.includes("qspiders"):
         setDomainVariable("Qspiders");
@@ -20,8 +20,11 @@ const GlobalContextProvider = ({ children }) => {
       case routerName?.includes("pyspiders"):
         setDomainVariable("Pyspiders");
         break;
+      case routerName?.includes("bspiders"):
+        setDomainVariable("Bspiders");
+        break;
       default:
-        setDomainVariable("Unknown Domain");
+        setDomainVariable("Qspiders");
     }
   }, []);
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");

@@ -6,7 +6,7 @@ export const getAllFaqApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: PROD2_URL }),
     endpoints: (builder) => ({
         getAllFaq: builder.query({
-            query: () => 'api/v1/faqs?organization=QSP',
+            query: (domain) => `api/v1/faqs?organization=${domain}`,
         }),
     }),
 });

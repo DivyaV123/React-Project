@@ -21,7 +21,6 @@ const SubCourseResponseLanding = () => {
 
   const filterSubCourseTitle = filterSubCourseById?.[0]?.title;
   const getSubCourseResponse = filterSubCourseById?.[0]?.subCourseResponse || [];
-
   return (
     <section className="my-[1.717vh]">
             <Link

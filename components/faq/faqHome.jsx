@@ -3,8 +3,10 @@ import { WidthIcon } from '@radix-ui/react-icons'
 import React, { useCallback, useContext } from 'react'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import Qaccordion from './qaAccordion'
+import { GlobalContext } from '../Context/GlobalContext'
 
 function FaqHome({ page, questions, courseDetails, faqData, mainfaqData }) {
+    const { domainVariable } = useContext(GlobalContext)
     const qaList = [
         {
             question: 'How do I create an employer account with Qspiders hiring?',
