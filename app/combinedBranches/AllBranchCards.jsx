@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import { AllBranches } from "@/lib/jsonutil";
-import CommonBranch from "../offlineBranches/offlineCentres/CommonBranch";
+import CommonBranch from "../offlineBranches/[BranchName]/[offlineCentres]/CommonBranch";
 import "./AllBranchCard.scss";
 import { Skeleton } from "@/components/ui/skeleton";
 import { useGetAllBranchCourseQuery } from "@/redux/queries/getBranchCourseApi";

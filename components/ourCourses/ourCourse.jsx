@@ -375,15 +375,6 @@ function OurCourse({ page }) {
 
   const tutionClasses =
     page === "tution" ? typesOfClasses.slice(2, 4) : typesOfClasses;
-  const statisticsData = [
-    { number: "25,000+", text: "Students placed" },
-    { number: "180+", text: "Hiring Companies" },
-    { number: "10,000+", text: "Non IT Students placed" },
-    { number: "15,000+", text: "IT Students placed" },
-  ];
-  const filteredCourses = courseCard.filter((course) =>
-    course.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
   const handleAccordionToggle = (index) => {
     setOpenIndex(index === openIndex ? -1 : index);
   };
@@ -449,9 +440,9 @@ function OurCourse({ page }) {
   return (
     <MaxWebWidth>
       {page !== "explore" && (
-        <aside className="flex justify-center align-center mb-8 mt-8">
+        <aside className="flex justify-center align-center my-[4.444vh] mobile:my-[2.575vh]">
           <Slide top cascade>
-            <h1 className="font-bold text-[2rem] header text-black">
+            <h1 className="font-bold text-[2rem] mobile:text-[5.581vw] header text-black">
               Explore Our Courses
             </h1>
           </Slide>
@@ -461,7 +452,7 @@ function OurCourse({ page }) {
         className={
           page === "explore"
             ? "flex justify-between  mb-8 mt-8"
-            : "flex justify-end mb-3"
+            : "flex justify-end mb-3 mobile:justify-center"
         }
       >
         {page === "explore" && (
@@ -473,7 +464,7 @@ function OurCourse({ page }) {
             </header>
           </div>
         )}
-        <div className="flex">
+        <div className="flex mobile:hidden">
           {page === "explore" && (
             <article className="pr-2 pt-[1px]">
               <Input
@@ -489,7 +480,7 @@ function OurCourse({ page }) {
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center px-4 py-2 font-medium text-[0.75rem] text-dark-gray ${classItem.title === btnState
+                className={`flex justify-center items-center px-4 py-2 mobile:py-[0.606vh] mobile:px-[2.698vw] mobile:text-[1.972vw] font-medium text-[0.75rem] text-dark-gray ${classItem.title === btnState
                   ? "bg-gradient text-white rounded p-2"
                   : ""
                   } `}

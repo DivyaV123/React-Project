@@ -10,27 +10,27 @@ const CommonBranch = ({ selectedId, page }) => {
       .join(', ');
   }  
   return (
-    <section className={` mt-6   flex  gap-4  ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 h-full mobile:hidden overflow-x-scroll offlineScrollbar' : "w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
+    <section className={`mobile:px-[1.395vw] sm:mt-6 courseSidebar  flex mobile:flex-col sm:gap-4  ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 h-full mobile:hidden overflow-x-scroll offlineScrollbar' : "sm:w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
       {selectedId &&
         selectedId?.branches?.map((branch, branchIndex) => (
           <div
             key={branchIndex}
-            className={` w-[20.469vw]  p-2 courseSidebar rounded-md ${page === 'offlineBranches' ? "flex-shrink-0" : ""} `}
+            className={` sm:w-[20.469vw] mobile:mt-[1.717vh]  p-2 courseSidebar rounded-md ${page === 'offlineBranches' ? "flex-shrink-0" : ""} `}
           >
             <img
               src={branch.branchImage ? branch.branchImage : "../../../../Frame 41334.png"}
               alt="Branch"
-              className="w-full h-[9.688vw] object-cover"
+              className="w-full h-[9.688vw] mobile:h-[15.451vh] object-cover"
             />
-            <header className="text-[1.25rem] font-bold pt-3">
+            <header className="text-[1.25rem] font-bold pt-3 mobile:pt-[1.288vh] mobile:text-[4.651vw]">
               {branch.branchName}
             </header>
-            <div className="flex gap-3 pt-3">
+            <div className="flex gap-3 pt-3 mobile:pt-[1.288vh]">
               <img
                 src="../../../../icon_outline_location.svg"
                 alt="Location"
               />
-              <p className="text-[0.625rem] text-[#575757]">
+              <p className="text-[0.625rem] text-[#575757] mobile:text-[2.326vw]">
                 {[
                   branch?.street,
                   branch?.city,
@@ -39,21 +39,21 @@ const CommonBranch = ({ selectedId, page }) => {
                 ].filter(Boolean).join(' ')}
               </p>
             </div>
-            <div className="flex gap-3 pt-3">
+            <div className="flex gap-3 pt-3 mobile:pt-[1.288vh]">
               <img src="../../../../icon_call.svg" alt="Phone" />
-              <p className="text-[0.75rem] text-[#107BD4] font-medium">
+              <p className="text-[0.75rem] text-[#107BD4] font-medium mobile:text-[2.791vw]">
                 {removeSpacesFromNumbers(branch.phoneNumber)}
               </p>
             </div>
-            <div className="flex gap-3 pt-3">
+            <div className="flex gap-3 pt-3 mobile:pt-[1.288vh]">
               <img src="../../../../Icon_time2.svg" alt="Upcoming" />
-              <p className="text-[0.75rem] text-[#454545] font-medium">
+              <p className="text-[0.75rem] text-[#454545] font-medium mobile:text-[2.791vw]">
                 {branch.upcomingBatches} Upcoming Batches
               </p>
-            </div>
-            <div className="flex gap-3 pt-3">
+            </div> 
+            <div className="flex gap-3 pt-3 mobile:pt-[1.288vh]">
               <img src="../../../../Icon_time2.svg" alt="Ongoing" />
-              <p className="text-[0.75rem] text-[#454545] font-medium">
+              <p className="text-[0.75rem] text-[#454545] font-medium mobile:text-[2.791vw]">
                 {branch.ongoingBatches} Ongoing Batches
               </p>
             </div>
