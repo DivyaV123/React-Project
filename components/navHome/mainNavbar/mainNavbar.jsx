@@ -27,7 +27,7 @@ function MainNavbar() {
       >
         <aside className="flex justify-between">
           <figure>
-            {domainVariable === "qspiders" ?
+            {domainVariable === "Qspiders" ?
               <>
                 <Link href={HOME_PATH}>
                   <Svg
@@ -40,18 +40,18 @@ function MainNavbar() {
                   />
                 </Link>
               </>
-              : domainVariable === "jspiders" ?
+              : domainVariable === "Jspiders" ?
                 <>
                   <Link href={""}>
                     <img src="../images/jpiders.png" />
                   </Link>
                 </>
-                : domainVariable === "pyspiders" ?
+                : domainVariable === "Pyspiders" ?
                   <>
                     <Link href={HOME_PATH}>
                       <img src="../images/pypiders.png" />
                     </Link>
-                  </> : domainVariable === "byspiders" ?
+                  </> : domainVariable === "Byspiders" ?
                     <>
                       <img src="../images/bspiders.png" />
                     </> : <>  <Link href={HOME_PATH}>
