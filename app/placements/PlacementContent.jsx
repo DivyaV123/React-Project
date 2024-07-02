@@ -15,6 +15,11 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
   const openImageDialog = () => {
     setImageDialog(true);
     setVideoDialog(false);
+    document.body.classList.add('modal-open');
+  };
+    const closeImageDialog = () => {
+    setImageDialog(false);
+    document.body.classList.remove('modal-open'); // Enable body scroll
   };
   const openVideoDialog = () => {
     setVideoDialog(true);
@@ -190,9 +195,11 @@ const handleViewmore=()=>{
               </AlertDialogTrigger>
             </div>
             {imageDialog && (
+              
               <ImagePopup
                 testimonialLink={student?.testimonial?.testimonialLink}
               />
+             
             )}
             {videoDialog && (
               <VideoPopup videoLink={student?.testimonial?.youtubeReview} />
