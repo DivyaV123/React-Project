@@ -34,7 +34,7 @@ function CarosalHome() {
             </a>
           </figure>
         }
-        {(domainVariable != "Qspiders" || domainVariable != "Jspiders") &&
+        {(domainVariable != "Qspiders" && domainVariable != "Jspiders") &&
           <>
             <figure className='absolute right-[-10%] top-[15px]  hover:right-[-9.5%] cursor-pointer'>
               <a href='http://testqsp.qspiders.com/' target='blank'>
@@ -45,9 +45,9 @@ function CarosalHome() {
         }
 
         {domainVariable === "Pyspiders" &&
-          <figure className='absolute right-[-9.5%] top-[10.5%] hover:right-[-9%] cursor-pointer '>
+          <figure className='absolute right-[-11.9%] top-[10.5%] hover:right-[-10.4%] cursor-pointer '>
             <a href='http://testqsp.qspiders.com/' target='blank'>
-              <img className='w-[71%] hover:w-[73%]' src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
+              <img className='w-[59%] hover:w-[60%]' src='./riteJspidersStickyLogo.png' alt="riteJspidersStickyLogo"></img>
             </a>
           </figure>}
         {
