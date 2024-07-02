@@ -34,14 +34,18 @@ function CarosalHome() {
             </a>
           </figure> :
           <>
-            <figure className='absolute right-[-11%] hover:right-[-10.5%] cursor-pointer'>
-              <img className='w-[71%] hover:w-[73%]' src='../images/Variant3.png' alt="riteJspidersStickyLogo"></img>
+            <figure className='absolute right-[-9%] top-[15px]  hover:right-[-8.5%] cursor-pointer'>
+              <a href='http://testqsp.qspiders.com/' target='blank'>
+                <img className='w-[71%] hover:w-[73%]' src='../images/Variant3.png' alt="riteJspidersStickyLogo"></img>
+              </a>
             </figure>
           </>
         }
         {domainVariable === "Pyspiders" ?
-          <figure className='absolute right-[-11%] hover:right-[-10.5%] cursor-pointer'>
-            <img className='w-[71%] hover:w-[73%]' src='../images/Variant3.png' alt="riteJspidersStickyLogo"></img>
+          <figure className='absolute right-[-9.5%] top-[10.5%] hover:right-[-9%] cursor-pointer '>
+            <a href='http://testqsp.qspiders.com/' target='blank'>
+              <img className='w-[71%] hover:w-[73%]' src='../images/Variant3.png' alt="riteJspidersStickyLogo"></img>
+            </a>
           </figure> :
           <figure className='absolute right-[-9.5%] top-[10.5%] hover:right-[-9%] cursor-pointer '>
             <a href='http://testpysp.pyspiders.com/' target='blank'>
