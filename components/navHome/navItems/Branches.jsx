@@ -91,7 +91,7 @@ const Branches = ({ BranchResponse }) => {
                     <Link className="" href={`/branches/${content.branchId}-branchId,${BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex].courseId}-courseId`}>
                       <div className="flex branchMenuCard bg-[#FFFFFF] xl:w-[19.922vw] 2xl:w-[22.73vw] 3xl:w-[25.2vw]  rounded-xl px-[1.389vh] py-[0.781vw]" key={index}>
                         <div>
-                          <img className="rounded max-h-[2.813vw] max-w-[2.813vw]" src={content.branchImage} alt="" />
+                          <img className="rounded h-[2.813vw] object-cover w-[2.813vw]" src={content.branchImage} alt="" />
                         </div>
                         <div className="pl-[0.781vw]">
                           <div className="flex justify-between pb-[1.111vh]">

@@ -55,7 +55,7 @@ function CourseCard({ cardData }) {
 
                         </aside>
                         <aside>
-                            <Button className="courseCardBtn buttonTextColour  text-[1.094vw] mobile:text-[2.791vw]  font-semibold border border-orange-500 rounded-md" title='Request call' />
+                            <Button className="courseCardBtn buttonTextColour  text-[1.094vw] mobile:text-[2.791vw]  font-semibold border border-orange-500 rounded-md" title='Know More' />
                         </aside>
                     </div>
                 </aside>

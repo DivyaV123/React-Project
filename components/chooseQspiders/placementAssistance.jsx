@@ -6,6 +6,8 @@ import Slide from "react-reveal/Slide";
 import Counter from '../commonComponents/counterAnimation/Counter';
 import './chooseUs.scss'
 import { GlobalContext } from '../Context/GlobalContext';
+import Link from 'next/link';
+import { PLACEMENT_PATH } from '@/lib/RouteConstants';
 
 
 function PlacementAssistance() {
@@ -46,13 +48,15 @@ function PlacementAssistance() {
                                 <p className='text-brown text-normal flex justify-center mobile:text-[3.721vw]  text-center'>Multinational <br /> companies hire from us</p>
                             </aside>
                         </article>
-                        <article className='flex justify-center mobile:mt-[2.575vh]'>
-                            <Button
-                                className='bg-gradient text-white h-[3.75vw] rounded  w-[14.844vw] mobile:h-[5.15vh] mobile:w-[44.186vw]'
-                                title="View Placements"
-                                onClick={() => { }}
-                            />
-                        </article>
+                        <Link href={PLACEMENT_PATH}>
+                            <article className='flex justify-center mobile:mt-[2.575vh]'>
+                                <Button
+                                    className='bg-gradient text-white h-[3.75vw] rounded  w-[14.844vw] mobile:h-[5.15vh] mobile:w-[44.186vw]'
+                                    title="View Placements"
+                                    onClick={() => { }}
+                                />
+                            </article>
+                        </Link>
                     </aside>
                 </Fade>
                 <Fade right delay={0} duration={1000}>
