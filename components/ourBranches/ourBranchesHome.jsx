@@ -15,9 +15,9 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import "./ourBranchesHome.scss";
 import { usePathname } from "next/navigation";
-function OurBranchesHome({ page }) {
+function OurBranchesHome({ page, tabData }) {
   const router = useRouter();
-  const pathname=usePathname();
+  const pathname = usePathname();
   const [courseId] = pathname.split("/").slice(2);
   const [isloading, setisLoading] = useState(true);
   const { setSelectedBranch, setSelectedBatch, homeBranchData } = useContext(GlobalContext);
@@ -56,28 +56,35 @@ function OurBranchesHome({ page }) {
                 Upcoming Batches
               </h1>
               <article className="flex justify-end bg-white  sm:py-[2.778vh]">
-                <Button
-                  className={
-                    btnState === "OfflineClasses"
-                      ? "font-semibold bg-orange-500 bg-gradient text-white sm:w-[9.609vw]  mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] rounded px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw]"
-                      : "sm:w-[9.609vw] rounded-s px-[1.25vw] py-[1.111vh]  mobile:py-[0.858vh] mobile:px-[3.721vw]  bg-[#F9F9F9] text-[0.938vw] text-dark-gray font-medium mobile:text-[2.791vw]"
-                  }
-                  onClick={() => {
-                    setBtnState("OfflineClasses");
-                  }}
-                  title="Offline Classes"
-                ></Button>
-                <Button
-                  onClick={() => {
-                    setBtnState("OnlineLiveClasses");
-                  }}
-                  className={
-                    btnState === "OnlineLiveClasses"
-                      ? "font-semibold bg-orange-500 text-white  rounded px-[1.25vw] py-[1.111vh] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw]  bg-[#F9F9F9] text-[0.938vw]"
-                      : " rounded-e px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] text-dark-gray font-medium"
-                  }
-                  title="Online Live Classes"
-                ></Button>
+                {tabData?.includes("OFFLINECLASSES") &&
+                  <>
+                    <Button
+                      className={
+                        btnState === "OfflineClasses"
+                          ? "font-semibold bg-orange-500 bg-gradient text-white sm:w-[9.609vw]  mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] rounded px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw]"
+                          : "sm:w-[9.609vw] rounded-s px-[1.25vw] py-[1.111vh]  mobile:py-[0.858vh] mobile:px-[3.721vw]  bg-[#F9F9F9] text-[0.938vw] text-dark-gray font-medium mobile:text-[2.791vw]"
+                      }
+                      onClick={() => {
+                        setBtnState("OfflineClasses");
+                      }}
+                      title="Offline Classes"
+                    ></Button>
+                  </>
+                }
+                {tabData?.includes("ONLINECLASSES") &&
+                  <Button
+                    onClick={() => {
+                      setBtnState("OnlineLiveClasses");
+                    }}
+                    className={
+                      btnState === "OnlineLiveClasses"
+                        ? "font-semibold bg-orange-500 text-white  rounded px-[1.25vw] py-[1.111vh] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw]  bg-[#F9F9F9] text-[0.938vw]"
+                        : " rounded-e px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] text-dark-gray font-medium"
+                    }
+                    title="Online Live Classes"
+                  ></Button>
+                }
+
               </article>
             </article>
           ) : (
@@ -94,7 +101,7 @@ function OurBranchesHome({ page }) {
             ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh]"
             : "flex flex-wrap   sm:gap-x-[1.094vw] sm:gap-y-[1.944vh] justify-center gap-6"
             }`}
-         >
+        >
           {btnState === "OfflineClasses" ? (
             branchDetails?.length > 0 && branchDetails.map((elements) => {
               return (
@@ -167,15 +174,17 @@ function OurBranchesHome({ page }) {
             </>
           )}
         </article>
-      </section>
+      </section >
       {/* </MaxWebWidth > */}
-      {page !== "course" && (
-        <MaxWebWidth sectionStyling="sm:bg-[#F6F6F6]  bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain  bg-cover sm:my-[6.667vh]">
-          <section >
-            <TrainingMode />
-          </section>
-        </MaxWebWidth>
-      )}
+      {
+        page !== "course" && (
+          <MaxWebWidth sectionStyling="sm:bg-[#F6F6F6]  bg-[url('/illustrate_wave.svg')] bg-no-repeat bg-left bg-contain  bg-cover sm:my-[6.667vh]">
+            <section >
+              <TrainingMode />
+            </section>
+          </MaxWebWidth>
+        )
+      }
     </>
   );
 }

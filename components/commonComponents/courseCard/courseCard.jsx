@@ -11,14 +11,11 @@ function CourseCard({ cardData }) {
     const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleCardClick = () => {
-
         setIsModalOpen(true);
-
     };
 
     const handleCloseModal = () => {
         setIsModalOpen(false);
-
     };
     const handleKnowMore=(id)=>{
         router.push(`/courses/${id}`)

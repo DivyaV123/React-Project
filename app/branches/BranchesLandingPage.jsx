@@ -87,8 +87,8 @@ function BranchesLandingPage({ BranchDetails }) {
                                         >
                                             <img
                                                 className={selectedImg === image
-                                                    ? 'border-2 rounded-md border-orange-500 w-[7.813vw] h-[4.563vw] rounded'
-                                                    : 'w-[7.813vw] rounded h-[4.563vw]'
+                                                    ? 'border-2 rounded-md border-orange-500 object-cover w-[7.813vw] h-[4.563vw] rounded'
+                                                    : 'w-[7.813vw] rounded h-[4.563vw] object-cover'
                                                 }
                                                 src={image}
                                                 alt='image'

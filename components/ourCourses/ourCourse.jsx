@@ -150,7 +150,7 @@ function OurCourse({ page }) {
   const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
   const [courseCardData, setCourseCardData] = useState(initialCard);
   const [category, setCategory] = useState(courses);
-  const [hoveredCategory, setHoveredCategory] = useState("Popular Courses");
+  const [hoveredCategory, setHoveredCategory] = useState('Popular Courses');
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [mouseHover, setMouseHover] = useState(0);
 
@@ -309,7 +309,6 @@ function OurCourse({ page }) {
 
     setCourseCardData(cardData);
     setCategory(uniqueCategories);
-    setHoveredCategory(courses[0]?.title)
   }
   return (
     <MaxWebWidth>
@@ -446,8 +445,9 @@ function OurCourse({ page }) {
                           );
                         }) :
                         <div>
-                          <h1 className="font-bold text-large">
-                            courses in the selected category are comming soon...
+                          <h1 className="font-bold text-large pt-12">
+                            No courses in the selected Category,
+                            Please select other category...
                           </h1>
                         </div>
                       }
@@ -568,8 +568,9 @@ function OurCourse({ page }) {
                   );
                 }) :
               <div className="flex w-full flex-col items-center align-center">
-                <h1 className="font-bold text-large">
-                  Courses in the selected category are comming soon...
+                <h1 className="font-bold text-large pt-12">
+                  No courses in the selected Category,
+                  Please select other category...
                 </h1>
               </div>
             }
