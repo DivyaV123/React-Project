@@ -50,7 +50,7 @@ const Branches = ({ BranchResponse }) => {
       </div>
       <div className="xl:w-[64.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex ">
         {hoveredIndex !== null && cityData?.[hoveredIndex]?.courses?.length > 0 && (
-          <div className="xl:w-[18.75vw] 2xl:w-[17.75vw]  3xl:w-[12.75vw] pt-2 menuSidebar ">
+          <div className="xl:w-[23.25vw] 2xl:w-[20.5vw]  3xl:w-[17.75vw] pt-2 menuSidebar ">
             {courseData.map((item, itemIndex) => (
               <div
                 key={itemIndex}
@@ -77,9 +77,9 @@ const Branches = ({ BranchResponse }) => {
         )}
         <div
           className={`${hoveredIndex !== null && courseData
-            ? "branchlist pl-4 pt-2"
-            : "coursefull p-3"
-            }   flex flex-wrap  h-fit gap-4`}
+            ? "branchlist "
+            : "coursefull "
+            }   flex flex-wrap  h-fit gap-4 py-[2.222vh] px-[1.25vw]`}
         >
           {finalContent?.length > 0 &&
             finalContent?.map
@@ -88,8 +88,8 @@ const Branches = ({ BranchResponse }) => {
                   setOnGoingBatches(content.ongoingBatches)
                   setupComingBatches(content.upcomingBatches)
                   return (
-                    <Link href={`/branches/${content.branchId}-branchId,${BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex].courseId}-courseId`}>
-                      <div className="flex branchMenuCard bg-[#FFFFFF] max-w-[19.922vw] rounded-xl px-[1.389vh] py-[0.781vw]" key={index}>
+                    <Link className="" href={`/branches/${content.branchId}-branchId,${BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex].courseId}-courseId`}>
+                      <div className="flex branchMenuCard bg-[#FFFFFF] xl:w-[19.922vw] 2xl:w-[22.73vw] 3xl:w-[25.2vw]  rounded-xl px-[1.389vh] py-[0.781vw]" key={index}>
                         <div>
                           <img className="rounded h-[2.813vw] object-cover w-[2.813vw]" src={content.branchImage} alt="" />
                         </div>
@@ -106,7 +106,7 @@ const Branches = ({ BranchResponse }) => {
                           <p className="text-[0.781vw] text-[#575757] pb-[1.094vw] flex-col align-center">
                             {getContact(content.phoneNumber)}
                           </p>
-                          <div className="flex pb-[0.556vh]">
+                          <div className="flex pb-[0.556vh] 3xl:items-center 3xl:gap-4">
                             <div className="flex gap-1.5 justify-center">
                               <Svg
                                 className="pr-[0.469vw]"
