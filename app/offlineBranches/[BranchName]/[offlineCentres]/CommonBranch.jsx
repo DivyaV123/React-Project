@@ -8,14 +8,14 @@ const CommonBranch = ({ selectedId, page }) => {
     return phoneNumbers.split(',')
       .map(number => number.replace(/\s+/g, '').trim())
       .join(', ');
-  }  
+  }
   return (
-    <section className={`mobile:px-[1.395vw] sm:mt-6 courseSidebar  flex mobile:flex-col sm:gap-4  ${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 h-full mobile:hidden overflow-x-scroll offlineScrollbar' : "sm:w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap"}`}>
+    <section className={`${page === 'offlineBranches' ? ' w-full pl-[6%] py-2  mobile:hidden overflow-x-scroll offlineScrollbar' : "sm:w-[73.656vw] overflow-y-scroll myscrollbar h-full flex-wrap mobile:px-[1.395vw] sm:mt-6 courseSidebar  flex mobile:flex-col sm:gap-4"}`}>
       {selectedId &&
         selectedId?.branches?.map((branch, branchIndex) => (
           <div
             key={branchIndex}
-            className={` sm:w-[20.469vw] mobile:mt-[1.717vh]  p-2 courseSidebar rounded-md ${page === 'offlineBranches' ? "flex-shrink-0" : ""} `}
+            className={` sm:w-[20.469vw] mobile:mt-[1.717vh]  p-2 courseSidebar rounded-md ${page === 'offlineBranches' ? "flex-shrink-0 h-[58vh] flex-wrap" : ""} `}
           >
             <img
               src={branch.branchImage ? branch.branchImage : "../../../../Frame 41334.png"}
@@ -50,7 +50,7 @@ const CommonBranch = ({ selectedId, page }) => {
               <p className="text-[0.75rem] text-[#454545] font-medium mobile:text-[2.791vw]">
                 {branch.upcomingBatches} Upcoming Batches
               </p>
-            </div> 
+            </div>
             <div className="flex gap-3 pt-3 mobile:pt-[1.288vh]">
               <img src="../../../../Icon_time2.svg" alt="Ongoing" />
               <p className="text-[0.75rem] text-[#454545] font-medium mobile:text-[2.791vw]">
@@ -60,7 +60,7 @@ const CommonBranch = ({ selectedId, page }) => {
           </div>
         ))}
     </section>
-    
+
   )
 }
 

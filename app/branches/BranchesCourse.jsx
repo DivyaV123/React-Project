@@ -34,7 +34,7 @@ function BranchesCourse({ branchCourseData }) {
             <MaxWebWidth articalStyling='flex sm:flex-wrap sm:justify-around gap-3 mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[3.97vh] mobile:mt-[1.717vh]'>
                 {cardsToDisplay.length > 0 ? cardsToDisplay.map((element) => {
                     return (
-                        <div className='branchescourseCard' key={element.id}>
+                        <div className='branches courseCard' key={element.id}>
                             <article className='w-full'>
                                 {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
                                 <div className='viewmore'></div>
@@ -43,7 +43,7 @@ function BranchesCourse({ branchCourseData }) {
                     );
                 }) : courseCard.map((element) => {
                     return (
-                        <div className='branchescourseCard' key={element.id}>
+                        <div className='branches courseCard' key={element.id}>
                             <article className='w-full'>
                                 {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
                                 <div className='viewmore'></div>

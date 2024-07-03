@@ -5,8 +5,16 @@ import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-
-const CourseLanding = ({ courseDetails ,countDetails}) => {
+import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
+import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
+const CourseLanding = ({ courseDetails , countDetails}) => {
+  const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
+  const typesOfClasses = [
+    { title: "Offline Classes" },
+    { title: "Online Live Classes" },
+    { title: "Experiential Learning" },
+    { title: "Self Paced" },
+  ];
 
   const statisticsData = [
     {
@@ -29,13 +37,20 @@ const CourseLanding = ({ courseDetails ,countDetails}) => {
   let splitText = tutionClasses?.split(".");
   const resources = splitText?.filter((s) => s);
   const [btnState, setBtnState] = useState(courseDetails?.mode[0]);
-
+  console.log(courseDetails?.mode, "courseDetails?.mode")
   const [isRightBarFixed, setIsRightBarFixed] = useState(false);
 
   const handleRightBarFix = (fixed) => {
     setIsRightBarFixed(fixed);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCardClick = () => {
+    setIsModalOpen(true);
+  };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       <MaxWebWidth
@@ -122,7 +137,9 @@ const CourseLanding = ({ courseDetails ,countDetails}) => {
                   ))}
                 </article>
                 <section className="flex gap-6 pb-[7.222vh] mobile:pb-[2.79vh]">
-                  <button className="EnrollButton text-[1.25vw] mobile:text-[3.721vw] font-semibold py-[1.389vh] px-[1.875vw]">
+                  <button
+                    onClick={() => handleCardClick()}
+                    className="EnrollButton text-[1.25vw] mobile:text-[3.721vw] font-semibold py-[1.389vh] px-[1.875vw]">
                     Enroll For Demo Class
                   </button>
                   {/* <button className="EnquireButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw] relative">
@@ -142,6 +159,7 @@ const CourseLanding = ({ courseDetails ,countDetails}) => {
         </aside>
       </MaxWebWidth>
       {/* <ImageScroller cardData={courseDetails} onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} /> */}
+      <EnrollPopUp isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} />
     </>
   );
 };

@@ -26,13 +26,18 @@ function NavItems() {
   const navItems = [
     { id: 1, name: "Courses", content: <Courses courseResponse={courseResponse} /> },
     { id: 2, name: "Branches", content: <Branches BranchResponse={BranchResponse} /> },
-    { id: 3, name: "Tuitions", content: <Tutions /> },
-    { id: 4, name: "Hire From Us", content: "" },
-    { id: 5, name: "Placements", content: "" },
-    { id: 6, name: "Contact us", content: "" },
+    { id: 3, name: "University Program", content: "" },
+    { id: 4, name: "Tuitions", content: <Tutions /> },
+    { id: 5, name: "Hire From Us", content: "" },
+    { id: 6, name: "Placements", content: "" },
+    { id: 7, name: "Contact us", content: "" },
   ];
   setHomeBranchData(BranchResponse?.data[0]?.cities)
   const [hoverState, setHoverState] = useState({ item: null, content: false });
+  const [stateHovered, setStateHovered] = useState({
+    item: '',
+    stste: false
+  })
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {
       setHoverState({ item: itemName });
@@ -61,20 +66,34 @@ function NavItems() {
               >
                 <NavigationMenuTrigger hoverItem={hoverState.item} hoverContent={hoverState.content}>
                   <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
-                    <span className="menuHeader font-bold text-normal text-slate hover-underline-animation text-base 2xl:text-lg 3xl:text-xl">{navItem.name}</span>
+                    {console.log(hoverState.item, hoverState.content, "hoverState.item ")}
+                    <span
+                      onMouseEnter={() => setStateHovered({
+                        item: navItem.name,
+                        stste: true
+                      })}
+                      className={(stateHovered.item === navItem.name && stateHovered.stste) ? "text-orange-500 border-b-2 border-orange-500" : "menuHeader font-bold text-normal text-slate hover-underline-animation  text-base 2xl:text-lg 3xl:text-xl"}>
+                      {navItem.name}
+                    </span>
                   </div>
                 </NavigationMenuTrigger>
                 <NavigationMenuContent
                   className="nav-content"
                   onMouseEnter={() => handleContentHover(true)}
-                  onMouseLeave={() => handleContentHover(false)}
+                  onMouseLeave={() => {
+                    handleContentHover(false);
+                    setStateHovered({
+                      item: '',
+                      stste: false
+                    })
+                  }}
                 >
                   {navItem.content}
                 </NavigationMenuContent>
               </NavigationMenuItem></Link>
           ))}
         </NavigationMenuList>
-      </NavigationMenu>
+      </NavigationMenu >
     </>
   );
 }
