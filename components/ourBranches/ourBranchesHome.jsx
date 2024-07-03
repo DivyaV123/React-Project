@@ -14,8 +14,12 @@ import {
 } from "@/lib/RouteConstants";
 import { Skeleton } from "@/components/ui/skeleton";
 import "./ourBranchesHome.scss";
+import { usePathname } from "next/navigation";
 function OurBranchesHome({ page }) {
   const router = useRouter();
+  const pathname=usePathname();
+  const [courseId] = pathname.split("/").slice(2);
+  console.log({courseId},{pathname})
   const [isloading, setisLoading] = useState(true);
   const { setSelectedBranch, setSelectedBatch, homeBranchData } = useContext(GlobalContext);
   let branchDetails = homeBranchData;
@@ -84,7 +88,7 @@ function OurBranchesHome({ page }) {
       router.push(`${OFFLINE_BRANCHES}/${cityName}`);
     } else if (page === "course") {
       setSelectedBatch(cityName);
-      router.push(`${UPCOMING_BATCHES}`);
+      router.push(`/courses/${courseId}/${cityName}`);
     } else if (page !== "course" && cityName === "AllCities") {
       router.push(`${COMBINED_BRANCHES}`);
     }
