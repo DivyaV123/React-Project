@@ -1,21 +1,28 @@
-.contactUsComponent{
-    .react-tel-input .form-control{
-        width: -webkit-fill-available;
-        padding: 17px 0px 19px 58px;
-        font-size: 12px;
-        height: 6.167vh;
+.contactUsComponent {
+  .react-tel-input .form-control {
+    width: -webkit-fill-available;
+    padding: 17px 0px 19px 58px;
+    font-size: 12px;
+    height: 6.167vh;
+  }
+  @media (max-width: 639px) {
+    .react-tel-input .form-control {
+      padding: 14px 20px 15px 58px;
+      height: 1vh;
+      font-size: 2.591vw;
     }
-    @media (max-width: 639px) {
-        .react-tel-input .form-control {
-          padding: 14px 20px 15px 58px;
-          height: 1vh;
-          font-size: 2.591vw;;
-        }
-      }
-      .locationCard{
-        .cardBody{
-          background: linear-gradient(96.77deg, #F09819 -28.03%, #FF512F 134.69%);
+  }
+  @media only screen and (max-width: 1024px) and (min-width: 744px) {
+    .react-tel-input .form-control {
+      padding: 17px 0px 14px 55px;
+      font-size: 12px;
+      height: auto;
+    }
+  }
 
-        }
-      }
+  .locationCard {
+    .cardBody {
+      background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+    }
+  }
 }
