@@ -10,7 +10,7 @@ const domains = [
   { name: 'Project Management', image: '../../project-management.png' },
   { name: 'Cyber Security', image: '../../cyber-security.png' },
   { name: 'Support', image: '../../customer-service.png' },
-  { name: 'AI/ML', image: '../../AiML.png' },
+  { name: 'AI/ML', image: '../../AiML.svg' },
 ];
 const DomainContainer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);

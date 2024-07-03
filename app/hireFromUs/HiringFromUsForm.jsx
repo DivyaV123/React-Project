@@ -125,7 +125,8 @@ const HiringFromUsForm = ({ activeTab }) => {
     <div className="container mx-auto p-4 hiringFromUsComponent">
       <form onSubmit={formik.handleSubmit} className="custom-grid-form grid grid-cols-1 md:grid-cols-2 gap-4">
         <div className="mb-2">
-          <label htmlFor="fullName" className="block font-bold mb-2">Full Name</label>
+          
+          <label htmlFor="fullName" className="block font-bold mb-2"><span className='text-red-500 pr-1'>*</span>Full Name</label>
           <input
             id="fullName"
             name="fullName"
@@ -143,7 +144,7 @@ const HiringFromUsForm = ({ activeTab }) => {
         </div>
 
         <div className="mb-2">
-          <label htmlFor="mobileNumber" className="block font-bold mb-2">Mobile Number</label>
+          <label htmlFor="mobileNumber" className="block font-bold mb-2"><span className='text-red-500 pr-1'>*</span>Mobile Number</label>
           <PhoneInput
             type="text"
             placeholder="Enter phone number"
@@ -193,7 +194,7 @@ const HiringFromUsForm = ({ activeTab }) => {
 
         {activeTab === 'Corporate Training' && (
           <div className="mb-2">
-            <label htmlFor="requiredTraining" className="block font-bold mb-2">Required Training</label>
+            <label htmlFor="requiredTraining" className="block font-bold mb-2"><span className='text-red-500 pr-1'>*</span>Required Training</label>
             <input
               id="requiredTraining"
               name="requiredTraining"
@@ -212,7 +213,7 @@ const HiringFromUsForm = ({ activeTab }) => {
 
         {activeTab === 'Hire From Us' && (
           <div className="mb-2">
-            <label htmlFor="companyName" className="block font-bold mb-2">Company Name</label>
+            <label htmlFor="companyName" className="block font-bold mb-2"><span className='text-red-500 pr-1'>*</span>Company Name</label>
             <input
               id="companyName"
               name="companyName"
@@ -230,7 +231,7 @@ const HiringFromUsForm = ({ activeTab }) => {
         )}
 
         <div className="mb-2">
-          <label htmlFor="email" className="block font-bold mb-2">Email</label>
+          <label htmlFor="email" className="block font-bold mb-2"><span className='text-red-500 pr-1'>*</span>Email</label>
           <input
             id="email"
             name="email"
@@ -247,7 +248,7 @@ const HiringFromUsForm = ({ activeTab }) => {
         </div>
 
         <div className="mb-2 ">
-          <label htmlFor="message" className="block font-bold mb-2">Message</label>
+          <label htmlFor="message" className="block font-bold mb-2"><span className='text-red-500 pr-1'>*</span>Message</label>
           <textarea
             id="message"
             name="message"

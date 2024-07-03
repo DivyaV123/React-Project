@@ -26,7 +26,7 @@ function PlacementStatisticsHome({ page }) {
     ]
     const statistics = [
         {
-            count: `${countDetails?.response?.allPlacedCount}`,
+            count: `${countDetails?.response?.throughOutSixtyPercent}`,
             info: 'Students who have throughout 60% Aggregate',
             icon: '../placementIcon1.svg',
             key: "throughoutsixty",

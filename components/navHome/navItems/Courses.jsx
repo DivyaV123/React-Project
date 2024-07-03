@@ -71,7 +71,7 @@ const Courses = ({ courseResponse }) => {
                     </h3>
                   </div>
                   <div>
-                    <article className=" text-[0.859vw] titleText pt-[1.667vh]">{truncateText(content?.description, 55)}</article>
+                    <article className=" text-[0.859vw] titleText pt-[1.667vh]">{truncateText(content?.description, 70)}</article>
                   </div>
                 </div></Link>
               ))}

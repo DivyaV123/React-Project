@@ -63,7 +63,7 @@ function BranchesLandingPage({ BranchDetails }) {
         <MaxWebWidth sectionStyling='bg-coursegradient ' articalStyling='flex justify-between mobile:flex-col'>
             <section className='basis-[50%] pt-[11.111vh] sm:pb-[8.889vh] mobile:py-[2.575vh]'>
                 <figure className=''>
-                    <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full' src={selectedImg} />
+                    <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full object-cover' src={selectedImg} />
                 </figure>
                 <article className='flex gap-2 pt-[2.222vh] mobile:hidden'>
                     <div onClick={handlePrevious}>

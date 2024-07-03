@@ -5,9 +5,9 @@ const HirefromusLanding = () => {
     <section className="hireFromSection">
       <aside className="pl-[6.25vw] pt-[13.889vh] mobile:pt-[3.433vh]">
         <article className="text-[2.5vw] font-bold text-[#575757] pb-[3.333vh] mobile:hidden ">
-          Welcome to <span className="textgradient">Hire From Us platform</span>
+          Welcome To <span className="textgradient">Hire From Us Platform</span>
           , Hire <br />
-          Candidates With just a click
+          Candidates With Just A Click
         </article>
         <article className="text-[2.5vw] font-bold text-[#575757] mobile:text-[5.581vw] pb-[3.333vh] hidden mobile:block">
           Welcome to <span className="textgradient">Hire From Us <br/>platform</span>

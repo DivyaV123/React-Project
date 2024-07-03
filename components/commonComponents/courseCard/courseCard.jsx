@@ -1,16 +1,14 @@
 'use client'
-import React, { useCallback, useContext, useState } from 'react'
+import React, {useState } from 'react'
 import './courseCard.scss'
 import Button from '../button/Button'
 import Svg from '../Svg/Svg'
 import { truncateText } from '@/lib/utils'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import EnrollPopUp from './EnrollPopUp'
-
-
-
-
+import { useRouter } from 'next/navigation'
 function CourseCard({ cardData }) {
+    const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState(false);
     const handleCardClick = () => {
 
@@ -22,6 +20,9 @@ function CourseCard({ cardData }) {
         setIsModalOpen(false);
 
     };
+    const handleKnowMore=(id)=>{
+        router.push(`/courses/${id}`)
+    }
     return (
         <>
             <section className='cardStyle justify-center  justify-items-stretch'>
@@ -55,7 +56,7 @@ function CourseCard({ cardData }) {
 
                         </aside>
                         <aside>
-                            <Button className="courseCardBtn buttonTextColour  text-[1.094vw] mobile:text-[2.791vw]  font-semibold border border-orange-500 rounded-md" title='Know More' />
+                            <Button onClick={() => handleKnowMore(cardData?.courseId)} className="courseCardBtn buttonTextColour  text-[1.094vw] mobile:text-[2.791vw]  font-semibold border border-orange-500 rounded-md" title='Know More' />
                         </aside>
                     </div>
                 </aside>

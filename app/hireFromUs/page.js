@@ -14,8 +14,8 @@ const HireFromUs = () => {
       <HirefromusLanding />
       <HiringPartners />
       <Hiringprocess/>
-      <DeliveryApproach/>
       <FindingCandidates/>
+      <DeliveryApproach/>
       <DomainContainer/>
       <ClientTesimonials />
     </WebLayout>

@@ -159,16 +159,17 @@ function ContactUsPage() {
                 <form onSubmit={formikDetails.handleSubmit}>
                   <div className="pb-[2.5vw] mobile:mt-[2vh] mobile:pb-[4.5vw]">
                     <span className="text-[0.938vw] font-normal mobile:text-[2.791vw]">
-                      Name
+                    <span className='text-red-500 pr-1'>*</span>Name
                     </span>
                     <Input
-                      inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw]`}
+                      inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] `}
                       iconPath="/nameTextFieldIcon.svg"
                       placeholder="Enter your name"
                       name="name"
                       onChange={formikDetails.handleChange}
                       onBlur={formikDetails.handleBlur}
                       value={formikDetails.values.name}
+                      autoFocus={true}
                     />
                     {formikDetails.touched.name && formikDetails.errors.name ? (
                       <div className="text-red-500 absolute mobile:text-[2.591vw] text-[0.75vw]">
@@ -178,7 +179,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw]">
                     <span className="text-[0.938vw]  mobile:text-[2.791vw] font-normal">
-                      Mobile
+                    <span className='text-red-500 pr-1'>*</span>Mobile
                     </span>
 
                     <PhoneInput
@@ -230,7 +231,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw]">
                     <span className="text-[0.938vw]  mobile:text-[2.791vw] font-normal">
-                      E-mail
+                    <span className='text-red-500 pr-1'>*</span>E-mail
                     </span>
                     <Input
                       inputStyle={`${contactUsInput}   mobile:text-[2.591vw] mobile:pl-[7.442vw]`}
@@ -250,7 +251,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw]">
                     <span className="text-[0.938vw]  mobile:text-[2.791vw] font-normal">
-                      Your Message
+                    <span className='text-red-500 pr-1'>*</span>Your Message
                     </span>
                     <TextArea
                       sectionStyle="mobile:h-[11.72vh]"
