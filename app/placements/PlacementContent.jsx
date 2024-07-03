@@ -3,7 +3,6 @@ import "./PlacementSidebar.scss";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import ImagePopup from "./ImagePopup";
 import VideoPopup from "./VideoPopup";
-import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
 import Link from "next/link";
 import { branchAbbreviations } from "@/lib/utils";
 import { truncateText } from "@/lib/utils";

@@ -5,15 +5,8 @@ import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
-const CourseLanding = ({ courseDetails }) => {
-  const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
-  const typesOfClasses = [
-    { title: "Offline Classes" },
-    { title: "Online Live Classes" },
-    { title: "Experiential Learning" },
-    { title: "Self Paced" },
-  ];
+
+const CourseLanding = ({ courseDetails ,countDetails}) => {
 
   const statisticsData = [
     {

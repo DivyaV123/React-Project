@@ -231,7 +231,7 @@ const Tutions = () => {
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <div
-        className={`menuSidebar pt-2 xl:w-[17.75vw] 2xl:w-[14.98vw]  3xl:w-[11.98vw] `}
+        className={`menuSidebar pt-2 xl:w-[18.97vw] 2xl:w-[14.98vw]  3xl:w-[11.98vw] `}
       >
         {courses.map((courseItem, index) => (
           <div

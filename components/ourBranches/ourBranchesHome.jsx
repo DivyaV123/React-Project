@@ -19,64 +19,11 @@ function OurBranchesHome({ page }) {
   const router = useRouter();
   const pathname=usePathname();
   const [courseId] = pathname.split("/").slice(2);
-  console.log({courseId},{pathname})
   const [isloading, setisLoading] = useState(true);
   const { setSelectedBranch, setSelectedBatch, homeBranchData } = useContext(GlobalContext);
   let branchDetails = homeBranchData;
-  const branchCards = [
-    {
-      path: "./images/bengaloreBg-Image.png",
-      city: "Bengalore",
-      branchCount: 12,
-    },
-    {
-      path: "./images/hydrabadBg-Image.png",
-      city: "Hyderabad",
-      branchCount: 12,
-    },
-    { path: "./images/chennaiBg-Images.png", city: "Chennai", branchCount: 12 },
-    { path: "./images/puneBg-Image.png", city: "Pune", branchCount: 12 },
-    { path: "./images/mumbaiBg-Image.png", city: "Mumbai", branchCount: 12 },
-    { path: "./images/noidaBg-Image.png", city: "Noida", branchCount: 12 },
-    {
-      path: "./images/gurugramBg-Image.png",
-      city: "Gurugram",
-      branchCount: 12,
-    },
-    {
-      path: "./images/newDelhiBg-Image.png",
-      city: "NewDelhi",
-      branchCount: 12,
-    },
-    {
-      path: "./images/BhubaneshwariBg-Image.png",
-      city: "Bhuvaneshwar",
-      branchCount: 12,
-    },
-    { path: "./images/KolkataBg-Image.png", city: "Kolkata", branchCount: 12 },
-    {
-      path: "./images/ahmedabadBg-Image.png",
-      city: "Ahmedaabad",
-      branchCount: 12,
-    },
-    {
-      path: "./images/chandhigarBg-image.png",
-      city: "Chandigarh",
-      branchCount: 12,
-    },
-    {
-      path: "./images/tirupatiBg-Image.png",
-      city: "Tirupati",
-      branchCount: 12,
-    },
-    { path: "./images/kochiBg-Image.png", city: "Kochi", branchCount: 12 },
-    { path: "./images/mysoreBg-Image.png", city: "Mysore", branchCount: 12 },
-    { path: "./images/AllCitiesCard.png", city: "AllCities" },
-  ];
 
   const [btnState, setBtnState] = useState("OfflineClasses");
-  const btnHoverClass =
-    "font-semibold bg-orange-500 bg-gradient text-white rounded";
 
   if (page !== "course" && branchDetails?.length > 0) {
     branchDetails = [...branchDetails, { cityImage: "./images/AllCitiesCard.png", cityName: "AllCities" }];

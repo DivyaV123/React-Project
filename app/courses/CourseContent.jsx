@@ -13,23 +13,6 @@ import NestedAccordion from '@/components/ui/NestedAccordion';
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth';
 
 function CourseContent({ courseDetails }) {
-    const courseContentdatas = [
-        {
-            "Manual Testing": [
-                {
-                    Softwaredevelopmentlifecycle: [
-                        'WaterFallmodel', 'Spiral model', 'Prototype Model', 'Hybrid Model', 'Performance test',
-                    ]
-                },
-                { Softwaredevelopmentlifecycle1: [''] }, { Softwaredevelopmentlifecycle2: [''] }
-            ]
-        },
-        { "Manual Testing": [''] },
-        { "Manual Testing": [''] },
-        { "Manual Testing": [''] },
-        { "Manual Testing": [''] }
-    ];
-
     const transformData = (subjects) => {
         return subjects?.flatMap(subject => {
             return subject?.chapters?.map(chapter => {

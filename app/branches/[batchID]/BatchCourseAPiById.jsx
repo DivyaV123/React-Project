@@ -1,6 +1,6 @@
 'use client'
+import React from 'react'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import React, { useContext } from 'react'
 import BranchesLandingPage from '../BranchesLandingPage'
 import BranchesCourse from '../BranchesCourse'
 import UpCommingBatches from '../UpCommingBatches'
@@ -9,16 +9,14 @@ import HiringPartners from '@/components/hiringPartners/hiringPartners'
 import StidentsPlaced from '../StidentsPlaced'
 import Testimonials from '../Testimonials'
 import FaqHome from '@/components/faq/faqHome'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useGetAllBranchDetailsQuery } from '@/redux/queries/getBranchDetails'
 import Loading from '@/lib/Loading'
-import { GlobalContext } from '@/components/Context/GlobalContext'
 
 
 
 function BatchCourseAPiById() {
     const pathname = usePathname();
-    const searchParams = useSearchParams();
     const params = pathname.split('/').pop();
     const digitIds = params.match(/\b\d+\b/g);
 

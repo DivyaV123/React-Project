@@ -4,7 +4,6 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import Button from "@/components/commonComponents/button/Button";
 import Input from "@/components/commonComponents/input/Input";
 import TextArea from "@/components/commonComponents/textArea/TextArea";
-import WebLayout from "@/components/commonComponents/webLayout/WebLayout";
 import React, { useState, useEffect, useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -143,7 +142,7 @@ function ContactUsPage() {
               hear from you!
             </span>
           </h1>
-          <span className="text-white mobile:hidden tabView:hidden text-[2rem] font-medium flex justify-center  justify-center mobile:text-[2.558vw] mobile:w-[97.721vw] mobile:h-[2.113vh] mobile:relative mobile:top-[4.93vh] mobile:flex mobile:justify-center mobile:items-center">
+          <span className="text-white mobile:hidden tabView:hidden text-[2rem] font-medium flex   justify-center mobile:text-[2.558vw] mobile:w-[97.721vw] mobile:h-[2.113vh] mobile:relative mobile:top-[4.93vh] mobile:flex mobile:justify-center mobile:items-center">
             Feel free to get in touch with team if you have any questions
           </span>
           <span className="text-white  tabView:text-[3.226vw] hidden tabView:flex-col tabView:justify-center tabView:items-center tabView:flex text-[2rem] font-medium flex justify-center  justify-center mobile:text-[2.558vw] mobile:w-[97.721vw] mobile:h-[2.113vh] mobile:relative mobile:top-[4.93vh] mobile:flex mobile:justify-center mobile:items-center">
@@ -162,7 +161,7 @@ function ContactUsPage() {
                 <form onSubmit={formikDetails.handleSubmit}>
                   <div className="pb-[2.5vw] mobile:mt-[2vh] mobile:pb-[4.5vw] tabView:mt-[3.344vh] tabView:pb-[3.6vw]">
                     <span className="text-[0.938vw] font-normal tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]  mobile:text-[2.791vw]">
-                      Name
+                    <span className='text-red-500 pr-1'>*</span>Name
                     </span>
                     <Input
                       inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] tabView:text-[1.491vw] tabView:pl-[5.442vw]`}
@@ -172,6 +171,7 @@ function ContactUsPage() {
                       onChange={formikDetails.handleChange}
                       onBlur={formikDetails.handleBlur}
                       value={formikDetails.values.name}
+                      autoFocus={true}
                     />
                     {formikDetails.touched.name && formikDetails.errors.name ? (
                       <div className="text-red-500 tabView:text-[1.5vw]  absolute mobile:text-[2.591vw] text-[0.75vw]">
@@ -181,7 +181,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
                     <span className="text-[0.938vw] tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]   mobile:text-[2.791vw] font-normal">
-                      Mobile
+                    <span className='text-red-500 pr-1'>*</span>Mobile
                     </span>
 
                     <PhoneInput
@@ -233,7 +233,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
                     <span className="text-[0.938vw] tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]   mobile:text-[2.791vw] font-normal">
-                      E-mail
+                    <span className='text-red-500 pr-1'>*</span>E-mail
                     </span>
                     <Input
                       inputStyle={`${contactUsInput} tabView:text-[1.491vw] tabView:pl-[5.442vw]   mobile:text-[2.591vw] mobile:pl-[7.442vw]`}
@@ -253,7 +253,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
                     <span className="text-[0.938vw] tabView:relative tabView:bottom-[0.781vh] tabView:text-[1.813vw] mobile:text-[2.791vw] font-normal">
-                      Your Message
+                    <span className='text-red-500 pr-1'>*</span> Your Message
                     </span>
                     <TextArea
                       sectionStyle="mobile:h-[11.72vh] tabView:h-[6vh]"

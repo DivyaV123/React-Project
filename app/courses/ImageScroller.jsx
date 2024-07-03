@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState, useCallback, useContext } from "react";
+import React, { useRef, useEffect, useState, useContext } from "react";
 import "./CourseLanding.scss";
 import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
@@ -108,7 +108,7 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed, cardData }) => {
                 Enroll now
               </button>
               <button className="EnquireButton text-[1.25vw] font-semibold py-[0.781vw] px-[3.333vh] relative w-[15.15vw]">
-                <span>Know more</span>
+                <span>Know More</span>
               </button>
             </section>
           </div>
