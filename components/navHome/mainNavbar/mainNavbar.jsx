@@ -22,7 +22,7 @@ function MainNavbar() {
   return (
     <>
       <MaxWebWidth
-        sectionStyling={`_navbarBlock h-[5.31vw] mobile:h-[5.579vh] flex`}
+        sectionStyling={`_navbarBlock h-[5.31vw] tabView:h-[6.641vh] mobile:h-[5.579vh] flex`}
         articalStyling={"flex items-center justify-between h-full"}
       >
         <aside className="flex justify-between">
@@ -31,7 +31,7 @@ function MainNavbar() {
               <>
                 <Link href={HOME_PATH}>
                   <Svg
-                    className={`mobile:w-[13.953vw] mobile:h-[4.077vh]`}
+                    className={`mobile:w-[13.953vw] mobile:h-[4.077vh] tabView:w-[12.022vw] tabView:h-[5.078vh]`}
                     width={svgicons.qspiderslogo[0]}
                     height={svgicons.qspiderslogo[1]}
                     viewBox={svgicons.qspiderslogo[2]}
@@ -73,14 +73,14 @@ function MainNavbar() {
         <button
           data-collapse-toggle="navbar-default"
           type="button"
-          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+          class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg tabView:block md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
           aria-controls="navbar-default"
           aria-expanded="false"
           onClick={handleHamburgerClick}
         >
           <span class="sr-only">Open main menu</span>
           <svg
-            class="w-5 h-5"
+            class="w-5 h-5 tabView:w-[3.226vw] tabView:h-[2.344vh]"
             aria-hidden="true"
             xmlns="../../icon_hamburger.svg"
             fill="none"
@@ -95,7 +95,7 @@ function MainNavbar() {
             />
           </svg>
         </button>
-        <aside className="flex gap-4 items-center mobile:hidden">
+        <aside className="flex gap-4 items-center tabView:hidden mobile:hidden">
           <aside
             className="hidden w-full md:block md:w-auto"
             id="navbar-default"
