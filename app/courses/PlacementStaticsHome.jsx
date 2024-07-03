@@ -3,39 +3,15 @@ import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import PlaceMentStatistics from '@/components/placementstatistics/placeMentStatistics'
 import React, { useContext, useEffect, useState } from 'react'
 import { Badge } from "@/components/ui/badge"
-import HiringPartners from '@/components/hiringPartners/hiringPartners'
-import CoursePageContainer from './CoursePageContainer'
-import { Skeleton } from "@/components/ui/skeleton"
 import { useGetAllPlacementCountQuery } from '@/redux/queries/getAllPlacementCount'
 import { GlobalContext } from '@/components/Context/GlobalContext'
 import Link from 'next/link'
 import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 
-function PlacementStaticsHome({ path }) {
-    const { setAllStaticsCount, setPlacementParam, setLessCheckedIcon, setNonItCheckedIcon } = useContext(GlobalContext)
+function PlacementStaticsHome() {
+    const { setAllStaticsCount, setLessCheckedIcon, setNonItCheckedIcon } = useContext(GlobalContext)
     const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
     setAllStaticsCount(countDetails)
-    const [isloading, setisLoading] = useState(true)
-    const svgPath = [
-        { src: "../compLogo01.svg" },
-        { src: "../compLogo02.svg" },
-        { src: "../compLogo03.svg" },
-        { src: "../compLogo-04.svg" },
-        { src: "../compLogo05.svg" },
-        { src: "../compLogo06.svg" },
-        { src: "../compLogo07.svg" },
-        { src: "../compLogo01.svg" },
-        { src: "../compLogo02.svg" },
-        { src: "../compLogo03.svg" },
-        { src: "../compLogo-04.svg" },
-        { src: "../compLogo05.svg" },
-        { src: "../compLogo06.svg" },
-        { src: "../compLogo07.svg" },
-        { src: "../compLogo01.svg" },
-        { src: "../compLogo02.svg" },
-        { src: "../compLogo03.svg" },
-        { src: "../compLogo-04.svg" },
-    ];
     const degrees = [
         'BE', 'BCA', 'B.Com', 'MCA', 'M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
@@ -72,11 +48,6 @@ function PlacementStaticsHome({ path }) {
             toSet: setLessCheckedIcon
         },
     ]
-    useEffect(() => {
-        setTimeout(() => {
-            setisLoading(false)
-        }, 500);
-    }, [])
     return (
         <MaxWebWidth sectionStyling='bg-Pinkgradient'>
             <article className='w-[51.56vw]'>

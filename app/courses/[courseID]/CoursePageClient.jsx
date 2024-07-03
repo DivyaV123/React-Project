@@ -1,7 +1,7 @@
 'use client'
 
-import React, { useEffect, useState } from 'react'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+import React from 'react'
+import { usePathname, useSearchParams } from 'next/navigation'
 import CourseLanding from '../CourseLanding'
 import { useGetAllCourseDetailsQuery } from '@/redux/queries/getCoursedetails'
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
@@ -12,7 +12,6 @@ import HiringPartnersHome from '../HiringPartnersHome'
 import StudentsPlacedHome from '../StudentsPlacedHome'
 import CoursesFaq from '../CoursesFaq'
 import Loading from '@/lib/Loading'
-import PlacementStatisticsHome from '@/components/placementstatistics/placementStatisticsHome'
 
 const CoursePageClient = () => {
   const pathname = usePathname()

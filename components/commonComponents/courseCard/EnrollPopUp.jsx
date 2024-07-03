@@ -8,8 +8,6 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import Svg from '../Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
-import Input from '../input/Input'
-import TextArea from '../textArea/TextArea'
 
 
 function EnrollPopUp({isModalOpen,handleCloseModal}) {

@@ -4,7 +4,6 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import Button from "@/components/commonComponents/button/Button";
 import Input from "@/components/commonComponents/input/Input";
 import TextArea from "@/components/commonComponents/textArea/TextArea";
-import WebLayout from "@/components/commonComponents/webLayout/WebLayout";
 import React, { useState, useEffect, useContext } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";

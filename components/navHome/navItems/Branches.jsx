@@ -3,7 +3,6 @@ import React, { useContext, useState } from "react";
 import "./navitems.scss";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import Svg from "@/components/commonComponents/Svg/Svg";
-import { BRANCH_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const Branches = ({ BranchResponse }) => {

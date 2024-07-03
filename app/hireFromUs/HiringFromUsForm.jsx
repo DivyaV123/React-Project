@@ -1,5 +1,5 @@
 'use client';
-import React, { act, useContext, useState } from 'react';
+import React, {  useState } from 'react';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { isValidPhoneNumber } from 'react-phone-number-input';
@@ -7,7 +7,6 @@ import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/material.css';
 import "./HirefromusLanding.scss"
 import { useEnquriesMutation } from '@/redux/queries/enquriesApi';
-import { GlobalContext } from '@/components/Context/GlobalContext';
 const HiringFromUsForm = ({ activeTab }) => {
   const [phoneValue, setPhoneValue] = useState('');
   const [error, setError] = useState({ mobileNumber: false, validPhone: false });

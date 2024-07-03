@@ -1,6 +1,6 @@
 'use client'
+import React from 'react'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import React, { useContext } from 'react'
 import BranchesLandingPage from '../BranchesLandingPage'
 import BranchesCourse from '../BranchesCourse'
 import UpCommingBatches from '../UpCommingBatches'
@@ -12,7 +12,6 @@ import FaqHome from '@/components/faq/faqHome'
 import { usePathname, useSearchParams } from 'next/navigation'
 import { useGetAllBranchDetailsQuery } from '@/redux/queries/getBranchDetails'
 import Loading from '@/lib/Loading'
-import { GlobalContext } from '@/components/Context/GlobalContext'
 
 
 

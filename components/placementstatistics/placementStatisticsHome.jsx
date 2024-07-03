@@ -1,12 +1,9 @@
 'use client'
-import { useEffect, useState, useContext } from 'react';
-import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
+import { useContext } from 'react';
 import Slide from "react-reveal/Slide";
 import './PlacementStatisticsHome.scss'
 import { Badge } from "@/components/ui/badge"
 import { Fade } from 'react-reveal';
-import { Skeleton } from "@/components/ui/skeleton"
-import Counter from '../commonComponents/counterAnimation/Counter';
 import PlaceMentStatistics from './placeMentStatistics';
 import Link from 'next/link';
 import { useGetAllPlacementCountQuery } from '@/redux/queries/getAllPlacementCount'
@@ -17,7 +14,6 @@ function PlacementStatisticsHome({ page }) {
     const { setAllStaticsCount, setNonItCheckedIcon, setLessCheckedIcon } = useContext(GlobalContext)
     const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
     setAllStaticsCount(countDetails)
-    const [isloading, setisLoading] = useState(true)
     const degrees = [
         'BE', 'BCA', 'B.Com', 'MCA', 'M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
@@ -55,11 +51,6 @@ function PlacementStatisticsHome({ page }) {
         },
     ]
 
-    useEffect(() => {
-        setTimeout(() => {
-            setisLoading(false)
-        }, 500);
-    }, [])
 
     return (
         <section className="sm:w-[87.5vw] sm:m-auto mobile:w-full  align-center sm:mt-8 " >
