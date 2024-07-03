@@ -231,7 +231,7 @@ const Tutions = () => {
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <div
-        className={`menuSidebar pt-2 xl:w-[17.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] `}
+        className={`menuSidebar pt-2 xl:w-[17.75vw] 2xl:w-[14.98vw]  3xl:w-[11.98vw] `}
       >
         {courses.map((courseItem, index) => (
           <div
@@ -269,28 +269,28 @@ const Tutions = () => {
         )}
         <div
           className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
-            ? "courselist pl-4 pt-2"
-            : "coursefull p-3"
-            }   flex flex-wrap  h-fit gap-4 `}
+            ? "courselist "
+            : "coursefull "
+            }   flex flex-wrap py-[2.222vh] px-[1.25vw]  h-fit gap-[0.938rem] 2xl:gap-[0.706rem] 3xl:p-4 3xl:gap-[0.813]`}
         >
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
-              <Link href={TUTION_PATH}>
+              <Link className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
+                ? "courseMedium"
+                : "courseinitial"
+                }   branchMenuCard w-[19.063vw] h-fit px-[1.389vh] py-[0.781vw]`} href={TUTION_PATH}>
                 <div
                   key={index}
-                  className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
-                    ? "courseMedium"
-                    : "courseinitial"
-                    }  p-2 branchMenuCard h-fit`}
+                  className="w-full flex flex-col h-full justify-evenly"
                 >
-                  <div className="flex h-10 gap-1.5">
+                  <div className="flex  gap-2.5">
                     <img className="h-8 w-8 " src={content.image} />
-                    <h3 className="text-left h-8 text-sm font-bold flex items-center">
+                    <h3 className="text-left text-[0.938vw] font-bold flex items-center">
                       {content.title}
                     </h3>
                   </div>
                   <div>
-                    <article className=" text-sm titleText">{content.description}</article>
+                    <article className=" text-[0.859vw]  titleText pt-[1.667vh]">{content.description}</article>
                   </div>
                 </div>
               </Link>

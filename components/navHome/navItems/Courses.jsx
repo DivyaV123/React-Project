@@ -13,7 +13,7 @@ const Courses = ({ courseResponse }) => {
   const subCourseContent = subCourse?.[hoveredItemIndex]?.subCourseResponse?.length > 0 && subCourse?.[hoveredItemIndex]?.subCourseResponse
   const finalContent = getAllCourses?.[hoveredIndex]?.courseResponse?.length > 0 ? getAllCourses?.[hoveredIndex]?.courseResponse?.filter(ele => ele) : subCourseContent
   return (
-    <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar ">
+    <div className="flex w-[81.09vw]  lg:h-[500px] 3xl:h-[660px] overflow-auto myscrollbar ">
       <div className="menuSidebar pt-2  xl:w-[18.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] ">
         {getAllCourses?.map((courseItem, index) => (
           <div
@@ -50,28 +50,28 @@ const Courses = ({ courseResponse }) => {
         )}
         <div
           className={`${hoveredIndex !== null && subCourse
-            ? "courselist pl-4 pt-2"
-            : "coursefull p-3"
-            }   flex flex-wrap  h-fit gap-4 `}
+            ? "courselist"
+            : "coursefull"
+            }   flex flex-wrap py-[2.222vh] px-[1.25vw]  h-fit gap-[0.938rem] 2xl:gap-[0.706rem] 3xl:p-4 3xl:gap-[0.813]`}
         >
           {finalContent?.length > 0 &&
             finalContent?.map(
               (content, index) => (
-                <Link href={`/courses/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}> <div
+                <Link className={`${hoveredIndex !== null && subCourse
+                  ? "courseMedium"
+                  : "courseinitial"
+                  }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`} href={`/courses/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}> <div
                   key={index}
-                  className={`${hoveredIndex !== null && subCourse
-                    ? "courseMedium"
-                    : "courseinitial"
-                    }  p-2 branchMenuCard bg-[#FFFFFF] max-w-[19.922vw] rounded-xl px-[1.389vh] py-[0.781vw]`}
+                  className="w-full flex flex-col h-full justify-evenly"
                 >
-                  <div className="flex h-10 gap-1.5 ">
+                  <div className="flex  gap-2.5 items-center">
                     <img className="h-8 w-8" src={content?.icon} />
-                    <h3 className="text-left h-8 text-sm font-bold items-center flex pt-1">
+                    <h3 className="text-left  text-[0.938vw] font-bold items-center flex pt-1">
                       {content?.title ? content?.title : ""}
                     </h3>
                   </div>
                   <div>
-                    <article className=" text-sm titleText pt-1">{truncateText(content?.description, 55)}</article>
+                    <article className=" text-[0.859vw] titleText pt-[1.667vh]">{truncateText(content?.description, 55)}</article>
                   </div>
                 </div></Link>
               ))}
