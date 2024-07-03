@@ -132,37 +132,40 @@ function ContactUsPage() {
     }
   };
   return (
-    <div className="h-[178.194vh] contactUsComponent mobile:h-[auto]">
-      <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover h-[69.167vh] mobile:h-[53.548vh]">
+    <div className="h-[178.194vh] tabView:h-[80vh] contactUsComponent mobile:h-[auto] ">
+      <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover h-[69.167vh] mobile:h-[53.548vh] tabView:h-[35.938vh]">
         <header className="flex flex-col justify-center pb-[11.111vh]">
-          <h1 className="flex justify-center gap-2 pt-[14.444vh]  pb-[0.625vw] mobile:relative mobile:top-[3.756vh] mobile:pt-0">
-            <span className="text-[3.75vw] font-extrabold text-white tracking-tight justify-around mobile:text-[3.256vw] ">
+          <h1 className="flex justify-center gap-2 tabView:pt-[3.125vh] pt-[14.444vh]  pb-[0.625vw] mobile:relative mobile:top-[3.756vh] mobile:pt-0">
+            <span className="text-[3.75vw] tabView:text-[4.301vw] font-extrabold text-white tracking-tight justify-around mobile:text-[3.256vw] ">
               We are eager to{" "}
             </span>
-            <span className="tracking-tight gradient-text text-[3rem] font-extrabold mobile:text-[3.256vw] ">
+            <span className="tracking-tight tabView:text-[4.301vw] gradient-text text-[3rem] font-extrabold mobile:text-[3.256vw] ">
               hear from you!
             </span>
           </h1>
-          <span className="text-white text-[2rem] font-medium flex justify-center  justify-center mobile:text-[2.558vw] mobile:w-[97.721vw] mobile:h-[2.113vh] mobile:relative mobile:top-[4.93vh] mobile:flex mobile:justify-center mobile:items-center">
+          <span className="text-white mobile:hidden tabView:hidden text-[2rem] font-medium flex justify-center  justify-center mobile:text-[2.558vw] mobile:w-[97.721vw] mobile:h-[2.113vh] mobile:relative mobile:top-[4.93vh] mobile:flex mobile:justify-center mobile:items-center">
             Feel free to get in touch with team if you have any questions
           </span>
+          <span className="text-white  tabView:text-[3.226vw] hidden tabView:flex-col tabView:justify-center tabView:items-center tabView:flex text-[2rem] font-medium flex justify-center  justify-center mobile:text-[2.558vw] mobile:w-[97.721vw] mobile:h-[2.113vh] mobile:relative mobile:top-[4.93vh] mobile:flex mobile:justify-center mobile:items-center">
+            Feel free to get in touch with team if you have <br/> <p>any questions</p>
+          </span>
         </header>
-        <article className=" mobile:top-[14.15vh] top-[47.333vh] mobile:left-[8.581vw] left-[16.25vw] bg-white rounded border border-gray-300 absolute ">
-          <section className="flex rounded-xl  justify-between w-[67.5vw] mobile:w-[80.884vw]">
-            <aside className=" mobile:w-[100vw] ">
+        <article className=" mobile:top-[14.15vh] tabView:top-[19.531vh] top-[47.333vh] mobile:left-[8.581vw] tabView:left-[8.065vw] left-[16.25vw] bg-white rounded border border-gray-300 absolute ">
+          <section className="flex rounded-xl  justify-between w-[67.5vw] mobile:w-[80.884vw] tabView:w-[83.871vw]">
+            <aside className=" mobile:w-[100vw] tabView:w-[42.608vw]  ">
               <header>
-                <h1 className="font-semibold py-[3.333vh] mobile:hidden text-[1.875vw] pl-[3.333vh]">
+                <h1 className="font-semibold py-[3.333vh] tabView:hidden mobile:hidden text-[1.875vw] pl-[3.333vh]">
                   Fill out the form to hear from our Team!
                 </h1>
               </header>
-              <article className="px-[4.375vw]">
+              <article className="px-[4.375vw] tabView:px-[2.688vw]">
                 <form onSubmit={formikDetails.handleSubmit}>
-                  <div className="pb-[2.5vw] mobile:mt-[2vh] mobile:pb-[4.5vw]">
-                    <span className="text-[0.938vw] font-normal mobile:text-[2.791vw]">
+                  <div className="pb-[2.5vw] mobile:mt-[2vh] mobile:pb-[4.5vw] tabView:mt-[3.344vh] tabView:pb-[3.6vw]">
+                    <span className="text-[0.938vw] font-normal tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]  mobile:text-[2.791vw]">
                       Name
                     </span>
                     <Input
-                      inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw]`}
+                      inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] tabView:text-[1.491vw] tabView:pl-[5.442vw]`}
                       iconPath="/nameTextFieldIcon.svg"
                       placeholder="Enter your name"
                       name="name"
@@ -171,13 +174,13 @@ function ContactUsPage() {
                       value={formikDetails.values.name}
                     />
                     {formikDetails.touched.name && formikDetails.errors.name ? (
-                      <div className="text-red-500 absolute mobile:text-[2.591vw] text-[0.75vw]">
+                      <div className="text-red-500 tabView:text-[1.5vw]  absolute mobile:text-[2.591vw] text-[0.75vw]">
                         {formikDetails.errors.name}
                       </div>
                     ) : null}
                   </div>
-                  <div className="pb-[2.5vw] mobile:pb-[4.5vw]">
-                    <span className="text-[0.938vw]  mobile:text-[2.791vw] font-normal">
+                  <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
+                    <span className="text-[0.938vw] tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]   mobile:text-[2.791vw] font-normal">
                       Mobile
                     </span>
 
@@ -218,22 +221,22 @@ function ContactUsPage() {
                     {(error.phone ||
                       (formikDetails.errors.phone &&
                         formikDetails.touched.phone)) && (
-                        <div className="text-red-500 mobile:text-[2.591vw] text-[0.75vw] absolute">
-                          Phone number is required
-                        </div>
-                      )}
+                      <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute">
+                        Phone number is required
+                      </div>
+                    )}
                     {error.validPhone && !error.phone && (
-                      <div className="text-red-500 mobile:text-[2.591vw] text-[0.75vw] absolute">
+                      <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute">
                         Invalid phone number
                       </div>
                     )}
                   </div>
-                  <div className="pb-[2.5vw] mobile:pb-[4.5vw]">
-                    <span className="text-[0.938vw]  mobile:text-[2.791vw] font-normal">
+                  <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
+                    <span className="text-[0.938vw] tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]   mobile:text-[2.791vw] font-normal">
                       E-mail
                     </span>
                     <Input
-                      inputStyle={`${contactUsInput}   mobile:text-[2.591vw] mobile:pl-[7.442vw]`}
+                      inputStyle={`${contactUsInput} tabView:text-[1.491vw] tabView:pl-[5.442vw]   mobile:text-[2.591vw] mobile:pl-[7.442vw]`}
                       iconPath="/emailFieldicon.svg"
                       placeholder="Enter your email"
                       name="email"
@@ -242,19 +245,19 @@ function ContactUsPage() {
                       value={formikDetails.values.email}
                     />
                     {formikDetails.touched.email &&
-                      formikDetails.errors.email ? (
-                      <div className="text-red-500 absolute mobile:text-[2.591vw] text-[0.75vw]">
+                    formikDetails.errors.email ? (
+                      <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw absolute mobile:text-[2.591vw] text-[0.75vw]">
                         {formikDetails.errors.email}
                       </div>
                     ) : null}
                   </div>
-                  <div className="pb-[2.5vw] mobile:pb-[4.5vw]">
-                    <span className="text-[0.938vw]  mobile:text-[2.791vw] font-normal">
+                  <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
+                    <span className="text-[0.938vw] tabView:relative tabView:bottom-[0.781vh] tabView:text-[1.813vw] mobile:text-[2.791vw] font-normal">
                       Your Message
                     </span>
                     <TextArea
-                      sectionStyle="mobile:h-[11.72vh]"
-                      textAreaStyle="h-full text-[0.938vw] mobile:text-[2.391vw] resize-none"
+                      sectionStyle="mobile:h-[11.72vh] tabView:h-[6vh]"
+                      textAreaStyle="h-full tabView:text-[1.491vw]  text-[0.938vw] mobile:text-[2.391vw] resize-none"
                       iconStyle=""
                       placeholder="Type here..."
                       name="message"
@@ -263,16 +266,16 @@ function ContactUsPage() {
                       value={formikDetails.values.message}
                     />
                     {formikDetails.touched.message &&
-                      formikDetails.errors.message ? (
-                      <div className="text-red-500 absolute mobile:text-[2.591vw] text-[0.75vw]">
+                    formikDetails.errors.message ? (
+                      <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw absolute mobile:text-[2.591vw] text-[0.75vw]">
                         {formikDetails.errors.message}
                       </div>
                     ) : null}
                   </div>
-                  <div className="flex justify-center  pb-[6.444vh] mobile:mt-[1.72vh] mobile:pb-[4vh] mobile:justify-end">
+                  <div className="flex justify-center  pb-[6.444vh] mobile:mt-[1.72vh] mobile:pb-[4vh] mobile:justify-end tabView:mt-[1.72vh] tabView:pb-[4vh] tabView:justify-end">
                     <Button
                       type="submit"
-                      className="bg-gradient text-white rounded text-[1.25vw] py-[1.667vh] px-[1.875vw] mobile:w-[22.907vw] mobile:h-[5.161vh] mobile:text-[3.721vw] mobile:flex mobile:justify-center mobile:items-center mobile:font-medium"
+                      className="bg-gradient text-white rounded text-[1.25vw] py-[1.667vh] px-[1.875vw] mobile:w-[22.907vw] mobile:h-[5.161vh] mobile:text-[3.721vw] mobile:flex mobile:justify-center mobile:items-center mobile:font-medium  tabView:w-[16.129vw] tabView:h-[4.688vh] tabView:text-[2.151vw] tabView:flex tabView:justify-center tabView:items-center tabView:font-medium"
                       title="Submit"
                     />
                   </div>
@@ -280,9 +283,9 @@ function ContactUsPage() {
               </article>
             </aside>
 
-            <aside className="bg-gradient px-[1.25vw] h-auto w-[25.859vw] rounded-r mobile:hidden">
-              <header>
-                <h1 className="text-[1.875vw] text-white font-semibold pt-[2.222vh] pb-[2.5vw]">
+            <aside className="bg-gradient px-[1.25vw] h-auto w-[25.859vw] rounded-r mobile:hidden tabView:w-[41.263vw]   ">
+              <header className=" tabView:mt-[1.563vh] ">
+                <h1 className="text-[1.875vw] tabView:hidden text-white font-semibold pt-[2.222vh] pb-[2.5vw]">
                   Contact Info
                   <div className="p-0">
                     <Svg
@@ -296,12 +299,13 @@ function ContactUsPage() {
                 </h1>
                 {contactInfo.map((data) => (
                   <article
-                    className={`${data.country === "United Kingdom"
-                      ? "pb-[7px]"
-                      : "pb-[5px]"
-                      }`}
+                    className={`${
+                      data.country === "United Kingdom"
+                        ? "pb-[7px] tabView:pl-[2.151vw]"
+                        : "pb-[5px] tabView:pl-[2.151vw]"
+                    }`}
                   >
-                    <h1 className="text-white pb-[0.625vw] text-[1.563vw]  font-bold">
+                    <h1 className="text-white pb-[0.625vw] text-[1.563vw] tabView:text-[2.688vw]  font-bold">
                       {data.country}
                     </h1>
                     <div className={`${contentStyle} gap-[0.5vw]`}>
@@ -313,11 +317,11 @@ function ContactUsPage() {
                         icon={svgicons.contactUsCallSvg[3]}
                         color={svgicons.contactUsCallSvg[4]}
                       />
-                      <div className="text-white  text-[0.938vw]">
+                      <div className="text-white tabView:text-[1.613vw] text-[0.938vw]">
                         {data.call}
                       </div>
                     </div>
-                    <div className={`${contentStyle} gap-[0.8vw]`}>
+                    <div className={`${contentStyle} gap-[0.8vw] tabView:my-1`}>
                       <Svg
                         className=""
                         width={svgicons.contactUsMail[0]}
@@ -326,7 +330,7 @@ function ContactUsPage() {
                         icon={svgicons.contactUsMail[3]}
                         color={svgicons.contactUsMail[4]}
                       />
-                      <div className="text-white  text-[0.938vw]">
+                      <div className="text-white tabView:text-[1.613vw]  text-[0.938vw]">
                         {data.mail}
                       </div>
                     </div>
@@ -339,7 +343,7 @@ function ContactUsPage() {
                         icon={svgicons.contactUsAdressSvg[3]}
                         color={svgicons.contactUsAdressSvg[4]}
                       />
-                      <div className="text-white w-fit text-[0.938vw] pr-[0.625vw]">
+                      <div className="text-white tabView:text-[1.613vw] tabView:mb-[1.563vh] w-fit text-[0.938vw] pr-[0.625vw]">
                         {data.address}
                       </div>
                     </div>
@@ -354,7 +358,7 @@ function ContactUsPage() {
       <div className="hidden mobile:block mobile:relative top-[28.57vh] mobile:pb-[30vh]">
         {contactInfo.map((info, index) => (
           <section key={index} className={`mb-8`}>
-            <div className="locationCard mobile:left-[7.674vw] mobile:relative">
+            <div className="locationCard mobile:ml-[7.674vw] mobile:relative">
               <div className="cardBody rounded-xl mobile:pl-[5.581vw] mobile:pt-[1.86vh] px-[1.25vw] h-auto w-[25.859vw] mobile:w-[81vw]">
                 <header className="text-[4.651vw] text-white pb-[2vh] font-bold">
                   {info.country}
