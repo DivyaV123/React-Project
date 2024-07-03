@@ -4,7 +4,6 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Button from "@/components/commonComponents/button/Button";
 import Input from "@/components/commonComponents/input/Input";
-import TextArea from "@/components/commonComponents/textArea/TextArea";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
 import "react-quill/dist/quill.snow.css";

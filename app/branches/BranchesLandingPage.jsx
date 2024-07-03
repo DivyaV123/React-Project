@@ -10,7 +10,6 @@ import {
 import Svg from '@/components/commonComponents/Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import './branchesLandingPage.scss'
-import { useGetAllBranchesQuery } from '@/redux/queries/getAllBranchData'
 import { GlobalContext } from '@/components/Context/GlobalContext'
 
 function BranchesLandingPage({ BranchDetails }) {

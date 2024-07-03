@@ -9,7 +9,7 @@ import HiringPartners from '@/components/hiringPartners/hiringPartners'
 import StidentsPlaced from '../StidentsPlaced'
 import Testimonials from '../Testimonials'
 import FaqHome from '@/components/faq/faqHome'
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { useGetAllBranchDetailsQuery } from '@/redux/queries/getBranchDetails'
 import Loading from '@/lib/Loading'
 
@@ -17,7 +17,6 @@ import Loading from '@/lib/Loading'
 
 function BatchCourseAPiById() {
     const pathname = usePathname();
-    const searchParams = useSearchParams();
     const params = pathname.split('/').pop();
     const digitIds = params.match(/\b\d+\b/g);
 
