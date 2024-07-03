@@ -4,7 +4,7 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import React, { useState, useEffect } from "react";
 import { Skeleton } from "@/components/ui/skeleton";
 import "./upComingBranches.scss";
-import "../CourseLanding.scss";
+import "../../CourseLanding.scss";
 
 function BatchesCard() {
   const [isloading, setisLoading] = useState(true);
