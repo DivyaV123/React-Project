@@ -190,7 +190,7 @@ const NestedAccordion = ({
                 </article>
                   </AlertDialogTrigger>
                   {
-                    videoPreview && <VideoPreview videoUrl={videoUrl}/>
+                    videoPreview && <VideoPreview videoUrl={videoUrl} setVideoPreview={setVideoPreview}/>
                   }
               </AlertDialog>
             </div>
