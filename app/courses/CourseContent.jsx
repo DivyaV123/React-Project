@@ -1,27 +1,28 @@
 'use client'
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import {
-    Accordion,
     AccordionContent,
     AccordionItem,
     AccordionTrigger,
 } from "@/components/ui/accordion"
-import CoursePageContainer from './CoursePageContainer';
 import Svg from '@/components/commonComponents/Svg/Svg';
 import { svgicons } from '@/components/assets/icons/svgassets';
 import NestedAccordion from '@/components/ui/NestedAccordion';
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth';
 
-function CourseContent({ courseDetails }) {
+function CourseContent({ courseDetails,typeOfLearning }) {
+
     const transformData = (subjects) => {
         return subjects?.flatMap(subject => {
             return subject?.chapters?.map(chapter => {
                 return {
                     [chapter.chapterTitle]: chapter?.topics.map(topic => {
                         return {
-                            [topic.topicTitle]: topic?.subTopics?.map(subTopic => subTopic?.subTopicTitle)
+                            [topic.topicTitle]: topic?.subTopics?.map(subTopic => subTopic?.subTopicTitle),
+                            [topic.topicPreviewDuration] : topic?.subTopics?.map(subTopic => subTopic?.subTopicPreviewDuration),
+                            [topic.topicPreviewUrl]: topic?.subTopics?.map(subTopic => subTopic?.subTopicPreviewUrl)
                         };
-                    })
+                     })
                 };
             });
         });
@@ -114,7 +115,7 @@ function CourseContent({ courseDetails }) {
                 Course Content
             </header>
             <article className='sm:my-[2.778vh]'>
-                <NestedAccordion data={courseContentdata}
+                <NestedAccordion data={courseContentdata} typeOfLearning={typeOfLearning}
                     page='course' />
             </article>
         </MaxWebWidth>

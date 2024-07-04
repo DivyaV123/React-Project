@@ -1,20 +1,12 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
 import "./CourseLanding.scss";
 import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
-import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
-const CourseLanding = ({ courseDetails }) => {
-  const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
-  const typesOfClasses = [
-    { title: "Offline Classes" },
-    { title: "Online Live Classes" },
-    { title: "Experiential Learning" },
-    { title: "Self Paced" },
-  ];
+
+const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOfLearning}) => {
 
   const statisticsData = [
     {
@@ -36,8 +28,8 @@ const CourseLanding = ({ courseDetails }) => {
   const tutionClasses = courseDetails?.courseAbout;
   let splitText = tutionClasses?.split(".");
   const resources = splitText?.filter((s) => s);
-  const [btnState, setBtnState] = useState(courseDetails?.mode[0]);
-  console.log(courseDetails?.mode, "courseDetails?.mode")
+
+
   const [isRightBarFixed, setIsRightBarFixed] = useState(false);
 
   const handleRightBarFix = (fixed) => {
@@ -64,10 +56,10 @@ const CourseLanding = ({ courseDetails }) => {
                 {courseDetails?.mode?.map((classItem, index) => (
                   <button
                     key={index}
-                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === btnState ? "activecourseButton" : ""
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === typeOfLearning ? "activecourseButton" : ""
                       }`}
                     onClick={() => {
-                      setBtnState(classItem);
+                      setTypeOfLearning(classItem);
                     }}
                   >
                     {classItem}
