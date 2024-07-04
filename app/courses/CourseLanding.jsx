@@ -5,9 +5,9 @@ import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
-const CourseLanding = ({ courseDetails , countDetails}) => {
+import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
+const CourseLanding = ({ courseDetails }) => {
   const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
   const typesOfClasses = [
     { title: "Offline Classes" },
