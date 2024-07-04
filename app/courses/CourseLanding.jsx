@@ -5,7 +5,7 @@ import "@/components/commonComponents/courseCard/courseCard.scss";
 import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-
+import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
 const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOfLearning}) => {
 
   const statisticsData = [
