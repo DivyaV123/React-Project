@@ -1,7 +1,7 @@
 'use client'
 
-import React from 'react'
-import { usePathname, useSearchParams } from 'next/navigation'
+import React, { useState, useEffect } from 'react'
+import { usePathname } from 'next/navigation'
 import CourseLanding from '../CourseLanding'
 import { useGetAllCourseDetailsQuery } from '@/redux/queries/getCoursedetails'
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
@@ -15,12 +15,19 @@ import Loading from '@/lib/Loading'
 
 const CoursePageClient = () => {
   const pathname = usePathname()
-  const searchParams = useSearchParams()
   const courseID = pathname.split('/').pop() // Extract the courseID from the URL
-  const { data: countDetails, isLoading:countLoading } = useGetAllPlacementCountQuery()
+  const { data: countDetails, isLoading: countLoading } = useGetAllPlacementCountQuery()
   const { data: courseDetails, error, isLoading } = useGetAllCourseDetailsQuery(courseID, {
     skip: !courseID, // Skip query until courseID is available
   })
+
+  const [typeOfLearning, setTypeOfLearning] = useState(null);
+
+  useEffect(() => {
+    if (courseDetails?.data?.mode) {
+      setTypeOfLearning(courseDetails.data.mode[0]);
+    }
+  }, [courseDetails]);
 
   if (isLoading || countLoading) return <div>
     <Loading />
@@ -31,8 +38,8 @@ const CoursePageClient = () => {
 
   return (
     <WebLayout page='course' courseDetails={courseDetails.data}>
-      <CourseLanding courseDetails={courseDetails.data} countDetails={countDetails}/>
-      <CourseContent courseDetails={courseDetails} />
+      <CourseLanding courseDetails={courseDetails.data} countDetails={countDetails} setTypeOfLearning={setTypeOfLearning} typeOfLearning={typeOfLearning} />
+      <CourseContent courseDetails={courseDetails} typeOfLearning={typeOfLearning} />
       <UpComingBranches courseDetails={courseDetails.data} />
       {/* <div className='mb-9'>
         <PlacementStatisticsHome page="course" courseDetails={courseDetails} />

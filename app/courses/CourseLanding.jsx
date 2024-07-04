@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState } from "react";
 import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
 import "./CourseLanding.scss";
 import "@/components/commonComponents/courseCard/courseCard.scss";
@@ -6,7 +6,7 @@ import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 
-const CourseLanding = ({ courseDetails ,countDetails}) => {
+const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOfLearning}) => {
 
   const statisticsData = [
     {
@@ -28,7 +28,7 @@ const CourseLanding = ({ courseDetails ,countDetails}) => {
   const tutionClasses = courseDetails?.courseAbout;
   let splitText = tutionClasses?.split(".");
   const resources = splitText?.filter((s) => s);
-  const [btnState, setBtnState] = useState(courseDetails?.mode[0]);
+
 
   const [isRightBarFixed, setIsRightBarFixed] = useState(false);
 
@@ -49,10 +49,10 @@ const CourseLanding = ({ courseDetails ,countDetails}) => {
                 {courseDetails?.mode?.map((classItem, index) => (
                   <button
                     key={index}
-                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === btnState ? "activecourseButton" : ""
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === typeOfLearning ? "activecourseButton" : ""
                       }`}
                     onClick={() => {
-                      setBtnState(classItem);
+                      setTypeOfLearning(classItem);
                     }}
                   >
                     {classItem}
