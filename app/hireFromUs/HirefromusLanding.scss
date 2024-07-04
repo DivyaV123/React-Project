@@ -178,8 +178,8 @@
     width: -webkit-fill-available;
     height: 30px;
   }
-  .custom-grid-form {
-    @apply grid grid-cols-1 md:grid-cols-2;
+  .custom-grid-form_hiring {
+    @apply grid-cols-2;
     gap: 1rem; // general gap
   
     @media (min-width: 768px) {
@@ -217,5 +217,32 @@
   }
   .btnComponent{
     top: 1px !important;
+  }
+}
+@media only screen and (max-width: 1024px) and (min-width: 744px) {
+  .hireFromSection{
+    height: 59.426vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100vw;
+    background-image: url("../../public/hirefrombg.svg"),
+    linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.3) 0%,
+      rgba(255, 255, 255, 0.76) 78.2%
+    );
+    
+  }
+  .carousel-item{
+    width: auto !important;
+  }
+  .clientTestimonial header .testimonials-text {
+    font-size: 21px !important;
+  }
+  .btnComponent{
+    top: 1px !important;
+  }
+  .custom-grid-form_hiring{
+    grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }

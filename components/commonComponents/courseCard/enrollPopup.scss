@@ -143,3 +143,17 @@
 .no-scroll {
   overflow: hidden;
 }
+@media only screen and (max-width: 1024px) and (min-width: 744px){
+  .enroll_modal{
+    .modal{
+      max-width: 100vw;
+      height: 100vh;
+      position: relative;
+      top: 0px;
+    }
+    .custom-grid-form{
+      @apply grid-cols-1
+    }
+  }
+
+}
