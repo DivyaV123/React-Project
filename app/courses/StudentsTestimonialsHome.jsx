@@ -35,32 +35,50 @@ function StudentsTestimonialsHome({ page, testimonialsData }) {
                     <Carousel>
                         <CarouselContent className='bg-[#F9F9F9]'>
                             {testimonialsData?.map((element, index) => {
-                                const firstCardData = testimonialsData[index * 2];
-                                const secondCardData = testimonialsData[index * 2 + 1];
+                                // Calculate the index for the first and second card
+                                const firstCardIndex = index * 2;
+                                const secondCardIndex = firstCardIndex + 1;
+
+                                // Check if there is data for the first and second card
+                                const firstCardData = testimonialsData[firstCardIndex];
+                                const secondCardData = testimonialsData[secondCardIndex];
+
+                                // Only render a CarouselItem if there is data for at least one of the cards
+                                if (!firstCardData && !secondCardData) {
+                                    return null;
+                                }
 
                                 return (
-                                    <CarouselItem className={page === 'branch' ? 'sm:basis-[33%] mobile:w-[86.047vw] mobile:mr-[8.372vw] '  : 'basis-[57%]'} key={index}>
-                                        <article className='flex gap-4 sm:pb-3 mobile:w-[86.047vw] mobile:h-[20.386vh] mobile:bg-white mobile:mb-[2.575vh] mobile:pl-[3.721vw] rounded-xl'>
-                                            {isloading && index % 2 === 0 ? (
-                                                <TestimonialsSkeletonCard />
-                                            ) : (
-                                                firstCardData && <TestimonialsCard testimonialsData={firstCardData} compleateData={testimonialsData} />
-                                            )}
-                                        </article>
-                                        <article className='flex gap-4 mobile:w-[86.047vw] mobile:h-[20.386vh] mobile:bg-white mobile:mb-[2.575vh] mobile:pl-[3.721vw] rounded-xl'>
-                                            {isloading && index % 2 !== 0 ? (
-                                                <TestimonialsSkeletonCard />
-                                            ) : (
-                                                secondCardData && <TestimonialsCard testimonialsData={secondCardData} compleateData={testimonialsData} />
-                                            )}
-                                        </article>
+                                    <CarouselItem
+                                        className={page === 'branch' ? 'sm:basis-[33%] mobile:w-[86.047vw] mobile:mr-[8.372vw]' : 'basis-[57%]'}
+                                        key={index}
+                                    >
+                                        {firstCardData && (
+                                            <article className='flex gap-4 sm:pb-3 mobile:w-[86.047vw] mobile:h-[20.386vh] mobile:bg-white mobile:mb-[2.575vh] mobile:pl-[3.721vw] rounded-xl'>
+                                                {isloading && index % 2 === 0 ? (
+                                                    <TestimonialsSkeletonCard />
+                                                ) : (
+                                                    <TestimonialsCard testimonialsData={firstCardData} compleateData={testimonialsData} />
+                                                )}
+                                            </article>
+                                        )}
+                                        {secondCardData && (
+                                            <article className='flex gap-4 mobile:w-[86.047vw] mobile:h-[20.386vh] mobile:bg-white mobile:mb-[2.575vh] mobile:pl-[3.721vw] rounded-xl'>
+                                                {isloading && index % 2 !== 0 ? (
+                                                    <TestimonialsSkeletonCard />
+                                                ) : (
+                                                    <TestimonialsCard testimonialsData={secondCardData} compleateData={testimonialsData} />
+                                                )}
+                                            </article>
+                                        )}
                                     </CarouselItem>
                                 );
                             })}
                         </CarouselContent>
+
                         <div className='mobile:hidden'>
-                        <CarouselPrevious />
-                        <CarouselNext />
+                            <CarouselPrevious />
+                            <CarouselNext />
                         </div>
                     </Carousel>
                 </article>

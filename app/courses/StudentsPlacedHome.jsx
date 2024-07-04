@@ -13,8 +13,22 @@ import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 import { usePathname } from 'next/navigation'
 
 function StudentsPlacedHome({ page, courseDetails, branchName }) {
+    console.log(courseDetails, "courseDetailscourseDetails")
+    let organisation = courseDetails?.data?.branchType.map((element) => {
+        if (element === "JSP") {
+            return "Jspiders"
+        } else if (element === "QSP") {
+            return "Qspiders"
+        } else if (element === "PYSP") {
+            return "Pyspiders"
+        } else if (element === "BSP") {
+            return "Bspiders"
+        } else {
+            return "Qspiders"
+        }
+    })
     const pathName = usePathname()
-    const bodyData = pathName.includes('branches') ? { branchLocation: [branchName] } : { branchType: ["Jspiders", "Qspiders"] }
+    const bodyData = pathName.includes('branches') ? { branchLocation: [branchName] } : { branchType: organisation }
     const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 16, bodyData: bodyData })
     const pathname = usePathname()
     return (

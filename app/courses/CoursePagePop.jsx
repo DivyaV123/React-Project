@@ -1,9 +1,18 @@
 import Button from '@/components/commonComponents/button/Button';
 import React, { useEffect, useState } from 'react'
 import "./CourseLanding.scss";
+import EnrollPopUp from '@/components/commonComponents/courseCard/EnrollPopUp';
 
-function CoursePagePop({courseDetails}) {
+function CoursePagePop({ courseDetails }) {
     const [showDiv, setShowDiv] = useState(false);
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const handleCardClick = () => {
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+    };
 
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
@@ -21,23 +30,28 @@ function CoursePagePop({courseDetails}) {
     };
 
     return (
-        <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className='bg-[#FEF2E7] w-[100%] flex justify-between align-item-center   px-[4.1667vw] fixed top-[7.5vw]'>
-            <p className='text-[1.875vw] font-bold leading-[36px] py-[1.15vw]'>
-                {courseDetails?.courseName}
-            </p>
-            <div className='flex justify-cnter py-[1.15vw]'>
-                <div className='flex gap-3'>
-                    <Button
-                        title='Enroll For Demo Class'
-                        className='EnrollButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw]'
-                    />
-                    {/* <Button
+        <>
+            <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className='bg-[#FEF2E7] w-[100%] flex justify-between align-item-center   px-[4.1667vw] fixed top-[7.5vw]'>
+                <p className='text-[1.875vw] font-bold leading-[36px] py-[1.15vw]'>
+                    {courseDetails?.courseName}
+                </p>
+                <div className='flex justify-cnter py-[1.15vw]'>
+                    <div className='flex gap-3'>
+                        <Button
+                            onClick={() => handleCardClick()}
+                            title='Enroll For Demo Class'
+                            className='EnrollButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw]'
+                        />
+                        {/* <Button
                         title="Demo class"
                         className='border border-orange-500 text-orange-500 pt-[0.52vw] pr-[1.25vw] pb-[0.52vw] pl-[1.25vw] rounded '
                     /> */}
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
+            <EnrollPopUp isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} />
+        </>
+
     )
 }
 

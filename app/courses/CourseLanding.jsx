@@ -35,7 +35,14 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
   const handleRightBarFix = (fixed) => {
     setIsRightBarFixed(fixed);
   };
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const handleCardClick = () => {
+    setIsModalOpen(true);
+  };
 
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       <MaxWebWidth
@@ -122,7 +129,9 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
                   ))}
                 </article>
                 <section className="flex gap-6 pb-[7.222vh] mobile:pb-[2.79vh]">
-                  <button className="EnrollButton text-[1.25vw] mobile:text-[3.721vw] font-semibold py-[1.389vh] px-[1.875vw]">
+                  <button
+                    onClick={() => handleCardClick()}
+                    className="EnrollButton text-[1.25vw] mobile:text-[3.721vw] font-semibold py-[1.389vh] px-[1.875vw]">
                     Enroll For Demo Class
                   </button>
                   {/* <button className="EnquireButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw] relative">
@@ -142,6 +151,7 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
         </aside>
       </MaxWebWidth>
       {/* <ImageScroller cardData={courseDetails} onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} /> */}
+      <EnrollPopUp isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} />
     </>
   );
 };
