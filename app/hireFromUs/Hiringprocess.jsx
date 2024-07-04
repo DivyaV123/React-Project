@@ -1,3 +1,4 @@
+'use client'
 import React, { useContext } from "react";
 import "./HirefromusLanding.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
