@@ -77,7 +77,7 @@ function CarosalHome() {
           </a>
         </figure>
       </article>)
-    } else if (domainVariable === "pypiders") {
+    } else if (domainVariable === "pyspiders") {
       return (<article className='mobile:hidden'>
         <figure className='absolute right-[-8.9%] top-[2.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testqsp.qspiders.com/' target='_blank'>
