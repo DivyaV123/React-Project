@@ -15,10 +15,10 @@ const Degree_Branch_Passout = ({isLoading}) => {
     setFilterPlacementData,
     setPlacementParam,
     degreeButton,
-    setDegreeButton,
     branchButton,
-    setBranchButton,
     passOutButton,
+    setDegreeButton,
+    setBranchButton,
     setPassOutButton,
     setSideBarBtn,
     setThroughCheckedIcon,
@@ -80,6 +80,11 @@ const Degree_Branch_Passout = ({isLoading}) => {
       setButtonState(item);
     }
     setPlacementParam('');
+    setPlacedCheckedIcon(false);
+    setLessCheckedIcon(false);
+    setThroughCheckedIcon(false);
+    setNonItCheckedIcon(false);
+    setItCheckedIcon(false);
     setFilterPlacementData({
       [key]: [item],
     });
@@ -113,6 +118,7 @@ const Degree_Branch_Passout = ({isLoading}) => {
     otherSetMoreStates
   ) => (
     <div className="bg-white h-[2.65vw] flex w-full buttonSection relative mobile:hidden">
+     {console.log(buttonState,"buttonState")}
       {items.slice(0, 6).map((item, index) => (
         <button
           key={index}

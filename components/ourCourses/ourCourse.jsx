@@ -172,80 +172,6 @@ function OurCourse({ page }) {
   const [btnState, setBtnState] = useState(
     page === "tution" ? "Experiential Learning" : "Offline Classes"
   );
-  const courseCard = [
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage.png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage(1).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/Courseimage(2).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage(3).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage(4).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage(5).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage(6).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage(8).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseCardImages.png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage.png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/courseimage(1).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-    {
-      name: "Cloud Solution  Architect - Azure",
-      image: "./images/Courseimage(2).png",
-      deytail:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards.",
-    },
-  ];
   const [searchTerm, setSearchTerm] = useState("");
 
   const tutionClasses =
@@ -270,8 +196,8 @@ function OurCourse({ page }) {
             cardData.push({
               name: element.title,
               image: element.homePageCourseImage,
-              detail: element.description, // Fixed typo: 'deytail' to 'detail'
-              category: allCourse.title, // Added category to the card data
+              detail: element.description, 
+              category: allCourse.title, 
             });
           }
         });
@@ -291,8 +217,8 @@ function OurCourse({ page }) {
                 cardData.push({
                   name: element.title,
                   image: element.homePageCourseImage,
-                  detail: element.description, // Fixed typo: 'deytail' to 'detail'
-                  category: allCourse.title, // Added category to the card data
+                  detail: element.description, 
+                  category: allCourse.title, 
                 });
               }
             });
