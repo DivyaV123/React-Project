@@ -8,6 +8,7 @@ import './chooseUs.scss'
 import { GlobalContext } from '../Context/GlobalContext';
 import Link from 'next/link';
 import { PLACEMENT_PATH } from '@/lib/RouteConstants';
+import Image from 'next/image';
 
 
 function PlacementAssistance() {
@@ -62,7 +63,14 @@ function PlacementAssistance() {
                 <Fade right delay={0} duration={1000}>
                     <aside className='flex justify-center align-end animate-slide-from-right'>
                         <figure className='sm:w-[78%]'>
-                            <img src='./images/Placement assistance_image (4).png' className='w-[80.465vw]' alt='platformAssociateImage'></img>
+                            <Image
+                                src="/images/Placement assistance_image (4).png"
+                                alt="platformAssociateImage"
+                                width={800}
+                                height={500}
+                                className="w-[80.465vw]"
+                            />
+                            {/* <img src='./images/Placement assistance_image (4).png' className='w-[80.465vw]' alt='platformAssociateImage'></img> */}
                         </figure>
 
                     </aside>

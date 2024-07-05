@@ -15,7 +15,7 @@ const CommonBranch = ({ selectedId, page }) => {
         selectedId?.branches?.map((branch, branchIndex) => (
           <div
             key={branchIndex}
-            className={` sm:w-[20.469vw] mobile:mt-[1.717vh]  p-2 courseSidebar rounded-md ${page === 'offlineBranches' ? "flex-shrink-0 h-[58vh] flex-wrap" : ""} `}
+            className={` sm:w-[20.469vw] mobile:mt-[1.717vh]  p-2  rounded-md ${page === 'offlineBranches' ? "flex-shrink-0 h-[58vh] flex-wrap" : "courseSidebar"} `}
           >
             <img
               src={branch.branchImage ? branch.branchImage : "../../../../Frame 41334.png"}

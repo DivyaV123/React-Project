@@ -1,5 +1,5 @@
 'use client'
-import React, {useState } from 'react'
+import React, { useState } from 'react'
 import './courseCard.scss'
 import Button from '../button/Button'
 import Svg from '../Svg/Svg'
@@ -7,6 +7,7 @@ import { truncateText } from '@/lib/utils'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import EnrollPopUp from './EnrollPopUp'
 import { useRouter } from 'next/navigation'
+import Image from 'next/image'
 function CourseCard({ cardData }) {
     const router = useRouter()
     const [isModalOpen, setIsModalOpen] = useState(false);
@@ -17,14 +18,26 @@ function CourseCard({ cardData }) {
     const handleCloseModal = () => {
         setIsModalOpen(false);
     };
-    const handleKnowMore=(id)=>{
+    const handleKnowMore = (id) => {
         router.push(`/courses/${id}`)
     }
     return (
         <>
             <section className='cardStyle justify-center  justify-items-stretch'>
                 <picture className='flex justify-gf-center w-full'>
-                    <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full  mobile:p-0 mobile:h-[17.167vh]' src={cardData.image ? cardData.image : cardData.homePageCourseImage} alt='image'></img>
+                    {console.log(cardData.homePageCourseImage, cardData.image, "cardData.homePageCourseImage")}
+                    {/* <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full  mobile:p-0 mobile:h-[17.167vh]'
+                        src={cardData.image ? cardData.image : cardData.homePageCourseImage}
+                        alt='image'>
+                    </img> */}
+                    <Image
+                        src={cardData.image ? cardData.image : cardData.homePageCourseImage}
+                        width={500}
+                        height={500}
+                        sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                        alt="Course Image"
+                    />
+
                 </picture>
                 <div>
                 </div>

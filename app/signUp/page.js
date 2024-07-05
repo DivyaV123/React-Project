@@ -4,9 +4,7 @@ import SignupLanding from './SignupLanding'
 
 function SignUp() {
     return (
-
         <SignupLanding />
-
     )
 }
 

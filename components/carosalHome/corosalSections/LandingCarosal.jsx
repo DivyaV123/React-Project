@@ -9,6 +9,7 @@ import Counter from "@/components/commonComponents/counterAnimation/Counter";
 import LandingCarosalSkeleton from "./LandingCarosalSkeleton";
 import HiringModal from "@/app/hireFromUs/Modal/HiringModal";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import Image from "next/image";
 function LandingCarosal() {
   const { domainVariable } = useContext(GlobalContext)
   const [isloading, setisLoading] = useState(true);
@@ -54,7 +55,14 @@ function LandingCarosal() {
           <aside className="flex items-center justify-end mobile:hidden">
             <article className="flex rounded-md gap-4 bg-white absolute w-56 h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[5%] left-[9%] 2xl:left-[17%] border-dark-gray-600  items-center">
               <figure>
-                <img src="./courseHomeIcon.svg" />
+                <Image
+                  src='courseHomeIcon.svg'
+                  alt="Graduation Report Icon"
+                  width={500}
+                  height={500}
+                  className="w-[90%]"
+                />
+                {/* <img src="./courseHomeIcon.svg" /> */}
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -69,7 +77,14 @@ function LandingCarosal() {
             </article>
             <article className="flex rounded-md gap-4 bg-white cursor-pointer  absolute w-[15.5rem] h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[33%] left-[66%] 2xl:left-[68%] border-dark-gray-600  items-center">
               <figure>
-                <img src="./hiringCompanyHomeicon.svg" />
+                {/* <img src="./hiringCompanyHomeicon.svg" /> */}
+                <Image
+                  src='/hiringCompanyHomeicon.svg'
+                  alt="Graduation Report Icon"
+                  width={500}
+                  height={500}
+                  className="w-[90%]"
+                />
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -86,7 +101,14 @@ function LandingCarosal() {
             </article>
             <article className="flex rounded-md gap-4 absolute w-[14.75rem] h-[4.5rem] px-4 py-3 z-1  bg-white justify-start border-solid border-2 top-[57%] left-[62%] 2xl:[64%]  border-dark-gray-600  items-center">
               <figure>
-                <img src="./teacherHomeIcon.svg" />
+                <Image
+                  src='/teacherHomeIcon.svg'
+                  alt="Graduation Report Icon"
+                  width={500}
+                  height={500}
+                  className="w-[90%]"
+                />
+                {/* <img src="./teacherHomeIcon.svg" /> */}
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -101,7 +123,14 @@ function LandingCarosal() {
             </article>
             <article className="flex rounded-md gap-4 absolute w-[14.75rem] h-24 bg-white justify-start border-solid border-2 top-[27%] left-[3%] 2xl:left-[11%] border-dark-gray-600 px-4 py-3 items-center">
               <figure>
-                <img src="./studentPlaceMentHomeIcon.svg" />
+                <Image
+                  src='/studentPlaceMentHomeIcon.svg'
+                  alt="Graduation Report Icon"
+                  width={500}
+                  height={500}
+                  className="w-[90%]"
+                />
+                {/* <img src="./studentPlaceMentHomeIcon.svg" /> */}
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -115,7 +144,14 @@ function LandingCarosal() {
             </article>
             <article className="flex rounded-md gap-4 absolute w-[15rem] h-[4.5rem] px-4 py-3 bg-white justify-start border-solid border-2 top-[56%] -left-[3%] 2xl:left-[4%] border-dark-gray-600  items-center">
               <figure>
-                <img src="./trainedStudentsHomeIcon.svg" />
+                <Image
+                  src='/trainedStudentsHomeIcon.svg'
+                  alt="Graduation Report Icon"
+                  width={500}
+                  height={500}
+                  className="w-[90%]"
+                />
+                {/* <img src="./trainedStudentsHomeIcon.svg" /> */}
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -129,11 +165,17 @@ function LandingCarosal() {
               </div>
             </article>
             <figure className="w-[75%] h-[84vh]">
-              <img
+              {/* <img
                 src="./landScreenpicture.png"
                 className="h-[84vh]"
                 alt="pic001"
-              ></img>
+              ></img> */}
+              <Image
+                src='/landScreenpicture.png'
+                width={500}
+                height={500}
+                sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+              />
             </figure>
           </aside>
         </Fade>
