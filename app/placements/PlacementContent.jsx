@@ -110,7 +110,7 @@ const handleViewmore=()=>{
                   <div className="iconContainer ">
                     <Link
                       href={student?.testimonial?.googleReview || "#"}
-                      target="_blank"
+                      target={student?.testimonial?.googleReview ? "_blank" : "_self"}
                     >
                       <img
                         src="../google 1.svg"
@@ -131,7 +131,7 @@ const handleViewmore=()=>{
                   <div className="iconContainer">
                     <Link
                       href={student?.testimonial?.fbReview || "#"}
-                      target="_blank"
+                      target={student?.testimonial?.googleReview ? "_blank" : "_self"}
                     >
                       <img
                         src="../facebook 1.svg"
@@ -152,7 +152,7 @@ const handleViewmore=()=>{
                   <div className="iconContainer">
                     <Link
                       href={student?.testimonial?.youtubeReview || "#"}
-                      target="_blank"
+                      target={student?.testimonial?.googleReview ? "_blank" : "_self"}
                     >
                       <img
                         src="../youtube 1.svg"

@@ -54,7 +54,7 @@ function RelevantTraining() {
                         <article className='flex justify-center mt-6 mobile:mt-[2.575vh]'>
                             <Button
                                 className='bg-gradient text-white rounded w-[11.719vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw]'
-                                title="Know more"
+                                title="Enquiry Now"
                                 onClick={handleCardClick}
                             />
                         </article>

@@ -233,6 +233,7 @@ function OurCourse({ page }) {
         t.title === value.title
       ))
     );
+// const filteredCards=cardData.filter((cards)=>cards!=="").filter((card)=>card.toLowerCase().includes(searchTerm.toLowerCase()))
 
     setCourseCardData(cardData);
     setCategory(uniqueCategories);
@@ -264,9 +265,9 @@ function OurCourse({ page }) {
             </header>
           </div>
         )}
-        <div className="flex mobile:hidden">
+        <div className="flex ">
           {page === "explore" && (
-            <article className="pr-2 pt-[1px]">
+            <article className="pr-2 pt-[1px] mobile:hidden">
               <Input
                 onChange={(e) => setSearchTerm(e.target.value)}
                 inputStyle="searchField p-2 text-sm"
