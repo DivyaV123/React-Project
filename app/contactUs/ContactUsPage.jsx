@@ -164,7 +164,7 @@ function ContactUsPage() {
                     <span className='text-red-500 pr-1'>*</span>Name
                     </span>
                     <Input
-                      inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] tabView:text-[1.491vw] tabView:pl-[5.442vw]`}
+                      inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] tabView:text-[1.491vw] tabView:pl-[5.442vw] contactInput`}
                       iconPath="/nameTextFieldIcon.svg"
                       placeholder="Enter your name"
                       name="name"
@@ -197,7 +197,7 @@ function ContactUsPage() {
                       name="phone"
                       id="phone"
                       value={formikDetails.values.phone}
-                      className=" outline-none"
+                      className=" "
                       onChange={(e, country) => {
                         formikDetails.setFieldValue("phone", e);
                         setPhoneValue(e);
@@ -236,7 +236,7 @@ function ContactUsPage() {
                     <span className='text-red-500 pr-1'>*</span>E-mail
                     </span>
                     <Input
-                      inputStyle={`${contactUsInput} tabView:text-[1.491vw] tabView:pl-[5.442vw]   mobile:text-[2.591vw] mobile:pl-[7.442vw]`}
+                      inputStyle={`${contactUsInput} tabView:text-[1.491vw] tabView:pl-[5.442vw]   mobile:text-[2.591vw] mobile:pl-[7.442vw] contactInput`}
                       iconPath="/emailFieldicon.svg"
                       placeholder="Enter your email"
                       name="email"
@@ -256,8 +256,8 @@ function ContactUsPage() {
                     <span className='text-red-500 pr-1'>*</span> Your Message
                     </span>
                     <TextArea
-                      sectionStyle="mobile:h-[11.72vh] tabView:h-[6vh]"
-                      textAreaStyle="h-full tabView:text-[1.491vw]  text-[0.938vw] mobile:text-[2.391vw] resize-none"
+                      sectionStyle="mobile:h-[11.72vh] tabView:h-[6vh] "
+                      textAreaStyle="h-full tabView:text-[1.491vw]  text-[0.938vw] mobile:text-[2.391vw] resize-none "
                       iconStyle=""
                       placeholder="Type here..."
                       name="message"

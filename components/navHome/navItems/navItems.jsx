@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React, { useState, useCallback, useContext } from "react";
 import "./navitems.scss";
 import {
@@ -13,31 +13,63 @@ import Branches from "./Branches";
 import Tutions from "./Tutions";
 import Link from "next/link";
 import { InputIcon } from "@radix-ui/react-icons";
-import { CONTACT_US_PATH, PLACEMENT_PATH, HIREFROMUS_PATH } from "@/lib/RouteConstants";
+import {
+  CONTACT_US_PATH,
+  PLACEMENT_PATH,
+  HIREFROMUS_PATH,
+} from "@/lib/RouteConstants";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-
-
+import { useRouter } from "next/navigation";
 function NavItems() {
-  const { setHomeBranchData } = useContext(GlobalContext)
-  const { data: courseResponse, isLoading: CourseIsLoading, error: CourseError } = useGetAllCategoriesQuery()
-  const { data: BranchResponse, error: branchError, isLoading: branchIsLoading } = useGetAllBranchesQuery()
+  const router = useRouter();
+  const {
+    setHomeBranchData,
+    setDegreeButton,
+    setBranchButton,
+    setPassOutButton,
+    setSideBarBtn,
+    setThroughCheckedIcon,
+    setLessCheckedIcon,
+    setPlacedCheckedIcon,
+    setNonItCheckedIcon,
+    setItCheckedIcon,
+    setFilterPlacementData,
+  } = useContext(GlobalContext);
+  const {
+    data: courseResponse,
+    isLoading: CourseIsLoading,
+    error: CourseError,
+  } = useGetAllCategoriesQuery();
+  const {
+    data: BranchResponse,
+    error: branchError,
+    isLoading: branchIsLoading,
+  } = useGetAllBranchesQuery();
   const navItems = [
-    { id: 1, name: "Courses", content: <Courses courseResponse={courseResponse} /> },
-    { id: 2, name: "Branches", content: <Branches BranchResponse={BranchResponse} /> },
+    {
+      id: 1,
+      name: "Courses",
+      content: <Courses courseResponse={courseResponse} />,
+    },
+    {
+      id: 2,
+      name: "Branches",
+      content: <Branches BranchResponse={BranchResponse} />,
+    },
     { id: 3, name: "University Program", content: "" },
     { id: 4, name: "Tuitions", content: <Tutions /> },
     { id: 5, name: "Hire From Us", content: "" },
     { id: 6, name: "Placements", content: "" },
     { id: 7, name: "Contact us", content: "" },
   ];
-  setHomeBranchData(BranchResponse?.data[0]?.cities)
+  setHomeBranchData(BranchResponse?.data[0]?.cities);
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const [stateHovered, setStateHovered] = useState({
-    item: '',
-    stste: false
-  })
+    item: "",
+    state: false,
+  });
   const handleItemHover = useCallback((itemName) => {
     if (["Courses", "Branches", "Tutions"].includes(itemName)) {
       setHoverState({ item: itemName });
@@ -54,25 +86,61 @@ function NavItems() {
     setHoverState((prevState) => ({ ...prevState, content: isVisible }));
   }, []);
 
+  const handleNavItems = (navItem) => {
+    if (navItem === "Contact us") {
+      router.push(CONTACT_US_PATH);
+    } else {
+      if (navItem === "Placements") {
+        router.push(PLACEMENT_PATH);
+        setFilterPlacementData({});
+        setPlacedCheckedIcon(true);
+        setLessCheckedIcon(false);
+        setThroughCheckedIcon(false);
+        setNonItCheckedIcon(false);
+        setItCheckedIcon(false);
+        setSideBarBtn("");
+        setDegreeButton("");
+        setBranchButton("");
+        setPassOutButton("");
+      } else {
+        if (navItem === "Hire From Us") {
+          router.push(HIREFROMUS_PATH);
+        }
+      }
+    }
+  };
   return (
     <>
-      <NavigationMenu hoverItem={hoverState.item} hoverContent={hoverState.content}>
+      <NavigationMenu
+        hoverItem={hoverState.item}
+        hoverContent={hoverState.content}
+      >
         <NavigationMenuList>
           {navItems.map((navItem) => (
-            <Link href={navItem.name === 'Contact us' ? CONTACT_US_PATH : navItem.name === 'Placements' ? PLACEMENT_PATH : navItem.name === 'Hire From Us' ? HIREFROMUS_PATH : ""}>
-              <NavigationMenuItem key={navItem.id}
+            <div onClick={() => handleNavItems(navItem.name)}>
+              <NavigationMenuItem
+                key={navItem.id}
                 onMouseEnter={() => handleItemHover(navItem.name)}
                 onMouseLeave={handleItemLeave}
               >
-                <NavigationMenuTrigger hoverItem={hoverState.item} hoverContent={hoverState.content}>
+                <NavigationMenuTrigger
+                  hoverItem={hoverState.item}
+                  hoverContent={hoverState.content}
+                >
                   <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
-                    {console.log(hoverState.item, hoverState.content, "hoverState.item ")}
                     <span
-                      onMouseEnter={() => setStateHovered({
-                        item: navItem.name,
-                        stste: true
-                      })}
-                      className={(stateHovered.item === navItem.name && stateHovered.stste) ? "text-orange-500 border-b-2 border-orange-500" : "menuHeader font-bold text-normal text-slate hover-underline-animation  text-base 2xl:text-lg 3xl:text-xl"}>
+                      onMouseEnter={() =>
+                        setStateHovered({
+                          item: navItem.name,
+                          state: true,
+                        })
+                      }
+                      className={
+                        stateHovered.item === navItem.name && stateHovered.state
+                          ? "text-orange-500 border-b-2 border-orange-500"
+                          : "menuHeader font-bold text-normal text-slate hover-underline-animation  text-base 2xl:text-lg 3xl:text-xl"
+                      }
+                    >
                       {navItem.name}
                     </span>
                   </div>
@@ -83,17 +151,18 @@ function NavItems() {
                   onMouseLeave={() => {
                     handleContentHover(false);
                     setStateHovered({
-                      item: '',
-                      stste: false
-                    })
+                      item: "",
+                      state: false,
+                    });
                   }}
                 >
                   {navItem.content}
                 </NavigationMenuContent>
-              </NavigationMenuItem></Link>
+              </NavigationMenuItem>
+            </div>
           ))}
         </NavigationMenuList>
-      </NavigationMenu >
+      </NavigationMenu>
     </>
   );
 }

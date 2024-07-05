@@ -31,6 +31,7 @@ function BranchesCourse({ branchCourseData }) {
 
     return (
         <div className='mb-8'>
+                <p className='w-[87.5vw] mobile:w-[92.558vw] m-auto font-bold mobile:text-[4.651vw] text-[2.5vw] pb-[3.333vh] mobile:pb-[1.717vh]'>Courses</p>
             <MaxWebWidth articalStyling='flex sm:flex-wrap sm:justify-around gap-3 mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[3.97vh] mobile:mt-[1.717vh]'>
                 {cardsToDisplay.length > 0 ? cardsToDisplay.map((element) => {
                     return (

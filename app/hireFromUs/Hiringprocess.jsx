@@ -7,7 +7,7 @@ const Hiringprocess = () => {
   const { domainVariable } = useContext(GlobalContext);
 
   const domainBasedImage =
-    domainVariable === "Qspiders" ? "../../hiringProcessMobView.svg" :
+    domainVariable === "Qspiders" ? "../../mb_hiring_process.svg" :
     domainVariable === "Bspiders" ? "../../hiring_processBS.png" :
     domainVariable === "Jspiders" ? "../../hiring_processJ.png" :
     domainVariable === "Pyspiders" ? "../../hiring_processPY.png" :

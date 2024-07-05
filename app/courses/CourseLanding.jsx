@@ -6,8 +6,12 @@ import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
-const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOfLearning}) => {
-
+const CourseLanding = ({
+  courseDetails,
+  countDetails,
+  typeOfLearning,
+  setTypeOfLearning,
+}) => {
   const statisticsData = [
     {
       number: `${countDetails?.response?.allPlacedCount}+`,
@@ -28,7 +32,6 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
   const tutionClasses = courseDetails?.courseAbout;
   let splitText = tutionClasses?.split(".");
   const resources = splitText?.filter((s) => s);
-
 
   const [isRightBarFixed, setIsRightBarFixed] = useState(false);
 
@@ -56,8 +59,9 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
                 {courseDetails?.mode?.map((classItem, index) => (
                   <button
                     key={index}
-                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === typeOfLearning ? "activecourseButton" : ""
-                      }`}
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${
+                      classItem === typeOfLearning ? "activecourseButton" : ""
+                    }`}
                     onClick={() => {
                       setTypeOfLearning(classItem);
                     }}
@@ -85,28 +89,47 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
                 className="font-medium text-left text-[3.75vw] flex"
               >
                 {courseDetails?.courseName}
-
               </h1>
             </div>
             <section className="flex justify-between mobile:flex-col-reverse">
               <div className="w-[55.469vw] mobile:w-full">
-                <div className="pb-[5.556vh] mobile:pb-[2.575vh]">
-                  <p className="headerText text-left mobile:text-[2.791vw] text-[1.563vw] sm:leading-[1.875rem] sm:pt-[0.833vh]">
+                <div className="pb-[0.966vh] flex  items-center sm:hidden">
+                  <h1
+                    title={courseDetails?.courseName}
+                    className="font-bold text-left text-[7.442vw] flex"
+                  >
+                    {courseDetails?.courseName}
+                  </h1>
+                </div>
+                <div className="pb-[5.556vh] mobile:pb-[2.575vh] mobile:flex mobile:justify-between gap-4">
+                  <p className="headerText w-[65.814vw] text-left mobile:text-[2.791vw] text-[1.563vw] sm:leading-[1.875rem] sm:pt-[0.833vh]">
                     {courseDetails?.courseSummary}
                   </p>
+                  <button className="bg-[#ffe8d3] w-[23.256vw] text-[2.791vw] flex justify-center  pt-[0.536vh] pb-[0.751vh] items-center gap-1  font-semibold rounded text-ash sm:hidden h-[3.219vh]">
+                    <img
+                      className="w-[4.186vw] h-[1.931vh]"
+                      src="/ratingstar.svg"
+                    />
+                    <p>4.6 Rating</p>
+                  </button>
                 </div>
                 <article className="flex sm:pb-[5.556vh] mobile:flex-wrap">
                   {statisticsData.map((ele, index) => (
-                    <div key={index} className="courseStats mobile:w-[50%] mobile:pb-[2.146vh]">
+                    <div
+                      key={index}
+                      className="courseStats mobile:w-[50%] mobile:pb-[2.146vh]"
+                    >
                       <h1
-                        className={`text-left font-bold mobile:text-[4.651vw] mobile:pb-[0.429vh] text-[1.875vw] pb-[0.556vh]  ${ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
-                          }`}
+                        className={`text-left font-bold mobile:text-[4.651vw] mobile:pb-[0.429vh] text-[1.875vw] pb-[0.556vh]  ${
+                          ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
+                        }`}
                       >
                         {ele.number}
                       </h1>
                       <p
-                        className={`text-left font-medium mobile:text-[3.256vw] text-[1.094vw] headerText ${ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
-                          }`}
+                        className={`text-left font-medium mobile:text-[3.256vw] text-[1.094vw] headerText ${
+                          ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
+                        }`}
                       >
                         {ele.text}
                       </p>
@@ -123,7 +146,9 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
                         <img src={imageSrc} alt={`resource-${index}`} />
                       </figure>
                       <article>
-                        <p className="text-[0.938vw] mobile:text-[2.791vw]">{resource}</p>
+                        <p className="text-[0.938vw] mobile:text-[2.791vw]">
+                          {resource}
+                        </p>
                       </article>
                     </div>
                   ))}
@@ -131,7 +156,8 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
                 <section className="flex gap-6 pb-[7.222vh] mobile:pb-[2.79vh]">
                   <button
                     onClick={() => handleCardClick()}
-                    className="EnrollButton text-[1.25vw] mobile:text-[3.721vw] font-semibold py-[1.389vh] px-[1.875vw]">
+                    className="EnrollButton text-[1.25vw] mobile:text-[3.721vw] font-semibold py-[1.389vh] px-[1.875vw]"
+                  >
                     Enroll For Demo Class
                   </button>
                   {/* <button className="EnquireButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw] relative">
@@ -151,7 +177,10 @@ const CourseLanding = ({ courseDetails ,countDetails ,typeOfLearning , setTypeOf
         </aside>
       </MaxWebWidth>
       {/* <ImageScroller cardData={courseDetails} onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} /> */}
-      <EnrollPopUp isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} />
+      <EnrollPopUp
+        isModalOpen={isModalOpen}
+        handleCloseModal={handleCloseModal}
+      />
     </>
   );
 };
