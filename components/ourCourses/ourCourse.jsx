@@ -154,7 +154,6 @@ function OurCourse({ page }) {
   const [hoveredCategory, setHoveredCategory] = useState('Popular Courses');
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [mouseHover, setMouseHover] = useState(0);
-
   const typesOfClasses = [
     {
       title: "Offline Classes",
@@ -176,7 +175,8 @@ function OurCourse({ page }) {
 
   const tutionClasses =
     page === "tution" ? typesOfClasses.slice(2, 4) : typesOfClasses;
-  const handleAccordionToggle = (index) => {
+  const handleAccordionToggle = (index,title) => {
+    setHoveredCategory(title)
     setOpenIndex(index === openIndex ? -1 : index);
   };
 
@@ -332,7 +332,7 @@ function OurCourse({ page }) {
                 className="accordionitem"
               >
                 <AccordionTrigger
-                  onClick={() => handleAccordionToggle(itemIndex)}
+                  onClick={() => handleAccordionToggle(itemIndex,item.title)}
                   className={`${itemIndex === openIndex ? 'bg-[#FEF2E7]' : ""}`}
                 >
                   <div className="flex  items-center  w-full">
@@ -362,6 +362,7 @@ function OurCourse({ page }) {
                       {courseCardData
                         .filter(card => !hoveredCategory || card.category === hoveredCategory).length > 0 ?
                         courseCardData.filter(card => !hoveredCategory || card.category === hoveredCategory).map((element, index) => {
+
                           return (
                             <div className="courseCard" key={index}>
                               {isloading ? (
@@ -412,7 +413,6 @@ function OurCourse({ page }) {
                 >
                   <div className="flex  items-center py-[2.222vh] px-[1.25vw] w-full">
                     <picture className="flex justify-start w-[89%]">
-                      {console.log(item.title ? [item.icon] : [item.icon], "item.title ? [item.icon] : [item.icon]")}
                       {hoveredCategory === item.title ?
                         <img src={hoveredCategory === item.title ? [item.iconlite] : [item.iconlite]} /> :
                         <img src={hoveredCategory === item.title ? [item.icon] : [item.icon]} />
