@@ -9,11 +9,14 @@ import Link from 'next/link';
 import { useGetAllPlacementCountQuery } from '@/redux/queries/getAllPlacementCount'
 import { GlobalContext } from '@/components/Context/GlobalContext'
 import { PLACEMENT_PATH } from '@/lib/RouteConstants';
+import Image from 'next/image';
 
 function PlacementStatisticsHome({ page }) {
     const { setAllStaticsCount, setNonItCheckedIcon, setLessCheckedIcon } = useContext(GlobalContext)
     const { data: countDetails, error, isLoading } = useGetAllPlacementCountQuery()
     setAllStaticsCount(countDetails)
+    const imageSrc = page === "branch" || page === "course" ? '/graduationReportIcon.svg' : '/graduationReportIcon.svg';
+
     const degrees = [
         'BE', 'BCA', 'B.Com', 'MCA', 'M.Tech', 'MBA', 'Msc', 'MS', 'More...'
     ]
@@ -65,7 +68,14 @@ function PlacementStatisticsHome({ page }) {
                 <aside className='sm:p-2 '>
                     <Fade left duration={1000} deley={0}>
                         <figure className='absolute top-[-4%] left-[-6.5%] mobile:hidden'>
-                            <img className='w-[75%]' src={page === "branch" || page === "course" ? '../graduationCapIcon.svg' : './graduationCapIcon.svg'}></img>
+                            {/* <img className='w-[75%]' src={page === "branch" || page === "course" ? '../graduationCapIcon.svg' : './graduationCapIcon.svg'}></img> */}
+                            <Image
+                                src='/graduationCapIcon.svg'
+                                alt="Graduation Report Icon"
+                                width={500}
+                                height={500}
+                                className="w-[90%]"
+                            />
                         </figure>
                     </Fade>
 
@@ -75,7 +85,14 @@ function PlacementStatisticsHome({ page }) {
                 </aside>
                 <section className='relative sm:p-2'>
                     <figure className='absolute top-[-18%] left-[50%] mobile:hidden'>
-                        <img className='w-[90%]' src={page === "branch" || page === "course" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img>
+                        <Image
+                            src={imageSrc}
+                            alt="Graduation Report Icon"
+                            width={500}
+                            height={500}
+                            className="w-[90%]"
+                        />
+                        {/* <img className='w-[90%]' src={page === "branch" || page === "course" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img> */}
                     </figure>
 
                     <aside className='sm:pr-[2.188vw] sm:pb-[5.556vh] mobile:pt-[4.292vh]'>

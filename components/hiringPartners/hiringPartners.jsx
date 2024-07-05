@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
-import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import "./hiringPartners.scss";
+import Image from "next/image";
+import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 function HiringPartners({ page, className }) {
   const svgPath = [
     { src: "./compLogo01.svg" },
@@ -38,13 +39,19 @@ function HiringPartners({ page, className }) {
             }
             return (
               <div className="slide" key={index}>
+                {/* <Image
+                  src={path.src}
+                  height={500}
+                  width={500}
+                  alt={`Logo ${index}`}
+                /> */}
                 <img src={path.src} alt={`Logo ${index}`} />
               </div>
             )
           })}
         </div>
       </div>
-{/* 
+      {/* 
       <div className="slider">
         <div className="slide-track-right">
           {svgPath.map((path, index) => (

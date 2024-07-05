@@ -5,6 +5,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import Image from "next/image";
 const Branches = ({ BranchResponse }) => {
   const { setOnGoingBatches, setupComingBatches, setHomeBranchData } = useContext(GlobalContext)
   const [hoveredIndex, setHoveredIndex] = useState(0);
@@ -90,7 +91,17 @@ const Branches = ({ BranchResponse }) => {
                     <Link className="" href={`/branches/${content.branchId}-branchId,${BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex].courseId}-courseId`}>
                       <div className="flex branchMenuCard bg-[#FFFFFF] xl:w-[19.922vw] 2xl:w-[22.73vw] 3xl:w-[25.2vw]  rounded-xl px-[1.389vh] py-[0.781vw]" key={index}>
                         <div>
-                          <img className="rounded h-[2.813vw] object-cover w-[2.813vw]" src={content.branchImage} alt="" />
+                          <Image
+                            src={content.branchImage}
+                            alt="branch"
+                            width={36}
+                            height={36}
+                            style={{width:'36px' , height:'36px' , objectFit:'cover'}}
+                            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                            className="rounded"
+                          />
+
+                          {/* <img className="rounded h-[2.813vw] object-cover w-[2.813vw]" src={content.branchImage} alt="" /> */}
                         </div>
                         <div className="pl-[0.781vw]">
                           <div className="flex justify-between pb-[1.111vh]">

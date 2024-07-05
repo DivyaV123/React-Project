@@ -20,6 +20,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { useGetHomePageCourseQuery } from "@/redux/queries/getHomePageCourse";
+import Image from "next/image";
 
 function OurCourse({ page }) {
   const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery();
@@ -484,9 +485,11 @@ function OurCourse({ page }) {
                 >
                   <div className="flex  items-center py-[2.222vh] px-[1.25vw] w-full">
                     <picture className="flex justify-start w-[89%]">
+                      {console.log(item.title ? [item.icon] : [item.icon], "item.title ? [item.icon] : [item.icon]")}
                       {hoveredCategory === item.title ?
                         <img src={hoveredCategory === item.title ? [item.iconlite] : [item.iconlite]} /> :
                         <img src={hoveredCategory === item.title ? [item.icon] : [item.icon]} />
+
                       }
                       {/* {hoveredCategory === item.title ?
                         <Svg
