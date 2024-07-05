@@ -4,6 +4,7 @@ import Button from '../commonComponents/button/Button'
 import Fade from 'react-reveal/Fade'
 import Counter from '../commonComponents/counterAnimation/Counter'
 import './chooseUs.scss'
+import Image from 'next/image'
 
 function ExperiencedFaculty() {
     const content = [
@@ -24,7 +25,14 @@ function ExperiencedFaculty() {
         <selection className='sm:grid grid-cols-2 gap-4 mt-6 mobile:flex mobile:flex-col'>
             <Fade left delay={0} duration={1000}>
                 <figure className='sm:w-[85%]'>
-                    <img className='mobile:w-[94.419vw]' src='./images/Placement assistance_image (02).png' alt='facultyImage'></img>
+                    <Image
+                        src="/images/Placement assistance_image (02).png"
+                        alt="platformAssociateImage"
+                        width={800}
+                        height={500}
+                        className="w-[80.465vw]"
+                    />
+                    {/* <img className='mobile:w-[94.419vw]' src='./images/Placement assistance_image (02).png' alt='facultyImage'></img> */}
                 </figure>
             </Fade>
             <Fade right duration={1000} delay={0} >

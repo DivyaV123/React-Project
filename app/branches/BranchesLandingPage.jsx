@@ -11,6 +11,7 @@ import Svg from '@/components/commonComponents/Svg/Svg'
 import { svgicons } from '@/components/assets/icons/svgassets'
 import './branchesLandingPage.scss'
 import { GlobalContext } from '@/components/Context/GlobalContext'
+import Image from 'next/image'
 
 function BranchesLandingPage({ BranchDetails }) {
     const branchData = BranchDetails?.data
@@ -62,7 +63,14 @@ function BranchesLandingPage({ BranchDetails }) {
         <MaxWebWidth sectionStyling='bg-coursegradient ' articalStyling='flex justify-between mobile:flex-col'>
             <section className='basis-[50%] pt-[11.111vh] sm:pb-[8.889vh] mobile:py-[2.575vh]'>
                 <figure className=''>
-                    <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full object-cover' src={selectedImg} />
+                    <Image
+                        src={selectedImg}
+                        style={{ height: "25vw", width: "49.219vw", objectFit: "cover" }}
+                        height={500}
+                        width={500}
+                        className='rounded-2xl'
+                    />
+                    {/* <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full object-cover' src={selectedImg} /> */}
                 </figure>
                 <article className='flex gap-2 pt-[2.222vh] mobile:hidden'>
                     <div onClick={handlePrevious}>
@@ -85,13 +93,23 @@ function BranchesLandingPage({ BranchDetails }) {
                                             onClick={() => { setSelectedImg(image) }}
                                             key={image}
                                         >
-                                            <img
+                                            {/* <img
                                                 className={selectedImg === image
                                                     ? 'border-2 rounded-md border-orange-500 object-cover w-[7.813vw] h-[4.563vw] rounded'
                                                     : 'w-[7.813vw] rounded h-[4.563vw] object-cover'
                                                 }
                                                 src={image}
                                                 alt='image'
+                                            /> */}
+                                            <Image
+                                                height={100}
+                                                src={image}
+                                                width={100}
+                                                style={selectedImg === image ? { height: "4.563vw", width: "7.813vw", objectFit: "cover" } : { height: "4.563vw", width: "7.813vw", objectFit: "cover" }}
+                                                className={selectedImg === image
+                                                    ? 'border-2 rounded-md border-orange-500 object-cover rounded'
+                                                    : 'w-[7.813vw] rounded h-[4.563vw] object-cover'
+                                                }
                                             />
                                         </figure>
                                     ))}

@@ -4,6 +4,7 @@ import './navitems.scss'
 import Link from "next/link";
 // import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { truncateText } from "@/lib/utils";
+import Image from "next/image";
 const Courses = ({ courseResponse }) => {
   // const {data:courseResponse,isLoading,error}=useGetAllCategoriesQuery()
   const [hoveredIndex, setHoveredIndex] = useState(0);
@@ -61,19 +62,26 @@ const Courses = ({ courseResponse }) => {
                   ? "courseMedium"
                   : "courseinitial"
                   }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`} href={`/courses/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}> <div
-                  key={index}
-                  className="w-full flex flex-col h-full justify-evenly"
-                >
-                  <div className="flex  gap-2.5 items-center">
-                    <img className="h-8 w-8" src={content?.icon} />
-                    <h3 className="text-left  text-[0.938vw] font-bold items-center flex pt-1">
-                      {content?.title ? content?.title : ""}
-                    </h3>
-                  </div>
-                  <div>
-                    <article className=" text-[0.859vw] titleText pt-[1.667vh]">{truncateText(content?.description, 70)}</article>
-                  </div>
-                </div></Link>
+                    key={index}
+                    className="w-full flex flex-col h-full justify-evenly"
+                  >
+                    <div className="flex  gap-2.5 items-center">
+                      <Image
+                        src={content?.icon}
+                        height={27}
+                        width={36}
+                        style={{ height: "32px", width: "32px", objectFit: "cover" }}
+                        alt='logo'
+                      />
+                      {/* <img className="h-8 w-8" src={content?.icon} /> */}
+                      <h3 className="text-left  text-[0.938vw] font-bold items-center flex pt-1">
+                        {content?.title ? content?.title : ""}
+                      </h3>
+                    </div>
+                    <div>
+                      <article className=" text-[0.859vw] titleText pt-[1.667vh]">{truncateText(content?.description, 70)}</article>
+                    </div>
+                  </div></Link>
               ))}
         </div>
       </div>

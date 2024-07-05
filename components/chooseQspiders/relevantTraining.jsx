@@ -5,6 +5,7 @@ import Fade from 'react-reveal/Fade'
 import './chooseUs.scss'
 import { GlobalContext } from '../Context/GlobalContext'
 import HiringModal from '@/app/hireFromUs/Modal/HiringModal'
+import Image from 'next/image'
 
 
 function RelevantTraining() {
@@ -63,7 +64,14 @@ function RelevantTraining() {
             <Fade right duration={1000} delay={0}>
                 <aside className='flex justify-center align-end'>
                     <figure className='sm:w-[95%]'>
-                        <img src='./images/PlacementAssistance_image(5).png' alt='facultyImage'></img>
+                        <Image
+                            src="/images/PlacementAssistance_image(5).png"
+                            alt="platformAssociateImage"
+                            width={800}  // replace with actual width
+                            height={500} // replace with actual height
+                            className="w-[80.465vw]"
+                        />
+                        {/* <img src='./images/PlacementAssistance_image(5).png' alt='facultyImage'></img> */}
                     </figure>
                 </aside>
             </Fade>
