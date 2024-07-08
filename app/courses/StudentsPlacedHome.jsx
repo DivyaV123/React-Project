@@ -13,7 +13,6 @@ import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 import { usePathname } from 'next/navigation'
 
 function StudentsPlacedHome({ page, courseDetails, branchName }) {
-    console.log(courseDetails, "courseDetailscourseDetails")
     let organisation = courseDetails?.data?.branchType.map((element) => {
         if (element === "JSP") {
             return "Jspiders"

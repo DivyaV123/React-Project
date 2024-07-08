@@ -26,6 +26,7 @@ const GlobalContextProvider = ({ children }) => {
         setDomainVariable("Qspiders");
     }
   }, []);
+  const [hoverState, setHoverState] = useState({ item: null, content: false });
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
   const [homeBranchData, setHomeBranchData] = useState([])
@@ -408,7 +409,7 @@ const GlobalContextProvider = ({ children }) => {
         streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
         homeBranchData, setHomeBranchData,
-        domainVariable,
+        domainVariable,hoverState, setHoverState
       }}
     >
       {children}

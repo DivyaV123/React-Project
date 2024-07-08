@@ -60,9 +60,9 @@ const IndividualCentres = () => {
             <Svg
               className="h-[3.004vh] w-[3.86vw]"
               width={svgicons.corasalArrowLeft[0]}
-              height={svgicons.corasalArrowLeft[1]}
-              viewBox={svgicons.corasalArrowLeft[2]}
-              icon={svgicons.corasalArrowLeft[3]}
+              heewBox={svgicons.corasalArrowLeft[2]}
+              icoight={svgicons.corasalArrowLeft[1]}
+              vin={svgicons.corasalArrowLeft[3]}
               color={svgicons.corasalArrowLeft[4]}
             />
           </div>

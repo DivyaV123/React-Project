@@ -5,11 +5,14 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import Image from "next/image";
+
 const Branches = ({ BranchResponse }) => {
   const { setOnGoingBatches, setupComingBatches, setHomeBranchData } = useContext(GlobalContext)
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
+  const [countryTab, setCountryTab] = useState("India");
+  const [activeTab, setActiveTab] = useState(true);
+  const countryNames = ["India", "USA", "UK"];
   const cityData = BranchResponse?.data[0]?.cities;
   const courseData = BranchResponse?.data[0]?.cities[hoveredIndex].courses;
   const finalContent = BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex]?.branches
@@ -18,11 +21,31 @@ const Branches = ({ BranchResponse }) => {
     let result = numbersList.slice(0, 2).join(' | ');
     return result
   }
+  const handleCountryTab = (country) => {
+    setCountryTab(country);
+    if (country === countryTab) {
+      setActiveTab(true);
+    } else {
+      setActiveTab(false);
+    }
+  };
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <div
         className={`menuSidebar  pt-2 xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] overflow-auto branchesScroll`}
-      >
+       >
+        <section className="flex gap-6 pl-4 pt-[1.389vh] pb-[1.667vh]">
+            {countryNames.map((ele) => (
+              <button
+                className={`text-[0.938vw] font-bold ${
+                  countryTab === ele ? "activecountry" : ""
+                } `}
+                onClick={() => handleCountryTab(ele)}
+              >
+                {ele}
+              </button>
+            ))}
+          </section>
         {cityData?.map((courseItem, index) => {
           return (
             <div

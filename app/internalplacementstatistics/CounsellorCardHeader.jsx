@@ -220,7 +220,7 @@ const CounsellorCardHeader = () => {
             ) : (
               <>
                 <PlacementContent counsellorFilterResponse={accumulatedData} />
-                {isFetchData &&  <BlinkingDots /> }
+                {isFetchData && !counsellorFilterResponse?.response?.candidates?.last &&  <BlinkingDots /> }
               </>
             )
           ) : (
