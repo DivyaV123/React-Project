@@ -5,6 +5,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import Image from "next/image";
 
 const Branches = ({ BranchResponse }) => {
   const { setOnGoingBatches, setupComingBatches, setHomeBranchData } = useContext(GlobalContext)
