@@ -25,7 +25,6 @@ function CourseCard({ cardData }) {
         <>
             <section className='cardStyle justify-center  justify-items-stretch'>
                 <picture className='flex justify-gf-center w-full'>
-                    {console.log(cardData.homePageCourseImage, cardData.image, "cardData.homePageCourseImage")}
                     {/* <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full  mobile:p-0 mobile:h-[17.167vh]'
                         src={cardData.image ? cardData.image : cardData.homePageCourseImage}
                         alt='image'>

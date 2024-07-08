@@ -118,7 +118,6 @@ const Degree_Branch_Passout = ({isLoading}) => {
     otherSetMoreStates
   ) => (
     <div className="bg-white h-[2.65vw] flex w-full buttonSection relative mobile:hidden">
-     {console.log(buttonState,"buttonState")}
       {items.slice(0, 6).map((item, index) => (
         <button
           key={index}
