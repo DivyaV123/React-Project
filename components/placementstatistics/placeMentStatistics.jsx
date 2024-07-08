@@ -14,32 +14,40 @@ function PlaceMentStatistics({ className, path, statistics }) {
         }, 1000);
     }, [])
     const handleState = (state) => {
-        if (state === "lessthansixty") {
-            setNonItCheckedIcon(false);
-            setThroughCheckedIcon(false);
-            setPlacedCheckedIcon(false);
-            setLessCheckedIcon(true);
-            setItCheckedIcon(false);
-        } else if (state == "nonit") {
-            setNonItCheckedIcon(true);
-            setThroughCheckedIcon(false);
-            setPlacedCheckedIcon(false);
-            setLessCheckedIcon(false);
-            setItCheckedIcon(false);
-        } else if (state === "it") {
-            setNonItCheckedIcon(false);
-            setThroughCheckedIcon(false);
-            setPlacedCheckedIcon(false);
-            setLessCheckedIcon(false);
-            setItCheckedIcon(true);
-        } else if (state === "throughoutsixty") {
-            setNonItCheckedIcon(false);
-            setThroughCheckedIcon(true);
-            setPlacedCheckedIcon(false);
-            setLessCheckedIcon(false);
-            setItCheckedIcon(false);
+        switch (state) {
+            case "lessthansixty":
+                setNonItCheckedIcon(false);
+                setThroughCheckedIcon(false);
+                setPlacedCheckedIcon(false);
+                setLessCheckedIcon(true);
+                setItCheckedIcon(false);
+                break;
+            case "nonit":
+                setNonItCheckedIcon(true);
+                setThroughCheckedIcon(false);
+                setPlacedCheckedIcon(false);
+                setLessCheckedIcon(false);
+                setItCheckedIcon(false);
+                break;
+            case "it":
+                setNonItCheckedIcon(false);
+                setThroughCheckedIcon(false);
+                setPlacedCheckedIcon(false);
+                setLessCheckedIcon(false);
+                setItCheckedIcon(true);
+                break;
+            case "throughoutsixty":
+                setNonItCheckedIcon(false);
+                setThroughCheckedIcon(true);
+                setPlacedCheckedIcon(false);
+                setLessCheckedIcon(false);
+                setItCheckedIcon(false);
+                break;
+            default:
+                break;
         }
     }
+    
     return (
         <div className={className}>
             {statistics.map((item, index) => {

@@ -11,7 +11,8 @@ import {
 import Courses from "./Courses";
 import Branches from "./Branches";
 import Tutions from "./Tutions";
-
+import Link from "next/link";
+import { InputIcon } from "@radix-ui/react-icons";
 import {
   CONTACT_US_PATH,
   PLACEMENT_PATH,
@@ -38,7 +39,6 @@ function NavItems() {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setFilterPlacementData,
-    hoverState, setHoverState
   } = useContext(GlobalContext);
   const {
     data: courseResponse,
@@ -60,14 +60,13 @@ function NavItems() {
     { id: 7, name: "Contact us", content: "" },
   ];
   setHomeBranchData(BranchResponse?.data[0]?.cities);
-
+  const [hoverState, setHoverState] = useState({ item: null, content: false });
   const [stateHovered, setStateHovered] = useState({
     item: "",
     state: false,
   });
-
   const handleItemHover = useCallback((itemName) => {
-    if (["Courses", "Branches", "Tuitions","University Program"].includes(itemName)) {
+    if (["Courses", "Branches", "Tutions"].includes(itemName)) {
       setHoverState({ item: itemName });
     } else {
       setHoverState({ item: null });
