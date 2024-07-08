@@ -285,12 +285,15 @@ const Tutions = () => {
                   className="w-full flex flex-col h-full justify-evenly"
                 >
                   <div className="flex  gap-2.5">
-                    <Image
-                      src={content.image}
-                      height={26}
-                      width={26}
-                      alt="logos"
-                    />
+                    {content.image &&
+                      <Image
+                        src={content.image}
+                        height={26}
+                        width={26}
+                        alt="logos"
+                      />
+                    }
+
                     {/* <img className="h-8 w-8 " src={content.image} /> */}
                     <h3 className="text-left text-[0.938vw] font-bold flex items-center">
                       {content.title}

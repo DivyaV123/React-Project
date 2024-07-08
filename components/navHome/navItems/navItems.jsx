@@ -53,7 +53,7 @@ function NavItems() {
   const navItems = [
     { id: 1, name: "Courses", content: <Courses courseResponse={courseResponse} /> },
     { id: 2, name: "Branches", content: <Branches BranchResponse={BranchResponse} /> },
-    { id: 3, name: "University Program", content:  <UniversityProgram /> },
+    { id: 3, name: "University Programs", content: <UniversityProgram /> },
     { id: 4, name: "Tuitions", content: <Tutions /> },
     { id: 5, name: "Hire From Us", content: "" },
     { id: 6, name: "Placements", content: "" },

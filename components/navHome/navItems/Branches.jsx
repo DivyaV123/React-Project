@@ -114,17 +114,20 @@ const Branches = ({ BranchResponse }) => {
                     <Link className="" href={`/branches/${content.branchId}-branchId,${BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex].courseId}-courseId`}>
                       <div className="flex branchMenuCard bg-[#FFFFFF] xl:w-[19.922vw] 2xl:w-[22.73vw] 3xl:w-[25.2vw]  rounded-xl px-[1.389vh] py-[0.781vw]" key={index}>
                         <div>
-                          {/* <Image
-                            src={content.branchImage}
-                            alt="branch"
-                            width={36}
-                            height={36}
-                            style={{width:'36px' , height:'36px' , objectFit:'cover'}}
-                            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-                            className="rounded"
-                          /> */}
+                          {content.branchImage &&
+                            <Image
+                              src={content.branchImage}
+                              alt="branch"
+                              width={36}
+                              height={36}
+                              style={{ width: '36px', height: '36px', objectFit: 'cover' }}
+                              sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                              className="rounded"
+                            />
+                          }
 
-                          <img className="rounded h-[2.813vw] object-cover w-[2.813vw]" src={content.branchImage} alt="" />
+
+                          {/* <img className="rounded h-[2.813vw] object-cover w-[2.813vw]" src={content.branchImage} alt="" /> */}
                         </div>
                         <div className="pl-[0.781vw]">
                           <div className="flex justify-between pb-[1.111vh]">
@@ -132,8 +135,15 @@ const Branches = ({ BranchResponse }) => {
                               {content.branchName}
                             </h3>
                             <button onClick={() => window.open(content.location, "_blank")} className="flex gap-1 text-xs text z-1">
-                              <p className="text-[#7298FF] text-[0.703vw] p-[0.156vw]">Get Directions</p>
-                              <img src="/DirectionIcon.svg" className="h-4 w-4" />
+                              <p className="text-orange-500 text-[0.703vw] p-[0.156vw]">Get Directions</p>
+                              <Svg
+                                className="pr-[0.469vw]"
+                                width={svgicons.navigationIcon[0]}
+                                height={svgicons.navigationIcon[1]}
+                                viewBox={svgicons.navigationIcon[2]}
+                                icon={svgicons.navigationIcon[3]}
+                                color={svgicons.navigationIcon[4]}
+                              />
                             </button>
                           </div>
                           <p className="text-[0.781vw] text-[#575757] pb-[1.094vw] flex-col align-center">

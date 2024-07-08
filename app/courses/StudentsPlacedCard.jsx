@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react'
 import TrainingCardSkeleton from '@/components/ourBranches/trainingMode/TrainingCardSkeleton'
 import './CourseLanding.scss';
+import Image from 'next/image';
 
 function StudentsPlacedCard({ studentsInfo, page }) {
     const [isloading, setisLoading] = useState(true)
@@ -19,6 +20,14 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                     isloading ? <TrainingCardSkeleton /> : <section className="flex testinomialShadow w-[20.469vw] mobile:w-[42.558vw]" >
                         <article className="bg-white pb-[7.639vh] mobile:pb-[4.292vh] mobile:pt-[0.966vh] mobile:px-[4.419vw] pt-[3.75vh] px-[3.75vw] rounded-lg w-full" >
                             <figure className='flex justify-center pb-[2.222vh] mobile:pb-[1.717vh]'>
+                                {/* {element.photoLink &&
+                                    <Image
+                                        src={element.photoLink.length ? element.photoLink : '../../images/user.jpg'}
+                                        width={100}
+                                        height={100}
+                                        className='w-20 h-20 mobile:w-[18.605vw] mobile:h-[8.584vh]  rounded-full'
+                                        alt='no image'
+                                    />} */}
                                 <img className='w-20 h-20 mobile:w-[18.605vw] mobile:h-[8.584vh]  rounded-full' src={element.photoLink.length ? element.photoLink : '../../images/user.jpg'} alt='no image' />
                             </figure>
                             <header>

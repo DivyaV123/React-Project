@@ -1,11 +1,13 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import './navitems.scss'
 import Link from "next/link";
 // import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { truncateText } from "@/lib/utils";
 import Image from "next/image";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const Courses = ({ courseResponse }) => {
+  // const { setImagePath } = useContext(GlobalContext)
   // const {data:courseResponse,isLoading,error}=useGetAllCategoriesQuery()
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
@@ -13,6 +15,7 @@ const Courses = ({ courseResponse }) => {
   const subCourse = getAllCourses?.[hoveredIndex]?.subCourse?.length > 0 && getAllCourses?.[hoveredIndex]?.subCourse
   const subCourseContent = subCourse?.[hoveredItemIndex]?.subCourseResponse?.length > 0 && subCourse?.[hoveredItemIndex]?.subCourseResponse
   const finalContent = getAllCourses?.[hoveredIndex]?.courseResponse?.length > 0 ? getAllCourses?.[hoveredIndex]?.courseResponse?.filter(ele => ele) : subCourseContent
+
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] 3xl:h-[660px] overflow-auto myscrollbar ">
       <div className="menuSidebar pt-2  xl:w-[18.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] ">
@@ -57,32 +60,37 @@ const Courses = ({ courseResponse }) => {
         >
           {finalContent?.length > 0 &&
             finalContent?.map(
-              (content, index) => (
-                <Link className={`${hoveredIndex !== null && subCourse
-                  ? "courseMedium"
-                  : "courseinitial"
-                  }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`} href={`/courses/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}> <div
-                    key={index}
-                    className="w-full flex flex-col h-full justify-evenly"
-                  >
-                    <div className="flex  gap-2.5 items-center">
-                      {/* <Image
-                        src={content?.icon}
-                        height={27}
-                        width={36}
-                        style={{ height: "32px", width: "32px", objectFit: "cover" }}
-                        alt='logo'
-                      /> */}
-                      <img className="h-8 w-8" src={content?.icon} />
-                      <h3 className="text-left  text-[0.938vw] font-bold items-center flex pt-1">
-                        {content?.title ? content?.title : ""}
-                      </h3>
-                    </div>
-                    <div>
-                      <article className=" text-[0.859vw] titleText pt-[1.667vh]">{truncateText(content?.description, 70)}</article>
-                    </div>
-                  </div></Link>
-              ))}
+              (content, index) => {
+                return (
+                  <Link className={`${hoveredIndex !== null && subCourse
+                    ? "courseMedium"
+                    : "courseinitial"
+                    }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`} href={`/courses/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}> <div
+                      key={index}
+                      className="w-full flex flex-col h-full justify-evenly"
+                    >
+                      <div className="flex  gap-2.5 items-center">
+                        {content?.icon &&
+                          <Image
+                            src={content?.icon}
+                            height={27}
+                            width={36}
+                            style={{ height: '32px', width: '32px', objectFit: 'cover' }}
+                            alt="logo"
+                          />
+                        }
+
+                        {/* <img className="h-8 w-8" src={content?.icon} /> */}
+                        <h3 className="text-left  text-[0.938vw] font-bold items-center flex pt-1">
+                          {content?.title ? content?.title : ""}
+                        </h3>
+                      </div>
+                      <div>
+                        <article className=" text-[0.859vw] titleText pt-[1.667vh]">{truncateText(content?.description, 70)}</article>
+                      </div>
+                    </div></Link>
+                )
+              })}
         </div>
       </div>
     </div>
