@@ -85,13 +85,15 @@ function PlacementStatisticsHome({ page }) {
                 </aside>
                 <section className='relative sm:p-2'>
                     <figure className='absolute top-[-18%] left-[50%] mobile:hidden'>
-                        <Image
-                            src={imageSrc}
-                            alt="Graduation Report Icon"
-                            width={500}
-                            height={500}
-                            className="w-[90%]"
-                        />
+                        {imageSrc &&
+                            <Image
+                                src={imageSrc}
+                                alt="Graduation Report Icon"
+                                width={500}
+                                height={500}
+                                className="w-[90%]"
+                            />
+                        }
                         {/* <img className='w-[90%]' src={page === "branch" || page === "course" ? '../graduationReportIcon.svg' : './graduationReportIcon.svg'}></img> */}
                     </figure>
 

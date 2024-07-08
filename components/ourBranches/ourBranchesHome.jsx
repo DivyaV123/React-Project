@@ -15,6 +15,7 @@ import {
 import { Skeleton } from "@/components/ui/skeleton";
 import "./ourBranchesHome.scss";
 import { usePathname } from "next/navigation";
+import Image from "next/image";
 function OurBranchesHome({ page, tabData }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -26,7 +27,7 @@ function OurBranchesHome({ page, tabData }) {
   const [btnState, setBtnState] = useState("OfflineClasses");
 
   if (page !== "course" && branchDetails?.length > 0) {
-    branchDetails = [...branchDetails, { cityImage: "./images/AllCitiesCard.png", cityName: "AllCities" }];
+    branchDetails = [...branchDetails, { cityImage: "/images/AllCitiesCard.png", cityName: "AllCities" }];
   }
   const handleImageRoute = (e, cityName) => {
     e.preventDefault();
@@ -117,16 +118,22 @@ function OurBranchesHome({ page, tabData }) {
                     ) : page === "course" ? (
                       <div
                         onClick={(e) => handleImageRoute(e, elements.cityName)}
-                        className={`${elements.cityName !== "AllCities" ? " imgstyling" : ""
-                          }  h-[7.813vw] w-[15.625vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
-                        style={{
-                          backgroundImage: `url(${elements.cityImage})`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "cover",
-                        }}
+                        className={` relative h-[7.813vw] w-[15.625vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
+                      // style={{
+                      //   backgroundImage: `url(${elements.cityImage})`,
+                      //   backgroundRepeat: "no-repeat",
+                      //   backgroundSize: "cover",
+                      // }}
                       >
+                        <Image
+                          src={elements.cityImage}
+                          height={750}
+                          width={800}
+                          sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                          className={`object-fit w-[100%] h-[100%] z-1 rounded-lg ${elements.cityName !== "AllCities" ? " brightness-50" : ""}`}
+                        />
                         {elements.cityName !== "AllCities" && (
-                          <p>
+                          <p className="absolute">
                             <h1 className="font-bold text-white text-[1.875vw] mobile:text-[4.651vw] flex flex-col justify-center items-center">
                               {elements.cityName}
                             </h1>
@@ -139,16 +146,25 @@ function OurBranchesHome({ page, tabData }) {
                     ) : (
                       <div
                         onClick={(e) => handleImageRoute(e, elements.cityName)}
-                        className={`${elements.cityName !== "AllCities" ? " imgstyling" : ""
-                          }  h-[7.813vw] w-[20.469vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center`}
-                        style={{
-                          backgroundImage: `url(${elements.cityImage})`,
-                          backgroundRepeat: "no-repeat",
-                          backgroundSize: "cover",
-                        }}
+                        className={` relative h-[7.813vw] w-[20.469vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center`}
+                      // style={{
+                      //   backgroundImage: `url(${elements.cityImage})`,
+                      //   backgroundRepeat: "no-repeat",
+                      //   backgroundSize: "cover",
+                      // }}
                       >
+                        {elements.cityImage &&
+                          <Image
+                            src={elements.cityImage}
+                            height={750}
+                            width={800}
+                            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                            className={`absolute object-fit w-[100%] h-[100%] z-1 rounded-lg ${elements.cityName !== "AllCities" ? " brightness-50" : ""}`}
+                          />
+                        }
+
                         {elements.cityName !== "AllCities" && (
-                          <p>
+                          <p className="absolute">
                             <h1 className="font-bold text-white text-[1.875vw] mobile:text-[4.651vw] flex flex-col justify-center items-center">
                               {elements.cityName}
                             </h1>

@@ -3,6 +3,7 @@ import React from "react";
 import CommonBranch from "../offlineBranches/[BranchName]/[offlineCentres]/CommonBranch";
 import "./AllBranchCard.scss";
 import { useGetAllBranchCourseQuery } from "@/redux/queries/getBranchCourseApi";
+import Image from "next/image";
 
 const AllBranchCards = () => {
   const { data: branchData, error, isLoading } = useGetAllBranchCourseQuery();
@@ -20,6 +21,13 @@ const AllBranchCards = () => {
           <section key={ele.cityName} className="w-full pb-16 mobile:pb-[1.717vh] cardBackground myscrollbar">
             <div className="flex gap-2.5 pt-8 pl-[6%] mobile:pt-[1.717vh] mobile:pb-[2.575vh]">
               <img src="../icon_fill_location.svg" alt="location icon" />
+              {/* <Image
+                src='/icon_fill_location.svg'
+                height={600}
+                width={800}
+                sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                className="bg-[#00000066]"
+              /> */}
               <header className="text-[1.25rem] mobile:text-[3.721vw] text-[#454545]">
                 {ele.cityName}
               </header>

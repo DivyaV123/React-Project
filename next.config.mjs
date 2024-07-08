@@ -6,7 +6,7 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'qspiderwebsite.s3.ap-south-1.amazonaws.com',
                 port: '',
-                pathname: '/COURSE/IMAGE/**',
+                // pathname: '/COURSE/IMAGE/**',
             },
         ],
     },

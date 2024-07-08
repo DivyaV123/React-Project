@@ -1,5 +1,6 @@
 import React from "react";
 import "./HirefromusLanding.scss";
+import Image from "next/image";
 const HirefromusLanding = () => {
   return (
     <section className="hireFromSection">
@@ -33,11 +34,41 @@ const HirefromusLanding = () => {
           </p>
         </div>
         <section className="flex gap-6 w-[32.031vw] justify-between tabView:mt-[2vh]">
-          <img className="w-[12vw]" src="../../googlehire.svg" />
+          <Image
+            src='/googlehire.svg'
+            height={80}
+            width={80}
+            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+          />
+          <Image
+            src='/awshire.svg'
+            height={80}
+            width={80}
+            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+          />
+          <Image
+            src='/tatahire.svg'
+            height={80}
+            width={80}
+            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+          />
+          <Image
+            src='/bmghire.svg'
+            height={80}
+            width={80}
+            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+          />
+          <Image
+            src='/isrohire.svg'
+            height={80}
+            width={80}
+            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+          />
+          {/* <img className="w-[12vw]" src="../../googlehire.svg" />
           <img className="w-[12vw]" src="../../awshire.svg" />
           <img className="w-[12vw]" src="../../tatahire.svg" />
           <img className="w-[12vw]" src="../../bmghire.svg" />
-          <img className="w-[12vw]" src="../../isrohire.svg" />
+          <img className="w-[12vw]" src="../../isrohire.svg" /> */}
         </section>
       </aside>
     </section>

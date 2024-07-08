@@ -59,9 +59,8 @@ const CourseLanding = ({
                 {courseDetails?.mode?.map((classItem, index) => (
                   <button
                     key={index}
-                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${
-                      classItem === typeOfLearning ? "activecourseButton" : ""
-                    }`}
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === typeOfLearning ? "activecourseButton" : ""
+                      }`}
                     onClick={() => {
                       setTypeOfLearning(classItem);
                     }}
@@ -102,7 +101,7 @@ const CourseLanding = ({
                   </h1>
                 </div>
                 <div className="pb-[5.556vh] mobile:pb-[2.575vh] mobile:flex mobile:justify-between gap-4">
-                  <p className="headerText w-[65.814vw] text-left mobile:text-[2.791vw] text-[1.563vw] sm:leading-[1.875rem] sm:pt-[0.833vh]">
+                  <p className="headerText w-[65.814vw] text-left mobile:text-[2.791vw] text-[1.563vw] sm:leading-[1.875rem] sm:pt-[0.833vh] !w-[100%]">
                     {courseDetails?.courseSummary}
                   </p>
                   <button className="bg-[#ffe8d3] w-[23.256vw] text-[2.791vw] flex justify-center  pt-[0.536vh] pb-[0.751vh] items-center gap-1  font-semibold rounded text-ash sm:hidden h-[3.219vh]">
@@ -120,16 +119,14 @@ const CourseLanding = ({
                       className="courseStats mobile:w-[50%] mobile:pb-[2.146vh]"
                     >
                       <h1
-                        className={`text-left font-bold mobile:text-[4.651vw] mobile:pb-[0.429vh] text-[1.875vw] pb-[0.556vh]  ${
-                          ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
-                        }`}
+                        className={`text-left font-bold mobile:text-[4.651vw] mobile:pb-[0.429vh] text-[1.875vw] pb-[0.556vh]  ${ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
+                          }`}
                       >
                         {ele.number}
                       </h1>
                       <p
-                        className={`text-left font-medium mobile:text-[3.256vw] text-[1.094vw] headerText ${
-                          ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
-                        }`}
+                        className={`text-left font-medium mobile:text-[3.256vw] text-[1.094vw] headerText ${ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
+                          }`}
                       >
                         {ele.text}
                       </p>

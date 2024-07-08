@@ -63,13 +63,16 @@ function BranchesLandingPage({ BranchDetails }) {
         <MaxWebWidth sectionStyling='bg-coursegradient ' articalStyling='flex justify-between mobile:flex-col'>
             <section className='basis-[50%] pt-[11.111vh] sm:pb-[8.889vh] mobile:py-[2.575vh]'>
                 <figure className=''>
-                    <Image
-                        src={selectedImg}
-                        style={{ height: "25vw", width: "49.219vw", objectFit: "cover" }}
-                        height={500}
-                        width={500}
-                        className='rounded-2xl'
-                    />
+                    {selectedImg &&
+                        <Image
+                            src={selectedImg}
+                            style={{ height: "25vw", width: "49.219vw", objectFit: "cover" }}
+                            height={500}
+                            width={500}
+                            className='rounded-2xl'
+                        />
+                    }
+
                     {/* <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full object-cover' src={selectedImg} /> */}
                 </figure>
                 <article className='flex gap-2 pt-[2.222vh] mobile:hidden'>
@@ -101,16 +104,19 @@ function BranchesLandingPage({ BranchDetails }) {
                                                 src={image}
                                                 alt='image'
                                             /> */}
-                                            <Image
-                                                height={100}
-                                                src={image}
-                                                width={100}
-                                                style={selectedImg === image ? { height: "4.563vw", width: "7.813vw", objectFit: "cover" } : { height: "4.563vw", width: "7.813vw", objectFit: "cover" }}
-                                                className={selectedImg === image
-                                                    ? 'border-2 rounded-md border-orange-500 object-cover rounded'
-                                                    : 'w-[7.813vw] rounded h-[4.563vw] object-cover'
-                                                }
-                                            />
+                                            {image &&
+                                                <Image
+                                                    height={100}
+                                                    src={image}
+                                                    width={100}
+                                                    style={selectedImg === image ? { height: "4.563vw", width: "7.813vw", objectFit: "cover" } : { height: "4.563vw", width: "7.813vw", objectFit: "cover" }}
+                                                    className={selectedImg === image
+                                                        ? 'border-2 rounded-md border-orange-500 object-cover rounded'
+                                                        : 'w-[7.813vw] rounded h-[4.563vw] object-cover'
+                                                    }
+                                                />
+                                            }
+
                                         </figure>
                                     ))}
                                 </div>
@@ -152,10 +158,19 @@ function BranchesLandingPage({ BranchDetails }) {
                             branchData?.address?.state,
                             branchData?.address?.pincode
                         ].filter(Boolean).join(' ')}
-                        <button onClick={() => window.open(branchData?.address.location, "_blank")} className="flex gap-1  text z-1">
-                            <p className="text-[#7298FF] text-[0.703vw] p-[0.156vw]">Get Directions</p>
-                            <img src="/DirectionIcon.svg" className="h-4 w-4" />
-                        </button>
+                        <div className='flex flex-col items-end'>
+                            <button onClick={() => window.open(branchData?.address.location, "_blank")} className="flex gap-1  text z-1">
+                                <p className="text-orange-500 text-[0.703vw] p-[0.156vw]">Get Directions</p>
+                                <Svg
+                                    className="pr-[0.469vw]"
+                                    width={svgicons.navigationIcon[0]}
+                                    height={svgicons.navigationIcon[1]}
+                                    viewBox={svgicons.navigationIcon[2]}
+                                    icon={svgicons.navigationIcon[3]}
+                                    color={svgicons.navigationIcon[4]}
+                                />
+                            </button>
+                        </div>
                     </p>
                 </article>
                 <article className='flex  gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>

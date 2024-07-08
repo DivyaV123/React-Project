@@ -409,7 +409,7 @@ const GlobalContextProvider = ({ children }) => {
         streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
         homeBranchData, setHomeBranchData,
-        domainVariable,hoverState, setHoverState
+        domainVariable, hoverState, setHoverState
       }}
     >
       {children}
