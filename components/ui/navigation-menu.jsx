@@ -67,7 +67,6 @@ const NavigationMenuContent = React.forwardRef(({ className, ...props }, ref) =>
 NavigationMenuContent.displayName = NavigationMenuPrimitive.Content.displayName
 
 const NavigationMenuLink = NavigationMenuPrimitive.Link
-
 const NavigationMenuViewport = React.forwardRef(({ className, hoverItem, hoverContent, ...props }, ref) => (
   <div className={`absolute ${(hoverItem ?? hoverContent) ? 'navItemsOverlay' : ''} top-full flex justify-center -translate-x-1/2 left-[50%] translate-y-0 `}>
     <NavigationMenuPrimitive.Viewport
@@ -90,7 +89,7 @@ const NavigationMenuIndicator = React.forwardRef(({ className, ...props }, ref) 
       className
     )}
     {...props}>
-    <div
+    <div 
       className="relative top-[60%] h-2 w-2 rotate-45 rounded-tl-sm bg-border shadow-md" />
   </NavigationMenuPrimitive.Indicator>
 ))
