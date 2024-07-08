@@ -909,7 +909,7 @@ const UniversityProgram = () => {
                   ? "courseMedium"
                   : "universityInitial"
                   }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`} 
-                  href={`/`}>
+                  href={`/universityPrograms/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}>
                    <div
                   key={index}
                   className="w-full flex flex-col h-full justify-evenly"
