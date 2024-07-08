@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-
+import { API_ENDPOINTS, getPlacementUrl } from '@/api/apiService';
 
 export const citiesApi = createApi({
     reducerPath: 'citiesApi',
-    baseQuery: fetchBaseQuery({ baseUrl: PROD_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: getPlacementUrl() }),
     endpoints: (builder) => ({
         getAllCities: builder.query({
             query: (state) => ({
-                url: 'candidate/cities',
+                url: API_ENDPOINTS.GET_CITIES,
                 method: 'POST',
                 body: state
             }),

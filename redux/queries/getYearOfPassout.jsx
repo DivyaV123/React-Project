@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD_URL } from '@/lib/RouteConstants';
+import { API_ENDPOINTS, getPlacementUrl } from '@/api/apiService';
 
 export const YearOfPassoutApi = createApi({
     reducerPath: ' YearOfPassoutApi',
-    baseQuery: fetchBaseQuery({ baseUrl: PROD_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: getPlacementUrl() }),
     endpoints: (builder) => ({
         getAllYearOfPassout: builder.query({
-            query: () => 'candidate/passoutyear',
+            query: () => API_ENDPOINTS.GET_PASS_OUT_YEAR,
         }),
     }),
 });

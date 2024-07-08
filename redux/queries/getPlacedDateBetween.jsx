@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD_URL } from '@/lib/RouteConstants';
 import dayjs from "dayjs";
+import { API_ENDPOINTS, getPlacementUrl } from '@/api/apiService';
 const today = dayjs().format("YYYY-MM-DD")
 
 export const PlacedDateBetweenApi = createApi({
   reducerPath: 'PlacedDateBetweenApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `${PROD_URL}` }), 
+  baseQuery: fetchBaseQuery({ baseUrl: getPlacementUrl() }), 
   endpoints: (builder) => ({
     getPlacedDateBetween: builder.query({
-      query: (startDate = today, endDate = today,pageNo = 0, pageSize = 10) => `candidate/placedDate?startDate=${startDate}&endDate=${endDate}&pageNumber=${pageNo}&size=${pageSize}`,     
+      query: (startDate = today, endDate = today,pageNo = 0, pageSize = 10) => API_ENDPOINTS.GET_PLACED_BETWEEN(startDate,endDate,pageNo,pageSize),     
     }),
   }),
 });

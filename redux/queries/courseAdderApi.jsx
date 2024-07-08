@@ -1,10 +1,10 @@
-import { PROD2_URL } from '@/lib/RouteConstants';
-import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
+import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { getBaseUrl ,API_ENDPOINTS} from '@/api/apiService';
 export const courseAdderApi = createApi({
     reducerPath: 'courseAdderApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: PROD2_URL,
+        baseUrl: getBaseUrl(),
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('authToken');
             if (token) {
@@ -16,7 +16,7 @@ export const courseAdderApi = createApi({
     endpoints: (builder) => ({
         courseAdder: builder.mutation({
             query: ({ bodyData, courseId, subcourseId }) => ({
-                url: `api/v1/courses?categoryId=${courseId}${subcourseId}`,
+                url:API_ENDPOINTS.GET_COURSE_ID_AND_SUBCOURSE_ID(courseId,subcourseId) ,
                 method: 'POST',
                 body: bodyData
             })
