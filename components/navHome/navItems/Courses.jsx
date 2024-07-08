@@ -66,14 +66,14 @@ const Courses = ({ courseResponse }) => {
                     className="w-full flex flex-col h-full justify-evenly"
                   >
                     <div className="flex  gap-2.5 items-center">
-                      <Image
+                      {/* <Image
                         src={content?.icon}
                         height={27}
                         width={36}
                         style={{ height: "32px", width: "32px", objectFit: "cover" }}
                         alt='logo'
-                      />
-                      {/* <img className="h-8 w-8" src={content?.icon} /> */}
+                      /> */}
+                      <img className="h-8 w-8" src={content?.icon} />
                       <h3 className="text-left  text-[0.938vw] font-bold items-center flex pt-1">
                         {content?.title ? content?.title : ""}
                       </h3>
