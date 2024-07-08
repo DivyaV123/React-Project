@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD2_URL } from '@/lib/RouteConstants';
+import { getBaseUrl,API_ENDPOINTS } from '@/api/apiService';
 
 export const getAllFaqApi = createApi({
     reducerPath: 'getAllFaqApi',
-    baseQuery: fetchBaseQuery({ baseUrl: PROD2_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: getBaseUrl() }),
     endpoints: (builder) => ({
         getAllFaq: builder.query({
-            query: (domain) => `api/v1/faqs?organization=${domain}`,
+            query: (domain) => API_ENDPOINTS.GET_ALL_FAQ(domain),
         }),
     }),
 });

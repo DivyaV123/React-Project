@@ -1,12 +1,11 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD2_URL } from '@/lib/RouteConstants';
-
+import { getBaseUrl,API_ENDPOINTS } from '@/api/apiService';
 export const categoriesApi = createApi({
     reducerPath: 'categoriesApi',
-    baseQuery: fetchBaseQuery({ baseUrl: PROD2_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: getBaseUrl() }),
     endpoints: (builder) => ({
         getAllCategories: builder.query({
-            query: () => 'api/v1/categories/getall',
+            query: () => API_ENDPOINTS.GET_ALL_CATEGORIES,
         }),
     })
 });

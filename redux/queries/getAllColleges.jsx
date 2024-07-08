@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD_URL } from '@/lib/RouteConstants';
+import { API_ENDPOINTS, getPlacementUrl } from '@/api/apiService';
 
 export const collegesApi = createApi({
     reducerPath: 'collegesApi',
-    baseQuery: fetchBaseQuery({ baseUrl: PROD_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: getPlacementUrl() }),
     endpoints: (builder) => ({
         getAllColleges: builder.query({
             query: (university) => ({
-                url: `candidate/colleges`,
+                url: API_ENDPOINTS.GET_COLLEGES,
                 method: 'POST',
                 body: university
             })

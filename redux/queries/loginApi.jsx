@@ -1,13 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD2_URL } from '@/lib/RouteConstants';
+import { getBaseUrl,API_ENDPOINTS } from '@/api/apiService';
 
 export const LoginApi = createApi({
     reducerPath: 'loginApi',
-    baseQuery: fetchBaseQuery({ baseUrl: PROD2_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: getBaseUrl() }),
     endpoints: (builder) => ({
         login: builder.mutation({
             query: (bodyData) => ({
-                url: 'api/v1/users/login',
+                url: API_ENDPOINTS.LOGIN,
                 method: 'POST',
                 body: bodyData,
             }),

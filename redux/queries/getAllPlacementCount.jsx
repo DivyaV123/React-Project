@@ -1,12 +1,13 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD_URL } from '@/lib/RouteConstants';
+import { API_ENDPOINTS, getPlacementUrl } from '@/api/apiService';
+
 
 export const PlacementCountApi = createApi({
   reducerPath: 'PlacementCountApi',
-  baseQuery: fetchBaseQuery({ baseUrl: `${PROD_URL}` }), 
+  baseQuery: fetchBaseQuery({ baseUrl: getPlacementUrl() }), 
   endpoints: (builder) => ({
     getAllPlacementCount: builder.query({
-      query: () => '/candidate/getCounts',     
+      query: () => API_ENDPOINTS.GET_PLACEMENT_COUNTS,     
     }),
   }),
 });

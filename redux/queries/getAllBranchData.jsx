@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD2_URL } from '@/lib/RouteConstants';
+import { getBaseUrl,API_ENDPOINTS } from '@/api/apiService';
 
 export const getAllBranchesApi = createApi({
     reducerPath: 'getAllBranchesApi',
-    baseQuery: fetchBaseQuery({ baseUrl: PROD2_URL }),
+    baseQuery: fetchBaseQuery({ baseUrl: getBaseUrl() }),
     endpoints: (builder) => ({
         getAllBranches: builder.query({
-            query: () => 'api/v1/branches/getAll',
+            query: () => API_ENDPOINTS.GET_ALL_BRANCHES,
         }),
     }),
 });

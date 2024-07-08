@@ -1,10 +1,10 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { PROD2_URL } from '@/lib/RouteConstants';
+import { getBaseUrl,API_ENDPOINTS } from '@/api/apiService';
 
 export const CategoriesInCourseApi = createApi({
     reducerPath: 'CategoriesInCourseApi',
     baseQuery: fetchBaseQuery({
-        baseUrl: PROD2_URL,
+        baseUrl: getBaseUrl(),
         prepareHeaders: (headers) => {
             const token = localStorage.getItem('authToken');
             if (token) {
@@ -15,7 +15,7 @@ export const CategoriesInCourseApi = createApi({
     }),
     endpoints: (builder) => ({
         getAllCategoriesInCourse: builder.query({
-            query: () => 'api/v1/categories/getCategory',
+            query: () => API_ENDPOINTS.GET_CATEGORY_IN_COURSE_FORM,
         }),
     }),
 });
