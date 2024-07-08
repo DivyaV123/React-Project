@@ -67,11 +67,13 @@ function PlaceMentStatistics({ className, path, statistics }) {
                                 handleState(item.key)
                             }} className='flex  jutsify-center cursor-pointer  hover:bg-white hover:rounded-xl sm:w-[24.531vw]'>
                                 <figure>
-                                    <Image
-                                        src={item.icon}
-                                        width={200}
-                                        height={250}
-                                    />
+                                    {item.icon &&
+                                        <Image
+                                            src={item.icon}
+                                            width={200}
+                                            height={250}
+                                        />
+                                    }
                                 </figure>
                                 <div className='py-[1.944vh] px-[0.938vw] mobile:px-[2.791vw] mobile:py-[1.502vh]'>
                                     <h1 className='font-bold text-[2.813vw] mobile:text-[8.372vw]'>{item.count}</h1>

@@ -29,13 +29,23 @@ function CourseCard({ cardData }) {
                         src={cardData.image ? cardData.image : cardData.homePageCourseImage}
                         alt='image'>
                     </img> */}
-                    <Image
-                        src={cardData.image ? cardData.image : cardData.homePageCourseImage}
-                        width={500}
-                        height={500}
-                        sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-                        alt="Course Image"
-                    />
+                    {(cardData.image || cardData.homePageCourseImage) ?
+                        <Image
+                            src={cardData.image ? cardData.image : cardData.homePageCourseImage}
+                            width={500}
+                            height={500}
+                            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                            alt="Course Image"
+                        /> :
+                        <Image
+                            src='https://qspiderwebsite.s3.ap-south-1.amazonaws.com/COURSE/IMAGE/Data%20Science%20with%20Python/2024-06-18T16%3A58%3A07.793227700_Data%20Science%20with%20Python-homepage.png'
+                            width={500}
+                            height={500}
+                            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                            alt="Course Image"
+                        />
+                    }
+
 
                 </picture>
                 <div>

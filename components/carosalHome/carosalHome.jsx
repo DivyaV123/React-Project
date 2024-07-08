@@ -13,6 +13,7 @@ import { Fade } from 'react-reveal'
 import LandingCarosal from './corosalSections/LandingCarosal'
 import Button from '../commonComponents/button/Button'
 import { GlobalContext } from '../Context/GlobalContext'
+import Image from 'next/image'
 
 
 
@@ -118,9 +119,16 @@ function CarosalHome() {
   }
 
   return (
-    <>
+    <div className='w-full overflow-hidden relative'>
+      <Image
+        src='/BackgroundWave.png'
+        height={800}
+        width={400}
+        sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+        className='absolute w-[100%] z-1 h-[100%]'
+      />
       <MaxWebWidth
-        sectionStyling="bg-[url('/BackgroundWave.png')] bg-no-repeat bg-left bg-contain bg-cover max-w-full overflow-hidden"
+        sectionStyling="bg-no-repeat bg-left bg-contain bg-cover max-w-full overflow-hidden"
         articalStyling='relative'
         logo={logo}
       >
@@ -129,7 +137,7 @@ function CarosalHome() {
       </MaxWebWidth>
       <MaxWebWidth sectionStyling='bg-white' articalStyling='flex justify-center'>
       </MaxWebWidth>
-    </>
+    </div>
   )
 }
 
