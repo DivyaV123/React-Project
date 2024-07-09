@@ -1,9 +1,10 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./navitems.scss";
 import { TUTION_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
 import Image from "next/image";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const Tutions = () => {
   const courses = [
     {
@@ -227,6 +228,7 @@ const Tutions = () => {
       arrow: "/arrowIconDark.svg",
     },
   ];
+  const { setHoverState } = useContext(GlobalContext)
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
   return (
@@ -283,6 +285,7 @@ const Tutions = () => {
                 <div
                   key={index}
                   className="w-full flex flex-col h-full justify-evenly"
+                  onClick={()=>setHoverState((prevState) => ({ ...prevState, content: false }))}
                 >
                   <div className="flex  gap-2.5">
                     {content.image &&

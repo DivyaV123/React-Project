@@ -1,10 +1,11 @@
 
 "use client";
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./navitems.scss";
 import { TUTION_PATH } from "@/lib/RouteConstants";
 import Link from "next/link";
 import { truncateText } from "@/lib/utils";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const UniversityProgram = () => {
   const courseResponse ={
     "statusCode": 200,
@@ -854,6 +855,7 @@ const UniversityProgram = () => {
         },
     ]
 }
+const { setHoverState } = useContext(GlobalContext)
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
   const getAllCourses = courseResponse?.data
@@ -913,6 +915,7 @@ const UniversityProgram = () => {
                    <div
                   key={index}
                   className="w-full flex flex-col h-full justify-evenly"
+                  onClick={()=>setHoverState((prevState) => ({ ...prevState, content: false }))}
                 >
                   <div className="flex  gap-[1vh] flex-col items-start">
                     <img className="h-8 w-8" src={content?.icon} />
