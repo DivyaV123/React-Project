@@ -195,52 +195,7 @@ console.log(decodeURIComponent(stream),"asd",stream)
       )}
     </div>
   );
-  // useEffect(() => {
-  //   // Get stream value from URL
-  //   const streamFromURL = searchParams.get('stream');
-  
-  //   // Check conditions for updating branchList
-  //   if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
-  //     // Ensure streamFromURL exists in branchList
-  //     if (branchList.includes(streamFromURL)) {
-  //       // Create a new array with streamFromURL moved to the first position
-  //       const newItems = [streamFromURL, ...branchList.filter(item => item !== streamFromURL).slice(0, 5)];
-        
-  //       // Update branchList state with the new items
-  //       setBranchList(newItems);
-  
-  //       // Update the active button state if necessary
-  //       setBranchButton(streamFromURL);
-  //     }
-  //   }
-  // }, [searchParams, branchList, setBranchList, setBranchButton]);
-  
-
-
-//   useEffect(() => {
-//   // Get stream value from URL
-//   const streamFromURL = searchParams.get('stream');
-
-//   // Check conditions for updating branchList
-//   if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
-//     // Ensure streamFromURL exists in branchList
-//     if (branchList.includes(streamFromURL)) {
-//       // Create a new array with streamFromURL replacing the last item of the first 6 items
-//       const newItems = [...branchList];
-//       const lastIndex = 5;
-//       const urlItemIndex = newItems.indexOf(streamFromURL);
-
-//       // Swap the streamFromURL with the item at the lastIndex
-//       [newItems[lastIndex], newItems[urlItemIndex]] = [newItems[urlItemIndex], newItems[lastIndex]];
-
-//       // Update branchList state with the new items
-//       setBranchList(newItems);
-
-//       // Update the active button state if necessary
-//       setBranchButton(streamFromURL);
-//     }
-//   }
-// }, [searchParams, branchList, setBranchList, setBranchButton]);
+ 
   
 
 //NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
