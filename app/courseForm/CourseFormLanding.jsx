@@ -29,7 +29,6 @@ function CourseFormLanding() {
     isLoading,
   } = useGetAllCategoriesInCourseQuery();
   const [addCourse, { data: courseAdd, error: courseError, isLoading: courseAdderLoad }] = useCourseAdderMutation();
-
   const [faqs, setFaqs] = useState([]);
   const [faqEditIndex, setFaqEditIndex] = useState(null);
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -37,7 +36,6 @@ function CourseFormLanding() {
   const [selectedSubCourse, setSelectedSubCourse] = useState("");
   const [subCourseOptions, setSubCourseOptions] = useState([]);
   const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);
-
   const toggleAccordion = (index) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
@@ -481,7 +479,6 @@ function CourseFormLanding() {
           <section className="flex justify-around">
             <aside>
               <div className="pt-[1.5vw] font-bold">
-
                 <p>Organisation</p>
               </div>
               <div className="flex flex-col">
@@ -512,10 +509,10 @@ function CourseFormLanding() {
               </div>
               <div className="flex flex-col">
                 {[
-                  "Online",
-                  "Offline",
-                  "Experiential Learning",
-                  "Self Paced",
+                  "ONLINECLASSES",
+                  "OFFLINECLASSES",
+                  "EXPERIENTIALLEARNING",
+                  "SELFPACED",
                 ].map((mode) => (
                   <label key={mode}>
                     <input

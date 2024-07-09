@@ -7,6 +7,7 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import "./HirefromusLanding.scss";
 import { useEnquriesMutation } from "@/redux/queries/enquriesApi";
+import { toast } from "@/components/ui/use-toast";
 const HiringFromUsForm = ({ activeTab }) => {
   const [phoneValue, setPhoneValue] = useState("");
   const [error, setError] = useState({
@@ -115,6 +116,9 @@ const HiringFromUsForm = ({ activeTab }) => {
       }
       try {
         const response = await enquirie(payload).unwrap();
+        toast({
+          description: "Your message has been sent.",
+        })
       } catch (err) {
         console.error(err, "error in the submit");
       }
@@ -150,11 +154,10 @@ const HiringFromUsForm = ({ activeTab }) => {
             onBlur={formik.handleBlur}
             value={formik.values.fullName}
             autoFocus
-            className={`w-full border p-2 rounded ${
-              formik.touched.fullName && formik.errors.fullName
-                ? "border-red-500"
-                : "border-gray-300"
-            }`}
+            className={`w-full border p-2 rounded ${formik.touched.fullName && formik.errors.fullName
+              ? "border-red-500"
+              : "border-gray-300"
+              }`}
           />
           {formik.touched.fullName && formik.errors.fullName ? (
             <div className="text-red-500 absolute  text-sm">
@@ -189,9 +192,8 @@ const HiringFromUsForm = ({ activeTab }) => {
             //   borderRadius: "5px",
             // }}
             style={{
-              border: `${
-                error.phone || error.validPhone ? inputBorderErr : inputBorder
-              }`,
+              border: `${error.phone || error.validPhone ? inputBorderErr : inputBorder
+                }`,
               borderRadius: "5px",
             }}
             enableSearch
@@ -207,10 +209,10 @@ const HiringFromUsForm = ({ activeTab }) => {
           />
           {(error.mobileNumber ||
             (formik.errors.mobileNumber && formik.touched.mobileNumber)) && (
-            <div className="text-red-500 absolute text-sm">
-              Phone number is required
-            </div>
-          )}
+              <div className="text-red-500 absolute text-sm">
+                Phone number is required
+              </div>
+            )}
           {error.validPhone && !error.mobileNumber && (
             <div className="text-red-500 absolute text-sm">
               Invalid phone number
@@ -231,15 +233,14 @@ const HiringFromUsForm = ({ activeTab }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.requiredTraining}
-              className={`w-full border p-2 rounded ${
-                formik.touched.requiredTraining &&
+              className={`w-full border p-2 rounded ${formik.touched.requiredTraining &&
                 formik.errors.requiredTraining
-                  ? "border-red-500"
-                  : "border-gray-300"
-              }`}
+                ? "border-red-500"
+                : "border-gray-300"
+                }`}
             />
             {formik.touched.requiredTraining &&
-            formik.errors.requiredTraining ? (
+              formik.errors.requiredTraining ? (
               <div className="text-red-500 absolute text-sm">
                 {formik.errors.requiredTraining}
               </div>
@@ -260,11 +261,10 @@ const HiringFromUsForm = ({ activeTab }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.companyName}
-              className={`w-full border p-2 rounded ${
-                formik.touched.companyName && formik.errors.companyName
-                  ? "border-red-500"
-                  : "border-gray-300"
-              }`}
+              className={`w-full border p-2 rounded ${formik.touched.companyName && formik.errors.companyName
+                ? "border-red-500"
+                : "border-gray-300"
+                }`}
             />
             {formik.touched.companyName && formik.errors.companyName ? (
               <div className="text-red-500 absolute text-sm">
@@ -286,11 +286,10 @@ const HiringFromUsForm = ({ activeTab }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
-            className={`w-full border p-2 rounded ${
-              formik.touched.email && formik.errors.email
-                ? "border-red-500"
-                : "border-gray-300"
-            }`}
+            className={`w-full border p-2 rounded ${formik.touched.email && formik.errors.email
+              ? "border-red-500"
+              : "border-gray-300"
+              }`}
           />
           {formik.touched.email && formik.errors.email ? (
             <div className="text-red-500 absolute text-sm">
@@ -310,11 +309,10 @@ const HiringFromUsForm = ({ activeTab }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.message}
-            className={`w-full border p-2 rounded resize-none ${
-              formik.touched.message && formik.errors.message
-                ? "border-red-500"
-                : "border-gray-300"
-            }`}
+            className={`w-full border p-2 rounded resize-none ${formik.touched.message && formik.errors.message
+              ? "border-red-500"
+              : "border-gray-300"
+              }`}
           />
           {formik.touched.message && formik.errors.message ? (
             <div className="text-red-500 absolute text-sm">
@@ -324,11 +322,10 @@ const HiringFromUsForm = ({ activeTab }) => {
         </div>
 
         <div
-          className={`${
-            activeTab === "General Enquiries"
-              ? "mb-2 md:col-span-2 btnComponent"
-              : "mb-2 btnComponent"
-          }`}
+          className={`${activeTab === "General Enquiries"
+            ? "mb-2 md:col-span-2 btnComponent"
+            : "mb-2 btnComponent"
+            }`}
         >
           <button
             type="submit"

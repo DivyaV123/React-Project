@@ -12,6 +12,7 @@ import { svgicons } from '@/components/assets/icons/svgassets'
 import './branchesLandingPage.scss'
 import { GlobalContext } from '@/components/Context/GlobalContext'
 import Image from 'next/image'
+import { Skeleton } from '@/components/ui/skeleton'
 
 function BranchesLandingPage({ BranchDetails }) {
     const branchData = BranchDetails?.data
@@ -49,13 +50,13 @@ function BranchesLandingPage({ BranchDetails }) {
         currentSlide * imagesPerSlide,
         (currentSlide + 1) * imagesPerSlide
     );
+
     return (
         <MaxWebWidth sectionStyling='bg-coursegradient ' articalStyling='flex justify-between mobile:flex-col'>
             <section className='basis-[50%] pt-[11.111vh] sm:pb-[8.889vh] mobile:py-[2.575vh]'>
                 <figure className=''>
                     {selectedImg &&
                         <Image
-                            src={selectedImg}
                             style={{ height: "25vw", width: "49.219vw", objectFit: "cover" }}
                             height={500}
                             width={500}
@@ -94,7 +95,10 @@ function BranchesLandingPage({ BranchDetails }) {
                                                 src={image}
                                                 alt='image'
                                             /> */}
-                                            {image &&
+                                            {!image ?
+                                                <Skeleton
+                                                    className="w-[7.813vw] rounded h-[4.563vw]"
+                                                /> :
                                                 <Image
                                                     height={100}
                                                     src={image}
