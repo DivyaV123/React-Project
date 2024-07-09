@@ -13,11 +13,11 @@ import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { PLACEMENT_PATH } from "@/lib/RouteConstants";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { Suspense } from 'react'
 
 const PlacementCards = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
   const { filterPlacementData, setFilterPlacementData, placementParam, page, size } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const { data: counsellorFilterResponse, error, refetch, isLoading, isFetching } = useFetchCounsellorsQuery({
@@ -68,7 +68,7 @@ const PlacementCards = () => {
   };
 
   return (
-    <>
+    <Suspense>
       <div className="flex mobile:flex-wrap mb-4 sm:ml-[1.5rem] sm:mr-[2.25rem] sm:gap-[1.875rem]">
         {isLoading ? (
           <CardSkeleton />
@@ -98,7 +98,7 @@ const PlacementCards = () => {
       </div>
       <Degree_Branch_Passout isLoading={isLoading} />
       <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching} />
-    </>
+    </Suspense>
   );
 };
 
