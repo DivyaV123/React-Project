@@ -6,8 +6,10 @@ import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { branchAbbreviations } from "@/lib/utils";
 import BarSkeleton from "@/components/skeletons/BarSkeleton";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 
-const Degree_Branch_Passout = ({isLoading}) => {
+const Degree_Branch_Passout = ({ isLoading }) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
   const [isBranchMoreOpen, setIsBranchMoreOpen] = useState(false);
   const [isPassOutMoreOpen, setIsPassOutMoreOpen] = useState(false);
@@ -30,8 +32,11 @@ const Degree_Branch_Passout = ({isLoading}) => {
     throughcheckedIcon,
     itCheckedIcon,
     nonItCheckedIcon,
-    placeCheckedIcon
+    placeCheckedIcon,
   } = useContext(GlobalContext);
+
+  const searchParams = useSearchParams();
+  console.log({searchParams})
 
   const {
     data: degreeAndStreamdata,
@@ -55,6 +60,41 @@ const Degree_Branch_Passout = ({isLoading}) => {
       setYopList([...(yopData?.response || [])].sort((a, b) => b - a));
     }
   }, [degreeAndStreamdata, yopData]);
+
+  useEffect(() => {
+    const degree = searchParams.get('degree') ;
+    const stream = searchParams.get('stream') ;
+    const yop = searchParams.get('yop') ;
+    
+console.log(decodeURIComponent(stream),"asd",stream)
+
+    if (degree) {
+      setDegreeButton(degree);
+      setFilterPlacementData((prevData) => ({
+        ...prevData,
+        degree: [degree],
+      }));
+    }
+    if (stream) {
+      setBranchButton(stream);
+      setFilterPlacementData((prevData) => ({
+        ...prevData,
+        stream: [stream],
+      }));
+    }
+    if (yop) {
+      setPassOutButton(yop);
+      setFilterPlacementData((prevData) => ({
+        ...prevData,
+        yop: [yop],
+      }));
+    }
+    return () => {
+      setDegreeButton('');
+      setBranchButton('');
+      setPassOutButton('');
+    };
+  }, []);
 
   const handleToggleMore = (setMoreOpen, otherSetMoreStates) => {
     setMoreOpen((prevState) => !prevState);
@@ -122,9 +162,9 @@ const Degree_Branch_Passout = ({isLoading}) => {
         <button
           key={index}
           className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
-            item === buttonState && !lesscheckedIcon && !throughcheckedIcon && !itCheckedIcon && !nonItCheckedIcon && !placeCheckedIcon ? "activeButton font-medium" : ""
+            item === buttonState ? "activeButton font-medium" : ""
           }`}
-          onClick={() => handleButtonClick(item, setButtonState, key)}
+          onClick={() => {handleButtonClick(item, setButtonState, key);console.log(abbreviations,abbreviations[item])}}
         >
           {abbreviations[item] || item}
         </button>
@@ -155,7 +195,95 @@ const Degree_Branch_Passout = ({isLoading}) => {
       )}
     </div>
   );
+  // useEffect(() => {
+  //   // Get stream value from URL
+  //   const streamFromURL = searchParams.get('stream');
+  
+  //   // Check conditions for updating branchList
+  //   if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
+  //     // Ensure streamFromURL exists in branchList
+  //     if (branchList.includes(streamFromURL)) {
+  //       // Create a new array with streamFromURL moved to the first position
+  //       const newItems = [streamFromURL, ...branchList.filter(item => item !== streamFromURL).slice(0, 5)];
+        
+  //       // Update branchList state with the new items
+  //       setBranchList(newItems);
+  
+  //       // Update the active button state if necessary
+  //       setBranchButton(streamFromURL);
+  //     }
+  //   }
+  // }, [searchParams, branchList, setBranchList, setBranchButton]);
+  
 
+
+//   useEffect(() => {
+//   // Get stream value from URL
+//   const streamFromURL = searchParams.get('stream');
+
+//   // Check conditions for updating branchList
+//   if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
+//     // Ensure streamFromURL exists in branchList
+//     if (branchList.includes(streamFromURL)) {
+//       // Create a new array with streamFromURL replacing the last item of the first 6 items
+//       const newItems = [...branchList];
+//       const lastIndex = 5;
+//       const urlItemIndex = newItems.indexOf(streamFromURL);
+
+//       // Swap the streamFromURL with the item at the lastIndex
+//       [newItems[lastIndex], newItems[urlItemIndex]] = [newItems[urlItemIndex], newItems[lastIndex]];
+
+//       // Update branchList state with the new items
+//       setBranchList(newItems);
+
+//       // Update the active button state if necessary
+//       setBranchButton(streamFromURL);
+//     }
+//   }
+// }, [searchParams, branchList, setBranchList, setBranchButton]);
+  
+
+//NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
+useEffect(() => {
+  // Get stream value from URL
+  const streamFromURL = searchParams.get('stream');
+  const degreeFromURL = searchParams.get('degree');
+
+  // Check conditions for updating branchList
+  if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
+    // Ensure streamFromURL exists in branchList
+    if (branchList.includes(streamFromURL)) {
+      // Create a new array with streamFromURL replacing the last item of the first 6 items
+      const newBranchItems = [...branchList];
+      const branchLastIndex = 5;
+      const branchUrlItemIndex = newBranchItems.indexOf(streamFromURL);
+
+      // Swap the streamFromURL with the item at the lastIndex
+      [newBranchItems[branchLastIndex], newBranchItems[branchUrlItemIndex]] = [newBranchItems[branchUrlItemIndex], newBranchItems[branchLastIndex]];
+
+      // Update branchList state with the new items
+      setBranchList(newBranchItems);
+
+      // Update the active button state if necessary
+      setBranchButton(streamFromURL);
+    }
+  }
+
+  // Check conditions for updating degreeList
+  if (degreeFromURL && degreeList.length > 6 && !degreeList.slice(0, 6).includes(degreeFromURL)) {
+   
+    if (degreeList.includes(degreeFromURL)) {
+      
+      const newDegreeItems = [...degreeList];
+      const degreeLastIndex = 5;
+      const degreeUrlItemIndex = newDegreeItems.indexOf(degreeFromURL);
+      [newDegreeItems[degreeLastIndex], newDegreeItems[degreeUrlItemIndex]] = [newDegreeItems[degreeUrlItemIndex], newDegreeItems[degreeLastIndex]];
+      setDegreeList(newDegreeItems);
+      setDegreeButton(degreeFromURL);
+    }
+  }
+}, [searchParams, branchList, setBranchList, setBranchButton, degreeList, setDegreeList, setDegreeButton]);
+  
   return (
     <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2 mobile:hidden">
       {isLoading ? (

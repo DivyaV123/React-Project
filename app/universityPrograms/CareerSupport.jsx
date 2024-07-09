@@ -30,7 +30,7 @@ const CareerSupport = () => {
               <div className="w-full md:w-1/2 px-4 mb-8">
                 <div className="bg-orange-500 text-white p-6 rounded-lg shadow-md">
                   <h2 className="text-[1.463vw] font-semibold mb-4">{program.title}</h2>
-                  <p className="mb-6 text-[1.15vw]">{program.description}</p>
+                  <p className="mb-6 text-[1.15vw] pb-[3vh]">{program.description}</p>
                   <button className="bg-white text-orange-500 py-2 px-4 rounded-lg font-semibold">
                     {program.buttonText}
                   </button>

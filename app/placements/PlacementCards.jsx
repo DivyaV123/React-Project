@@ -1,7 +1,6 @@
 "use client";
-import React, { useEffect ,useContext} from "react";
+import React, { useEffect, useContext } from "react";
 import "./PlacementCards.scss";
-import { Skeleton } from "@/components/ui/skeleton";
 import TotalPlacedCard from "./TotalPlacedCard";
 import DegreeCard from "./DegreeCard";
 import NonItCard from "./NonItCard";
@@ -14,33 +13,40 @@ import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { PLACEMENT_PATH } from "@/lib/RouteConstants";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
+
 const PlacementCards = () => {
-  const router = useRouter()
-  const {filterPlacementData,setFilterPlacementData,placementParam,page,size}=useContext(GlobalContext)
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const { filterPlacementData, setFilterPlacementData, placementParam, page, size } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
-  const {
-    data: counsellorFilterResponse,
-    error,
-    refetch,
-    isLoading,
-    isFetching,
-  } = useFetchCounsellorsQuery({
+  const { data: counsellorFilterResponse, error, refetch, isLoading, isFetching } = useFetchCounsellorsQuery({
     pageNumber: page,
     pageSize: size,
     parameter: placementParam,
-    bodyData:filterPlacementData
+    bodyData: filterPlacementData
   });
-  useEffect(() => {
-    refetch()
-  },[filterPlacementData,placementParam])
 
+  useEffect(() => {
+    // Parse query parameters on initial load
+    const params = new URLSearchParams(window.location.search);
+    const newFilterPlacementData = {};
+    params.forEach((value, key) => {
+      newFilterPlacementData[key] = value.split(',');
+    });
+
+    setFilterPlacementData(newFilterPlacementData);
+  }, []);
+
+  useEffect(() => {
+    refetch();
+  }, [filterPlacementData, placementParam]);
 
   const emptyObj = Object.keys(filterPlacementData).length === 0;
+
   useEffect(() => {
     const searchParams = constructSearchParams();
-    const fullURL = `${PLACEMENT_PATH}/${searchParams ? `?${searchParams}` : ""
-      }`;
+    const fullURL = `${PLACEMENT_PATH}${searchParams ? `?${searchParams}` : ""}`;
     if (!emptyObj) {
       router.push(fullURL);
     } else {
@@ -60,42 +66,38 @@ const PlacementCards = () => {
     }
     return searchParams;
   };
+
   return (
     <>
       <div className="flex mobile:flex-wrap mb-4 sm:ml-[1.5rem] sm:mr-[2.25rem] sm:gap-[1.875rem]">
         {isLoading ? (
-          <CardSkeleton/>
+          <CardSkeleton />
         ) : (
-          <>
-          {/* <section className="sm:hidden w-[95.349vw] h-[8.584vh] bg-[#DBECFF66] mx-[2.326vw] mt-[1.288vh] rounded-lg">
-
-          </section> */}
-          <TotalPlacedCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
-          </>
+          <TotalPlacedCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
         )}
         {isLoading ? (
-          <CardSkeleton/>
+          <CardSkeleton />
         ) : (
-          <DegreeCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
+          <DegreeCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
         )}
         {isLoading ? (
-          <CardSkeleton/>
+          <CardSkeleton />
         ) : (
-          <NonItCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
+          <NonItCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
         )}
         {isLoading ? (
-          <CardSkeleton/>
+          <CardSkeleton />
         ) : (
-          <BranchCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
+          <BranchCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
         )}
         {isLoading ? (
-          <CardSkeleton/>
+          <CardSkeleton />
         ) : (
-          <OverviewCard allCounts={allPlacementCount} placementPage="GeneralPlacements"/>
+          <OverviewCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
         )}
       </div>
-      <Degree_Branch_Passout isLoading={isLoading}/>
-      <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching}/>
+      <Degree_Branch_Passout isLoading={isLoading} />
+      <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching} />
     </>
   );
 };
