@@ -43,9 +43,9 @@ const NavigationMenuItem = NavigationMenuPrimitive.Item
 const NavigationMenuTrigger = React.forwardRef(({ className, children, hoverItem, hoverContent, ...props }, ref) => (
   <NavigationMenuPrimitive.Trigger
     ref={ref}
-    className={cn(`group inline-flex h-10 w-max items-center justify-center rounded-md  px-4 py-2 text-normal font-medium transition-colors  focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50 ${hoverItem || hoverContent ? 'navitemsArrow' : ''}`, "group", className)}
+    className={cn(`group inline-flex h-[5.31vw] w-max items-center justify-center rounded-md  px-4 py-2 text-normal font-medium transition-colors  focus:outline-none disabled:pointer-events-none disabled:opacity-50  ${hoverItem || hoverContent ? 'navitemsArrow' : ''}`, "group", className)}
     {...props}>
-    <div className="duplicate">
+      <div className="duplicate">
       <div>
 
       </div>
@@ -71,7 +71,7 @@ const NavigationMenuViewport = React.forwardRef(({ className, hoverItem, hoverCo
   <div className={`absolute ${(hoverItem ?? hoverContent) ? 'navItemsOverlay' : ''} top-full flex justify-center -translate-x-1/2 left-[50%] translate-y-0 `}>
     <NavigationMenuPrimitive.Viewport
       className={cn(
-        "z-10 origin-top-center relative mt-[0.83vw] h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden rounded-xl border bg-popover text-popover-foreground shadow-lg data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
+        " z-10 origin-top-center relative  h-[var(--radix-navigation-menu-viewport-height)] w-full overflow-hidden   text-popover-foreground bg-transparent  data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-90 md:w-[var(--radix-navigation-menu-viewport-width)]",
         className
       )}
       ref={ref}

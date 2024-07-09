@@ -122,7 +122,7 @@ function NavItems() {
                   hoverItem={hoverState.item}
                   hoverContent={hoverState.content}
                 >
-                  <div className="flex flex-wrap space-x-9 cursor-pointer font-medium">
+                  <div className="flex flex-wrap space-x-9 cursor-pointer font-medium ">
                     <span
                       onMouseEnter={() =>
                         setStateHovered({
@@ -151,7 +151,10 @@ function NavItems() {
                     });
                   }}
                 >
+                  <div className=" mt-[0.83vw] border bg-popover shadow-lg rounded-xl overflow-hidden">
+
                   {navItem.content}
+                  </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
             </div>
