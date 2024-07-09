@@ -21,19 +21,19 @@ function CarosalHome() {
   const { domainVariable } = useContext(GlobalContext)
   const imgarray = [
     {
-      imgSrc: '../images/j.png',
+      imgSrc: '../images/QSPSideLogo.png',
       address: "http://testjsp.jspiders.com/"
     },
     {
-      imgSrc: '../images/q.png',
+      imgSrc: '../images/QSPSideLogo.png',
       address: "http://testqsp.qspiders.com/"
     },
     {
-      imgSrc: '../images/py.png',
+      imgSrc: '../images/PYSPSideLogo.png',
       address: "http://testpysp.pyspiders.com/"
     },
     {
-      imgSrc: '../images/b.png',
+      imgSrc: '../images/BSPSideLogo.png',
       address: "http://bspiders.com/"
     },
   ]
@@ -45,17 +45,17 @@ function CarosalHome() {
         <article className='mobile:hidden'>
           <figure className='absolute right-[-8.9%] top-[2.5%] hover:right-[-9%] cursor-pointer '>
             <a href='http://testjsp.jspiders.com/' target='_blank'>
-              <img className='w-[78%] hover:w-[79%]' src='../images/j.png' alt="riteJspidersStickyLogo"></img>
+              <img className='w-[78%] hover:w-[79%]' src='../images/JSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
             </a>
           </figure>
           <figure className='absolute right-[-9%] top-[10%] hover:right-[-9%] cursor-pointer '>
             <a href='http://testpysp.pyspiders.com/' target='_blank'>
-              <img className='w-[78%] hover:w-[79%]' src='../images/py.png' alt="riteJspidersStickyLogo"></img>
+              <img className='w-[78%] hover:w-[79%]' src='../images/PYSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
             </a>
           </figure>
-          <figure className='absolute right-[-9%] top-[18%] hover:right-[-9%] cursor-pointer '>
+          <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
             <a href='http://bspiders.com/' target='_blank'>
-              <img className='w-[78%] hover:w-[79%]' src='../images/b.png' alt="riteJspidersStickyLogo"></img>
+              <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
             </a>
           </figure>
         </article>
@@ -64,35 +64,35 @@ function CarosalHome() {
       return (<article className='mobile:hidden'>
         <figure className='absolute right-[-8.9%] top-[2.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testqsp.qspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/q.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/QSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
         <figure className='absolute right-[-9%] top-[10%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testpysp.pyspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/py.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/PYSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
-        <figure className='absolute right-[-9%] top-[18%] hover:right-[-9%] cursor-pointer '>
+        <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://bspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/b.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
       </article>)
-    } else if (domainVariable === "pyspiders") {
+    } else if (domainVariable == "Pyspiders") {
       return (<article className='mobile:hidden'>
         <figure className='absolute right-[-8.9%] top-[2.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testqsp.qspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/q.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/QSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
         <figure className='absolute right-[-9%] top-[10%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testjsp.jspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/j.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/JSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
-        <figure className='absolute right-[-9%] top-[18%] hover:right-[-9%] cursor-pointer '>
+        <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://bspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/b.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
       </article>)
@@ -100,17 +100,17 @@ function CarosalHome() {
       return (<article className='mobile:hidden'>
         <figure className='absolute right-[-8.9%] top-[2.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testqsp.qspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/q.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/QSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
         <figure className='absolute right-[-9%] top-[10%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testjsp.jspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/j.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/JSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
-        <figure className='absolute right-[-9%] top-[18%] hover:right-[-9%] cursor-pointer '>
+        <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://bspiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/py.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/PYSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
       </article>)
