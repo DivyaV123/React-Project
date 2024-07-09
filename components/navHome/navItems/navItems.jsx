@@ -39,6 +39,7 @@ function NavItems() {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setFilterPlacementData,
+    hoverState, setHoverState
   } = useContext(GlobalContext);
   const {
     data: courseResponse,
@@ -60,13 +61,13 @@ function NavItems() {
     { id: 7, name: "Contact us", content: "" },
   ];
   setHomeBranchData(BranchResponse?.data[0]?.cities);
-  const [hoverState, setHoverState] = useState({ item: null, content: false });
+
   const [stateHovered, setStateHovered] = useState({
     item: "",
     state: false,
   });
   const handleItemHover = useCallback((itemName) => {
-    if (["Courses", "Branches", "Tutions"].includes(itemName)) {
+    if (["Courses", "Branches", "Tuitions","University Programs"].includes(itemName)) {
       setHoverState({ item: itemName });
     } else {
       setHoverState({ item: null });
@@ -80,7 +81,7 @@ function NavItems() {
   const handleContentHover = useCallback((isVisible) => {
     setHoverState((prevState) => ({ ...prevState, content: isVisible }));
   }, []);
-
+console.log(hoverState,"hoverState")
   const handleNavItems = (navItem) => {
     if (navItem === "Contact us") {
       router.push(CONTACT_US_PATH);

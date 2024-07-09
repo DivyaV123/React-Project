@@ -7,7 +7,7 @@ import { truncateText } from "@/lib/utils";
 import Image from "next/image";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const Courses = ({ courseResponse }) => {
-  // const { setImagePath } = useContext(GlobalContext)
+  const { setHoverState } = useContext(GlobalContext)
   // const {data:courseResponse,isLoading,error}=useGetAllCategoriesQuery()
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
@@ -65,10 +65,12 @@ const Courses = ({ courseResponse }) => {
                   <Link className={`${hoveredIndex !== null && subCourse
                     ? "courseMedium"
                     : "courseinitial"
-                    }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`} href={`/courses/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}> <div
+                    }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`} href={`/courses/${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}> 
+                    <div
                       key={index}
                       className="w-full flex flex-col h-full justify-evenly"
-                    >
+onClick={()=>setHoverState((prevState) => ({ ...prevState, content: false }))}
+                     >
                       <div className="flex  gap-2.5 items-center">
                         {content?.icon &&
                           <Image

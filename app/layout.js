@@ -2,9 +2,10 @@
 import { Poppins } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
-import GlobalContextProvider from "@/components/Context/GlobalContext";
+import GlobalContextProvider, { GlobalContext } from "@/components/Context/GlobalContext";
 import { Provider } from "react-redux"; 
 import store from "@/redux/store";
+import { useContext } from "react";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -15,18 +16,25 @@ const poppins = Poppins({
 export default function RootLayout({ children }) {
   return (
     <Provider store={store}> 
-      <html lang="en">
-        <body
-          className=
-          {cn(
-            `relative h-full antialiased ${poppins.className}  myscrollbar overflow-y-auto`)}
-        >
-          <GlobalContextProvider>
-            <main className="relative flex flex-col min-h-screen">{children}</main>
-          </GlobalContextProvider>
-          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        </body>
-      </html >
+      <GlobalContextProvider>
+        <RootComponent>{children}</RootComponent>
+      </GlobalContextProvider>
     </Provider>
+  );
+}
+
+function RootComponent({ children }) {
+  const { hoverState } = useContext(GlobalContext);
+  return (
+    <html lang="en">
+      <body
+        className={cn(
+          `relative h-full antialiased ${poppins.className} ${hoverState?.item === null && !hoverState?.content ? "overflow-y-auto myscrollbar" :"overflow-hidden"}`,
+        )}
+      >
+        <main className="relative flex flex-col min-h-screen">{children}</main>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      </body>
+    </html>
   );
 }
