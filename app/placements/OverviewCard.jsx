@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./PlacementCards.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { formatToIndianCurrency } from "@/lib/utils";
 const OverviewCard = ({ allCounts, placementPage }) => {
   const {
     setThroughCheckedIcon,
@@ -27,6 +28,9 @@ const OverviewCard = ({ allCounts, placementPage }) => {
       setPage(0)
     } else return;
   };
+  const overviewCount=placementPage === "GeneralPlacements"
+  ? allCounts?.response?.throughOutSixtyPercent
+  : allCounts?.response?.filterDataCounts?.throughOutSixty
   return (
     <div className={`${placementPage === "GeneralPlacements" ?'overviewCard' :'overviewInternal'} relative cursor-pointer`} onClick={handleClick}>
       {throughcheckedIcon && placementPage === "GeneralPlacements" && (
@@ -41,9 +45,7 @@ const OverviewCard = ({ allCounts, placementPage }) => {
             Throughout 60% in Degree
           </p>
           <p className="font-bold text-[1.875vw] text-[#002248] pl-[1.563vw] pb-[2.778vh] mobile:text-[4.651vw] mobile:pl-[2.791vw] mobile:pb-[2.146vh]">
-            {placementPage === "GeneralPlacements"
-              ? allCounts?.response?.throughOutSixtyPercent
-              : allCounts?.response?.filterDataCounts?.throughOutSixty}
+            {formatToIndianCurrency(overviewCount)}
           </p>
         </div>
         <div>

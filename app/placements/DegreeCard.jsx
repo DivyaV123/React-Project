@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import "./PlacementCards.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { formatToIndianCurrency } from "@/lib/utils";
 const DegreeCard = ({ allCounts,placementPage }) => {
   const {
     setPage,
@@ -28,6 +29,9 @@ const DegreeCard = ({ allCounts,placementPage }) => {
       setPage(0)
     } else return;
   };
+  const degreeCardCount=placementPage === "GeneralPlacements"
+  ? allCounts?.response?.lessThanSixtyPercent
+  : allCounts?.response?.filterDataCounts?.lessThanSixty
   return (
     <div className={`${placementPage === "GeneralPlacements" ?'degreeCard' :'degreeInternal'} relative cursor-pointer`} onClick={handleClick}>
       {lesscheckedIcon && placementPage === "GeneralPlacements" && (
@@ -42,9 +46,7 @@ const DegreeCard = ({ allCounts,placementPage }) => {
             Less than 60% in <br /> Degree
           </p>
           <p className="font-bold text-[1.875vw] text-[#F28C21] pl-[1.563vw] pb-[2.778vh] mobile:text-[4.651vw] mobile:pl-[2.791vw] mobile:pb-[2.146vh]">
-            {placementPage === "GeneralPlacements"
-              ? allCounts?.response?.lessThanSixtyPercent
-              : allCounts?.response?.filterDataCounts?.lessThanSixty}
+            {formatToIndianCurrency(degreeCardCount)}
           </p>
         </div>
       </div>

@@ -2,6 +2,7 @@
 import React, { useContext, useEffect } from "react";
 import "./PlacementCards.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { formatToIndianCurrency } from "@/lib/utils";
 const TotalPlacedCard = ({ allCounts, placementPage }) => {
   const {
     setThroughCheckedIcon,
@@ -13,7 +14,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
     setPlacementParam,
     setSideBarBtn,
     setFilterPlacementData,
-    setPage
+    setPage,
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
@@ -23,13 +24,22 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
       setThroughCheckedIcon(false);
       setNonItCheckedIcon(false);
       setItCheckedIcon(false);
-      setSideBarBtn("")
-      setFilterPlacementData({})
-      setPage(0)
+      setSideBarBtn("");
+      setFilterPlacementData({});
+      setPage(0);
     } else return;
   };
+  const TotalPlaceCount =
+    placementPage === "GeneralPlacements"
+      ? allCounts?.response?.allPlacedCount
+      : allCounts?.response?.filterDataCounts?.total;
   return (
-    <div className={`${placementPage === "GeneralPlacements" ?'placedCard' :'internalStats'} relative cursor-pointer mobile:mx-[7.442vw]`} onClick={handleClick}>
+    <div
+      className={`${
+        placementPage === "GeneralPlacements" ? "placedCard" : "internalStats"
+      } relative cursor-pointer mobile:mx-[7.442vw]`}
+      onClick={handleClick}
+    >
       {placeCheckedIcon && placementPage === "GeneralPlacements" && (
         <img
           src="../../checked.svg"
@@ -41,9 +51,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
           Total Placed
         </p>
         <p className="font-bold text-[2.5vw] pl-[1.563vw] pb-[2.778vh] text-[#FAFAFA] mobile:text-[5.581vw] mobile:pl-[5.581vw] mobile:pb-[1.073vh] ">
-          {placementPage === "GeneralPlacements"
-            ? allCounts?.response?.allPlacedCount
-            : allCounts?.response?.filterDataCounts?.total}
+          {formatToIndianCurrency(TotalPlaceCount)}
         </p>
       </div>
     </div>

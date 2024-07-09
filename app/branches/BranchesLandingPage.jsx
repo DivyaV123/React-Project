@@ -18,23 +18,13 @@ function BranchesLandingPage({ BranchDetails }) {
     const { onGoingBatches, upComingBatches } = useContext(GlobalContext)
     const [selectedImg, setSelectedImg] = useState(branchData.branchImage != "" ? branchData.branchImage : '../images/Frame 22.png')
     const corosalImgs = [
-        '../images/branchesCorosalImg1.png',
-        '../images/branchesCorosamg2.png',
-        '../images/branchesCorosamg3.png',
-        '../images/branchesCorosamg4.png',
-        '../images/branchesCorosamg5.png'
+        '/images/branchesCorosalImg1.png',
+        '/images/branchesCorosamg2.png',
+        '/images/branchesCorosamg3.png',
+        '/images/branchesCorosamg4.png',
+        '/images/branchesCorosamg5.png'
     ]
 
-    const branchDetails = [
-        {
-            branchName: 'Basavanagudi',
-            address: '01, Hayavadana Rao Rd, Basappa Layout, Gavipuram Extension, Gavipuram Extention, Kempegowda Nagar, Bengaluru, Karnataka 560019',
-            phone: '+91 8265-569-845',
-            upcomingBatches: '12 Upcoming Batches',
-            onGoingBaches: '06 Ongoing Batches'
-        }
-    ]
-    const [selectedImage, setSelectedImage] = useState(null);
     const [currentSlide, setCurrentSlide] = useState(0);
 
     // Assume 4 images per slide
@@ -121,6 +111,7 @@ function BranchesLandingPage({ BranchDetails }) {
                                     ))}
                                 </div>
                             </CarouselItem>
+
                         </CarouselContent>
                     </Carousel>
                     <div onClick={handleNext}>

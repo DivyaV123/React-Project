@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react'
 import TrainingCardSkeleton from '@/components/ourBranches/trainingMode/TrainingCardSkeleton'
 import './CourseLanding.scss';
 import Image from 'next/image';
+import { truncateText ,toProperCase} from '@/lib/utils';
+
 
 function StudentsPlacedCard({ studentsInfo, page }) {
     const [isloading, setisLoading] = useState(true)
@@ -31,13 +33,13 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                                 <img className='w-20 h-20 mobile:w-[18.605vw] mobile:h-[8.584vh]  rounded-full' src={element.photoLink.length ? element.photoLink : '../../images/user.jpg'} alt='no image' />
                             </figure>
                             <header>
-                                <h1 title={element.name} className={`flex justify-center  font-medium text-dark-gray text-[1vw] mobile:text-[3.721vw]  text-center ${page !== 'branch' ? "pb-[3.333vh] " : "pb-[2.222vh] mobile:pb-[2.361vh]"}`}>
-                                    {element.name.length > 11 ? element.name.substring(0, 11) + '...' : element.name}
+                                <h1 title={element?.name} className={`flex justify-center  font-medium text-dark-gray text-[1vw] mobile:text-[3.721vw]  text-center ${page !== 'branch' ? "pb-[3.333vh] " : "pb-[2.222vh] mobile:pb-[2.361vh]"}`}>
+                                    {toProperCase(truncateText(element?.name,11))}
                                 </h1>
                                 <article className='flex justify-center'>
                                     <div>
                                         <p className='flex justify-center text-dark-gray pb-[0.556vh] text-[1.094vw] mobile:text-[2.791vw] mobile:pb-[0.751vh]'>{detail}</p>
-                                        <p title={element.degree.degreeStream} className='flex justify-center text-dark-gray text-[1.094vw] mobile:text-[2.791vw]'>{element.degree.degreeStream.length > 18 ? element.degree.degreeStream.substring(0, 18) + '...' : element.degree.degreeStream}</p>
+                                        <p title={element?.degree?.degreeStream} className='flex justify-center text-dark-gray text-[1.094vw] mobile:text-[2.791vw]'>{truncateText(element?.degree?.degreeStream,18)}</p>
                                     </div>
                                 </article>
                             </header>
