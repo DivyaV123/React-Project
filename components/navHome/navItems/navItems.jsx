@@ -81,7 +81,7 @@ function NavItems() {
   const handleContentHover = useCallback((isVisible) => {
     setHoverState((prevState) => ({ ...prevState, content: isVisible }));
   }, []);
-console.log(hoverState,"hoverState")
+
   const handleNavItems = (navItem) => {
     if (navItem === "Contact us") {
       router.push(CONTACT_US_PATH);

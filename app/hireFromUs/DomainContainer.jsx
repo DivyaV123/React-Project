@@ -3,13 +3,13 @@ import React, { useState } from 'react'
 import "./HirefromusLanding.scss";
 import HiringModal from './Modal/HiringModal';
 const domains = [
-  { name: 'Software Developer', image: '../../developer.png' },
-  { name: 'UI/UX designer', image: '../../designer.png' },
-  { name: 'DevOps', image: '../../devops.png' },
-  { name: 'Data Science', image: '../../data.png' },
-  { name: 'Project Management', image: '../../project-management.png' },
-  { name: 'Cyber Security', image: '../../cyber-security.png' },
-  { name: 'Support', image: '../../customer-service.png' },
+  { name: 'Software Developer', image: '../../developer.svg' },
+  { name: 'UI/UX designer', image: '../../designer.svg' },
+  { name: 'DevOps', image: '../../devops.svg' }, 
+  { name: 'Data Science', image: '../../data_science.svg' },
+  { name: 'Project Management', image: '../../project-management.svg' },
+  { name: 'Cyber Security', image: '../../cyber-security.svg' },
+  { name: 'Support', image: '../../support_hire.svg' },
   { name: 'AI/ML', image: '../../AiML.svg' },
 ];
 const DomainContainer = () => {

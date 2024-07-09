@@ -54,3 +54,22 @@
   border: 1px solid #bbbaba !important;
   outline: none !important;
 }
+.exploreCard {
+  width: 21.016vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  @media (max-width: 639px) {
+    width: 60.93vw;
+    height: auto;
+  }
+  .cardStyle {
+    //   width: 40%;
+    //   height: auto;
+    //   max-height: 418px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 0px 4px #00000029;
+    border-radius: 16px;
+    opacity: 1;
+  }
+}

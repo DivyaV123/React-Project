@@ -1,11 +1,13 @@
 import React from 'react'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
 import PlacementCards from './PlacementCards'
+import NavHome from "@/components/navHome/navHome";
 const Placements = () => {
   return (
-    <WebLayout>
-      <PlacementCards/>
-    </WebLayout>
+    <>
+      <NavHome />
+      <PlacementCards />
+    </>
   )
 }
 

@@ -364,7 +364,7 @@ function OurCourse({ page }) {
                         courseCardData.filter(card => !hoveredCategory || card.category === hoveredCategory).map((element, index) => {
 
                           return (
-                            <div className="courseCard" key={index}>
+                            <div className="exploreCard" key={index}>
                               {isloading ? (
                                 <CourseCardSkeleton />
                               ) : (
@@ -482,13 +482,13 @@ function OurCourse({ page }) {
           </div>
         </article>
         <article className="h-full overflow-hidden  w-[66.797vw]">
-          <div className="flex flex-wrap  gap-y-[2.222vh] justify-between w-full h-full overflow-y-scroll courseScroll pt-[1.667vh] pl-[0.938vw] pr-[0.156vw]">
+          <div className="flex flex-wrap  gap-y-[2.222vh] justify-between w-full h-full overflow-y-scroll courseScroll pl-[0.952vw]">
             {courseCardData
               .filter(card => !hoveredCategory || card.category === hoveredCategory).length > 0 ?
               courseCardData
                 .filter(card => !hoveredCategory || card.category === hoveredCategory).map((element, index) => {
                   return (
-                    <div className="courseCard" key={index}>
+                    <div className="exploreCard" key={index}>
                       {isloading ? (
                         <CourseCardSkeleton />
                       ) : (

@@ -53,7 +53,6 @@ function BranchWithFilter() {
     { Tirupati: [] },
     { Kochi: [] },
     { Mysore: [] },
-    { "View all Cities": [] },
   ];
   const handleAccordionToggle = (index) => {
     setOpenIndex(index === openIndex ? -1 : index);

@@ -41,7 +41,7 @@ const FindingCandidates = () => {
               className="city-card p-4 rounded text-center h-[200px] w-[180px] hover:bg-gray-200 cursor-pointer mobile:w-auto mobile:h-auto"
               onClick={() => handleCardClick(city)}
             >
-              <div className="image mb-2 flex justify-center">
+              <div className="image mb-4 flex justify-center">
                 <img
                   src={city.image}
                   alt={city.name}
