@@ -7,6 +7,7 @@ import './branchesCourseCard.scss'
 import CourseCardSkeleton from '@/components/commonComponents/courseCard/CourseCardSkeleton'
 
 function BranchesCourse({ branchCourseData }) {
+
     const [visibleCards, setVisibleCards] = useState(4);
     const [showAll, setShowAll] = useState(false);
     const [isloading, setisLoading] = useState(false);
@@ -53,7 +54,7 @@ function BranchesCourse({ branchCourseData }) {
                     );
                 })}
             </MaxWebWidth>
-            {showViewMoreButton && (
+            {(showViewMoreButton || showAll) && (
                 <MaxWebWidth articalStyling='flex justify-end pb-5 mobile:hidden'>
                     <article className='flex justify-center mt-2'>
                         <Button
