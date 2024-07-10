@@ -98,28 +98,46 @@ const Degree_Branch_Passout = ({ isLoading }) => {
 
   const handleToggleMore = (setMoreOpen, otherSetMoreStates) => {
     setMoreOpen((prevState) => !prevState);
-    otherSetMoreStates.forEach(setState => setState(false));
+    otherSetMoreStates.forEach((setState) => setState(false));
   };
 
   const resetButtonStates = (exceptKey) => {
-    if (exceptKey !== 'degree') setDegreeButton('');
-    if (exceptKey !== 'stream') setBranchButton('');
-    if (exceptKey !== 'yop') setPassOutButton('');
+    if (exceptKey !== "degree") setDegreeButton("");
+    if (exceptKey !== "stream") setBranchButton("");
+    if (exceptKey !== "yop") setPassOutButton("");
   };
 
   const handleItemClick = (item, items, setItems, setButtonState, key) => {
     const index = items.indexOf(item);
+
     if (index >= 6) {
       const newItems = [...items];
-      const temp = newItems[5];
-      newItems[5] = newItems[index];
-      newItems[index] = temp;
-      setItems(newItems);
-      setButtonState(newItems[5]);
+      newItems.splice(index, 1);
+      const sixthItem = newItems[5];
+      newItems[5] = item;
+
+      const unsortedPart = newItems.slice(6);
+      unsortedPart.push(sixthItem);
+      const isNumeric = unsortedPart.every((el) => !isNaN(el));
+
+      unsortedPart.sort((a, b) => {
+        if (isNumeric) {
+          return b - a;
+        } else {
+          if (a < b) return -1;
+          if (a > b) return 1;
+          return 0;
+        }
+      });
+      const sortedItems = [...newItems.slice(0, 6), ...unsortedPart];
+
+      setItems(sortedItems);
+      setButtonState(item);
     } else {
       setButtonState(item);
     }
-    setPlacementParam('');
+
+    setPlacementParam("");
     setPlacedCheckedIcon(false);
     setLessCheckedIcon(false);
     setThroughCheckedIcon(false);
@@ -134,8 +152,8 @@ const Degree_Branch_Passout = ({ isLoading }) => {
   const handleButtonClick = (item, setButtonState, key) => {
     resetButtonStates(key);
     setButtonState(item);
-    setPlacementParam('');
-    setSideBarBtn('');
+    setPlacementParam("");
+    setSideBarBtn("");
     setPlacedCheckedIcon(false);
     setLessCheckedIcon(false);
     setThroughCheckedIcon(false);
@@ -161,9 +179,17 @@ const Degree_Branch_Passout = ({ isLoading }) => {
       {items.slice(0, 6).map((item, index) => (
         <button
           key={index}
-          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${item === buttonState ? "activeButton font-medium" : ""
-            }`}
-          onClick={() => { handleButtonClick(item, setButtonState, key); console.log(abbreviations, abbreviations[item]) }}
+          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
+            item === buttonState &&
+            !lesscheckedIcon &&
+            !throughcheckedIcon &&
+            !itCheckedIcon &&
+            !nonItCheckedIcon &&
+            !placeCheckedIcon
+              ? "activeButton font-medium"
+              : ""
+          }`}
+          onClick={() => handleButtonClick(item, setButtonState, key)}
         >
           {abbreviations[item] || item}
         </button>
