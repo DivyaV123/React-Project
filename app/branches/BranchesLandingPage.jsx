@@ -1,5 +1,5 @@
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {
     Carousel,
     CarouselContent,
@@ -12,12 +12,12 @@ import { svgicons } from '@/components/assets/icons/svgassets'
 import './branchesLandingPage.scss'
 import { GlobalContext } from '@/components/Context/GlobalContext'
 import Image from 'next/image'
-import { Skeleton } from '@/components/ui/skeleton'
+import Loading from '@/lib/Loading'
 
 function BranchesLandingPage({ BranchDetails }) {
     const branchData = BranchDetails?.data
     const { onGoingBatches, upComingBatches } = useContext(GlobalContext)
-    const [selectedImg, setSelectedImg] = useState(branchData.branchImage != "" ? branchData.branchImage : '../images/Frame 22.png')
+    const [selectedImg, setSelectedImg] = useState(branchData.branchImage ? branchData.branchImage : '/images/Frame 22.png')
     const corosalImgs = [
         '/images/branchesCorosalImg1.png',
         '/images/branchesCorosamg2.png',
@@ -25,8 +25,9 @@ function BranchesLandingPage({ BranchDetails }) {
         '/images/branchesCorosamg4.png',
         '/images/branchesCorosamg5.png'
     ]
-
+    const [isLoading, setisLoading] = useState(false)
     const [currentSlide, setCurrentSlide] = useState(0);
+
 
     // Assume 4 images per slide
     const imagesPerSlide = 4;
@@ -51,17 +52,27 @@ function BranchesLandingPage({ BranchDetails }) {
         (currentSlide + 1) * imagesPerSlide
     );
 
+
+
+
+
     return (
         <MaxWebWidth sectionStyling='bg-coursegradient ' articalStyling='flex justify-between mobile:flex-col'>
             <section className='basis-[50%] pt-[11.111vh] sm:pb-[8.889vh] mobile:py-[2.575vh]'>
                 <figure className=''>
-                    {selectedImg &&
-                        <Image
-                            style={{ height: "25vw", width: "49.219vw", objectFit: "cover" }}
-                            height={500}
-                            width={500}
-                            className='rounded-2xl'
-                        />
+                    {
+                        isLoading ? <Loading /> :
+                            selectedImg &&
+                            <Image
+                                style={{ height: "25vw", width: "49.219vw", objectFit: "cover" }}
+                                height={500}
+                                width={500}
+                                className='rounded-2xl'
+                                src={selectedImg}
+                                alt="Image"
+                                placeholder='blur'
+                                blurDataURL="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAFElEQVR4nGNsaGhgwA2Y8MiNYGkA22EBlPG3fjQAAAAASUVORK5CYII="
+                            />
                     }
 
                     {/* <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full object-cover' src={selectedImg} /> */}
@@ -84,7 +95,12 @@ function BranchesLandingPage({ BranchDetails }) {
                                     {currentImages.map((image) => (
                                         <figure
                                             className=''
-                                            onClick={() => { setSelectedImg(image) }}
+                                            onClick={() => {
+                                                setTimeout(() => {
+                                                    setisLoading(false)
+                                                }, 2000);
+                                                setSelectedImg(image);
+                                            }}
                                             key={image}
                                         >
                                             {/* <img
@@ -95,14 +111,14 @@ function BranchesLandingPage({ BranchDetails }) {
                                                 src={image}
                                                 alt='image'
                                             /> */}
-                                            {!image ?
-                                                <Skeleton
-                                                    className="w-[7.813vw] rounded h-[4.563vw]"
-                                                /> :
+                                            {
                                                 <Image
                                                     height={100}
                                                     src={image}
                                                     width={100}
+                                                    alt="image"
+                                                    placeholder='blur'
+                                                    blurDataURL='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAIAAAACUFjqAAAAFElEQVR4nGNsaGhgwA2Y8MiNYGkA22EBlPG3fjQAAAAASUVORK5CYII='
                                                     style={selectedImg === image ? { height: "4.563vw", width: "7.813vw", objectFit: "cover" } : { height: "4.563vw", width: "7.813vw", objectFit: "cover" }}
                                                     className={selectedImg === image
                                                         ? 'border-2 rounded-md border-orange-500 object-cover rounded'

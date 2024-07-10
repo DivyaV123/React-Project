@@ -214,13 +214,13 @@ function CourseFormLanding() {
         <form onSubmit={formikDetails.handleSubmit}>
           <div className="flex justify-between mb-[4.444vh]">
             <div className="w-[33vw]">
-              <p className={commonLabelStyles}>Course</p>
+              <p className={commonLabelStyles}>Category</p>
               <Dropdown
                 sectionStyle="my-section-style"
                 name="course"
                 value={selectedCourse}
                 onChange={handleCourseSelect}
-                placeholder="Select the Course"
+                placeholder="Select the Category"
                 options={courseOptions}
               />
               {formikDetails.touched.course && formikDetails.errors.course ? (
