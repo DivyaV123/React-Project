@@ -51,7 +51,7 @@ function MainNavbar() {
                     <Link href={HOME_PATH}>
                       <img src="../images/pypiders.png" />
                     </Link>
-                  </> : domainVariable === "Byspiders" ?
+                  </> : domainVariable === "Bspiders" ?
                     <>
                       <img src="../images/bspMainLogo.png" />
                     </> : <>  <Link href={HOME_PATH}>

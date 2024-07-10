@@ -37,7 +37,6 @@ function LandingCarosal() {
                   Training Organization
                 </span>{" "}
               </h1>
-              {/* <h1 className=' text-xl gradient-text  text-primary-600 subHead pb-4 text-header-orange font-extra-bold mb-2 mt-2'>TRAINING ORGANIZATION</h1> */}
               <p className="paragraph text-[1.25vw] mobile:text-[2.791vw] font-medium pb-[2.222vh] text-ash mobile:pb-[1.717vh]">
                 World's premier software training institution, dedicated to bridging the gap between industry demands and academic curricula. With centers worldwide, {domainVariable} provides a platform for young minds to cultivate successful careers.
               </p>
@@ -53,7 +52,7 @@ function LandingCarosal() {
         </Fade>
         <Fade right delay={0} duration={1000}>
           <aside className="flex items-center justify-end mobile:hidden">
-            <article className="flex rounded-md gap-4 bg-white absolute w-56 h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[5%] left-[9%] 2xl:left-[17%] border-dark-gray-600  items-center">
+            {/* <article className="flex rounded-md gap-4 bg-white absolute w-56 h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[5%] left-[9%] 2xl:left-[17%] border-dark-gray-600  items-center">
               <figure>
                 <Image
                   src='courseHomeIcon.svg'
@@ -62,7 +61,6 @@ function LandingCarosal() {
                   height={500}
                   className="w-[90%]"
                 />
-                {/* <img src="./courseHomeIcon.svg" /> */}
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -74,10 +72,9 @@ function LandingCarosal() {
                 </h1>
                 <h2 className="font-medium headerText font-large">Courses</h2>
               </div>
-            </article>
-            <article className="flex rounded-md gap-4 bg-white cursor-pointer  absolute w-[15.5rem] h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[33%] left-[66%] 2xl:left-[68%] border-dark-gray-600  items-center">
+            </article> */}
+            {/* <article className="flex rounded-md gap-4 bg-white cursor-pointer  absolute w-[15.5rem] h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[33%] left-[66%] 2xl:left-[68%] border-dark-gray-600  items-center">
               <figure>
-                {/* <img src="./hiringCompanyHomeicon.svg" /> */}
                 <Image
                   src='/hiringCompanyHomeicon.svg'
                   alt="Graduation Report Icon"
@@ -98,8 +95,8 @@ function LandingCarosal() {
                   Hiring Companies
                 </h2>
               </div>
-            </article>
-            <article className="flex rounded-md gap-4 absolute w-[14.75rem] h-[4.5rem] px-4 py-3 z-1  bg-white justify-start border-solid border-2 top-[57%] left-[62%] 2xl:[64%]  border-dark-gray-600  items-center">
+            </article> */}
+            {/* <article className="flex rounded-md gap-4 absolute w-[14.75rem] h-[4.5rem] px-4 py-3 z-1  bg-white justify-start border-solid border-2 top-[57%] left-[62%] 2xl:[64%]  border-dark-gray-600  items-center">
               <figure>
                 <Image
                   src='/teacherHomeIcon.svg'
@@ -108,7 +105,6 @@ function LandingCarosal() {
                   height={500}
                   className="w-[90%]"
                 />
-                {/* <img src="./teacherHomeIcon.svg" /> */}
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -120,8 +116,8 @@ function LandingCarosal() {
                 </h1>
                 <h2 className="font-medium headerText font-large ">Trainers</h2>
               </div>
-            </article>
-            <article className="flex rounded-md gap-4 absolute w-[14.75rem] h-24 bg-white justify-start border-solid border-2 top-[27%] left-[3%] 2xl:left-[11%] border-dark-gray-600 px-4 py-3 items-center">
+            </article> */}
+            {/* <article className="flex rounded-md gap-4 absolute w-[14.75rem] h-24 bg-white justify-start border-solid border-2 top-[27%] left-[3%] 2xl:left-[11%] border-dark-gray-600 px-4 py-3 items-center">
               <figure>
                 <Image
                   src='/studentPlaceMentHomeIcon.svg'
@@ -130,7 +126,6 @@ function LandingCarosal() {
                   height={500}
                   className="w-[90%]"
                 />
-                {/* <img src="./studentPlaceMentHomeIcon.svg" /> */}
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -141,8 +136,8 @@ function LandingCarosal() {
                   in every 5 mins
                 </h2>
               </div>
-            </article>
-            <article className="flex rounded-md gap-4 absolute w-[15rem] h-[4.5rem] px-4 py-3 bg-white justify-start border-solid border-2 top-[56%] -left-[3%] 2xl:left-[4%] border-dark-gray-600  items-center">
+            </article> */}
+            {/* <article className="flex rounded-md gap-4 absolute w-[15rem] h-[4.5rem] px-4 py-3 bg-white justify-start border-solid border-2 top-[56%] -left-[3%] 2xl:left-[4%] border-dark-gray-600  items-center">
               <figure>
                 <Image
                   src='/trainedStudentsHomeIcon.svg'
@@ -151,7 +146,6 @@ function LandingCarosal() {
                   height={500}
                   className="w-[90%]"
                 />
-                {/* <img src="./trainedStudentsHomeIcon.svg" /> */}
               </figure>
               <div>
                 <h1 className="headerText font-bold">
@@ -163,13 +157,8 @@ function LandingCarosal() {
                 </h1>
                 <h2 className="headerText font-medium">Trained Students</h2>
               </div>
-            </article>
+            </article> */}
             <figure className="w-[75%] h-[84vh]">
-              {/* <img
-                src="./landScreenpicture.png"
-                className="h-[84vh]"
-                alt="pic001"
-              ></img> */}
               <Image
                 src='/landScreenpicture.png'
                 width={500}
