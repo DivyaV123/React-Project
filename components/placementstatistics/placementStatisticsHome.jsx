@@ -13,7 +13,7 @@ import Image from "next/image";
 import { branchAbbreviations } from "@/lib/utils";
 
 function PlacementStatisticsHome({ page }) {
-  const { setAllStaticsCount, setNonItCheckedIcon, setLessCheckedIcon } =
+  const { setAllStaticsCount, setNonItCheckedIcon,setItCheckedIcon,setThroughCheckedIcon, setLessCheckedIcon,setPlacedCheckedIcon } =
     useContext(GlobalContext);
   const {
     data: countDetails,
@@ -29,12 +29,12 @@ function PlacementStatisticsHome({ page }) {
   const degrees = [
     "BE",
     "BCA",
-    "B.Com",
+    "BCom",
     "MCA",
     "M.Tech",
     "MBA",
-    "Msc",
-    "MS",
+    "MSC",
+    "MSW",
     "More...",
   ];
   const branches = [
@@ -81,7 +81,13 @@ function PlacementStatisticsHome({ page }) {
   const invertedBranchAbbreviations = Object.fromEntries(
     Object.entries(branchAbbreviations).map(([key, value]) => [value, key])
   );
-
+const disableIcons =()=>{
+  setLessCheckedIcon(false);
+  setThroughCheckedIcon(false);
+  setNonItCheckedIcon(false);
+  setItCheckedIcon(false);
+  setPlacedCheckedIcon(false)
+}
   return (
     <section className="sm:w-[87.5vw] sm:m-auto mobile:w-full  align-center sm:mt-8 ">
       <header>
@@ -139,6 +145,7 @@ function PlacementStatisticsHome({ page }) {
                 return (
                   <Link href={href}>
                     <Badge
+                    onClick={disableIcons}
                       variant=""
                       className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh]"
                     >
@@ -167,6 +174,7 @@ function PlacementStatisticsHome({ page }) {
                     <Link href={href}>
                       <Badge
                         variant=""
+                        onClick={disableIcons}
                         className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh]"
                       >
                         {element}
