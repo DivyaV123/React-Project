@@ -96,10 +96,14 @@ function BranchesLandingPage({ BranchDetails }) {
                                         <figure
                                             className=''
                                             onClick={() => {
-                                                setTimeout(() => {
-                                                    setisLoading(false)
-                                                }, 2000);
-                                                setSelectedImg(image);
+                                                let x = Promise.all(image);
+                                                console.log({x})
+                                                console.log('x')
+                                                // setTimeout(() => {
+                                                //     setisLoading(false)
+                                                // }, 2000);
+                                              
+                                                // setSelectedImg(image);
                                             }}
                                             key={image}
                                         >
