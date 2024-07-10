@@ -8,6 +8,7 @@ import { branchAbbreviations } from "@/lib/utils";
 import BarSkeleton from "@/components/skeletons/BarSkeleton";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { Suspense } from 'react'
 
 const Degree_Branch_Passout = ({ isLoading }) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
@@ -36,7 +37,6 @@ const Degree_Branch_Passout = ({ isLoading }) => {
   } = useContext(GlobalContext);
 
   const searchParams = useSearchParams();
-  console.log({searchParams})
 
   const {
     data: degreeAndStreamdata,
@@ -62,11 +62,11 @@ const Degree_Branch_Passout = ({ isLoading }) => {
   }, [degreeAndStreamdata, yopData]);
 
   useEffect(() => {
-    const degree = searchParams.get('degree') ;
-    const stream = searchParams.get('stream') ;
-    const yop = searchParams.get('yop') ;
-    
-console.log(decodeURIComponent(stream),"asd",stream)
+    const degree = searchParams.get('degree');
+    const stream = searchParams.get('stream');
+    const yop = searchParams.get('yop');
+
+    console.log(decodeURIComponent(stream), "asd", stream)
 
     if (degree) {
       setDegreeButton(degree);
@@ -161,10 +161,9 @@ console.log(decodeURIComponent(stream),"asd",stream)
       {items.slice(0, 6).map((item, index) => (
         <button
           key={index}
-          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
-            item === buttonState ? "activeButton font-medium" : ""
-          }`}
-          onClick={() => {handleButtonClick(item, setButtonState, key);console.log(abbreviations,abbreviations[item])}}
+          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${item === buttonState ? "activeButton font-medium" : ""
+            }`}
+          onClick={() => { handleButtonClick(item, setButtonState, key); console.log(abbreviations, abbreviations[item]) }}
         >
           {abbreviations[item] || item}
         </button>
@@ -195,107 +194,109 @@ console.log(decodeURIComponent(stream),"asd",stream)
       )}
     </div>
   );
- 
-  
 
-//NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
-useEffect(() => {
-  // Get stream value from URL
-  const streamFromURL = searchParams.get('stream');
-  const degreeFromURL = searchParams.get('degree');
 
-  // Check conditions for updating branchList
-  if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
-    // Ensure streamFromURL exists in branchList
-    if (branchList.includes(streamFromURL)) {
-      // Create a new array with streamFromURL replacing the last item of the first 6 items
-      const newBranchItems = [...branchList];
-      const branchLastIndex = 5;
-      const branchUrlItemIndex = newBranchItems.indexOf(streamFromURL);
 
-      // Swap the streamFromURL with the item at the lastIndex
-      [newBranchItems[branchLastIndex], newBranchItems[branchUrlItemIndex]] = [newBranchItems[branchUrlItemIndex], newBranchItems[branchLastIndex]];
+  //NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
+  useEffect(() => {
+    // Get stream value from URL
+    const streamFromURL = searchParams.get('stream');
+    const degreeFromURL = searchParams.get('degree');
 
-      // Update branchList state with the new items
-      setBranchList(newBranchItems);
+    // Check conditions for updating branchList
+    if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
+      // Ensure streamFromURL exists in branchList
+      if (branchList.includes(streamFromURL)) {
+        // Create a new array with streamFromURL replacing the last item of the first 6 items
+        const newBranchItems = [...branchList];
+        const branchLastIndex = 5;
+        const branchUrlItemIndex = newBranchItems.indexOf(streamFromURL);
 
-      // Update the active button state if necessary
-      setBranchButton(streamFromURL);
+        // Swap the streamFromURL with the item at the lastIndex
+        [newBranchItems[branchLastIndex], newBranchItems[branchUrlItemIndex]] = [newBranchItems[branchUrlItemIndex], newBranchItems[branchLastIndex]];
+
+        // Update branchList state with the new items
+        setBranchList(newBranchItems);
+
+        // Update the active button state if necessary
+        setBranchButton(streamFromURL);
+      }
     }
-  }
 
-  // Check conditions for updating degreeList
-  if (degreeFromURL && degreeList.length > 6 && !degreeList.slice(0, 6).includes(degreeFromURL)) {
-   
-    if (degreeList.includes(degreeFromURL)) {
-      
-      const newDegreeItems = [...degreeList];
-      const degreeLastIndex = 5;
-      const degreeUrlItemIndex = newDegreeItems.indexOf(degreeFromURL);
-      [newDegreeItems[degreeLastIndex], newDegreeItems[degreeUrlItemIndex]] = [newDegreeItems[degreeUrlItemIndex], newDegreeItems[degreeLastIndex]];
-      setDegreeList(newDegreeItems);
-      setDegreeButton(degreeFromURL);
+    // Check conditions for updating degreeList
+    if (degreeFromURL && degreeList.length > 6 && !degreeList.slice(0, 6).includes(degreeFromURL)) {
+
+      if (degreeList.includes(degreeFromURL)) {
+
+        const newDegreeItems = [...degreeList];
+        const degreeLastIndex = 5;
+        const degreeUrlItemIndex = newDegreeItems.indexOf(degreeFromURL);
+        [newDegreeItems[degreeLastIndex], newDegreeItems[degreeUrlItemIndex]] = [newDegreeItems[degreeUrlItemIndex], newDegreeItems[degreeLastIndex]];
+        setDegreeList(newDegreeItems);
+        setDegreeButton(degreeFromURL);
+      }
     }
-  }
-}, [searchParams, branchList, setBranchList, setBranchButton, degreeList, setDegreeList, setDegreeButton]);
-  
+  }, [searchParams, branchList, setBranchList, setBranchButton, degreeList, setDegreeList, setDegreeButton]);
+
   return (
-    <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2 mobile:hidden">
-      {isLoading ? (
-        <BarSkeleton />
-      ) : (
-        <>
-          <div className="w-[31.328vw]">
-            <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-              Degree
-            </p>
-            {renderButtonSection(
-              degreeList,
-              degreeButton,
-              setDegreeButton,
-              isDegreeMoreOpen,
-              setIsDegreeMoreOpen,
-              setDegreeList,
-              {},
-              "degree",
-              [setIsBranchMoreOpen, setIsPassOutMoreOpen]
-            )}
-          </div>
-          <div className="w-[31.328vw]">
-            <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-              Stream
-            </p>
-            {renderButtonSection(
-              branchList,
-              branchButton,
-              setBranchButton,
-              isBranchMoreOpen,
-              setIsBranchMoreOpen,
-              setBranchList,
-              branchAbbreviations,
-              "stream",
-              [setIsDegreeMoreOpen, setIsPassOutMoreOpen]
-            )}
-          </div>
-          <div className="w-[31.328vw]">
-            <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-              Year of passout
-            </p>
-            {renderButtonSection(
-              yopList,
-              passOutButton,
-              setPassOutButton,
-              isPassOutMoreOpen,
-              setIsPassOutMoreOpen,
-              setYopList,
-              {},
-              "yop",
-              [setIsDegreeMoreOpen, setIsBranchMoreOpen]
-            )}
-          </div>
-        </>
-      )}
-    </section>
+    <Suspense>
+      <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2 mobile:hidden">
+        {isLoading ? (
+          <BarSkeleton />
+        ) : (
+          <>
+            <div className="w-[31.328vw]">
+              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+                Degree
+              </p>
+              {renderButtonSection(
+                degreeList,
+                degreeButton,
+                setDegreeButton,
+                isDegreeMoreOpen,
+                setIsDegreeMoreOpen,
+                setDegreeList,
+                {},
+                "degree",
+                [setIsBranchMoreOpen, setIsPassOutMoreOpen]
+              )}
+            </div>
+            <div className="w-[31.328vw]">
+              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+                Stream
+              </p>
+              {renderButtonSection(
+                branchList,
+                branchButton,
+                setBranchButton,
+                isBranchMoreOpen,
+                setIsBranchMoreOpen,
+                setBranchList,
+                branchAbbreviations,
+                "stream",
+                [setIsDegreeMoreOpen, setIsPassOutMoreOpen]
+              )}
+            </div>
+            <div className="w-[31.328vw]">
+              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+                Year of passout
+              </p>
+              {renderButtonSection(
+                yopList,
+                passOutButton,
+                setPassOutButton,
+                isPassOutMoreOpen,
+                setIsPassOutMoreOpen,
+                setYopList,
+                {},
+                "yop",
+                [setIsDegreeMoreOpen, setIsBranchMoreOpen]
+              )}
+            </div>
+          </>
+        )}
+      </section >
+    </Suspense>
   );
 };
 
