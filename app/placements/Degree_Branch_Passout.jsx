@@ -6,6 +6,9 @@ import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { branchAbbreviations } from "@/lib/utils";
 import BarSkeleton from "@/components/skeletons/BarSkeleton";
+import { useRouter } from "next/navigation";
+import { useSearchParams } from "next/navigation";
+import { Suspense } from 'react'
 
 const Degree_Branch_Passout = ({ isLoading }) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
@@ -33,8 +36,16 @@ const Degree_Branch_Passout = ({ isLoading }) => {
     placeCheckedIcon,
   } = useContext(GlobalContext);
 
-  const { data: degreeAndStreamdata, error } = useGetAllDegreeAndStreamQuery();
-  const { data: yopData, error: yopError } = useGetAllYearOfPassoutQuery();
+  const searchParams = useSearchParams();
+
+  const {
+    data: degreeAndStreamdata,
+    error,
+  } = useGetAllDegreeAndStreamQuery();
+  const {
+    data: yopData,
+    error: yopError,
+  } = useGetAllYearOfPassoutQuery();
 
   const [degreeList, setDegreeList] = useState([]);
   const [branchList, setBranchList] = useState([]);
@@ -49,6 +60,41 @@ const Degree_Branch_Passout = ({ isLoading }) => {
       setYopList([...(yopData?.response || [])].sort((a, b) => b - a));
     }
   }, [degreeAndStreamdata, yopData]);
+
+  useEffect(() => {
+    const degree = searchParams.get('degree');
+    const stream = searchParams.get('stream');
+    const yop = searchParams.get('yop');
+
+    console.log(decodeURIComponent(stream), "asd", stream)
+
+    if (degree) {
+      setDegreeButton(degree);
+      setFilterPlacementData((prevData) => ({
+        ...prevData,
+        degree: [degree],
+      }));
+    }
+    if (stream) {
+      setBranchButton(stream);
+      setFilterPlacementData((prevData) => ({
+        ...prevData,
+        stream: [stream],
+      }));
+    }
+    if (yop) {
+      setPassOutButton(yop);
+      setFilterPlacementData((prevData) => ({
+        ...prevData,
+        yop: [yop],
+      }));
+    }
+    return () => {
+      setDegreeButton('');
+      setBranchButton('');
+      setPassOutButton('');
+    };
+  }, []);
 
   const handleToggleMore = (setMoreOpen, otherSetMoreStates) => {
     setMoreOpen((prevState) => !prevState);
@@ -175,63 +221,108 @@ const Degree_Branch_Passout = ({ isLoading }) => {
     </div>
   );
 
+
+
+  //NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
+  useEffect(() => {
+    // Get stream value from URL
+    const streamFromURL = searchParams.get('stream');
+    const degreeFromURL = searchParams.get('degree');
+
+    // Check conditions for updating branchList
+    if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
+      // Ensure streamFromURL exists in branchList
+      if (branchList.includes(streamFromURL)) {
+        // Create a new array with streamFromURL replacing the last item of the first 6 items
+        const newBranchItems = [...branchList];
+        const branchLastIndex = 5;
+        const branchUrlItemIndex = newBranchItems.indexOf(streamFromURL);
+
+        // Swap the streamFromURL with the item at the lastIndex
+        [newBranchItems[branchLastIndex], newBranchItems[branchUrlItemIndex]] = [newBranchItems[branchUrlItemIndex], newBranchItems[branchLastIndex]];
+
+        // Update branchList state with the new items
+        setBranchList(newBranchItems);
+
+        // Update the active button state if necessary
+        setBranchButton(streamFromURL);
+      }
+    }
+
+    // Check conditions for updating degreeList
+    if (degreeFromURL && degreeList.length > 6 && !degreeList.slice(0, 6).includes(degreeFromURL)) {
+
+      if (degreeList.includes(degreeFromURL)) {
+
+        const newDegreeItems = [...degreeList];
+        const degreeLastIndex = 5;
+        const degreeUrlItemIndex = newDegreeItems.indexOf(degreeFromURL);
+        [newDegreeItems[degreeLastIndex], newDegreeItems[degreeUrlItemIndex]] = [newDegreeItems[degreeUrlItemIndex], newDegreeItems[degreeLastIndex]];
+        setDegreeList(newDegreeItems);
+        setDegreeButton(degreeFromURL);
+      }
+    }
+  }, [searchParams, branchList, setBranchList, setBranchButton, degreeList, setDegreeList, setDegreeButton]);
+
   return (
-    <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2 mobile:hidden">
-      {isLoading ? (
-        <BarSkeleton />
-      ) : (
-        <>
-          <div className="w-[31.328vw]">
-            <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-              Degree
-            </p>
-            {renderButtonSection(
-              degreeList,
-              degreeButton,
-              setDegreeButton,
-              isDegreeMoreOpen,
-              setIsDegreeMoreOpen,
-              setDegreeList,
-              {},
-              "degree",
-              [setIsBranchMoreOpen, setIsPassOutMoreOpen]
-            )}
-          </div>
-          <div className="w-[31.328vw]">
-            <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-              Stream
-            </p>
-            {renderButtonSection(
-              branchList,
-              branchButton,
-              setBranchButton,
-              isBranchMoreOpen,
-              setIsBranchMoreOpen,
-              setBranchList,
-              branchAbbreviations,
-              "stream",
-              [setIsDegreeMoreOpen, setIsPassOutMoreOpen]
-            )}
-          </div>
-          <div className="w-[31.328vw]">
-            <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-              Year of passout
-            </p>
-            {renderButtonSection(
-              yopList,
-              passOutButton,
-              setPassOutButton,
-              isPassOutMoreOpen,
-              setIsPassOutMoreOpen,
-              setYopList,
-              {},
-              "yop",
-              [setIsDegreeMoreOpen, setIsBranchMoreOpen]
-            )}
-          </div>
-        </>
-      )}
-    </section>
+    <Suspense>
+      <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2 mobile:hidden">
+        {isLoading ? (
+          <BarSkeleton />
+        ) : (
+          <>
+            <div className="w-[31.328vw]">
+              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+                Degree
+              </p>
+              {renderButtonSection(
+                degreeList,
+                degreeButton,
+                setDegreeButton,
+                isDegreeMoreOpen,
+                setIsDegreeMoreOpen,
+                setDegreeList,
+                {},
+                "degree",
+                [setIsBranchMoreOpen, setIsPassOutMoreOpen]
+              )}
+            </div>
+            <div className="w-[31.328vw]">
+              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+                Stream
+              </p>
+              {renderButtonSection(
+                branchList,
+                branchButton,
+                setBranchButton,
+                isBranchMoreOpen,
+                setIsBranchMoreOpen,
+                setBranchList,
+                branchAbbreviations,
+                "stream",
+                [setIsDegreeMoreOpen, setIsPassOutMoreOpen]
+              )}
+            </div>
+            <div className="w-[31.328vw]">
+              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+                Year of passout
+              </p>
+              {renderButtonSection(
+                yopList,
+                passOutButton,
+                setPassOutButton,
+                isPassOutMoreOpen,
+                setIsPassOutMoreOpen,
+                setYopList,
+                {},
+                "yop",
+                [setIsDegreeMoreOpen, setIsBranchMoreOpen]
+              )}
+            </div>
+          </>
+        )}
+      </section >
+    </Suspense>
   );
 };
 

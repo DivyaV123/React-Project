@@ -31,10 +31,10 @@ const EligibilityCriteria = () => {
           {criteria.map((item, index) => (
             <div
               key={index}
-              className='flex'
+              className='flex items-center'
             >
               <Image src={item.icon} alt={item.icon} width={24} height={24} />
-              <p className='text-[1.07vw] text-[#575757] font-normal pl-[1vw] text-nowrap'>{item.text}</p>
+              <p className=' leading-[3vh] text-[1.07vw] text-[#575757] font-normal pl-[1vw] text-nowrap'>{item.text}</p>
             </div>
           ))}
         </div>

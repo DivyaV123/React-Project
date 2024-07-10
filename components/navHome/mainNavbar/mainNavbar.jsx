@@ -53,7 +53,7 @@ function MainNavbar() {
                     </Link>
                   </> : domainVariable === "Byspiders" ?
                     <>
-                      <img src="../images/bspiders.png" />
+                      <img src="../images/bspMainLogo.png" />
                     </> : <>  <Link href={HOME_PATH}>
                       <Svg
                         className={`mobile:w-[13.953vw] mobile:h-[4.077vh]`}

@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect } from 'react'
 import './IndividualCentres.scss'
+import Image from 'next/image'
 const CommonBranch = ({ selectedId, page }) => {
   useEffect(() => {
   }, [selectedId])
@@ -17,10 +18,13 @@ const CommonBranch = ({ selectedId, page }) => {
             key={branchIndex}
             className={` sm:w-[20.469vw] mobile:mt-[1.717vh]  p-2  rounded-md ${page === 'offlineBranches' ? "flex-shrink-0 h-[58vh] flex-wrap" : "courseSidebar"} `}
           >
-            <img
-              src={branch.branchImage ? branch.branchImage : "../../../../Frame 41334.png"}
+            <Image
+              src={branch.branchImage ? branch.branchImage : "/Frame 41334.png"}
               alt="Branch"
-              className="w-full h-[9.688vw] mobile:h-[15.451vh] object-cover"
+              height={400}
+              width={500}
+              style={{ height: "9.688vw", objectFit: "cover" }}
+              className="object-cover"
             />
             <header className="text-[1.25rem] font-bold pt-3 mobile:pt-[1.288vh] mobile:text-[4.651vw]">
               {branch.branchName}

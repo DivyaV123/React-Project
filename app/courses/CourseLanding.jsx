@@ -6,6 +6,7 @@ import "@/components/ui/button.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
+import Image from "next/image";
 const CourseLanding = ({
   courseDetails,
   countDetails,
@@ -163,9 +164,11 @@ const CourseLanding = ({
                 </section>
               </div>
               <div>
-                <img
+                <Image
+                  height={500}
+                  width={500}
                   src={courseDetails?.courseImage}
-                  className="w-[28.125vw] h-[60.417vh] sm:mb-[2.222vh] mobile:w-full mobile:h-[26.18vh] mobile:pb-[3.219vh]"
+                  className="object-cover w-[28.125vw] h-[60.417vh] sm:mb-[2.222vh] mobile:w-full mobile:h-[26.18vh] mobile:pb-[3.219vh]"
                   alt="CourseImage"
                 />
               </div>
