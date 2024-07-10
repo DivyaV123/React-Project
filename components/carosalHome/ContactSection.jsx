@@ -31,7 +31,7 @@ function ContactSection() {
         setActive(false);
     };
     return (
-        <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className=' w-[100%] flex justify-center z-10 sticky p-2 bg-white fixed bottom-0'>
+        <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className=' w-[100%] flex justify-center z-0 sticky p-2 bg-white fixed bottom-0'>
             <div className='flex gap-3'>
                 <Button
                     onClick={handleCardClick}

@@ -79,7 +79,7 @@ function ContactUsPage() {
         formikDetails.setFieldValue("phone", countryCode);
         toast({
           variant: "customizeGradient",
-          title: "Thank you for the Feedback",
+          title: "Thank you, We will get back to you soon",
           // description: "Friday, February 10, 2023 at 5:57 PM",
         });
 
@@ -143,11 +143,11 @@ function ContactUsPage() {
         />
 
         <header className="absolute left-[13%] 2xl:left-[18%] flex flex-col justify-center items-center pb-[11.111vh]">
-          <h1 className="flex justify-center gap-2 xl:text-[4rem] tabView:pt-[3.125vh] pt-[14.444vh]  pb-[0.625vw] mobile:relative mobile:top-[3.756vh] mobile:pt-0">
+          <h1 className="items-baseline flex justify-center gap-4  tabView:pt-[3.125vh] pt-[14.444vh]  pb-[0.625vw] mobile:relative mobile:top-[3.756vh] mobile:pt-0">
             <span className="text-[3.75vw] tabView:text-[4.301vw] font-extrabold text-white tracking-tight justify-around mobile:text-[3.256vw] ">
               We are eager to{" "}
             </span>
-            <span className="tracking-tight tabView:text-[4.301vw] gradient-text text-[3rem] font-extrabold mobile:text-[3.256vw] ">
+            <span className="tracking-tight tabView:text-[4.301vw] text-[3.75vw] gradient-text font-extrabold mobile:text-[3.256vw] ">
               hear from you!
             </span>
           </h1>

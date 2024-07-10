@@ -35,7 +35,6 @@ const PlacementCards = () => {
     refetch()
   },[filterPlacementData,placementParam])
 
-
   const emptyObj = Object.keys(filterPlacementData).length === 0;
   useEffect(() => {
     const searchParams = constructSearchParams();
