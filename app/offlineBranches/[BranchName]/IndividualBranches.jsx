@@ -21,10 +21,10 @@ const IndividualBranches = () => {
   const [branchName] = pathname.split("/").slice(2);
   const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery();
   const [currentSlide, setCurrentSlide] = useState(0);
-
+  const [initialLoad, setInitialLoad] = useState(true);
   // Assume 10 cities per view
   const citiesPerView = 10;
-  const newNavCities = homeBranchData?.data[0].cities?.map((element) => {
+  let newNavCities = homeBranchData?.data[0].cities?.map((element) => {
     return {
       name: element.cityName,
       course: element.courses,
@@ -33,7 +33,22 @@ const IndividualBranches = () => {
 
   // Total cities
   const totalCities = newNavCities?.length;
+  // Check if the city from the URL is in the initial set
+  const cityIndex = newNavCities?.findIndex(city => city.name === branchName);
+  const isCityInInitialSet = cityIndex < citiesPerView;
 
+  if (branchName && newNavCities && !isCityInInitialSet) {
+    // Find the city object
+    const branchCity = newNavCities.find(city => city.name === branchName);
+
+    if (branchCity) {
+      // Remove the city from its current position
+      newNavCities = newNavCities.filter(city => city.name !== branchName);
+
+      // Insert the city just before Bhubaneswar
+      newNavCities.splice(citiesPerView - 1, 0, branchCity);
+    }
+  }
   const {setSelectedCourseId } = useContext(GlobalContext);
 
   const selectedCity = newNavCities?.find((city) => city.name === branchName);
