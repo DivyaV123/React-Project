@@ -252,7 +252,7 @@ function OurCourse({ page }) {
       <article
         className={
           page === "explore"
-            ? "flex justify-between  mb-8 mt-8"
+            ? "flex justify-between mobile:flex-col mobile:gap-4  mb-8 mt-8"
             : "flex justify-end mb-3 mobile:justify-center"
         }
       >
