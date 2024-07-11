@@ -13,6 +13,7 @@ import './branchesLandingPage.scss'
 import { GlobalContext } from '@/components/Context/GlobalContext'
 import Image from 'next/image'
 import Loading from '@/lib/Loading'
+import { Skeleton } from '@/components/ui/skeleton'
 
 function BranchesLandingPage({ BranchDetails }) {
     const branchData = BranchDetails?.data
@@ -61,7 +62,11 @@ function BranchesLandingPage({ BranchDetails }) {
             <section className='basis-[50%] pt-[11.111vh] sm:pb-[8.889vh] mobile:py-[2.575vh]'>
                 <figure className=''>
                     {
-                        isLoading ? <Loading /> :
+                        isLoading ?
+                            <Skeleton className='h-[25vw] w-[49.219vw] flex flex-col justify-center items-center'>
+                                <div className="spinner"></div>
+                            </Skeleton>
+                            :
                             selectedImg &&
                             <Image
                                 style={{ height: "25vw", width: "49.219vw", objectFit: "cover" }}
@@ -96,14 +101,12 @@ function BranchesLandingPage({ BranchDetails }) {
                                         <figure
                                             className=''
                                             onClick={() => {
-                                                let x = Promise.all(image);
-                                                console.log({x})
-                                                console.log('x')
-                                                // setTimeout(() => {
-                                                //     setisLoading(false)
-                                                // }, 2000);
-                                              
-                                                // setSelectedImg(image);
+                                                setTimeout(() => {
+                                                    setSelectedImg(image);
+                                                    setisLoading(false)
+                                                }, 500);
+
+                                                setisLoading(true);
                                             }}
                                             key={image}
                                         >
