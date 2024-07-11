@@ -39,30 +39,35 @@ const HirefromusLanding = () => {
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+             className=" mobile:w-[12vw]"
           />
           <Image
             src='/awshire.svg'
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+             className=" mobile:w-[12vw]"
           />
           <Image
             src='/tatahire.svg'
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+             className=" mobile:w-[12vw]"
           />
           <Image
             src='/bmghire.svg'
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+             className=" mobile:w-[12vw]"
           />
           <Image
             src='/isrohire.svg'
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+            className=" mobile:w-[12vw]"
           />
           {/* <img className="w-[12vw]" src="../../googlehire.svg" />
           <img className="w-[12vw]" src="../../awshire.svg" />

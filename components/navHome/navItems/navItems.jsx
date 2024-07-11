@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useCallback, useContext } from "react";
+import React, { useState, useCallback, useContext, useEffect } from "react";
 import "./navitems.scss";
 import {
   NavigationMenu,
@@ -21,7 +21,7 @@ import {
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import UniversityProgram from "./UniversityProgram";
 
 
@@ -105,6 +105,26 @@ function NavItems() {
       }
     }
   };
+
+  const [activeItem, setActiveItem] = useState("");
+  const pathname = usePathname();
+  const params = pathname.split("/").pop();
+  useEffect(() => {
+    if (pathname) {
+      const activeNavItem = navItems.find(
+        (item) =>
+          item.name.replace(/\s/g, "").toLowerCase().trim() ===
+          params.toLowerCase()
+      );
+
+      if (activeNavItem) {
+        setActiveItem(activeNavItem.name);
+      } else {
+        setActiveItem(null);
+      }
+    }
+  }, [pathname, navItems]);
+
   return (
     <>
       <NavigationMenu
@@ -125,14 +145,16 @@ function NavItems() {
                 >
                   <div className="flex flex-wrap  cursor-pointer font-medium ">
                     <span
-                      onMouseEnter={() =>
-                        setStateHovered({
-                          item: navItem.name,
-                          state: true,
-                        })
-                      }
+                      // onMouseEnter={() =>
+                      //   setStateHovered({
+                      //     item: navItem.name,
+                      //     state: true,
+                      //   })
+                      // }
                       className={
-                        stateHovered.item === navItem.name && stateHovered.state
+                        (stateHovered.item === navItem.name &&
+                          stateHovered.state) ||
+                        activeItem === navItem.name
                           ? "text-orange-500 border-b-2 border-orange-500"
                           : "menuHeader font-bold text-normal text-slate hover-underline-animation  text-base 2xl:text-lg 3xl:text-xl"
                       }

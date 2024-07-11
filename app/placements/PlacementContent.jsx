@@ -10,26 +10,26 @@ import TestimonialPopup from "./TestimonialPopup";
 const PlacementContent = ({ counsellorFilterResponse }) => {
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
-  const [testimonialDialog,setTestimonialDialog]=useState(false)
+  const [testimonialDialog, setTestimonialDialog] = useState(false);
   const openImageDialog = () => {
     setImageDialog(true);
     setVideoDialog(false);
-    setTestimonialDialog(false)
+    setTestimonialDialog(false);
   };
   const openVideoDialog = () => {
     setVideoDialog(true);
     setImageDialog(false);
-    setTestimonialDialog(false)
+    setTestimonialDialog(false);
   };
 
-  const extractText=(data)=>{
+  const extractText = (data) => {
     return branchAbbreviations[data] || data;
-  }
-const handleViewmore=()=>{
-  setTestimonialDialog(true);
-  setVideoDialog(false);
-  setImageDialog(false);
-}
+  };
+  const handleViewmore = () => {
+    setTestimonialDialog(true);
+    setVideoDialog(false);
+    setImageDialog(false);
+  };
 
   return (
     <>
@@ -89,20 +89,25 @@ const handleViewmore=()=>{
                 <p className="studentReview mobile:hidden">
                   {student?.testimonial?.writtenTestimonial}
                 </p>
-               
+
                 <p className="studentReview mobile:pb-[1.502vh] sm:hidden">
                   {student?.testimonial?.writtenTestimonial.length > 75 ? (
                     <>
-                      {truncateText(student.testimonial.writtenTestimonial,75)}
+                      {truncateText(student.testimonial.writtenTestimonial, 75)}
                       <AlertDialogTrigger asChild>
-                      <span className="text-[2.558vw] font-semibold" onClick={handleViewmore}>View more</span>
+                        <span
+                          className="text-[2.558vw] font-semibold"
+                          onClick={handleViewmore}
+                        >
+                          View more
+                        </span>
                       </AlertDialogTrigger>
                     </>
                   ) : (
                     student.testimonial.writtenTestimonial
                   )}
                 </p>
-               
+
                 <div className="flex gap-2 items-center mb-[1.111vh] sm:pl-[5vw] mobile:mb-[1.824vh] mobile:gap-4 ">
                   <div className="text-[0.781vw] text-[#201C19] pr-[1.563vw] mobile:hidden">
                     Reviews :
@@ -110,7 +115,19 @@ const handleViewmore=()=>{
                   <div className="iconContainer ">
                     <Link
                       href={student?.testimonial?.googleReview || "#"}
-                      target={student?.testimonial?.googleReview ? "_blank" : "_self"}
+                      target={
+                        student?.testimonial?.googleReview ? "_blank" : "_self"
+                      }
+                      onClick={(e) => {
+                        if (!student?.testimonial?.googleReview) {
+                          e.preventDefault();
+                        }
+                      }}
+                      className={`${
+                        !student?.testimonial?.googleReview
+                          ? "pointer-events-none"
+                          : ""
+                      }`}
                     >
                       <img
                         src="../google 1.svg"
@@ -120,18 +137,25 @@ const handleViewmore=()=>{
                             ? "opacity-30 pointer-events-none"
                             : ""
                         }`}
-                        onClick={(e) => {
-                          if (!student?.testimonial?.googleReview) {
-                            e.preventDefault();
-                          }
-                        }}
                       />
                     </Link>
                   </div>
                   <div className="iconContainer">
                     <Link
                       href={student?.testimonial?.fbReview || "#"}
-                      target={student?.testimonial?.googleReview ? "_blank" : "_self"}
+                      target={
+                        student?.testimonial?.googleReview ? "_blank" : "_self"
+                      }
+                      onClick={(e) => {
+                        if (!student?.testimonial?.fbReview) {
+                          e.preventDefault();
+                        }
+                      }}
+                      className={`${
+                        !student?.testimonial?.fbReview
+                          ? "pointer-events-none"
+                          : ""
+                      }`}
                     >
                       <img
                         src="../facebook 1.svg"
@@ -141,18 +165,25 @@ const handleViewmore=()=>{
                             ? "opacity-30 pointer-events-none"
                             : ""
                         }`}
-                        onClick={(e) => {
-                          if (!student?.testimonial?.fbReview) {
-                            e.preventDefault();
-                          }
-                        }}
                       />
                     </Link>
                   </div>
                   <div className="iconContainer">
                     <Link
                       href={student?.testimonial?.youtubeReview || "#"}
-                      target={student?.testimonial?.googleReview ? "_blank" : "_self"}
+                      target={
+                        student?.testimonial?.googleReview ? "_blank" : "_self"
+                      }
+                      onClick={(e) => {
+                        if (!student?.testimonial?.youtubeReview) {
+                          e.preventDefault();
+                        }
+                      }}
+                      className={`${
+                        !student?.testimonial?.youtubeReview
+                          ? "pointer-events-none"
+                          : ""
+                      }`}
                     >
                       <img
                         src="../youtube 1.svg"
@@ -162,11 +193,6 @@ const handleViewmore=()=>{
                             ? "opacity-30 pointer-events-none"
                             : ""
                         }`}
-                        onClick={(e) => {
-                          if (!student?.testimonial?.youtubeReview) {
-                            e.preventDefault();
-                          }
-                        }}
                       />
                     </Link>
                   </div>
@@ -193,20 +219,16 @@ const handleViewmore=()=>{
               </AlertDialogTrigger>
             </div>
             {imageDialog && (
-              
               <ImagePopup
                 testimonialLink={student?.testimonial?.testimonialLink}
               />
-             
             )}
             {videoDialog && (
               <VideoPopup videoLink={student?.testimonial?.youtubeReview} />
             )}
-            {
-              testimonialDialog &&(
-                <TestimonialPopup student={student} extractText={extractText}/>
-              )
-            }
+            {testimonialDialog && (
+              <TestimonialPopup student={student} extractText={extractText} />
+            )}
           </AlertDialog>
         </section>
       ))}
