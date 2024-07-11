@@ -161,6 +161,7 @@ function LandingCarosal() {
             <figure className="w-[75%] h-[84vh]">
               <Image
                 src='/landScreenpicture.png'
+                priority={true}
                 width={500}
                 height={500}
                 sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"

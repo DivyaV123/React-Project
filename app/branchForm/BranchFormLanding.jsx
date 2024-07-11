@@ -25,7 +25,12 @@ function BranchFormLanding() {
     const validationSchema = Yup.object({
         BranchName: Yup.string().required("BranchName is required"),
         phone: Yup.string().required("Mobile number is required"),
-        address: Yup.string().required("address is required"),
+        country: Yup.string().required("country is required"),
+        state: Yup.string().required("state is required"),
+        city: Yup.string().required("city is required"),
+        street: Yup.string().required("street is required"),
+        pincode: Yup.string().required("pincode is required"),
+        location: Yup.string().required("location is required"),
         faqs: Yup.array()
             .min(1, "At least one FAQ is required")
             .of(
@@ -39,7 +44,12 @@ function BranchFormLanding() {
     const initialValues = {
         BranchName: "",
         phone: '',
-        address: "",
+        country: "",
+        state: "",
+        city: "",
+        street: "",
+        pincode: "",
+        location: "",
         faqs: [],
         question: "",
         answer: "",
@@ -213,21 +223,39 @@ function BranchFormLanding() {
                         )}
                     </div>
                 </div>
-                <div className="w-[100%]">
-                    <p className={commonFieldClass}>Address</p>
-                    <TextArea
-                        className='relative h-[8.516vw]'
-                        name='address'
-                        placeholder='enter the Address'
-                        value={formikDetails.values.address}
-                        onChange={formikDetails.handleChange}
-                    />
-                    {formikDetails.touched.address &&
-                        formikDetails.errors.address ? (
-                        <div className="text-red-500">
-                            {formikDetails.errors.address}
+                <div className="w-[100%] p-5 border border-gray-300 roundex-xl">
+                    <div className='flex gap-3 flex justify-around'>
+                        <div className='w-[100%]'>
+                            <p className="pt-[1.5vw] font-bold">country</p>
+                            <Input
+                                name='country'
+                                value={formikDetails.values.country}
+                                handleBlur={formikDetails.handleBlur}
+                                handleChange={formikDetails.handleChange}
+                            />
+                            {formikDetails.touched.country &&
+                                formikDetails.errors.country ? (
+                                <div className="text-red-500">
+                                    {formikDetails.errors.country}
+                                </div>
+                            ) : null}
                         </div>
-                    ) : null}
+                        <div className='w-[100%]'>
+                            <p className="pt-[1.5vw] font-bold">State</p>
+                            <Input
+                                name='state'
+                                value={formikDetails.values.state}
+                                handleBlur={formikDetails.handleBlur}
+                                handleChange={formikDetails.handleChange}
+                            />
+                            {formikDetails.touched.state &&
+                                formikDetails.errors.state ? (
+                                <div className="text-red-500">
+                                    {formikDetails.errors.state}
+                                </div>
+                            ) : null}
+                        </div>
+                    </div>
                 </div>
                 <div className='mb-5'>
                     <aside>
