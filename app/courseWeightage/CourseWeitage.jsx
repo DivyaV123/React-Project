@@ -23,20 +23,33 @@ function CourseWeitage() {
     const [courseNames, setCourseNames] = useState([])
     const [selectedSubCourse, setSelectedSubCourse] = useState("");
     const [selectedCourseName, setSelectedCourseName] = useState("")
-    const {
-        data: courseData,
-        error,
-        isLoading,
-    } = useGetAllCategoriesInCourseQuery();
+    const [weightage, setWeightage] = useState()
     const validationSchema = Yup.object({
         category: Yup.string().required("category is required"),
         // subCourse: Yup.string().required("Sub Course is required"),
-    });// courseName: Yup.string().required("Course name is required"),
+        // courseName: Yup.string().required("Course name is required"),
+        QSpiders: Yup.number()
+            .required("QSpiders weightage is required")
+            .min(0, "QSpiders weightage must be non-negative"),
+        JSpiders: Yup.number()
+            .required("JSpiders weightage is required")
+            .min(0, "JSpiders weightage must be non-negative"),
+        PYSpiders: Yup.number()
+            .required("PYSpiders weightage is required")
+            .min(0, "PYSpiders weightage must be non-negative"),
+        BSpiders: Yup.number()
+            .required("BSpiders weightage is required")
+            .min(0, "BSpiders weightage must be non-negative")
+    });
 
     const initialValues = {
         category: "",
         subCourse: "",
         courseName: "",
+        QSpiders: "",
+        JSpiders: "",
+        PYSpiders: "",
+        BSpiders: ""
     };
     const courseOptions = []
     courseResponse?.data?.map((element) => {
@@ -93,24 +106,71 @@ function CourseWeitage() {
         formikDetails.setFieldValue("category", selectedCourseId);
         formikDetails.setFieldValue("subCourse", "");
         formikDetails.setFieldValue("courseName", "");
+        setSelectedCourseName('')
 
     };
 
     const handleSubCourseSelect = (event) => {
+        let allSubCourse = courseResponse.data[2].subCourse
         const selectedCourseId = event.target.value;
         setSelectedSubCourse(event.target.value);
 
-        const selectedCourseData = courseResponse?.data.find(
-            (course) => course.subCourse == selectedCourseId
+        const selectedCourseData = allSubCourse?.find(
+            (course) => course.title == selectedCourseId
         );
+        console.log(selectedCourseData, "selectedCourseData")
+
+        if (selectedCourseData &&
+            selectedCourseData.subCourseResponse.length > 0) {
+
+            setCourseNames(
+                selectedCourseData.subCourseResponse.map((sub) => ({
+                    label: sub.title,
+                    value: sub.title,
+                    id: sub.subCourseResponseId
+                }))
+            )
+            setCourseDisable(false);
+        }
 
         formikDetails.setFieldValue("subCourse", event.target.value);
     };
 
     const handleCourseNameSelected = (event) => {
-        setSelectedCourseName(event.target.value);
-        formikDetails.setFieldValue("subCourse", event.target.value);
+        const allCourse = courseResponse.data;
+        const allSubCourse = courseResponse.data[2].subCourse;
+        const selectedCourseName = event.target.value;
+        let selectedCourseWeightage = null;
+
+        if (selectedCourse) {
+            if (selectedSubCourse) {
+                const subCatData = allSubCourse.find(data => data.title === selectedSubCourse);
+                selectedCourseWeightage = subCatData?.subCourseResponse?.find(course => course.title === selectedCourseName);
+            } else {
+                const categoryData = allCourse.find(data => data.title === selectedCourse);
+                selectedCourseWeightage = categoryData?.courseResponse?.find(course => course.title === selectedCourseName);
+            }
+        }
+
+        console.log(selectedCourseWeightage, "selectedCourseWeightage");
+        setWeightage(selectedCourseWeightage)
+        setSelectedCourseName(selectedCourseName);
+        formikDetails.setFieldValue("subCourse", selectedCourseName);
+
+        if (selectedCourseWeightage) {
+            formikDetails.setFieldValue("QSpiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
+            formikDetails.setFieldValue("JSpiders", selectedCourseWeightage?.weightageDto?.jspiders || "");
+            formikDetails.setFieldValue("PYSpiders", selectedCourseWeightage?.weightageDto?.pyspiders || "");
+            formikDetails.setFieldValue("BSpiders", selectedCourseWeightage?.weightageDto?.bspiders || "");
+        } else {
+            formikDetails.setFieldValue("QSpiders", "");
+            formikDetails.setFieldValue("JSpiders", "");
+            formikDetails.setFieldValue("PYSpiders", "");
+            formikDetails.setFieldValue("BSpiders", "");
+        }
     };
+
+
 
     const formikDetails = useFormik({
         initialValues,
@@ -185,36 +245,76 @@ function CourseWeitage() {
                                 ) : null}
                             </div>
                         </div>
-                        <p className='text-slate-400 p-1'>weitage for the selected Course</p>
+                        <p className='text-slate-400 p-1'>Weightage for the selected Course</p>
                         <div className='p-8 border border-gray-200 rounded-xl'>
                             <div className='flex justify-around'>
                                 <div>
                                     <p>QSpiders</p>
                                     <Input
-                                        name='qsp'
+                                        name='QSpiders'
                                         type='number'
+                                        value={formikDetails.values.QSpiders}
+                                        onChange={formikDetails.handleChange}
+                                        placeholder='QSP weightage'
+                                        onBlur={formikDetails.handleBlur}
                                     />
+                                    {formikDetails.touched.QSpiders &&
+                                        formikDetails.errors.QSpiders ? (
+                                        <div className="text-red-500 text-sm ">
+                                            {formikDetails.errors.QSpiders}
+                                        </div>
+                                    ) : null}
                                 </div>
                                 <div>
                                     <p>JSpiders</p>
                                     <Input
-                                        name='qsp'
+                                        name='JSpiders'
                                         type='number'
+                                        value={formikDetails.values.JSpiders}
+                                        placeholder='JSP Weightage'
+                                        onChange={formikDetails.handleChange}
+                                        onBlur={formikDetails.handleBlur}
                                     />
+                                    {formikDetails.touched.JSpiders &&
+                                        formikDetails.errors.JSpiders ? (
+                                        <div className="text-red-500 text-sm ">
+                                            {formikDetails.errors.JSpiders}
+                                        </div>
+                                    ) : null}
                                 </div>
                                 <div>
                                     <p>PYSpiders</p>
                                     <Input
-                                        name='qsp'
+                                        name='PYSpiders'
                                         type='number'
+                                        value={formikDetails.values.PYSpiders}
+                                        placeholder='PySP Weightage'
+                                        onChange={formikDetails.handleChange}
+                                        onBlur={formikDetails.handleBlur}
                                     />
+                                    {formikDetails.touched.PYSpiders &&
+                                        formikDetails.errors.PYSpiders ? (
+                                        <div className="text-red-500 text-sm ">
+                                            {formikDetails.errors.PYSpiders}
+                                        </div>
+                                    ) : null}
                                 </div>
                                 <div>
                                     <p>BSpiders</p>
                                     <Input
-                                        name='qsp'
+                                        name='BSpiders'
                                         type='number'
+                                        value={formikDetails.values.BSpiders}
+                                        onChange={formikDetails.handleChange}
+                                        placeholder='BSP Weightage'
+                                        onBlur={formikDetails.handleBlur}
                                     />
+                                    {formikDetails.touched.BSpiders &&
+                                        formikDetails.errors.BSpiders ? (
+                                        <div className="text-red-500 text-sm ">
+                                            {formikDetails.errors.BSpiders}
+                                        </div>
+                                    ) : null}
                                 </div>
                             </div>
                         </div>
@@ -223,7 +323,7 @@ function CourseWeitage() {
                                 type="submit"
                                 className="py-2 px-4 bg-gradient rounded-md text-white"
                             >
-                                Submit
+                                {weightage?.weightageDto ? "Edit" : "Add"}
                             </button>
                         </div>
                     </form>
