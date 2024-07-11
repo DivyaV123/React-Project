@@ -54,6 +54,9 @@ const GlobalContextProvider = ({ children }) => {
   const [yearSearchQuery, setYearSearchQuery] = useState("");
   const [streamSearchQuery, setStreamSearchQuery] = useState("");
 
+  //course testimonialpopup
+  const [imageDialog, setImageDialog] = useState(false);
+  const [videoDialog, setVideoDialog] = useState(false);
 
   //daterange
   const [fromValue, setFromValue] = useState("");
@@ -409,7 +412,7 @@ const GlobalContextProvider = ({ children }) => {
         streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
         homeBranchData, setHomeBranchData,
-        domainVariable,hoverState, setHoverState
+        domainVariable,hoverState, setHoverState,imageDialog, setImageDialog,videoDialog, setVideoDialog
       }}
     >
       {children}

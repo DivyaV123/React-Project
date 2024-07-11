@@ -13,12 +13,13 @@ import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { PLACEMENT_PATH } from "@/lib/RouteConstants";
-import { useRouter } from "next/navigation";
+import { useRouter,usePathname } from "next/navigation";
 import { Suspense } from 'react'
 
 const PlacementCards = () => {
   const router = useRouter();
-  const { filterPlacementData, setFilterPlacementData, placementParam, page, size } = useContext(GlobalContext);
+  const pathname = usePathname();
+  const { filterPlacementData, setFilterPlacementData, placementParam, page, size,setSideBarBtn } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const { data: counsellorFilterResponse, error, refetch, isLoading, isFetching } = useFetchCounsellorsQuery({
     pageNumber: page,
@@ -39,6 +40,12 @@ const PlacementCards = () => {
   }, []);
 
   useEffect(() => {
+    setFilterPlacementData({});
+    setSideBarBtn('')
+    router.replace(PLACEMENT_PATH);
+  }, []);
+
+  useEffect(() => {
     refetch();
   }, [filterPlacementData, placementParam]);
 
@@ -53,6 +60,7 @@ const PlacementCards = () => {
       router.push(PLACEMENT_PATH);
     }
   }, [filterPlacementData]);
+  console.log(pathname,"pathname",emptyObj,filterPlacementData,placementParam)
 
   const constructSearchParams = () => {
     let searchParams = "";

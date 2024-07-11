@@ -40,21 +40,21 @@ function RelevantTraining() {
                                     webkitBackgroundClip: "text",
                                     webkitTextFillColor: "transparent",
                                 }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
-                                    2.5Lac+
+                                    100+
                                 </h1>
-                                <p className='text-brown txet-normal flex justify-center  text-center mobile:text-[3.721vw]'>Total no of <br /> students placed</p>
+                                <p className='text-brown txet-normal flex justify-center  text-center mobile:text-[3.721vw]'>Industry-relavent <br />technologies are offered</p>
                             </aside>
                             <aside className='w-[100%]'>
                                 <h1 className='gradient-text  font-extra-bold text-xl opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
-                                    4,100+
+                                    90+
                                 </h1>
-                                <p className='text-brown text-normal flex justify-center  text-center mobile:text-[3.721vw]'>MNC Companies <br /> hire from us</p>
+                                <p className='text-brown text-normal flex justify-center  text-center mobile:text-[3.721vw]'>Training Institues <br /> all over India</p>
                             </aside>
                         </article>
                         <article className='flex justify-center mt-6 mobile:mt-[2.575vh]'>
                             <Button
                                 className='bg-gradient text-white rounded w-[11.719vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw]'
-                                title="Enquiry Now"
+                                title="Enquire Now"
                                 onClick={handleCardClick}
                             />
                         </article>

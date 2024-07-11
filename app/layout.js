@@ -29,7 +29,7 @@ function RootComponent({ children }) {
     <html lang="en">
       <body
         className={cn(
-          `relative h-full antialiased ${poppins.className} ${hoverState?.item === null && !hoverState?.content ? "overflow-y-auto myscrollbar" :"overflow-hidden"}`,
+          `relative h-full antialiased ${poppins.className} ${hoverState?.item === null && !hoverState?.content ? "overflow-y-auto myscrollbar  mr-0" :"overflow-hidden mr-[5px]"}`,
         )}
       >
         <main className="relative flex flex-col min-h-screen">{children}</main>

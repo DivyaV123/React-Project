@@ -82,7 +82,7 @@ function CourseCard({ cardData }) {
             <span className="flex text-[0.938vw] mobile:text-[3.256vw] font-bold pt-0.5 items-baseline">
               <img src="/Icon__colored_star.svg" />
             </span>
-            <span className="flex text-[0.938vw] mobile:text-[2.791vw] items-baseline">{`(6,256)`}</span>
+            <span className="flex text-[0.938vw] mobile:text-[2.791vw] items-baseline">{`(6,256+)`}</span>
           </div>
 
           <div className="flex justify-center gap-2 py-[1.389vh]  ">

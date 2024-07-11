@@ -1,11 +1,13 @@
 import Button from '@/components/commonComponents/button/Button';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useContext } from 'react'
 import "./CourseLanding.scss";
 import EnrollPopUp from '@/components/commonComponents/courseCard/EnrollPopUp';
-
+import { GlobalContext } from '@/components/Context/GlobalContext';
 function CoursePagePop({ courseDetails }) {
     const [showDiv, setShowDiv] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const {imageDialog,videoDialog}=useContext(GlobalContext)
+    console.log(imageDialog,videoDialog,"imageDialog,videoDialog");
     const handleCardClick = () => {
         setIsModalOpen(true);
     };
@@ -31,7 +33,7 @@ function CoursePagePop({ courseDetails }) {
 
     return (
         <>
-            <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className='bg-[#FEF2E7] w-[100%] flex justify-between align-item-center   px-[4.1667vw] fixed top-[7.5vw]'>
+            <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className={`bg-[#FEF2E7] w-[100%] flex justify-between align-item-center   px-[4.1667vw] fixed top-[7.5vw] ${imageDialog || videoDialog ? "right-[5px]" : "right-0"}`}>
                 <p className='text-[1.875vw] font-bold leading-[36px] py-[1.15vw]'>
                     {courseDetails?.courseName}
                 </p>
