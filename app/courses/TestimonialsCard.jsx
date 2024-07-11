@@ -2,14 +2,13 @@
 import { svgicons } from '@/components/assets/icons/svgassets'
 import Svg from '@/components/commonComponents/Svg/Svg'
 import { AlertDialog, AlertDialogTrigger } from '@radix-ui/react-alert-dialog'
-import React, { useState } from 'react'
+import React, { useContext,useState } from 'react'
 import PlacementContent from '../placements/PlacementContent'
 import ImagePopup from '../placements/ImagePopup'
 import VideoPopup from '../placements/VideoPopup'
-
+import { GlobalContext } from '@/components/Context/GlobalContext'
 function TestimonialsCard({ testimonialsData, compleateData }) {
-    const [imageDialog, setImageDialog] = useState(false);
-    const [videoDialog, setVideoDialog] = useState(false);
+const {imageDialog, setImageDialog,videoDialog, setVideoDialog}=useContext(GlobalContext)
     const openImageDialog = () => {
         setImageDialog(true);
         setVideoDialog(false);

@@ -123,7 +123,7 @@ function NavItems() {
                   hoverItem={hoverState.item}
                   hoverContent={hoverState.content}
                 >
-                  <div className="flex flex-wrap space-x-9 cursor-pointer font-medium ">
+                  <div className="flex flex-wrap  cursor-pointer font-medium ">
                     <span
                       onMouseEnter={() =>
                         setStateHovered({

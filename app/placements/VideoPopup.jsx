@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import {
   AlertDialogCancel,
   AlertDialogContent,
@@ -6,17 +6,56 @@ import {
 import "./PlacementCards.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
+import { GlobalContext } from '@/components/Context/GlobalContext';
+
 const VideoPopup = ({ videoLink }) => {
+  const { setVideoDialog } = useContext(GlobalContext);
+  const isMounted = useRef(false);
+
+  const handleClose = () => {
+    if (isMounted.current) {
+      setVideoDialog(false);
+    }
+  };
+
+  useEffect(() => {
+    isMounted.current = true;
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        handleClose();
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      isMounted.current = false;
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, []);
+
   function extractLastWord(url) {
     const match = url.match(/youtu\.be\/([^\/]+)$/);
     return match ? match[1] : null;
   }
+
   return (
     <div className="">
-      <AlertDialogContent className="sm:max-w-[62.5vw] h-[80vh] sm:px-[5.556vh] rounded-xl mobile:h-[50vh] mobile:w-[80vw] mobile:p-0">
-        <AlertDialogCancel className="border-none  p-0 absolute right-0 mobile:right-0 mobile:-top-[0.5rem]">
+      <AlertDialogContent
+        className="sm:max-w-[62.5vw] h-[80vh] sm:px-[5.556vh] rounded-xl mobile:h-[50vh] mobile:w-[80vw] mobile:p-0"
+        onOpenChange={(open) => {
+          if (!open) {
+            handleClose();
+          }
+        }}
+      >
+        <AlertDialogCancel
+          className="border-none p-0 absolute right-0 mobile:right-0 mobile:-top-[0.5rem]"
+          onClick={handleClose}
+        >
           <Svg
-          className='w-[5.953vw] h-[3.472vh] sm:w-[1.953vw]'
+            className='w-[5.953vw] h-[3.472vh] sm:w-[1.953vw]'
             width={svgicons.cancelButtonIcon[0]}
             height={svgicons.cancelButtonIcon[1]}
             viewBox={svgicons.cancelButtonIcon[2]}
