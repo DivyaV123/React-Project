@@ -7,7 +7,7 @@ import PlacementContent from "../placements/PlacementContent";
 import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
-import BlinkingDots from "@/components/skeletons/BlinkingDots";
+import LineLoader from "@/components/skeletons/LineLoader";
 import { COUNSELLOR_SECTION, INTERNAL_STATS } from "@/lib/RouteConstants";
 import { useRouter } from "next/navigation";
 import { usePathname } from "next/navigation";
@@ -220,7 +220,7 @@ const CounsellorCardHeader = () => {
             ) : (
               <>
                 <PlacementContent counsellorFilterResponse={accumulatedData} />
-                {isFetchData && !counsellorFilterResponse?.response?.candidates?.last &&  <BlinkingDots /> }
+                {isFetchData && !counsellorFilterResponse?.response?.candidates?.last &&  <LineLoader /> }
               </>
             )
           ) : (

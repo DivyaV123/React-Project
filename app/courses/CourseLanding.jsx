@@ -60,8 +60,9 @@ const CourseLanding = ({
                 {courseDetails?.mode?.map((classItem, index) => (
                   <button
                     key={index}
-                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === typeOfLearning ? "activecourseButton" : ""
-                      }`}
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${
+                      classItem === typeOfLearning ? "activecourseButton" : ""
+                    }`}
                     onClick={() => {
                       setTypeOfLearning(classItem);
                     }}
@@ -120,14 +121,16 @@ const CourseLanding = ({
                       className="courseStats mobile:w-[50%] mobile:pb-[2.146vh]"
                     >
                       <h1
-                        className={`text-left font-bold mobile:text-[4.651vw] mobile:pb-[0.429vh] text-[1.875vw] pb-[0.556vh]  ${ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
-                          }`}
+                        className={`text-left font-bold mobile:text-[4.651vw] mobile:pb-[0.429vh] text-[1.875vw] pb-[0.556vh]  ${
+                          ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
+                        }`}
                       >
                         {ele.number}
                       </h1>
                       <p
-                        className={`text-left font-medium mobile:text-[3.256vw] text-[1.094vw] headerText ${ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
-                          }`}
+                        className={`text-left font-medium mobile:text-[3.256vw] text-[1.094vw] headerText ${
+                          ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
+                        }`}
                       >
                         {ele.text}
                       </p>
@@ -164,13 +167,15 @@ const CourseLanding = ({
                 </section>
               </div>
               <div>
-                <Image
-                  height={500}
-                  width={500}
-                  src={courseDetails?.courseImage}
-                  className="object-cover w-[28.125vw] h-[60.417vh] sm:mb-[2.222vh] mobile:w-full mobile:h-[26.18vh] mobile:pb-[3.219vh]"
-                  alt="CourseImage"
-                />
+                {courseDetails?.courseImage && (
+                  <Image
+                    height={500}
+                    width={500}
+                    src={courseDetails?.courseImage}
+                    className="object-cover w-[28.125vw] h-[60.417vh] sm:mb-[2.222vh] mobile:w-full mobile:h-[26.18vh] mobile:pb-[3.219vh]"
+                    alt="CourseImage"
+                  />
+                )}
               </div>
             </section>
           </article>

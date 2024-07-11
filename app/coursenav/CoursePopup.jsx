@@ -47,12 +47,12 @@ const CoursePopup = () => {
             {getAllCategories?.map((course) => (
               <div
                 className="flex justify-between py-[1.073vh]"
-                onClick={() => handleGetAllCategories(course.courseId)}
+                onClick={() => handleGetAllCategories(course?.courseId)}
               >
                 <div key={course?.courseId} className="flex gap-4">
                   <img src={course.icon} />
                   <div className="text-[2.791vw] text-[#454545] font-semibold">
-                    {course.title}
+                    {course?.title}
                   </div>
                 </div>
                 <div>

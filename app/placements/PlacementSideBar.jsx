@@ -4,7 +4,6 @@ import PlacementContent from "./PlacementContent";
 import "./PlacementSidebar.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import CardContentSkeleton from "@/components/skeletons/CardContentSkeleton";
-import BlinkingDots from "@/components/skeletons/BlinkingDots";
 import PlacementSidebarSkeleton from "@/components/skeletons/PlacementSidebarSkeleton";
 import LineLoader from "@/components/skeletons/LineLoader";
 import NoContent from "../internalplacementstatistics/NoContent";

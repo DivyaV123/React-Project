@@ -23,16 +23,16 @@ function CourseCard({ cardData }) {
   };
   return (
     <>
-      <section className="cardStyle justify-center  justify-items-stretch">
+      <section className="cardStyle flex flex-col justify-evenly  justify-items-stretch ">
         <picture className="flex justify-gf-center w-full">
           {/* <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full  mobile:p-0 mobile:h-[17.167vh]'
                         src={cardData.image ? cardData.image : cardData.homePageCourseImage}
                         alt='image'>
                     </img> */}
-          {cardData.image || cardData.homePageCourseImage ? (
+          {cardData?.image || cardData?.homePageCourseImage ? (
             <Image
               src={
-                cardData.image ? cardData.image : cardData.homePageCourseImage
+                cardData?.image ? cardData?.image : cardData?.homePageCourseImage
               }
               width={500}
               height={500}
@@ -50,29 +50,29 @@ function CourseCard({ cardData }) {
           )}
         </picture>
         <div></div>
-        <aside className="sm:px-[0.781vw] pt-[1.389vh] mobile:pt-[1.717vh] mobile:pl-[3.721vw] mobile:pr-[3.721vw]">
+        <aside className="sm:px-[0.781vw] sm:pt-[1.389vh] mobile:pt-[1.717vh] mobile:pl-[3.721vw] mobile:pr-[3.721vw]">
           <h3
-            title={cardData.courseName ? cardData.courseName : cardData.name}
+            title={cardData?.courseName ? cardData?.courseName : cardData?.name}
             className="font-bold text-[1.25vw] mobile:text-[3.721vw]"
           >
-            {cardData.courseName
-              ? truncateText(cardData.courseName, 25)
-              : cardData.name
-              ? truncateText(cardData.name, 25)
+            {cardData?.courseName
+              ? truncateText(cardData?.courseName, 28)
+              : cardData?.name
+              ? truncateText(cardData?.name, 28)
               : "Test Architect"}
           </h3>
           <p
             title={
-              cardData.courseDescription
-                ? cardData.courseDescription
-                : cardData.detail
+              cardData?.courseDescription
+                ? cardData?.courseDescription
+                : cardData?.detail
             }
             className="flex headerText justify-start pt-[0.833vh]  text-[0.938vw] mobile:text-[3.256vw] mobile:pt-[0.858vh] text-ash  "
           >
-            {cardData.courseDescription
-              ? truncateText(cardData.courseDescription, 68)
-              : cardData.detail
-              ? truncateText(cardData.detail, 68)
+            {cardData?.courseDescription
+              ? truncateText(cardData?.courseDescription, 68)
+              : cardData?.detail
+              ? truncateText(cardData?.detail, 68)
               : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards."}
           </p>
           <div className="flex gap-1 pt-[0.833vh] mobile:pt-[0.644vh] items-end">

@@ -1,72 +1,84 @@
-'use client'
-import Button from '@/components/commonComponents/button/Button'
-import CourseCard from '@/components/commonComponents/courseCard/courseCard'
-import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React, { useEffect, useState } from 'react'
-import './branchesCourseCard.scss'
-import CourseCardSkeleton from '@/components/commonComponents/courseCard/CourseCardSkeleton'
+"use client";
+import Button from "@/components/commonComponents/button/Button";
+import CourseCard from "@/components/commonComponents/courseCard/courseCard";
+import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
+import React, { useEffect, useState } from "react";
+import "./branchesCourseCard.scss";
+import CourseCardSkeleton from "@/components/commonComponents/courseCard/CourseCardSkeleton";
 
 function BranchesCourse({ branchCourseData }) {
+  const [visibleCards, setVisibleCards] = useState(4);
+  const [showAll, setShowAll] = useState(false);
+  const [isloading, setisLoading] = useState(false);
+  const showViewMoreButton =
+    branchCourseData.length % 4 !== 0 && visibleCards < branchCourseData.length;
 
-    const [visibleCards, setVisibleCards] = useState(4);
-    const [showAll, setShowAll] = useState(false);
-    const [isloading, setisLoading] = useState(false);
-    const showViewMoreButton = branchCourseData.length % 4 !== 0 && visibleCards < branchCourseData.length;
+  const handleViewToggle = () => {
+    if (showAll) {
+      setVisibleCards(4);
+    } else {
+      setVisibleCards(branchCourseData.length);
+    }
+    setShowAll(!showAll);
+  };
 
-    const handleViewToggle = () => {
-        if (showAll) {
-            setVisibleCards(4);
-        } else {
-            setVisibleCards(branchCourseData.length);
-        }
-        setShowAll(!showAll);
-    };
+  const cardsToDisplay = branchCourseData.slice(0, visibleCards);
 
-    const cardsToDisplay = branchCourseData.slice(0, visibleCards);
+  useEffect(() => {
+    setTimeout(() => {
+      setisLoading(false);
+    }, 2000);
+  }, []);
 
-    useEffect(() => {
-        setTimeout(() => {
-            setisLoading(false)
-        }, 2000);
-    }, [])
-
-    return (
-        <div className='mb-8'>
-                <p className='w-[87.5vw] mobile:w-[92.558vw] m-auto font-bold mobile:text-[4.651vw] text-[2.5vw] pb-[3.333vh] mobile:pb-[1.717vh]'>Courses</p>
-            <MaxWebWidth articalStyling='flex sm:flex-wrap  gap-3 mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[3.97vh] mobile:mt-[1.717vh]'>
-                {cardsToDisplay.length > 0 ? cardsToDisplay.map((element) => {
-                    return (
-                        <div className='branches courseCard' key={element.id}>
-                            <article className='w-full'>
-                                {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
-                                <div className='viewmore'></div>
-                            </article>
-                        </div>
-                    );
-                }) : courseCard.map((element) => {
-                    return (
-                        <div className='branches courseCard' key={element.id}>
-                            <article className='w-full'>
-                                {isloading ? <CourseCardSkeleton /> : <CourseCard cardData={element} />}
-                                <div className='viewmore'></div>
-                            </article>
-                        </div>
-                    );
-                })}
-            </MaxWebWidth>
-            {(showViewMoreButton || showAll) && (
-                <MaxWebWidth articalStyling='flex justify-end pb-5 mobile:hidden'>
-                    <article className='flex justify-center mt-2'>
-                        <Button
-                            className='bg-gradient w-[9.375vw] h-[5.694vh] text-[0.938vw] text-white rounded-md'
-                            title={showAll ? "View Less" : "View More"}
-                            onClick={handleViewToggle}
-                        />
-                    </article>
-                </MaxWebWidth>
-            )}
-        </div>
-    )
+  return (
+    <div className="sm:mb-8 ">
+      <p className="w-[87.5vw] mobile:w-[92.558vw] m-auto font-bold mobile:text-[4.651vw] text-[2.5vw] pb-[3.333vh] mobile:pb-[1.717vh]">
+        Courses
+      </p>
+      <section className="flex sm:flex-wrap mobile:gap-6 sm:w-[87.5vw] mobile:pl-[5.581vw] mobile:py-[1.717vh]  sm:m-auto sm:justify-between mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[2vh]">
+        {cardsToDisplay.length > 0
+          ? cardsToDisplay.map((element) => {
+              return (
+                <div className="branches courseCard" key={element.id}>
+                  <article className="w-full h-full">
+                    {isloading ? (
+                      <CourseCardSkeleton />
+                    ) : (
+                      <CourseCard cardData={element} />
+                    )}
+                    <div className="viewmore"></div>
+                  </article>
+                </div>
+              );
+            })
+          : courseCard.map((element) => {
+              return (
+                <div className="branches courseCard" key={element.id}>
+                  <article className="w-full h-full">
+                    {isloading ? (
+                      <CourseCardSkeleton />
+                    ) : (
+                      <CourseCard cardData={element} />
+                    )}
+                    <div className="viewmore"></div>
+                  </article>
+                </div>
+              );
+            })}
+      </section>
+      {(showViewMoreButton || showAll) && (
+        <MaxWebWidth articalStyling="flex justify-end pb-5 mobile:hidden pt-6">
+          <article className="flex justify-center mt-2">
+            <Button
+              className="bg-gradient w-[9.375vw] h-[5.694vh] text-[0.938vw] text-white rounded-md"
+              title={showAll ? "View Less" : "View More"}
+              onClick={handleViewToggle}
+            />
+          </article>
+        </MaxWebWidth>
+      )}
+    </div>
+  );
 }
 
-export default BranchesCourse
+export default BranchesCourse;

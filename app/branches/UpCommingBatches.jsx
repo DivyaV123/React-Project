@@ -30,13 +30,13 @@ function UpCommingBatches({ branchesData, branchName }) {
       </MaxWebWidth>
       <MaxWebWidth
         sectionStyling="sm:pb-5"
-        articalStyling="flex sm:flex-wrap mobile:overflow-x-scroll mobile:offlineScrollbar"
+        articalStyling="flex sm:flex-wrap sm:justify-between mobile:overflow-x-scroll mobile:offlineScrollbar"
       >
         <OnlineLiveClasses
           branchName={branchName}
           branchesData={cardsToDisplay}
           page="course"
-          className="border m-2 rounded shadow shadow-gray-500/50"
+          className="border mobile:m-2 rounded shadow shadow-gray-500/50"
         />
       </MaxWebWidth>
       {(showViewMoreButton || showAll) &&  (
