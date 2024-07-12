@@ -25,7 +25,7 @@ function Dropdown({
     };
 
     const handleSelect = (option) => {
-        onChange({ target: { name, value: option.value } });
+        onChange({ target: { name, value: option.value, option: option } });
         setIsOpen(false);
     };
 
@@ -44,7 +44,7 @@ function Dropdown({
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                     <Svg
                         className=''
-                        width={svgicons .accordianArrowDown[0]}
+                        width={svgicons.accordianArrowDown[0]}
                         height={svgicons.accordianArrowDown[1]}
                         viewBox={svgicons.accordianArrowDown[2]}
                         icon={svgicons.accordianArrowDown[3]}

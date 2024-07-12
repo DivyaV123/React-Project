@@ -10,6 +10,7 @@ export const API_ENDPOINTS = {
   VIEW_ALL_COURSES: 'api/v1/courses/viewAll',
   FIND_ALL_CATEGORIES: 'api/v1/categories/findAllCategories',
   GET_COURSE_ID_AND_SUBCOURSE_ID: (courseId, subcourseId) => `api/v1/courses?categoryId=${courseId}${subcourseId}`,
+  COURSE_WEIGHTAGE_ADDER: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   BRANCH_ADDER: `api/v1/branches`,
   GET_ALL_FAQ: (domain) => `api/v1/faqs?organization=${domain}`,
   GET_BRANCH_BY_COURSE_ID_AND_BRANCH_ID: (courseId, branchId) => `/api/v1/branches/getbyid?branchId=${branchId}&courseId=${courseId}`,
