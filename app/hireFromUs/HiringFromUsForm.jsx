@@ -118,7 +118,7 @@ const HiringFromUsForm = ({ activeTab }) => {
         const response = await enquirie(payload).unwrap();
         toast({
           description: "Your message has been sent.",
-        })
+        });
       } catch (err) {
         console.error(err, "error in the submit");
       }
@@ -139,9 +139,9 @@ const HiringFromUsForm = ({ activeTab }) => {
     <div className="container mx-auto p-4 hiringFromUsComponent">
       <form
         onSubmit={formik.handleSubmit}
-        className="custom-grid-form_hiring grid grid-cols-1 tabView:block md:grid-cols-2 gap-4"
+        className="custom-grid-form_hiring grid grid-cols-1 mobile:block tabView:block md:grid-cols-2 gap-4"
       >
-        <div className="mb-2 tabView:mb-5">
+        <div className="mb-2 mobile:mb-[3vh] tabView:mb-5">
           <label htmlFor="fullName" className="block font-bold mb-2">
             <span className="text-red-500 pr-1">*</span>Full Name
           </label>
@@ -154,10 +154,11 @@ const HiringFromUsForm = ({ activeTab }) => {
             onBlur={formik.handleBlur}
             value={formik.values.fullName}
             autoFocus
-            className={`w-full border p-2 rounded ${formik.touched.fullName && formik.errors.fullName
-              ? "border-red-500"
-              : "border-gray-300"
-              }`}
+            className={`w-full border p-2 rounded ${
+              formik.touched.fullName && formik.errors.fullName
+                ? "border-red-500"
+                : "border-gray-300"
+            }`}
           />
           {formik.touched.fullName && formik.errors.fullName ? (
             <div className="text-red-500 absolute  text-sm">
@@ -166,7 +167,7 @@ const HiringFromUsForm = ({ activeTab }) => {
           ) : null}
         </div>
 
-        <div className="mb-2 tabView:mb-5">
+        <div className="mb-2 mobile:mb-[3vh] tabView:mb-5">
           <label htmlFor="mobileNumber" className="block font-bold mb-2">
             <span className="text-red-500 pr-1">*</span>Mobile Number
           </label>
@@ -192,8 +193,9 @@ const HiringFromUsForm = ({ activeTab }) => {
             //   borderRadius: "5px",
             // }}
             style={{
-              border: `${error.phone || error.validPhone ? inputBorderErr : inputBorder
-                }`,
+              border: `${
+                error.phone || error.validPhone ? inputBorderErr : inputBorder
+              }`,
               borderRadius: "5px",
             }}
             enableSearch
@@ -209,10 +211,10 @@ const HiringFromUsForm = ({ activeTab }) => {
           />
           {(error.mobileNumber ||
             (formik.errors.mobileNumber && formik.touched.mobileNumber)) && (
-              <div className="text-red-500 absolute text-sm">
-                Phone number is required
-              </div>
-            )}
+            <div className="text-red-500 absolute text-sm">
+              Phone number is required
+            </div>
+          )}
           {error.validPhone && !error.mobileNumber && (
             <div className="text-red-500 absolute text-sm">
               Invalid phone number
@@ -221,7 +223,7 @@ const HiringFromUsForm = ({ activeTab }) => {
         </div>
 
         {activeTab === "Corporate Training" && (
-          <div className="mb-2 tabView:mb-5">
+          <div className="mb-2 mobile:mb-[3vh] tabView:mb-5">
             <label htmlFor="requiredTraining" className="block font-bold mb-2">
               <span className="text-red-500 pr-1">*</span>Required Training
             </label>
@@ -233,14 +235,15 @@ const HiringFromUsForm = ({ activeTab }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.requiredTraining}
-              className={`w-full border p-2 rounded ${formik.touched.requiredTraining &&
+              className={`w-full border p-2 rounded ${
+                formik.touched.requiredTraining &&
                 formik.errors.requiredTraining
-                ? "border-red-500"
-                : "border-gray-300"
-                }`}
+                  ? "border-red-500"
+                  : "border-gray-300"
+              }`}
             />
             {formik.touched.requiredTraining &&
-              formik.errors.requiredTraining ? (
+            formik.errors.requiredTraining ? (
               <div className="text-red-500 absolute text-sm">
                 {formik.errors.requiredTraining}
               </div>
@@ -249,7 +252,7 @@ const HiringFromUsForm = ({ activeTab }) => {
         )}
 
         {activeTab === "Hire From Us" && (
-          <div className="mb-2 tabView:mb-5">
+          <div className="mb-2 mobile:mb-[3vh] tabView:mb-5">
             <label htmlFor="companyName" className="block font-bold mb-2">
               <span className="text-red-500 pr-1">*</span>Company Name
             </label>
@@ -261,10 +264,11 @@ const HiringFromUsForm = ({ activeTab }) => {
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
               value={formik.values.companyName}
-              className={`w-full border p-2 rounded ${formik.touched.companyName && formik.errors.companyName
-                ? "border-red-500"
-                : "border-gray-300"
-                }`}
+              className={`w-full border p-2 rounded ${
+                formik.touched.companyName && formik.errors.companyName
+                  ? "border-red-500"
+                  : "border-gray-300"
+              }`}
             />
             {formik.touched.companyName && formik.errors.companyName ? (
               <div className="text-red-500 absolute text-sm">
@@ -274,7 +278,7 @@ const HiringFromUsForm = ({ activeTab }) => {
           </div>
         )}
 
-        <div className="mb-2 tabView:mb-5">
+        <div className="mb-2 mobile:mb-[3vh] tabView:mb-5">
           <label htmlFor="email" className="block font-bold mb-2">
             <span className="text-red-500 pr-1">*</span>Email
           </label>
@@ -286,10 +290,11 @@ const HiringFromUsForm = ({ activeTab }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.email}
-            className={`w-full border p-2 rounded ${formik.touched.email && formik.errors.email
-              ? "border-red-500"
-              : "border-gray-300"
-              }`}
+            className={`w-full border p-2 rounded ${
+              formik.touched.email && formik.errors.email
+                ? "border-red-500"
+                : "border-gray-300"
+            }`}
           />
           {formik.touched.email && formik.errors.email ? (
             <div className="text-red-500 absolute text-sm">
@@ -298,7 +303,7 @@ const HiringFromUsForm = ({ activeTab }) => {
           ) : null}
         </div>
 
-        <div className="mb-2 tabView:mb-5">
+        <div className="mb-2 mobile:mb-[3vh] tabView:mb-5">
           <label htmlFor="message" className="block font-bold mb-2">
             <span className="text-red-500 pr-1">*</span>Message
           </label>
@@ -309,10 +314,11 @@ const HiringFromUsForm = ({ activeTab }) => {
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
             value={formik.values.message}
-            className={`w-full border p-2 rounded resize-none ${formik.touched.message && formik.errors.message
-              ? "border-red-500"
-              : "border-gray-300"
-              }`}
+            className={`w-full border p-2 rounded resize-none ${
+              formik.touched.message && formik.errors.message
+                ? "border-red-500"
+                : "border-gray-300"
+            }`}
           />
           {formik.touched.message && formik.errors.message ? (
             <div className="text-red-500 absolute text-sm">
@@ -322,10 +328,11 @@ const HiringFromUsForm = ({ activeTab }) => {
         </div>
 
         <div
-          className={`${activeTab === "General Enquiries"
-            ? "mb-2 md:col-span-2 btnComponent"
-            : "mb-2 btnComponent"
-            }`}
+          className={`${
+            activeTab === "General Enquiries"
+              ? "mb-2 md:col-span-2 btnComponent"
+              : "mb-2 btnComponent"
+          }`}
         >
           <button
             type="submit"

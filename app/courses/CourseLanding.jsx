@@ -106,7 +106,7 @@ const CourseLanding = ({
                   <p className="headerText w-[65.814vw] text-left mobile:text-[2.791vw] text-[1.563vw] sm:leading-[1.875rem] sm:pt-[0.833vh] !w-[100%]">
                     {courseDetails?.courseSummary}
                   </p>
-                  <button className="bg-[#ffe8d3] w-[23.256vw] text-[2.791vw] flex justify-center  pt-[0.536vh] pb-[0.751vh] items-center gap-1  font-semibold rounded text-ash sm:hidden h-[3.219vh]">
+                  <button className="bg-[#ffe8d3] mobile:w-[18.219vh] mobile:pt-0 mobile:pb-0 w-[23.256vw] text-[2.791vw] flex justify-center  pt-[0.536vh] pb-[0.751vh] items-center gap-1  font-semibold rounded text-ash sm:hidden h-[3.219vh]">
                     <img
                       className="w-[4.186vw] h-[1.931vh]"
                       src="/ratingstar.svg"
@@ -143,10 +143,10 @@ const CourseLanding = ({
                       key={index}
                       className="flex text-left gap-4  items-center  pb-[2.778vh] mobile:pb-[1.073vh]  text-ash"
                     >
-                      <figure>
+                      <figure className="  ">
                         <img src={imageSrc} alt={`resource-${index}`} />
                       </figure>
-                      <article>
+                      <article className=" mobile:w-[85vw] ">
                         <p className="text-[0.938vw] mobile:text-[2.791vw]">
                           {resource}
                         </p>

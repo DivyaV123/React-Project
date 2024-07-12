@@ -58,7 +58,8 @@ function ContactUsPage() {
     phone: Yup.string().required("Mobile number is required"),
     email: Yup.string()
       .email("Invalid email address")
-      .required("Email is required"),
+      .required("Email is required")
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
     message: Yup.string().required("Message is required"),
   });
   const [postContact] = usePostContactMutation();
