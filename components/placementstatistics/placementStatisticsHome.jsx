@@ -162,7 +162,6 @@ const disableIcons =()=>{
               </h1>
               <div className="flex flex-wrap mobile:gap-[0.75rem]  sm:gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[9.442vh]">
                 {branches.map((element) => {
-                  console.log({ element });
                   const originalStream = invertedBranchAbbreviations[element];
                   const href =
                     element === "More..."

@@ -23,7 +23,7 @@ function ContactUsPage() {
   const [countryCode, setCountryCode] = useState("");
   const { toast } = useToast();
   const [isMobileView, setIsMobileView] = useState(false);
-  const { domainVariable } = useContext(GlobalContext)
+  const { domainVariable } = useContext(GlobalContext);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
@@ -133,18 +133,10 @@ function ContactUsPage() {
   };
   return (
     <div className="h-[178.194vh] tabView:h-[80vh] contactUsComponent mobile:h-[auto] ">
-      <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover">
-        <Image
-          src='/contactUspageBg.png'
-          height={700}
-          width={800}
-          sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-          className={`absolute object-fit w-[100%] h-[100%] z-1  h-[69.167vh] mobile:h-[53.548vh] tabView:h-[35.938vh]`}
-        />
-
-        <header className="absolute left-[13%] 2xl:left-[18%] flex flex-col justify-center items-center pb-[11.111vh]">
-          <h1 className="items-baseline flex justify-center gap-4  tabView:pt-[3.125vh] pt-[14.444vh]  pb-[0.625vw] mobile:relative mobile:top-[3.756vh] mobile:pt-0">
-            <span className="text-[3.75vw] tabView:text-[4.301vw] font-extrabold text-white tracking-tight justify-around mobile:text-[3.256vw] ">
+      <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover h-[69.167vh] mobile:h-[53.548vh]">
+        <header className="flex flex-col justify-center pb-[11.111vh]">
+          <h1 className="flex justify-center gap-2 pt-[14.444vh]  pb-[0.625vw] mobile:relative mobile:top-[3.756vh] mobile:pt-0">
+            <span className="text-[3.75vw] font-extrabold text-white tracking-tight justify-around mobile:text-[3.256vw] ">
               We are eager to{" "}
             </span>
             <span className="tracking-tight tabView:text-[4.301vw] text-[3.75vw] gradient-text font-extrabold mobile:text-[3.256vw] ">
@@ -155,7 +147,8 @@ function ContactUsPage() {
             Feel free to get in touch with team if you have any questions
           </span>
           <span className="text-white  tabView:text-[3.226vw] hidden tabView:flex-col tabView:justify-center tabView:items-center tabView:flex text-[2rem] font-medium flex justify-center  justify-center mobile:text-[2.558vw] mobile:w-[97.721vw] mobile:h-[2.113vh] mobile:relative mobile:top-[4.93vh] mobile:flex mobile:justify-center mobile:items-center">
-            Feel free to get in touch with team if you have <br /> <p>any questions</p>
+            Feel free to get in touch with team if you have <br />{" "}
+            <p>any questions</p>
           </span>
         </header>
         <article className=" mobile:top-[14.15vh] tabView:top-[19.531vh] top-[47.333vh] mobile:left-[8.581vw] tabView:left-[8.065vw] left-[16.25vw] bg-white rounded border border-gray-300 absolute ">
@@ -170,7 +163,7 @@ function ContactUsPage() {
                 <form onSubmit={formikDetails.handleSubmit}>
                   <div className="pb-[2.5vw] mobile:mt-[2vh] mobile:pb-[4.5vw] tabView:mt-[3.344vh] tabView:pb-[3.6vw]">
                     <span className="text-[0.938vw] font-normal tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]  mobile:text-[2.791vw]">
-                      <span className='text-red-500 pr-1'>*</span>Name
+                      <span className="text-red-500 pr-1">*</span>Name
                     </span>
                     <Input
                       inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] tabView:text-[1.491vw] tabView:pl-[5.442vw] contactInput`}
@@ -190,7 +183,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
                     <span className="text-[0.938vw] tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]   mobile:text-[2.791vw] font-normal">
-                      <span className='text-red-500 pr-1'>*</span>Mobile
+                      <span className="text-red-500 pr-1">*</span>Mobile
                     </span>
 
                     <PhoneInput
@@ -230,10 +223,10 @@ function ContactUsPage() {
                     {(error.phone ||
                       (formikDetails.errors.phone &&
                         formikDetails.touched.phone)) && (
-                        <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute">
-                          Phone number is required
-                        </div>
-                      )}
+                      <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute">
+                        Phone number is required
+                      </div>
+                    )}
                     {error.validPhone && !error.phone && (
                       <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute">
                         Invalid phone number
@@ -242,7 +235,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
                     <span className="text-[0.938vw] tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]   mobile:text-[2.791vw] font-normal">
-                      <span className='text-red-500 pr-1'>*</span>E-mail
+                      <span className="text-red-500 pr-1">*</span>E-mail
                     </span>
                     <Input
                       inputStyle={`${contactUsInput} tabView:text-[1.491vw] tabView:pl-[5.442vw]   mobile:text-[2.591vw] mobile:pl-[7.442vw] contactInput`}
@@ -254,7 +247,7 @@ function ContactUsPage() {
                       value={formikDetails.values.email}
                     />
                     {formikDetails.touched.email &&
-                      formikDetails.errors.email ? (
+                    formikDetails.errors.email ? (
                       <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw absolute mobile:text-[2.591vw] text-[0.75vw]">
                         {formikDetails.errors.email}
                       </div>
@@ -262,7 +255,7 @@ function ContactUsPage() {
                   </div>
                   <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
                     <span className="text-[0.938vw] tabView:relative tabView:bottom-[0.781vh] tabView:text-[1.813vw] mobile:text-[2.791vw] font-normal">
-                      <span className='text-red-500 pr-1'>*</span> Your Message
+                      <span className="text-red-500 pr-1">*</span> Your Message
                     </span>
                     <TextArea
                       sectionStyle="mobile:h-[11.72vh] tabView:h-[6vh] "
@@ -275,7 +268,7 @@ function ContactUsPage() {
                       value={formikDetails.values.message}
                     />
                     {formikDetails.touched.message &&
-                      formikDetails.errors.message ? (
+                    formikDetails.errors.message ? (
                       <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw absolute mobile:text-[2.591vw] text-[0.75vw]">
                         {formikDetails.errors.message}
                       </div>
@@ -308,10 +301,11 @@ function ContactUsPage() {
                 </h1>
                 {contactInfo.map((data) => (
                   <article
-                    className={`${data.country === "United Kingdom"
-                      ? "pb-[7px] tabView:pl-[2.151vw]"
-                      : "pb-[5px] tabView:pl-[2.151vw]"
-                      }`}
+                    className={`${
+                      data.country === "United Kingdom"
+                        ? "pb-[7px] tabView:pl-[2.151vw]"
+                        : "pb-[5px] tabView:pl-[2.151vw]"
+                    }`}
                   >
                     <h1 className="text-white pb-[0.625vw] text-[1.563vw] tabView:text-[2.688vw]  font-bold">
                       {data.country}
@@ -363,10 +357,10 @@ function ContactUsPage() {
         </article>
       </div>
 
-      <div className="hidden mobile:block mobile:relative top-[28.57vh] mobile:pb-[30vh]">
+      <div className="hidden mobile:block mobile:relative top-[27.57vh] mobile:pb-[30vh]">
         {contactInfo.map((info, index) => (
           <section key={index} className={`mb-8`}>
-            <div className="locationCard mobile:ml-[7.674vw] mobile:relative">
+            <div className="locationCard mobile:w-[81vw] mobile:m-auto mobile:relative">
               <div className="cardBody rounded-xl mobile:pl-[5.581vw] mobile:pt-[1.86vh] px-[1.25vw] h-auto w-[25.859vw] mobile:w-[81vw]">
                 <header className="text-[4.651vw] text-white pb-[2vh] font-bold">
                   {info.country}

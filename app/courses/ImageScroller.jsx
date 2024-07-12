@@ -9,7 +9,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 const ImageScroller = ({ onRightBarFix, isRightBarFixed, cardData }) => {
   const { allStaticsCount } = useContext(GlobalContext)
   const statisticsData = [
-    { number: `${allStaticsCount?.response?.allPlacedCount}+`, text: "Student placed" },
+    { number: `${allStaticsCount?.response?.allPlacedCount}+`, text: "Students placed" },
     { number: "4870+", text: "Hiring Companies" },
     { number: `${allStaticsCount?.response?.nonItCount}+`, text: "Non IT Students placed" },
     { number: `${allStaticsCount?.response?.itCount}+`, text: "IT Students placed" },
@@ -108,7 +108,7 @@ const ImageScroller = ({ onRightBarFix, isRightBarFixed, cardData }) => {
                 Enroll now
               </button>
               <button className="EnquireButton text-[1.25vw] font-semibold py-[0.781vw] px-[3.333vh] relative w-[15.15vw]">
-                <span>Know More</span>
+                <span>Know more</span>
               </button>
             </section>
           </div>

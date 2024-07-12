@@ -8,7 +8,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "./EnrollPopUp";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-function CourseCard({ cardData }) {
+function CourseCard({ cardData, courseCardData }) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleCardClick = () => {
@@ -19,7 +19,7 @@ function CourseCard({ cardData }) {
     setIsModalOpen(false);
   };
   const handleKnowMore = (id) => {
-    router.push(`/courses/${id}`);
+    // router.push(`/courses/${id}`);
   };
   return (
     <>
@@ -32,7 +32,9 @@ function CourseCard({ cardData }) {
           {cardData?.image || cardData?.homePageCourseImage ? (
             <Image
               src={
-                cardData?.image ? cardData?.image : cardData?.homePageCourseImage
+                cardData?.image
+                  ? cardData?.image
+                  : cardData?.homePageCourseImage
               }
               width={500}
               height={500}
@@ -97,7 +99,7 @@ function CourseCard({ cardData }) {
               <Button
                 onClick={() => handleKnowMore(cardData?.courseId)}
                 className="courseCardBtn buttonTextColour  text-[1.094vw] mobile:text-[2.791vw]  font-semibold border border-orange-500 rounded-md"
-                title="Know More"
+                title="Know more"
               />
             </aside>
           </div>

@@ -30,7 +30,7 @@ function UpCommingBatches({ branchesData, branchName }) {
       </MaxWebWidth>
       <MaxWebWidth
         sectionStyling="sm:pb-5"
-        articalStyling="flex sm:flex-wrap sm:justify-between mobile:overflow-x-scroll mobile:offlineScrollbar"
+        articalStyling="flex sm:flex-wrap sm:gap-y-[16px] gap-x-[1.65vw]  mobile:overflow-x-scroll mobile:offlineScrollbar "
       >
         <OnlineLiveClasses
           branchName={branchName}

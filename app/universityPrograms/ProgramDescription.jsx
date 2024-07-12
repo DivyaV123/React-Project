@@ -16,7 +16,7 @@ const ProgramDescription = ({
   const statisticsData = [
     {
       number: `${countDetails?.response?.allPlacedCount}+`,
-      text: "Student placed",
+      text: "Students placed",
     },
     { number: "4870+", text: "Hiring Companies" },
     {
