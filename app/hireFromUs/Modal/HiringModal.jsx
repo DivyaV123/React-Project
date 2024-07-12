@@ -29,8 +29,8 @@ const HiringModal = ({ isModalOpen, selectedCity, activeTab, handleCloseModal, s
     <div className='hiringUS_modal'>
     <div className="modal-overlay">
       <div className="modal">
-        <div className="modal-header pb-[3.889vh]">
-        <p className='font-semibold text-[1.875vw]'>Request a call back</p>
+        <div className="modal-header pb-[3.889vh] mobile:pb-[0.889vh] mobile:mx-[2vw]">
+        <p className='font-semibold text-[1.875vw] mobile:text-[3.875vw]'>Request a call back</p>
           <button className="close-button" onClick={handleCloseModal}>
             &times;
           </button>

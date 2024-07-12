@@ -35,35 +35,35 @@ const HirefromusLanding = () => {
         </div>
         <section className="flex gap-6 w-[32.031vw] justify-between tabView:mt-[2vh]">
           <Image
-            src='/googlehire.svg'
+            src="/googlehire.svg"
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-             className=" mobile:w-[12vw]"
+            className=" mobile:w-[12vw]"
           />
           <Image
-            src='/awshire.svg'
+            src="/awshire.svg"
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-             className=" mobile:w-[12vw]"
+            className=" mobile:w-[12vw]"
           />
           <Image
-            src='/tatahire.svg'
+            src="/tatahire.svg"
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-             className=" mobile:w-[12vw]"
+            className=" mobile:w-[12vw]"
           />
           <Image
-            src='/bmghire.svg'
+            src="/bmghire.svg"
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-             className=" mobile:w-[12vw]"
+            className=" mobile:w-[12vw]"
           />
           <Image
-            src='/isrohire.svg'
+            src="/isrohire.svg"
             height={80}
             width={80}
             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
