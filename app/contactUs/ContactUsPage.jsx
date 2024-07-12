@@ -134,18 +134,10 @@ function ContactUsPage() {
   };
   return (
     <div className="h-[178.194vh] tabView:h-[80vh] contactUsComponent mobile:h-[auto] ">
-      <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover">
-        <Image
-          src="/contactUspageBg.png"
-          height={700}
-          width={800}
-          sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-          className={`absolute object-fit w-[100%] h-[100%] z-1  h-[69.167vh] mobile:h-[53.548vh] tabView:h-[35.938vh]`}
-        />
-
-        <header className="absolute left-[13%] 2xl:left-[18%] flex flex-col justify-center items-center pb-[11.111vh]">
-          <h1 className="items-baseline flex justify-center gap-4  tabView:pt-[3.125vh] pt-[14.444vh]  pb-[0.625vw] mobile:relative mobile:top-[3.756vh] mobile:pt-0">
-            <span className="text-[3.75vw] tabView:text-[4.301vw] font-extrabold text-white tracking-tight justify-around mobile:text-[3.256vw] ">
+      <div className="relative bg-[url('/contactUspageBg.png')] bg-no-repeat bg-left bg-contain bg-cover h-[69.167vh] mobile:h-[53.548vh]">
+        <header className="flex flex-col justify-center pb-[11.111vh]">
+          <h1 className="flex justify-center gap-2 pt-[14.444vh]  pb-[0.625vw] mobile:relative mobile:top-[3.756vh] mobile:pt-0">
+            <span className="text-[3.75vw] font-extrabold text-white tracking-tight justify-around mobile:text-[3.256vw] ">
               We are eager to{" "}
             </span>
             <span className="tracking-tight tabView:text-[4.301vw] text-[3.75vw] gradient-text font-extrabold mobile:text-[3.256vw] ">
@@ -366,10 +358,10 @@ function ContactUsPage() {
         </article>
       </div>
 
-      <div className="hidden mobile:block mobile:relative top-[28.57vh] mobile:pb-[30vh]">
+      <div className="hidden mobile:block mobile:relative top-[27.57vh] mobile:pb-[30vh]">
         {contactInfo.map((info, index) => (
           <section key={index} className={`mb-8`}>
-            <div className="locationCard mobile:ml-[7.674vw] mobile:relative">
+            <div className="locationCard mobile:w-[81vw] mobile:m-auto mobile:relative">
               <div className="cardBody rounded-xl mobile:pl-[5.581vw] mobile:pt-[1.86vh] px-[1.25vw] h-auto w-[25.859vw] mobile:w-[81vw]">
                 <header className="text-[4.651vw] text-white pb-[2vh] font-bold">
                   {info.country}

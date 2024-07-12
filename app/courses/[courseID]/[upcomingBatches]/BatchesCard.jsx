@@ -175,7 +175,7 @@ function BatchesCard() {
                 <button
                   className={`${enrollEnquire} mobile:text-[3.721vw] mobile:flex mobile:justify-center mobile:items-center mobile:w-[39.535vw] mobile:h-[4.731vh] EnquireButton rounded border border-orange-500 text-orange-500`}
                 >
-                  Know More
+                  Know more
                 </button>
               </div>
             </div>

@@ -16,7 +16,7 @@ const CourseLanding = ({
   const statisticsData = [
     {
       number: `${countDetails?.response?.allPlacedCount}+`,
-      text: "Student placed",
+      text: "Students placed",
     },
     { number: "4870+", text: "Hiring Companies" },
     {
@@ -50,7 +50,7 @@ const CourseLanding = ({
   return (
     <>
       <MaxWebWidth
-        sectionStyling=" max-w-full overflow-hidden sm:courseBackgroundwave mobile:courseBackgroundGradient"
+        sectionStyling=" max-w-full overflow-hidden courseBackgroundwave courseBackgroundGradient"
         articalStyling="relative"
       >
         <aside className="flex pt-[6.944vh] justify-between mobile:pt-[3.433vh]">

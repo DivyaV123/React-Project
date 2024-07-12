@@ -4,7 +4,7 @@ import "./HirefromusLanding.scss";
 import HiringModal from './Modal/HiringModal';
 const domains = [
   { name: 'Software Developer', image: '../../developer.svg' },
-  { name: 'UI/UX designer', image: '../../designer.svg' },
+  { name: 'UI/UX Designer', image: '../../designer.svg' },
   { name: 'DevOps', image: '../../devops.svg' }, 
   { name: 'Data Science', image: '../../data_science.svg' },
   { name: 'Project Management', image: '../../project-management.svg' },

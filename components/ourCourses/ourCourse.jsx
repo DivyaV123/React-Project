@@ -492,7 +492,7 @@ function OurCourse({ page }) {
                       {isloading ? (
                         <CourseCardSkeleton />
                       ) : (
-                        <CourseCard cardData={element} />
+                        <CourseCard cardData={element} courseCardData={courseCardData}/>
                       )}
                     </div>
                   );

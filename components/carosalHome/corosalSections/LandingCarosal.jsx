@@ -132,7 +132,7 @@ function LandingCarosal() {
                   <Counter label="1" targetValue={0} initialValue={0}></Counter>
                 </h1>
                 <h2 className="headerText font-medium ">
-                  Student placed <br />
+                  Students placed <br />
                   in every 5 mins
                 </h2>
               </div>

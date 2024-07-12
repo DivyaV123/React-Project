@@ -35,7 +35,7 @@ function BranchesCourse({ branchCourseData }) {
       <p className="w-[87.5vw] mobile:w-[92.558vw] m-auto font-bold mobile:text-[4.651vw] text-[2.5vw] pb-[3.333vh] mobile:pb-[1.717vh]">
         Courses
       </p>
-      <section className="flex sm:flex-wrap mobile:gap-6 sm:w-[87.5vw] mobile:pl-[5.581vw] mobile:py-[1.717vh]  sm:m-auto sm:justify-between mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[2vh]">
+      <section className="flex sm:flex-wrap mobile:gap-6 sm:w-[87.5vw] mobile:pl-[5.581vw] mobile:py-[1.717vh]   sm:m-auto 2xl:sm:gap-x-[17px] sm:gap-y-[16px] xl:gap-x-[14.5px] 3xl:gap-x-[22px]  mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[2vh]">
         {cardsToDisplay.length > 0
           ? cardsToDisplay.map((element) => {
               return (

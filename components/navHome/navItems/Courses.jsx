@@ -22,7 +22,7 @@ const Courses = ({ courseResponse }) => {
     getAllCourses?.[hoveredIndex]?.courseResponse?.length > 0
       ? getAllCourses?.[hoveredIndex]?.courseResponse?.filter((ele) => ele)
       : subCourseContent;
-
+const defaultIcon="https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/Popular%20Courses/2024-07-02T16%3A05%3A19.575938600_popular%20courses-white.svg"
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] 3xl:h-[660px] overflow-auto myscrollbar ">
       <div className="menuSidebar pt-2  xl:w-[18.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] ">
@@ -34,7 +34,7 @@ const Courses = ({ courseResponse }) => {
               hoveredIndex === index ? "menuItem" : "menuItemdisable"
             }  pl-4 pr-2 items-center`}
           >
-            <img src={courseItem.icon} />
+            <img src={courseItem.icon ? courseItem.icon : defaultIcon} />
             <div className="flex justify-between grow">
               <button className="p-2 text-sm">{courseItem.title}</button>
               <img

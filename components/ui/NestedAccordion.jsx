@@ -152,7 +152,7 @@ const NestedAccordion = ({
                           <span>
                             {typeOfLearning !== "SELFPACED" ? (
                               <Svg
-                                className="w-[5.581vw] h-[2.575vh]"
+                                className=""
                                 width={svgicons.smallDoc[0]}
                                 height={svgicons.smallDoc[1]}
                                 viewBox={svgicons.smallDoc[2]}

@@ -202,10 +202,9 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                   >
                     Course
                   </label>
-                  <input
+                  <select
                     id="course"
                     name="course"
-                    type="text"
                     placeholder="-Select-"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
@@ -215,7 +214,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                         ? "border-red-500"
                         : "border-gray-300"
                     }`}
-                  />
+                  ><option>"-Select-"</option></select>
                   {formik.touched.course && formik.errors.course ? (
                     <div className="text-red-500 absolute text-sm">
                       {formik.errors.course}
@@ -238,7 +237,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.fullName}
-                    className={`w-full border p-2 rounded ${
+                    className={`w-full border p-2 rounded  ${
                       formik.touched.fullName && formik.errors.fullName
                         ? "border-red-500"
                         : "border-gray-300"
@@ -265,7 +264,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.message}
-                    className={`w-full border p-2 rounded ${
+                    className={`w-full border p-2 rounded resize-none ${
                       formik.touched.message && formik.errors.message
                         ? "border-red-500"
                         : "border-gray-300"
