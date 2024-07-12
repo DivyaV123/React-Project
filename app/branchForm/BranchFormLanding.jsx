@@ -213,7 +213,7 @@ function BranchFormLanding() {
                             (formikDetails.errors.phone &&
                                 formikDetails.touched.phone)) && (
                                 <div className="text-red-500">
-                                    Phone number is required
+                                    Mobile number is required
                                 </div>
                             )}
                         {error.validPhone && !error.phone && (

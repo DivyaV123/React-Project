@@ -178,7 +178,7 @@ function BranchesLandingPage({ BranchDetails }) {
                         ].filter(Boolean).join(' ')}
                         <div className='flex flex-col items-end'>
                             <button onClick={() => window.open(branchData?.address.location, "_blank")} className="flex gap-1  text z-1">
-                                <p className="text-orange-500 text-[0.703vw] p-[0.156vw]">Get Directions</p>
+                                <p className="text-orange-500 text-[0.703vw] p-[0.156vw]">Get Navigation</p>
                                 <Svg
                                     className="pr-[0.469vw]"
                                     width={svgicons.navigationIcon[0]}

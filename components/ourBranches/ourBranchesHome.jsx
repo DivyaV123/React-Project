@@ -184,7 +184,7 @@ function OurBranchesHome({ page, tabData }) {
               <OnlineLiveClasses page="course" className="" />
               <div className="flex-col justify-end py-[2.222vh] mobile:hidden">
                 <button className="py-[1.111vh] px-[1.406vw] text-[1.094vw] font-semibold EnrollButton">
-                  View More
+                  View more
                 </button>
               </div>
             </>

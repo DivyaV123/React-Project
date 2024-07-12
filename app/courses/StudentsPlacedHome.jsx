@@ -44,7 +44,7 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
                         <article className={`flex justify-center  ${page === 'branch' ? 'sm:mt-[5.278vh] pb-[4.444vh] mobile:pb-[1.717vh]' : 'mt-[1.667vh] pb-[1.667vh]'}`}>
                             <Button
                                 className='bg-gradient h-[2.656vw] font-medium w-[9.375vw] text-[0.75rem] mobile:w-[27.907vw] mobile:h-[3.648vh] mobile:text-[2.791vw] text-white rounded-md'
-                                title="View More"
+                                title="View more"
                                 onClick={() => { }}
                             />
                         </article>

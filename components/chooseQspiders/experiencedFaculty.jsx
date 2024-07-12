@@ -61,7 +61,7 @@ function ExperiencedFaculty() {
                     <article className='flex justify-center items-cenetr mb-8 mt-8 sm:h-10 mobile:mb-[1.073vh] mobile:mt-[4.292vh]'>
                         <Button
                             className='bg-gradient rounded text-white w-[10.469vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw]'
-                            title="View More"
+                            title="View more"
                         />
                     </article>
                 </aside>

@@ -11,7 +11,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { PLACEMENT_PATH } from "@/lib/RouteConstants";
 import Image from "next/image";
 import { branchAbbreviations } from "@/lib/utils";
-
+import { formatToIndianCurrency } from "@/lib/utils";
 function PlacementStatisticsHome({ page }) {
   const { setAllStaticsCount, setNonItCheckedIcon,setItCheckedIcon,setThroughCheckedIcon, setLessCheckedIcon,setPlacedCheckedIcon } =
     useContext(GlobalContext);
@@ -50,28 +50,28 @@ function PlacementStatisticsHome({ page }) {
   ];
   const statistics = [
     {
-      count: `${countDetails?.response?.throughOutSixtyPercent}`,
+      count: `${formatToIndianCurrency(countDetails?.response?.throughOutSixtyPercent)}`,
       info: "Students who have throughout 60% Aggregate",
       icon: "../placementIcon1.svg",
       key: "throughoutsixty",
       toSet: setNonItCheckedIcon,
     },
     {
-      count: `${countDetails?.response?.nonItCount}`,
+      count: `${formatToIndianCurrency(countDetails?.response?.nonItCount)}`,
       info: "Students who have graduated in Non - IT",
       icon: "../staticsIcon02.svg",
       key: "nonit",
       toSet: setNonItCheckedIcon,
     },
     {
-      count: `${countDetails?.response?.itCount}`,
+      count: `${formatToIndianCurrency(countDetails?.response?.itCount)}`,
       info: "Students who have graduated in IT/CS/IS",
       icon: "../placementIcon03.svg",
       key: "it",
       toSet: setNonItCheckedIcon,
     },
     {
-      count: `${countDetails?.response?.lessThanSixtyPercent}`,
+      count: `${formatToIndianCurrency(countDetails?.response?.lessThanSixtyPercent)}`,
       info: "Students who have less than 60% Aggregate",
       icon: "../placementIcon04.svg",
       key: "lessthansixty",

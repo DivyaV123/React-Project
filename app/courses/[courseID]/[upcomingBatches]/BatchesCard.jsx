@@ -134,7 +134,7 @@ function BatchesCard() {
                 </div>
                 <div className={`${dateAndTime} mobile:mt-1`}>
                   <Svg
-                  className=" mobile:w-[4.186vw]"
+                  className="pr-[0.469vw] mobile:w-[4.186vw]"
                     width={svgicons.icontime[0]}
                     height={svgicons.icontime[1]}
                     viewBox={svgicons.icontime[2]}
@@ -170,7 +170,7 @@ function BatchesCard() {
                 <button
                   className={`${enrollEnquire} mobile:text-[3.721vw] mobile:flex mobile:justify-center mobile:items-center mobile:w-[39.535vw] mobile:h-[4.731vh] EnrollButton bg-gradient rounded text-white`}
                 >
-                  Demo Class
+                  Demo class
                 </button>
                 <button
                   className={`${enrollEnquire} mobile:text-[3.721vw] mobile:flex mobile:justify-center mobile:items-center mobile:w-[39.535vw] mobile:h-[4.731vh] EnquireButton rounded border border-orange-500 text-orange-500`}
