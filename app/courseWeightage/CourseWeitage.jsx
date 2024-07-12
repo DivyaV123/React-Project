@@ -2,15 +2,18 @@
 import Dropdown from '@/components/commonComponents/dropdown/Dropdown'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import React, { useState } from "react";
-import { useFormik } from "formik";
+import { useFormik, Field } from "formik";
 import * as Yup from "yup";
 import { useGetAllCategoriesInCourseQuery } from '@/redux/queries/getAllCategoriesInCourseForm'
 import Input from '@/components/commonComponents/input/Input';
 import { useGetAllCategoriesQuery } from '@/redux/queries/getAllCategories';
-import { useCourseWeightageMutation } from '@/redux/queries/courseWeightSaveageApi';
+import { useCourseWeightageMutation } from '@/redux/queries/courseWeightageSaveApi';
+import { useCourseWeightageEditMutation } from '@/redux/queries/courseWeightageEditApi';
+import { toast } from '@/components/ui/use-toast';
 
 function CourseWeitage() {
     const [addCourseWeightage, { data: courseAdd, error: courseError, isLoading: courseAdderLoad }] = useCourseWeightageMutation();
+    const [addCourseWeightageEdit, { data: courseEdit, error: courseEditError, isLoading: courseEditLoad }] = useCourseWeightageEditMutation();
     const {
         data: courseResponse,
         isLoading: CourseIsLoading,
@@ -104,11 +107,13 @@ function CourseWeitage() {
             selectedCourseData.subCourse.length > 0) {
 
             setSubCourseOptions(
-                selectedCourseData.subCourse.map((sub) => ({
+                selectedCourseData.subCourse.map((sub) =>
+                ({
                     label: sub.title,
                     value: sub.title,
-                    id: sub.courseId
-                }))
+                    id: sub.subCourseId
+                })
+                )
             )
             setCourseDisable(true);
             setIsSubCourseDisabled(false)
@@ -125,9 +130,10 @@ function CourseWeitage() {
     };
 
     const handleSubCourseSelect = (event) => {
+        console.log(event.target.option, "event.target.option")
         setAllID(prevState => ({
             ...prevState,
-            subCategoryId: event.target.option.Id
+            subCategoryId: event.target.option.id
         }));
         let allSubCourse = courseResponse.data[2].subCourse
         const selectedCourseId = event.target.value;
@@ -140,7 +146,6 @@ function CourseWeitage() {
 
         if (selectedCourseData &&
             selectedCourseData.subCourseResponse.length > 0) {
-
             setCourseNames(
                 selectedCourseData.subCourseResponse.map((sub) => ({
                     label: sub.title,
@@ -210,6 +215,16 @@ function CourseWeitage() {
             try {
                 if (!weightage?.weightageDto) {
                     const response = await addCourseWeightage({ bodyData: payload, categoryId: allId.categoryId, subCategoryId: allId.subCategoryId, courseId: allId.courseId }).unwrap();
+                    toast({
+                        description: response.data,
+                    })
+                    resetForm();
+                } else {
+                    const response = await addCourseWeightageEdit({ bodyData: payload, categoryId: allId.categoryId, subCategoryId: allId.subCategoryId, courseId: allId.courseId }).unwrap();
+                    toast({
+                        description: response.data,
+                    })
+                    resetForm();
                 }
                 console.log(response);
             } catch (err) {
