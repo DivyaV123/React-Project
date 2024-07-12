@@ -7,8 +7,10 @@ import * as Yup from "yup";
 import { useGetAllCategoriesInCourseQuery } from '@/redux/queries/getAllCategoriesInCourseForm'
 import Input from '@/components/commonComponents/input/Input';
 import { useGetAllCategoriesQuery } from '@/redux/queries/getAllCategories';
+import { useCourseWeightageMutation } from '@/redux/queries/courseWeightSaveageApi';
 
 function CourseWeitage() {
+    const [addCourseWeightage, { data: courseAdd, error: courseError, isLoading: courseAdderLoad }] = useCourseWeightageMutation();
     const {
         data: courseResponse,
         isLoading: CourseIsLoading,
@@ -24,6 +26,13 @@ function CourseWeitage() {
     const [selectedSubCourse, setSelectedSubCourse] = useState("");
     const [selectedCourseName, setSelectedCourseName] = useState("")
     const [weightage, setWeightage] = useState()
+    const [allId, setAllID] = useState({
+        categoryId: '',
+        subCategoryId: '',
+        courseId: '',
+    })
+
+    console.log(allId, "allId")
     const validationSchema = Yup.object({
         category: Yup.string().required("category is required"),
         // subCourse: Yup.string().required("Sub Course is required"),
@@ -61,6 +70,11 @@ function CourseWeitage() {
     });
 
     const handleCourseSelect = (event) => {
+        setAllID(prevState => ({
+            ...prevState,
+            categoryId: event.target.option.Id
+        }));
+        console.log(event, "event.target")
         const selectedCourseId = event.target.value;
         setSelectedCourse(selectedCourseId);
 
@@ -111,6 +125,10 @@ function CourseWeitage() {
     };
 
     const handleSubCourseSelect = (event) => {
+        setAllID(prevState => ({
+            ...prevState,
+            subCategoryId: event.target.option.Id
+        }));
         let allSubCourse = courseResponse.data[2].subCourse
         const selectedCourseId = event.target.value;
         setSelectedSubCourse(event.target.value);
@@ -137,6 +155,12 @@ function CourseWeitage() {
     };
 
     const handleCourseNameSelected = (event) => {
+        setAllID(prevState => ({
+            ...prevState,
+            courseId: event.target.option.id
+        }));
+
+        console.log(event.target.option, "event.target.option")
         const allCourse = courseResponse.data;
         const allSubCourse = courseResponse.data[2].subCourse;
         const selectedCourseName = event.target.value;
@@ -176,12 +200,21 @@ function CourseWeitage() {
         initialValues,
         validationSchema,
         onSubmit: async (values) => {
-
             const payload = {
-                category: values.category,
-                subCategory: values.subCourse,
-                courseName: values.courseName
+                qspiders: values.QSpiders,
+                jspiders: values.JSpiders,
+                pyspiders: values.PYSpiders,
+                bspiders: values.BSpiders
             };
+            console.log(allId, "AllId")
+            try {
+                if (!weightage?.weightageDto) {
+                    const response = await addCourseWeightage({ bodyData: payload, categoryId: allId.categoryId, subCategoryId: allId.subCategoryId, courseId: allId.courseId }).unwrap();
+                }
+                console.log(response);
+            } catch (err) {
+                console.error(err, "Error from loginAPI");
+            }
         },
     });
 
