@@ -39,7 +39,11 @@ import { branchCourseApi } from './queries/getBranchCourseApi';
 import { getHomePageCourseApi } from './queries/getHomePageCourse';
 import { getAllFaqApi } from './queries/getAllFaq';
 import { enquriesApi } from './queries/enquriesApi';
-import { courseWeightageApi } from './queries/courseWeightSaveageApi';
+import { courseWeightageApi } from './queries/courseWeightageSaveApi';
+import courseWeighEditSlice from './slices/courses/courseWeighEditSlice';
+import { courseWeightageEditApi } from './queries/courseWeightageEditApi';
+import { courseEditerApi } from './queries/courseEditer';
+import { getcourseByIdApi } from './queries/getCourseById';
 
 
 const store = configureStore({
@@ -106,12 +110,15 @@ const store = configureStore({
     [getAllFaqApi.reducerPath]: getAllFaqApi.reducer,
     [enquriesApi.reducerPath]: enquriesApi.reducer,
     [courseWeightageApi.reducerPath]: courseWeightageApi.reducer,
+    [courseWeightageEditApi.reducerPath]: courseWeightageEditApi.reducer,
+    [courseEditerApi.reducerPath]: courseEditerApi.reducer,
+    [getcourseByIdApi.reducerPath]: getcourseByIdApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
       ItandNonItApi.middleware, counsellorsApi.middleware, PlacementBranchApi.middleware, YearOfPassoutApi.middleware, PlacedDateBetweenApi.middleware, LoginApi.middleware, categoriesApi.middleware,
       CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
-      getHomePageCourseApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware),
+      getHomePageCourseApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware),
 });
 
 export default store; 
