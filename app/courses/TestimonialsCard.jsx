@@ -32,7 +32,7 @@ const {imageDialog, setImageDialog,videoDialog, setVideoDialog}=useContext(Globa
                     <img className='w-full' src='../images/TestimonialImage2.png' />
                 </figure>
             </article> */}
-            <div className="pl-[3.125vw] pt-[2.222vh] flex flex-col gap-3 mobile:pt-[1.717vh] mobile:pl-[3.721vw] mobile:w-[21.395vw]">
+            <div className="pl-[1.25vw] pt-[2.222vh] flex flex-col gap-3 mobile:pt-[1.717vh] mobile:pl-[3.721vw] mobile:w-[21.395vw]">
                 <AlertDialogTrigger asChild>
                     <img
                         onClick={openImageDialog}
@@ -56,12 +56,12 @@ const {imageDialog, setImageDialog,videoDialog, setVideoDialog}=useContext(Globa
             {videoDialog && (
                 <VideoPopup videoLink={testimonialsData?.testimonial?.youtubeReview} />
             )}
-            <article className='sm:basis-[65%] mobile:w-[60.93vw] mobile:py-[1.717vh] mobile:pr-[3.721vw] '>
+            <article className='sm:basis-[65%] pt-[2.222vh] mobile:w-[60.93vw] mobile:py-[1.717vh] mobile:pr-[3.721vw] pr-[1.25vw]'>
                 <header>
                     <h1 className='font-bold pb-1 text-dark-gray mobile:text-[3.721vw]'>
                         {testimonialsData?.name}
                     </h1>
-                    <p className='text-[0.75rem] text-ash mobile:text-[2.791vw]'>
+                    <p className='text-[0.75rem] text-ash mobile:text-[2.791vw]' title={testimonialsData?.testimonial?.writtenTestimonial}>
                         {testimonialsData?.testimonial?.writtenTestimonial.length > 150 ? testimonialsData?.testimonial?.writtenTestimonial.substring(0, 150) + "..." : testimonialsData?.testimonial?.writtenTestimonial ? testimonialsData?.testimonial?.writtenTestimonial : "Thank you for being a valued member of our community! Your feedback is important to us."}
                     </p>
                 </header>

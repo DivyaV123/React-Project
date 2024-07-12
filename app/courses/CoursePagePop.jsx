@@ -33,7 +33,7 @@ function CoursePagePop({ courseDetails }) {
 
     return (
         <>
-            <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className={`bg-[#FEF2E7] w-[100%] flex justify-between align-item-center   px-[4.1667vw] fixed top-[7.5vw] ${imageDialog || videoDialog ? "right-[5px]" : "right-0"}`}>
+            <article id="hiddenDiv" style={{ visibility: showDiv ? 'visible' : 'hidden' }} className={`bg-[#FEF2E7] w-[100%] flex justify-between align-item-center   px-[4.1667vw] fixed top-[7.2vw] ${imageDialog || videoDialog ? "right-[5px]" : "right-0"}`}>
                 <p className='text-[1.875vw] font-bold leading-[36px] py-[1.15vw]'>
                     {courseDetails?.courseName}
                 </p>

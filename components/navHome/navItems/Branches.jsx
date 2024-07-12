@@ -135,15 +135,11 @@ const Branches = ({ BranchResponse }) => {
                             <h3 className="text-left h-5 text-[0.938vw] font-bold">
                               {content.branchName}
                             </h3>
-                            <button onClick={() => window.open(content.location, "_blank")} className="flex gap-1 text-xs text z-1">
-                              <p className="text-orange-500 text-[0.703vw] p-[0.156vw]">Get Directions</p>
-                              <Svg
+                            <button onClick={() => window.open(content.location, "_blank")} className="flex gap-1 text-xs text z-1 items-center">
+                              <p className="text-[#7298FF] text-[0.703vw] p-[0.156vw]">Get Directions</p>
+                              <img
                                 className="pr-[0.469vw]"
-                                width={svgicons.navigationIcon[0]}
-                                height={svgicons.navigationIcon[1]}
-                                viewBox={svgicons.navigationIcon[2]}
-                                icon={svgicons.navigationIcon[3]}
-                                color={svgicons.navigationIcon[4]}
+                                src="/blue_direction.svg"
                               />
                             </button>
                           </div>

@@ -54,7 +54,7 @@ function StudentsTestimonialsHome({ page, testimonialsData }) {
                                         key={index}
                                     >
                                         {firstCardData && (
-                                            <article className='flex gap-4 sm:pb-3 mobile:w-[86.047vw] mobile:h-[20.386vh] mobile:bg-white mobile:mb-[2.575vh] mobile:pl-[3.721vw] rounded-xl'>
+                                            <article className='flex gap-4 sm:pb-3 mobile:w-[86.047vw] mobile:h-[20.386vh] bg-white mobile:mb-[2.575vh] mobile:pl-[3.721vw] rounded-xl mb-[4.444vh]'>
                                                 {isloading && index % 2 === 0 ? (
                                                     <TestimonialsSkeletonCard />
                                                 ) : (
@@ -63,7 +63,7 @@ function StudentsTestimonialsHome({ page, testimonialsData }) {
                                             </article>
                                         )}
                                         {secondCardData && (
-                                            <article className='flex gap-4 mobile:w-[86.047vw] mobile:h-[20.386vh] mobile:bg-white mobile:mb-[2.575vh] mobile:pl-[3.721vw] rounded-xl'>
+                                            <article className='flex gap-4 mobile:w-[86.047vw] mobile:h-[20.386vh] bg-white mobile:mb-[2.575vh] mobile:pl-[3.721vw] rounded-xl'>
                                                 {isloading && index % 2 !== 0 ? (
                                                     <TestimonialsSkeletonCard />
                                                 ) : (
