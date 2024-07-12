@@ -87,7 +87,7 @@ const CourseLanding = ({
             <div className="py-[1.389vh] flex gap-6 items-center mobile:hidden">
               <h1
                 title={courseDetails?.courseName}
-                className="font-medium text-left text-[3.75vw] flex"
+                className="font-bold text-left text-[3.75vw] flex"
               >
                 {courseDetails?.courseName}
               </h1>
@@ -159,7 +159,7 @@ const CourseLanding = ({
                     onClick={() => handleCardClick()}
                     className="EnrollButton text-[1.25vw] mobile:text-[3.721vw] font-semibold py-[1.389vh] px-[1.875vw]"
                   >
-                    Enroll For Demo Class
+                    Enroll For Demo class
                   </button>
                   {/* <button className="EnquireButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw] relative">
                     <span>Know more</span>

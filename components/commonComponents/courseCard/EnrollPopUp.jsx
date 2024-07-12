@@ -28,11 +28,12 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
 
   const validationSchema = Yup.object({
     fullName: Yup.string().required("Full Name is required"),
-    mobileNumber: Yup.string().required("Phone number is required"),
+    mobileNumber: Yup.string().required("Mobile number is required"),
     course: Yup.string().required("course is required"),
     email: Yup.string()
       .email("Invalid email address")
-      .required("Email is required"),
+      .required("Email is required")
+      .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
     message: Yup.string().required("Message is required"),
   });
 
@@ -109,7 +110,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     htmlFor="mobileNumber"
                     className="block font-bold mb-2 mobile:text-[3.721vw]"
                   >
-                    Mobile Number
+                   <span className="text-red-500 pr-1">*</span> Mobile Number
                   </label>
                   <PhoneInput
                     type="text"
@@ -159,7 +160,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     (formik.errors.mobileNumber &&
                       formik.touched.mobileNumber)) && (
                     <div className="text-red-500 absolute text-sm">
-                      Phone number is required
+                      Mobile number is required
                     </div>
                   )}
                   {error.validPhone && !error.mobileNumber && (
@@ -173,7 +174,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     htmlFor="email"
                     className="block font-bold mb-2 mobile:text-[3.721vw]"
                   >
-                    Email
+                    <span className="text-red-500 pr-1">*</span>Email
                   </label>
                   <input
                     id="email"
@@ -200,7 +201,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     htmlFor="course"
                     className="block font-bold mb-2 mobile:text-[3.721vw]"
                   >
-                    Course
+                    <span className="text-red-500 pr-1">*</span>Course
                   </label>
                   <select
                     id="course"
@@ -227,7 +228,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     htmlFor="fullName"
                     className="block font-bold mb-2 text-left mobile:text-[3.721vw]"
                   >
-                    Full Name
+                    <span className="text-red-500 pr-1">*</span>Full Name
                   </label>
                   <input
                     id="fullName"
@@ -255,7 +256,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     htmlFor="message"
                     className="block font-bold mb-2 mobile:text-[3.721vw]"
                   >
-                    Message
+                   <span className="text-red-500 pr-1">*</span> Message
                   </label>
                   <textarea
                     id="message"

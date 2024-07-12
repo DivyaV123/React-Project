@@ -41,7 +41,7 @@ function CoursePagePop({ courseDetails }) {
                     <div className='flex gap-3'>
                         <Button
                             onClick={() => handleCardClick()}
-                            title='Enroll For Demo Class'
+                            title='Enroll For Demo class'
                             className='EnrollButton text-[1.25vw] font-semibold py-[1.389vh] px-[1.875vw]'
                         />
                         {/* <Button

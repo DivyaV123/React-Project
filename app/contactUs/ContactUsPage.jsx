@@ -225,7 +225,7 @@ function ContactUsPage() {
                       (formikDetails.errors.phone &&
                         formikDetails.touched.phone)) && (
                       <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute">
-                        Phone number is required
+                        Mobile number is required
                       </div>
                     )}
                     {error.validPhone && !error.phone && (

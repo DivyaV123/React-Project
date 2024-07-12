@@ -71,7 +71,7 @@ function BranchesCourse({ branchCourseData }) {
           <article className="flex justify-center mt-2">
             <Button
               className="bg-gradient w-[9.375vw] h-[5.694vh] text-[0.938vw] text-white rounded-md"
-              title={showAll ? "View Less" : "View More"}
+              title={showAll ? "View Less" : "View more"}
               onClick={handleViewToggle}
             />
           </article>

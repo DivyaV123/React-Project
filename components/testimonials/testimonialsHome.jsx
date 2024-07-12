@@ -28,7 +28,7 @@ function TestimonialsHome() {
             <article className='flex justify-center mt-3'>
                 <Button
                     className='bg-gradient h-[2.656vw] w-[9.375vw] text-[0.75rem] text-white rounded-md'
-                    title="View More"
+                    title="View more"
                     onClick={() => { }}
                 />
             </article>

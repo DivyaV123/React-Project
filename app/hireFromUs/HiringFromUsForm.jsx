@@ -50,19 +50,20 @@ const HiringFromUsForm = ({ activeTab }) => {
       case "Corporate Training":
         return Yup.object({
           fullName: Yup.string().required("Full Name is required"),
-          mobileNumber: Yup.string().required("Phone number is required"),
+          mobileNumber: Yup.string().required("Mobile number is required"),
           requiredTraining: Yup.string().required(
             "Required Training is required"
           ),
           email: Yup.string()
             .email("Invalid email address")
-            .required("Email is required"),
+            .required("Email is required")
+            .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
           message: Yup.string().required("Message is required"),
         });
       case "General Enquiries":
         return Yup.object({
           fullName: Yup.string().required("Full Name is required"),
-          mobileNumber: Yup.string().required("Phone number is required"),
+          mobileNumber: Yup.string().required("Mobile number is required"),
           email: Yup.string()
             .email("Invalid email address")
             .required("Email is required"),
@@ -71,7 +72,7 @@ const HiringFromUsForm = ({ activeTab }) => {
       default:
         return Yup.object({
           fullName: Yup.string().required("Full Name is required"),
-          mobileNumber: Yup.string().required("Phone number is required"),
+          mobileNumber: Yup.string().required("Mobile number is required"),
           companyName: Yup.string().required("Company Name is required"),
           email: Yup.string()
             .email("Invalid email address")
@@ -212,7 +213,7 @@ const HiringFromUsForm = ({ activeTab }) => {
           {(error.mobileNumber ||
             (formik.errors.mobileNumber && formik.touched.mobileNumber)) && (
             <div className="text-red-500 absolute text-sm">
-              Phone number is required
+              Mobile number is required
             </div>
           )}
           {error.validPhone && !error.mobileNumber && (
