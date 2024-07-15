@@ -26,8 +26,11 @@
   color: orange;
 }
 .courselist {
-  width: 41.87vw;
-  gap: 0.688rem;
+  @media only screen and (min-width: 1280px){
+
+    width: 42.87vw;
+    gap: 0.688rem;
+  }
 }
 @media only screen and (min-width: 1536px) and (max-width: 1919px) {
   .courselist {

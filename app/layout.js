@@ -6,7 +6,7 @@ import GlobalContextProvider, { GlobalContext } from "@/components/Context/Globa
 import { Provider } from "react-redux"; 
 import store from "@/redux/store";
 import { useContext } from "react";
-
+import ScrollToTopButton from "@/components/scrollToTop/ScrollToTopButton";
 const poppins = Poppins({
   subsets: ["latin"],
   variable: "--font-poppins",
@@ -33,6 +33,7 @@ function RootComponent({ children }) {
         )}
       >
         <main className="relative flex flex-col min-h-screen">{children}</main>
+        <ScrollToTopButton />
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
       </body>
     </html>
