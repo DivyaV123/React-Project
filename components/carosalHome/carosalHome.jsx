@@ -39,7 +39,6 @@ function CarosalHome() {
   ]
 
   let logo = () => {
-    console.log(domainVariable, "domainVariable")
     if (domainVariable === "Qspiders") {
       return (
         <article className='mobile:hidden'>

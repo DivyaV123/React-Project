@@ -24,6 +24,7 @@ export const API_ENDPOINTS = {
   GET_DEGREE: 'candidate/degreeStream',
   GET_BRANCH: 'candidate/branch',
   GET_COURSE_BY_ID: (courseId) => `api/v1/courses/getbyid?courseId=${courseId}`,
+  EDIT_COURSE: `api/v1/courses/updateCourseContent`,
   GET_PASS_OUT_YEAR: 'candidate/passoutyear',
   GET_PLACEMENT_COUNTS: '/candidate/getCounts',
   GET_THROUGH_OUT_SIXTY: 'candidate/getThroughOutSixty',

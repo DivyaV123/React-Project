@@ -7,7 +7,6 @@ function CoursePagePop({ courseDetails }) {
     const [showDiv, setShowDiv] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const {imageDialog,videoDialog}=useContext(GlobalContext)
-    console.log(imageDialog,videoDialog,"imageDialog,videoDialog");
     const handleCardClick = () => {
         setIsModalOpen(true);
     };

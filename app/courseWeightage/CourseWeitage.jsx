@@ -1,7 +1,7 @@
 'use client'
 import Dropdown from '@/components/commonComponents/dropdown/Dropdown'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik, Field } from "formik";
 import * as Yup from "yup";
 import { useGetAllCategoriesInCourseQuery } from '@/redux/queries/getAllCategoriesInCourseForm'
@@ -9,18 +9,21 @@ import Input from '@/components/commonComponents/input/Input';
 import { useGetAllCategoriesQuery } from '@/redux/queries/getAllCategories';
 import { useCourseWeightageMutation } from '@/redux/queries/courseWeightageSaveApi';
 import { useCourseWeightageEditMutation } from '@/redux/queries/courseWeightageEditApi';
-import { toast } from '@/components/ui/use-toast';
+import { useToast } from "@/components/ui/use-toast"
+import { Toaster } from "@/components/ui/toaster"
+import { ToastAction } from '@/components/ui/toast';
 
 function CourseWeitage() {
+    const { toast } = useToast()
+    const [afterUpdate, setAfterUpdate] = useState(0)
     const [addCourseWeightage, { data: courseAdd, error: courseError, isLoading: courseAdderLoad }] = useCourseWeightageMutation();
     const [addCourseWeightageEdit, { data: courseEdit, error: courseEditError, isLoading: courseEditLoad }] = useCourseWeightageEditMutation();
     const {
         data: courseResponse,
         isLoading: CourseIsLoading,
         error: CourseError,
+        refetch
     } = useGetAllCategoriesQuery();
-
-    console.log({ courseResponse })
     const [selectedCourse, setSelectedCourse] = useState("")
     const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);
     const [courseDisable, setCourseDisable] = useState(true)
@@ -34,8 +37,6 @@ function CourseWeitage() {
         subCategoryId: '',
         courseId: '',
     })
-
-    console.log(allId, "allId")
     const validationSchema = Yup.object({
         category: Yup.string().required("category is required"),
         // subCourse: Yup.string().required("Sub Course is required"),
@@ -77,7 +78,6 @@ function CourseWeitage() {
             ...prevState,
             categoryId: event.target.option.Id
         }));
-        console.log(event, "event.target")
         const selectedCourseId = event.target.value;
         setSelectedCourse(selectedCourseId);
 
@@ -130,7 +130,6 @@ function CourseWeitage() {
     };
 
     const handleSubCourseSelect = (event) => {
-        console.log(event.target.option, "event.target.option")
         setAllID(prevState => ({
             ...prevState,
             subCategoryId: event.target.option.id
@@ -142,8 +141,6 @@ function CourseWeitage() {
         const selectedCourseData = allSubCourse?.find(
             (course) => course.title == selectedCourseId
         );
-        console.log(selectedCourseData, "selectedCourseData")
-
         if (selectedCourseData &&
             selectedCourseData.subCourseResponse.length > 0) {
             setCourseNames(
@@ -164,8 +161,6 @@ function CourseWeitage() {
             ...prevState,
             courseId: event.target.option.id
         }));
-
-        console.log(event.target.option, "event.target.option")
         const allCourse = courseResponse.data;
         const allSubCourse = courseResponse.data[2].subCourse;
         const selectedCourseName = event.target.value;
@@ -180,8 +175,6 @@ function CourseWeitage() {
                 selectedCourseWeightage = categoryData?.courseResponse?.find(course => course.title === selectedCourseName);
             }
         }
-
-        console.log(selectedCourseWeightage, "selectedCourseWeightage");
         setWeightage(selectedCourseWeightage)
         setSelectedCourseName(selectedCourseName);
         formikDetails.setFieldValue("subCourse", selectedCourseName);
@@ -199,39 +192,45 @@ function CourseWeitage() {
         }
     };
 
-
-
     const formikDetails = useFormik({
         initialValues,
         validationSchema,
-        onSubmit: async (values) => {
+        onSubmit: async (values, { resetForm }) => {
             const payload = {
                 qspiders: values.QSpiders,
                 jspiders: values.JSpiders,
                 pyspiders: values.PYSpiders,
                 bspiders: values.BSpiders
             };
-            console.log(allId, "AllId")
             try {
                 if (!weightage?.weightageDto) {
                     const response = await addCourseWeightage({ bodyData: payload, categoryId: allId.categoryId, subCategoryId: allId.subCategoryId, courseId: allId.courseId }).unwrap();
-                    toast({
-                        description: response.data,
-                    })
                     resetForm();
+                    setSelectedCourse("");
+                    setSelectedCourseName("");
+                    setSelectedSubCourse("")
+                    setAfterUpdate(afterUpdate + 1)
+                    alert(response.data)
+
                 } else {
                     const response = await addCourseWeightageEdit({ bodyData: payload, categoryId: allId.categoryId, subCategoryId: allId.subCategoryId, courseId: allId.courseId }).unwrap();
-                    toast({
-                        description: response.data,
-                    })
                     resetForm();
+                    setSelectedCourse("");
+                    setSelectedCourseName("");
+                    setSelectedSubCourse("")
+                    setAfterUpdate(afterUpdate + 1)
+                    alert(response.data)
                 }
-                console.log(response);
             } catch (err) {
-                console.error(err, "Error from loginAPI");
+                alert(err)
             }
         },
     });
+
+    useEffect(() => {
+        refetch()
+    }, [afterUpdate])
+
 
     const commonLabelStyles = "pb-[1.111vh]";
     return (
@@ -376,6 +375,7 @@ function CourseWeitage() {
                         </div>
                     </form>
                 </div>
+                < Toaster />
             </MaxWebWidth>
         </>
     )
