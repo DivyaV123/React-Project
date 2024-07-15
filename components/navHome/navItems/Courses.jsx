@@ -24,8 +24,8 @@ const Courses = ({ courseResponse }) => {
       : subCourseContent;
 const defaultIcon="https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/Popular%20Courses/2024-07-02T16%3A05%3A19.575938600_popular%20courses-white.svg"
   return (
-    <div className="flex w-[81.09vw]  lg:h-[500px] 3xl:h-[660px] overflow-auto myscrollbar ">
-      <div className="menuSidebar pt-2  xl:w-[18.75vw] 2xl:w-[14.75vw]  3xl:w-[11.75vw] ">
+    <div className="flex w-[81.09vw]  lg:h-[500px] 3xl:h-[660px]">
+      <div className="menuSidebar pt-2  xl:w-[18.75vw] 2xl:w-[15.25vw]  3xl:w-[12.75vw] overflow-auto courseScroll">
         {getAllCourses?.map((courseItem, index) => (
           <div
             key={index}
@@ -47,10 +47,10 @@ const defaultIcon="https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/P
           </div>
         ))}
       </div>
-      <div className="xl:w-[62.34vw] 2xl:w-[66.34vw] 3xl:w-[70.34vw] flex ">
+      <div className="xl:w-[62.34vw] 2xl:w-[65.34vw] 3xl:w-[68.34vw] flex overflow-auto courseScroll">
         {hoveredIndex !== null &&
           getAllCourses?.[hoveredIndex]?.subCourse?.length > 0 && (
-            <div className="xl:w-[20.31vw] 2xl:w-[18.5vw]  3xl:w-[13.6vw]  pt-2 menuSidebar">
+            <div className="xl:w-[20.31vw] 2xl:w-[18.1vw]  3xl:w-[13.6vw]  pt-2 menuSidebar">
               {getAllCourses?.[hoveredIndex]?.subCourse?.map(
                 (item, itemIndex) => (
                   <div
@@ -65,7 +65,7 @@ const defaultIcon="https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/P
                   >
                     <img src={item?.icon} />
                     <div className="flex justify-between grow">
-                      <button className="p-2 text-sm">{item?.title}</button>
+                      <button className="p-2 text-sm text-left">{item?.title}</button>
                       <img
                         src="/arrowIconDark.svg"
                         className={`${
@@ -83,7 +83,7 @@ const defaultIcon="https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/P
         <div
           className={`${
             hoveredIndex !== null && subCourse ? "courselist" : "coursefull"
-          }   flex flex-wrap py-[2.222vh] px-[1.25vw]  h-fit gap-[0.938rem] 2xl:gap-[0.706rem] 3xl:p-4 3xl:gap-[0.813]`}
+          }   flex flex-wrap py-[2.222vh] px-[1vw]  h-fit gap-[0.938rem] 2xl:gap-[0.706rem] 3xl:p-4 3xl:gap-[0.813vw]`}
         >
           {finalContent?.length > 0 &&
             finalContent?.map((content, index) => {

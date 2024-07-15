@@ -3,6 +3,8 @@ import React,{useMemo} from 'react'
 import { usePathname } from "next/navigation";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import Link from 'next/link';
+import { truncateText } from '@/lib/utils';
+import "../../../branchnav/BranchPopup.scss"
 const SubCourseResponseLanding = () => {
   const {
     data: courseResponse,
@@ -32,11 +34,11 @@ const SubCourseResponseLanding = () => {
           {filterSubCourseTitle}
         </div>
       </Link>
-      <section className="mx-[3.721vw] my-[0.858vh]">
+      <section className="mx-[3.721vw] my-[0.858vh] flex flex-col  ">
         {getSubCourseResponse?.length > 0 && getSubCourseResponse.map((response) => (
           <Link
             key={response?.subCourseResponseId}
-            className="mx-[2.326vw] my-[1.073vh]"
+            className="branchMobileCard p-3 my-[1.073vh]"
             href={`/courses/${response?.subCourseResponseId}`}
           >
             <div className="flex gap-2.5 pt-[0.858vh] items-center">
@@ -49,8 +51,8 @@ const SubCourseResponseLanding = () => {
                 {response.title}
               </div>
             </div>
-            <div className="mt-[0.858vh] py-[1.073vh] text-[2.558vw] font-semibold text-[#575757]">
-              {response.description}
+            <div className="mt-[0.858vh] py-[1.073vh] text-[2.558vw] font-semibold text-[#575757]" title={response?.description}>
+              {truncateText(response?.description,100)}
             </div>
           </Link>
         ))}
