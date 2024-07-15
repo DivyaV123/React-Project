@@ -1,0 +1,29 @@
+.scrollToTopBtn {
+  display: none; 
+  position: fixed;
+  bottom: 20px; 
+  right: 20px; 
+  z-index: 99; 
+  border: none; 
+  outline: none;
+  background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+  color: white; 
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 6px; 
+}
+
+.scrollToTopBtn img {
+  width: 16px; 
+  height: 16px; 
+}
+
+.scrollToTopBtn img.arrowUp {
+  transform: rotate(-90deg);
+}
+
+.show {
+  display: block;
+}
+
+

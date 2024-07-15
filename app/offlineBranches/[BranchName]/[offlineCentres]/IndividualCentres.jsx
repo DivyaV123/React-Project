@@ -56,7 +56,7 @@ const IndividualCentres = () => {
       <header className="offlineHeader">Our Offline Centres</header>
       <section className="citySection w-[95vw] mobile:w-[92.558vw] m-auto  pt-3 pb-16">
         <div className="flex justify-between items-center gap-1">
-          <div onClick={handlePrevious}>
+          {/* <div onClick={handlePrevious}>
             <Svg
               className="h-[3.004vh] w-[3.86vw]"
               width={svgicons.corasalArrowLeft[0]}
@@ -68,21 +68,21 @@ const IndividualCentres = () => {
           </div>
           <Carousel>
             <CarouselContent page="offlineBranches">
-              <CarouselItem>
-                <div className="flex cityNavbar">
-                  {currentCities?.map((ele, index) => (
+              <CarouselItem> */}
+                <div className="flex cityNavbar w-full justify-evenly">
+                  {newNavCities?.map((ele, index) => (
                     <div
                       onClick={() =>
                         router.push(`/offlineBranches/${ele.name}/${courseId}`)
                       }
-                      className={`flex justify-center items-center w-[8.359vw] py-2 mobile:w-[25vw] mobile:text-[2.791vw] mobile:py-[0.858vh]  text-[0.938vw] 
+                      className={`flex justify-center items-center py-2 mobile:w-[25vw] mobile:text-[2.791vw] mobile:py-[0.858vh]  text-[0.938vw] 
               ${ele.name === branchName ? "activeCity" : ""}`}
                     >
                       <button key={index}>{ele.name}</button>
                     </div>
                   ))}
                 </div>
-              </CarouselItem>
+              {/* </CarouselItem>
             </CarouselContent>
           </Carousel>
           <div onClick={handleNext}>
@@ -94,9 +94,9 @@ const IndividualCentres = () => {
               icon={svgicons.corasalArrowRight[3]}
               color={svgicons.corasalArrowRight[4]}
             />
-          </div>
+          </div> */}
         </div>
-        <section className="flex mobile:flex-col sm:gap-5 sm:h-[609px]">
+        <section className="flex mobile:flex-col sm:gap-5 ">
           <div className="sm:w-[20vw] mt-6  p-1 h-full overflow-y-scroll myscrollbar mobile:hidden">
             {selectedCity &&
               selectedCity?.courses?.map((item, index) => (

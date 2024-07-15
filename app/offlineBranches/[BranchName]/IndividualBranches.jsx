@@ -73,8 +73,8 @@ const IndividualBranches = () => {
     <div className="w-full">
       <header className="offlineHeader">Our Offline Centres</header>
       <section className="justify-center citySection w-[87.5vw]  mobile:w-[92.558vw] m-auto pt-[1.667vh] pb-[8.889vh]">
-        <div className="flex justify-between items-center gap-1">
-          <div onClick={handlePrevious}>
+        <div className="flex justify-between items-center gap-1 cityNavbar">
+          {/* <div onClick={handlePrevious}>
             <Svg
               className="h-[3.004vh] w-[3.86vw]"
               width={svgicons.corasalArrowLeft[0]}
@@ -83,15 +83,15 @@ const IndividualBranches = () => {
               icon={svgicons.corasalArrowLeft[3]}
               color={svgicons.corasalArrowLeft[4]}
             />
-          </div>
-          <Carousel>
+          </div> */}
+          {/* <Carousel>
             <CarouselContent page="offlineBranches">
-              <CarouselItem>
-                <div className="flex items-center">
-                  {currentCities?.map((ele, index) => (
+              <CarouselItem> */}
+                <div className="flex items-center justify-evenly w-full">
+                  {newNavCities?.map((ele, index) => (
                     <div
                       onClick={() => router.push(`${OFFLINE_BRANCHES}/${ele.name}`)}
-                      className={`cityNavbar flex justify-center sm:p-1 items-center w-[8.359vw] mobile:w-[25vw] mobile:text-[2.791vw]  py-[1.111vh] mobile:py-[0.858vh] text-[0.938vw]  ${ele.name === branchName ? "activeCity" : ""
+                      className={` flex justify-center sm:p-1 items-center mobile:w-[25vw] mobile:text-[2.791vw]  py-[1.111vh] mobile:py-[0.858vh] text-[0.938vw]  ${ele.name === branchName ? "activeCity" : ""
                         }`}
                       key={index}
                     >
@@ -99,10 +99,10 @@ const IndividualBranches = () => {
                     </div>
                   ))}
                 </div>
-              </CarouselItem>
+              {/* </CarouselItem>
             </CarouselContent>
-          </Carousel>
-          <div onClick={handleNext}>
+          </Carousel> */}
+          {/* <div onClick={handleNext}>
             <Svg
               className="h-[3.004vh] w-[3.86vw]"
               width={svgicons.corasalArrowRight[0]}
@@ -111,7 +111,7 @@ const IndividualBranches = () => {
               icon={svgicons.corasalArrowRight[3]}
               color={svgicons.corasalArrowRight[4]}
             />
-          </div>
+          </div> */}
         </div>
 
         <div className="sm:pt-[3.333vh] mobile:py-[2.575vh]">
