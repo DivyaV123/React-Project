@@ -60,7 +60,6 @@ const PlacementCards = () => {
       router.push(PLACEMENT_PATH);
     }
   }, [filterPlacementData]);
-  console.log(pathname,"pathname",emptyObj,filterPlacementData,placementParam)
 
   const constructSearchParams = () => {
     let searchParams = "";

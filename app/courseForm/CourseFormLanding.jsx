@@ -96,7 +96,6 @@ function CourseFormLanding() {
 
       try {
         const response = await addCourse({ bodyData: payload, courseId: values.course, subcourseId: subCourse }).unwrap();
-        console.log(response);
       } catch (err) {
         console.error(err, "Error from loginAPI");
       }

@@ -2,8 +2,8 @@ export const getBaseUrl = () => process.env.NEXT_PUBLIC_PROD2_URL;
 export const getPlacementUrl = () => process.env.NEXT_PUBLIC_PROD_URL;
 export const API_ENDPOINTS = {
   LOGIN: 'api/v1/users/login',
-  GET_ALL_CATEGORIES: 'api/v1/categories/getall',
-  GET_ALL_BRANCHES: 'api/v1/branches/getAll',
+  GET_ALL_CATEGORIES: 'api/v1/categories/getAllCategories',
+  GET_ALL_BRANCHES: 'api/v1/branches/getAllBranches',
   ENQUIRE: 'api/v1/enquiry',
   FEEDBACK: 'api/v1/feedback',
   GET_CATEGORY_IN_COURSE_FORM: 'api/v1/categories/getCategory',
@@ -24,6 +24,7 @@ export const API_ENDPOINTS = {
   GET_DEGREE: 'candidate/degreeStream',
   GET_BRANCH: 'candidate/branch',
   GET_COURSE_BY_ID: (courseId) => `api/v1/courses/getbyid?courseId=${courseId}`,
+  EDIT_COURSE: `api/v1/courses/updateCourseContent`,
   GET_PASS_OUT_YEAR: 'candidate/passoutyear',
   GET_PLACEMENT_COUNTS: '/candidate/getCounts',
   GET_THROUGH_OUT_SIXTY: 'candidate/getThroughOutSixty',

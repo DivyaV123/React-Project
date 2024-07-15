@@ -82,7 +82,6 @@ function BranchFormLanding() {
 
             try {
                 const response = await addBranch({ bodyData: payload, courseId: values.course, subcourseId: subCourse }).unwrap();
-                console.log(response);
             } catch (err) {
                 console.error(err, "Error from loginAPI");
             }
