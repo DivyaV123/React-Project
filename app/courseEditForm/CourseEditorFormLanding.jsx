@@ -1,28 +1,50 @@
 'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React, { useState } from 'react'
+import React, { useEffect, useLayoutEffect, useState } from 'react'
 import { useFormik, Field } from "formik";
 import * as Yup from "yup";
-import { useCourseEditorMutation } from '@/redux/queries/courseEditer';
 import Dropdown from '@/components/commonComponents/dropdown/Dropdown';
 import { useGetAllCategoriesQuery } from '@/redux/queries/getAllCategories';
 import { useGetcourseByIdQuery } from '@/redux/queries/getCourseById';
+import dynamic from "next/dynamic";
+import Button from '@/components/commonComponents/button/Button';
+import { Input } from '@/components/ui/input';
+import TextArea from '@/components/commonComponents/textArea/TextArea';
+import { Text } from 'lucide-react';
+import { useCourseEditorMutation } from '@/redux/queries/courseById';
+import { useCourseEditDataMutation } from '@/redux/queries/editCourseApi';
+
+const ReactQuill = dynamic(
+    async () => {
+        const { default: RQ } = await import("react-quill");
+        return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
+    },
+    {
+        ssr: false,
+    }
+);
 
 function CourseEditorFormLanding() {
-    const [editCourse, { data: courseAdd, error: courseError, isLoading: courseAdderLoad }] = useCourseEditorMutation();
+    const [selectedCourseDetails, { data: courseToEditData, error: courseError, isLoading: courseAdderLoad }] = useCourseEditorMutation();
+    const [editSelectedCourse, { data: courseEditResp, error: courseEditError, isLoading: courseEditLoad }] = useCourseEditDataMutation();
 
     const {
         data: courseResponse,
         isLoading: CourseIsLoading,
         error: CourseError,
+        refetch
     } = useGetAllCategoriesQuery();
     const commonLabelStyles = "pb-[1.111vh]";
     const [selectedSubCourse, setSelectedSubCourse] = useState("");
     const [subCourseOptions, setSubCourseOptions] = useState([]);
     const [selectedCourse, setSelectedCourse] = useState("")
+    const [selectedCourseEdit, setSelectedCourseEdit] = useState(false);
     const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);
     const [courseDisable, setCourseDisable] = useState(true);
     const [selectedCourseName, setSelectedCourseName] = useState("");
+    const [faqEditIndex, setFaqEditIndex] = useState(null);
+    const [expandedIndex, setExpandedIndex] = useState(null);
+    const [faqs, setFaqs] = useState([]);
     const [courseNames, setCourseNames] = useState([]);
     const [allId, setAllID] = useState({
         categoryId: '',
@@ -50,13 +72,11 @@ function CourseEditorFormLanding() {
         organisation: Yup.array().min(1, "At least one organisation is required"),
         mode: Yup.array().min(1, "At least one Mode is required"),
     })
-    const initialValues = {
+    let initialValues = {
         category: "",
         subCourse: "",
         courseName: "",
         course: "",
-        subCourse: "",
-        courseName: "",
         courseDescription: "",
         courseSummary: "",
         aboutCourse: "",
@@ -73,7 +93,6 @@ function CourseEditorFormLanding() {
             ...prevState,
             categoryId: event.target.option.Id
         }));
-        console.log(event, "event.target")
         const selectedCourseId = event.target.value;
         setSelectedCourse(selectedCourseId);
 
@@ -126,7 +145,6 @@ function CourseEditorFormLanding() {
     };
 
     const handleSubCourseSelect = (event) => {
-        console.log(event.target.option, "event.target.option")
         setAllID(prevState => ({
             ...prevState,
             subCategoryId: event.target.option.id
@@ -138,7 +156,6 @@ function CourseEditorFormLanding() {
         const selectedCourseData = allSubCourse?.find(
             (course) => course.title == selectedCourseId
         );
-        console.log(selectedCourseData, "selectedCourseData")
 
         if (selectedCourseData &&
             selectedCourseData.subCourseResponse.length > 0) {
@@ -160,8 +177,6 @@ function CourseEditorFormLanding() {
             ...prevState,
             courseId: event.target.option.id
         }));
-
-        console.log(event.target.option, "event.target.option")
         const allCourse = courseResponse.data;
         const allSubCourse = courseResponse.data[2].subCourse;
         const selectedCourseName = event.target.value;
@@ -176,8 +191,6 @@ function CourseEditorFormLanding() {
                 selectedCourseWeightage = categoryData?.courseResponse?.find(course => course.title === selectedCourseName);
             }
         }
-
-        console.log(selectedCourseWeightage, "selectedCourseWeightage");
         setSelectedCourseName(selectedCourseName);
         formikDetails.setFieldValue("subCourse", selectedCourseName);
 
@@ -193,6 +206,7 @@ function CourseEditorFormLanding() {
             formikDetails.setFieldValue("BSpiders", "");
         }
     };
+
     const courseOptions = []
     courseResponse?.data?.map((element) => {
         courseOptions.push({
@@ -202,48 +216,166 @@ function CourseEditorFormLanding() {
         })
     });
 
+    const addFAQ = (e) => {
+        e.preventDefault();
+        // Manually validate question and answer fields
+
+        const errors = {};
+        if (
+            !formikDetails.values.question ||
+            formikDetails.values.question === ""
+        ) {
+            errors.question = "Question is required";
+        }
+        if (!formikDetails.values.answer) {
+            errors.answer = "Answer is required";
+        }
+
+        // Set errors and return if there are any
+        if (Object.keys(errors).length > 0) {
+            formikDetails.setErrors({
+                ...formikDetails.errors,
+                ...errors,
+            });
+            return;
+        }
+
+        const newFaqs = [...faqs];
+        if (faqEditIndex !== null) {
+            newFaqs[faqEditIndex] = {
+                question: formikDetails.values.question,
+                answer: formikDetails.values.answer,
+            };
+            setFaqEditIndex(null);
+        } else {
+            newFaqs.push({
+                question: formikDetails.values.question,
+                answer: formikDetails.values.answer,
+            });
+        }
+
+        setFaqs(newFaqs);
+        formikDetails.setFieldValue("faqs", newFaqs);
+        formikDetails.setFieldValue("question", "");
+        formikDetails.setFieldValue("answer", "");
+        formikDetails.setFieldTouched("question", true);
+        formikDetails.setFieldTouched("answer", true);
+        formikDetails.setFieldTouched("faqs", false);
+        formikDetails.setErrors({
+            ...formikDetails.errors,
+            question: "",
+            answer: "",
+        });
+    };
+
+    const editFaq = (index) => {
+        setFaqEditIndex(index);
+        formikDetails.setFieldValue("question", faqs[index].question);
+        formikDetails.setFieldValue("answer", faqs[index].answer);
+    };
+
+    const deleteFaq = (index) => {
+        const newFaqs = [...faqs];
+        newFaqs.splice(index, 1);
+        setFaqs(newFaqs);
+        formikDetails.setFieldValue("faqs", newFaqs);
+        formikDetails.setFieldTouched("faqs", false);
+        setFaqEditIndex(null);
+    };
+    const handleOnBlur = (id) => {
+        if (!phoneValue) {
+            setError({ ...error, [id]: true });
+        } else if (!isValidPhoneNumber("+" + phoneValue?.toString())) {
+            setError({ ...error, [id]: false, validPhone: true });
+        } else {
+            setError({ ...error, [id]: false, validPhone: false });
+        }
+    };
+
     const formikDetails = useFormik({
         initialValues,
         validationSchema,
         onSubmit: async (values) => {
-            let subCourse = values.subCourse != "" ? `&subCategoryId=${values.subCourse}` : ''
-            const payload = {
-                courseName: values.courseName,
-                courseDescription: values.courseDescription,
-                branchType: values.organisation,
-                mode: values.mode,
-                courseSummary: values.courseSummary,
-                courseAbout: values.aboutCourse,
-                courseHighlight: values.courseHighlights,
-                faqs: values.faqs.map((faq) => ({
-                    question: faq.question,
-                    answer: faq.answer,
-                    faqType: "COURSE",
-                })),
-            };
-
-            try {
-                const response = await editCourse({ bodyData: payload, courseId: values.course, subcourseId: subCourse }).unwrap();
-                console.log(response);
-            } catch (err) {
-                console.error(err, "Error from loginAPI");
-            }
         },
     });
 
     const handleSelectedCourseData = async () => {
         try {
-            const response = await editCourse({ courseId: allId.courseId }).unwrap();
-            console.log(response);
-            setCourseDisable(true)
+            const response = await selectedCourseDetails({ courseId: allId.courseId }).unwrap();
+            setSelectedCourseEdit(true);
+
+            if (response?.data) {
+                const selectedCourseValues = response.data
+                formikDetails.setFieldValue("courseName", selectedCourseValues.courseName)
+                formikDetails.setFieldValue("courseSummary", selectedCourseValues.courseSummary)
+                formikDetails.setFieldValue("courseDescription", selectedCourseValues.courseDescription)
+                formikDetails.setFieldValue("aboutCourse", selectedCourseValues.courseAbout)
+                formikDetails.setFieldValue("courseHighlights", selectedCourseValues.courseHighlight)
+                if (selectedCourseValues.branchType.length > 0) {
+                    let org = []
+                    selectedCourseValues.branchType.map((element) => {
+                        org.push(element)
+                    })
+                    formikDetails.setFieldValue("organisation", org)
+                }
+                if (selectedCourseValues.mode.length > 0) {
+                    let mode = []
+                    selectedCourseValues.mode.map((element) => {
+                        mode.push(element)
+                    })
+                    formikDetails.setFieldValue("mode", mode)
+                }
+
+                formikDetails.setErrors({ courseName: '', courseSummary: '', courseDescription: '', aboutCourse: "", courseHighlights: "", organisation: "", mode: "" });
+            }
+
         } catch (err) {
             console.error(err, "Error from loginAPI");
         }
     }
 
+    const courseEditSubmit = async () => {
+        setSelectedCourseEdit(false);
+        setSelectedCourseName("");
+        setSelectedSubCourse('');
+        setSelectedCourse('');
+        refetch()
+        let editedValues = formikDetails.values;
+        const payload = {
+            courseId: courseToEditData.data.courseId,
+            courseName: editedValues.courseName,
+            mode: editedValues.mode,
+            courseDescription: editedValues.courseDescription,
+            courseSummary: editedValues.courseSummary,
+            courseAbout: editedValues.aboutCourse,
+            courseHighlight: editedValues.courseHighlights,
+            faqs: courseToEditData.data.faqs,
+            branchType: courseToEditData.data.branchType,
+            courseImage: courseToEditData.data.courseImage,
+            branches: courseToEditData.data.branches,
+            onlineBatches: courseToEditData.data.onlineBatches,
+            subjects: courseToEditData.data.subjects
+        }
+
+        try {
+            const response = await editSelectedCourse({ bodyData: payload }).unwrap();
+            if (response.statusCode == 200) {
+                alert(`course ${editedValues.courseName} edited successfully`)
+            } else {
+                alert(response.statusCode)
+            }
+
+        } catch (err) {
+            console.error(err, "Error from loginAPI");
+            alert(err)
+        }
+    }
+    // useEffect(() => {
+    // }, [selectedCourseEdit])
+
     return (
-        <MaxWebWidth articalStyling='p-8'>
-            <div>
+        <MaxWebWidth articalStyling='pt-8 pb-8'>
+            <MaxWebWidth>
                 <form onSubmit={formikDetails.handleSubmit}>
                     <div className="flex gap-3 justify-between pb-4">
                         <div className="w-[100%]">
@@ -308,7 +440,322 @@ function CourseEditorFormLanding() {
                         </button>
                     </div>
                 </form>
-            </div>
+            </MaxWebWidth>
+            {selectedCourseEdit &&
+                <MaxWebWidth articalStyling='border py-[2.5vw] px-[2.5vw] border-2 rounded-xl my-[2.5vw]'>
+                    <form onSubmit={formikDetails.handleSubmit}>
+                        <div className="flex justify-between mb-[4.444vh]">
+                            <div className="w-[33vw]">
+                                <p className={commonLabelStyles}>Course Name</p>
+                                <Input
+                                    name="courseName"
+                                    value={formikDetails.values.courseName}
+                                    onChange={formikDetails.handleChange}
+                                    onBlur={formikDetails.handleBlur}
+                                    className={`${formikDetails.touched.courseName &&
+                                        formikDetails.errors.courseName
+                                        ? "border-red-500"
+                                        : " border-gray-400"
+                                        }`}
+                                />
+                                {formikDetails.touched.courseName &&
+                                    formikDetails.errors.courseName ? (
+                                    <div className="text-red-500">
+                                        {formikDetails.errors.courseName}
+                                    </div>
+                                ) : null}
+                            </div>
+                            <div className="w-[33vw]">
+                                <p className={commonLabelStyles}>Course Summary</p>
+                                <Input
+                                    name="courseSummary"
+                                    value={formikDetails.values.courseSummary}
+                                    onChange={formikDetails.handleChange}
+                                    onBlur={formikDetails.handleBlur}
+                                    className={`${formikDetails.touched.courseSummary &&
+                                        formikDetails.errors.courseSummary
+                                        ? "border-red-500"
+                                        : " border-gray-400"
+                                        }`}
+                                />
+                                {formikDetails.touched.courseSummary &&
+                                    formikDetails.errors.courseSummary ? (
+                                    <div className="text-red-500">
+                                        {formikDetails.errors.courseSummary}
+                                    </div>
+                                ) : null}
+                            </div>
+                        </div>
+
+                        <div className="flex justify-between mb-[4.444vh]">
+                            <div className="w-[33vw]">
+                                <p className={commonLabelStyles}>Course Description</p>
+                                <Input
+                                    name="courseDescription"
+                                    value={formikDetails.values.courseDescription}
+                                    onChange={formikDetails.handleChange}
+                                    onBlur={formikDetails.handleBlur}
+                                    className={`${formikDetails.touched.courseDescription &&
+                                        formikDetails.errors.courseDescription
+                                        ? "border-red-500"
+                                        : " border-gray-400"
+                                        }`}
+                                />
+                                {formikDetails.touched.courseDescription &&
+                                    formikDetails.errors.courseDescription ? (
+                                    <div className="text-red-500">
+                                        {formikDetails.errors.courseDescription}
+                                    </div>
+                                ) : null}
+                            </div>
+
+                        </div>
+                        <div className="flex justify-between mb-[4.444vh]">
+                            <div className="w-[33vw]">
+                                <p className={commonLabelStyles}>About the Course</p>
+                                {/* <ReactQuill
+                                        value={formikDetails.values.aboutCourse}
+                                        onChange={(value) =>
+                                            formikDetails.setFieldValue("aboutCourse", value)
+                                        }
+                                    /> */}
+                                <TextArea
+                                    name='aboutCourse'
+                                    value={formikDetails.values.aboutCourse}
+                                    onChange={formikDetails.handleChange}
+                                    onBlur={formikDetails.handleBlur}
+                                />
+                                {formikDetails.touched.aboutCourse &&
+                                    formikDetails.errors.aboutCourse ? (
+                                    <div className="text-red-500">
+                                        {formikDetails.errors.aboutCourse}
+                                    </div>
+                                ) : null}
+                            </div>
+                            <div className="w-[33vw]">
+                                <p className={commonLabelStyles}>Course Highlights</p>
+                                {/* <ReactQuill
+                                        value={formikDetails.values.courseHighlights}
+                                        onChange={(value) =>
+                                            formikDetails.setFieldValue("courseHighlights", value)
+                                        }
+                                    /> */}
+                                <TextArea
+                                    name='courseHighlights'
+                                    value={formikDetails.values.courseHighlights}
+                                    onChange={formikDetails.handleChange}
+                                    onBlur={formikDetails.handleBlur}
+                                />
+                                {formikDetails.touched.courseHighlights &&
+                                    formikDetails.errors.courseHighlights ? (
+                                    <div className="text-red-500">
+                                        {formikDetails.errors.courseHighlights}
+                                    </div>
+                                ) : null}
+                            </div>
+                        </div>
+                        {/* <p className={commonLabelStyles}>FAQ</p>
+                        <div className="mb-[4.444vh] border border-2 rounded-md p-[4.444vh] flex flex-col justify-center">
+                            <div className="mb-[2.222vh]">
+                                <p className={commonLabelStyles}>Question :</p>
+                                <Input
+                                    name="question"
+                                    value={formikDetails.values.question}
+                                    onChange={formikDetails.handleChange}
+                                    onBlur={formikDetails.handleBlur}
+                                    className={`${formikDetails.touched.question &&
+                                        formikDetails.errors.question
+                                        ? "border-red-500"
+                                        : " border-gray-400"
+                                        }`}
+                                />
+                                {formikDetails.touched.question &&
+                                    formikDetails.errors.question && (
+                                        <div className="text-red-500">
+                                            {formikDetails.errors.question}
+                                        </div>
+                                    )}
+                            </div>
+                            <div>
+                                <p className={commonLabelStyles}>Answer :</p>
+                                <Input
+                                    name="answer"
+                                    value={formikDetails.values.answer}
+                                    onChange={formikDetails.handleChange}
+                                    onBlur={formikDetails.handleBlur}
+                                    className={`${formikDetails.touched.answer && formikDetails.errors.answer
+                                        ? "border-red-500"
+                                        : " border-gray-400"
+                                        }`}
+                                />
+                                {formikDetails.touched.answer && formikDetails.errors.answer && (
+                                    <div className="text-red-500">
+                                        {formikDetails.errors.answer}
+                                    </div>
+                                )}
+                            </div>
+                            <div className="flex justify-end gap-2  px-[1.5vw] pt-[1.5vw] ">
+                                <div>
+                                    <Button
+                                        title={faqEditIndex === null ? "Add" : "Update"}
+                                        onClick={addFAQ}
+                                        className="py-[0.5vw] px-[1vw] bg-gradient rounded-md text-white"
+                                    />
+                                </div>
+                            </div>
+                            <div className="my-2.5">
+                                {faqs.map((faq, index) => (
+                                    <div
+                                        key={index}
+                                        className="mb-[2.222vh] border border-2 rounded-md p-[2.222vh]"
+                                    >
+                                        <div
+                                            className="flex justify-between cursor-pointer"
+                                            onClick={() => toggleAccordion(index)}
+                                        >
+                                            <div>
+                                                <p className="pb-[1.111vh] font-semibold">
+                                                    {faq.question}
+                                                </p>
+                                            </div>
+                                            <div>
+                                                {expandedIndex === index ? (
+                                                    <svg
+                                                        className="w-6 h-6"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth="2"
+                                                            d="M5 15l7-7 7 7"
+                                                        ></path>
+                                                    </svg>
+                                                ) : (
+                                                    <svg
+                                                        className="w-6 h-6"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24"
+                                                        xmlns="http://www.w3.org/2000/svg"
+                                                    >
+                                                        <path
+                                                            strokeLinecap="round"
+                                                            strokeLinejoin="round"
+                                                            strokeWidth="2"
+                                                            d="M19 9l-7 7-7-7"
+                                                        ></path>
+                                                    </svg>
+                                                )}
+                                            </div>
+                                        </div>
+                                        {expandedIndex === index && (
+                                            <div>
+                                                <div className=" border-gray-300 py-[1.111vh]">
+                                                    <p>{faq.answer}</p>
+                                                </div>
+                                                <div className="flex justify-end gap-2 mt-[1.111vh]">
+                                                    <Button
+                                                        title="Edit"
+                                                        className="py-[0.5vw] px-[1vw] bg-blue-500 rounded-md text-white"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            editFaq(index);
+                                                        }}
+                                                    />
+                                                    <Button
+                                                        title="Delete"
+                                                        className="py-[0.5vw] px-[1vw] bg-red-500 rounded-md text-white"
+                                                        onClick={(e) => {
+                                                            e.preventDefault();
+                                                            deleteFaq(index);
+                                                        }}
+                                                    />
+                                                </div>
+                                            </div>
+                                        )}
+                                    </div>
+                                ))}
+                            </div>
+                            {formikDetails.touched.faqs && formikDetails.errors.faqs ? (
+                                <div className="text-red-500">{formikDetails.errors.faqs}</div>
+                            ) : null}
+                        </div> */}
+                        <section className="flex justify-around">
+                            <aside>
+                                <div className="pt-[1.5vw] font-bold">
+                                    <p>Organisation</p>
+                                </div>
+                                <div className="flex flex-col">
+                                    {["JSP", "QSP", "PYSP", "BSP"].map((org) => (
+                                        <label key={org}>
+                                            <input
+                                                type="checkbox"
+                                                name="organisation"
+                                                className="mr-2"
+                                                value={org}
+                                                onChange={formikDetails.handleChange}
+                                                checked={formikDetails.values.organisation.includes(org)}
+                                            />
+                                            {org}
+                                        </label>
+                                    ))}
+                                    {formikDetails.touched.organisation &&
+                                        formikDetails.errors.organisation ? (
+                                        <div className="text-red-500">
+                                            {formikDetails.errors.organisation}
+                                        </div>
+                                    ) : null}
+                                </div>
+                            </aside>
+                            <aside>
+                                <div className="pt-[1.5vw] font-bold">
+                                    <p>Mode</p>
+                                </div>
+                                <div className="flex flex-col">
+                                    {[
+                                        "ONLINECLASSES",
+                                        "OFFLINECLASSES",
+                                        "EXPERIENTIALLEARNING",
+                                        "SELFPACED",
+                                    ].map((mode) => (
+                                        <label key={mode}>
+                                            <input
+                                                type="checkbox"
+                                                className="mr-2"
+                                                name="mode"
+                                                value={mode}
+                                                onChange={(e) => {
+                                                    formikDetails.handleChange(e);
+                                                }}
+                                                checked={formikDetails.values.mode.includes(mode)}
+                                            />
+                                            {mode}
+                                        </label>
+                                    ))}
+                                    {formikDetails.touched.mode && formikDetails.errors.mode ? (
+                                        <div className="text-red-500 text-sm ">
+                                            {formikDetails.errors.mode}
+                                        </div>
+                                    ) : null}
+                                </div>
+                            </aside>
+                        </section>
+                        <div className="flex justify-center mt-8">
+                            <button
+                                type="submit"
+                                onClick={courseEditSubmit}
+                                className="py-2 px-4 bg-gradient rounded-md text-white"
+                            >
+                                Edit
+                            </button>
+                        </div>
+                    </form>
+                </MaxWebWidth>
+            }
         </MaxWebWidth>
     )
 }

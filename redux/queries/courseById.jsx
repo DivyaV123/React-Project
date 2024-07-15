@@ -16,8 +16,8 @@ export const courseEditerApi = createApi({
     endpoints: (builder) => ({
         courseEditor: builder.mutation({
             query: ({ bodyData, courseId, subcourseId }) => ({
-                url: API_ENDPOINTS.GET_COURSE_ID_AND_SUBCOURSE_ID(courseId, subcourseId),
-                method: 'PATCH',
+                url: API_ENDPOINTS.GET_COURSE_BY_ID(courseId),
+                method: 'GET',
                 body: bodyData
             })
         })
