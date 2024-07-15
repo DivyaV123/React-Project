@@ -4,7 +4,8 @@ import { usePathname } from "next/navigation";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { COURSE_NAV_BAR } from "@/lib/RouteConstants";
 import Link from "next/link";
-
+import "../../branchnav/BranchPopup.scss";
+import { truncateText } from "@/lib/utils";
 const CourseResponseLanding = () => {
   const pathname = usePathname();
   const courseID = pathname.split("/").pop();
@@ -30,25 +31,25 @@ const CourseResponseLanding = () => {
           {getCourseTitle}
         </div>
       </Link>
-      <section className="mx-[3.721vw] my-[0.858vh]">
-        {getCourseResponse.length > 0 && getCourseResponse.map((response) => (
+      <section className="mx-[3.721vw] my-[0.858vh] flex flex-col  ">
+        {getCourseResponse?.length > 0 && getCourseResponse?.map((response) => (
           <Link
             key={response?.courseResponseId}
-            className="mx-[2.326vw] my-[1.073vh]"
+            className=" my-[1.073vh] branchMobileCard p-3"
             href={`/courses/${response?.courseResponseId}`}
           >
             <div className="flex gap-2.5 pt-[0.858vh] items-center">
               <img
                 className="w-[8.372vw] h-[3.863vh]"
-                src={response.icon}
-                alt={response.title}
+                src={response?.icon}
+                alt={response?.title}
               />
               <div className="text-[2.791vw] font-bold text-[#454545]">
-                {response.title}
+                {response?.title}
               </div>
             </div>
-            <div className="mt-[0.858vh] py-[1.073vh] text-[2.558vw] font-semibold text-[#575757]">
-              {response.description}
+            <div className="mt-[0.858vh] py-[1.073vh] text-[2.558vw] font-semibold text-[#575757]" title={response?.description}>
+              {truncateText(response?.description,100)}
             </div>
           </Link>
         ))}
