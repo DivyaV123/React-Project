@@ -5,6 +5,10 @@
     font-size: 12px;
     height: 6.167vh;
   }
+  .react-tel-input .form-control:focus {
+    border-color: initial; 
+    box-shadow: none; 
+  }
   @media (max-width: 639px) {
     .react-tel-input .form-control {
       padding: 14px 20px 15px 58px;

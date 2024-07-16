@@ -42,13 +42,13 @@ function RelevantTraining() {
                                 }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
                                     100+
                                 </h1>
-                                <p className='text-brown txet-normal flex justify-center  text-center mobile:text-[3.721vw]'>Industry-relavent <br />technologies are offered</p>
+                                <p className='text-brown txet-normal flex justify-center  text-center mobile:text-[3.721vw]'>Industry-relevant <br />technologies are offered</p>
                             </aside>
                             <aside className='w-[100%]'>
                                 <h1 className='gradient-text  font-extra-bold text-xl opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
                                     90+
                                 </h1>
-                                <p className='text-brown text-normal flex justify-center  text-center mobile:text-[3.721vw]'>Training Institues <br /> all over India</p>
+                                <p className='text-brown text-normal flex justify-center  text-center mobile:text-[3.721vw]'>Training Institutes <br /> all over India</p>
                             </aside>
                         </article>
                         <article className='flex justify-center mt-6 mobile:mt-[2.575vh]'>
