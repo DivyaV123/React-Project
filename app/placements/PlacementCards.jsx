@@ -39,9 +39,16 @@ const PlacementCards = () => {
     setFilterPlacementData(newFilterPlacementData);
   }, []);
 
+  const scrollToTop = () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+};
   useEffect(() => {
     setFilterPlacementData({});
     setSideBarBtn('')
+    scrollToTop()
     router.replace(PLACEMENT_PATH);
   }, []);
 

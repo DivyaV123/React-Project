@@ -48,7 +48,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
   const handleOnBlur = (id) => {
     if (!phoneValue) {
       setError({ ...error, [id]: true });
-    } else if (!isValidPhoneNumber("+" + phoneValue.toString())) {
+    } else if (!isValidPhoneNumber( phoneValue.toString())) {
       setError({ ...error, [id]: false, validPhone: true });
     } else {
       setError({ ...error, [id]: false, validPhone: false });

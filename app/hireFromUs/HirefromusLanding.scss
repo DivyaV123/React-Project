@@ -12,18 +12,16 @@
   background-size: auto 100%;
 }
 
-
-
 .textgradient {
   background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 .clientTestimonial {
-      height: auto;
-      padding-left: 58px;
-      padding-right: 58px;
-      padding-bottom: 5vh;
+  height: auto;
+  padding-left: 58px;
+  padding-right: 58px;
+  padding-bottom: 5vh;
   header {
     .testimonials-text {
       font-size: 32px;
@@ -140,8 +138,8 @@
       padding-bottom: 25px;
       gap: 30px;
       position: relative;
-    padding-left: 7.813vw;
-    padding-right: 7.813vw;
+      padding-left: 7.813vw;
+      padding-right: 7.813vw;
     }
     .domain-card {
       // transition: background-color 0.3s;
@@ -156,7 +154,6 @@
       transition: transform 0.3s, background-color 0.3s;
       border-radius: 0px 0px 16px 16px;
       // border: 0px 0px 2px 0px;
-      
     }
   }
   .card_candidate {
@@ -170,9 +167,9 @@
     text-align: center;
   }
 }
-.hiringFromUsComponent{
+.hiringFromUsComponent {
   input::placeholder {
-    font-size: 14px; 
+    font-size: 14px;
   }
   .react-tel-input .form-control {
     width: -webkit-fill-available;
@@ -181,68 +178,71 @@
   .custom-grid-form_hiring {
     @apply grid-cols-2;
     gap: 1rem; // general gap
-  
+
     @media (min-width: 768px) {
       column-gap: 3rem; // increased gap between columns for medium screens and up
     }
   }
-  
-  .btnComponent{
-        
-        position: relative;
-        top: 7vh;
-        display: flex;
-        height: 48px;
-  
-        justify-content: end;
-        button{
-         height: inherit;
-    width: 107px;
+
+  .btnComponent {
+    right: 32px;
+    bottom: 16px;
+    position: absolute;
+    display: flex;
+    height: 48px;
+
     justify-content: end;
-    background: linear-gradient(96.77deg, #F09819 -28.03%, #FF512F 134.69%);
-        }
+    button {
+      height: inherit;
+      width: 107px;
+      justify-content: end;
+      background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+    }
   }
 }
-@media only screen and (max-width:639px) {
-  .hireFromSection{
+@media only screen and (max-width: 639px) {
+  .hireFromSection {
     height: 45.708vh;
     width: 100vw;
-    background: linear-gradient(180deg, rgba(255, 201, 151, 0.1) 0%, rgba(255, 255, 255, 0.76) 100%);
+    background: linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.1) 0%,
+      rgba(255, 255, 255, 0.76) 100%
+    );
   }
-  .carousel-item{
+  .carousel-item {
     width: auto !important;
   }
   .clientTestimonial header .testimonials-text {
     font-size: 21px !important;
   }
-  .btnComponent{
+  .btnComponent {
     top: 1px !important;
   }
 }
 @media only screen and (max-width: 1024px) and (min-width: 744px) {
-  .hireFromSection{
+  .hireFromSection {
     height: 59.426vh;
     background-repeat: no-repeat;
     background-size: contain;
     width: 100vw;
     background-image: url("../../public/hirefrombg.svg"),
-    linear-gradient(
-      180deg,
-      rgba(255, 201, 151, 0.3) 0%,
-      rgba(255, 255, 255, 0.76) 78.2%
-    );
-    
+      linear-gradient(
+        180deg,
+        rgba(255, 201, 151, 0.3) 0%,
+        rgba(255, 255, 255, 0.76) 78.2%
+      );
   }
-  .carousel-item{
+  .carousel-item {
     width: auto !important;
   }
   .clientTestimonial header .testimonials-text {
     font-size: 21px !important;
   }
-  .btnComponent{
+  .btnComponent {
     top: 1px !important;
   }
-  .custom-grid-form_hiring{
+  .custom-grid-form_hiring {
     grid-template-columns: repeat(1, minmax(0, 1fr));
   }
 }
