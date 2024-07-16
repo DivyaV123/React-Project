@@ -8,7 +8,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "./EnrollPopUp";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-function CourseCard({ cardData, courseCardData }) {
+function CourseCard({ cardData }) {
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleCardClick = () => {
@@ -19,11 +19,11 @@ function CourseCard({ cardData, courseCardData }) {
     setIsModalOpen(false);
   };
   const handleKnowMore = (id) => {
-    // router.push(`/courses/${id}`);
+    router.push(`/courses/${id}`);
   };
   return (
     <>
-      <section className="cardStyle flex flex-col justify-evenly  justify-items-stretch ">
+      <section className="cardStyle flex flex-col ">
         <picture className="flex justify-gf-center w-full">
           {/* <img className='px-[0.781vw] pt-[1.389vh] pb-[1.111vh] w-full  mobile:p-0 mobile:h-[17.167vh]'
                         src={cardData.image ? cardData.image : cardData.homePageCourseImage}
@@ -54,27 +54,27 @@ function CourseCard({ cardData, courseCardData }) {
         <div></div>
         <aside className="sm:px-[0.781vw] sm:pt-[1.389vh] mobile:pt-[1.717vh] mobile:pl-[3.721vw] mobile:pr-[3.721vw]">
           <h3
-            title={cardData?.courseName ? cardData?.courseName : cardData?.name}
-            className="font-bold text-[1.25vw] mobile:text-[3.721vw]"
+            title={cardData?.courseName ? cardData?.courseName : cardData?.title}
+            className="font-bold text-[1.25vw] mobile:text-[3.721vw] sm:h-[6.667vh] mobile:h-[5.15vh]"
           >
             {cardData?.courseName
-              ? truncateText(cardData?.courseName, 28)
-              : cardData?.name
-              ? truncateText(cardData?.name, 28)
+              ? truncateText(cardData?.courseName, 43)
+              : cardData?.title
+              ? truncateText(cardData?.title, 43)
               : "Test Architect"}
           </h3>
           <p
             title={
               cardData?.courseDescription
                 ? cardData?.courseDescription
-                : cardData?.detail
+                : cardData?.description
             }
             className="flex headerText justify-start pt-[0.833vh]  text-[0.938vw] mobile:text-[3.256vw] mobile:pt-[0.858vh] text-ash  "
           >
             {cardData?.courseDescription
-              ? truncateText(cardData?.courseDescription, 68)
-              : cardData?.detail
-              ? truncateText(cardData?.detail, 68)
+              ? truncateText(cardData?.courseDescription, 50)
+              : cardData?.description
+              ? truncateText(cardData?.description, 50)
               : "Lorem Ipsum is simply dummy text of the printing and typesetting industry. as per current industry standards."}
           </p>
           <div className="flex gap-1 pt-[0.833vh] mobile:pt-[0.644vh] items-end">
@@ -84,7 +84,7 @@ function CourseCard({ cardData, courseCardData }) {
             <span className="flex text-[0.938vw] mobile:text-[3.256vw] font-bold pt-0.5 items-baseline">
               <img src="/Icon__colored_star.svg" />
             </span>
-            <span className="flex text-[0.938vw] mobile:text-[2.791vw] items-baseline">{`(6,256+)`}</span>
+            {/* <span className="flex text-[0.938vw] mobile:text-[2.791vw] items-baseline">{`(6,256+)`}</span> */}
           </div>
 
           <div className="flex justify-center gap-2 py-[1.389vh]  ">
@@ -97,7 +97,7 @@ function CourseCard({ cardData, courseCardData }) {
             </aside>
             <aside>
               <Button
-                onClick={() => handleKnowMore(cardData?.courseId)}
+                onClick={() => handleKnowMore(cardData?.courseId || cardData?.courseResponseId)}
                 className="courseCardBtn buttonTextColour  text-[1.094vw] mobile:text-[2.791vw]  font-semibold border border-orange-500 rounded-md"
                 title="Know more"
               />
