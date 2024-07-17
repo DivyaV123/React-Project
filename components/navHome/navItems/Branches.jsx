@@ -13,7 +13,7 @@ const Branches = ({ BranchResponse }) => {
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
   const [countryTab, setCountryTab] = useState("India");
   const [activeTab, setActiveTab] = useState(true);
-  const countryNames = ["India", "USA", "UK"];
+  const countryNames = ["India", "USA", "UK","Canada","Australia","Singapore"];
   const cityData = BranchResponse?.data[0]?.cities;
   const courseData = BranchResponse?.data[0]?.cities[hoveredIndex].courses;
   const finalContent = BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex]?.branches
@@ -31,11 +31,8 @@ const Branches = ({ BranchResponse }) => {
     }
   };
   return (
-    <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
-      <div
-        className={`menuSidebar  pt-2 xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] overflow-auto branchesScroll`}
-       >
-        <section className="flex gap-6 pl-4 pt-[1.389vh] pb-[1.667vh]">
+    <div className="w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
+    <section className="flex gap-6 pl-4 pt-[1.389vh] ">
             {countryNames.map((ele) => (
               <button
                 className={`text-[0.938vw] font-bold ${
@@ -47,6 +44,11 @@ const Branches = ({ BranchResponse }) => {
               </button>
             ))}
           </section>
+    <div className="flex ">
+      <div
+        className={`menuSidebar pt-1   xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] overflow-auto branchesScroll`}
+       >
+        
         {cityData?.map((courseItem, index) => {
           return (
             <div
@@ -61,7 +63,7 @@ const Branches = ({ BranchResponse }) => {
             >
               <img src={courseItem.cityIcon} />
               <div className="flex justify-between grow">
-                <button className="p-2 text-sm">{courseItem.cityName}</button>
+                <button className="p-2.5 text-sm">{courseItem.cityName}</button>
                 <img
                   src="/arrowIconDark.svg"
                   className={`${hoveredIndex === index ? "visible" : "invisible"
@@ -74,7 +76,7 @@ const Branches = ({ BranchResponse }) => {
       </div>
       <div className="xl:w-[64.34vw] 2xl:w-[67.34vw] 3xl:w-[70.34vw] flex ">
         {hoveredIndex !== null && cityData?.[hoveredIndex]?.courses?.length > 0 && (
-          <div className="xl:w-[23.25vw] 2xl:w-[20.5vw]  3xl:w-[17.75vw] pt-2 menuSidebar ">
+          <div className="xl:w-[23.25vw] 2xl:w-[20.5vw]  3xl:w-[17.75vw] pt-1  menuSidebar ">
             {courseData.map((item, itemIndex) => (
               <div
                 key={itemIndex}
@@ -86,7 +88,7 @@ const Branches = ({ BranchResponse }) => {
                 onMouseLeave={() => { }}
               >
                 <div className="flex justify-between grow ">
-                  <button className="p-2 text-[#454545] text-bold text-sm text-left">
+                  <button className="p-2.5 text-[#454545] text-bold text-sm text-left">
                     {item.courseName}
                   </button>
                   <img
@@ -178,6 +180,7 @@ const Branches = ({ BranchResponse }) => {
               )}
         </div>
       </div>
+    </div>
     </div>
   );
 };

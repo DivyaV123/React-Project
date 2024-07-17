@@ -90,7 +90,7 @@ function OurCourse({ page }) {
         className={
           page === "explore"
             ? "flex justify-between mobile:flex-col mobile:gap-4  mb-8 mt-8"
-            : "flex justify-end mb-3 mobile:justify-center"
+            : "flex justify-center mb-8 mobile:justify-center"
         }
       >
         {page === "explore" && (
@@ -114,13 +114,13 @@ function OurCourse({ page }) {
             </article>
           )}
 
-          <div className="bg-white border border-gray-300 flex rounded">
+          <div className="bg-white  flex rounded">
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
                 className={`flex justify-center items-center px-4 py-2 mobile:py-[0.606vh] mobile:px-[2.698vw] mobile:text-[1.972vw] font-medium text-[0.75rem] text-dark-gray ${
                   classItem.title === btnState
-                    ? "bg-gradient text-white rounded p-2"
+                    ? "bg-gradient text-white  p-2 rounded-3xl"
                     : ""
                 } `}
                 onClick={() => {
