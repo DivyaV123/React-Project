@@ -278,7 +278,7 @@ const Tutions = () => {
         >
           {(courses[hoveredIndex] ?? courses[0])?.sublist?.map(
             (content, index) => (
-              <Link className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
+              <Link  className={`${hoveredIndex !== null && courses[hoveredIndex]?.list
                 ? "courseMedium"
                 : "courseinitial"
                 }   branchMenuCard w-[19.063vw] h-fit px-[1.389vh] py-[0.781vw]`} href={TUTION_PATH}>

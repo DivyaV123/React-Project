@@ -55,7 +55,7 @@ function CourseHighlites({ courseDetails }) {
             <header>
                 <h1 className='font-bold text-black text-[1.5rem] py-5'>Highlights about the Course</h1>
             </header>
-            {inputText.includes('<') ?
+            {inputText?.includes('<') ?
                 <div className='pointsList' dangerouslySetInnerHTML={{ __html: inputText }} />
                 :
                 courseContents?.map((element) => (

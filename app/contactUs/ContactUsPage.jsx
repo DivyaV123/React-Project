@@ -210,7 +210,7 @@ function ContactUsPage() {
                       name="phone"
                       id="phone"
                       value={formikDetails.values.phone}
-                      className=" "
+                      className=""
                       onChange={(e, country) =>handlePhoneChange(e,country)}
                       //   defaultCountry={"IN"}
                       // style={{

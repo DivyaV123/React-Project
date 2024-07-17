@@ -136,7 +136,7 @@ const CourseLanding = ({
                   ))}
                 </article>
                 <article>
-                  {tutionClasses.includes('<') ?
+                  {tutionClasses?.includes('<') ?
                     <HtmlContent htmlString={tutionClasses} imageSrc={imageSrc} /> :
                     resources?.map((resource, index) => (
                       <div
