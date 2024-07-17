@@ -55,23 +55,26 @@ function CourseHighlites({ courseDetails }) {
             <header>
                 <h1 className='font-bold text-black text-[1.5rem] py-5'>Highlights about the Course</h1>
             </header>
-            {courseContents?.map((element) => (
-                <article className=' px-5 pointsList mb-3 rounded-xl'>
-                    <header className='py-5 font-bold text-xl text-dark-gray'>
-                        {element.question}
-                    </header>
-                    {element.bulletPoints.map((points) => (
-                        <ul className={"list-disc list-inside w-[91%] pb-[1.333vh]"}>
-                            <li>
-                                <span className='text-ash text-base'>
-                                    {points}
-                                </span>
-                            </li>
-                        </ul>
-                    ))}
+            {inputText.includes('<') ?
+                <div className='pointsList' dangerouslySetInnerHTML={{ __html: inputText }} />
+                :
+                courseContents?.map((element) => (
+                    <article className=' px-5 pointsList mb-3 rounded-xl'>
+                        <header className='py-5 font-bold text-xl text-dark-gray'>
+                            {element.question}
+                        </header>
+                        {element.bulletPoints.map((points) => (
+                            <ul className={"list-disc list-inside w-[91%] pb-[1.333vh]"}>
+                                <li>
+                                    <span className='text-ash text-base'>
+                                        {points}
+                                    </span>
+                                </li>
+                            </ul>
+                        ))}
 
-                </article>
-            ))}
+                    </article>
+                ))}
         </MaxWebWidth>
     )
 }

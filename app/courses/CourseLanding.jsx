@@ -7,6 +7,7 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
 import Image from "next/image";
+import HtmlContent from "@/components/commonComponents/htmlTextConvert/HtmlContent";
 const CourseLanding = ({
   courseDetails,
   countDetails,
@@ -60,9 +61,8 @@ const CourseLanding = ({
                 {courseDetails?.mode?.map((classItem, index) => (
                   <button
                     key={index}
-                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${
-                      classItem === typeOfLearning ? "activecourseButton" : ""
-                    }`}
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === typeOfLearning ? "activecourseButton" : ""
+                      }`}
                     onClick={() => {
                       setTypeOfLearning(classItem);
                     }}
@@ -121,38 +121,38 @@ const CourseLanding = ({
                       className="courseStats mobile:w-[50%] mobile:pb-[2.146vh]"
                     >
                       <h1
-                        className={`text-left font-bold mobile:text-[4.651vw] mobile:pb-[0.429vh] text-[1.875vw] pb-[0.556vh]  ${
-                          ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
-                        }`}
+                        className={`text-left font-bold mobile:text-[4.651vw] mobile:pb-[0.429vh] text-[1.875vw] pb-[0.556vh]  ${ele.number !== "15,000+" ? "pr-[2.5vw]" : ""
+                          }`}
                       >
                         {ele.number}
                       </h1>
                       <p
-                        className={`text-left font-medium mobile:text-[3.256vw] text-[1.094vw] headerText ${
-                          ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
-                        }`}
+                        className={`text-left font-medium mobile:text-[3.256vw] text-[1.094vw] headerText ${ele.text !== "IT Students placed" ? "pr-[2.5vw]" : ""
+                          }`}
                       >
                         {ele.text}
                       </p>
                     </div>
                   ))}
                 </article>
-                <article className="pb-[2.778vh] mobile:pt-[1.288vh]">
-                  {resources?.map((resource, index) => (
-                    <div
-                      key={index}
-                      className="flex text-left gap-4  items-center  pb-[2.778vh] mobile:pb-[1.073vh]  text-ash"
-                    >
-                      <figure className="  ">
-                        <img src={imageSrc} alt={`resource-${index}`} />
-                      </figure>
-                      <article className=" mobile:w-[85vw] ">
-                        <p className="text-[0.938vw] mobile:text-[2.791vw]">
-                          {resource}
-                        </p>
-                      </article>
-                    </div>
-                  ))}
+                <article>
+                  {tutionClasses.includes('<') ?
+                    <HtmlContent htmlString={tutionClasses} imageSrc={imageSrc} /> :
+                    resources?.map((resource, index) => (
+                      <div
+                        key={index}
+                        className="flex text-left gap-4  items-center  pb-[2.778vh] mobile:pb-[1.073vh]  text-ash"
+                      >
+                        <figure className="  ">
+                          <img src={imageSrc} alt={`resource-${index}`} />
+                        </figure>
+                        <article className=" mobile:w-[85vw] ">
+                          <p className="text-[0.938vw] mobile:text-[2.791vw]">
+                            {resource}
+                          </p>
+                        </article>
+                      </div>
+                    ))}
                 </article>
                 <section className="flex gap-6 pb-[7.222vh] mobile:pb-[2.79vh]">
                   <button
@@ -180,9 +180,9 @@ const CourseLanding = ({
             </section>
           </article>
         </aside>
-      </MaxWebWidth>
+      </MaxWebWidth >
       {/* <ImageScroller cardData={courseDetails} onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} /> */}
-      <EnrollPopUp
+      < EnrollPopUp
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
       />
