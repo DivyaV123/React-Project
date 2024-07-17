@@ -48,7 +48,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
   const handleOnBlur = (id) => {
     if (!phoneValue) {
       setError({ ...error, [id]: true });
-    } else if (!isValidPhoneNumber( phoneValue.toString())) {
+    } else if (!isValidPhoneNumber("+" + phoneValue?.toString()) || phoneValue.startsWith('911234')) {
       setError({ ...error, [id]: false, validPhone: true });
     } else {
       setError({ ...error, [id]: false, validPhone: false });
@@ -77,6 +77,16 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
   }, [isModalOpen]);
 
   if (!isModalOpen) return null;
+  const handlePhoneChange = (value, country) => {
+    if (country?.dialCode !== countryCode) {
+      setPhoneValue('');
+      formikDetails.setFieldValue('phone', country.dialCode);
+    } else {
+      setPhoneValue(value);
+      formikDetails.setFieldValue('phone', value);
+    }
+    setCountryCode(country?.dialCode);
+  };
   return (
     <div className="enroll_modal ">
       <div className="modal-overlay">
@@ -125,10 +135,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     id="mobileNumber"
                     value={formik.values.mobileNumber}
                     className="outline-none"
-                    onChange={(e, country) => {
-                      formik.setFieldValue("mobileNumber", e);
-                      setPhoneValue(e);
-                    }}
+                    onChange={(e, country) =>handlePhoneChange(e,country)}
                     inputExtraProps={{
                       autoFocus: true,
                     }}

@@ -21,14 +21,7 @@ const GenerateLinkHeader = () => {
     page,
     size,
     setPage,
-    setSize,
     handleScroll,
-    setThroughCheckedIcon,
-    setLessCheckedIcon,
-    setPlacedCheckedIcon,
-    setGeneratedPath,
-    generateLink,
-    generatedPath,
   } = useContext(GlobalContext);
 
   const isEmptyObject = Object.keys(filteringData).length === 0;

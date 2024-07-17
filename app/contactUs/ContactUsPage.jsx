@@ -126,11 +126,21 @@ function ContactUsPage() {
   const handleOnBlur = (id) => {
     if (!phoneValue) {
       setError({ ...error, [id]: true });
-    } else if (!isValidPhoneNumber(phoneValue?.toString())) {
+    } else if (!isValidPhoneNumber("+" + phoneValue?.toString()) || phoneValue.startsWith('911234')) {
       setError({ ...error, [id]: false, validPhone: true });
     } else {
       setError({ ...error, [id]: false, validPhone: false });
     }
+  };
+  const handlePhoneChange = (value, country) => {
+    if (country?.dialCode !== countryCode) {
+      setPhoneValue('');
+      formikDetails.setFieldValue('phone', country.dialCode);
+    } else {
+      setPhoneValue(value);
+      formikDetails.setFieldValue('phone', value);
+    }
+    setCountryCode(country?.dialCode);
   };
   return (
     <div className="h-[178.194vh] tabView:h-[80vh] contactUsComponent mobile:h-[auto] ">
@@ -201,11 +211,7 @@ function ContactUsPage() {
                       id="phone"
                       value={formikDetails.values.phone}
                       className=" "
-                      onChange={(e, country) => {
-                        formikDetails.setFieldValue("phone", e);
-                        setPhoneValue(e);
-                        setCountryCode(country.dialCode);
-                      }}
+                      onChange={(e, country) =>handlePhoneChange(e,country)}
                       //   defaultCountry={"IN"}
                       // style={{
                       //   border: `${

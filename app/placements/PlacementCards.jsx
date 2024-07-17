@@ -13,13 +13,12 @@ import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { PLACEMENT_PATH } from "@/lib/RouteConstants";
-import { useRouter,usePathname } from "next/navigation";
-import { Suspense } from 'react'
+import { useRouter, usePathname } from "next/navigation";
+import { Suspense } from 'react';
 
 const PlacementCards = () => {
   const router = useRouter();
-  const pathname = usePathname();
-  const { filterPlacementData, setFilterPlacementData, placementParam, page, size,setSideBarBtn } = useContext(GlobalContext);
+  const { filterPlacementData, setFilterPlacementData, placementParam, page, size, setSideBarBtn,homePlacements } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const { data: counsellorFilterResponse, error, refetch, isLoading, isFetching } = useFetchCounsellorsQuery({
     pageNumber: page,
@@ -27,31 +26,34 @@ const PlacementCards = () => {
     parameter: placementParam,
     bodyData: filterPlacementData
   });
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
 
+  // Parse query parameters on initial load
   useEffect(() => {
-    // Parse query parameters on initial load
     const params = new URLSearchParams(window.location.search);
     const newFilterPlacementData = {};
     params.forEach((value, key) => {
       newFilterPlacementData[key] = value.split(',');
     });
-
     setFilterPlacementData(newFilterPlacementData);
   }, []);
 
-  const scrollToTop = () => {
-    window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-    });
-};
   useEffect(() => {
-    setFilterPlacementData({});
-    setSideBarBtn('')
-    scrollToTop()
-    router.replace(PLACEMENT_PATH);
-  }, []);
-
+    if(!homePlacements){
+      const resetStateAndURL = () => {
+        setFilterPlacementData({});
+        setSideBarBtn('');
+        scrollToTop();
+        router.replace(PLACEMENT_PATH);
+      };
+      setTimeout(resetStateAndURL, 0);
+    }
+  }, [homePlacements]);
   useEffect(() => {
     refetch();
   }, [filterPlacementData, placementParam]);
@@ -60,7 +62,8 @@ const PlacementCards = () => {
 
   useEffect(() => {
     const searchParams = constructSearchParams();
-    const fullURL = `${PLACEMENT_PATH}${searchParams ? `?${searchParams}` : ""}`;
+    const fullURL = `${PLACEMENT_PATH}${searchParams ? `?${searchParams}` : ''}`;
+
     if (!emptyObj) {
       router.push(fullURL);
     } else {

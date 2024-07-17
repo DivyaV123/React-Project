@@ -13,7 +13,7 @@ import Image from "next/image";
 import { branchAbbreviations } from "@/lib/utils";
 import { formatToIndianCurrency } from "@/lib/utils";
 function PlacementStatisticsHome({ page }) {
-  const { setAllStaticsCount, setNonItCheckedIcon,setItCheckedIcon,setThroughCheckedIcon, setLessCheckedIcon,setPlacedCheckedIcon } =
+  const { setAllStaticsCount, setNonItCheckedIcon,setItCheckedIcon,setThroughCheckedIcon, setLessCheckedIcon,setPlacedCheckedIcon,setSideBarBtn,setHomePlacements } =
     useContext(GlobalContext);
   const {
     data: countDetails,
@@ -29,7 +29,7 @@ function PlacementStatisticsHome({ page }) {
   const degrees = [
     "BE",
     "BCA",
-    "BCom",
+    "BCOM",
     "MCA",
     "M.Tech",
     "MBA",
@@ -82,11 +82,13 @@ function PlacementStatisticsHome({ page }) {
     Object.entries(branchAbbreviations).map(([key, value]) => [value, key])
   );
 const disableIcons =()=>{
+  setHomePlacements(true)
   setLessCheckedIcon(false);
   setThroughCheckedIcon(false);
   setNonItCheckedIcon(false);
   setItCheckedIcon(false);
   setPlacedCheckedIcon(false)
+  setSideBarBtn('')
 }
   return (
     <section className="sm:w-[87.5vw] sm:m-auto mobile:w-full  align-center sm:mt-8 ">
