@@ -3,7 +3,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./SigninLanding.scss";
 import SignInForm from "./SignInForm";
 import Link from "next/link";
-import { HOME_PATH, COURSEADDER_HOME } from "@/lib/RouteConstants";
+import { HOME_PATH, DASHBOARD_HOME } from "@/lib/RouteConstants";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const SigninLanding = () => {
   const { domainVariable } = useContext(GlobalContext)
@@ -19,7 +19,7 @@ const SigninLanding = () => {
     <section className="initialPage h-[100vh] overflow-hidden">
       <div className="flex h-full w-full relative mobile:flex-col tabView:flex-col">
         <div className="theorySection mt-[4.188vh] ml-[9.125rem] mobile:mt-[2.575vh] mobile:mx-[5.581vw] w-[28.125vw] mobile:w-full tabView:w-full tabView:mt-0 tabView:top-[3.117vh] tabView:relative tabView:left-[3.226vw] tabView:ml-0">
-          <Link href={token === 'COURSEADDER' ? COURSEADDER_HOME : HOME_PATH}>
+          <Link href={token === 'COURSEADDER' ? DASHBOARD_HOME : HOME_PATH}>
             <img
               className="w-[7.5vw] h-[8.333vh] tabView:w-[12.903vw] tabView:h-[5.844vh] mobile:w-[22.326vw] mobile:h-[6.438vh]"
               src="../../signin_logo.svg"
