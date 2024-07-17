@@ -112,6 +112,7 @@ const GlobalContextProvider = ({ children }) => {
   const [activeSidebarBtn, setActiveSidebarBtn] = useState(false)
   const [upComingBatches, setupComingBatches] = useState(null)
   const [onGoingBatches, setOnGoingBatches] = useState(null)
+  const [homePlacements,setHomePlacements]=useState(false)
   const emptySearch = citySearchQuery === "" && stateSearchQuery === "" && citySearchQuery === "" &&
     universitySearchQuery === "" && streamSearchQuery === "" && yearSearchQuery === ""
 
@@ -412,7 +413,8 @@ const GlobalContextProvider = ({ children }) => {
         streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
         homeBranchData, setHomeBranchData,
-        domainVariable,hoverState, setHoverState,imageDialog, setImageDialog,videoDialog, setVideoDialog
+        domainVariable,hoverState, setHoverState,imageDialog, setImageDialog,videoDialog, setVideoDialog,
+        homePlacements,setHomePlacements
       }}
     >
       {children}

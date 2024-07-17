@@ -33,7 +33,7 @@ const Degree_Branch_Passout = ({ isLoading }) => {
     throughcheckedIcon,
     itCheckedIcon,
     nonItCheckedIcon,
-    placeCheckedIcon,setPage,
+    placeCheckedIcon,setPage,sideBarBtn
   } = useContext(GlobalContext);
 
   const searchParams = useSearchParams();
