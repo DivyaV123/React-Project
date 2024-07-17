@@ -23,7 +23,7 @@ import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { usePathname, useRouter } from "next/navigation";
 import UniversityProgram from "./UniversityProgram";
-
+import OnlineCourses from "./OnlineCourses";
 
 function NavItems() {
   const router = useRouter();
@@ -52,8 +52,9 @@ function NavItems() {
     isLoading: branchIsLoading,
   } = useGetAllBranchesQuery();
   const navItems = [
-    { id: 1, name: "Courses", content: <Courses courseResponse={courseResponse} /> },
-    { id: 2, name: "Branches", content: <Branches BranchResponse={BranchResponse} /> },
+    { id: 1, name: "All Courses", content: <Courses courseResponse={courseResponse} /> },
+    { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
+    { id: 2, name: "Online Courses", content: <OnlineCourses courseResponse={courseResponse} /> },
     // { id: 3, name: "University Programs", content: <UniversityProgram /> },
     { id: 4, name: "Tuitions", content: <Tutions /> },
     { id: 5, name: "Hire From Us", content: "" },
@@ -67,7 +68,7 @@ function NavItems() {
     state: false,
   });
   const handleItemHover = useCallback((itemName) => {
-    if (["Courses", "Branches", "Tuitions","University Programs"].includes(itemName)) {
+    if (["All Courses", "Offline Centres","Online Courses", "Tuitions","University Programs"].includes(itemName)) {
       setHoverState({ item: itemName });
     } else {
       setHoverState({ item: null });
