@@ -31,7 +31,7 @@ function DashBoardLandingPage() {
               </h1>
             </article>
           </Link>
-          <Link>
+          <Link href=''>
             <article className='p-4 border-2 rounded-xl w-[24%] border-slate-400'>
               <h1 className='font-boled flex flex-col justify-center items-center'>
                 Edit Subject
@@ -52,7 +52,7 @@ function DashBoardLandingPage() {
               </h1>
             </article>
           </Link>
-          <Link>
+          <Link href=''>
             <article className='p-4 border-2 rounded-xl w-[24%] border-slate-400'>
               <h1 className='font-boled flex flex-col justify-center items-center'>
                 Edit Branch
