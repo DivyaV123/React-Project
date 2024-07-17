@@ -1,12 +1,13 @@
 import Button from '@/components/commonComponents/button/Button';
-import React, { useEffect, useState,useContext } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import "./CourseLanding.scss";
 import EnrollPopUp from '@/components/commonComponents/courseCard/EnrollPopUp';
 import { GlobalContext } from '@/components/Context/GlobalContext';
 function CoursePagePop({ courseDetails }) {
     const [showDiv, setShowDiv] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const {imageDialog,videoDialog}=useContext(GlobalContext)
+    const { imageDialog, videoDialog } = useContext(GlobalContext)
+
     const handleCardClick = () => {
         setIsModalOpen(true);
     };
