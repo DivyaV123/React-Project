@@ -175,6 +175,10 @@
     width: -webkit-fill-available;
     height: 30px;
   }
+  .react-tel-input .form-control:focus {
+    border-color: initial; 
+    box-shadow: none; 
+  }
   .custom-grid-form_hiring {
     @apply grid-cols-2;
     gap: 1rem; // general gap

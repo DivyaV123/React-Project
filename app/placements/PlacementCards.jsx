@@ -51,6 +51,7 @@ const PlacementCards = () => {
         scrollToTop();
         router.replace(PLACEMENT_PATH);
       };
+      scrollToTop();
       setTimeout(resetStateAndURL, 0);
     }
   }, [homePlacements]);

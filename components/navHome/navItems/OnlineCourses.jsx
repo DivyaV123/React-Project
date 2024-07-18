@@ -6,7 +6,6 @@ import { truncateText } from "@/lib/utils";
 import Image from "next/image";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const OnlineCourses = ({ courseResponse }) => {
-  console.log(courseResponse,"courseresponse");
   const { setHoverState } = useContext(GlobalContext);
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
