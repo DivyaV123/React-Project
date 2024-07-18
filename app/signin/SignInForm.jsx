@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/navigation';
 import { useLoginMutation } from '@/redux/queries/loginApi';
-import { COURSEADDER_HOME } from '@/lib/RouteConstants';
+import { COURSEADDER_HOME, DASHBOARD_HOME } from '@/lib/RouteConstants';
 
 
 function SignInForm() {
@@ -54,7 +54,7 @@ function SignInForm() {
                 localStorage.setItem('authToken', token);
                 localStorage.setItem('Role', role);
                 if (role == 'COURSEADDER') {
-                    router.push(COURSEADDER_HOME)
+                    router.push(DASHBOARD_HOME)
                 }
             } catch (err) {
                 console.error(err, "Error from loginAPI");

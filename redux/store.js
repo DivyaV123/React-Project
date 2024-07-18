@@ -117,12 +117,14 @@ const store = configureStore({
     [courseWeightageEditApi.reducerPath]: courseWeightageEditApi.reducer,
     [courseEditerApi.reducerPath]: courseEditerApi.reducer,
     [getcourseByIdApi.reducerPath]: getcourseByIdApi.reducer,
-    [CourseEditAPI.reducerPath]: CourseEditAPI.reducer
+    [CourseEditAPI.reducerPath]: CourseEditAPI.reducer,
+    [courseCategoryMapApi.reducerPath]: courseCategoryMapApi.reducer,
+    [courseSubCategoryMapApi.reducerPath]: courseSubCategoryMapApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
       ItandNonItApi.middleware, counsellorsApi.middleware, PlacementBranchApi.middleware, YearOfPassoutApi.middleware, PlacedDateBetweenApi.middleware, LoginApi.middleware, categoriesApi.middleware,
-      CategoriesInCourseApi.middleware, contactUsApi.middleware,subjectAdder.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
+      CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware,subjectAdder.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
       getHomePageCourseApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware),
 });
 
