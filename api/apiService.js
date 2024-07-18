@@ -24,6 +24,8 @@ export const API_ENDPOINTS = {
   GET_DEGREE: 'candidate/degreeStream',
   GET_BRANCH: 'candidate/branch',
   GET_COURSE_BY_ID: (courseId) => `api/v1/courses/getbyid?courseId=${courseId}`,
+  COURSE_MAP_CATEGORY: (categoryId) => `/api/v1/categories/assigncourses?categoryId=${categoryId}`,
+  COURSE_MAP_SUBCATEGORY: (subCategoryId) => `/api/v1/subcategories/assigncourses?subCategoryId=${subCategoryId}`,
   EDIT_COURSE: `api/v1/courses/updateCourseContent`,
   GET_PASS_OUT_YEAR: 'candidate/passoutyear',
   GET_PLACEMENT_COUNTS: '/candidate/getCounts',

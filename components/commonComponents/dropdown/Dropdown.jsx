@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+'use client'
+import React, { useState, useEffect, useRef } from 'react';
 import Svg from '../Svg/Svg';
 import { svgicons } from '@/components/assets/icons/svgassets';
 
 function Dropdown({
     sectionStyle = '',
     name = '',
-    value,
+    value = [],
     onChange,
     placeholder = 'Select an option',
     iconPath = '',
@@ -13,10 +14,23 @@ function Dropdown({
     inputStyle = '',
     iconStyle = '',
     options = [],
-    disabled = false
+    disabled = false,
+    multi = false
 }) {
     const [isOpen, setIsOpen] = useState(false);
-    const selectedOption = options.find(option => option.value === value);
+    const [selectedOptions, setSelectedOptions] = useState([]);
+    const dropdownRef = useRef(null);
+
+    useEffect(() => {
+        let initialSelectedOptions;
+        if (multi) {
+            initialSelectedOptions = options.filter(option => value.includes(option.value));
+        } else {
+            const initialSelectedOption = options.find(option => option.value === value);
+            initialSelectedOptions = initialSelectedOption ? [initialSelectedOption] : [];
+        }
+        setSelectedOptions(initialSelectedOptions);
+    }, [value, options, multi]);
 
     const handleToggle = () => {
         if (!disabled) {
@@ -25,12 +39,38 @@ function Dropdown({
     };
 
     const handleSelect = (option) => {
-        onChange({ target: { name, value: option.value, option: option } });
-        setIsOpen(false);
+        if (multi) {
+            const newSelectedOptions = selectedOptions.some(selected => selected.value === option.value)
+                ? selectedOptions.filter(selected => selected.value !== option.value)
+                : [...selectedOptions, option];
+            setSelectedOptions(newSelectedOptions);
+            onChange({ target: { name, value: newSelectedOptions.map(opt => opt.value), options: newSelectedOptions } });
+        } else {
+            setSelectedOptions([option]);
+            onChange({ target: { name, value: option.value, option: option } });
+            setIsOpen(false);
+        }
     };
 
+    const handleOutsideClick = (e) => {
+        if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+            setIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        if (isOpen) {
+            document.addEventListener('mousedown', handleOutsideClick);
+        } else {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        }
+        return () => {
+            document.removeEventListener('mousedown', handleOutsideClick);
+        };
+    }, [isOpen]);
+
     return (
-        <section className={`${sectionStyle} relative h-[2.969vw]`}>
+        <section className={`${sectionStyle} relative h-auto`} ref={dropdownRef}>
             {iconPath &&
                 <img src={iconPath} alt="icon" className={`${iconStyle} absolute left-3 top-1/2 transform -translate-y-1/2 w-[2.778vh] h-[2.778vh]`} />
             }
@@ -40,7 +80,7 @@ function Dropdown({
                 onBlur={onBlur}
                 tabIndex={0} // To make the div focusable
             >
-                {selectedOption ? selectedOption.label : placeholder}
+                {selectedOptions.length > 0 ? selectedOptions.map(option => option.label).join(', ') : placeholder}
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                     <Svg
                         className=''
@@ -57,7 +97,7 @@ function Dropdown({
                     {options.map((option) => (
                         <div
                             key={option.value}
-                            className="py-[1.25vh] px-[0.938vw] cursor-pointer hover:bg-gray-200"
+                            className={`py-[1.25vh] px-[0.938vw] cursor-pointer hover:bg-gray-200 ${selectedOptions.some(selected => selected.value === option.value) ? 'bg-gray-300' : ''}`}
                             onClick={() => handleSelect(option)}
                         >
                             {option.label}
