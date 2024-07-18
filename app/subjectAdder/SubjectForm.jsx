@@ -13,10 +13,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Input from "@/components/commonComponents/input/Input";
+import { useAddSubjectMutation } from "@/redux/queries/addSubjectApi";
 const SubjectForm = () => {
   const [chapters, setChapters] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null); // Initially null to avoid hydration mismatch
-
+  const [addSubject] = useAddSubjectMutation();
   useEffect(() => {
     // Ensure this state is set only on the client side to avoid hydration issues
     setChapters([
@@ -66,37 +67,52 @@ const SubjectForm = () => {
     validationSchema: Yup.object({
       subjectTitle: Yup.string().required("Required"),
     }),
-    onSubmit: (values) => {
-      chapterRefs.current.forEach((ref) => ref && ref.submitForm());
-      const hasErrors = chapterRefs.current.some(
-        (ref) => ref && ref.hasErrors()
-      );
-      if (chapters[0]?.chapterTitle === "") {
-        toast({
-          variant: "destructive",
-          description: "At least add one Chapter",
-        });
-        return;
-      }
-      if (hasErrors) {
-        return;
-      }
-
-      formik.errors.subjectTitle &&
-        window.scrollTo({
-          top: 0,
-          behavior: "smooth",
-        });
-      const payload = {
-        subjectId: 0,
-        subjectTitle: values.subjectTitle,
-        subjectDescrption: "string",
-        chapters,
-        createdDateAndTime: new Date().toISOString(),
-        updatedDateAndTime: new Date().toISOString(),
-      };
-
-      console.log(payload, { chapterRefs });
+    onSubmit:async (values) => {
+      try{
+        chapterRefs.current.forEach((ref) => ref && ref.submitForm());
+        const hasErrors = chapterRefs.current.some(
+          (ref) => ref && ref.hasErrors()
+        );
+        if (chapters[0]?.chapterTitle === "") {
+          toast({
+            variant: "destructive",
+            description: <span className=" font-bold ">At least add one Chapter</span>,
+          });
+          return;
+        }
+        if (hasErrors) {
+          return;
+        }
+  
+        formik.errors.subjectTitle &&
+          window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+          });
+        const payload = {
+          subjectId: 0,
+          subjectTitle: values.subjectTitle,
+          subjectDescrption: "string",
+          chapters,
+          createdDateAndTime: new Date().toISOString(),
+          updatedDateAndTime: new Date().toISOString(),
+        };
+        const response = await addSubject(payload);
+        console.log(payload, response);
+        if (response.data.statusCode === 201) {
+          toast({
+            variant: "success",
+            title:<span className=" font-bold  "> Subject Added Successfully</span>,
+           
+          });
+          setTimeout(() => {
+            window.location.reload();
+          }, 5000);
+        }
+      }catch (err) {
+      console.error(err, "Error from SubjectAdder api");
+    }
+      
     },
   });
   const chapterRefs = useRef([]);
