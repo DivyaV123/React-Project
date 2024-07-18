@@ -25,6 +25,8 @@ export const API_ENDPOINTS = {
   GET_BRANCH: 'candidate/branch',
   GET_COURSE_BY_ID: (courseId) => `api/v1/courses/getbyid?courseId=${courseId}`,
   COURSE_MAP_CATEGORY: (categoryId) => `/api/v1/categories/assigncourses?categoryId=${categoryId}`,
+  CATEGORY_UNMAP: (categoryId) => `/api/v1/categories/removeCourseFromCategory?categoryId=${categoryId}`,
+  SUBCATEGORY_UNMAP: (subCategoryId) => `/api/v1/subcategories  /removeCourseFromSubCategory?subCategoryId=${subCategoryId}`,
   COURSE_MAP_SUBCATEGORY: (subCategoryId) => `/api/v1/subcategories/assigncourses?subCategoryId=${subCategoryId}`,
   EDIT_COURSE: `api/v1/courses/updateCourseContent`,
   GET_PASS_OUT_YEAR: 'candidate/passoutyear',
@@ -35,5 +37,5 @@ export const API_ENDPOINTS = {
   GET_PLACED_BETWEEN: (startDate, endDate, pageNo, pageSize) => `candidate/placedDate?startDate=${startDate}&endDate=${endDate}&pageNumber=${pageNo}&size=${pageSize}`,
   COUNSELLOR_FILTER: (pageNumber, pageSize, parameter) => `candidate/counsellor/filter?pageNumber=${pageNumber}&pageSize=${pageSize}${parameter ? `&parameter=${parameter}` : ''}`,
   //Add Subject
-  SUBJECT_ADDER:`api/v1/subjects`
+  SUBJECT_ADDER: `api/v1/subjects`
 };
