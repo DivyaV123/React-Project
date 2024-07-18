@@ -10,7 +10,7 @@ function CarosalFooter() {
             details: 'Largest Training Institute # in the world'
         },
         {
-            count: '2.51L+',
+            count: '2.5L+',
             details: 'Students have been # placed'
         },
         {
