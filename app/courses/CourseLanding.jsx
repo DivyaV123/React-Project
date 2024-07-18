@@ -8,6 +8,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
 import Image from "next/image";
 import HtmlContent from "@/components/commonComponents/htmlTextConvert/HtmlContent";
+import { toProperCase } from "@/lib/utils";
 const CourseLanding = ({
   courseDetails,
   countDetails,
@@ -67,7 +68,7 @@ const CourseLanding = ({
                       setTypeOfLearning(classItem);
                     }}
                   >
-                    {classItem}
+                    {toProperCase(classItem)}
                   </button>
                 ))}
               </div>

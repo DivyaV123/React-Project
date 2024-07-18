@@ -20,7 +20,7 @@ function Homepage() {
     return (
         <WebLayout page='main' >
             <CarosalHome />
-            <HiringPartners />
+            <HiringPartners page="home"/>
             <OurCourse />
             <OurBranchesHome />
             <ChooseQspidersHome />

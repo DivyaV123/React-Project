@@ -38,7 +38,7 @@ function PlacementAssistance() {
                                     webkitBackgroundClip: "text",
                                     webkitTextFillColor: "transparent",
                                 }} className='gradient-text font-extra-bold text-medium text-xl mobile:text-[5.581vw] opacity-100 flex justify-center'>
-                                    <Counter initialValue={0} targetValue={5000} label='2.5+Lac' /><br />
+                                    <Counter initialValue={0} targetValue={5000} label='2.5Lac+' /><br />
                                 </h1>
                                 <p className='text-brown text-normal mobile:text-[3.721vw] flex justify-center  text-center'>Students Placed <br /> in Total</p>
                             </aside>
@@ -52,7 +52,7 @@ function PlacementAssistance() {
                         <Link href={PLACEMENT_PATH}>
                             <article className='flex justify-center mobile:mt-[2.575vh]'>
                                 <Button
-                                    className='bg-gradient text-white h-[3.75vw] rounded  w-[14.844vw] mobile:h-[5.15vh] mobile:w-[44.186vw]'
+                                    className='bg-gradient text-white h-[3.75vw] rounded mt-8  w-[14.844vw] mobile:h-[5.15vh] mobile:w-[44.186vw]'
                                     title="View Placements"
                                     onClick={() => { }}
                                 />
