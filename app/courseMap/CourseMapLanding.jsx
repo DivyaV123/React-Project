@@ -9,10 +9,14 @@ import * as Yup from "yup";
 import Button from '@/components/commonComponents/button/Button'
 import { useCourseCategoryMapMutation } from '@/redux/queries/courseCategoryMapingApi'
 import { useCourseSubCategoryMapMutation } from '@/redux/queries/courseSubCategoryMapApi'
+import { useCategoryUnMapMutation } from '@/redux/queries/categoryUnMapApi'
+import { useSubCategortyUnMapMutation } from '@/redux/queries/subCategortyUnMapApi'
 
 function CourseMapLanding() {
     const [courseCategoryMap, { data: courseCategoryMapData, error: courseCategoryMapError, isLoading: courseCategoryMapLoad }] = useCourseCategoryMapMutation();
     const [courseSubCategoryMap, { data: courseSubCategoryMapData, error: courseSubCategoryMapError, isLoading: courseSubCategoryMapLoad }] = useCourseSubCategoryMapMutation();
+    const [categoryUnmap, { data: categoryUnmapData, error: categoryUnmapError, isLoading: categoryUnmapLoad }] = useCategoryUnMapMutation();
+    const [subCategoryUnmap, { data: subCategoryUnmapData, error: subCategoryUnmapError, isLoading: subCategoryUnmapLoad }] = useSubCategortyUnMapMutation();
     const [selectedCourse, setSelectedCourse] = useState("")
     const [selectedCategory, setSelectedCategory] = useState()
     const [selectedSubCategory, setSelectedSubCategory] = useState()
@@ -151,12 +155,21 @@ function CourseMapLanding() {
         },
     });
     const handlecategoryMapClick = (e) => {
-        e.preventDefault()
-        setShowMapCategory(true)
+        if (selectedCourseId.length > 0) {
+            e.preventDefault()
+            setShowMapCategory(true)
+        } else {
+            alert("please select Courses to map")
+        }
+
     }
     const handleSubcategoryMapClick = (e) => {
-        e.preventDefault()
-        setShowMapSubCategory(true)
+        if (selectedCourseId.length > 0) {
+            e.preventDefault()
+            setShowMapSubCategory(true)
+        } else {
+            alert("please select Courses to map")
+        }
     }
     const handleMapCourseSelect = (event) => {
         setSelectedCategory(event.target.option)
@@ -171,13 +184,18 @@ function CourseMapLanding() {
         selectedCourseId.map((ele) => {
             payload.push(ele.id)
         })
-        try {
-            const response = await courseCategoryMap({ bodyData: payload, categoryId: selectedCategoryId }).unwrap();
-            alert(response.data)
-            showmapCategory(false)
-        } catch (err) {
-            console.log(err)
+        if (selectedCategory) {
+            try {
+                const response = await courseCategoryMap({ bodyData: payload, categoryId: selectedCategoryId }).unwrap();
+                alert(response.status === 200 ? "maped successfully" : response.status)
+                showmapCategory(false)
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            alert("select Category to map")
         }
+
     }
     const handleSubCategorySubmit = async (e) => {
         const selectedSubCategoryId = selectedSubCategory?.Id
@@ -186,13 +204,58 @@ function CourseMapLanding() {
             payload.push(ele.id)
         })
         e.preventDefault()
-        try {
-            const response = await courseSubCategoryMap({ bodyData: payload, subCategoryId: selectedSubCategoryId }).unwrap();
-            alert(response.data)
-            showmapSubCategory(false)
-        } catch (err) {
-            console.log(err)
+        if (selectedSubCategory) {
+            try {
+                const response = await courseSubCategoryMap({ bodyData: payload, subCategoryId: selectedSubCategoryId }).unwrap();
+                alert(response.status === 200 ? "maped successfully" : response.status)
+                showmapSubCategory(false)
+            } catch (err) {
+                console.log(err)
+            }
+        } else {
+            alert("select sub Category to map")
         }
+
+    }
+
+    const handleUnmap = async (e, type) => {
+        const selectedSubCategoryId = selectedSubCategory?.Id
+        const selectedCategoryId = selectedCategory?.Id
+        let payload = []
+        selectedCourseId.map((ele) => {
+            payload.push(ele.id)
+        })
+        e.preventDefault()
+
+        if (type === "Category") {
+            if (selectedCategory) {
+                try {
+                    const response = await categoryUnmap({ bodyData: payload, categoryId: selectedCategoryId }).unwrap();
+                    alert(response.status === 200 ? "maped successfully" : response.status)
+                    showmapSubCategory(false)
+                } catch (err) {
+                    console.log(err)
+                }
+            } else {
+                alert("select sub Category to map")
+            }
+        } else {
+            if (selectedSubCategory) {
+                { console.log(selectedSubCategoryId, "selectedSubCategoryIdselectedSubCategoryId") }
+                try {
+                    const response = await subCategoryUnmap({ bodyData: payload, subCategoryId: selectedSubCategoryId }).unwrap();
+                    alert(response.status === 200 ? "maped successfully" : response.status)
+                    showmapSubCategory(false)
+                } catch (err) {
+                    console.log(err)
+                }
+            } else {
+                alert("select Category to map")
+            }
+        }
+
+
+
     }
     return (
         <WebLayout>
@@ -286,11 +349,16 @@ function CourseMapLanding() {
                                             />
                                         </div>
                                     </div>
-                                    <div className="flex justify-start mt-8">
+                                    <div className="flex justify-start gap-2 mt-8">
                                         <button
                                             onClick={(e) => handleCategorySubmit(e)}
                                             className="py-2 px-4 bg-gradient rounded-md text-white"
                                         >Submit to Category</button>
+                                        <Button
+                                            onClick={(e) => handleUnmap(e, "Category")}
+                                            className="py-2 px-4 bg-red-600 rounded-md text-white"
+                                            title='Unmap'
+                                        />
                                     </div>
                                 </div>
                             }
@@ -303,7 +371,7 @@ function CourseMapLanding() {
                                                 <Dropdown
                                                     sectionStyle="my-section-style"
                                                     name="mapSubCategory"
-                                                    value={selectedSubCourse}
+                                                    value={selectedSubCategory?.value}
                                                     onChange={handleMapSubCourseSelect}
                                                     placeholder="Select the Sub Category"
                                                     options={allSubCategories}
@@ -317,11 +385,16 @@ function CourseMapLanding() {
                                             </div>
                                         </div>
                                     </div>
-                                    <div className="flex justify-start mt-8">
+                                    <div className="flex justify-start gap-2 mt-8">
                                         <Button
                                             onClick={handleSubCategorySubmit}
                                             className="py-2 px-4 bg-gradient rounded-md text-white"
                                             title='Submit to Sub Category'
+                                        />
+                                        <Button
+                                            onClick={(e) => handleUnmap(e, "SubCategory")}
+                                            className="py-2 px-4 bg-red-600 rounded-md text-white"
+                                            title='Unmap '
                                         />
                                     </div>
                                 </div>

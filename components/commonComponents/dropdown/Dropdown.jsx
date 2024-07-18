@@ -75,7 +75,7 @@ function Dropdown({
                 <img src={iconPath} alt="icon" className={`${iconStyle} absolute left-3 top-1/2 transform -translate-y-1/2 w-[2.778vh] h-[2.778vh]`} />
             }
             <div
-                className={`relative ${inputStyle} w-full ${iconPath ? 'py-[1.25vh] px-[0.938vw] pl-[2.6vw]' : 'py-[1.25vh] px-[0.938vw] pl-[1.25vw]'} border border-gray-300 rounded cursor-pointer ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''}`}
+                className={`relative ${inputStyle} w-full ${iconPath ? 'py-[1.25vh] px-[0.938vw] pl-[2.6vw]' : 'py-[1.25vh] px-[0.938vw] pl-[1.25vw]'} border border-[#D9D9D9] rounded cursor-pointer ${disabled ? 'bg-gray-200 cursor-not-allowed' : ''}`}
                 onClick={handleToggle}
                 onBlur={onBlur}
                 tabIndex={0} // To make the div focusable
