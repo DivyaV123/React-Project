@@ -23,11 +23,11 @@ function Dropdown({
 
     useEffect(() => {
         let initialSelectedOptions;
-        if (multi) {
+        if (multi && initialSelectedOptions) {
             initialSelectedOptions = options.filter(option => value.includes(option.value));
         } else {
             const initialSelectedOption = options.find(option => option.value === value);
-            initialSelectedOptions = initialSelectedOption ? [initialSelectedOption] : [];
+            initialSelectedOptions = initialSelectedOption && [initialSelectedOption] ;
         }
         setSelectedOptions(initialSelectedOptions);
     }, [value, options, multi]);
@@ -80,7 +80,7 @@ function Dropdown({
                 onBlur={onBlur}
                 tabIndex={0} // To make the div focusable
             >
-                {selectedOptions.length > 0 ? selectedOptions.map(option => option.label).join(', ') : placeholder}
+                {selectedOptions?.length > 0 ? selectedOptions.map(option => option.label).join(', ') : placeholder}
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                     <Svg
                         className=''
