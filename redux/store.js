@@ -51,6 +51,8 @@ import { courseCategoryMapApi } from './queries/courseCategoryMapingApi';
 import { courseSubCategoryMapApi } from './queries/courseSubCategoryMapApi';
 import { categoryUnMapApi } from './queries/categoryUnMapApi';
 import { subCategortyUnMapApi } from './queries/subCategortyUnMapApi';
+import { allSubjectApi } from './queries/getAllSubjectsApi';
+import { mapSubjectApi } from './queries/mapSubjectApi';
 
 
 const store = configureStore({
@@ -99,7 +101,8 @@ const store = configureStore({
     [LoginApi.reducerPath]: LoginApi.reducer,
 
     [categoriesApi.reducerPath]: categoriesApi.reducer,
-
+    [allSubjectApi.reducerPath]: allSubjectApi.reducer,
+    [mapSubjectApi.reducerPath]: mapSubjectApi.reducer,
     [courseDetailsApi.reducerPath]: courseDetailsApi.reducer,
 
     [CategoriesInCourseApi.reducerPath]: CategoriesInCourseApi.reducer,
@@ -129,7 +132,7 @@ const store = configureStore({
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
-      ItandNonItApi.middleware, counsellorsApi.middleware, PlacementBranchApi.middleware, YearOfPassoutApi.middleware, PlacedDateBetweenApi.middleware, LoginApi.middleware, categoriesApi.middleware,
+      ItandNonItApi.middleware, counsellorsApi.middleware, PlacementBranchApi.middleware, YearOfPassoutApi.middleware, PlacedDateBetweenApi.middleware, LoginApi.middleware, categoriesApi.middleware,allSubjectApi.middleware,mapSubjectApi.middleware,
       CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, subjectAdder.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware
