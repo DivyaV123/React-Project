@@ -37,5 +37,6 @@ export const API_ENDPOINTS = {
   GET_PLACED_BETWEEN: (startDate, endDate, pageNo, pageSize) => `candidate/placedDate?startDate=${startDate}&endDate=${endDate}&pageNumber=${pageNo}&size=${pageSize}`,
   COUNSELLOR_FILTER: (pageNumber, pageSize, parameter) => `candidate/counsellor/filter?pageNumber=${pageNumber}&pageSize=${pageSize}${parameter ? `&parameter=${parameter}` : ''}`,
   //Add Subject
-  SUBJECT_ADDER: `api/v1/subjects`
+  SUBJECT_ADDER: `api/v1/subjects`,
+ MAP_SUBJECT: (courseId) => `api/v1/courses?courseId=${courseId}`,
 };
