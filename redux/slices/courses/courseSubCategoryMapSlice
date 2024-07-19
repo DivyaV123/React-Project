@@ -17,7 +17,7 @@ const courseSubCategoryMapSlice = createSlice({
         },
         courseSubCategoryMapFailure(state, action) {
             state.isLoading = false;
-            state.courseSubCategoryMapDataF = [];
+            state.courseSubCategoryMapData = [];
             state.error = action.payload;
         },
     },
