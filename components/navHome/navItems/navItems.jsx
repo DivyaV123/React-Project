@@ -16,7 +16,7 @@ import { InputIcon } from "@radix-ui/react-icons";
 import {
   CONTACT_US_PATH,
   PLACEMENT_PATH,
-  HIREFROMUS_PATH,
+  HIREFROMUS_PATH,CORPORATE_TRAINING
 } from "@/lib/RouteConstants";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
@@ -56,10 +56,11 @@ function NavItems() {
     { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
     { id: 3, name: "Online Courses", content: <OnlineCourses courseResponse={courseResponse} /> },
     // { id: 3, name: "University Programs", content: <UniversityProgram /> },
-    { id: 4, name: "Tuitions", content: <Tutions /> },
-    { id: 5, name: "Hire From Us", content: "" },
-    { id: 6, name: "Placements", content: "" },
-    { id: 7, name: "Contact us", content: "" },
+    { id: 4, name: "Corporate Training", content: "" },
+    { id: 5, name: "Tuitions", content: <Tutions /> },
+    { id: 6, name: "Hire From Us", content: "" },
+    { id: 7, name: "Placements", content: "" },
+    { id: 8, name: "Contact us", content: "" },
   ];
   setHomeBranchData(BranchResponse?.data[0]?.cities);
 
@@ -86,26 +87,25 @@ function NavItems() {
   const handleNavItems = (navItem) => {
     if (navItem === "Contact us") {
       router.push(CONTACT_US_PATH);
-    } else {
-      if (navItem === "Placements") {
-        router.push(PLACEMENT_PATH);
-        setFilterPlacementData({});
-        setPlacedCheckedIcon(true);
-        setLessCheckedIcon(false);
-        setThroughCheckedIcon(false);
-        setNonItCheckedIcon(false);
-        setItCheckedIcon(false);
-        setSideBarBtn("");
-        setDegreeButton("");
-        setBranchButton("");
-        setPassOutButton("");
-      } else {
-        if (navItem === "Hire From Us") {
-          router.push(HIREFROMUS_PATH);
-        }
-      }
+    } else if (navItem === "Placements") {
+      router.push(PLACEMENT_PATH);
+      setFilterPlacementData({});
+      setPlacedCheckedIcon(true);
+      setLessCheckedIcon(false);
+      setThroughCheckedIcon(false);
+      setNonItCheckedIcon(false);
+      setItCheckedIcon(false);
+      setSideBarBtn("");
+      setDegreeButton("");
+      setBranchButton("");
+      setPassOutButton("");
+    } else if (navItem === "Corporate Training") {
+      router.push(CORPORATE_TRAINING);
+    } else if (navItem === "Hire From Us") {
+      router.push(HIREFROMUS_PATH);
     }
   };
+  
 
   const [activeItem, setActiveItem] = useState("");
   const pathname = usePathname();
@@ -157,7 +157,7 @@ function NavItems() {
                           stateHovered.state) ||
                         activeItem === navItem.name
                           ? "text-orange-500 border-b-2 border-orange-500"
-                          : "menuHeader font-bold text-normal text-slate hover-underline-animation  text-base 2xl:text-lg 3xl:text-xl"
+                          : "menuHeader font-bold text-normal text-slate hover-underline-animation  text-[1.094vw]"
                       }
                     >
                       {navItem.name}

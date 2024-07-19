@@ -79,7 +79,7 @@ const ClientTesimonials = () => {
           <CarouselContent>
             {testimonials.map((testimonial, index) => (
               <CarouselItem key={index} className="md:basis-1/3 lg:basis-1/4">
-                <div className="carousel-item mobile:max-h-fit max-h-[52.296vh] mobile:w-auto mobile:pl-[2.791vw] mobile:pr-[2.791vw]">
+                <div className="carousel-item mobile:max-h-fit  mobile:w-auto mobile:pl-[2.791vw] mobile:pr-[2.791vw]">
                   <img
                     src={testimonial.company}
                     className="pl-[1.25vw] pt-[3.333vh]"
@@ -88,7 +88,7 @@ const ClientTesimonials = () => {
                     className="pl-[1.25vw] pt-[2.222vh]"
                     src="../../quote.svg"
                   />
-                  <div className="pl-[2.656vw] mobile:h-auto h-[29vh] pr-[1.172vw] quotes pb-[3.333vh]">
+                  <div className="pl-[2.656vw] mobile:h-auto pr-[1.172vw] quotes pb-[3.333vh]">
                     {testimonial.quote}
                   </div>
                   <div className="flex pl-[2.656vw]  pt-[2vh] gap-2 pb-[2.778vh]">
