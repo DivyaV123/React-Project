@@ -1,12 +1,16 @@
 
 import React from 'react'
 import BranchWithFilter from './BranchWithFilter'
-
+import UpcomingBatchesLanding from './UpcomingBatchesLanding'
+import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
 
 function UpComingBranches() {
 
   return (
-    <BranchWithFilter />
+    <WebLayout>
+<UpcomingBatchesLanding/>
+     {/* <BranchWithFilter /> */}
+    </WebLayout>
   )
 }
 
