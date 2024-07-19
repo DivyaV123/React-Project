@@ -23,11 +23,11 @@ function Dropdown({
 
     useEffect(() => {
         let initialSelectedOptions;
-        if (multi && initialSelectedOptions) {
+        if (multi ) {
             initialSelectedOptions = options.filter(option => value.includes(option.value));
         } else {
             const initialSelectedOption = options.find(option => option.value === value);
-            initialSelectedOptions = initialSelectedOption && [initialSelectedOption] ;
+            initialSelectedOptions = initialSelectedOption ? [initialSelectedOption] : [];
         }
         setSelectedOptions(initialSelectedOptions);
     }, [value, options, multi]);
@@ -40,7 +40,7 @@ function Dropdown({
 
     const handleSelect = (option) => {
         if (multi) {
-            const newSelectedOptions = selectedOptions.some(selected => selected.value === option.value)
+            const newSelectedOptions = selectedOptions?.some(selected => selected.value === option.value)
                 ? selectedOptions.filter(selected => selected.value !== option.value)
                 : [...selectedOptions, option];
             setSelectedOptions(newSelectedOptions);
@@ -68,7 +68,23 @@ function Dropdown({
             document.removeEventListener('mousedown', handleOutsideClick);
         };
     }, [isOpen]);
-
+    const renderSelectedOptions = () => {
+        if (selectedOptions?.length > 0) {
+            if (multi) {
+                const firstOptionLabel = selectedOptions[0].label;
+                const selectedCount = selectedOptions.length - 1;
+                if (selectedCount > 0) {
+                    return `${firstOptionLabel} +${selectedCount} more`;
+                } else {
+                    return firstOptionLabel;
+                }
+            } else {
+                return selectedOptions[0].label;
+            }
+        } else {
+            return placeholder;
+        }
+    };
     return (
         <section className={`${sectionStyle} relative h-auto`} ref={dropdownRef}>
             {iconPath &&
@@ -80,7 +96,8 @@ function Dropdown({
                 onBlur={onBlur}
                 tabIndex={0} // To make the div focusable
             >
-                {selectedOptions?.length > 0 ? selectedOptions.map(option => option.label).join(', ') : placeholder}
+            {renderSelectedOptions()}
+                {/* {selectedOptions?.length > 0 ? selectedOptions.map(option => option.label).join(', ') : placeholder} */}
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                     <Svg
                         className=''
@@ -97,7 +114,7 @@ function Dropdown({
                     {options.map((option) => (
                         <div
                             key={option.value}
-                            className={`py-[1.25vh] px-[0.938vw] cursor-pointer hover:bg-gray-200 ${selectedOptions.some(selected => selected.value === option.value) ? 'bg-gray-300' : ''}`}
+                            className={`py-[1.25vh] px-[0.938vw] cursor-pointer hover:bg-gray-200 ${selectedOptions?.some(selected => selected.value === option.value) ? 'bg-gray-300' : ''}`}
                             onClick={() => handleSelect(option)}
                         >
                             {option.label}

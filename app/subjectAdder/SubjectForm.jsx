@@ -67,8 +67,8 @@ const SubjectForm = () => {
     validationSchema: Yup.object({
       subjectTitle: Yup.string().required("Required"),
     }),
-    onSubmit:async (values) => {
-      try{
+    onSubmit: async (values) => {
+      try {
         chapterRefs.current.forEach((ref) => ref && ref.submitForm());
         const hasErrors = chapterRefs.current.some(
           (ref) => ref && ref.hasErrors()
@@ -76,14 +76,16 @@ const SubjectForm = () => {
         if (chapters[0]?.chapterTitle === "") {
           toast({
             variant: "destructive",
-            description: <span className=" font-bold ">At least add one Chapter</span>,
+            description: (
+              <span className=" font-bold ">At least add one Chapter</span>
+            ),
           });
           return;
         }
         if (hasErrors) {
           return;
         }
-  
+
         formik.errors.subjectTitle &&
           window.scrollTo({
             top: 0,
@@ -98,21 +100,21 @@ const SubjectForm = () => {
           updatedDateAndTime: new Date().toISOString(),
         };
         const response = await addSubject(payload);
-        console.log(payload, response);
+
         if (response.data.statusCode === 201) {
           toast({
             variant: "success",
-            title:<span className=" font-bold  "> Subject Added Successfully</span>,
-           
+            title: (
+              <span className=" font-bold  "> Subject Added Successfully</span>
+            ),
           });
           setTimeout(() => {
             window.location.reload();
           }, 5000);
         }
-      }catch (err) {
-      console.error(err, "Error from SubjectAdder api");
-    }
-      
+      } catch (err) {
+        console.error(err, "Error from SubjectAdder api");
+      }
     },
   });
   const chapterRefs = useRef([]);
