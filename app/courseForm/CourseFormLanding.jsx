@@ -36,6 +36,16 @@ function CourseFormLanding() {
   const [selectedSubCourse, setSelectedSubCourse] = useState("");
   const [subCourseOptions, setSubCourseOptions] = useState([]);
   const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);
+  const [selectedId, setSelectedId] = useState(
+    {
+      categoryId: '',
+      subCategoryId: ''
+    })
+  const [files, setFiles] = useState({
+    icon: "",
+    pageImage: "",
+    cardImage: ""
+  })
   const toggleAccordion = (index) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
@@ -78,8 +88,13 @@ function CourseFormLanding() {
     initialValues,
     validationSchema,
     onSubmit: async (values) => {
-      let subCourse = values.subCourse != "" ? `&subCategoryId=${values.subCourse}` : ''
-      const payload = {
+      let faqArray = values.faqs.map((faq) => ({
+        question: faq.question,
+        answer: faq.answer,
+        faqType: "COURSE",
+      }))
+      // const convertedfaqArray = JSON.stringify(faqArray);
+      const courseDetails = {
         courseName: values.courseName,
         courseDescription: values.courseDescription,
         branchType: values.organisation,
@@ -87,15 +102,20 @@ function CourseFormLanding() {
         courseSummary: values.courseSummary,
         courseAbout: values.aboutCourse,
         courseHighlight: values.courseHighlights,
-        faqs: values.faqs.map((faq) => ({
-          question: faq.question,
-          answer: faq.answer,
-          faqType: "COURSE",
-        })),
+        faqs: faqArray,
       };
+      // const payloadString = JSON.stringify(courseDetails);
 
+      const payload = {
+        course: courseDetails,
+        icon: files.icon,
+        image: files.cardImage,
+        homePageImage: files.pageImage
+      }
+
+      console.log(payload, "payloadpayload")
       try {
-        const response = await addCourse({ bodyData: payload, courseId: values.course, subcourseId: subCourse }).unwrap();
+        const response = await addCourse({ bodyData: payload, categoryId: selectedId.categoryId, subCategoryId: selectedId.subCategoryId }).unwrap();
       } catch (err) {
         console.error(err, "Error from loginAPI");
       }
@@ -171,6 +191,10 @@ function CourseFormLanding() {
     setFaqEditIndex(null);
   };
   const handleCourseSelect = (event) => {
+    setSelectedId(prevState => ({
+      ...prevState,
+      categoryId: event.target.option.id
+    }));
     const selectedCourseId = event.target.value;
     setSelectedCourse(selectedCourseId);
 
@@ -185,6 +209,7 @@ function CourseFormLanding() {
         selectedCourseData.subCategoryResponse.map((sub) => ({
           label: sub.subCategoryName,
           value: sub.subCategoryId,
+          id: sub.subCategoryId
         }))
       );
       setIsSubCourseDisabled(false);
@@ -198,15 +223,38 @@ function CourseFormLanding() {
   };
 
   const handleSubCourseSelect = (event) => {
+    setSelectedId(prevState => ({
+      ...prevState,
+      subCategoryId: event.target.option.id
+    }));
     setSelectedSubCourse(event.target.value);
     formikDetails.setFieldValue("subCourse", event.target.value);
   };
-
   const courseOptions = courseData?.data?.map((course) => ({
     label: course.categoryName,
     value: course.categoryId,
+    id: course.categoryId
   }));
 
+  const handleFileSelected = (e, type) => {
+    const file = e.target.files[0];
+    if (file) {
+      const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+      if (validImageTypes.includes(file.type)) {
+        const reader = new FileReader();
+        reader.onloadend = () => {
+          setFiles(prevState => ({
+            ...prevState,
+            [type]: reader.result
+          }));
+        };
+        reader.readAsDataURL(file);
+      } else {
+        console.error("Invalid file type. Please select an image file.");
+        // Optionally, show an error message to the user here
+      }
+    }
+  };
   return (
     <section className="w-[87.5vw] m-auto">
       <article className="border py-[2.5vw] px-[2.5vw] border-2 rounded-xl my-[2.5vw]">
@@ -229,7 +277,7 @@ function CourseFormLanding() {
               ) : null}
             </div>
             <div className="w-[33vw]">
-              <p className={commonLabelStyles}>Sub Course</p>
+              <p className={commonLabelStyles}>Sub Category</p>
               <Dropdown
                 sectionStyle="my-section-style"
                 name="subCourse"
@@ -535,6 +583,32 @@ function CourseFormLanding() {
               </div>
             </aside>
           </section>
+          <div className="flex gap-3 mt-8 mb-8">
+            <div>
+              <p className="">Course Icon</p>
+              <Input
+                onChange={(e) => handleFileSelected(e, "icon")}
+                placeholder="select a file"
+                type="file"
+              />
+            </div>
+            <div>
+              <p className="">Home Page Image</p>
+              <Input
+                onChange={(e) => handleFileSelected(e, "pageImage")}
+                placeholder="select a file"
+                type="file"
+              />
+            </div>
+            <div>
+              <p className="">Course Card Image</p>
+              <Input
+                onChange={(e) => handleFileSelected(e, "cardImage")}
+                placeholder="select a file"
+                type="file"
+              />
+            </div>
+          </div>
           <div className="flex justify-center mt-8">
             <button
               type="submit"
