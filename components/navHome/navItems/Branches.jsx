@@ -13,10 +13,9 @@ const Branches = ({ BranchResponse }) => {
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
   const [countryTab, setCountryTab] = useState("India");
   const [activeTab, setActiveTab] = useState(true);
-  const countryNames = ["India", "USA", "UK","Canada","Australia","Singapore"];
-  const cityData = BranchResponse?.data[0]?.cities;
-  const courseData = BranchResponse?.data[0]?.cities[hoveredIndex].courses;
-  const finalContent = BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex]?.branches
+  const cityData =  BranchResponse?.data?.find(ele => ele?.countryName === countryTab)?.cities;
+  const courseData = cityData[hoveredIndex].courses;
+  const finalContent = cityData[hoveredIndex].courses[hoveredItemIndex]?.branches
   const getContact = (data) => {
     let numbersList = data.split(', ');
     let result = numbersList.slice(0, 2).join(' | ');
@@ -33,14 +32,14 @@ const Branches = ({ BranchResponse }) => {
   return (
     <div className="w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
     <section className="flex gap-6 pl-4 pt-[1.389vh] ">
-            {countryNames.map((ele) => (
+            {BranchResponse?.data?.map((ele) => (
               <button
                 className={`text-[0.938vw] font-bold ${
-                  countryTab === ele ? "activecountry" : ""
+                  countryTab === ele.countryName ? "activecountry" : ""
                 } `}
-                onClick={() => handleCountryTab(ele)}
+                onClick={() => handleCountryTab(ele.countryName)}
               >
-                {ele}
+                {ele.countryName}
               </button>
             ))}
           </section>
