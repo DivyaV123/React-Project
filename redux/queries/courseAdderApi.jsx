@@ -1,6 +1,6 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { getBaseUrl ,API_ENDPOINTS} from '@/api/apiService';
+import { getBaseUrl, API_ENDPOINTS } from '@/api/apiService';
 export const courseAdderApi = createApi({
     reducerPath: 'courseAdderApi',
     baseQuery: fetchBaseQuery({
@@ -15,8 +15,8 @@ export const courseAdderApi = createApi({
     }),
     endpoints: (builder) => ({
         courseAdder: builder.mutation({
-            query: ({ bodyData, courseId, subcourseId }) => ({
-                url:API_ENDPOINTS.GET_COURSE_ID_AND_SUBCOURSE_ID(courseId,subcourseId) ,
+            query: ({ bodyData, categoryId, subCategoryId }) => ({
+                url: API_ENDPOINTS.ADDCOURES_WITHFILE(categoryId, subCategoryId),
                 method: 'POST',
                 body: bodyData
             })
