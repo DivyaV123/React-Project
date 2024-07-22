@@ -24,7 +24,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { usePathname, useRouter } from "next/navigation";
 import UniversityProgram from "./UniversityProgram";
 import OnlineCourses from "./OnlineCourses";
-
+import { useGetAllOnlineCoursesQuery } from "@/redux/queries/getOnlineCoursesApi";
 function NavItems() {
   const router = useRouter();
   const {
@@ -51,10 +51,15 @@ function NavItems() {
     error: branchError,
     isLoading: branchIsLoading,
   } = useGetAllBranchesQuery();
+  const {
+    data: onlineCourseResponse,
+    error: onlineCourseError,
+    isLoading: onlineCourseIsLoading,
+  } = useGetAllOnlineCoursesQuery();
   const navItems = [
     { id: 1, name: "All Courses", content: <Courses courseResponse={courseResponse} /> },
     { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
-    { id: 3, name: "Online Courses", content: <OnlineCourses courseResponse={courseResponse} /> },
+    { id: 3, name: "Online Courses", content: <OnlineCourses courseResponse={onlineCourseResponse} /> },
     // { id: 3, name: "University Programs", content: <UniversityProgram /> },
     { id: 4, name: "Corporate Training", content: "" },
     { id: 5, name: "Tuitions", content: <Tutions /> },
