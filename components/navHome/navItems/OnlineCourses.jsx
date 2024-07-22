@@ -101,7 +101,7 @@ const OnlineCourses = ({ courseResponse }) => {
                     content?.courseResponseId
                       ? content?.courseResponseId
                       : content?.subCourseResponseId
-                  }`}
+                  } &&Online`}
                 >
                   <div
                     key={index}
