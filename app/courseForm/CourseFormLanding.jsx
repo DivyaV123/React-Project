@@ -104,18 +104,19 @@ function CourseFormLanding() {
         courseHighlight: values.courseHighlights,
         faqs: faqArray,
       };
-      // const payloadString = JSON.stringify(courseDetails);
-
+      const payloadString = JSON.stringify(courseDetails);
       const payload = {
-        course: courseDetails,
+        course: payloadString,
         icon: files.icon,
         image: files.cardImage,
-        homePageImage: files.pageImage
+        homePageImage: files.pageImage,
+        categoryId: selectedId.categoryId,
+        subCategoryId: selectedId.subCategoryId,
       }
 
       console.log(payload, "payloadpayload")
       try {
-        const response = await addCourse({ bodyData: payload, categoryId: selectedId.categoryId, subCategoryId: selectedId.subCategoryId }).unwrap();
+        const response = await addCourse({ bodyData: payload }).unwrap();
       } catch (err) {
         console.error(err, "Error from loginAPI");
       }
@@ -238,23 +239,20 @@ function CourseFormLanding() {
 
   const handleFileSelected = (e, type) => {
     const file = e.target.files[0];
+    console.log(file, "filefilefile")
     if (file) {
       const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
       if (validImageTypes.includes(file.type)) {
-        const reader = new FileReader();
-        reader.onloadend = () => {
-          setFiles(prevState => ({
-            ...prevState,
-            [type]: reader.result
-          }));
-        };
-        reader.readAsDataURL(file);
+        setFiles(prevState => ({
+          ...prevState,
+          [type]: file
+        }));
       } else {
         console.error("Invalid file type. Please select an image file.");
-        // Optionally, show an error message to the user here
       }
     }
   };
+
   return (
     <section className="w-[87.5vw] m-auto">
       <article className="border py-[2.5vw] px-[2.5vw] border-2 rounded-xl my-[2.5vw]">

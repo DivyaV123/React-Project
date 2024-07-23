@@ -10,7 +10,8 @@ export const API_ENDPOINTS = {
   VIEW_ALL_COURSES: 'api/v1/courses/viewAll',
   FIND_ALL_CATEGORIES: 'api/v1/categories/findAllCategories',
   GET_COURSE_ID_AND_SUBCOURSE_ID: (courseId, subcourseId) => `api/v1/courses?categoryId=${courseId}${subcourseId}`,
-  ADDCOURES_WITHFILE: (categoryId, subCategoryId) => `api/v1/courses/saveCourse?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}`,
+  ADDCOURES_WITHFILE: `api/v1/courses/saveCourse`,
+  DELETE_COURSE: (courseId) => `api/v1/courses?courseId=${courseId}`,
   COURSE_WEIGHTAGE_ADDER: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   COURSE_WEIGHTAGE_EDIT: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   BRANCH_ADDER: `api/v1/branches`,
@@ -28,7 +29,7 @@ export const API_ENDPOINTS = {
   GET_COURSE_BY_ID: (courseId) => `api/v1/courses/getbyid?courseId=${courseId}`,
   COURSE_MAP_CATEGORY: (categoryId) => `/api/v1/categories/assigncourses?categoryId=${categoryId}`,
   CATEGORY_UNMAP: (categoryId) => `/api/v1/categories/removeCourseFromCategory?categoryId=${categoryId}`,
-  SUBCATEGORY_UNMAP: (subCategoryId) => `/api/v1/subcategories  /removeCourseFromSubCategory?subCategoryId=${subCategoryId}`,
+  SUBCATEGORY_UNMAP: (subCategoryId) => `/api/v1/subcategories/removeCourseFromSubCategory?subCategoryId=${subCategoryId}`,
   COURSE_MAP_SUBCATEGORY: (subCategoryId) => `/api/v1/subcategories/assigncourses?subCategoryId=${subCategoryId}`,
   EDIT_COURSE: `api/v1/courses/updateCourseContent`,
   GET_PASS_OUT_YEAR: 'candidate/passoutyear',
@@ -40,5 +41,5 @@ export const API_ENDPOINTS = {
   COUNSELLOR_FILTER: (pageNumber, pageSize, parameter) => `candidate/counsellor/filter?pageNumber=${pageNumber}&pageSize=${pageSize}${parameter ? `&parameter=${parameter}` : ''}`,
   //Add Subject
   SUBJECT_ADDER: `api/v1/subjects`,
- MAP_SUBJECT: (courseId) => `api/v1/courses?courseId=${courseId}`,
+  MAP_SUBJECT: (courseId) => `api/v1/courses?courseId=${courseId}`,
 };

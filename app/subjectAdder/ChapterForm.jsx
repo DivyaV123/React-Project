@@ -36,7 +36,6 @@ const ChapterForm = forwardRef(({ initialValues, onUpdateChapter }, ref) => {
   };
   const handleAddTopic = () => {
     formik.handleSubmit()
-    console.log(formik)
     formik.values.chapterTitle && setTopics([
       ...topics,
       { topicTitle: '', topicPreviewUrl: '', topicPreviewDuration: '', subTopics: [] },
