@@ -24,7 +24,8 @@ const IndividualBranches = () => {
   const [initialLoad, setInitialLoad] = useState(true);
   // Assume 10 cities per view
   const citiesPerView = 10;
-  let newNavCities = homeBranchData?.data[0].cities?.map((element) => {
+  const filterCountryObj = homeBranchData?.data?.filter(ele=>ele?.countryName==='India')
+  let newNavCities = filterCountryObj?.[0]?.cities?.map((element) => {
     return {
       name: element.cityName,
       course: element.courses,

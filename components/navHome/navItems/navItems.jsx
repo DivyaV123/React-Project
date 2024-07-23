@@ -67,7 +67,9 @@ function NavItems() {
     { id: 7, name: "Placements", content: "" },
     { id: 8, name: "Contact us", content: "" },
   ];
-  setHomeBranchData(BranchResponse?.data[0]?.cities);
+  const filterCountryObj = BranchResponse?.data?.filter(ele=>ele?.countryName==='India')
+  const cityData = filterCountryObj?.[0]?.cities;
+  setHomeBranchData(cityData);
 
   const [stateHovered, setStateHovered] = useState({
     item: "",
