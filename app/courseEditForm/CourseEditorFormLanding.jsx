@@ -16,6 +16,7 @@ import "react-quill/dist/quill.snow.css";
 import "react-quill/dist/quill.bubble.css";
 import { useCourseEditorMutation } from '@/redux/queries/courseById';
 import { useCourseEditDataMutation } from '@/redux/queries/editCourseApi';
+import { useCourseDeleteMutation } from '@/redux/queries/deleteCourse';
 
 const ReactQuill = dynamic(
     async () => {
@@ -30,6 +31,7 @@ const ReactQuill = dynamic(
 function CourseEditorFormLanding() {
     const [selectedCourseDetails, { data: courseToEditData, error: courseError, isLoading: courseAdderLoad }] = useCourseEditorMutation();
     const [editSelectedCourse, { data: courseEditResp, error: courseEditError, isLoading: courseEditLoad }] = useCourseEditDataMutation();
+    const [deleteSelectedCourse, { data: courseDeleteResp, error: courseDeleteError, isLoading: courseDeleteLoad }] = useCourseDeleteMutation();
 
     const {
         data: courseResponse,
@@ -380,7 +382,16 @@ function CourseEditorFormLanding() {
             alert(err)
         }
     }
-
+    const handleDeleteSelectedCourse = async () => {
+        if (allId.courseId) {
+            try {
+                const response = await deleteSelectedCourse({ courseId: allId.courseId }).unwrap();
+                alert(`course Deleted successfully`)
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    }
 
     return (
         <MaxWebWidth articalStyling='pt-8 pb-8'>
@@ -440,12 +451,18 @@ function CourseEditorFormLanding() {
                             ) : null}
                         </div>
                     </div>
-                    <div className="flex justify-end mt-2">
+                    <div className="flex gap-4 justify-end mt-2">
                         <button
                             onClick={handleSelectedCourseData}
                             className="py-2 px-4 bg-gradient rounded-md text-white"
                         >
                             Edit Course
+                        </button>
+                        <button
+                            onClick={handleDeleteSelectedCourse}
+                            className="py-2 px-4 bg-red-500 rounded-md text-white"
+                        >
+                            Delete Course
                         </button>
                     </div>
                 </form>
