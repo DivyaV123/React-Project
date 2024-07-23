@@ -21,7 +21,7 @@ function RelevantTraining() {
         setActive(false);
     };
     return (
-        <section className='sm:grid grid-cols-2 gap-4 mt-6 mb-8 mobile:flex mobile:flex-col-reverse'>
+        <section className='sm:grid grid-cols-2 gap-4 mt-6 mb-8 mobile:hidden mobile:flex-col-reverse'>
             <Fade left duration={1000} delay={0}>
                 <aside className='flex items-center'>
                     <div>

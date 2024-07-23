@@ -138,7 +138,7 @@ const disableIcons =()=>{
             <h1 className="font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw]">
               From Various Degree
             </h1>
-            <div className="flex flex-wrap mobile:gap-[0.75rem] gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[4.292vh]">
+            <div className="flex flex-wrap mobile:gap-2.5 mobile:justify-between gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[4.292vh]">
               {degrees.map((element) => {
                 const href =
                   element === "More..."
@@ -162,7 +162,7 @@ const disableIcons =()=>{
               <h1 className="font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw]">
                 From Various Branches
               </h1>
-              <div className="flex flex-wrap mobile:gap-[0.75rem]  sm:gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[9.442vh]">
+              <div className="flex flex-wrap mobile:gap-2.5 mobile:justify-between  sm:gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[9.442vh]">
                 {branches.map((element) => {
                   const originalStream = invertedBranchAbbreviations[element];
                   const href =

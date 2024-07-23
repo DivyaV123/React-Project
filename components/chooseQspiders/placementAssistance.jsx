@@ -14,7 +14,7 @@ import Image from 'next/image';
 function PlacementAssistance() {
     const { domainVariable } = useContext(GlobalContext)
     return (
-        <section className='mt-6 mobile:mt-[3.219vh]'>
+        <section className='mt-6 mobile:mt-[3.219vh] mobile:hidden'>
             <header>
                 <Slide top cascade>
                     <p className='font-bold text-[2rem] mobile:text-[5.581vw] text-black flex justify-center align-center sm:mb-8 sm:mt-8 mobile:mb-[1.717vh]'>
