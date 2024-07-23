@@ -3,10 +3,10 @@ import './trainingCard.scss'
 import Svg from '@/components/commonComponents/Svg/Svg';
 import { svgicons } from '@/components/assets/icons/svgassets';
 
-function TrainingCard({ cardDetails, hover }) {
+function TrainingCard({ cardDetails, hover,page }) {
     return (
         <>
-        <section className='relative flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-[15.63rem] sm:m-4 trainingContainer mobile:hidden'>
+        <section className={`${page === "corporateTraining" ? 'place-self-center sm:mx-4 sm:mb-4' : "sm:m-4"} relative flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-[15.63rem]  trainingContainer mobile:hidden`}>
             <div className="animationBackground">
             </div>
             <div className='z-10'>
@@ -31,7 +31,7 @@ function TrainingCard({ cardDetails, hover }) {
                 </p>
             </div>
         </section>
-        <section className='relative flex   cursor-pointer  w-[46.279vw]  overflow-hidden sm:hidden'>
+        <section className='relative flex   cursor-pointer  w-[39.07vw]  overflow-hidden sm:hidden'>
         <div className=''>
             <figure className='flex justify-center  pt-[3.97vh] pb-[2.575vh]'>
                 <img  src={cardDetails.mobileLogo} alt='logo'></img>

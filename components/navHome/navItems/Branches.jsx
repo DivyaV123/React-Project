@@ -8,7 +8,8 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import Image from "next/image";
 
 const Branches = ({ BranchResponse }) => {
-  const { setOnGoingBatches, setupComingBatches, setHoverState } = useContext(GlobalContext)
+  const { setOnGoingBatches, setupComingBatches, setHoverState } =
+    useContext(GlobalContext);
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
   const [countryTab, setCountryTab] = useState("India");
@@ -19,10 +20,10 @@ const Branches = ({ BranchResponse }) => {
   const courseData = cityData && cityData[hoveredIndex]?.courses;
   const finalContent = cityData && cityData[hoveredIndex]?.courses[hoveredItemIndex]?.branches
   const getContact = (data) => {
-    let numbersList = data.split(', ');
-    let result = numbersList.slice(0, 2).join(' | ');
-    return result
-  }
+    let numbersList = data.split(", ");
+    let result = numbersList.slice(0, 2).join(" | ");
+    return result;
+  };
   const handleCountryTab = (country) => {
     setCountryTab(country);
     if (country === countryTab) {
@@ -34,21 +35,31 @@ const Branches = ({ BranchResponse }) => {
   return (
     <div className="w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
       <section className="flex gap-6 pl-4 pt-[1.389vh] ">
-        {BranchResponse?.data?.map((ele) => (
-          <button
-            className={`text-[0.938vw] font-bold ${countryTab === ele.countryName ? "activecountry" : ""
-              } `}
-            onClick={() => handleCountryTab(ele.countryName)}
-          >
-            {ele.countryName}
-          </button>
-        ))}
+        {BranchResponse?.data?.map((ele) => {
+          const countryName =
+            ele.countryName === "United Kingdom"
+              ? "UK"
+              : ele.countryName === "United States of America"
+              ? "USA"
+              : ele.countryName;
+
+          return (
+            <button
+              className={`text-[0.938vw] font-bold ${
+                countryTab === ele.countryName ? "activecountry" : ""
+              }`}
+              onClick={() => handleCountryTab(ele.countryName)}
+              key={ele.countryName}
+            >
+              {countryName}
+            </button>
+          );
+        })}
       </section>
       <div className="flex ">
         <div
           className={`menuSidebar pt-1   xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] overflow-auto branchesScroll`}
         >
-
           {cityData?.map((courseItem, index) => {
             return (
               <div

@@ -22,7 +22,7 @@ function ExperiencedFaculty() {
         }
     ]
     return (
-        <selection className='sm:grid grid-cols-2 gap-4 mt-6 mobile:flex mobile:flex-col'>
+        <selection className='sm:grid grid-cols-2 gap-4 mt-6  mobile:flex-col mobile:hidden'>
             <Fade left delay={0} duration={1000}>
                 <figure className='sm:w-[85%]'>
                     <Image
