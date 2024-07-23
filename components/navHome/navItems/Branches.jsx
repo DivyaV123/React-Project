@@ -13,10 +13,11 @@ const Branches = ({ BranchResponse }) => {
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
   const [countryTab, setCountryTab] = useState("India");
   const [activeTab, setActiveTab] = useState(true);
-  const countryNames = ["India", "USA", "UK","Canada","Australia","Singapore"];
-  const cityData = BranchResponse?.data[0]?.cities;
-  const courseData = BranchResponse?.data[0]?.cities[hoveredIndex].courses;
-  const finalContent = BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex]?.branches
+
+  const filterCountryObj = BranchResponse?.data?.filter(ele=>ele?.countryName===countryTab)
+  const cityData = filterCountryObj[0]?.cities;
+  const courseData = cityData[hoveredIndex]?.courses;
+  const finalContent = cityData[hoveredIndex]?.courses[hoveredItemIndex]?.branches
   const getContact = (data) => {
     let numbersList = data.split(', ');
     let result = numbersList.slice(0, 2).join(' | ');
@@ -33,14 +34,14 @@ const Branches = ({ BranchResponse }) => {
   return (
     <div className="w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
     <section className="flex gap-6 pl-4 pt-[1.389vh] ">
-            {countryNames.map((ele) => (
+            {BranchResponse?.data?.map((ele) => (
               <button
                 className={`text-[0.938vw] font-bold ${
-                  countryTab === ele ? "activecountry" : ""
+                  countryTab === ele.countryName ? "activecountry" : ""
                 } `}
-                onClick={() => handleCountryTab(ele)}
+                onClick={() => handleCountryTab(ele.countryName)}
               >
-                {ele}
+                {ele.countryName}
               </button>
             ))}
           </section>
@@ -114,7 +115,7 @@ const Branches = ({ BranchResponse }) => {
                   setOnGoingBatches(content.ongoingBatches)
                   setupComingBatches(content.upcomingBatches)
                   return (
-                    <Link className="" href={`/branches/${content.branchId}-branchId,${BranchResponse?.data[0]?.cities[hoveredIndex].courses[hoveredItemIndex].courseId}-courseId`}>
+                    <Link className="" href={`/branches/${content.branchId}-branchId,${cityData[hoveredIndex]?.courses[hoveredItemIndex]?.courseId}-courseId`}>
                       <div className="flex branchMenuCard bg-[#FFFFFF] xl:w-[19.922vw] 2xl:w-[22.73vw] 3xl:w-[25.2vw]  rounded-xl px-[1.389vh] py-[0.781vw]" key={index} onClick={()=>setHoverState((prevState) => ({ ...prevState, content: false }))}>
                         <div>
                           {content.branchImage &&
