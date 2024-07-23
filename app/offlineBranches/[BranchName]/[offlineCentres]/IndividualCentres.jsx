@@ -19,13 +19,14 @@ const IndividualCentres = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const [branchName, courseId] = pathname.split("/").slice(2, 4);
   const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery();
-  let navCities = homeBranchData?.data[0]?.cities;
+  const filterCountryObj = homeBranchData?.data?.filter(ele=>ele?.countryName==='India')
+  const navCities = filterCountryObj?.[0]?.cities;
   const selectedCity = navCities?.find((city) => city.cityName === branchName);
   const selectedId = selectedCity?.courses?.find(
     (item) => String(item.courseId) === String(courseId)
   );
   const citiesPerView = 10;
-  const newNavCities = homeBranchData?.data[0].cities?.map((element) => {
+  const newNavCities = filterCountryObj?.[0]?.cities?.map((element) => {
     return {
       name: element.cityName,
       course: element.courses,
