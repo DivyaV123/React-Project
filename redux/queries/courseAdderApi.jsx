@@ -1,6 +1,6 @@
-
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getBaseUrl, API_ENDPOINTS } from '@/api/apiService';
+
 export const courseAdderApi = createApi({
     reducerPath: 'courseAdderApi',
     baseQuery: fetchBaseQuery({
@@ -15,11 +15,21 @@ export const courseAdderApi = createApi({
     }),
     endpoints: (builder) => ({
         courseAdder: builder.mutation({
-            query: ({ bodyData, categoryId, subCategoryId }) => ({
-                url: API_ENDPOINTS.ADDCOURES_WITHFILE(categoryId, subCategoryId),
-                method: 'POST',
-                body: bodyData
-            })
+            query: ({ bodyData }) => {
+                const formData = new FormData();
+                formData.append('course', bodyData.course);
+                formData.append('categoryId', bodyData.categoryId);
+                bodyData.subCategoryId != "" && formData.append('subCategoryId', bodyData.subCategoryId);
+                formData.append('icon', bodyData.icon);
+                formData.append('image', bodyData.image);
+                formData.append('homePageImage', bodyData.homePageImage);
+
+                return {
+                    url: API_ENDPOINTS.ADDCOURES_WITHFILE,
+                    method: 'POST',
+                    body: formData,
+                };
+            }
         })
     })
 });
