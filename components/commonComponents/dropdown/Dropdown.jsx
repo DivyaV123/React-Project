@@ -29,7 +29,17 @@ function Dropdown({
             const initialSelectedOption = options.find(option => option.value === value);
             initialSelectedOptions = initialSelectedOption ? [initialSelectedOption] : [];
         }
-        setSelectedOptions(initialSelectedOptions);
+
+        const initialSelectedValues = initialSelectedOptions.map(option => option.value);
+        const currentSelectedValues = selectedOptions.map(option => option.value);
+
+        const hasChanged = 
+            initialSelectedValues.length !== currentSelectedValues.length ||
+            initialSelectedValues.some((val, index) => val !== currentSelectedValues[index]);
+
+        if (hasChanged) {
+            setSelectedOptions(initialSelectedOptions);
+        }
     }, [value, options, multi]);
 
     const handleToggle = () => {
