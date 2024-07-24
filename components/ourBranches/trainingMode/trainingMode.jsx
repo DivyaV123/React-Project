@@ -90,7 +90,7 @@ function TrainingMode({ page }) {
               >
                 Experiential Learning Program
               </button>
-              <img src="../../hirefromustrainingmode.svg" alt="Experiential Learning Program" />
+              <img className="w-[58.563vw]" src="../../hirefromustrainingmode.svg" alt="Experiential Learning Program" />
             </div>
           )}
 

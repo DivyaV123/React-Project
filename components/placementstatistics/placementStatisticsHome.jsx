@@ -149,7 +149,7 @@ const disableIcons =()=>{
                     <Badge
                     onClick={disableIcons}
                       variant=""
-                      className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh]"
+                      className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh] badgeHover"
                     >
                       {element}
                     </Badge>
@@ -176,7 +176,7 @@ const disableIcons =()=>{
                       <Badge
                         variant=""
                         onClick={disableIcons}
-                        className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh]"
+                        className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh] badgeHover"
                       >
                         {element}
                       </Badge>

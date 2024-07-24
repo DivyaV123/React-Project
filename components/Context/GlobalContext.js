@@ -29,6 +29,7 @@ const GlobalContextProvider = ({ children }) => {
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
+  const [countryList,setCountryList]=useState([])
   const [homeBranchData, setHomeBranchData] = useState([])
   const [selectedBatch, setSelectedBatch] = useState("Bengalore");
   const [selectedClassMode, setSelectedClassMode] = useState("offline");
@@ -414,7 +415,7 @@ const GlobalContextProvider = ({ children }) => {
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
         homeBranchData, setHomeBranchData,
         domainVariable,hoverState, setHoverState,imageDialog, setImageDialog,videoDialog, setVideoDialog,
-        homePlacements,setHomePlacements
+        homePlacements,setHomePlacements,countryList,setCountryList
       }}
     >
       {children}

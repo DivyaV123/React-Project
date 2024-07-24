@@ -39,7 +39,7 @@ function NavItems() {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setFilterPlacementData,
-    hoverState, setHoverState
+    hoverState, setHoverState,setCountryList
   } = useContext(GlobalContext);
   const {
     data: courseResponse,
@@ -69,6 +69,7 @@ function NavItems() {
   ];
   const filterCountryObj = BranchResponse?.data?.filter(ele=>ele?.countryName==='India')
   const cityData = filterCountryObj?.[0]?.cities;
+  setCountryList(BranchResponse?.data)
   setHomeBranchData(cityData);
 
   const [stateHovered, setStateHovered] = useState({
