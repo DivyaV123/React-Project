@@ -50,6 +50,11 @@ function CourseEditorFormLanding() {
     const [faqEditIndex, setFaqEditIndex] = useState(null);
     const [expandedIndex, setExpandedIndex] = useState(null);
     const [faqs, setFaqs] = useState([]);
+    const [files, setFiles] = useState({
+        icon: null,
+        pageImage: null,
+        cardImage: null,
+    });
     const [courseNames, setCourseNames] = useState([]);
     const [allId, setAllID] = useState({
         categoryId: '',
@@ -252,16 +257,18 @@ function CourseEditorFormLanding() {
         const newFaqs = [...formikDetails.values.faqs];
         if (faqEditIndex !== null) {
             newFaqs[faqEditIndex] = {
-                ...newFaqs[faqEditIndex], // Keep existing fields like faqId
+                ...newFaqs[faqEditIndex],
                 question: formikDetails.values.question,
                 answer: formikDetails.values.answer,
+                faqType: "COURSE"
             };
             setFaqEditIndex(null);
         } else {
             newFaqs.push({
-                faqId: Date.now(), // Generate a unique ID for new FAQs
+                faqId: Date.now(),
                 question: formikDetails.values.question,
                 answer: formikDetails.values.answer,
+                faqType: "COURSE"
             });
         }
 
@@ -310,27 +317,36 @@ function CourseEditorFormLanding() {
 
             if (response?.data) {
                 const selectedCourseValues = response.data;
+                console.log(selectedCourseValues, "selectedCourseValuesselectedCourseValues");
                 formikDetails.setFieldValue("courseName", selectedCourseValues.courseName);
                 formikDetails.setFieldValue("courseSummary", selectedCourseValues.courseSummary);
                 formikDetails.setFieldValue("courseDescription", selectedCourseValues.courseDescription);
                 formikDetails.setFieldValue("aboutCourse", selectedCourseValues.courseAbout);
                 formikDetails.setFieldValue("courseHighlights", selectedCourseValues.courseHighlight);
                 if (selectedCourseValues.branchType.length > 0) {
-                    let org = [];
-                    selectedCourseValues.branchType.map((element) => {
-                        org.push(element);
-                    });
-                    formikDetails.setFieldValue("organisation", org);
+                    formikDetails.setFieldValue("organisation", selectedCourseValues.branchType);
                 }
                 if (selectedCourseValues.mode.length > 0) {
-                    let mode = [];
-                    selectedCourseValues.mode.map((element) => {
-                        mode.push(element);
-                    });
-                    formikDetails.setFieldValue("mode", mode);
+                    formikDetails.setFieldValue("mode", selectedCourseValues.mode);
                 }
-
-                // Set the FAQs field
+                // if (selectedCourseValues.courseIcon) {
+                //     setFiles(prevState => ({
+                //         ...prevState,
+                //         icon: { name: selectedCourseValues.courseIcon }
+                //     }));
+                // }
+                // if (selectedCourseValues.courseImage) {
+                //     setFiles(prevState => ({
+                //         ...prevState,
+                //         cardImage: { name: selectedCourseValues.courseImage }
+                //     }));
+                // }
+                // if (selectedCourseValues.homePageImage) {
+                //     setFiles(prevState => ({
+                //         ...prevState,
+                //         pageImage: { name: selectedCourseValues.homePageImage }
+                //     }));
+                // }
                 if (selectedCourseValues.faqs && selectedCourseValues.faqs.length > 0) {
                     formikDetails.setFieldValue("faqs", selectedCourseValues.faqs);
                 } else {
@@ -346,6 +362,7 @@ function CourseEditorFormLanding() {
     };
 
 
+
     const courseEditSubmit = async () => {
         setSelectedCourseEdit(false);
         setSelectedCourseName("");
@@ -353,7 +370,19 @@ function CourseEditorFormLanding() {
         setSelectedCourse('');
         refetch()
         let editedValues = formikDetails.values;
-        const payload = {
+        let faqArray = []
+        editedValues.faqs.map((element) => {
+            faqArray.push({
+                answer: element.answer,
+                faqId: element.faqId,
+                faqType: "COURSE",
+                question: element.question,
+                createdDateAndTime: null,
+                updatedDateAndTime: null
+            })
+        })
+
+        const courseObj = {
             courseId: courseToEditData.data.courseId,
             courseName: editedValues.courseName,
             mode: editedValues.mode,
@@ -361,25 +390,32 @@ function CourseEditorFormLanding() {
             courseSummary: editedValues.courseSummary,
             courseAbout: editedValues.aboutCourse,
             courseHighlight: editedValues.courseHighlights,
-            faqs: editedValues.faqs,
+            faqs: faqArray,
             branchType: courseToEditData.data.branchType,
+            courseIcon: courseToEditData.data.courseIcon,
             courseImage: courseToEditData.data.courseImage,
-            branches: courseToEditData.data.branches,
-            onlineBatches: courseToEditData.data.onlineBatches,
-            subjects: courseToEditData.data.subjects
+            homePageImage: courseToEditData.data.homePageImage
+        }
+        const payloadString = JSON.stringify(courseObj);
+
+        const payload = {
+            courseContent: payloadString,
+            cardImage: files.cardImage,
+            pageImage: files.pageImage,
+            icon: files.icon
         }
 
         try {
             const response = await editSelectedCourse({ bodyData: payload }).unwrap();
             if (response.statusCode == 200) {
-                alert(`course ${editedValues.courseName} edited successfully`)
+                alert(`course ${editedValues.courseName} edited successfully`);
             } else {
                 alert(response.statusCode)
             }
 
         } catch (err) {
             console.error(err, "Error from loginAPI");
-            alert(err)
+            alert(err.message)
         }
     }
     const handleDeleteSelectedCourse = async () => {
@@ -392,6 +428,22 @@ function CourseEditorFormLanding() {
             }
         }
     }
+
+    const handleFileSelected = (e, type) => {
+        const file = e.target.files[0];
+        console.log(file, "filefilefile");
+        if (file) {
+            const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (validImageTypes.includes(file.type)) {
+                setFiles(prevState => ({
+                    ...prevState,
+                    [type]: file
+                }));
+            } else {
+                console.error("Invalid file type. Please select an image file.");
+            }
+        }
+    };
 
     return (
         <MaxWebWidth articalStyling='pt-8 pb-8'>
@@ -703,10 +755,10 @@ function CourseEditorFormLanding() {
                                     <p>Organisation</p>
                                 </div>
                                 <div className="flex flex-col">
-                                    {["JSP", "QSP", "PYSP", "BSP"].map((org) => (
+                                    {["JSP", "QSP", "PYSP", "PROSP"].map((org) => (
                                         <label key={org}>
                                             <input
-                                                type="checkbox"
+                                                type="radio"
                                                 name="organisation"
                                                 className="mr-2"
                                                 value={org}
@@ -757,6 +809,35 @@ function CourseEditorFormLanding() {
                                 </div>
                             </aside>
                         </section>
+                        <div className="flex flex-col gap-5 mt-8 mb-8 ">
+                            <p>Course Icon</p>
+                            <div className="items-center gap-2 ">
+                                <Input
+                                    onChange={(e) => handleFileSelected(e, "icon")}
+                                    type="file"
+                                />
+                                <p className='text-[0.8rem] text-gray-500'>{courseToEditData?.data?.courseIcon || "No file selected"}</p>
+                            </div>
+                            <div>
+                                <p>Home Page Image</p>
+                                <Input
+                                    onChange={(e) => handleFileSelected(e, "pageImage")}
+                                    placeholder="select a file"
+                                    type="file"
+                                />
+                                <p className='text-[0.8rem] text-gray-500'>{courseToEditData.data.homePageImage || "No file selected"}</p>
+                            </div>
+                            <div>
+                                <p>Course Card Image</p>
+                                <Input
+                                    onChange={(e) => handleFileSelected(e, "cardImage")}
+                                    placeholder="select a file"
+                                    type="file"
+                                />
+                                <p className='text-[0.8rem] text-gray-500'>{courseToEditData.data.courseImage || "No file selected"}</p>
+                            </div>
+                        </div>
+
                         <div className="flex justify-center mt-8">
                             <button
                                 type="submit"

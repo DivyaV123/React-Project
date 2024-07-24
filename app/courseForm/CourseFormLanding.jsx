@@ -117,8 +117,15 @@ function CourseFormLanding() {
       console.log(payload, "payloadpayload")
       try {
         const response = await addCourse({ bodyData: payload }).unwrap();
+        if (response.statusCode == 201) {
+          resetForm();
+          alert("course created successfully")
+        } else {
+          alert(response.message)
+        }
       } catch (err) {
         console.error(err, "Error from loginAPI");
+        alert(err, "Error from loginAPI")
       }
     },
   });

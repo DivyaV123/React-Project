@@ -16,7 +16,7 @@ export const branchAdderApi = createApi({
     endpoints: (builder) => ({
         branchAdder: builder.mutation({
             query: ({ bodyData }) => ({
-                url: API_ENDPOINTS.BRANCH_ADDER(),
+                url: API_ENDPOINTS.BRANCH_ADDER,
                 method: 'POST',
                 body: bodyData
             })

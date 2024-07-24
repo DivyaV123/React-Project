@@ -18,10 +18,14 @@ function BranchFormLanding() {
     const [countryCode, setCountryCode] = useState("");
     const [faqEditIndex, setFaqEditIndex] = useState(null);
     const [expandedIndex, setExpandedIndex] = useState(null);
+    const [branchImage, setBranchImage] = useState({
+        mainImage: {},
+        imageGalary: []
+    })
     const toggleAccordion = (index) => {
         setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
     };
-
+    console.log(branchImage, "branchImagebranchImageF")
     const validationSchema = Yup.object({
         BranchName: Yup.string().required("BranchName is required"),
         phone: Yup.string().required("Mobile number is required"),
@@ -66,12 +70,12 @@ function BranchFormLanding() {
                 displayName: values.BranchName,
                 branchType: values.organisation,
                 branchAddress: {
-                    country: "India",
-                    state: "Karnataka",
-                    city: "Bengaluru",
-                    street: "01, Hayavadana Rao Rd",
-                    pincode: "560019",
-                    location: "Bengaluru"
+                    country: values.country,
+                    state: values.state,
+                    city: values.city,
+                    street: values.street,
+                    pincode: values.pincode,
+                    location: values.location
                 },
                 contacts: "+" + values.phone,
                 faqs: values.faqs.map((faq) => ({
@@ -79,12 +83,12 @@ function BranchFormLanding() {
                     answer: faq.answer,
                 })),
             };
-
-            try {
-                const response = await addBranch({ bodyData: payload, courseId: values.course, subcourseId: subCourse }).unwrap();
-            } catch (err) {
-                console.error(err, "Error from loginAPI");
-            }
+            console.log(branchImage, "multiplemultiple")
+            // try {
+            //     const response = await addBranch({ bodyData: payload }).unwrap();
+            // } catch (err) {
+            //     console.error(err, "Error from loginAPI");
+            // }
         },
     });
 
@@ -163,6 +167,21 @@ function BranchFormLanding() {
             setError({ ...error, [id]: false, validPhone: false });
         }
     };
+    const handleFileSelected = (e, type) => {
+        const file = e.target.files[0];
+        console.log(file, "filefilefile")
+        if (file) {
+            const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            if (validImageTypes.includes(file.type)) {
+                setBranchImage(prevState => ({
+                    ...prevState,
+                    [type]: file
+                }));
+            } else {
+                alert("Invalid file type. Please select an image file.");
+            }
+        }
+    };
     return (
         <MaxWebWidth sectionStyling='mb-8 mt-8' articalStyling='p-12 border-2 border-gray-300 rounded-lg'>
             <form onSubmit={formikDetails.handleSubmit}>
@@ -222,7 +241,8 @@ function BranchFormLanding() {
                         )}
                     </div>
                 </div>
-                <div className="w-[100%] p-5 border border-gray-300 roundex-xl">
+                <p className='p-2 text-[1.8rem]'>Branch Adress</p>
+                <div className="w-[100%] p-5 border border-gray-300 rounded-xl">
                     <div className='flex gap-3 flex justify-around'>
                         <div className='w-[100%]'>
                             <p className="pt-[1.5vw] font-bold">country</p>
@@ -230,7 +250,7 @@ function BranchFormLanding() {
                                 name='country'
                                 value={formikDetails.values.country}
                                 handleBlur={formikDetails.handleBlur}
-                                handleChange={formikDetails.handleChange}
+                                onChange={formikDetails.handleChange}
                             />
                             {formikDetails.touched.country &&
                                 formikDetails.errors.country ? (
@@ -245,12 +265,77 @@ function BranchFormLanding() {
                                 name='state'
                                 value={formikDetails.values.state}
                                 handleBlur={formikDetails.handleBlur}
-                                handleChange={formikDetails.handleChange}
+                                onChange={formikDetails.handleChange}
                             />
                             {formikDetails.touched.state &&
                                 formikDetails.errors.state ? (
                                 <div className="text-red-500">
                                     {formikDetails.errors.state}
+                                </div>
+                            ) : null}
+                        </div>
+                    </div>
+                    <div className='flex gap-3 flex justify-around'>
+                        <div className='w-[100%]'>
+                            <p className="pt-[1.5vw] font-bold">City</p>
+                            <Input
+                                name='city'
+                                value={formikDetails.values.city}
+                                handleBlur={formikDetails.handleBlur}
+                                onChange={formikDetails.handleChange}
+
+                            />
+                            {formikDetails.touched.city &&
+                                formikDetails.errors.city ? (
+                                <div className="text-red-500">
+                                    {formikDetails.errors.city}
+                                </div>
+                            ) : null}
+                        </div>
+                        <div className='w-[100%]'>
+                            <p className="pt-[1.5vw] font-bold">Street</p>
+                            <Input
+                                name='street'
+                                value={formikDetails.values.street}
+                                handleBlur={formikDetails.handleBlur}
+                                onChange={formikDetails.handleChange}
+                            />
+                            {formikDetails.touched.street &&
+                                formikDetails.errors.street ? (
+                                <div className="text-red-500">
+                                    {formikDetails.errors.street}
+                                </div>
+                            ) : null}
+                        </div>
+                    </div>
+                    <div className='flex gap-3 flex justify-around'>
+                        <div className='w-[100%]'>
+                            <p className="pt-[1.5vw] font-bold">Pincode</p>
+                            <Input
+                                name='pincode'
+                                value={formikDetails.values.pincode}
+                                handleBlur={formikDetails.handleBlur}
+                                onChange={formikDetails.handleChange}
+                            />
+                            {formikDetails.touched.pincode &&
+                                formikDetails.errors.pincode ? (
+                                <div className="text-red-500">
+                                    {formikDetails.errors.pincode}
+                                </div>
+                            ) : null}
+                        </div>
+                        <div className='w-[100%]'>
+                            <p className="pt-[1.5vw] font-bold">Location</p>
+                            <Input
+                                name='location'
+                                value={formikDetails.values.location}
+                                handleBlur={formikDetails.handleBlur}
+                                onChange={formikDetails.handleChange}
+                            />
+                            {formikDetails.touched.location &&
+                                formikDetails.errors.location ? (
+                                <div className="text-red-500">
+                                    {formikDetails.errors.location}
                                 </div>
                             ) : null}
                         </div>
@@ -415,6 +500,26 @@ function BranchFormLanding() {
                     {formikDetails.touched.faqs && formikDetails.errors.faqs ? (
                         <div className="text-red-500">{formikDetails.errors.faqs}</div>
                     ) : null}
+                </div>
+                <p className='p-2 text-[1.8rem]'>Add Branch Images</p>
+                <div className='flex gap-5 justify-around rounded-xl border border-gray-300 p-8'>
+                    <div>
+                        <p>Branch Main Image</p>
+                        <Input
+                            onChange={(e) => handleFileSelected(e, "mainImage")}
+                            placeholder="select a file"
+                            type="file"
+                        />
+                    </div>
+                    <div>
+                        <p>Branch Gallary</p>
+                        <Input
+                            onChange={(e) => handleFileSelected(e, "imageGalary")}
+                            placeholder="select a file"
+                            type="file"
+                            multiple={'multiple'}
+                        />
+                    </div>
                 </div>
                 <div className="flex justify-center mt-8">
                     <button
