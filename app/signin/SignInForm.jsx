@@ -65,12 +65,12 @@ function SignInForm() {
     return (
         <section className='w-[34.375vw] tabView:w-[73.118vw] tabView:h-auto border bg-white rounded-xl sm:pt-[3.611vh] sm:px-[1.875vw] tabView:px-[3.226vw] sm:pb-[4.444vh] mobile:w-full mobile:mt-[5.556vh] mobile:mb-[9.227vh] mobile:px-[5.581vw] mobile:pt-[3.433vh] mobile:pb-[3.433vh]'>
             <header>
-                <h1 className='font-bold text-dark-gray text-[1.875vw] border-s-4 border-orange-500 rounded pl-[0.625vw] tabView:text-[3.226vw] mobile:text-[5.581vw] mobile:pl-[2.791vw]'>
+                <h1 className='font-bold text-[#454545] text-[1.875vw] border-s-4 border-orange-500 rounded pl-[0.625vw] tabView:text-[3.226vw] mobile:text-[5.581vw] mobile:pl-[2.791vw]'>
                     Sign In
                 </h1>
                 <form className='mt-[4.444vh] mobile:mt-[3.433vh]' onSubmit={formik.handleSubmit}>
                     <div className='mb-[3.333vh] mobile:mb-[1.717vh]'>
-                        <div className='font-semibold text-dark-gray pb-[1.389vh] mobile:pb-[1.073vh] mobile:text-[3.721vw] tabView:text-[2.451vw]'>Email/ Mobile</div>
+                        <div className='font-semibold text-[#454545] pb-[1.389vh] mobile:pb-[1.073vh] mobile:text-[3.721vw] tabView:text-[2.451vw]'>Email/ Mobile</div>
                         <Input
                             name='usernameOrEmail'
                             type='text'
@@ -85,7 +85,7 @@ function SignInForm() {
                         ) : null}
                     </div>
                     <div className='mb-[3.333vh] mobile:mb-[0vh]'>
-                        <div className='font-semibold text-dark-gray pb-[1.389vh] mobile:pb-[1.073vh] mobile:text-[3.721vw] tabView:text-[2.451vw]'>Password</div>
+                        <div className='font-semibold text-[#454545] pb-[1.389vh] mobile:pb-[1.073vh] mobile:text-[3.721vw] tabView:text-[2.451vw]'>Password</div>
                         <Input
                             name='password'
                             type='password'

@@ -90,14 +90,13 @@ const disableIcons =()=>{
   setPlacedCheckedIcon(false)
   setSideBarBtn('')
 }
+console.log(page,"page")
   return (
     <section className="sm:w-[87.5vw] sm:m-auto mobile:w-full  align-center sm:mt-8 ">
       <header>
         <Slide top cascade>
           <h1
-            className={`font-bold text-[2rem] mobile:text-[5.581vw] text-black flex ${
-              page !== "course" && "branch" ? "justify-center" : "justify-start"
-            } sm:mb-8 sm:mt-8 sm:h-12 mobile:bg-Pinkgradient  mobile:pt-[2.575vh] mobile:pb-[1.717vh] mobile:pl-[5.581vw]}`}
+            className={`font-bold text-[2rem] mobile:text-[5.581vw] text-black flex ${page === "course" || "branch" ? "justify-start" : "justify-center"} sm:mb-8 sm:mt-8 sm:h-12 mobile:bg-Pinkgradient  mobile:pt-[2.575vh] mobile:pb-[1.717vh] mobile:pl-[5.581vw]}`}
           >
             Our Placement Statistics
           </h1>

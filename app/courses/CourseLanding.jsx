@@ -8,8 +8,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
 import Image from "next/image";
 import HtmlContent from "@/components/commonComponents/htmlTextConvert/HtmlContent";
-import { toProperCase } from "@/lib/utils";
-import { formatToIndianCurrency } from "@/lib/utils";
+import { formatToIndianCurrency,formatString,toProperCase } from "@/lib/utils";
 const CourseLanding = ({
   courseDetails,
   countDetails,
@@ -63,13 +62,13 @@ const CourseLanding = ({
                 {courseDetails?.mode?.map((classItem, index) => (
                   <button
                     key={index}
-                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === typeOfLearning ? "activecourseButton" : ""
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-[#454545] ${classItem === typeOfLearning ? "activecourseButton" : ""
                       }`}
                     onClick={() => {
                       setTypeOfLearning(classItem);
                     }}
                   >
-                    {toProperCase(classItem)}
+                    {formatString(classItem)}
                   </button>
                 ))}
               </div>

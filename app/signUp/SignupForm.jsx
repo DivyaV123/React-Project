@@ -6,12 +6,12 @@ function SignupForm() {
     return (
         <section className='w-[34.375vw] tabView:w-[73.118vw] tabView:h-auto tabView:px-[3.226vw] tabView:h-auto mobile:w-[88.837vw] border  bg-white rounded-xl pt-[3.611vh] px-[1.875vw] pb-[4.444vh] mobile:mt-[5vh] mobile:pb-[2.444vh]'>
             <header className=' mobile:m-[2vw]'>
-                <h1 className='font-bold tabView:text-[3.226vw] text-dark-gray mobile:text-[5.581vw] text-[1.875vw] border-s-4 border-orange-500 rounded pl-[0.625vw] mobile:pl-[2.625vw]'>
+                <h1 className='font-bold tabView:text-[3.226vw] text-[#454545] mobile:text-[5.581vw] text-[1.875vw] border-s-4 border-orange-500 rounded pl-[0.625vw] mobile:pl-[2.625vw]'>
                     Sign up
                 </h1>
                 <form className='mt-[4.444vh]'>
                     <div className='mb-[3.333vh] mobile:mb-[1vh] mobile:relative mobile:bottom-[1vh]'>
-                        <div className='font-semibold text-dark-gray pb-[1.389vh] tabView:text-[2.451vw]'>Email</div>
+                        <div className='font-semibold text-[#454545] pb-[1.389vh] tabView:text-[2.451vw]'>Email</div>
                         <Input
                             inputStyle='w-full tabView:text-[1.913vw] text-[#A8A8A8] text-[0.938vw] h-[6.667vh] outline-none mobile:h-[5.15vh] mobile:text-[2.791vw]
 
@@ -20,14 +20,14 @@ function SignupForm() {
                         />
                     </div>
                     <div className='mb-[3.333vh] mobile:mb-[1vh] mobile:relative  mobile:mt-[2vh]'>
-                        <div className='font-semibold text-dark-gray pb-[1.389vh] tabView:text-[2.451vw]'>Username</div>
+                        <div className='font-semibold text-[#454545] pb-[1.389vh] tabView:text-[2.451vw]'>Username</div>
                         <Input
                             inputStyle='w-full tabView:text-[1.913vw] mobile:h-[5.15vh] mobile:text-[2.791vw] text-[#A8A8A8] text-[0.938vw] h-[6.667vh] outline-none'
                             placeholder='Create your username'
                         />
                     </div>
                     <div className='mb-[3.333vh] mobile:mb-[1vh] mobile:relative  mobile:mt-[3vh]'>
-                        <div className='font-semibold text-dark-gray pb-[1.389vh] tabView:text-[2.451vw]'>Password</div>
+                        <div className='font-semibold text-[#454545] pb-[1.389vh] tabView:text-[2.451vw]'>Password</div>
                         <Input
                             inputStyle='w-full tabView:text-[1.913vw] mobile:h-[5.15vh] mobile:text-[2.791vw] text-[#A8A8A8] text-[0.938vw] h-[6.667vh] outline-none'
                             placeholder='Create Password'

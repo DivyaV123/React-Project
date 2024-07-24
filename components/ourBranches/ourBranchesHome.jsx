@@ -80,7 +80,7 @@ function OurBranchesHome({ page, tabData }) {
                       className={
                         btnState === "OfflineClasses"
                           ? "font-semibold bg-orange-500 bg-gradient text-white sm:w-[9.609vw]  mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] rounded px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw]"
-                          : "sm:w-[9.609vw] rounded-s px-[1.25vw] py-[1.111vh]  mobile:py-[0.858vh] mobile:px-[3.721vw]  bg-[#F9F9F9] text-[0.938vw] text-dark-gray font-medium mobile:text-[2.791vw]"
+                          : "sm:w-[9.609vw] rounded-s px-[1.25vw] py-[1.111vh]  mobile:py-[0.858vh] mobile:px-[3.721vw]  bg-[#F9F9F9] text-[0.938vw] text-[#454545] font-medium mobile:text-[2.791vw]"
                       }
                       onClick={() => {
                         setBtnState("OfflineClasses");
@@ -97,7 +97,7 @@ function OurBranchesHome({ page, tabData }) {
                     className={
                       btnState === "OnlineLiveClasses"
                         ? "font-semibold bg-orange-500 text-white  rounded px-[1.25vw] py-[1.111vh] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw]  bg-[#F9F9F9] text-[0.938vw]"
-                        : " rounded-e px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] text-dark-gray font-medium"
+                        : " rounded-e px-[1.25vw] py-[1.111vh] bg-[#F9F9F9] text-[0.938vw] mobile:py-[0.858vh] mobile:px-[3.721vw] mobile:text-[2.791vw] text-[#454545] font-medium"
                     }
                     title="Online Live Classes"
                   ></Button>
