@@ -173,7 +173,7 @@ const CounsellorFilterModal = ({ isModalOpen,handleCloseModal }) => {
               )} */}
               <div className="modal-header">
         
-          <button className="close-button" onClick={()=>{setActiveFilter(null);handleCloseModal()}}>
+          <button className="close-button h-10 rounded-full w-[3.125vw]" onClick={()=>{setActiveFilter(null);handleCloseModal()}}>
             &times;
           </button>
         </div>

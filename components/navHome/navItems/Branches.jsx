@@ -169,7 +169,7 @@ const Branches = ({ BranchResponse }) => {
                                   icon={svgicons.calender[3]}
                                   color={svgicons.calender[4]}
                                 />
-                                <p className="text-[0.781vw]">{content.upcomingBatches} Upcoming Batches</p>
+                                <p className="text-[0.781vw]">{content.upcomingBatches} Upcoming {content.upcomingBatches >1 ? "Batches" : "Batch"}</p>
                               </div>
                               <div className="flex gap-1.5 justify-center">
                                 <Svg
@@ -180,7 +180,7 @@ const Branches = ({ BranchResponse }) => {
                                   icon={svgicons.icontime[3]}
                                   color={svgicons.icontime[4]}
                                 />
-                                <p className="text-[0.781vw] pl-[0.469vw]">{content.ongoingBatches} Ongoing Batches</p>
+                                <p className="text-[0.781vw] pl-[0.469vw]">{content.ongoingBatches} Ongoing {content.ongoingBatches >1 ? "Batches" : "Batch"}</p>
                               </div>
                             </div>
                           </div>

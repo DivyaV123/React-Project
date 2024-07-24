@@ -49,7 +49,7 @@ function PlaceMentStatistics({ className, path, statistics }) {
     }
     
     return (
-        <div className={className}>
+        <div className={`${className} flex flex-col gap-6`}>
             {statistics.map((item, index) => {
                 if (path === "fromPage") {
                     item.icon = '.' + item.icon;
