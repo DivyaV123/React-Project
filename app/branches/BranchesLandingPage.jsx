@@ -83,7 +83,7 @@ function BranchesLandingPage({ BranchDetails }) {
                     {/* {/ <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full object-cover' src={selectedImg} /> /} */}
                 </figure>
                 <article className='flex gap-2 pt-[2.222vh] mobile:hidden'>
-                    <div onClick={handlePrevious}>
+                    <div onClick={handlePrevious} className='cursor-pointer'>
                         <Svg
                             className=''
                             width={svgicons.corasalArrowLeft[0]}
@@ -141,7 +141,7 @@ function BranchesLandingPage({ BranchDetails }) {
 
                         </CarouselContent>
                     </Carousel>
-                    <div onClick={handleNext}>
+                    <div onClick={handleNext} className='cursor-pointer'>
                         <Svg
                             className=''
                             width={svgicons.corasalArrowRight[0]}

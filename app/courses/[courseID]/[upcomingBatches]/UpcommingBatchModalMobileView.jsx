@@ -47,7 +47,7 @@ const UpcommingBatchModalMobileView = ({isModalOpen,handleCloseModal,openIndex,h
              
               <div className="modal-header">
         
-          <button className="close-button" onClick={()=>{handleCloseModal()}}>
+          <button className="close-button h-10 rounded-full w-[3.125vw]" onClick={()=>{handleCloseModal()}}>
             &times;
           </button>
         </div>

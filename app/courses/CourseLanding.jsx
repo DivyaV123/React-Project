@@ -9,6 +9,7 @@ import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
 import Image from "next/image";
 import HtmlContent from "@/components/commonComponents/htmlTextConvert/HtmlContent";
 import { toProperCase } from "@/lib/utils";
+import { formatToIndianCurrency } from "@/lib/utils";
 const CourseLanding = ({
   courseDetails,
   countDetails,
@@ -17,16 +18,16 @@ const CourseLanding = ({
 }) => {
   const statisticsData = [
     {
-      number: `${countDetails?.response?.allPlacedCount}+`,
+      number: `${formatToIndianCurrency(countDetails?.response?.allPlacedCount)}+`,
       text: "Students placed",
     },
-    { number: "4870+", text: "Hiring Companies" },
+    { number: "4,870+", text: "Hiring Companies" },
     {
-      number: `${countDetails?.response?.nonItCount}+`,
+      number: `${formatToIndianCurrency(countDetails?.response?.nonItCount)}+`,
       text: "Non IT Students placed",
     },
     {
-      number: `${countDetails?.response?.itCount}+`,
+      number: `${formatToIndianCurrency(countDetails?.response?.itCount)}+`,
       text: "IT Students placed",
     },
   ];

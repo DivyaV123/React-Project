@@ -65,7 +65,7 @@ function NavItems() {
     { id: 5, name: "Tuitions", content: <Tutions /> },
     { id: 6, name: "Hire From Us", content: "" },
     { id: 7, name: "Placements", content: "" },
-    { id: 8, name: "Contact us", content: "" },
+    { id: 8, name: "Contact Us", content: "" },
   ];
   const filterCountryObj = BranchResponse?.data?.filter(ele=>ele?.countryName==='India')
   const cityData = filterCountryObj?.[0]?.cities;
@@ -93,7 +93,7 @@ function NavItems() {
   }, []);
 
   const handleNavItems = (navItem) => {
-    if (navItem === "Contact us") {
+    if (navItem === "Contact Us") {
       router.push(CONTACT_US_PATH);
     } else if (navItem === "Placements") {
       router.push(PLACEMENT_PATH);

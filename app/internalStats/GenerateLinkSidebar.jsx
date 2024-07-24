@@ -6,7 +6,7 @@ const GenerateLinkSidebar = () => {
   const data = [
     { src: "../../icon_interview.svg", text: " On Average we conduct 19 recruitment drives every day.", header: "Daily Drives:" },
     { src: "../../Attendance.svg", text: " Between 1000-1300 students attend interviews daily.", header: "Interview Attendance:" },
-    { src: "../../icon_recruitment.svg", text: " We facilitate job placements for 4000-4800 students each month.", header: "Monthly Job Placemeents:" },
+    { src: "../../icon_recruitment.svg", text: " We facilitate job placements for 4000-4800 students each month.", header: "Monthly Job Placements:" },
     { src: "../../icon_corporation.svg", text: " Proudly partnered with 4810 companies.", header: "Corporate Partnerships:" },
     { src: "../../icon_time23.svg", text: " Achieving one placement every 2 minutes.", header: "Placement Rate:" },
   ];
