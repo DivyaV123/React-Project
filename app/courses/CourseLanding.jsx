@@ -30,7 +30,6 @@ const CourseLanding = ({
       text: "IT Students placed",
     },
   ];
-
   const imageSrc = "../illustrate_tickmark.svg";
   const tutionClasses = courseDetails?.courseAbout;
   let splitText = tutionClasses?.split(".");
