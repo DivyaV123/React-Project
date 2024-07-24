@@ -10,6 +10,7 @@ import { useEnquriesMutation } from "@/redux/queries/enquriesApi";
 import { toast } from "@/components/ui/use-toast";
 const HiringFromUsForm = ({ activeTab }) => {
   const [phoneValue, setPhoneValue] = useState("");
+  const [countryCode, setCountryCode] = useState("");
   const [error, setError] = useState({
     mobileNumber: false,
     validPhone: false,
@@ -140,10 +141,10 @@ const HiringFromUsForm = ({ activeTab }) => {
   const handlePhoneChange = (value, country) => {
     if (country?.dialCode !== countryCode) {
       setPhoneValue('');
-      formikDetails.setFieldValue('phone', country.dialCode);
+      formik.setFieldValue('phone', country.dialCode);
     } else {
       setPhoneValue(value);
-      formikDetails.setFieldValue('phone', value);
+      formik.setFieldValue('phone', value);
     }
     setCountryCode(country?.dialCode);
   };

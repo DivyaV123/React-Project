@@ -43,7 +43,7 @@ const BenefitsOfTraining = () => {
       </section>
       <section className="flex justify-center gap-6 w-[50.625vw] flex-wrap">
         {benefitItems.map((item, index) => (
-          <div key={index} className="bg-[#F9F9F9] pt-[3.333vh] pl-[1.875vw] pr-[0.938vw] rounded-3xl w-[15.625vw]">
+          <div key={index} className="bg-[#F9F9F9] pt-[3.333vh] pl-[1.875vw] pr-[0.938vw] rounded-3xl w-[15.625vw]  cursor-pointer benifitHover">
             <article className="1.25vw font-bold gradient-text pb-[2.222vh]">
               {item.title.split(" ").map((word, idx) => (
                 <React.Fragment key={idx}>

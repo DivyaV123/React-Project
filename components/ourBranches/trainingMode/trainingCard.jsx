@@ -26,7 +26,7 @@ function TrainingCard({ cardDetails, hover,page }) {
                         {cardDetails.mode}
                     </h1>
                 </header>
-                <p className='text-[0.875rem] flex justify-center text-center p-4 text-dark-gray font-lean mt-6 cardDetail'>
+                <p className='text-[0.875rem] sm:h-[116px] flex justify-center text-center p-4 text-dark-gray font-lean mt-6 cardDetail'>
                     {cardDetails.detail}
                 </p>
             </div>
