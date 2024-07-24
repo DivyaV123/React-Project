@@ -77,7 +77,7 @@ function BatchesCard() {
   const enrollEnquire =
     "py-[1.389vh] px-[0.781vw] w-[8.359375vw] text-[1.094vw] font-semibold";
   const dateAndTime =
-    "flex text-[0.938vw] font-medium text-dark-gray gap-x-[0.469vw] items-center";
+    "flex text-[0.938vw] font-medium text-[#454545] gap-x-[0.469vw] items-center";
   useEffect(() => {
     setTimeout(() => {
       setisLoading(false);

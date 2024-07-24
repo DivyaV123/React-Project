@@ -22,7 +22,7 @@ function ExperiencedFaculty() {
         }
     ]
     return (
-        <selection className='sm:grid grid-cols-2 gap-4 mt-6  mobile:flex-col mobile:hidden'>
+        <selection className='sm:grid grid-cols-2 gap-4 mt-[3.333vh]  mobile:flex-col mobile:hidden'>
             <Fade left delay={0} duration={1000}>
                 <figure className='sm:w-[85%]'>
                     <Image
@@ -37,22 +37,22 @@ function ExperiencedFaculty() {
             </Fade>
             <Fade right duration={1000} delay={0} >
                 <aside className='animate-slide-from-right'>
-                    <h1 className='font-bold text-black text-2xl mobile:text-[6.512vw] text-center flex justify-center mb-6 mobile:mb-[2.575vh]'>
+                    <h1 className='font-bold text-black text-[2.188vw] mobile:text-[6.512vw] text-center flex justify-center mb-6 mobile:mb-[2.575vh]'>
                         Get Experienced Faculty <br /> Guidance
                     </h1>
-                    <p id="tagline" className='text-dark-gray fulljustify text-[18px] mobile:text-[4.186vw] mt-6 mobile:mt-[2.575vh]'>
+                    <p id="tagline" className='text-[#454545] fulljustify text-[1.406vw]  mobile:text-[4.186vw] mt-[3.333vh] mobile:mt-[2.575vh]'>
                         Discover our team of experienced faculty who bring a wealth of teaching expertise and real-world knowledge to every classroom. With qualifications, teaching evaluations, and industry experience, they ensure effective instruction and mentorship for your academic journey.
                     </p>
-                    <article className='sm:grid md:grid-cols-3 xs:grid-cols-1 sm:grid-cols-auto gap-2 mt-6 w-full mobile:flex mobile:mt-[2.575vh] mobile:gap-6'>
+                    <article className='sm:grid md:grid-cols-3 xs:grid-cols-1 sm:grid-cols-auto gap-2 mt-[3.333vh] w-full mobile:flex mobile:mt-[2.575vh] mobile:gap-6'>
                         {
                             content.map((element) => {
                                 let detail = element.info.replace(/#/g, "<br/>")
                                 return (
                                     <aside>
-                                        <h1 className='gradient-text  font-extra-bold opacity-100 flex justify-center text-xl mobile:text-[5.581vw]'>
+                                        <h1 className='gradient-text  font-extra-bold opacity-100 flex justify-center text-[1.875vw] mobile:text-[5.581vw]'>
                                             <Counter initialValue={0} targetValue={500} label={element.count} />
                                         </h1>
-                                        <p className='text-brown text-normal flex justify-center mobile:text-[3.721vw] text-center' dangerouslySetInnerHTML={{ __html: detail }} />
+                                        <p className='text-brown text-[1.25vw] text-normal flex justify-center mobile:text-[3.721vw] text-center' dangerouslySetInnerHTML={{ __html: detail }} />
                                     </aside>
                                 )
                             })
@@ -60,7 +60,7 @@ function ExperiencedFaculty() {
                     </article>
                     <article className='flex justify-center items-cenetr mb-8 mt-8 sm:h-10 mobile:mb-[1.073vh] mobile:mt-[4.292vh]'>
                         <Button
-                            className='bg-gradient rounded text-white w-[10.469vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw]'
+                            className='bg-gradient rounded text-[1.25vw] text-white w-[10.469vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw]'
                             title="View more"
                         />
                     </article>
