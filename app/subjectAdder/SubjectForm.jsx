@@ -270,16 +270,17 @@ const SubjectForm = () => {
           >
             {individualSubjectData ? "Edit Subject" : "Submit Subject"}
           </button>
-          <button
-            className="py-2 px-4 bg-gradient rounded-md text-white"
+         
+        </div>
+      </form>
+      <button
+            className="py-2 px-4 bg-gradient rounded-md text-white relative float-right bottom-[6vh]"
             onClick={() => {
               router.push("/DashBoard");
             }}
           >
             Cancel
           </button>
-        </div>
-      </form>
       <Toaster />
     </MaxWebWidth>
   );
