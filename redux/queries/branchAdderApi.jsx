@@ -1,6 +1,6 @@
-
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getBaseUrl, API_ENDPOINTS } from '@/api/apiService';
+
 export const branchAdderApi = createApi({
     reducerPath: 'branchAdderApi',
     baseQuery: fetchBaseQuery({
@@ -15,13 +15,25 @@ export const branchAdderApi = createApi({
     }),
     endpoints: (builder) => ({
         branchAdder: builder.mutation({
-            query: ({ bodyData }) => ({
-                url: API_ENDPOINTS.BRANCH_ADDER,
-                method: 'POST',
-                body: bodyData
-            })
-        })
-    })
+            query: ({ bodyData }) => {
+                const formData = new FormData();
+                formData.append('branch', bodyData.branch);
+                formData.append('branchImage', bodyData.branchImage);
+
+                // Append each file in branchGallery array to the FormData
+                bodyData.branchGallery.forEach((file, index) => {
+                    formData.append(`branchGallery`, file);
+                });
+
+                return {
+                    // url: API_ENDPOINTS.BRANCH_ADDER,
+                    url: 'http://192.168.0.41:8080/api/v1/branches/uploadFileAndData',
+                    method: 'POST',
+                    body: formData,
+                };
+            },
+        }),
+    }),
 });
 
 export const { useBranchAdderMutation } = branchAdderApi;

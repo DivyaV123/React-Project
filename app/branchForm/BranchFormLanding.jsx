@@ -19,7 +19,7 @@ function BranchFormLanding() {
     const [faqEditIndex, setFaqEditIndex] = useState(null);
     const [expandedIndex, setExpandedIndex] = useState(null);
     const [branchImage, setBranchImage] = useState({
-        mainImage: {},
+        mainImage: null,
         imageGalary: []
     })
     const toggleAccordion = (index) => {
@@ -28,7 +28,12 @@ function BranchFormLanding() {
     console.log(branchImage, "branchImagebranchImageF")
     const validationSchema = Yup.object({
         BranchName: Yup.string().required("BranchName is required"),
-        phone: Yup.string().required("Mobile number is required"),
+        phone: Yup.array()
+            .of(Yup.string().required("Mobile number is required"))
+            .min(1, "At least one phone number is required"),
+        gmail: Yup.array()
+            .of(Yup.string().email("Invalid email").required("Gmail is required"))
+            .min(1, "At least one Gmail is required"),
         country: Yup.string().required("country is required"),
         state: Yup.string().required("state is required"),
         city: Yup.string().required("city is required"),
@@ -43,11 +48,12 @@ function BranchFormLanding() {
                     answer: Yup.string().required("Answer is required"),
                 })
             ),
-        organisation: Yup.array().min(1, "At least one organisation is required"),
+        organisation: Yup.string().required("Organisation is required"),
     });
     const initialValues = {
         BranchName: "",
-        phone: '',
+        phone: [],
+        gmail: [],
         country: "",
         state: "",
         city: "",
@@ -66,9 +72,14 @@ function BranchFormLanding() {
         initialValues,
         validationSchema,
         onSubmit: async (values) => {
-            const payload = {
+            let phoneNumbers = []
+            values.phone.map((num) => {
+                phoneNumbers.push("+" + num)
+            })
+            const branch = {
                 displayName: values.BranchName,
                 branchType: values.organisation,
+                emails: values.gmail,
                 branchAddress: {
                     country: values.country,
                     state: values.state,
@@ -77,18 +88,24 @@ function BranchFormLanding() {
                     pincode: values.pincode,
                     location: values.location
                 },
-                contacts: "+" + values.phone,
+                contacts: phoneNumbers,
                 faqs: values.faqs.map((faq) => ({
                     question: faq.question,
                     answer: faq.answer,
                 })),
             };
-            console.log(branchImage, "multiplemultiple")
-            // try {
-            //     const response = await addBranch({ bodyData: payload }).unwrap();
-            // } catch (err) {
-            //     console.error(err, "Error from loginAPI");
-            // }
+            const payloadString = JSON.stringify(branch);
+            const payload = {
+                branch: payloadString,
+                branchImage: branchImage.mainImage,
+                branchGallery: branchImage.imageGalary
+            }
+            console.log(branchImage, payload, "multiplemultiple")
+            try {
+                const response = await addBranch({ bodyData: payload }).unwrap();
+            } catch (err) {
+                console.error(err, "Error from loginAPI");
+            }
         },
     });
 
@@ -167,21 +184,36 @@ function BranchFormLanding() {
             setError({ ...error, [id]: false, validPhone: false });
         }
     };
+
     const handleFileSelected = (e, type) => {
-        const file = e.target.files[0];
-        console.log(file, "filefilefile")
-        if (file) {
-            const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
-            if (validImageTypes.includes(file.type)) {
+        const files = Array.from(e.target.files);
+        console.log(files, "selected files");
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+
+        if (files.length > 0) {
+            if (type === 'imageGalary') {
+                const validFiles = files.filter(file => validImageTypes.includes(file.type));
+                if (validFiles.length !== files.length) {
+                    alert("Some files have an invalid file type. Only image files are accepted.");
+                }
                 setBranchImage(prevState => ({
                     ...prevState,
-                    [type]: file
+                    [type]: [...prevState[type], ...validFiles]
                 }));
             } else {
-                alert("Invalid file type. Please select an image file.");
+                const file = files[0];
+                if (validImageTypes.includes(file.type)) {
+                    setBranchImage(prevState => ({
+                        ...prevState,
+                        [type]: file
+                    }));
+                } else {
+                    alert("Invalid file type. Please select an image file.");
+                }
             }
         }
     };
+
     return (
         <MaxWebWidth sectionStyling='mb-8 mt-8' articalStyling='p-12 border-2 border-gray-300 rounded-lg'>
             <form onSubmit={formikDetails.handleSubmit}>
@@ -201,48 +233,114 @@ function BranchFormLanding() {
                         </div>
                     ) : null}
                 </div>
-                <div className='flex justify-between mb-4'>
-                    <div className="pb-[2.5vw] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
+                <div className="pb-[2.5vw] mobile:pb-[4.5vw] flex  flex-col gap-5 tabView:pb-[3.6vw]">
+                    <div>
                         <p className={commonFieldClass}>Phone</p>
-                        <PhoneInput
-                            inputStyle={{ width: "33vw", height: '8vh' }}
-                            type="text"
-                            searchPlaceholder="Search..."
-                            searchNotFound="No Countries Found"
-                            specialLabel=""
-                            autoFormat={false}
-                            enableAreaCodeStretch
-                            country={"in"}
-                            name="phone"
-                            id="phone"
-                            value={formikDetails.values.phone}
-                            onChange={(e, country) => {
-                                formikDetails.setFieldValue("phone", e);
-                                setPhoneValue(e);
-                                setCountryCode(country.dialCode);
-                            }}
-                            enableSearch
-                            international
-                            autoComplete="off"
-                            onBlur={() => handleOnBlur("phone")}
-                            countryCodeEditable={false}
+                        {formikDetails.values.phone.map((phone, index) => (
+                            <div key={index} className="flex  pb-3 items-center gap-2">
+                                <PhoneInput
+                                    inputStyle={{ width: "30vw", height: '8vh' }}
+                                    type="text"
+                                    searchPlaceholder="Search..."
+                                    searchNotFound="No Countries Found"
+                                    specialLabel=""
+                                    autoFormat={false}
+                                    enableAreaCodeStretch
+                                    country={"in"}
+                                    name={`phone[${index}]`}
+                                    id={`phone-${index}`}
+                                    value={phone}
+                                    onChange={(e, country) => {
+                                        const updatedPhones = [...formikDetails.values.phone];
+                                        updatedPhones[index] = e;
+                                        formikDetails.setFieldValue("phone", updatedPhones);
+                                        setPhoneValue(e);
+                                        setCountryCode(country.dialCode);
+                                    }}
+                                    enableSearch
+                                    international
+                                    autoComplete="off"
+                                    onBlur={() => handleOnBlur(`phone[${index}]`)}
+                                    countryCodeEditable={false}
+                                />
+                                <Button
+                                    title='Remove'
+                                    type="button"
+                                    className='p-2 text-white bg-red-500 rounded text-white'
+                                    onClick={() => {
+                                        const updatedPhones = [...formikDetails.values.phone];
+                                        updatedPhones.splice(index, 1);
+                                        formikDetails.setFieldValue("phone", updatedPhones);
+                                    }}
+                                />
+                            </div>
+                        ))}
+                        <Button
+                            title='Add Phone'
+                            type="button"
+                            className='p-2 rounded bg-green-500 m-3'
+                            onClick={() =>
+                                formikDetails.setFieldValue("phone", [
+                                    ...formikDetails.values.phone,
+                                    ""
+                                ])
+                            }
                         />
-                        {(error.phone ||
-                            (formikDetails.errors.phone &&
-                                formikDetails.touched.phone)) && (
+
+                        {formikDetails.errors.phone &&
+                            formikDetails.touched.phone && (
                                 <div className="text-red-500">
-                                    Mobile number is required
+                                    {formikDetails.errors.phone}
                                 </div>
                             )}
-                        {error.validPhone && !error.phone && (
-                            <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute">
-                                Invalid phone number
+                    </div>
+                    <div className=''>
+                        <p>Gmail</p>
+                        {formikDetails.values.gmail.map((gmail, index) => (
+                            <div key={index} className="flex justify-between pb-3 items-center gap-2">
+                                <Input
+                                    inputStyle="!w-[30vw] h-[8vh]"
+                                    name={`gmail[${index}]`}
+                                    value={gmail}
+                                    handleBlur={formikDetails.handleBlur}
+                                    onChange={formikDetails.handleChange}
+                                    placeholder="Please add gmail"
+                                />
+                                <Button
+                                    title='Remove'
+                                    type="button"
+                                    className='p-2 text-white bg-red-500 rounded text-white'
+                                    onClick={() => {
+                                        const updatedGmails = [...formikDetails.values.gmail];
+                                        updatedGmails.splice(index, 1);
+                                        formikDetails.setFieldValue("gmail", updatedGmails);
+
+                                    }}
+                                />
                             </div>
-                        )}
+                        ))}
+                        <Button
+                            title='Add Gmail'
+                            type="button"
+                            className='p-2 rounded bg-green-500 m-3'
+                            onClick={() =>
+                                formikDetails.setFieldValue("gmail", [
+                                    ...formikDetails.values.gmail,
+                                    ""
+                                ])
+                            }
+                        />
+                        {formikDetails.touched.gmail &&
+                            formikDetails.errors.gmail ? (
+                            <div className="text-red-500">
+                                {formikDetails.errors.gmail}
+                            </div>
+                        ) : null}
                     </div>
                 </div>
+
                 <p className='p-2 text-[1.8rem]'>Branch Adress</p>
-                <div className="w-[100%] p-5 border border-gray-300 rounded-xl">
+                <div className="w-[100%] p-5 border border-gray-300 rounded">
                     <div className='flex gap-3 flex justify-around'>
                         <div className='w-[100%]'>
                             <p className="pt-[1.5vw] font-bold">country</p>
@@ -350,7 +448,7 @@ function BranchFormLanding() {
                             {["JSP", "QSP", "PYSP"].map((org) => (
                                 <label key={org}>
                                     <input
-                                        type="checkbox"
+                                        type="radio"
                                         name="organisation"
                                         className="mr-2"
                                         value={org}
@@ -502,7 +600,7 @@ function BranchFormLanding() {
                     ) : null}
                 </div>
                 <p className='p-2 text-[1.8rem]'>Add Branch Images</p>
-                <div className='flex gap-5 justify-around rounded-xl border border-gray-300 p-8'>
+                <div className='flex gap-5 justify-around rounded border border-gray-300 p-8'>
                     <div>
                         <p>Branch Main Image</p>
                         <Input
