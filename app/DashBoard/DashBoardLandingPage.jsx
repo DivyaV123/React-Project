@@ -1,7 +1,7 @@
 'use Clint'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import { ADDBRANCH_HOME, ADDSUBJECT_HOME, COURSEADDER_HOME, COURSEMAP_HOME, COURSEWEIGHTAGE_HOME, EDITCOURSE_HOME } from '@/lib/RouteConstants'
+import { ADDBRANCH_HOME, ADDSUBJECT_HOME, COURSEADDER_HOME, COURSEMAP_HOME, COURSEWEIGHTAGE_HOME, EDITCOURSE_HOME ,EDITSUBJECT_HOME} from '@/lib/RouteConstants'
 import Link from 'next/link'
 import React from 'react'
 
@@ -20,12 +20,12 @@ function DashBoardLandingPage() {
               Edit Course
             </h1>
           </Link>
-          <Link className='p-4 border-2 rounded-xl w-[24%] border-slate-400' href=''>
+          <Link className='p-4 border-2 rounded-xl w-[24%] border-slate-400' href={ADDSUBJECT_HOME}>
             <h1 className='font-boled flex flex-col justify-center items-center'>
               Add Subject
             </h1>
           </Link>
-          <Link className='p-4 border-2 rounded-xl w-[24%] border-slate-400' href={ADDSUBJECT_HOME}>
+          <Link className='p-4 border-2 rounded-xl w-[24%] border-slate-400' href={EDITSUBJECT_HOME}>
             <h1 className='font-boled flex flex-col justify-center items-center'>
               Edit Subject
             </h1>

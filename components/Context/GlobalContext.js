@@ -54,7 +54,8 @@ const GlobalContextProvider = ({ children }) => {
   const [universitySearchQuery, setUniversitySearchQuery] = useState("");
   const [yearSearchQuery, setYearSearchQuery] = useState("");
   const [streamSearchQuery, setStreamSearchQuery] = useState("");
-
+ // edit Subject
+ const [individualSubjectData, setIndividualSubjectData] = useState();56
   //course testimonialpopup
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
@@ -415,7 +416,7 @@ const GlobalContextProvider = ({ children }) => {
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
         homeBranchData, setHomeBranchData,
         domainVariable,hoverState, setHoverState,imageDialog, setImageDialog,videoDialog, setVideoDialog,
-        homePlacements,setHomePlacements,countryList,setCountryList
+        homePlacements,setHomePlacements,countryList,setCountryList,individualSubjectData, setIndividualSubjectData
       }}
     >
       {children}

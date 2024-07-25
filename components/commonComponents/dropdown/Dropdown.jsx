@@ -121,7 +121,7 @@ function Dropdown({
                 </span>
             </div>
             {isOpen && !disabled && (
-                <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded shadow-lg">
+                <div className="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded shadow-lg max-h-[35vh] overflow-y-scroll myscrollbar ">
                     {options.map((option) => (
                         <div
                             key={option.value}
