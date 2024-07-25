@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import ChapterForm from "./ChapterForm";
 import {
   Accordion,
@@ -14,20 +14,28 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Input from "@/components/commonComponents/input/Input";
 import { useAddSubjectMutation } from "@/redux/queries/addSubjectApi";
+import { GlobalContext } from "@/components/Context/GlobalContext";
+import { useRouter } from "next/navigation";
 const SubjectForm = () => {
-  const [chapters, setChapters] = useState([]);
+  const { individualSubjectData } = useContext(GlobalContext);
+  const [chapters, setChapters] = useState(
+    individualSubjectData ? individualSubjectData?.chapters : []
+  );
   const [activeIndex, setActiveIndex] = useState(null); // Initially null to avoid hydration mismatch
   const [addSubject] = useAddSubjectMutation();
+  const router = useRouter();
+  console.log({ individualSubjectData });
   useEffect(() => {
     // Ensure this state is set only on the client side to avoid hydration issues
-    setChapters([
-      {
-        chapterTitle: "",
-        chapterPreviewUrl: "",
-        chapterPreviewDuration: "",
-        topics: [],
-      },
-    ]);
+    !individualSubjectData &&
+      setChapters([
+        {
+          chapterTitle: "",
+          chapterPreviewUrl: "",
+          chapterPreviewDuration: "",
+          topics: [],
+        },
+      ]);
     setActiveIndex(0);
   }, []);
 
@@ -60,9 +68,21 @@ const SubjectForm = () => {
   const handleAccordionChange = (index) => {
     setActiveIndex(index === activeIndex ? null : index); // Toggle active index
   };
+  const haveSameData = function (obj1, obj2) {
+    const obj1Length = Object.keys(obj1).length;
+    const obj2Length = Object.keys(obj2).length;
+    if (obj1Length === obj2Length) {
+      return Object.keys(obj1).every(
+        (key) => obj2.hasOwnProperty(key) && obj2[key] === obj1[key]
+      );
+    }
+    return false;
+  };
   const formik = useFormik({
     initialValues: {
-      subjectTitle: "",
+      subjectTitle: individualSubjectData
+        ? individualSubjectData?.subjectTitle
+        : "",
     },
     validationSchema: Yup.object({
       subjectTitle: Yup.string().required("Required"),
@@ -74,6 +94,7 @@ const SubjectForm = () => {
           (ref) => ref && ref.hasErrors()
         );
         if (chapters[0]?.chapterTitle === "") {
+          console.log({ chapters });
           toast({
             variant: "destructive",
             description: (
@@ -99,18 +120,67 @@ const SubjectForm = () => {
           createdDateAndTime: new Date().toISOString(),
           updatedDateAndTime: new Date().toISOString(),
         };
-        const response = await addSubject(payload);
+        const editPayload = {
+          subjectId: individualSubjectData.subjectId,
+          subjectTitle: values.subjectTitle,
+          subjectDescrption: "string",
+          chapters,
+          createdDateAndTime: new Date().toISOString(),
+          updatedDateAndTime: new Date().toISOString(),
+        };
+        const initialData = individualSubjectData
+          ? {
+              subjectTitle: individualSubjectData.subjectTitle,
+              chapters: individualSubjectData.chapters,
+            }
+          : {
+              subjectTitle: "",
+              chapters: [
+                {
+                  chapterTitle: "",
+                  chapterPreviewUrl: "",
+                  chapterPreviewDuration: "",
+                  topics: [],
+                },
+              ],
+            };
+        const hasNoChanges =
+          JSON.stringify(values.subjectTitle) ===
+            JSON.stringify(initialData.subjectTitle) &&
+          JSON.stringify(chapters) === JSON.stringify(initialData.chapters);
+        console.log({ hasNoChanges });
+        // if (hasNoChanges) {
+        //   toast({
+        //     variant: "info",
+        //     description: "No changes have been made",
+        //   });
+        //   return;
+        // }
+
+        const response = await addSubject(
+          individualSubjectData ? editPayload : payload
+        );
 
         if (response.data.statusCode === 201) {
           toast({
             variant: "success",
             title: (
-              <span className=" font-bold  "> Subject Added Successfully</span>
+              <span className=" font-bold  ">
+                {" "}
+                {individualSubjectData
+                  ? `${values.subjectTitle} edited Successfully`
+                  : "Subject Added Successfully"}
+              </span>
             ),
           });
-          setTimeout(() => {
-            window.location.reload();
-          }, 5000);
+
+          individualSubjectData
+            ? setTimeout(() => {
+                router.push("/editSubject");
+              }, 5000)
+            : setTimeout(() => {
+                window.location.reload();
+              }, 5000);
         }
       } catch (err) {
         console.error(err, "Error from SubjectAdder api");
@@ -193,13 +263,22 @@ const SubjectForm = () => {
             </Accordion>
           )}
         </section>
-
-        <button
-          className="py-2 px-4 bg-gradient rounded-md text-white"
-          type="submit"
-        >
-          Submit Subject
-        </button>
+        <div className=" flex justify-between">
+          <button
+            className="py-2 px-4 bg-gradient rounded-md text-white"
+            type="submit"
+          >
+            {individualSubjectData ? "Edit Subject" : "Submit Subject"}
+          </button>
+          <button
+            className="py-2 px-4 bg-gradient rounded-md text-white"
+            onClick={() => {
+              router.push("/DashBoard");
+            }}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
       <Toaster />
     </MaxWebWidth>
