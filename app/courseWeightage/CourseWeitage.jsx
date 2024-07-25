@@ -183,7 +183,7 @@ function CourseWeitage() {
             formikDetails.setFieldValue("QSpiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
             formikDetails.setFieldValue("JSpiders", selectedCourseWeightage?.weightageDto?.jspiders || "");
             formikDetails.setFieldValue("PYSpiders", selectedCourseWeightage?.weightageDto?.pyspiders || "");
-            formikDetails.setFieldValue("BSpiders", selectedCourseWeightage?.weightageDto?.bspiders || "");
+            formikDetails.setFieldValue("BSpiders", selectedCourseWeightage?.weightageDto?.prospiders || "");
         } else {
             formikDetails.setFieldValue("QSpiders", "");
             formikDetails.setFieldValue("JSpiders", "");
