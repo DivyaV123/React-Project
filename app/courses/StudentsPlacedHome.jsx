@@ -51,22 +51,22 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
                     </Link>
                 </article>
             </section>
-            {/* {pathname.includes("courses") ?
+            {pathname.includes("courses") ?
                 <>
                     <CourseHighlites courseDetails={courseDetails} />
-                    <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
+                    {/* <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
                         <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response?.candidates?.content} />
-                    </MaxWebWidth>
+                    </MaxWebWidth> */}
 
                 </>
                 :
                 <>
-                    <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
+                    {/* <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
                         <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response?.candidates?.content} />
-                    </MaxWebWidth>
+                    </MaxWebWidth> */}
 
                 </>
-            } */}
+            }
 
         </>
     )
