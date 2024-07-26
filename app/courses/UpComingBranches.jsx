@@ -10,7 +10,7 @@ function UpComingBranches({ courseDetails }) {
     }
     return (
         <>
-            {(courseDetails?.mode?.includes("OFFLINECLASSES") || courseDetails?.mode?.includes("ONLINECLASSES")) &&
+            {(courseDetails?.mode?.includes("OFFLINE_CLASSES") || courseDetails?.mode?.includes("ONLINE_CLASSES")) &&
                 <MaxWebWidth>
                     <OurBranchesHome tabData={courseDetails.mode} page='course' onRightBarFix={handleRightBarFix} />
                 </MaxWebWidth>

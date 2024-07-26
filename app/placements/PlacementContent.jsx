@@ -197,7 +197,11 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                     </Link>
                   </div>
                   <div className="iconContainer">
-                    <img src="../share 1.svg" alt="Share" className="cursor-pointer" />
+                    <img
+                      src="../share 1.svg"
+                      alt="Share"
+                      className="cursor-pointer"
+                    />
                   </div>
                 </div>
               </div>
@@ -225,7 +229,7 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                       display: "block",
                       width: "6.797vw",
                       height: "10.056vh",
-                      borderRadius:"5px",
+                      borderRadius: "5px",
                       objectFit: "cover",
                     }}
                   />
