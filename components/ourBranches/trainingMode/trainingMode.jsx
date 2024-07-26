@@ -27,7 +27,7 @@ function TrainingMode({ page }) {
       mobileLogo: "./mobile_online.svg",
     },
     {
-      mode: "Experiential Learning",
+      mode: "Corporate Training",
       detail:
         "Advance topics through hands-on learning, active , critical thinking, which masters skills.",
       cardlogo: "/icon_filled_experiential_learning.svg",
@@ -51,7 +51,7 @@ function TrainingMode({ page }) {
   }, []);
 
   const filteredTrainingDetails = trainingDetails.filter((element) => {
-    return element.mode !== "Experiential Learning";
+    return element.mode !== "Corporate Training";
   });
 
   const FinalTrainingDetails =
@@ -88,9 +88,9 @@ function TrainingMode({ page }) {
                 style={{ borderRadius: "24px" }}
                 className="py-[1.667vh] px-[1.875vw] text-[1.563vw] font-bold custom-border"
               >
-                Experiential Learning Program
+                Corporate Training Program
               </button>
-              <img className="w-[58.563vw]" src="../../hirefromustrainingmode.svg" alt="Experiential Learning Program" />
+              <img className="w-[58.563vw]" src="../../hirefromustrainingmode.svg" alt="Corporate Training Program" />
             </div>
           )}
 

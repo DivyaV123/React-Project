@@ -272,9 +272,9 @@ useEffect(() => {
         ) : (
           <>
             <div className="w-[31.328vw]">
-              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+              {/* <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
                 Degree
-              </p>
+              </p> */}
               {renderButtonSection(
                 degreeList,
                 degreeButton,
@@ -288,9 +288,9 @@ useEffect(() => {
               )}
             </div>
             <div className="w-[31.328vw]">
-              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+              {/* <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
                 Stream
-              </p>
+              </p> */}
               {renderButtonSection(
                 branchList,
                 branchButton,
@@ -304,9 +304,9 @@ useEffect(() => {
               )}
             </div>
             <div className="w-[31.328vw]">
-              <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
+              {/* <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
                 Year of passout
-              </p>
+              </p> */}
               {renderButtonSection(
                 yopList,
                 passOutButton,

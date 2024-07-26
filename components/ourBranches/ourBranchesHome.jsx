@@ -32,22 +32,24 @@ function OurBranchesHome({ page, tabData }) {
   );
   const cityData = filterCountryObj && filterCountryObj[0]?.cities;
   let branchDetails = cityData;
+  
   if (page !== "course" && branchDetails?.length > 0) {
     branchDetails = [
       ...branchDetails,
       { cityImage: "/images/AllCitiesCard.png", cityName: "AllCities" },
     ];
   }
+
   const handleImageRoute = (e, cityName) => {
     e.preventDefault();
     if (page !== "course" && cityName !== "AllCities") {
       setSelectedBranch(cityName);
-      router.push(`${OFFLINE_BRANCHES}/${cityName}`);
+      router.push(`${OFFLINE_BRANCHES}/${cityName},${countryTab}`);
     } else if (page === "course") {
       setSelectedBatch(cityName);
       router.push(`/courses/${courseId}/${cityName}`);
     } else if (page !== "course" && cityName === "AllCities") {
-      router.push(`${COMBINED_BRANCHES}`);
+      router.push(`${COMBINED_BRANCHES}/${countryTab}`);
     }
   };
   useEffect(() => {
@@ -55,6 +57,7 @@ function OurBranchesHome({ page, tabData }) {
       setisLoading(false);
     }, 500);
   }, []);
+
   const handleCountryTab = (country) => {
     setCountryTab(country);
     if (country === countryTab) {
@@ -107,7 +110,7 @@ function OurBranchesHome({ page, tabData }) {
           ) : (
             <Slide top cascade>
               <h1 className="flex justify-center text-[2.5vw] mobile:text-[5.581vw] sm:m-2 font-bold sm:p-5 mobile:py-[2.575vh]">
-                Our Offline Branches
+                Our Offline Centres
               </h1>
             </Slide>
           )}
