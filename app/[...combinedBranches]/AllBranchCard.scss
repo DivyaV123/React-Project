@@ -1,0 +1,19 @@
+.offlineScrollbar::-webkit-scrollbar{
+visibility: hidden;
+}
+.offlineScrollbar{
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.cardBackground:hover{
+  background: #FEF2E7;
+  border-left: 2px solid orangered
+}
+.activecountry {
+  background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border-bottom: 2px solid;
+  border-image: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+  border-image-slice: 1;
+}

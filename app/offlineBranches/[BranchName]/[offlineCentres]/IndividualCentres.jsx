@@ -1,25 +1,25 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import "./IndividualCentres.scss";
 import "../../IndividualBranches.scss";
 import CommonBranch from "./CommonBranch";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { truncateText } from "@/lib/utils";
+import { OFFLINE_BRANCHES } from "@/lib/RouteConstants";
 import { usePathname, useRouter } from "next/navigation";
 import Svg from "@/components/commonComponents/Svg/Svg";
-import { svgicons } from "@/components/assets/icons/svgassets";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
 const IndividualCentres = () => {
   const router = useRouter();
   const pathname = usePathname();
+  const [branchNameAndCountry, courseId] = pathname.split("/").slice(2, 4);
+  const [branchName, branchcountry] = branchNameAndCountry.split(",");
+  const decodeCountry = decodeURIComponent(branchcountry);
+
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [branchName, courseId] = pathname.split("/").slice(2, 4);
+  const [countryTab, setCountryTab] = useState("India");
+  const [activeTab, setActiveTab] = useState(true);
   const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery();
-  const filterCountryObj = homeBranchData?.data?.filter(ele=>ele?.countryName==='India')
+  const filterCountryObj = homeBranchData?.data?.filter(ele=>ele?.countryName===countryTab)
   const navCities = filterCountryObj?.[0]?.cities;
   const selectedCity = navCities?.find((city) => city.cityName === branchName);
   const selectedId = selectedCity?.courses?.find(
@@ -35,67 +35,65 @@ const IndividualCentres = () => {
 
   const totalCities = newNavCities?.length;
 
-  const handlePrevious = () => {
-    setCurrentSlide((prev) =>
-      prev > 0 ? prev - 1 : totalCities - citiesPerView
-    );
+
+  useEffect(() => {
+    setCountryTab(decodeCountry);
+  }, [decodeCountry]);
+  const handleBranchClick = (cityName) => {
+    router.push(`${OFFLINE_BRANCHES}/${cityName},${countryTab}/${courseId}`);
   };
 
-  const handleNext = () => {
-    setCurrentSlide((prev) =>
-      prev < totalCities - citiesPerView ? prev + 1 : 0
-    );
+  const handleCountryTab = (country, ele) => {
+    const cityTab = ele.cities[0].cityName;
+    router.push(`${OFFLINE_BRANCHES}/${cityTab},${country}/${courseId}`);
+    if (country === countryTab) {
+      setActiveTab(true);
+    } else {
+      setActiveTab(false);
+    }
   };
-
-  const currentCities = newNavCities?.slice(
-    currentSlide,
-    currentSlide + citiesPerView
-  );
 
   return (
-    <div className="w-full">
-      <header className="offlineHeader">Our Offline Centres</header>
-      <section className="citySection w-[95vw] mobile:w-[92.558vw] m-auto  pt-3 pb-16">
-        <div className="flex justify-between items-center gap-1">
-          {/* <div onClick={handlePrevious}>
-            <Svg
-              className="h-[3.004vh] w-[3.86vw]"
-              width={svgicons.corasalArrowLeft[0]}
-              heewBox={svgicons.corasalArrowLeft[2]}
-              icoight={svgicons.corasalArrowLeft[1]}
-              vin={svgicons.corasalArrowLeft[3]}
-              color={svgicons.corasalArrowLeft[4]}
-            />
+    <div className="w-full cityNavbar">
+      <header className="offlineHeader w-[87.5vw] m-auto">Our Offline Centres</header>
+      <section className="flex gap-6 w-[87.5vw] m-auto  pt-4  items-center pb-4">
+        {homeBranchData?.data?.map((ele) => {
+          const countryName =
+            ele.countryName === "United Kingdom"
+              ? "UK"
+              : ele.countryName === "United States of America"
+              ? "USA"
+              : ele.countryName;
+
+          return (
+            <button
+              className={`text-[0.938vw] font-bold ${
+                ele.countryName === decodeCountry ? "activecountry" : ""
+              }`}
+              onClick={() => handleCountryTab(ele.countryName, ele)}
+              key={ele.countryName}
+            >
+              {countryName}
+            </button>
+          );
+        })}
+      </section>
+      <section className="citySection w-[95vw] mobile:w-[92.558vw] m-auto pt-[1.667vh] pb-[8.889vh]">
+        <div className="flex justify-between items-center gap-1 sm:w-[87.5vw] sm:m-auto">
+
+        <div className="flex  items-center  sm:flex-wrap sm:gap-2 w-full">
+            {newNavCities?.map((ele, index) => (
+              <button
+                onClick={() => handleBranchClick(ele.name)}
+                className={`rounded-lg flex justify-center sm:px-[1.25vw] items-center mobile:w-[25vw] mobile:text-[2.791vw]  py-[1.111vh] mobile:py-[0.858vh] text-[0.938vw]  ${
+                  ele.name === branchName ? "activeCity" : "inActiveCity"
+                }`}
+                key={index}
+              >
+                {ele.name}
+              </button>
+            ))}
           </div>
-          <Carousel>
-            <CarouselContent page="offlineBranches">
-              <CarouselItem> */}
-                <div className="flex cityNavbar w-full justify-evenly">
-                  {newNavCities?.map((ele, index) => (
-                    <div
-                      onClick={() =>
-                        router.push(`/offlineBranches/${ele.name}/${courseId}`)
-                      }
-                      className={`flex justify-center items-center py-2 mobile:w-[25vw] mobile:text-[2.791vw] mobile:py-[0.858vh]  text-[0.938vw] 
-              ${ele.name === branchName ? "activeCity" : ""}`}
-                    >
-                      <button key={index}>{ele.name}</button>
-                    </div>
-                  ))}
-                </div>
-              {/* </CarouselItem>
-            </CarouselContent>
-          </Carousel>
-          <div onClick={handleNext}>
-            <Svg
-              className="h-[3.004vh] w-[3.86vw]"
-              width={svgicons.corasalArrowRight[0]}
-              height={svgicons.corasalArrowRight[1]}
-              viewBox={svgicons.corasalArrowRight[2]}
-              icon={svgicons.corasalArrowRight[3]}
-              color={svgicons.corasalArrowRight[4]}
-            />
-          </div> */}
         </div>
         <section className="flex mobile:flex-col sm:gap-5 ">
           <div className="sm:w-[20vw] mt-6  p-1 h-full overflow-y-scroll myscrollbar mobile:hidden">
@@ -105,7 +103,7 @@ const IndividualCentres = () => {
                   <div
                     onClick={() =>
                       router.push(
-                        `/offlineBranches/${branchName}/${item.courseId}`
+                        `/offlineBranches/${branchName},${branchcountry}/${item.courseId}`
                       )
                     }
                     key={index}

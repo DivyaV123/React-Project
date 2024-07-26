@@ -1,13 +1,27 @@
 "use client";
-import React from "react";
+import React,{useState} from "react";
 import CommonBranch from "../offlineBranches/[BranchName]/[offlineCentres]/CommonBranch";
 import "./AllBranchCard.scss";
 import { useGetAllBranchCourseQuery } from "@/redux/queries/getBranchCourseApi";
+import { COMBINED_BRANCHES } from "@/lib/RouteConstants";
 import Image from "next/image";
-
+import { usePathname } from "next/navigation";
 const AllBranchCards = () => {
+  const pathname=usePathname()
+  const [branchcountry] = pathname.split("/").slice(2);
+  const decodeCountry = decodeURIComponent(branchcountry);
   const { data: branchData, error, isLoading } = useGetAllBranchCourseQuery();
+  // const [countryTab, setCountryTab] = useState("India");
+  // const [activeTab, setActiveTab] = useState(true);
   const AllBranchCourse = branchData?.data;
+  // const handleCountryTab = (country, ele) => {
+  //   router.push(`${COMBINED_BRANCHES}/${country}`);
+  //   if (country === countryTab) {
+  //     setActiveTab(true);
+  //   } else {
+  //     setActiveTab(false);
+  //   }
+  // };
 
   return (
     <>
@@ -15,6 +29,28 @@ const AllBranchCards = () => {
         <header className="pt-10 sm:pb-8 font-bold text-[1.875vw] mobile:text-[5.581vw] mobile:pb-[4.292vh] mobile:pt-[2.575vh]">
           Our Offline branches
         </header>
+        {/* <section className="flex gap-6 w-[87.5vw] m-auto  pt-4  items-center pb-4">
+        {AllBranchCourse?.map((ele) => {
+          const countryName =
+            ele.countryName === "United Kingdom"
+              ? "UK"
+              : ele.countryName === "United States of America"
+              ? "USA"
+              : ele.countryName;
+
+          return (
+            <button
+              className={`text-[0.938vw] font-bold ${
+                ele.countryName === decodeCountry ? "activecountry" : ""
+              }`}
+              onClick={() => handleCountryTab(ele.countryName, ele)}
+              key={ele.countryName}
+            >
+              {countryName}
+            </button>
+          );
+        })}
+      </section> */}
       </section>
       {AllBranchCourse?.length > 0 &&
         AllBranchCourse.map((ele) => (
