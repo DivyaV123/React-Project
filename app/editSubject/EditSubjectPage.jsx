@@ -58,10 +58,8 @@ function EditSubjectPage() {
 
     const [subJectID, setSubJectID] = useState("")
     const handleSubjectSelected = (event) => {
-        console.log({individualSubject})
         setSubJectID( event.target.option.Id)
         setSelectedSubjectID(event.target.options)
-       console.log(event.target)
         const selectedSubjectName = event.target.value;
        
         setSelectedSubjectName(selectedSubjectName);

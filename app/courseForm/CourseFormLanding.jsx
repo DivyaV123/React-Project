@@ -113,8 +113,6 @@ function CourseFormLanding() {
         categoryId: selectedId.categoryId,
         subCategoryId: selectedId.subCategoryId,
       }
-
-      console.log(payload, "payloadpayload")
       try {
         const response = await addCourse({ bodyData: payload }).unwrap();
         if (response.statusCode == 201) {
@@ -246,7 +244,6 @@ function CourseFormLanding() {
 
   const handleFileSelected = (e, type) => {
     const file = e.target.files[0];
-    console.log(file, "filefilefile")
     if (file) {
       const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
       if (validImageTypes.includes(file.type)) {
