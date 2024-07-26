@@ -15,11 +15,19 @@ export const CourseEditAPI = createApi({
     }),
     endpoints: (builder) => ({
         courseEditData: builder.mutation({
-            query: ({ bodyData }) => ({
-                url: API_ENDPOINTS.EDIT_COURSE,
-                method: 'PUT',
-                body: bodyData
-            })
+            query: ({ bodyData }) => {
+                const formData = new FormData();
+                formData.append('courseContent', bodyData.courseContent);
+                bodyData.icon != null && formData.append('icon', bodyData.icon);
+                bodyData.cardImage != null && formData.append('image', bodyData.image);
+                bodyData.pageImage != null && formData.append('homePageImage', bodyData.homePageImage);
+
+                return {
+                    url: API_ENDPOINTS.EDITCOURSE_WITHFILE,
+                    method: 'PUT',
+                    body: formData,
+                };
+            }
         })
     })
 });
