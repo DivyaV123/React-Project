@@ -1,6 +1,6 @@
 'use client'
 import React, { useState, useEffect } from 'react';
-import { useFormik } from 'formik';
+import { Formik, useFormik } from 'formik';
 import * as Yup from 'yup';
 import Dropdown from '@/components/commonComponents/dropdown/Dropdown';
 import { useGetAllBranchesAsPerCountryQuery } from '@/redux/queries/getAllBranchesAsPerCountryApi';
@@ -52,8 +52,6 @@ function BranchDropDowns({setBranchDropDownDetails,setIsSelectedBranchEdit}) {
             branch: Yup.string().required('Branch is required')
         }),
         onSubmit:async (values) => {
-            console.log('Form Submitted with values:', values,{individualBranch});
-           
             if (individualBranch) {
                 setIsSelectedBranchEdit(true);
                 setBranchDropDownDetails(individualBranch)

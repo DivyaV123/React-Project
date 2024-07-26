@@ -34,7 +34,7 @@ function CarosalHome() {
     },
     {
       imgSrc: '../images/BSPSideLogo.png',
-      address: "http://bspiders.com/"
+      address: "http://testpsp.prospiders.com/"
     },
   ]
 
@@ -53,7 +53,7 @@ function CarosalHome() {
             </a>
           </figure>
           <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
-            <a href='http://bspiders.com/' target='_blank'>
+            <a href='http://testpsp.prospiders.com/' target='_blank'>
               <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
             </a>
           </figure>
@@ -72,7 +72,7 @@ function CarosalHome() {
           </a>
         </figure>
         <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
-          <a href='http://bspiders.com/' target='_blank'>
+          <a href='http://testpsp.prospiders.com/' target='_blank'>
             <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
@@ -90,7 +90,7 @@ function CarosalHome() {
           </a>
         </figure>
         <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
-          <a href='http://bspiders.com/' target='_blank'>
+          <a href='http://testpsp.prospiders.com/' target='_blank'>
             <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>

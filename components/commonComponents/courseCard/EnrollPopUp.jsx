@@ -41,7 +41,6 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: (values) => {
-      console.log(values);
     },
   });
 

@@ -24,7 +24,6 @@ const SubjectForm = () => {
   const [activeIndex, setActiveIndex] = useState(null); // Initially null to avoid hydration mismatch
   const [addSubject] = useAddSubjectMutation();
   const router = useRouter();
-  console.log({ individualSubjectData });
   useEffect(() => {
     // Ensure this state is set only on the client side to avoid hydration issues
     !individualSubjectData &&
@@ -94,7 +93,6 @@ const SubjectForm = () => {
           (ref) => ref && ref.hasErrors()
         );
         if (chapters[0]?.chapterTitle === "") {
-          console.log({ chapters });
           toast({
             variant: "destructive",
             description: (
@@ -148,7 +146,6 @@ const SubjectForm = () => {
           JSON.stringify(values.subjectTitle) ===
             JSON.stringify(initialData.subjectTitle) &&
           JSON.stringify(chapters) === JSON.stringify(initialData.chapters);
-        console.log({ hasNoChanges });
         // if (hasNoChanges) {
         //   toast({
         //     variant: "info",

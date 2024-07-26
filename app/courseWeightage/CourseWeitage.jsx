@@ -204,7 +204,6 @@ function CourseWeitage() {
             };
             try {
                 if (!weightage?.weightageDto) {
-                    console.log(payload, "payloadpayload", allId, "allId")
                     const response = await addCourseWeightage({ bodyData: payload, categoryId: allId.categoryId, subCategoryId: allId.subCategoryId, courseId: allId.courseId }).unwrap();
                     resetForm();
                     setSelectedCourse("");

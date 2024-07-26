@@ -25,7 +25,6 @@ function BranchFormLanding() {
     const toggleAccordion = (index) => {
         setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
     };
-    console.log(branchImage, "branchImagebranchImageF")
     const validationSchema = Yup.object({
         BranchName: Yup.string().required("BranchName is required"),
         phone: Yup.array()
@@ -100,7 +99,6 @@ function BranchFormLanding() {
                 branchImage: branchImage.mainImage,
                 branchGallery: branchImage.imageGalary
             }
-            console.log(branchImage, payload, "multiplemultiple")
             try {
                 const response = await addBranch({ bodyData: payload }).unwrap();
             } catch (err) {
@@ -187,7 +185,6 @@ function BranchFormLanding() {
 
     const handleFileSelected = (e, type) => {
         const files = Array.from(e.target.files);
-        console.log(files, "selected files");
         const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
 
         if (files.length > 0) {

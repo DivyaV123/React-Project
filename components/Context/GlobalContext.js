@@ -19,8 +19,8 @@ const GlobalContextProvider = ({ children }) => {
       case routerName?.includes("pyspiders"):
         setDomainVariable("Pyspiders");
         break;
-      case routerName?.includes("bspiders"):
-        setDomainVariable("Bspiders");
+      case routerName?.includes("prospiders"):
+        setDomainVariable("Prospiders");
         break;
       default:
         setDomainVariable("Qspiders");
@@ -29,7 +29,7 @@ const GlobalContextProvider = ({ children }) => {
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
-  const [countryList,setCountryList]=useState([])
+  const [countryList, setCountryList] = useState([])
   const [homeBranchData, setHomeBranchData] = useState([])
   const [selectedBatch, setSelectedBatch] = useState("Bengalore");
   const [selectedClassMode, setSelectedClassMode] = useState("offline");
@@ -54,8 +54,8 @@ const GlobalContextProvider = ({ children }) => {
   const [universitySearchQuery, setUniversitySearchQuery] = useState("");
   const [yearSearchQuery, setYearSearchQuery] = useState("");
   const [streamSearchQuery, setStreamSearchQuery] = useState("");
- // edit Subject
- const [individualSubjectData, setIndividualSubjectData] = useState();56
+  // edit Subject
+  const [individualSubjectData, setIndividualSubjectData] = useState(); 56
   //course testimonialpopup
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
@@ -114,7 +114,7 @@ const GlobalContextProvider = ({ children }) => {
   const [activeSidebarBtn, setActiveSidebarBtn] = useState(false)
   const [upComingBatches, setupComingBatches] = useState(null)
   const [onGoingBatches, setOnGoingBatches] = useState(null)
-  const [homePlacements,setHomePlacements]=useState(false)
+  const [homePlacements, setHomePlacements] = useState(false)
   const emptySearch = citySearchQuery === "" && stateSearchQuery === "" && citySearchQuery === "" &&
     universitySearchQuery === "" && streamSearchQuery === "" && yearSearchQuery === ""
 
@@ -415,8 +415,8 @@ const GlobalContextProvider = ({ children }) => {
         streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
         homeBranchData, setHomeBranchData,
-        domainVariable,hoverState, setHoverState,imageDialog, setImageDialog,videoDialog, setVideoDialog,
-        homePlacements,setHomePlacements,countryList,setCountryList,individualSubjectData, setIndividualSubjectData
+        domainVariable, hoverState, setHoverState, imageDialog, setImageDialog, videoDialog, setVideoDialog,
+        homePlacements, setHomePlacements, countryList, setCountryList, individualSubjectData, setIndividualSubjectData
       }}
     >
       {children}

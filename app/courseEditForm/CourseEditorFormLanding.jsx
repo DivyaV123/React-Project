@@ -317,7 +317,6 @@ function CourseEditorFormLanding() {
 
             if (response?.data) {
                 const selectedCourseValues = response.data;
-                console.log(selectedCourseValues, "selectedCourseValuesselectedCourseValues");
                 formikDetails.setFieldValue("courseName", selectedCourseValues.courseName);
                 formikDetails.setFieldValue("courseSummary", selectedCourseValues.courseSummary);
                 formikDetails.setFieldValue("courseDescription", selectedCourseValues.courseDescription);
@@ -431,7 +430,6 @@ function CourseEditorFormLanding() {
 
     const handleFileSelected = (e, type) => {
         const file = e.target.files[0];
-        console.log(file, "filefilefile");
         if (file) {
             const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
             if (validImageTypes.includes(file.type)) {
