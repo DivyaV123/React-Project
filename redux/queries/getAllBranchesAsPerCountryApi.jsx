@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { getBaseUrl, API_ENDPOINTS } from '@/api/apiService';
+import { API_ENDPOINTS ,getBaseUrl} from '@/api/apiService';
 
-export const getBranchDetailsByBranchIdApi = createApi({
-    reducerPath: 'getBranchDetailsByBranchIdApi',
+export const branchesAsPerCountryApi = createApi({
+    reducerPath: 'branchesAsPerCountryApi',
     baseQuery: fetchBaseQuery({
         baseUrl: getBaseUrl(),
         prepareHeaders: (headers) => {
@@ -14,10 +14,10 @@ export const getBranchDetailsByBranchIdApi = createApi({
         },
     }),
     endpoints: (builder) => ({
-        getBranchDetailsById: builder.query({
-            query: ({ branchId }) => API_ENDPOINTS.GET_BRANCH_BY_BRANCHID(branchId),
+        getAllBranchesAsPerCountry: builder.query({
+            query: () => API_ENDPOINTS.ALL_Branch_LIST,
         }),
     }),
 });
 
-export const { useGetBranchDetailsByIdQuery } = getBranchDetailsByBranchIdApi;
+export const { useGetAllBranchesAsPerCountryQuery } = branchesAsPerCountryApi;
