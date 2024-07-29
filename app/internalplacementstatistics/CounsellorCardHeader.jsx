@@ -20,6 +20,7 @@ const CounsellorCardHeader = () => {
   const pathname = usePathname();
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
+  const [loaderKey, setLoaderKey] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleModalOpen = () => {
     
@@ -126,6 +127,12 @@ const CounsellorCardHeader = () => {
     }
     setGenerateLink(true);
   };
+
+  useEffect(() => {
+    if (isFetchData && !counsellorFilterResponse?.response?.candidates?.last) {
+      setLoaderKey(prevKey => prevKey + 1);
+    }
+  }, [isFetchData, counsellorFilterResponse]);
   return (
     <div
       className={`${
@@ -220,7 +227,7 @@ const CounsellorCardHeader = () => {
             ) : (
               <>
                 <PlacementContent counsellorFilterResponse={accumulatedData} />
-                {isFetchData && !counsellorFilterResponse?.response?.candidates?.last &&  <LineLoader /> }
+                {isFetchData && !counsellorFilterResponse?.response?.candidates?.last &&  <LineLoader key={loaderKey}/> }
               </>
             )
           ) : (
