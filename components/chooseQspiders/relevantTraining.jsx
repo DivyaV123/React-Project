@@ -26,10 +26,10 @@ function RelevantTraining() {
                 <aside className='flex items-center'>
                     <div>
                         <header>
-                            <h1 className='font-bold text-black text-header flex justify-center mb-6 mobile:text-[6.512vw] mobile:mb-[2.575vh]'>
+                            <h1 className='font-bold text-black text-header flex justify-center mb-6 mobile:text-[6.512vw] mobile:mb-[2.575vh] tabView:text-[2.688vw]'>
                                 Industry-Relevant Training
                             </h1>
-                            <p id="tagline" className='text-dark-gray flex-col item-center fulljustify text-[18px] mt-6 mobile:mt-[2.575vh] mobile:text-[4.186vw]'>
+                            <p id="tagline tabView:choose_para_tab" className='text-dark-gray flex-col item-center text-center text-[18px] mt-6 mobile:mt-[2.575vh] mobile:text-[4.186vw] tabView:text-[1.613vw]'>
                                 At {domainVariable}, we are committed to providing industry-relevant training that aligns with the current trends and technologies in the IT sector. Our expert-led courses ensure that students gain the practical, in-demand skills needed to excel in today's competitive job market.
                             </p>
                         </header>
@@ -42,18 +42,18 @@ function RelevantTraining() {
                                 }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
                                     100+
                                 </h1>
-                                <p className='text-brown txet-normal flex justify-center  text-center mobile:text-[3.721vw]'>Industry-relevant <br />technologies are offered</p>
+                                <p className='text-brown txet-normal flex justify-center  text-center mobile:text-[3.721vw] tabView:text-[1.882vw]'>Industry-relevant <br />technologies are offered</p>
                             </aside>
                             <aside className='w-[100%]'>
                                 <h1 className='gradient-text  font-extra-bold text-xl opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
                                     90+
                                 </h1>
-                                <p className='text-brown text-normal flex justify-center  text-center mobile:text-[3.721vw]'>Training Institutes <br /> all over India</p>
+                                <p className='text-brown text-normal flex justify-center  text-center mobile:text-[3.721vw] tabView:text-[1.882vw]'>Training Institutes <br /> all over India</p>
                             </aside>
                         </article>
                         <article className='flex justify-center mt-6 mobile:mt-[2.575vh]'>
                             <Button
-                                className='bg-gradient text-white rounded w-[11.719vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw]'
+                                className='bg-gradient text-white rounded w-[11.719vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw] tabView:px-4 tabView:py-3 tabView:flex tabView:items-center tabView:w-auto tabView:h-auto'
                                 title="Enquire Now"
                                 onClick={handleCardClick}
                             />
@@ -62,14 +62,14 @@ function RelevantTraining() {
                 </aside>
             </Fade>
             <Fade right duration={1000} delay={0}>
-                <aside className='flex justify-center align-end'>
-                    <figure className='sm:w-[95%]'>
+                <aside className='flex justify-center align-end tabView:mt-8'>
+                    <figure className='sm:w-[95%] tabView:w-[100%]'>
                         <Image
                             src="/images/PlacementAssistance_image(5).png"
                             alt="platformAssociateImage"
                             width={800}  // replace with actual width
                             height={500} // replace with actual height
-                            className="w-[80.465vw]"
+                            className="w-[80.465vw] tabView:w-[100%]"
                         />
                         {/* <img src='./images/PlacementAssistance_image(5).png' alt='facultyImage'></img> */}
                     </figure>

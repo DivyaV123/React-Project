@@ -42,14 +42,14 @@ function TrainingMode() {
         }, 500);
     }, [])
     return (
-        <article onMouseEnter={() => { setHover(true) }} onMouseLeave={() => { setHover(false) }} className='mb-6'>
+        <article onMouseEnter={() => { setHover(true) }} onMouseLeave={() => { setHover(false) }} className='mb-6 pb-10'>
             <header>
                 <Slide top cascade>
                     <h1 className='flex justify-center text-[2.5vw] mobile:text-[5.581vw] mobile:py-[2.575vh]  font-bold sm:pt-[5.556vh] sm:pb-[3.333vh]'>Modes We Train</h1>
                 </Slide>
             </header>
             <Fade bottom duration={1000} delay={0}>
-                <article className='sm:grid grid-cols-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4  sm:gap-5 mobile:flex mobile:flex-wrap mobileBackground mobile:pb-[3.219vh]'>
+                <article className='sm:grid grid-cols-auto xs:grid-cols-1 sm:grid-cols-2 md:grid-cols-4  sm:gap-5 mobile:flex mobile:flex-wrap mobileBackground mobile:pb-[3.219vh] tabBackground tabView:pb-10 tabView:mx-5'>
                     {trainingDetails.map((element) => {
                         return (isloading ?
                             <TrainingCardSkeleton />

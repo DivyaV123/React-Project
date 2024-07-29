@@ -85,7 +85,7 @@ function StudentsTestimonialsHome({ page, testimonialsData }) {
                 <Link href={PLACEMENT_PATH}>
                     <article className={page === "branch" ? 'flex justify-center mt-[4.444vh] sm:pb-[4.444vh] mobile:mt-[1.824vh] ' : 'flex justify-center mt-[2.778vh] w-[51.56vw] pb-[2.778vh]'}>
                         <Button
-                            className='bg-gradient h-[2.656vw] font-medium w-[9.375vw] text-[0.75rem] text-white rounded-md mobile:w-[27.907vw] mobile:h-[3.648vh] mobile:text-[2.791vw]'
+                            className='bg-gradient h-[2.656vw] font-medium w-[9.375vw] text-[0.75rem] text-white rounded-md mobile:w-[27.907vw] mobile:h-[3.648vh] mobile:text-[2.791vw] tabView:py-[5.389vh] tabView:px-[4.875vw] tabView:w-auto tabView:h-auto'
                             title="View more"
                             onClick={() => { }}
                         />
