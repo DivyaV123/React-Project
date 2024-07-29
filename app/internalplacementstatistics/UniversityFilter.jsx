@@ -8,6 +8,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const UniversityFilter = () => {
   const { handleCounsellorCommonFilter,selectedUniversity, setSelectedUniversity,universitySearchQuery,setUniversitySearchQuery, } = useContext(GlobalContext);
+  const [isExpanded, setIsExpanded] = useState(true);
   const { data: universityData } = useGetAllUniversitiesQuery();
   const universityList = universityData?.response.filter(university => university !== "").filter(university => university.toLowerCase().includes(universitySearchQuery.toLowerCase()));
 
@@ -22,13 +23,21 @@ const UniversityFilter = () => {
       }
     />
   );
-
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
-    <div className="px-[1.875vw] pt-[2.778vh] mobile:px-[5.875vw] mobile:pt-[1.778vh]">
+    <div className="px-[1.875vw] pt-[2.778vh] mobile:px-[5.875vw] mobile:pt-[1.778vh] thinCloseBorder">
       <div className="flex justify-between pb-[1.111vh] mobile:hidden">
         <p className="text-[0.938vw] text-[#002248] font-semibold">University</p>
-        <img src="../../down.svg" />
+        <img
+          src={isExpanded ? "../../icon_up.svg" : "../../icon_down.svg"}
+          onClick={toggleExpand}
+          className="cursor-pointer"
+        />
       </div>
+      {isExpanded && (
+      <>
       <div className="search-container pb-[1.111vh]">
         <input 
           type="text" 
@@ -43,6 +52,8 @@ const UniversityFilter = () => {
         items={universityList}
         renderItem={(item, index) => renderCheckbox(item, index)}
       />
+      </>
+      )}
     </div>
   );
 };

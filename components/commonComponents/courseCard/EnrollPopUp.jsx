@@ -12,6 +12,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 function EnrollPopUp({ isModalOpen, handleCloseModal }) {
   const modalRef = useRef(null);
   const [phoneValue, setPhoneValue] = useState("");
+  const [countryCode, setCountryCode] = useState("");
   const [error, setError] = useState({
     mobileNumber: false,
     validPhone: false,
@@ -46,6 +47,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
   });
 
   const handleOnBlur = (id) => {
+    formik.setFieldTouched(id, true);
     if (!phoneValue) {
       setError({ ...error, [id]: true });
     } else if (!isValidPhoneNumber("+" + phoneValue?.toString()) || phoneValue.startsWith('911234')) {
@@ -80,10 +82,10 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
   const handlePhoneChange = (value, country) => {
     if (country?.dialCode !== countryCode) {
       setPhoneValue('');
-      formikDetails.setFieldValue('phone', country.dialCode);
+      formik.setFieldValue('mobileNumber', country.dialCode);
     } else {
       setPhoneValue(value);
-      formikDetails.setFieldValue('phone', value);
+      formik.setFieldValue('mobileNumber', value);
     }
     setCountryCode(country?.dialCode);
   };
@@ -133,7 +135,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     country={"in"}
                     name="mobileNumber"
                     id="mobileNumber"
-                    value={formik.values.mobileNumber}
+                    value={phoneValue}
                     className="outline-none"
                     onChange={(e, country) =>handlePhoneChange(e,country)}
                     inputExtraProps={{
@@ -145,7 +147,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     // }}
                     style={{
                       border: `${
-                        error.phone || error.validPhone
+                        error.mobileNumber || error.validPhone
                           ? inputBorderErr
                           : inputBorder
                       }`,

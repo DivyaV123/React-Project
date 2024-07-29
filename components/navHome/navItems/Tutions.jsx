@@ -232,7 +232,7 @@ const Tutions = () => {
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(null);
   return (
-    <div className="flex w-[81.09vw]  lg:h-[500px] overflow-auto myscrollbar">
+    <div className="flex w-[81.09vw]  lg:h-[500px] 3xl:h-[660px]">
       <div
         className={`menuSidebar pt-2 xl:w-[18.97vw] 2xl:w-[14.98vw]  3xl:w-[11.98vw] `}
       >

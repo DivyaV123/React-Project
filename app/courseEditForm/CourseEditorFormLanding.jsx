@@ -317,7 +317,6 @@ function CourseEditorFormLanding() {
 
             if (response?.data) {
                 const selectedCourseValues = response.data;
-                console.log(selectedCourseValues, "selectedCourseValuesselectedCourseValues");
                 formikDetails.setFieldValue("courseName", selectedCourseValues.courseName);
                 formikDetails.setFieldValue("courseSummary", selectedCourseValues.courseSummary);
                 formikDetails.setFieldValue("courseDescription", selectedCourseValues.courseDescription);

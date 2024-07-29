@@ -124,6 +124,7 @@ function ContactUsPage() {
   const inputBorder = "1px solid #26428B80";
   const inputBorderErr = "1px solid #ea0322";
   const handleOnBlur = (id) => {
+    formikDetails.setFieldTouched(id, true);
     if (!phoneValue) {
       setError({ ...error, [id]: true });
     } else if (!isValidPhoneNumber("+" + phoneValue?.toString()) || phoneValue.startsWith('911234')) {
@@ -209,7 +210,7 @@ function ContactUsPage() {
                       country={"in"}
                       name="phone"
                       id="phone"
-                      value={formikDetails.values.phone}
+                      value={phoneValue}
                       className=""
                       onChange={(e, country) =>handlePhoneChange(e,country)}
                       //   defaultCountry={"IN"}

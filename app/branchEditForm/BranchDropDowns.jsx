@@ -52,7 +52,6 @@ function BranchDropDowns({setBranchDropDownDetails,setIsSelectedBranchEdit}) {
             branch: Yup.string().required('Branch is required')
         }),
         onSubmit:async (values) => {
-            console.log('Form Submitted with values:', values,{individualBranch});
            
             if (individualBranch) {
                 setIsSelectedBranchEdit(true);
