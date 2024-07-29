@@ -21,6 +21,7 @@ const SubjectForm = () => {
   const [chapters, setChapters] = useState(
     individualSubjectData ? individualSubjectData?.chapters : []
   );
+  
   const [activeIndex, setActiveIndex] = useState(null); // Initially null to avoid hydration mismatch
   const [addSubject] = useAddSubjectMutation();
   const router = useRouter();
@@ -119,7 +120,7 @@ const SubjectForm = () => {
           updatedDateAndTime: new Date().toISOString(),
         };
         const editPayload = {
-          subjectId: individualSubjectData.subjectId,
+          subjectId: individualSubjectData?.subjectId,
           subjectTitle: values.subjectTitle,
           subjectDescrption: "string",
           chapters,
@@ -155,7 +156,7 @@ const SubjectForm = () => {
         // }
 
         const response = await addSubject(
-          individualSubjectData ? editPayload : payload
+          individualSubjectData !== undefined ? editPayload : payload
         );
 
         if (response.data.statusCode === 201) {

@@ -14,6 +14,7 @@ export const API_ENDPOINTS = {
   EDITCOURSE_WITHFILE: `api/v1/courses/updateCourse`,
   EDITBRANCH_WITHFILE:"api/v1/branches/updateFileAndData",
   DELETE_COURSE: (courseId) => `api/v1/courses?courseId=${courseId}`,
+  DELETE_SUBJECT: (subjectId) => `api/v1/subjects?subjectId=${subjectId}`,
   COURSE_WEIGHTAGE_ADDER: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   COURSE_WEIGHTAGE_EDIT: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   BRANCH_ADDER: `api/v1/branches`,
