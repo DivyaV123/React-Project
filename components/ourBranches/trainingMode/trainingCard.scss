@@ -111,6 +111,15 @@
     );
   }
 }
+.tabBackground{
+  @media (max-width: 744px) {
+    background: linear-gradient(180deg, rgba(240, 152, 25, 0.8) 0%, rgba(255, 81, 47, 0.8) 100%);
+    border-radius: 2.151vw;
+  }
+}
+.tabCard{
+  visibility: visible;
+}
 .trainingwave {
   background-image: url("../../../public/corporate_wave.svg");
   background-color: #f9f9f9;

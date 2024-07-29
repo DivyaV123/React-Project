@@ -99,8 +99,8 @@ function TrainingMode({ page }) {
               page === "corporateTraining"
                 ? "md:grid-cols-3 sm:w-[87.5vw] sm:m-auto"
                 : "md:grid-cols-4 sm:gap-5"
-            }   mobile:flex mobile:flex-wrap mobileBackground mobile:pb-[3.219vh] mobile:rounded-2xl mobile:justify-around`}
-          >
+            }   mobile:flex mobile:flex-wrap mobileBackground mobile:pb-[3.219vh] mobile:rounded-2xl mobile:justify-around tabBackground tabView:pb-10 tabView:mx-5`}
+          > 
             {FinalTrainingDetails?.map((element) => {
               return isloading ? (
                 <TrainingCardSkeleton key={element.mode} />

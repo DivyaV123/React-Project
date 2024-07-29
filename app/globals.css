@@ -116,7 +116,18 @@
 .headerText{
   color: #575757;
 }
- 
+
+.bg-Pinkgradient{
+  @media (max-width: 744px) {
+    background: none
+    
+  }
+}
+ .bg-Pinkgradient-tab {
+  @media (max-width: 744px) {
+  background: linear-gradient(to right, #FEF5DB, #FFDFDF);
+  }
+ }
 
 /* @layer base {
   * {

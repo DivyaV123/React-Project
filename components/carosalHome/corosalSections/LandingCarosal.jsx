@@ -31,9 +31,9 @@ function LandingCarosal() {
         <Fade left delay={0} duration={1000}>
           <aside className="flex items-center mb-8 2xl:mb-12 3xl:mb-16 mobile:m-0">
             <article className="headerArticle mb-10 w-full mobile:m-0">
-              <h1 className="mainHead pb-[2.222vh] text-[3.75vw] mobile:text-[7.907vw] opacity-100 mobile:pt-[6.438vh] mobile:pb-[1.288vh]">
+              <h1 className="mainHead pb-[2.222vh] text-[3.75vw] mobile:text-[7.907vw] opacity-100 mobile:pt-[6.438vh] mobile:pb-[1.288vh] tabView:text-[4.57vw] tabView:font-normal">
                 Largest Software <br />{" "}
-                <span className="gradient-text text-[3.75vw] mobile:text-[7.907vw] font-extra-bold">
+                <span className="gradient-text text-[3.75vw] mobile:text-[7.907vw] font-extra-bold tabView:text-[3.59vw]">
                   Training Organization
                 </span>{" "}
               </h1>
@@ -158,7 +158,7 @@ function LandingCarosal() {
                 <h2 className="headerText font-medium">Trained Students</h2>
               </div>
             </article> */}
-            <figure className="w-[75%] h-[84vh]">
+            <figure className="w-[75%] h-[84vh] tabView:w-full tabView:h-auto">
               <Image
                 src='/landScreenpicture.png'
                 priority={true}
