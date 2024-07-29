@@ -142,7 +142,7 @@ function OurBranchesHome({ page, tabData }) {
           className={`${
             page === "course" && btnState === "OfflineClasses"
               ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh]"
-              : "flex flex-wrap   sm:gap-x-[1.094vw] sm:gap-y-[1.944vh] justify-center gap-6"
+              : "flex flex-wrap   sm:gap-x-[1.094vw] sm:gap-y-[1.944vh] justify-center gap-6 tabView:gap-x-[6.054vw]"
           }`}
         >
           {btnState === "OfflineClasses" ? (

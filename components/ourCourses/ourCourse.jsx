@@ -95,7 +95,7 @@ const typesOfClasses=Object.keys(homeCourse?.data||{})
         )}
         <div className="flex ">
           {page === "explore" && (
-            <article className="pr-2 pt-[1px] mobile:hidden">
+            <article className="pr-2 pt-[1px] mobile:hidden tabView:hidden">
               <Input
                 onChange={(e) => setSearchTerm(e.target.value)}
                 inputStyle="searchField p-2 text-sm"
@@ -122,7 +122,7 @@ const typesOfClasses=Object.keys(homeCourse?.data||{})
           </div>
         </div>
       </article>
-      <aside className=" sm:hidden">
+      <aside className=" sm:hidden tabView:block">
         <Accordion
           defaultValue="hello"
           className="w-full"
@@ -168,7 +168,7 @@ const typesOfClasses=Object.keys(homeCourse?.data||{})
                   </div>
                 </AccordionTrigger>
                 <AccordionContent page="explorecourses">
-                  <article className="h-full sm:hidden">
+                  <article className="h-full sm:hidden tabView:block">
                     <div className="flex  justify-between gap-4 h-full  mobile:overflow-x-scroll mobile:offlineScrollbar   pt-[2.575vh] ">
                       {getFinalCourseList?.length > 0 ? (
                         getFinalCourseList.map((element, index) => {
@@ -198,7 +198,7 @@ const typesOfClasses=Object.keys(homeCourse?.data||{})
           })}
         </Accordion>
       </aside>
-      <aside className="flex h-[132.222vh] mobile:hidden">
+      <aside className="flex h-[132.222vh] mobile:hidden tabView:hidden">
         <article className="justify-start w-[20.70vw] h-full overflow-auto courseScroll">
           <div className="w-full">
             {courses?.map((item, itemIndex) => {

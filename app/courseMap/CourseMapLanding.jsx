@@ -241,7 +241,6 @@ function CourseMapLanding() {
             }
         } else {
             if (selectedSubCategory) {
-
                 try {
                     const response = await subCategoryUnmap({ bodyData: payload, subCategoryId: selectedSubCategoryId }).unwrap();
                     alert(response.status === 200 ? "maped successfully" : response.status)

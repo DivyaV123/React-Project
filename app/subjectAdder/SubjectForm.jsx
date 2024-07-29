@@ -21,10 +21,10 @@ const SubjectForm = () => {
   const [chapters, setChapters] = useState(
     individualSubjectData ? individualSubjectData?.chapters : []
   );
+  
   const [activeIndex, setActiveIndex] = useState(null); // Initially null to avoid hydration mismatch
   const [addSubject] = useAddSubjectMutation();
   const router = useRouter();
-  console.log({ individualSubjectData });
   useEffect(() => {
     // Ensure this state is set only on the client side to avoid hydration issues
     !individualSubjectData &&
@@ -94,7 +94,6 @@ const SubjectForm = () => {
           (ref) => ref && ref.hasErrors()
         );
         if (chapters[0]?.chapterTitle === "") {
-          console.log({ chapters });
           toast({
             variant: "destructive",
             description: (
@@ -121,7 +120,7 @@ const SubjectForm = () => {
           updatedDateAndTime: new Date().toISOString(),
         };
         const editPayload = {
-          subjectId: individualSubjectData.subjectId,
+          subjectId: individualSubjectData?.subjectId,
           subjectTitle: values.subjectTitle,
           subjectDescrption: "string",
           chapters,
@@ -148,7 +147,6 @@ const SubjectForm = () => {
           JSON.stringify(values.subjectTitle) ===
             JSON.stringify(initialData.subjectTitle) &&
           JSON.stringify(chapters) === JSON.stringify(initialData.chapters);
-        console.log({ hasNoChanges });
         // if (hasNoChanges) {
         //   toast({
         //     variant: "info",
@@ -158,7 +156,7 @@ const SubjectForm = () => {
         // }
 
         const response = await addSubject(
-          individualSubjectData ? editPayload : payload
+          individualSubjectData !== undefined ? editPayload : payload
         );
 
         if (response.data.statusCode === 201) {

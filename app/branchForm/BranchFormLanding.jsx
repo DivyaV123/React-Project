@@ -25,7 +25,6 @@ function BranchFormLanding() {
     const toggleAccordion = (index) => {
         setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
     };
-
     const validationSchema = Yup.object({
         BranchName: Yup.string().required("BranchName is required"),
         phone: Yup.array()

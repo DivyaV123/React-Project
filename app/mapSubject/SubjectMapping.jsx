@@ -92,7 +92,6 @@ function SubjectMapping() {
     //     courseId: event.target.option.id
     // }))
     setSelectedSubjectID(event.target.options);
-    console.log(event.target);
     const selectedSubjectName = event.target.value;
 
     setSelectedSubjectName(selectedSubjectName);
@@ -209,16 +208,9 @@ function SubjectMapping() {
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
       const selectedCategoryId = selectedSubjectID?.Id;
-      console.log({ selectedSubjectName });
       // e.preventDefault()
       let payload = [];
       selectedSubjectID.map((ele) => {
-        console.log(
-          ele,
-          { selectedSubjectID },
-          { selectedCategoryId },
-          { allId }
-        );
         payload.push(ele.Id);
       });
       if (selectedSubjectID) {
@@ -227,7 +219,6 @@ function SubjectMapping() {
             payload: payload,
             courseId: allId.courseId,
           }).unwrap();
-          console.log({ payload }, { response });
           if (response.status === 200) {
             toast({
               variant: "success",

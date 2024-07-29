@@ -6,7 +6,7 @@ import { svgicons } from '@/components/assets/icons/svgassets';
 function TrainingCard({ cardDetails, hover,page }) {
     return (
         <>
-        <section className={`${page === "corporateTraining" ? 'place-self-center sm:mx-4 sm:mb-4' : "sm:m-4"} relative flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-[15.63rem]  trainingContainer mobile:hidden`}>
+        <section className={`${page === "corporateTraining" ? 'place-self-center sm:mx-4 sm:mb-4' : "sm:m-4"} relative flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-[15.63rem]  trainingContainer mobile:hidden tabView:hidden`}>
             <div className="animationBackground">
             </div>
             <div className='z-10'>
@@ -31,7 +31,7 @@ function TrainingCard({ cardDetails, hover,page }) {
                 </p>
             </div>
         </section>
-        <section className='relative flex   cursor-pointer  w-[39.07vw]  overflow-hidden sm:hidden'>
+        <section className='relative flex   cursor-pointer  w-[39.07vw]  overflow-hidden sm:hidden tabView:block tabView:w-full'>
         <div className=''>
             <figure className='flex justify-center  pt-[3.97vh] pb-[2.575vh]'>
                 <img  src={cardDetails.mobileLogo} alt='logo'></img>
@@ -41,7 +41,7 @@ function TrainingCard({ cardDetails, hover,page }) {
                     {cardDetails.mode}
                 </h1>
             </header>
-            <p className='text-[2.558vw] flex justify-center text-center  text-[#454545] font-lean  cardDetail'>
+            <p className='text-[2.558vw] flex justify-center text-center  text-[#454545] font-lean  tabView:mx-6 cardDetail'>
                 {cardDetails.detail}
             </p>
         </div>

@@ -14,6 +14,8 @@ import { useGetAllSubjectsQuery } from '@/redux/queries/getAllSubjectsApi';
 import { useSubjectAsPerIDQuery } from '@/redux/queries/getSubjectAsPerIDApi';
 import { GlobalContext } from '@/components/Context/GlobalContext';
 
+import { useSubjectDeleteMutation } from '@/redux/queries/deletSubjectApi';
+
 function EditSubjectPage() {
     const router = useRouter();
     const { toast } = useToast()
@@ -24,13 +26,14 @@ function EditSubjectPage() {
         data: subjectResponse,
         isLoading: subjectIsLoading,
         error: subjectError,
+        refetch: refetchSubjects,
         
     } = useGetAllSubjectsQuery();
 
     const [selectedSubjectName, setSelectedSubjectName] = useState("");
     const [selectedSubjectID, setSelectedSubjectID] = useState("")
   
-   
+    const [deleteSelectedSubject] = useSubjectDeleteMutation();
   
     const validationSchema = Yup.object({
       
@@ -58,10 +61,8 @@ function EditSubjectPage() {
 
     const [subJectID, setSubJectID] = useState("")
     const handleSubjectSelected = (event) => {
-        console.log({individualSubject})
         setSubJectID( event.target.option.Id)
         setSelectedSubjectID(event.target.options)
-       console.log(event.target)
         const selectedSubjectName = event.target.value;
        
         setSelectedSubjectName(selectedSubjectName);
@@ -121,7 +122,25 @@ function EditSubjectPage() {
     });
 
    
-
+    const handleDeleteSelectedCourse = async () => {
+        if (subJectID) {
+            try {
+                const response = await deleteSelectedSubject({ subjectId: subJectID }).unwrap();
+                console.log({response})
+                toast({
+                    variant:"destructive",
+                    title: (
+                      <span className=" font-bold  ">Deleted Successfully</span>
+                    ),
+                  });
+                  setSelectedSubjectName("")
+                  refetchSubjects();
+            } catch (err) {
+                console.log(err)
+            }
+        }
+    }
+   
 
     const commonLabelStyles = "pb-[1.111vh]";
     return (
@@ -164,8 +183,15 @@ function EditSubjectPage() {
                             >
                                Edit Subject
                             </button>
+                          
                         </div>
                     </form>
+                    <button
+                                onClick={handleDeleteSelectedCourse}
+                                className="py-2 relative bottom-[6.5vh] px-4 bg-gradient rounded-md text-white"
+                            >
+                               Delete Subject
+                            </button>
                 </div>
                 <Toaster/>
             </MaxWebWidth>
