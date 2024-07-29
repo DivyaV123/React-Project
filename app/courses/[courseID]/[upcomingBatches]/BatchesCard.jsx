@@ -77,7 +77,7 @@ function BatchesCard() {
   const enrollEnquire =
     "py-[1.389vh] px-[0.781vw] w-[8.359375vw] text-[1.094vw] font-semibold";
   const dateAndTime =
-    "flex text-[0.938vw] font-medium text-dark-gray gap-y-[0.469vw] items-center";
+    "flex text-[0.938vw] font-medium text-[#454545] gap-x-[0.469vw] items-center";
   useEffect(() => {
     setTimeout(() => {
       setisLoading(false);
@@ -120,7 +120,7 @@ function BatchesCard() {
               <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh] mobile:text-[2.791vw]">
                 By: {batch.trainer}
               </p>
-              <div className="flex mobile:block pb-[1.389vh] gap-y-[0.469vw] items-center  justify-between">
+              <div className="flex mobile:block pb-[1.389vh] gap-x-[0.469vw] items-center  justify-between">
                 <div className={`${dateAndTime}`}>
                   <Svg
                     className=" pr-[0.469vw] mobile:w-[4.186vw]"

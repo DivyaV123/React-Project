@@ -58,7 +58,7 @@ const {imageDialog, setImageDialog,videoDialog, setVideoDialog}=useContext(Globa
             )}
             <article className='sm:basis-[65%] pt-[2.222vh] mobile:w-[60.93vw] mobile:py-[1.717vh] mobile:pr-[3.721vw] pr-[1.25vw]'>
                 <header>
-                    <h1 className='font-bold pb-1 text-dark-gray mobile:text-[3.721vw]'>
+                    <h1 className='font-bold pb-1 text-[#454545] mobile:text-[3.721vw]'>
                         {testimonialsData?.name}
                     </h1>
                     <p className='text-[0.75rem] text-ash mobile:text-[2.791vw]' title={testimonialsData?.testimonial?.writtenTestimonial}>

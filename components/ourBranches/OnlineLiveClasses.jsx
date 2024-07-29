@@ -74,7 +74,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
   const enrollEnquire =
     "py-[1.389vh] px-[0.781vw] mobile:px-[2.791vw] mobile:py-[1.073vh] mobile:w-[24.884vw] mobile:text-[3.256vw] w-[8.359375vw] text-[1.094vw] font-semibold";
   const dateAndTime =
-    "flex text-[0.938vw] font-medium text-dark-gray gap-y-[0.469vw] items-center";
+    "flex text-[0.938vw] font-medium text-[#454545] gap-x-[0.469vw] items-center";
 
   function convertToIST(timeString) {
     let [hours, minutes] = timeString.split(':').map(Number);
@@ -145,7 +145,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
               <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh] mobile:text-[2.791vw] mobile:pb-[2.146vh]">
                 By: {batch.trainer ? batch.trainer : batch.trainerName}
               </p>
-              <div className="flex mobile:pb-[1.073vh] pb-[1.389vh] gap-y-[0.469vw] items-center  justify-between">
+              <div className="flex mobile:pb-[1.073vh] pb-[1.389vh] gap-x-[0.469vw] items-center  justify-between">
                 <div className={`${dateAndTime}`}>
                   <Svg
                     className=" pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
@@ -195,7 +195,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
                 <button
                   className={`${enrollEnquire} EnrollButton bg-gradient rounded text-white`}
                 >
-                  Enroll Now
+                  Enroll now
                 </button>
                 <button
                   className={`${enrollEnquire} EnquireButton rounded border border-orange-500 text-orange-500`}

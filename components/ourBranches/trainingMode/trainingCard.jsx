@@ -3,10 +3,10 @@ import './trainingCard.scss'
 import Svg from '@/components/commonComponents/Svg/Svg';
 import { svgicons } from '@/components/assets/icons/svgassets';
 
-function TrainingCard({ cardDetails, hover }) {
+function TrainingCard({ cardDetails, hover,page }) {
     return (
         <>
-        <section className='relative flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-[15.63rem] sm:m-4 trainingContainer tabView:hidden mobile:hidden'>
+        <section className={`${page === "corporateTraining" ? 'place-self-center sm:mx-4 sm:mb-4' : "sm:m-4"} relative flex rounded-sm cardStyle cursor-pointer border-b-4 border-orange-500 row-span-4 w-[15.63rem]  trainingContainer mobile:hidden tabView:hidden`}>
             <div className="animationBackground">
             </div>
             <div className='z-10'>
@@ -22,16 +22,16 @@ function TrainingCard({ cardDetails, hover }) {
                     /> */}
                 </figure>
                 <header>
-                    <h1 className='flex justify-center aligen-center text-dark-gray pt-5 text-xl font-bold mt-32 cardHeader'>
+                    <h1 className='flex justify-center aligen-center text-[#454545] pt-5 text-xl font-bold mt-32 cardHeader'>
                         {cardDetails.mode}
                     </h1>
                 </header>
-                <p className='text-[0.875rem] flex justify-center text-center p-4 text-dark-gray font-lean mt-6 cardDetail'>
+                <p className='text-[0.875rem] sm:h-[116px] flex justify-center text-center p-4 text-[#454545] font-lean mt-6 cardDetail'>
                     {cardDetails.detail}
                 </p>
             </div>
         </section>
-        <section className='relative flex   cursor-pointer  w-[46.279vw]  overflow-hidden tabView:block tabView:w-full sm:hidden'>
+        <section className='relative flex   cursor-pointer  w-[39.07vw]  overflow-hidden sm:hidden tabView:block tabView:w-full'>
         <div className=''>
             <figure className='flex justify-center  pt-[3.97vh] pb-[2.575vh]'>
                 <img  src={cardDetails.mobileLogo} alt='logo'></img>

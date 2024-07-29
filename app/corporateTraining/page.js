@@ -20,8 +20,8 @@ const CorporateTraining = () => {
 
       <CorporateTrainingLanding />
         <HiringPartners />
+        <TrainingMode page='corporateTraining'/>
       <div className='w-[87.5vw] m-auto'>
-        <TrainingMode />
         <TrendingCourses />
         <BenefitsOfTraining/>
       </div>

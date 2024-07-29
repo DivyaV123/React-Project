@@ -60,7 +60,7 @@ function CourseHighlites({ courseDetails }) {
                 :
                 courseContents?.map((element) => (
                     <article className=' px-5 pointsList mb-3 rounded-xl'>
-                        <header className='py-5 font-bold text-xl text-dark-gray'>
+                        <header className='py-5 font-bold text-xl text-[#454545]'>
                             {element.question}
                         </header>
                         {element.bulletPoints.map((points) => (

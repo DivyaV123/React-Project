@@ -13,6 +13,7 @@ import Input from "../commonComponents/input/Input";
 import { Skeleton } from "@/components/ui/skeleton";
 import CourseCardSkeleton from "../commonComponents/courseCard/CourseCardSkeleton";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
+import { formatString } from "@/lib/utils";
 import {
   Accordion,
   AccordionContent,
@@ -43,22 +44,12 @@ function OurCourse({ page }) {
 
   const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState("Popular Courses");
-  const typesOfClasses = [
-    {
-      title: "Offline Classes",
-    },
-    {
-      title: "Online Classes",
-    },
-    {
-      title: "Experiential Learning",
-    },
-    {
-      title: "Self Paced",
-    },
-  ];
+
+const typesOfClasses=Object.keys(homeCourse?.data||{})
+
+
   const [btnState, setBtnState] = useState(
-    page === "tution" ? "Experiential Learning" : "Offline Classes"
+    page === "tution" ? "CORPORATE_TRAINING" : "ONLINE_CLASSES"
   );
   const [searchTerm, setSearchTerm] = useState("");
 
@@ -118,26 +109,14 @@ function OurCourse({ page }) {
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center px-4 py-2 mobile:py-[0.606vh] mobile:px-[2.698vw] mobile:text-[1.972vw] font-medium text-[0.75rem] text-dark-gray ${
-                  classItem.title === btnState
+                className={`flex justify-center items-center px-4 py-2 mobile:py-[0.606vh] mobile:px-[2.698vw] mobile:text-[1.972vw] font-medium text-[0.75rem] text-[#454545] ${
+                  classItem === btnState
                     ? "bg-gradient text-white  p-2 rounded-3xl"
                     : ""
                 } `}
-                onClick={() => {
-                  let mode = "";
-                  setBtnState(classItem.title);
-                  if (classItem.title === "Self Paced") {
-                    mode = "SELFPACED";
-                  } else if (classItem.title === "Experiential Learning") {
-                    mode = "EXPERIENTIALLEARNING";
-                  } else if (classItem.title === "Offline Classes") {
-                    mode = "OFFLINECLASSES";
-                  } else if (classItem.title === "Online Classes") {
-                    mode = "ONLINECLASSES";
-                  }
-                }}
+                onClick={() => setBtnState(classItem)}
               >
-                {classItem.title}
+                {formatString(classItem)}
               </button>
             ))}
           </div>
@@ -180,7 +159,7 @@ function OurCourse({ page }) {
                       />
                       <aside>
                         <h1
-                          className={`  text-dark-gray mobile:text-[3.256vw] mobile:pl-[2.791vw] w-full`}
+                          className={`  text-[#454545] mobile:text-[3.256vw] mobile:pl-[2.791vw] w-full`}
                         >
                           {item.title}
                         </h1>
@@ -283,7 +262,7 @@ function OurCourse({ page }) {
                       } */}
 
                       <aside
-                        className={` pl-[1.25vw] text-[1.094vw] text-dark-gray w-full ${
+                        className={` pl-[1.25vw] text-[1.094vw] text-[#454545] w-full ${
                           hoveredCategory === item.title
                             ? "text-white font-semibold "
                             : "text-black"

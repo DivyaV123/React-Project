@@ -17,7 +17,7 @@ function TestimonialsHome() {
         <MaxWebWidth>
             <header>
                 <Slide top cascade>
-                    <h1 className='font-extra-bold text-2xl flex justify-center align-center mb-3 mt-8 h-18'>
+                    <h1 className='font-extra-bold text-[2.188vw] flex justify-center align-center mb-3 mt-8 h-18'>
                         Students Testimonials
                     </h1>
                 </Slide>

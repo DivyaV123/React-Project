@@ -8,7 +8,7 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
 import Image from "next/image";
 import HtmlContent from "@/components/commonComponents/htmlTextConvert/HtmlContent";
-import { toProperCase } from "@/lib/utils";
+import { formatToIndianCurrency,formatString,toProperCase } from "@/lib/utils";
 const CourseLanding = ({
   courseDetails,
   countDetails,
@@ -17,20 +17,19 @@ const CourseLanding = ({
 }) => {
   const statisticsData = [
     {
-      number: `${countDetails?.response?.allPlacedCount}+`,
+      number: `${formatToIndianCurrency(countDetails?.response?.allPlacedCount)}+`,
       text: "Students placed",
     },
-    { number: "4870+", text: "Hiring Companies" },
+    { number: "4,870+", text: "Hiring Companies" },
     {
-      number: `${countDetails?.response?.nonItCount}+`,
+      number: `${formatToIndianCurrency(countDetails?.response?.nonItCount)}+`,
       text: "Non IT Students placed",
     },
     {
-      number: `${countDetails?.response?.itCount}+`,
+      number: `${formatToIndianCurrency(countDetails?.response?.itCount)}+`,
       text: "IT Students placed",
     },
   ];
-
   const imageSrc = "../illustrate_tickmark.svg";
   const tutionClasses = courseDetails?.courseAbout;
   let splitText = tutionClasses?.split(".");
@@ -62,13 +61,13 @@ const CourseLanding = ({
                 {courseDetails?.mode?.map((classItem, index) => (
                   <button
                     key={index}
-                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-dark-gray ${classItem === typeOfLearning ? "activecourseButton" : ""
+                    className={`flex justify-center items-center px-[1.25vw] py-[1.111vh] font-medium text-[0.938vw] text-[#454545] ${classItem === typeOfLearning ? "activecourseButton" : ""
                       }`}
                     onClick={() => {
                       setTypeOfLearning(classItem);
                     }}
                   >
-                    {toProperCase(classItem)}
+                    {formatString(classItem)}
                   </button>
                 ))}
               </div>

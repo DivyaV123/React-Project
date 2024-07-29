@@ -183,7 +183,7 @@ function CourseWeitage() {
             formikDetails.setFieldValue("QSpiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
             formikDetails.setFieldValue("JSpiders", selectedCourseWeightage?.weightageDto?.jspiders || "");
             formikDetails.setFieldValue("PYSpiders", selectedCourseWeightage?.weightageDto?.pyspiders || "");
-            formikDetails.setFieldValue("BSpiders", selectedCourseWeightage?.weightageDto?.bspiders || "");
+            formikDetails.setFieldValue("BSpiders", selectedCourseWeightage?.weightageDto?.prospiders || "");
         } else {
             formikDetails.setFieldValue("QSpiders", "");
             formikDetails.setFieldValue("JSpiders", "");
@@ -200,10 +200,11 @@ function CourseWeitage() {
                 qspiders: values.QSpiders,
                 jspiders: values.JSpiders,
                 pyspiders: values.PYSpiders,
-                bspiders: values.BSpiders
+                prospiders: values.BSpiders
             };
             try {
                 if (!weightage?.weightageDto) {
+                    console.log(payload, "payloadpayload", allId, "allId")
                     const response = await addCourseWeightage({ bodyData: payload, categoryId: allId.categoryId, subCategoryId: allId.subCategoryId, courseId: allId.courseId }).unwrap();
                     resetForm();
                     setSelectedCourse("");
@@ -211,6 +212,7 @@ function CourseWeitage() {
                     setSelectedSubCourse("")
                     setAfterUpdate(afterUpdate + 1)
                     alert(response.data)
+                    setAllID({})
 
                 } else {
                     const response = await addCourseWeightageEdit({ bodyData: payload, categoryId: allId.categoryId, subCategoryId: allId.subCategoryId, courseId: allId.courseId }).unwrap();

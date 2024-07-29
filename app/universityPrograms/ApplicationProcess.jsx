@@ -43,7 +43,7 @@ const ApplicationProcess = () => {
                       <div className="absolute top-5 left-[100%] transform -translate-x-1/2 w-full h-0.5 bg-orange-500 z-1"></div>
                     )}
                     <div className="flex  justify-center mb-4 z-1 relative">
-                      <span className="text-2xl text-white bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center">
+                      <span className="text-[2.188vw] text-white bg-orange-500 w-10 h-10 rounded-full flex items-center justify-center">
                         {index + 1}
                       </span>
                     </div>

@@ -28,7 +28,7 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
     })
     const pathName = usePathname()
     const bodyData = pathName.includes('branches') ? { branchLocation: [branchName] } : { branchType: organisation }
-    const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 16, bodyData: bodyData })
+    const { data: studentsList, error, isLoading } = useFetchCounsellorsQuery({ pageSize: 15, bodyData: bodyData })
     const pathname = usePathname()
     return (
         <>
@@ -54,16 +54,16 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
             {pathname.includes("courses") ?
                 <>
                     <CourseHighlites courseDetails={courseDetails} />
-                    <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
+                    {/* <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
                         <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response?.candidates?.content} />
-                    </MaxWebWidth>
+                    </MaxWebWidth> */}
 
                 </>
                 :
                 <>
-                    <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
+                    {/* <MaxWebWidth sectionStyling='bg-[#F9F9F9]'>
                         <StudentsTestimonialsHome page='branch' testimonialsData={studentsList?.response?.candidates?.content} />
-                    </MaxWebWidth>
+                    </MaxWebWidth> */}
 
                 </>
             }

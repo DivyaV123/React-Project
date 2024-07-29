@@ -1,28 +1,35 @@
-'use client'
-import React, { useState } from 'react';
+"use client";
+import React, { useState } from "react";
 import "./HirefromusLanding.scss";
-import HiringModal from './Modal/HiringModal';
+import HiringModal from "./Modal/HiringModal";
 
 const FindingCandidates = () => {
   const cities = [
-    { name: 'Bangalore', image: '../../Icon_bangalore.png' },
-    { name: 'Hyderabad', image:  '../../Icon_hydrebad.png' },
-    { name: 'Chennai', image:  '../../Icon_chennai.png' },
-    { name: 'Mumbai', image: '../../Icon_mumbai.png' },
-    { name: 'New Delhi', image: '../../Icon_newdelhi.png' },
-    { name: 'Noida', image: '../../Icon_noida.png' },
-    { name: 'Gurugram', image: '../../Icon_gurugram.png'},
-    { name: 'Pune', image: '../../Icon_pune.svg'},
+    { name: "Bangalore", image: "../../Icon_bangalore.png" },
+    { name: "Hyderabad", image: "../../Icon_hydrebad.png" },
+    { name: "Chennai", image: "../../Icon_chennai.png" },
+    { name: "Gurugram", image: "../../Icon_gurugram.png" },
+    { name: "Mumbai", image: "../../Icon_mumbai.png" },
+    { name: "New Delhi", image: "../../Icon_newdelhi.png" },
+    { name: "Noida", image: "../../Icon_noida.png" },
+    { name: "Pune", image: "../../Icon_pune.svg" },
+    { name: "Bhubaneswar", image: "../../Icon_bhubaneswar.svg" },
+    { name: "Kolkata", image: "../../Icon_kolkata.svg" },
+    { name: "Ahmedabad", image: "../../Icon_ahmedabad.svg" },
+    { name: "Chandigarh", image: "../../icon_chandiharh.svg" },
+    { name: "Tirupati", image: "../../Icon_tirupati.svg" },
+    { name: "Kochi", image: "../../Icon_kochi.svg" },
+    { name: "Mysore", image: "../../Icon_ahmedabad.svg" },
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
-  const [activeTab, setActiveTab] = useState('Hire From Us');
+  const [activeTab, setActiveTab] = useState("Hire From Us");
 
   const handleCardClick = (city) => {
     setSelectedCity(city);
     setIsModalOpen(true);
-    setActiveTab('Hire From Us');
+    setActiveTab("Hire From Us");
   };
 
   const handleCloseModal = () => {
@@ -33,8 +40,10 @@ const FindingCandidates = () => {
   return (
     <section className="findingCandidate">
       <div className="city-selector container mx-auto p-4">
-        <h2 className="text-center mt-8 mb-8">Hire Talents From Any Location</h2>
-        <div className="grid grid-cols-2 md:grid-cols-4 mobile:ml-0  card_candidate justify-items-center">
+        <h2 className="text-center mt-8 mb-8">
+          Hire Talents From Any Location
+        </h2>
+        <div className="grid grid-cols-2 md:grid-cols-5 mobile:ml-0  card_candidate justify-items-center">
           {cities.map((city) => (
             <div
               key={city.name}

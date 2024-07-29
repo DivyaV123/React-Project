@@ -52,13 +52,13 @@ const NestedAccordion = ({
                     color={svgicons.smallDoc[4]}
                   />
                 </span>
-                <span className="text-dark-gray font-medium text-[1.094vw] mobile:text-[2.791vw]">
+                <span className="text-[#454545] font-medium text-[1.094vw] mobile:text-[2.791vw]">
                   {content}
                 </span>
               </h1>
             </>
           ) : (
-            <span className="text-dark-gray font-medium text-[1.094vw] mobile:text-[2.791vw]">
+            <span className="text-[#454545] font-medium text-[1.094vw] mobile:text-[2.791vw]">
               {content}
             </span>
           )}
@@ -163,7 +163,7 @@ const NestedAccordion = ({
                               <img src="/play_button.svg" />
                             )}
                           </span>
-                          <span className="text-dark-gray font-medium text-[1.094vw] mobile:text-[2.791vw]">
+                          <span className="text-[#454545] font-medium text-[1.094vw] mobile:text-[2.791vw]">
                             {key}
                           </span>
                         </h1>
@@ -171,10 +171,10 @@ const NestedAccordion = ({
                           <h1 className="flex items-center gap-x-[0.625vw]" >
                             <img src="/play_button.svg" />
 
-                            <span className="text-dark-gray font-medium text-[1.094vw]">
+                            <span className="text-[#454545] font-medium text-[1.094vw]">
                               Preview
                             </span>
-                            <span className="text-dark-gray font-medium text-[1.094vw]">
+                            <span className="text-[#454545] font-medium text-[1.094vw]">
                               {duration} min
                             </span>
                           </h1>
@@ -183,7 +183,7 @@ const NestedAccordion = ({
                         )}
                     </>
                   ) : (
-                      <span className="text-dark-gray font-medium text-[1.094vw] mobile:text-[2.791vw]">
+                      <span className="text-[#454545] font-medium text-[1.094vw] mobile:text-[2.791vw]">
                       {item}
                     </span>
                   )}
@@ -273,13 +273,13 @@ const NestedAccordion = ({
                         color={svgicons.smallDoc[4]}
                       />
                     </span>
-                    <span className="text-dark-gray font-medium text-[1.094vw]">
+                    <span className="text-[#454545] font-medium text-[1.094vw]">
                       {sectionKey}
                     </span>
                   </h1>
                 </>
               ) : (
-                <span className="text-dark-gray font-medium text-[1.094vw]">
+                <span className="text-[#454545] font-medium text-[1.094vw]">
                   {sectionKey}
                 </span>
               )}

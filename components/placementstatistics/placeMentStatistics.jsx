@@ -49,7 +49,7 @@ function PlaceMentStatistics({ className, path, statistics }) {
     }
     
     return (
-        <div className={className}>
+        <div className={`${className} flex flex-col gap-6`}>
             {statistics.map((item, index) => {
                 if (path === "fromPage") {
                     item.icon = '.' + item.icon;
@@ -85,7 +85,7 @@ function PlaceMentStatistics({ className, path, statistics }) {
                                 </figure>
                                 <div className='py-[1.944vh] px-[0.938vw] mobile:px-[2.791vw] mobile:py-[1.502vh]'>
                                     <h1 className='font-bold text-[2.813vw] mobile:text-[8.372vw] tabView:text-[4.839vw]'>{item.count}</h1>
-                                    <p className='text-dark-gray text-[1.094vw] mobile:text-[3.721vw] tabView:text-[2.151vw]' dangerouslySetInnerHTML={{ __html: content }} />
+                                    <p className='text-[#454545] text-[1.094vw] mobile:text-[3.721vw] tabView:text-[2.151vw]' dangerouslySetInnerHTML={{ __html: content }} />
                                 </div>
                             </div>
                         </Link>

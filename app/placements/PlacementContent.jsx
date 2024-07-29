@@ -197,25 +197,54 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                     </Link>
                   </div>
                   <div className="iconContainer">
-                    <img src="../share 1.svg" className="cursor-pointer" />
+                    <img
+                      src="../share 1.svg"
+                      alt="Share"
+                      className="cursor-pointer"
+                    />
                   </div>
                 </div>
               </div>
             </div>
-            <div className="sm:pl-[1.125vw] sm:pr-[1vw] sm:pt-[2.222vh] flex flex-col gap-3  mobile:pt-[1.717vh]">
+            <div className="sm:pl-[1.125vw] sm:pr-[1vw] sm:pt-[2.222vh] flex flex-col gap-4  mobile:pt-[1.717vh]">
               <AlertDialogTrigger asChild>
                 <img
                   onClick={openImageDialog}
                   src={student?.testimonial?.testimonialLink}
                   className="imageBox cursor-pointer"
+                  alt="Testimonial Image"
                 />
               </AlertDialogTrigger>
               <AlertDialogTrigger asChild>
-                <img
-                  onClick={openVideoDialog}
-                  typeof="foaf:Image"
+                <div
                   className="videoBox cursor-pointer"
-                />
+                  onClick={openVideoDialog}
+                  style={{ position: "relative", display: "inline-block" }}
+                >
+                  <img
+                    typeof="foaf:Image"
+                    src={student?.photoLink}
+                    alt="Video Thumbnail"
+                    style={{
+                      display: "block",
+                      width: "6.797vw",
+                      height: "10.056vh",
+                      borderRadius: "5px",
+                      objectFit: "cover",
+                    }}
+                  />
+                  <img
+                    src="../play_button_placements.svg"
+                    alt="Play Button"
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
               </AlertDialogTrigger>
             </div>
             {imageDialog && (

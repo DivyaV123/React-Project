@@ -14,7 +14,7 @@ function FaqHome({ page, questions, courseDetails, faqData, mainfaqData }) {
                     {'Frequently Asked Questions'}
                 </h1>
                 {/* {page !== 'course' && page !== 'branch' && ( */}
-                <span className='text-[0.875rem] mobile:text-[3.256vw] text-dark-gray font-normal flex justify-center items-center'>
+                <span className='text-[0.875rem] mobile:text-[3.256vw] text-[#454545] font-normal flex justify-center items-center'>
                     Often asked questions from our wonderful partners
                 </span>
                 {/* )} */}

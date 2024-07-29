@@ -31,7 +31,7 @@ const HiringModal = ({ isModalOpen, selectedCity, activeTab, handleCloseModal, s
       <div className="modal">
         <div className="modal-header pb-[3.889vh] mobile:pb-[0.889vh] mobile:mx-[2vw] sm:px-[1.25vw]">
         <p className='font-semibold text-[1.875vw] mobile:text-[3.875vw]'>Request a call back</p>
-          <button className="close-button" onClick={handleCloseModal}>
+          <button className="close-button h-10 rounded-full w-[3.125vw]" onClick={handleCloseModal}>
             &times;
           </button>
         </div>

@@ -21,7 +21,7 @@ function RelevantTraining() {
         setActive(false);
     };
     return (
-        <section className='sm:grid grid-cols-2 gap-4 mt-6 mb-8 mobile:flex mobile:flex-col-reverse'>
+        <section className='sm:grid grid-cols-2 gap-4 mt-[3.333vh] mb-8 mobile:hidden mobile:flex-col-reverse'>
             <Fade left duration={1000} delay={0}>
                 <aside className='flex items-center'>
                     <div>
@@ -29,31 +29,31 @@ function RelevantTraining() {
                             <h1 className='font-bold text-black text-header flex justify-center mb-6 mobile:text-[6.512vw] mobile:mb-[2.575vh] tabView:text-[2.688vw]'>
                                 Industry-Relevant Training
                             </h1>
-                            <p id="tagline tabView:choose_para_tab" className='text-dark-gray flex-col item-center text-center text-[18px] mt-6 mobile:mt-[2.575vh] mobile:text-[4.186vw] tabView:text-[1.613vw]'>
+                            <p id="tagline tabView:choose_para_tab" className='text-[#454545] flex-col item-center fulljustify text-[1.406vw]  mt-[3.333vh] mobile:mt-[2.575vh] mobile:text-[4.186vw] tabView:text-[1.613vw]'>
                                 At {domainVariable}, we are committed to providing industry-relevant training that aligns with the current trends and technologies in the IT sector. Our expert-led courses ensure that students gain the practical, in-demand skills needed to excel in today's competitive job market.
                             </p>
                         </header>
-                        <article className='flex justify-start align-start mt-6 mobile:mt-[2.575vh]'>
+                        <article className='flex justify-start align-start mt-[3.333vh] mobile:mt-[2.575vh]'>
                             <aside className='w-[100%]'>
                                 <h1 style={{
                                     backGround: "-webkit-linear-gradient(#eee, #333)",
                                     webkitBackgroundClip: "text",
                                     webkitTextFillColor: "transparent",
-                                }} className='gradient-text font-extra-bold text-medium text-xl opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
+                                }} className='gradient-text font-extra-bold text-medium text-[1.875vw] opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
                                     100+
                                 </h1>
-                                <p className='text-brown txet-normal flex justify-center  text-center mobile:text-[3.721vw] tabView:text-[1.882vw]'>Industry-relevant <br />technologies are offered</p>
+                                <p className='text-brown txet-normal text-[1.25vw] flex justify-center  text-center mobile:text-[3.721vw] tabView:text-[1.882vw]'>Industry-relevant <br />technologies are offered</p>
                             </aside>
                             <aside className='w-[100%]'>
-                                <h1 className='gradient-text  font-extra-bold text-xl opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
+                                <h1 className='gradient-text  font-extra-bold text-[1.875vw] opacity-100 flex justify-center mobile:text-[5.581vw] mobile:pb-[0.644vh]'>
                                     90+
                                 </h1>
-                                <p className='text-brown text-normal flex justify-center  text-center mobile:text-[3.721vw] tabView:text-[1.882vw]'>Training Institutes <br /> all over India</p>
+                                <p className='text-brown text-normal text-[1.25vw] flex justify-center  text-center mobile:text-[3.721vw] tabView:text-[1.882vw]'>Training Institutes <br /> all over India</p>
                             </aside>
                         </article>
-                        <article className='flex justify-center mt-6 mobile:mt-[2.575vh]'>
+                        <article className='flex justify-center mt-[3.333vh] mobile:mt-[2.575vh]'>
                             <Button
-                                className='bg-gradient text-white rounded w-[11.719vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw] tabView:px-4 tabView:py-3 tabView:flex tabView:items-center tabView:w-auto tabView:h-auto'
+                                className='bg-gradient text-[1.25vw] text-white rounded w-[11.719vw] h-[3.75vw] mobile:h-[5.15vh] mobile:w-[31.628vw] mobile:text-[3.721vw] tabView:px-4 tabView:py-3 tabView:flex tabView:items-center tabView:w-auto tabView:h-auto' 
                                 title="Enquire Now"
                                 onClick={handleCardClick}
                             />

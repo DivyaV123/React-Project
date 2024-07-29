@@ -45,7 +45,7 @@ function ContactSection() {
                         />
                         <span>Request a call back</span>
                     </div>}
-                    className='rounded-md border h-[2.656vw] w-[14.219vw] mobile:w-[42.326vw] mobile:h-[3.648vh] border-[#454545] text-[0.75rem] mobile:text-[2.791vw] text-dark-gray'
+                    className='rounded-md border h-[2.656vw] w-[14.219vw] mobile:w-[42.326vw] mobile:h-[3.648vh] border-[#454545] text-[0.75rem] mobile:text-[2.791vw] text-[#454545]'
                 />
                 {/* <Button
                     title={<div className='flex gap-2'>

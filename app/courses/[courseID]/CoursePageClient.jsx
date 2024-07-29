@@ -39,7 +39,7 @@ const CoursePageClient = () => {
   useEffect(() => {
     if (courseDetails?.data?.mode) {
       if (mode==="Online") {
-        setTypeOfLearning("ONLINECLASSES");
+        setTypeOfLearning("ONLINE_CLASSES");
       } else {
         setTypeOfLearning(courseDetails.data.mode[0]);
       }

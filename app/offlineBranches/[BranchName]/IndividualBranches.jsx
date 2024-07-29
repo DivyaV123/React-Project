@@ -1,117 +1,104 @@
 "use client";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import "../IndividualBranches.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useRouter } from "next/navigation";
-import { OFFLINE_CENTRES,OFFLINE_BRANCHES } from "@/lib/RouteConstants";
-import Svg from "@/components/commonComponents/Svg/Svg";
-import { svgicons } from "@/components/assets/icons/svgassets";
+import {  OFFLINE_BRANCHES } from "@/lib/RouteConstants";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { truncateText } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-} from "@/components/ui/carousel";
-
 const IndividualBranches = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const [branchName] = pathname.split("/").slice(2);
+  const [branchPath] = pathname.split("/").slice(2);
+  const [branchName, branchcountry] = branchPath.split(",");
+  const decodeCountry = decodeURIComponent(branchcountry);
+
   const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery();
-  const [currentSlide, setCurrentSlide] = useState(0);
-  const [initialLoad, setInitialLoad] = useState(true);
-  // Assume 10 cities per view
-  const citiesPerView = 10;
-  let newNavCities = homeBranchData?.data[0].cities?.map((element) => {
+
+  const [countryTab, setCountryTab] = useState("India");
+  const [activeTab, setActiveTab] = useState(true);
+  const { setSelectedCourseId } = useContext(GlobalContext);
+
+  const filterCountryObj = homeBranchData?.data?.filter(
+    (ele) => ele?.countryName === countryTab
+  );
+
+  let newNavCities = filterCountryObj?.[0]?.cities?.map((element) => {
     return {
       name: element.cityName,
       course: element.courses,
     };
   });
 
-  // Total cities
-  const totalCities = newNavCities?.length;
-  // Check if the city from the URL is in the initial set
-  const cityIndex = newNavCities?.findIndex(city => city.name === branchName);
-  const isCityInInitialSet = cityIndex < citiesPerView;
-
-  if (branchName && newNavCities && !isCityInInitialSet) {
-    // Find the city object
-    const branchCity = newNavCities.find(city => city.name === branchName);
-
-    if (branchCity) {
-      // Remove the city from its current position
-      newNavCities = newNavCities.filter(city => city.name !== branchName);
-
-      // Insert the city just before Bhubaneswar
-      newNavCities.splice(citiesPerView - 1, 0, branchCity);
-    }
-  }
-  const {setSelectedCourseId } = useContext(GlobalContext);
-
   const selectedCity = newNavCities?.find((city) => city.name === branchName);
 
   const handleCourseRoute = (e, course) => {
     e.preventDefault();
-    router.push(`${OFFLINE_BRANCHES}/${branchName}/${course}`);
+    router.push(`${OFFLINE_BRANCHES}/${branchName},${countryTab}/${course}`);
     setSelectedCourseId(course);
   };
 
-  const handlePrevious = () => {
-    setCurrentSlide((prev) => (prev > 0 ? prev - 1 : totalCities - citiesPerView));
+  useEffect(() => {
+    setCountryTab(decodeCountry);
+  }, [decodeCountry]);
+
+  const handleCountryTab = (country, ele) => {
+    const cityTab = ele.cities[0].cityName;
+    router.push(`${OFFLINE_BRANCHES}/${cityTab},${country}`);
+    if (country === countryTab) {
+      setActiveTab(true);
+    } else {
+      setActiveTab(false);
+    }
   };
 
-  const handleNext = () => {
-    setCurrentSlide((prev) => (prev < totalCities - citiesPerView ? prev + 1 : 0));
+  const handleBranchClick = (cityName) => {
+    router.push(`${OFFLINE_BRANCHES}/${cityName},${countryTab}`);
   };
-
-  const currentCities = newNavCities?.slice(currentSlide, currentSlide + citiesPerView);
 
   return (
-    <div className="w-full">
-      <header className="offlineHeader">Our Offline Centres</header>
+    <div className="w-full cityNavbar">
+      <header className="offlineHeader w-[87.5vw] m-auto">
+        Our Offline Centres
+      </header>
+      <section className="flex gap-6 w-[87.5vw] m-auto  pt-4  items-center pb-4">
+        {homeBranchData?.data?.map((ele) => {
+          const countryName =
+            ele.countryName === "United Kingdom"
+              ? "UK"
+              : ele.countryName === "United States of America"
+              ? "USA"
+              : ele.countryName;
+
+          return (
+            <button
+              className={`text-[0.938vw] font-bold ${
+                ele.countryName === decodeCountry ? "activecountry" : ""
+              }`}
+              onClick={() => handleCountryTab(ele.countryName, ele)}
+              key={ele.countryName}
+            >
+              {countryName}
+            </button>
+          );
+        })}
+      </section>
       <section className="justify-center citySection w-[87.5vw]  mobile:w-[92.558vw] m-auto pt-[1.667vh] pb-[8.889vh]">
-        <div className="flex justify-between items-center gap-1 cityNavbar">
-          {/* <div onClick={handlePrevious}>
-            <Svg
-              className="h-[3.004vh] w-[3.86vw]"
-              width={svgicons.corasalArrowLeft[0]}
-              height={svgicons.corasalArrowLeft[1]}
-              viewBox={svgicons.corasalArrowLeft[2]}
-              icon={svgicons.corasalArrowLeft[3]}
-              color={svgicons.corasalArrowLeft[4]}
-            />
-          </div> */}
-          {/* <Carousel>
-            <CarouselContent page="offlineBranches">
-              <CarouselItem> */}
-                <div className="flex items-center justify-evenly w-full">
-                  {newNavCities?.map((ele, index) => (
-                    <div
-                      onClick={() => router.push(`${OFFLINE_BRANCHES}/${ele.name}`)}
-                      className={` flex justify-center sm:p-1 items-center mobile:w-[25vw] mobile:text-[2.791vw]  py-[1.111vh] mobile:py-[0.858vh] text-[0.938vw]  ${ele.name === branchName ? "activeCity" : ""
-                        }`}
-                      key={index}
-                    >
-                      <button>{ele.name}</button>
-                    </div>
-                  ))}
-                </div>
-              {/* </CarouselItem>
-            </CarouselContent>
-          </Carousel> */}
-          {/* <div onClick={handleNext}>
-            <Svg
-              className="h-[3.004vh] w-[3.86vw]"
-              width={svgicons.corasalArrowRight[0]}
-              height={svgicons.corasalArrowRight[1]}
-              viewBox={svgicons.corasalArrowRight[2]}
-              icon={svgicons.corasalArrowRight[3]}
-              color={svgicons.corasalArrowRight[4]}
-            />
-          </div> */}
+        <div className="flex justify-between items-center gap-1 ">
+          <div className="flex  items-center  sm:flex-wrap sm:gap-2 w-full">
+            {newNavCities?.map((ele, index) => (
+              <button
+                onClick={() => handleBranchClick(ele.name)}
+                className={`rounded-lg flex justify-center sm:px-[1.25vw] items-center mobile:w-[25vw] mobile:text-[2.791vw]  py-[1.111vh] mobile:py-[0.858vh] text-[0.938vw]  ${
+                  ele.name === branchName ? "activeCity" : "inActiveCity"
+                }`}
+                key={index}
+              >
+                {ele.name}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="sm:pt-[3.333vh] mobile:py-[2.575vh]">
@@ -119,7 +106,7 @@ const IndividualBranches = () => {
             Select Course to View our offline Centres
           </p>
         </div>
-        <section className="w-[80vw] m-auto pt-[1.667vh] flex flex-wrap mobile:flex-col gap-4">
+        <section className="w-[87.5vw] m-auto pt-[1.667vh] flex flex-wrap mobile:flex-col gap-6">
           {selectedCity &&
             selectedCity?.course?.map((course, index) => (
               <div
@@ -138,7 +125,10 @@ const IndividualBranches = () => {
                   </h3>
                 </div>
                 <div>
-                  <article title={course.courseDescription} className="text-[#575757] text-[0.866vw] pt-[2.222vh] mobile:text-[2.558vw] mobile:pt-[0.858vh]">
+                  <article
+                    title={course.courseDescription}
+                    className="text-[#575757] text-[0.866vw] pt-[2.222vh] mobile:text-[2.558vw] mobile:pt-[0.858vh]"
+                  >
                     {truncateText(course.courseDescription, 100)}
                   </article>
                 </div>

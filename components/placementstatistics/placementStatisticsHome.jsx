@@ -90,14 +90,13 @@ const disableIcons =()=>{
   setPlacedCheckedIcon(false)
   setSideBarBtn('')
 }
+console.log(page,"page")
   return (
     <section className="sm:w-[87.5vw] sm:m-auto mobile:w-full  align-center sm:mt-8 bg-Pinkgradient-tab tabView:w-full">
       <header>
         <Slide top cascade>
           <h1
-            className={`font-bold text-[2rem] mobile:text-[5.581vw] text-black flex ${
-              page !== "course" && "branch" ? "justify-center" : "justify-start"
-            } sm:mb-8 sm:mt-8 sm:h-12 mobile:bg-Pinkgradient  mobile:pt-[2.575vh] mobile:pb-[1.717vh] mobile:pl-[5.581vw]} tabView:text-[3.226vw] tabView:pt-10`}
+            className={`font-bold text-[2rem] mobile:text-[5.581vw] text-black flex ${page === "course" || "branch" ? "justify-start" : "justify-center"} sm:mb-8 sm:mt-8 sm:h-12 mobile:bg-Pinkgradient  mobile:pt-[2.575vh] mobile:pb-[1.717vh] mobile:pl-[5.581vw]} tabView:text-[3.226vw] tabView:pt-10`}
           >
             Our Placement Statistics
           </h1>
@@ -138,7 +137,7 @@ const disableIcons =()=>{
             <h1 className="font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw] tabView:text-[2.688vw] tabView:mt-7 tabView:ml-3.5">
               From Various Degree
             </h1>
-            <div className="flex flex-wrap mobile:gap-[0.75rem] gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[4.292vh]">
+            <div className="flex flex-wrap mobile:gap-2.5 mobile:justify-between gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[4.292vh]">
               {degrees.map((element) => {
                 const href =
                   element === "More..."
@@ -149,7 +148,7 @@ const disableIcons =()=>{
                     <Badge
                     onClick={disableIcons}
                       variant=""
-                      className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh] tabView:text-[2.419vw] tabView:w-28"
+                      className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh] badgeHover tabView:text-[2.419vw] tabView:w-28"
                     >
                       {element}
                     </Badge>
@@ -162,7 +161,7 @@ const disableIcons =()=>{
               <h1 className="font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw] tabView:text-[2.688vw] tabView:ml-2.5">
                 From Various Branches
               </h1>
-              <div className="flex flex-wrap mobile:gap-[0.75rem]  sm:gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[9.442vh]">
+              <div className="flex flex-wrap mobile:gap-2.5 mobile:justify-between  sm:gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[9.442vh]">
                 {branches.map((element) => {
                   const originalStream = invertedBranchAbbreviations[element];
                   const href =
@@ -176,7 +175,7 @@ const disableIcons =()=>{
                       <Badge
                         variant=""
                         onClick={disableIcons}
-                        className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh] tabView:text-[2.419vw] tabView:w-28"
+                        className="font-bold text-[1.563vw] mobile:text-[4.186vw] mobile:py-[1.502vh] badgeHover tabView:text-[2.419vw] tabView:w-28"
                       >
                         {element}
                       </Badge>
