@@ -107,10 +107,10 @@ const IndividualCentres = () => {
                       )
                     }
                     key={index}
-                    className={`w-full sm:pr-6 sm:pl-4 sm:py-3 flex items-center gap-2 cursor-pointer ${
+                    className={`w-full sm:pr-6 sm:pl-4 sm:py-2.5 flex items-center gap-2.5 cursor-pointer mb-3 ${
                       String(item.courseId) === String(courseId)
                         ? "courseName"
-                        : ""
+                        : "bg-white rounded-md"
                     }`}
                   >
                     <img
@@ -122,7 +122,7 @@ const IndividualCentres = () => {
                       className={`text-[0.75rem] mobile:text-[2.791vw] font-medium ${
                         String(item.courseId) === String(courseId)
                           ? "text-white"
-                          : "text-[#454545]"
+                          : "text-[#454545] "
                       }`}
                     >
                       {item.courseName}
