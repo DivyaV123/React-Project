@@ -90,7 +90,7 @@ const disableIcons =()=>{
   setPlacedCheckedIcon(false)
   setSideBarBtn('')
 }
-console.log(page,"page")
+
   return (
     <section className="sm:w-[87.5vw] sm:m-auto mobile:w-full  align-center sm:mt-8 bg-Pinkgradient-tab tabView:w-full">
       <header>

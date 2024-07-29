@@ -51,34 +51,34 @@ const PlacementContent = ({ counsellorFilterResponse }) => {
                   <div className="flex gap-1 studentDetails mobile:pb-[1.609vh]">
                     <div>
                       <div className="studentDetails flex justify-center">
-                        {student?.mastersDegree?.mastersDegreeName
-                          ? student?.mastersDegree?.mastersDegreeName
-                          : student?.degree?.degreeName}
+                        {student?.mastersDegree?.mastersDegreeName ??
+                          student?.degree?.degreeName}
                       </div>
                       <div className="educationDetails">Degree</div>
                     </div>
                     <div>|</div>
                     <div>
                       <div className="studentDetails flex justify-center">
-                        {extractText(student?.degree?.degreeStream)}
+                        {extractText(
+                          student?.mastersDegree?.mastersDegreeStream ??
+                            student?.degree?.degreeStream
+                        )}
                       </div>
                       <div className="educationDetails">Stream</div>
                     </div>
                     <div>|</div>
                     <div>
                       <div className="studentDetails flex justify-center">
-                        {student?.mastersDegree?.mastersDegreeAggregate
-                          ? student?.mastersDegree?.mastersDegreeAggregate
-                          : student?.degree?.degreeAggregate}
+                        {student?.mastersDegree?.mastersDegreeAggregate ??
+                          student?.degree?.degreeAggregate}
                       </div>
                       <div className="educationDetails">Aggregate</div>
                     </div>
                     <div>|</div>
                     <div>
                       <div className="studentDetails flex justify-center">
-                        {student?.mastersDegree?.mastersDegreeYop
-                          ? student?.mastersDegree?.mastersDegreeYop
-                          : student?.degree?.degreeYop}
+                        {student?.mastersDegree?.mastersDegreeYop ??
+                          student?.degree?.degreeYop}
                       </div>
                       <div className="educationDetails">YOP</div>
                     </div>

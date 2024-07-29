@@ -4,11 +4,18 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const PercentageFilter = () => {
-  const { filteringData, setFilteringData, handleCounsellorCommonFilter,fromPercentage, setFromPercentage,
-    toPercentage, setToPercentage,selectedPercentage, setSelectedPercentage
-   } =
-    useContext(GlobalContext);
-
+  const {
+    filteringData,
+    setFilteringData,
+    handleCounsellorCommonFilter,
+    fromPercentage,
+    setFromPercentage,
+    toPercentage,
+    setToPercentage,
+    selectedPercentage,
+    setSelectedPercentage,
+  } = useContext(GlobalContext);
+  const [isExpanded, setIsExpanded] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const percentageType = ["Lessthansixty", "Throughoutsixty"];
 
@@ -22,12 +29,14 @@ const PercentageFilter = () => {
   const validateTo = (value) => {
     if (isNaN(value) || value < 0 || value > 100) {
       return "To value should be between 0 and 100";
-    } else if (fromPercentage !== "" && parseFloat(fromPercentage) >= parseFloat(value)) {
+    } else if (
+      fromPercentage !== "" &&
+      parseFloat(fromPercentage) >= parseFloat(value)
+    ) {
       return "To value should be greater than From value";
     }
     return "";
   };
-  
 
   const handleFromChange = (e) => {
     const value = e.target.value;
@@ -44,14 +53,18 @@ const PercentageFilter = () => {
   };
 
   const handleApplyFilter = () => {
-    if (validateFrom(fromPercentage) === '' && (validateTo(toPercentage) === '' || toPercentage === '')) {
-      const percentageRange = toPercentage !== '' ? [fromPercentage, toPercentage] : [fromPercentage];
-      setFilteringData(prevFilteringData => ({
+    if (
+      validateFrom(fromPercentage) === "" &&
+      (validateTo(toPercentage) === "" || toPercentage === "")
+    ) {
+      const percentageRange =
+        toPercentage !== "" ? [fromPercentage, toPercentage] : [fromPercentage];
+      setFilteringData((prevFilteringData) => ({
         ...prevFilteringData,
-        percentage: percentageRange
+        percentage: percentageRange,
       }));
     } else {
-      setErrorMessage('Please enter valid percentage values');
+      setErrorMessage("Please enter valid percentage values");
     }
   };
 
@@ -60,9 +73,9 @@ const PercentageFilter = () => {
     setFromPercentage("");
     setToPercentage("");
     const selectedValue = percentageType[index].toLowerCase();
-    setFilteringData(prevFilteringData => ({
+    setFilteringData((prevFilteringData) => ({
       ...prevFilteringData,
-      percentage: [selectedValue]
+      percentage: [selectedValue],
     }));
   };
   const isApplyDisabled = !(
@@ -71,54 +84,70 @@ const PercentageFilter = () => {
     parseFloat(fromPercentage) < parseFloat(toPercentage) &&
     errorMessage === ""
   );
-  
 
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
   return (
-    <div className="px-[1.875vw] py-[2.778vh] timePeriod mobile:px-[5.875vw] mobile:pt-[1.778vh]">
+    <div className="px-[1.875vw] py-[2.778vh] thinCloseBorder mobile:px-[5.875vw] mobile:pt-[1.778vh]">
       <div className="flex justify-between pb-[1.111vh] mobile:hidden">
         <p className="text-[0.938vw] text-[#002248] font-semibold">
           Percentage
         </p>
-        <img src="../../down.svg" />
-      </div>
-      <div className="flex gap-2.5 items-center">
-        <input
-          type="number"
-          placeholder="From"
-          autoFocus
-          className="filterInput w-[7.75vw] pl-[0.625vw]"
-          value={fromPercentage}
-          onChange={handleFromChange}
-          onBlur={() => setErrorMessage(validateFrom(fromPercentage))}
+        <img
+          src={isExpanded ? "../../icon_up.svg" : "../../icon_down.svg"}
+          onClick={toggleExpand}
+          className="cursor-pointer "
         />
-        <input
-          type="number"
-          placeholder="To"
-          className="filterInput w-[7.75vw] pl-[0.625vw]"
-          value={toPercentage}
-          onChange={handleToChange}
-          onBlur={() => setErrorMessage(validateTo(toPercentage))}
-        />
-        <img src="../../checked.svg" onClick={!isApplyDisabled ? handleApplyFilter : null} className={`applyFilterButton mobile:w-[5.875vw] cursor-pointer w-[1.875vw] h-[3.333vh] ${isApplyDisabled ? 'disabled' : ''}`}/>
       </div>
-      {errorMessage && (
-        <div className="">
-          <p className="text-red-500 font-bold text-[0.625vw]">
-            {errorMessage}
-          </p>
-        </div>
+      {isExpanded && (
+        <>
+          <div className="flex gap-2.5 items-center">
+            <input
+              type="number"
+              placeholder="From"
+              autoFocus
+              className="filterInput w-[7.75vw] pl-[0.625vw]"
+              value={fromPercentage}
+              onChange={handleFromChange}
+              onBlur={() => setErrorMessage(validateFrom(fromPercentage))}
+            />
+            <input
+              type="number"
+              placeholder="To"
+              className="filterInput w-[7.75vw] pl-[0.625vw]"
+              value={toPercentage}
+              onChange={handleToChange}
+              onBlur={() => setErrorMessage(validateTo(toPercentage))}
+            />
+            <img
+              src="../../checked.svg"
+              onClick={!isApplyDisabled ? handleApplyFilter : null}
+              className={`applyFilterButton mobile:w-[5.875vw] cursor-pointer w-[1.875vw] h-[3.333vh] ${
+                isApplyDisabled ? "disabled" : ""
+              }`}
+            />
+          </div>
+          {errorMessage && (
+            <div className="">
+              <p className="text-red-500 font-bold text-[0.625vw]">
+                {errorMessage}
+              </p>
+            </div>
+          )}
+          <div className="py-[2.778vh]">
+            {percentageType.map((item, index) => (
+              <RadioButton
+                key={index}
+                id={index}
+                label={item}
+                checked={selectedPercentage === index}
+                onChange={() => handleRadioChange(index)}
+              />
+            ))}
+          </div>
+        </>
       )}
-      <div className="py-[2.778vh]">
-        {percentageType.map((item, index) => (
-          <RadioButton
-            key={index}
-            id={index}
-            label={item}
-            checked={selectedPercentage === index}
-            onChange={() => handleRadioChange(index)}
-          />
-        ))}
-      </div>
     </div>
   );
 };

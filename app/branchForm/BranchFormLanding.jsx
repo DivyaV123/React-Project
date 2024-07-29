@@ -174,6 +174,7 @@ function BranchFormLanding() {
         setFaqEditIndex(null);
     };
     const handleOnBlur = (id) => {
+        formikDetails.setFieldTouched(id, true);
         if (!phoneValue) {
             setError({ ...error, [id]: true });
         } else if (!isValidPhoneNumber("+" + phoneValue?.toString())) {

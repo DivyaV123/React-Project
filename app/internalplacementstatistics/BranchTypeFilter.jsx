@@ -5,25 +5,29 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 const BranchTypeFilter = () => {
   const { handleCounsellorCommonFilter, selectedBranchType, setSelectedBranchType } =
     useContext(GlobalContext);
+    const [isExpanded, setIsExpanded] = useState(true);
   const branchType = ["Jspiders", "Qspiders", "Pyspiders", "Prospiders"];
 
   const renderCheckbox = (item) => (
     <Checkbox
       key={item}
-      id={item}  // Use branch type value as the id
+      id={item}  
       label={item}
       checked={selectedBranchType.includes(item)}
       onChange={() =>
         handleCounsellorCommonFilter(
-          item,  // Pass the branch type value instead of index
+          item,  
           selectedBranchType,
           setSelectedBranchType,
-          branchType,  // Use the full branchType array for response
+          branchType, 
           "branchType"
         )
       }
     />
   );
+  const toggleExpand = () => {
+    setIsExpanded(!isExpanded);
+  };
 
   return (
     <>  
@@ -31,11 +35,17 @@ const BranchTypeFilter = () => {
         <p className="text-[0.938vw] text-[#002248] font-semibold mobile:text-[3.938vw]">
           BranchType
         </p>
-        <img src="../../down.svg" />
+        <img
+          src={isExpanded ? "../../icon_up.svg" : "../../icon_down.svg"}
+          onClick={toggleExpand}
+          className="cursor-pointer"
+        />
       </div>
+      {isExpanded && (
       <>
         {branchType?.map((item) => renderCheckbox(item))}
       </>
+      )}
     </>
   );
 };
