@@ -1,6 +1,6 @@
 "use client";
 import React, { useState } from "react";
-import CommonBranch from "../offlineBranches/[BranchName]/[offlineCentres]/CommonBranch";
+import CommonBranch from "../../offlineBranches/[BranchName]/[offlineCentres]/CommonBranch";
 import "./AllBranchCard.scss";
 import { useGetAllBranchCourseQuery } from "@/redux/queries/getBranchCourseApi";
 import { COMBINED_BRANCHES } from "@/lib/RouteConstants";
