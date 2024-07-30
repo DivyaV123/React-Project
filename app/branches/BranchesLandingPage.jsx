@@ -39,12 +39,24 @@ function BranchesLandingPage({ BranchDetails }) {
     // Calculate the number of slides
     const totalSlides = Math.ceil(gallery.length / imagesPerSlide);
 
+    // const handlePrevious = () => {
+    //     setCurrentSlide((prev) => (prev > 0 ? prev - 1 : totalSlides - 1));
+    // };
+
+    // const handleNext = () => {
+    //     setCurrentSlide((prev) => (prev < totalSlides - 1 ? prev + 1 : 0));
+    //    
+    // };
     const handlePrevious = () => {
-        setCurrentSlide((prev) => (prev > 0 ? prev - 1 : totalSlides - 1));
+        if (currentSlide > 0) {
+            setCurrentSlide(prev => prev - 1);
+        }
     };
 
     const handleNext = () => {
-        setCurrentSlide((prev) => (prev < totalSlides - 1 ? prev + 1 : 0));
+        if (currentSlide < totalSlides - 1) {
+            setCurrentSlide(prev => prev + 1);
+        }
     };
 
     // Determine the images for the current slide
@@ -83,7 +95,7 @@ function BranchesLandingPage({ BranchDetails }) {
                     {/* {/ <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full object-cover' src={selectedImg} /> /} */}
                 </figure>
                 <article className='flex gap-2 pt-[2.222vh] mobile:hidden'>
-                    <div onClick={handlePrevious} className='cursor-pointer'>
+                    <div onClick={handlePrevious}  className={` ${currentSlide === 0 ? 'disabled opacity-50 cursor-default' : 'cursor-pointer'}`}>
                         <Svg
                             className=''
                             width={svgicons.corasalArrowLeft[0]}
@@ -141,7 +153,7 @@ function BranchesLandingPage({ BranchDetails }) {
 
                         </CarouselContent>
                     </Carousel>
-                    <div onClick={handleNext} className='cursor-pointer'>
+                    <div onClick={handleNext} className={` ${currentSlide === totalSlides - 1 ? 'disabled opacity-50 cursor-default' : 'cursor-pointer'}`}>
                         <Svg
                             className=''
                             width={svgicons.corasalArrowRight[0]}
