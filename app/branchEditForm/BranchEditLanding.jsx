@@ -66,8 +66,7 @@ function BranchEditLanding() {
             .of(Yup.string().required("Mobile number is required"))
             .min(1, "At least one phone number is required"),
         gmail: Yup.array()
-            .of(Yup.string().email("Invalid email").required("Gmail is required"))
-            .min(1, "At least one Gmail is required"),
+            .of(Yup.string().email("Invalid email").required("Gmail is required")),
         country: Yup.string().required("country is required"),
         state: Yup.string().required("state is required"),
         city: Yup.string().required("city is required"),
@@ -198,7 +197,12 @@ function BranchEditLanding() {
         onSubmit: async (values) => {
             let phoneNumbers = []
             values.phone.map((num) => {
-                phoneNumbers.push("+" + num)
+                if (!num.includes("+")) {
+                    phoneNumbers.push("+" + num)
+                } else {
+
+                }
+
             })
             const branch = {
                 branchId: branchDropDownDetails.data.branchId,
@@ -215,7 +219,7 @@ function BranchEditLanding() {
                 },
                 gallery: branchDropDownDetails.data.gallery,
                 branchImage: branchDropDownDetails.data.branchImage,
-                contacts: phoneNumbers,
+                contacts: values.phone,
                 faqs: values.faqs.map((faq) => ({
                     question: faq.question,
                     answer: faq.answer,
@@ -246,6 +250,11 @@ function BranchEditLanding() {
             }
             try {
                 const response = await EditBranch({ bodyData: payload }).unwrap();
+                formikDetails.resetForm();
+                if (response.statusCode === 201) {
+                    setIsSelectedBranchEdit(false)
+                    alert("selected Batch edited successfully")
+                }
             } catch (err) {
                 console.error(err, "Error from loginAPI");
             }
