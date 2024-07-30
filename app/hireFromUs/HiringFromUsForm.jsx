@@ -8,7 +8,6 @@ import "react-phone-input-2/lib/material.css";
 import "./HirefromusLanding.scss";
 import { useEnquriesMutation } from "@/redux/queries/enquriesApi";
 import { toast } from "@/components/ui/use-toast";
-
 const HiringFromUsForm = ({ activeTab }) => {
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("");
@@ -85,10 +84,8 @@ const HiringFromUsForm = ({ activeTab }) => {
         });
     }
   };
-
   const [enquirie, { data: loginData, error: submitError, isLoading }] =
     useEnquriesMutation();
-
   const formik = useFormik({
     initialValues: getInitialValues(),
     validationSchema: getValidationSchema(),
@@ -133,7 +130,6 @@ const HiringFromUsForm = ({ activeTab }) => {
   });
 
   const handleOnBlur = (id) => {
-    formik.setFieldTouched(id, true);
     if (!phoneValue) {
       setError({ ...error, [id]: true });
     } else if (!isValidPhoneNumber("+" + phoneValue?.toString()) || phoneValue.startsWith('911234')) {
@@ -142,10 +138,9 @@ const HiringFromUsForm = ({ activeTab }) => {
       setError({ ...error, [id]: false, validPhone: false });
     }
   };
-
   const handlePhoneChange = (value, country) => {
     if (country?.dialCode !== countryCode) {
-      setPhoneValue('');
+      setPhoneValue(country.dialCode);
       formik.setFieldValue('mobileNumber', country.dialCode);
     } else {
       setPhoneValue(value);
@@ -180,7 +175,7 @@ const HiringFromUsForm = ({ activeTab }) => {
             }`}
           />
           {formik.touched.fullName && formik.errors.fullName ? (
-            <div className="text-red-500 absolute text-sm">
+            <div className="text-red-500 absolute  text-sm">
               {formik.errors.fullName}
             </div>
           ) : null}
@@ -201,11 +196,17 @@ const HiringFromUsForm = ({ activeTab }) => {
             country={"in"}
             name="mobileNumber"
             id="mobileNumber"
-            value={phoneValue}
+            value={formik.values.mobileNumber}
             className="outline-none"
             onChange={(e, country) =>handlePhoneChange(e,country)}
+            // style={{
+            //   border: `${error.mobileNumber || error.validPhone ? inputBorderErr : inputBorder}`,
+            //   borderRadius: "5px",
+            // }}
             style={{
-              border: `${error.mobileNumber || error.validPhone ? inputBorderErr : inputBorder}`,
+              border: `${
+                error.phone || error.validPhone ? inputBorderErr : inputBorder
+              }`,
               borderRadius: "5px",
             }}
             enableSearch
@@ -225,12 +226,13 @@ const HiringFromUsForm = ({ activeTab }) => {
               Mobile number is required
             </div>
           )}
-          {error.validPhone && !error.mobileNumber &&  (
+          {error.validPhone && !error.mobileNumber && (
             <div className="text-red-500 absolute text-sm">
               Invalid phone number
             </div>
           )}
         </div>
+
         {activeTab === "Corporate Training" && (
           <div className="mb-2 mobile:mb-[3vh] tabView:mb-5">
             <label htmlFor="requiredTraining" className="block font-bold mb-2">
