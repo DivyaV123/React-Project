@@ -33,7 +33,7 @@ const Branches = ({ BranchResponse }) => {
     }
   };
   return (
-    <div className="w-[81.09vw]  lg:h-[500px]">
+    <div className="w-[81.09vw] lg:h-[500px] 2xl::h-[530px] 3xl:h-[660px]">
       <section className="flex gap-6 pl-4 pt-[1.389vh] ">
         {BranchResponse?.data?.map((ele) => {
           const countryName =
@@ -58,7 +58,7 @@ const Branches = ({ BranchResponse }) => {
       </section>
       <div className="flex overflow-auto myscrollbar h-full">
         <div
-          className={`menuSidebar pt-1   xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] overflow-auto branchesScroll`}
+          className={`menuSidebar pt-1   xl:w-[18.75vw] 2xl:w-[13.75vw]  3xl:w-[10.75vw] lg:h-[500px] 3xl:h-[660px] overflow-auto branchesScroll`}
         >
           {cityData?.map((courseItem, index) => {
             return (
