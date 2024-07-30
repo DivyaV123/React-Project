@@ -30,7 +30,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
   const validationSchema = Yup.object({
     fullName: Yup.string().required("Full Name is required"),
     mobileNumber: Yup.string().required("Mobile number is required"),
-    course: Yup.string().required("course is required"),
+    course: Yup.string().required("Course is required"),
     email: Yup.string()
       .email("Invalid email address")
       .required("Email is required")
@@ -80,7 +80,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
   if (!isModalOpen) return null;
   const handlePhoneChange = (value, country) => {
     if (country?.dialCode !== countryCode) {
-      setPhoneValue('');
+      setPhoneValue(country.dialCode);
       formik.setFieldValue('mobileNumber', country.dialCode);
     } else {
       setPhoneValue(value);
@@ -134,7 +134,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal }) {
                     country={"in"}
                     name="mobileNumber"
                     id="mobileNumber"
-                    value={phoneValue}
+                    value={formik.values.mobileNumber}
                     className="outline-none"
                     onChange={(e, country) =>handlePhoneChange(e,country)}
                     inputExtraProps={{

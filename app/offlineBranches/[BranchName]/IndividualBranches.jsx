@@ -129,7 +129,7 @@ const IndividualBranches = () => {
                     title={course.courseDescription}
                     className="text-[#575757] text-[0.866vw] pt-[2.222vh] mobile:text-[2.558vw] mobile:pt-[0.858vh]"
                   >
-                    {truncateText(course.courseDescription, 100)}
+                    {truncateText(course.courseDescription, 75)}
                   </article>
                 </div>
               </div>

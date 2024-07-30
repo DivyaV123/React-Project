@@ -135,7 +135,7 @@ function ContactUsPage() {
   };
   const handlePhoneChange = (value, country) => {
     if (country?.dialCode !== countryCode) {
-      setPhoneValue('');
+      setPhoneValue(country.dialCode);
       formikDetails.setFieldValue('phone', country.dialCode);
     } else {
       setPhoneValue(value);
@@ -210,7 +210,7 @@ function ContactUsPage() {
                       country={"in"}
                       name="phone"
                       id="phone"
-                      value={phoneValue}
+                      value={formikDetails.values.phone}
                       className=""
                       onChange={(e, country) =>handlePhoneChange(e,country)}
                       //   defaultCountry={"IN"}

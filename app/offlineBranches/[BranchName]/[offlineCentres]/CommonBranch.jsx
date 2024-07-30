@@ -34,7 +34,7 @@ const CommonBranch = ({ selectedId, page }) => {
                 src="../../../../icon_outline_location.svg"
                 alt="Location"
               />
-              <p className="text-[0.625rem] text-[#575757] mobile:text-[2.326vw]">
+              <p className="text-[0.859vw] text-[#575757] mobile:text-[2.326vw]">
                 {[
                   branch?.street,
                   branch?.city,
