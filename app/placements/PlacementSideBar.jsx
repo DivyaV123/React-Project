@@ -9,6 +9,7 @@ import LineLoader from "@/components/skeletons/LineLoader";
 import NoContent from "../internalplacementstatistics/NoContent";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import PlacementFilterPopup from "./PlacementFilterPopup";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 const PlacementSideBar = ({
   counsellorFilterResponse,
   isFetching,
@@ -83,7 +84,38 @@ const PlacementSideBar = ({
       blackIcon: "../../icon_arrow.svg",
     },
   ];
+  const searchParams = useSearchParams(); // Initialize searchParams
+const pathname=usePathname()
+const params = pathname.split('/').pop();
+  const getSideBarTitleFromTimePeriod = (timePeriod) => {
+    if (!timePeriod) return "Recent Placements";
 
+    const dateRange = timePeriod.split(',').map(date => new Date(date));
+    const differenceInDays = (dateRange[1] - dateRange[0]) / (1000 * 60 * 60 * 24);
+
+    switch (differenceInDays) {
+      case 7:
+        return "Last week";
+      case 30:
+        return "Last month";
+      case 91:
+        return "Last 3 months";
+      case 182:
+        return "Last 6 months";
+      default:
+        return "Recent Placements";
+    }
+  };
+  const degree = searchParams.get('degree');
+  const stream = searchParams.get('stream');
+  const yop = searchParams.get('yop');
+  useEffect(() => {
+    const timePeriod = searchParams.get('timePeriod');
+    
+   
+    timePeriod && !degree && setSideBarBtn(getSideBarTitleFromTimePeriod(timePeriod));
+   ( params==="placements" && !timePeriod && !degree && !stream && !yop) && setSideBarBtn("Recent Placements")
+  }, [searchParams,degree,stream,yop]);
   useEffect(() => {
     if (counsellorFilterResponse) {
       if (page > 0) {

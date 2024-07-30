@@ -13,12 +13,14 @@ import { useFetchCounsellorsQuery } from "@/redux/queries/counsellorsApi";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { PLACEMENT_PATH } from "@/lib/RouteConstants";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Suspense } from 'react';
 
 const PlacementCards = () => {
   const router = useRouter();
-  const { filterPlacementData, setFilterPlacementData, placementParam, page, size, setSideBarBtn,homePlacements } = useContext(GlobalContext);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+  const { filterPlacementData, setFilterPlacementData, placementParam, page, size, setSideBarBtn, homePlacements } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const { data: counsellorFilterResponse, error, refetch, isLoading, isFetching } = useFetchCounsellorsQuery({
     pageNumber: page,
@@ -33,15 +35,15 @@ const PlacementCards = () => {
     });
   };
 
-  // Parse query parameters on initial load
+  // Parse query parameters on initial load or when URL changes
   useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
+    const params = new URLSearchParams(searchParams.toString());
     const newFilterPlacementData = {};
     params.forEach((value, key) => {
       newFilterPlacementData[key] = value.split(',');
     });
     setFilterPlacementData(newFilterPlacementData);
-  }, []);
+  }, [searchParams]);
 
   useEffect(() => {
     if(!homePlacements){
@@ -62,8 +64,8 @@ const PlacementCards = () => {
   const emptyObj = Object.keys(filterPlacementData).length === 0;
 
   useEffect(() => {
-    const searchParams = constructSearchParams();
-    const fullURL = `${PLACEMENT_PATH}${searchParams ? `?${searchParams}` : ''}`;
+    const searchParamsString = constructSearchParams();
+    const fullURL = `${PLACEMENT_PATH}${searchParamsString ? `?${searchParamsString}` : ''}`;
 
     if (!emptyObj) {
       router.push(fullURL);
