@@ -22,9 +22,9 @@ const CorporateTraining = () => {
       <CorporateTrainingLanding />
       <HiringPartners />
       <TrainingMode page='corporateTraining' />
-      <OurCourse />
+      {/* <OurCourse /> */}
       <div className='w-[87.5vw] m-auto'>
-        {/* <TrendingCourses /> */}
+        <TrendingCourses />
         <BenefitsOfTraining />
       </div>
       <ClientTesimonials />
