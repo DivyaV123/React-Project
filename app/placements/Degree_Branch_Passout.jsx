@@ -10,7 +10,7 @@ import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from 'react'
 
-const Degree_Branch_Passout = ({ isLoading }) => {
+const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
   const [isBranchMoreOpen, setIsBranchMoreOpen] = useState(false);
   const [isPassOutMoreOpen, setIsPassOutMoreOpen] = useState(false);
@@ -150,6 +150,7 @@ const Degree_Branch_Passout = ({ isLoading }) => {
   };
 
   const handleButtonClick = (item, setButtonState, key) => {
+    scrollToTop()
     resetButtonStates(key);
     setButtonState(item);
     setPlacementParam("");

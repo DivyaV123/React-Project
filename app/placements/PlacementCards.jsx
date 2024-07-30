@@ -116,7 +116,7 @@ const PlacementCards = () => {
           <OverviewCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
         )}
       </div>
-      <Degree_Branch_Passout isLoading={isLoading} />
+      <Degree_Branch_Passout isLoading={isLoading} scrollToTop={scrollToTop}/>
       <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching} />
     </Suspense>
   );
