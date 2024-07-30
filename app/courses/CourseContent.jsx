@@ -20,7 +20,9 @@ function CourseContent({ courseDetails,typeOfLearning }) {
                         return {
                             [topic.topicTitle]: topic?.subTopics?.map(subTopic => subTopic?.subTopicTitle),
                             [topic.topicPreviewDuration] : topic?.subTopics?.map(subTopic => subTopic?.subTopicPreviewDuration),
-                            [topic.topicPreviewUrl]: topic?.subTopics?.map(subTopic => subTopic?.subTopicPreviewUrl)
+                            [topic.topicPreviewUrl]: topic?.subTopics?.map(subTopic => subTopic?.subTopicPreviewUrl),
+                            [chapter.chapterModuleCount]:chapter?.chapterModuleCount,
+                            [chapter.chapterModuleDuration]:chapter?.chapterModuleDuration,
                         };
                      })
                 };
@@ -29,7 +31,6 @@ function CourseContent({ courseDetails,typeOfLearning }) {
     };
 
     const courseContentdata = transformData(courseDetails?.data?.subjects)
-
     const [openIndex, setOpenIndex] = useState(-1);
 
     const handleAccordionToggle = (index) => {
