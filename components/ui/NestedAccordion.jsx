@@ -67,24 +67,25 @@ const NestedAccordion = ({
     );
   };
   const handleVideoPreview = () => {
-    if (handleVideoPreview !== "SELFPACED") {
+    if (handleVideoPreview !== "SELF_PACED") {
       setVideoPreview(true);
     }
   };
+
   const renderContent = (content, sectionIndex) => {
     if (Array.isArray(content) && content.length > 0) {
       return content.map((item, index) => {
         const key =
           typeof item === "object" && item !== null
-            ? Object.keys(item)[0]
+            ? Object.keys(item)[1]
             : index;
         const duration =
           typeof item === "object" && item !== null
-            ? Object.keys(item)[1]
+            ? Object.keys(item)[2]
             : index;
         const videoUrl =
           typeof item === "object" && item !== null
-            ? Object.keys(item)[2]
+            ? Object.keys(item)[3]
             : index;
         const subsectionContent =
           typeof item === "object" && item !== null ? item[key] : item;
@@ -144,13 +145,16 @@ const NestedAccordion = ({
           return (
             <div key={subsectionIndex} className="sm:my-[0.833vh] ml-[1.875vw]">
               <AlertDialog popup="videopreview">
-                    <AlertDialogTrigger asChild>
-                <article className="flex justify-between pl-[2.813vw] py-[1.667vh] items-center sm:pr-[1.875vw] mobile:py-[1.288vh] mobile:pl-[3.256vw] cursor-pointer" onClick={handleVideoPreview}>
-                  {page === "course" ? (
+                <AlertDialogTrigger asChild>
+                  <article
+                    className="flex justify-between pl-[2.813vw] py-[1.667vh] items-center sm:pr-[1.875vw] mobile:py-[1.288vh] mobile:pl-[3.256vw] cursor-pointer"
+                    onClick={handleVideoPreview}
+                  >
+                    {page === "course" ? (
                       <>
                         <h1 className="flex items-center gap-x-[0.625vw] gap-2">
                           <span>
-                            {typeOfLearning !== "SELFPACED" ? (
+                            {typeOfLearning !== "SELF_PACED" ? (
                               <Svg
                                 className=""
                                 width={svgicons.smallDoc[0]}
@@ -167,8 +171,8 @@ const NestedAccordion = ({
                             {key}
                           </span>
                         </h1>
-                        {typeOfLearning === "SELFPACED" ? (
-                          <h1 className="flex items-center gap-x-[0.625vw]" >
+                        {typeOfLearning === "SELF_PACED" ? (
+                          <h1 className="flex items-center gap-x-[0.625vw]">
                             <img src="/play_button.svg" />
 
                             <span className="text-[#454545] font-medium text-[1.094vw]">
@@ -181,17 +185,20 @@ const NestedAccordion = ({
                         ) : (
                           ""
                         )}
-                    </>
-                  ) : (
+                      </>
+                    ) : (
                       <span className="text-[#454545] font-medium text-[1.094vw] mobile:text-[2.791vw]">
-                      {item}
-                    </span>
-                  )}
-                </article>
-                  </AlertDialogTrigger>
-                  {
-                    videoPreview && <VideoPreview videoUrl={videoUrl} setVideoPreview={setVideoPreview}/>
-                  }
+                        {item}
+                      </span>
+                    )}
+                  </article>
+                </AlertDialogTrigger>
+                {videoPreview && (
+                  <VideoPreview
+                    videoUrl={videoUrl}
+                    setVideoPreview={setVideoPreview}
+                  />
+                )}
               </AlertDialog>
             </div>
           );
@@ -206,6 +213,10 @@ const NestedAccordion = ({
     return data?.map((section, index) => {
       const sectionKey = Object.keys(section)[0];
       const sectionContent = section[sectionKey];
+      const moduleCount = Object.keys(sectionContent[0])[0];
+      const moduleDuration = parseFloat(
+        Object.keys(sectionContent[0])[4]
+      ).toFixed(2);
       // Only render the section if the subTopics array length is greater than 0
       if (Array.isArray(sectionContent) && sectionContent.length > 0) {
         return (
@@ -220,33 +231,48 @@ const NestedAccordion = ({
             <button
               className={
                 page === "course"
-                  ? `${styles.accordion} flex items-center gap-x-[0.938vw] mobile:gap-2`
+                  ? `${styles.accordion} flex justify-between`
                   : "flex"
               }
               onClick={() => handleClick(index)}
             >
-              {accordianArrow[index] ? (
-                <Svg
-                  className="mobile:h-[1.931vh] mobile:w-[4.186vw]"
-                  width={svgicons.accordianArrowDown[0]}
-                  height={svgicons.accordianArrowDown[1]}
-                  viewBox={svgicons.accordianArrowDown[2]}
-                  icon={svgicons.accordianArrowDown[3]}
-                  color={svgicons.accordianArrowDown[4]}
-                />
-              ) : (
-                <Svg
-                  className="mobile:h-[1.931vh] mobile:w-[4.186vw]"
-                  width={svgicons.accordianArrowSide[0]}
-                  height={svgicons.accordianArrowSide[1]}
-                  viewBox={svgicons.accordianArrowSide[2]}
-                  icon={svgicons.accordianArrowSide[3]}
-                  color={svgicons.accordianArrowSide[4]}
-                />
-              )}
-              <div className="text-[1.25vw] text-[#454545] font-semibold mobile:text-[2.791vw]">
-                {sectionKey}
+              <div className=" flex items-center gap-x-[0.938vw] mobile:gap-2">
+                {accordianArrow[index] ? (
+                  <Svg
+                    className="mobile:h-[1.931vh] mobile:w-[4.186vw]"
+                    width={svgicons.accordianArrowDown[0]}
+                    height={svgicons.accordianArrowDown[1]}
+                    viewBox={svgicons.accordianArrowDown[2]}
+                    icon={svgicons.accordianArrowDown[3]}
+                    color={svgicons.accordianArrowDown[4]}
+                  />
+                ) : (
+                  <Svg
+                    className="mobile:h-[1.931vh] mobile:w-[4.186vw]"
+                    width={svgicons.accordianArrowSide[0]}
+                    height={svgicons.accordianArrowSide[1]}
+                    viewBox={svgicons.accordianArrowSide[2]}
+                    icon={svgicons.accordianArrowSide[3]}
+                    color={svgicons.accordianArrowSide[4]}
+                  />
+                )}
+                <div className="text-[1.25vw] text-[#454545] font-semibold mobile:text-[2.791vw]">
+                  {sectionKey}
+                </div>
               </div>
+              {typeOfLearning === "SELF_PACED" ? (
+                <div className="flex gap-1 items-center">
+                  <h1 className="text-[#454545] font-medium text-[1.094vw]">
+                    {moduleCount} modules
+                  </h1>
+                  <div>|</div>
+                  <p className="text-[#454545] font-medium text-[1.094vw]">
+                    {moduleDuration} min
+                  </p>
+                </div>
+              ) : (
+                ""
+              )}
             </button>
             <div
               className={`${styles.panel} ${
