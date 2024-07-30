@@ -6,38 +6,38 @@ import Dropdown from '@/components/commonComponents/dropdown/Dropdown';
 import { useGetAllBranchesAsPerCountryQuery } from '@/redux/queries/getAllBranchesAsPerCountryApi';
 import { useGetBranchDetailsByIdQuery } from '@/redux/queries/getBranchDetailsByBranchIdApi';
 
-function BranchDropDowns({setBranchDropDownDetails,setIsSelectedBranchEdit}) {
+function BranchDropDowns({ setBranchDropDownDetails, setIsSelectedBranchEdit, btnName }) {
     const [countryOptions, setCountryOptions] = useState([]);
     const [cityOptions, setCityOptions] = useState([]);
     const [organizationOptions, setOrganizationOptions] = useState([]);
     const [branchOptions, setBranchOptions] = useState([]);
     const [selectedBranchId, setSelectedBranchId] = useState("");
-   
+
     const {
         data: BranchResponse,
         isLoading: branchIsLoading,
         error: branchError,
-        
+
     } = useGetAllBranchesAsPerCountryQuery();
     const {
         data: individualBranch,
         error: individualBranchError,
         isLoading: individualBranchIsLoading
-    } = useGetBranchDetailsByIdQuery({branchId: selectedBranchId}, {
+    } = useGetBranchDetailsByIdQuery({ branchId: selectedBranchId }, {
         skip: !selectedBranchId,
     });
     useEffect(() => {
         if (BranchResponse?.data) {
-            
+
             const countries = BranchResponse?.data.map(country => ({
                 label: country.countryName,
                 value: country.countryName
             }));
             setCountryOptions(countries);
         }
-    }, [BranchResponse]); 
-    
-    
+    }, [BranchResponse]);
+
+
     const formik = useFormik({
         initialValues: {
             country: '',
@@ -51,12 +51,11 @@ function BranchDropDowns({setBranchDropDownDetails,setIsSelectedBranchEdit}) {
             organization: Yup.string().required('Organization is required'),
             branch: Yup.string().required('Branch is required')
         }),
-        onSubmit:async (values) => {
+        onSubmit: async (values) => {
             if (individualBranch) {
                 setIsSelectedBranchEdit(true);
                 setBranchDropDownDetails(individualBranch)
             }
-            
         }
     });
 
@@ -64,7 +63,7 @@ function BranchDropDowns({setBranchDropDownDetails,setIsSelectedBranchEdit}) {
         const selectedCountryName = event.target.value;
         formik.setFieldValue('country', selectedCountryName);
 
-        const selectedCountryData =BranchResponse?.data.find(
+        const selectedCountryData = BranchResponse?.data.find(
             country => country.countryName === selectedCountryName
         );
 
@@ -131,13 +130,14 @@ function BranchDropDowns({setBranchDropDownDetails,setIsSelectedBranchEdit}) {
                 value: branch.branchName
             }));
             setBranchOptions(branches);
-            
+
         } else {
             setBranchOptions([]);
         }
     };
 
     const handleBranchSelect = (event) => {
+        btnName && handleBranchSubmit();
         const selectedBranchName = event.target.value;
         formik.setFieldValue('branch', selectedBranchName);
 
@@ -160,9 +160,9 @@ function BranchDropDowns({setBranchDropDownDetails,setIsSelectedBranchEdit}) {
         } else {
             setSelectedBranchId(''); // Clear branchId if no match
         }
-       
-    };
 
+    };
+    const handleBranchSubmit = formik.handleSubmit;
     return (
         <form onSubmit={formik.handleSubmit}>
             <div className="flex gap-3 justify-between pb-4">
@@ -234,14 +234,17 @@ function BranchDropDowns({setBranchDropDownDetails,setIsSelectedBranchEdit}) {
                     ) : null}
                 </div>
             </div>
-            <div className="flex gap-4 justify-end mt-2">
-                <button
-                    type="submit"
-                    className="py-2 px-4 bg-gradient rounded-md text-white"
-                >
-                    Submit
-                </button>
-            </div>
+            {!btnName &&
+                <div className="flex gap-4 justify-end mt-2">
+                    <button
+                        type="submit"
+                        className="py-2 px-4 bg-gradient rounded-md text-white"
+                    >
+                        {btnName ? btnName : "Submit"}
+                    </button>
+                </div>
+            }
+
         </form>
     );
 }
