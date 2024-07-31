@@ -122,12 +122,16 @@ function BatchFormLanding() {
                 trainerName: values.trainerName,
                 startingDate: startingDate,
                 endingDate: endingDate,
-                startingTime: `${values.starthour}:${values.startMin}:00`,
-                endingTime: `${values.endhour}:${values.endMin}:00`,
+                startingTime: `${values.starthour.toString().padStart(2, '0')}:${values.startMin.toString().padStart(2, '0')}:00`,
+                endingTime: `${values.endhour.toString().padStart(2, '0')}:${values.endMin.toString().padStart(2, '0')}:00`,
                 extendingDays: 0
             }
+            console.log(BranchId, "BranchIdBranchId")
             try {
                 const response = addBatch({ bodyData: payload, branchId: BranchId, courseId: courseId })
+                if (response.statusCode === 201) {
+                    alert("batc created successfully")
+                }
             } catch (err) {
                 alert(err.message)
             }
