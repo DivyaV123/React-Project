@@ -26,6 +26,11 @@ const GlobalContextProvider = ({ children }) => {
         setDomainVariable("Qspiders");
     }
   }, []);
+
+//adminportal
+const [selectedSideBar,setSelectedSideBar]=useState('Category')
+const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
+
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
@@ -416,7 +421,8 @@ const GlobalContextProvider = ({ children }) => {
         onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
         homeBranchData, setHomeBranchData,
         domainVariable, hoverState, setHoverState, imageDialog, setImageDialog, videoDialog, setVideoDialog,
-        homePlacements, setHomePlacements, countryList, setCountryList, individualSubjectData, setIndividualSubjectData
+        homePlacements, setHomePlacements, countryList, setCountryList, individualSubjectData, setIndividualSubjectData,
+        selectedSideBar,setSelectedSideBar,selectedInstitute,setSelectedInstitute
       }}
     >
       {children}
