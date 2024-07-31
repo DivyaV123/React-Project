@@ -16,8 +16,7 @@ export const addBatchApi = createApi({
     endpoints: (builder) => ({
         addBatchApi: builder.mutation({
             query: ({ bodyData, branchId, courseId }) => ({
-                // url: API_ENDPOINTS.LOGIN,
-                url: `http://192.168.0.21:8080/api/v1/batches${branchId ? `?branchId=${branchId}` : ''}&courseId=${courseId}`,
+                url: API_ENDPOINTS.CREATE_BATCH(branchId, courseId),
                 method: 'POST',
                 body: bodyData,
             }),
