@@ -12,7 +12,7 @@ export const API_ENDPOINTS = {
   GET_COURSE_ID_AND_SUBCOURSE_ID: (courseId, subcourseId) => `api/v1/courses?categoryId=${courseId}${subcourseId}`,
   ADDCOURES_WITHFILE: `api/v1/courses/saveCourse`,
   EDITCOURSE_WITHFILE: `api/v1/courses/updateCourse`,
-  EDITBRANCH_WITHFILE:"api/v1/branches/updateFileAndData",
+  EDITBRANCH_WITHFILE: "api/v1/branches/updateFileAndData",
   DELETE_COURSE: (courseId) => `api/v1/courses?courseId=${courseId}`,
   DELETE_SUBJECT: (subjectId) => `api/v1/subjects?subjectId=${subjectId}`,
   COURSE_WEIGHTAGE_ADDER: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
@@ -46,5 +46,7 @@ export const API_ENDPOINTS = {
   SUBJECT_ADDER: `api/v1/subjects`,
   MAP_SUBJECT: (courseId) => `api/v1/courses?courseId=${courseId}`,
   // Branches as per country Select
-  ALL_Branch_LIST : `api/v1/branches/getAllBranches/formfilter`
+  ALL_Branch_LIST: `api/v1/branches/getAllBranches/formfilter`,
+  //Batch
+  CREATE_BATCH: (branchId, courseId) => `/api/v1/batches?${branchId ? `branchId=${branchId}&` : ''}courseId=${courseId}`
 };

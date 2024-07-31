@@ -1,7 +1,7 @@
 'use Clint'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import { ADDBRANCH_HOME, ADDSUBJECT_HOME, COURSEADDER_HOME, COURSEMAP_HOME,EDITBRANCH_HOME, COURSEWEIGHTAGE_HOME,EDITSUBJECT_HOME, EDITCOURSE_HOME } from '@/lib/RouteConstants'
+import { ADDBRANCH_HOME, ADDSUBJECT_HOME, COURSEADDER_HOME, COURSEMAP_HOME, EDITBRANCH_HOME, COURSEWEIGHTAGE_HOME, EDITSUBJECT_HOME, EDITCOURSE_HOME, BATCHFORM_HOME } from '@/lib/RouteConstants'
 import Link from 'next/link'
 import React from 'react'
 
@@ -48,6 +48,11 @@ function DashBoardLandingPage() {
           <Link className='p-4 border-2 rounded-xl w-[24%] border-slate-400' href={COURSEMAP_HOME}>
             <h1 className='font-boled flex flex-col justify-center items-center'>
               Course Map
+            </h1>
+          </Link>
+          <Link className='p-4 border-2 rounded-xl w-[24%] border-slate-400' href={BATCHFORM_HOME}>
+            <h1 className='font-boled flex flex-col justify-center items-center'>
+              Add Batch
             </h1>
           </Link>
         </div>

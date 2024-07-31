@@ -558,10 +558,10 @@ function CourseFormLanding() {
               </div>
               <div className="flex flex-col">
                 {[
-                  "ONLINECLASSES",
-                  "OFFLINECLASSES",
-                  "EXPERIENTIALLEARNING",
-                  "SELFPACED",
+                  "SELF_PACED",
+                  "CORPORATE_TRAINING",
+                  "ONLINE_CLASSES",
+                  "OFFLINE_CLASSES"
                 ].map((mode) => (
                   <label key={mode}>
                     <input

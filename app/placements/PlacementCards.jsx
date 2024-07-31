@@ -19,7 +19,7 @@ import { Suspense } from 'react';
 const PlacementCards = () => {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+ const searchParams =  typeof window !== "undefined" && useSearchParams();
   const { filterPlacementData, setFilterPlacementData, placementParam, page, size, setSideBarBtn, homePlacements } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const { data: counsellorFilterResponse, error, refetch, isLoading, isFetching } = useFetchCounsellorsQuery({
