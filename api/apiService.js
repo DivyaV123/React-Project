@@ -48,5 +48,7 @@ export const API_ENDPOINTS = {
   // Branches as per country Select
   ALL_Branch_LIST: `api/v1/branches/getAllBranches/formfilter`,
   //Batch
-  CREATE_BATCH: (branchId, courseId) => `/api/v1/batches?${branchId ? `branchId=${branchId}&` : ''}courseId=${courseId}`
+  CREATE_BATCH: (branchId, courseId) => `/api/v1/batches?${branchId ? `branchId=${branchId}&` : ''}courseId=${courseId}`,
+  //Admin Portal
+  GET_ALL_CATEGORY: (organizationType) => `/api/v1/categories/getAllCategories?organization=${organizationType}`
 };
