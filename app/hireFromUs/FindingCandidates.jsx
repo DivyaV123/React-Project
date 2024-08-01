@@ -7,7 +7,7 @@ const FindingCandidates = () => {
   const cities = [
     { name: "Bangalore", image: "../../Icon_bangalore.png" },
     { name: "Hyderabad", image: "../../Icon_hydrebad.png" },
-    { name: "Chennai", image: "../../Icon_chennai.png" },
+    { name: "Chennai", image: "../../Icon_chennai.svg" },
     { name: "Gurugram", image: "../../Icon_gurugram.png" },
     { name: "Mumbai", image: "../../Icon_mumbai.png" },
     { name: "New Delhi", image: "../../Icon_newdelhi.png" },
@@ -19,7 +19,7 @@ const FindingCandidates = () => {
     { name: "Chandigarh", image: "../../icon_chandiharh.svg" },
     { name: "Tirupati", image: "../../Icon_tirupati.svg" },
     { name: "Kochi", image: "../../Icon_kochi.svg" },
-    { name: "Mysore", image: "../../Icon_ahmedabad.svg" },
+    { name: "Mysore", image: "../../Icon_mysore.svg" },
   ];
 
   const [isModalOpen, setIsModalOpen] = useState(false);
