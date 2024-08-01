@@ -61,6 +61,7 @@ import { BranchEditAPI } from './queries/editBranchApi';
 import { branchesAsPerCountryApi } from './queries/getAllBranchesAsPerCountryApi';
 import { subjectDeleteApi } from './queries/deletSubjectApi';
 import { addBatchApi } from './queries/addBatchApi';
+import { adminCategorySortApi } from './queries/adminCategorySortApi';
 
 const store = configureStore({
   reducer: {
@@ -143,7 +144,8 @@ const store = configureStore({
     [getBranchDetailsByBranchIdApi.reducerPath]: getBranchDetailsByBranchIdApi.reducer,
     [branchesAsPerCountryApi.reducerPath]: branchesAsPerCountryApi.reducer,
     [subjectDeleteApi.reducerPath]: subjectDeleteApi.reducer,
-    [addBatchApi.reducerPath]: addBatchApi.reducer
+    [addBatchApi.reducerPath]: addBatchApi.reducer,
+    [adminCategorySortApi.reducerPath]: adminCategorySortApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
@@ -151,7 +153,7 @@ const store = configureStore({
       CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, subjectAdder.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
-      addBatchApi.middleware
+      addBatchApi.middleware, adminCategorySortApi.middleware,
     ),
 });
 
