@@ -32,7 +32,7 @@ function OurBranchesHome({ page, tabData }) {
   );
   const cityData = filterCountryObj && filterCountryObj[0]?.cities;
   let branchDetails = cityData;
-  
+
   if (page !== "course" && branchDetails?.length > 0) {
     branchDetails = [
       ...branchDetails,
@@ -110,7 +110,7 @@ function OurBranchesHome({ page, tabData }) {
           ) : (
             <Slide top cascade>
               <h1 className="flex justify-center text-[2.5vw] mobile:text-[5.581vw] sm:m-2 font-bold sm:p-5 mobile:py-[2.575vh]">
-                Our Offline Centres
+                Our Offline Branches
               </h1>
             </Slide>
           )}
@@ -121,14 +121,13 @@ function OurBranchesHome({ page, tabData }) {
               ele.countryName === "United Kingdom"
                 ? "UK"
                 : ele.countryName === "United States of America"
-                ? "USA"
-                : ele.countryName;
+                  ? "USA"
+                  : ele.countryName;
 
             return (
               <button
-                className={`text-[0.938vw] font-bold ${
-                  countryTab === ele.countryName ? "activecountry" : ""
-                }`}
+                className={`text-[0.75rem]  font-bold ${countryTab === ele.countryName ? "activecountry" : ""
+                  }`}
                 onClick={() => handleCountryTab(ele.countryName)}
                 key={ele.countryName}
               >
@@ -139,11 +138,10 @@ function OurBranchesHome({ page, tabData }) {
         </section>
 
         <article
-          className={`${
-            page === "course" && btnState === "OfflineClasses"
-              ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh]"
-              : "flex flex-wrap   sm:gap-x-[1.094vw] sm:gap-y-[1.944vh] justify-center gap-6 tabView:gap-x-[6.054vw]"
-          }`}
+          className={`${page === "course" && btnState === "OfflineClasses"
+            ? "flex flex-wrap   gap-y-[1.944vh] w-fit justify-between py-[2.222vh]"
+            : "flex flex-wrap   sm:gap-x-[1.094vw] sm:gap-y-[1.944vh] justify-center gap-6 tabView:gap-x-[6.054vw]"
+            }`}
         >
           {btnState === "OfflineClasses" ? (
             branchDetails?.length > 0 &&
@@ -164,22 +162,21 @@ function OurBranchesHome({ page, tabData }) {
                       <div
                         onClick={(e) => handleImageRoute(e, elements.cityName)}
                         className={` relative h-[7.813vw] w-[15.625vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center cursor-pointer`}
-                        // style={{
-                        //   backgroundImage: `url(${elements.cityImage})`,
-                        //   backgroundRepeat: "no-repeat",
-                        //   backgroundSize: "cover",
-                        // }}
+                      // style={{
+                      //   backgroundImage: `url(${elements.cityImage})`,
+                      //   backgroundRepeat: "no-repeat",
+                      //   backgroundSize: "cover",
+                      // }}
                       >
                         <Image
                           src={elements.cityImage}
                           height={750}
                           width={800}
                           sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-                          className={`object-fit w-[100%] h-[100%] z-1 rounded-lg ${
-                            elements.cityName !== "AllCities"
-                              ? " brightness-50"
-                              : ""
-                          }`}
+                          className={`object-fit w-[100%] h-[100%] z-1 rounded-lg ${elements.cityName !== "AllCities"
+                            ? " brightness-50"
+                            : ""
+                            }`}
                         />
                         {elements.cityName !== "AllCities" && (
                           <p className="absolute">
@@ -196,11 +193,11 @@ function OurBranchesHome({ page, tabData }) {
                       <div
                         onClick={(e) => handleImageRoute(e, elements.cityName)}
                         className={` relative h-[7.813vw] w-[20.469vw] mobile:w-[44.186vw] mobile:h-[8.155vh] rounded-lg flex flex-col justify-center items-center`}
-                        // style={{
-                        //   backgroundImage: `url(${elements.cityImage})`,
-                        //   backgroundRepeat: "no-repeat",
-                        //   backgroundSize: "cover",
-                        // }}
+                      // style={{
+                      //   backgroundImage: `url(${elements.cityImage})`,
+                      //   backgroundRepeat: "no-repeat",
+                      //   backgroundSize: "cover",
+                      // }}
                       >
                         {elements.cityImage && (
                           <Image
@@ -208,11 +205,10 @@ function OurBranchesHome({ page, tabData }) {
                             height={750}
                             width={800}
                             sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-                            className={`absolute object-fit w-[100%] h-[100%] z-1 rounded-lg ${
-                              elements.cityName !== "AllCities"
-                                ? " brightness-50"
-                                : ""
-                            }`}
+                            className={`absolute object-fit w-[100%] h-[100%] z-1 rounded-lg ${elements.cityName !== "AllCities"
+                              ? " brightness-50"
+                              : ""
+                              }`}
                           />
                         )}
 

@@ -60,7 +60,7 @@ const IndividualBranches = () => {
   return (
     <div className="w-full cityNavbar">
       <header className="offlineHeader w-[87.5vw] m-auto">
-        Our Offline Centres
+        Our Offline Branches
       </header>
       <section className="flex gap-6 w-[87.5vw] m-auto  pt-4  items-center pb-4">
         {homeBranchData?.data?.map((ele) => {

@@ -126,11 +126,12 @@ function BatchFormLanding() {
                 endingTime: `${values.endhour.toString().padStart(2, '0')}:${values.endMin.toString().padStart(2, '0')}:00`,
                 extendingDays: 0
             }
-            console.log(BranchId, "BranchIdBranchId")
             try {
                 const response = addBatch({ bodyData: payload, branchId: BranchId, courseId: courseId })
                 if (response.statusCode === 201) {
                     alert("batc created successfully")
+                } else {
+                    console.log(err)
                 }
             } catch (err) {
                 alert(err.message)
@@ -215,12 +216,12 @@ function BatchFormLanding() {
         formikDetails.setFieldValue("subCourse", selectedCourseName);
 
         if (selectedCourseWeightage) {
-            formikDetails.setFieldValue("QSpiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
+            formikDetails.setFieldValue("Qspiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
             formikDetails.setFieldValue("JSpiders", selectedCourseWeightage?.weightageDto?.jspiders || "");
             formikDetails.setFieldValue("PYSpiders", selectedCourseWeightage?.weightageDto?.pyspiders || "");
             formikDetails.setFieldValue("BSpiders", selectedCourseWeightage?.weightageDto?.bspiders || "");
         } else {
-            formikDetails.setFieldValue("QSpiders", "");
+            formikDetails.setFieldValue("Qspiders", "");
             formikDetails.setFieldValue("JSpiders", "");
             formikDetails.setFieldValue("PYSpiders", "");
             formikDetails.setFieldValue("BSpiders", "");
