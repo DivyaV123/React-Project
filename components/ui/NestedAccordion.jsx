@@ -209,7 +209,7 @@ const NestedAccordion = ({
   };
 
   const renderSections = () => {
-    return (data.length > 0) && data.map((section, index) => {
+    return data && data.map((section, index) => {
       const sectionKey = Object.keys(section)[0];
       const sectionContent = sectionKey && section[sectionKey];
       //made empty object because after edit it was showing error(null cany be converted to object). no impact.
