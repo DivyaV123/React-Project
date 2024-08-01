@@ -42,7 +42,7 @@ function CourseWeitage() {
         // subCourse: Yup.string().required("Sub Course is required"),
         // courseName: Yup.string().required("Course name is required"),
         QSpiders: Yup.number()
-            .required("QSpiders weightage is required")
+            .required("Qspiders weightage is required")
             .min(0, "QSpiders weightage must be non-negative"),
         JSpiders: Yup.number()
             .required("JSpiders weightage is required")
@@ -180,12 +180,12 @@ function CourseWeitage() {
         formikDetails.setFieldValue("subCourse", selectedCourseName);
 
         if (selectedCourseWeightage) {
-            formikDetails.setFieldValue("QSpiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
+            formikDetails.setFieldValue("Qspiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
             formikDetails.setFieldValue("JSpiders", selectedCourseWeightage?.weightageDto?.jspiders || "");
             formikDetails.setFieldValue("PYSpiders", selectedCourseWeightage?.weightageDto?.pyspiders || "");
             formikDetails.setFieldValue("BSpiders", selectedCourseWeightage?.weightageDto?.prospiders || "");
         } else {
-            formikDetails.setFieldValue("QSpiders", "");
+            formikDetails.setFieldValue("Qspiders", "");
             formikDetails.setFieldValue("JSpiders", "");
             formikDetails.setFieldValue("PYSpiders", "");
             formikDetails.setFieldValue("BSpiders", "");

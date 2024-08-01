@@ -165,10 +165,10 @@ const SendRequestForm = () => {
           />
           {(error.phone ||
             (formikDetails.errors.phone && formikDetails.touched.phone)) && (
-            <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute pt-1">
-              Mobile number is required
-            </div>
-          )}
+              <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute pt-1">
+                Mobile number is required
+              </div>
+            )}
           {error.validPhone && !error.phone && (
             <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute pt-1">
               Invalid phone number
@@ -214,10 +214,10 @@ const SendRequestForm = () => {
             </div>
           ) : null}
         </div>
+        <button type="submit" className="text-white text-[0.938vw] font-medium RequestButton py-[1.111vh]">
+          Send Request
+        </button>
       </form>
-      <button className="text-white text-[0.938vw] font-medium RequestButton py-[1.111vh]">
-        Send Request
-      </button>
       <p className="text-[#707070] text-[0.781vw] pt-[2.778vh]">By providing your details you agree to our terms and conditions.</p>
     </section>
   );

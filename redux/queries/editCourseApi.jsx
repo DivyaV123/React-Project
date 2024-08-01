@@ -19,8 +19,8 @@ export const CourseEditAPI = createApi({
                 const formData = new FormData();
                 formData.append('courseContent', bodyData.courseContent);
                 bodyData.icon != null && formData.append('icon', bodyData.icon);
-                bodyData.cardImage != null && formData.append('image', bodyData.image);
-                bodyData.pageImage != null && formData.append('homePageImage', bodyData.homePageImage);
+                bodyData.cardImage != null && formData.append('image', bodyData.cardImage);
+                bodyData.pageImage != null && formData.append('homePageImage', bodyData.pageImage);
 
                 return {
                     url: API_ENDPOINTS.EDITCOURSE_WITHFILE,
