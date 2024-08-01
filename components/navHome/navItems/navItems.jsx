@@ -16,8 +16,7 @@ import { InputIcon } from "@radix-ui/react-icons";
 import {
   CONTACT_US_PATH,
   PLACEMENT_PATH,
-  HIREFROMUS_PATH,
-  CORPORATE_TRAINING,
+  HIREFROMUS_PATH,CORPORATE_TRAINING
 } from "@/lib/RouteConstants";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
@@ -40,9 +39,7 @@ function NavItems() {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setFilterPlacementData,
-    hoverState,
-    setHoverState,
-    setCountryList,
+    hoverState, setHoverState,setCountryList
   } = useContext(GlobalContext);
   const {
     data: courseResponse,
@@ -60,21 +57,9 @@ function NavItems() {
     isLoading: onlineCourseIsLoading,
   } = useGetAllOnlineCoursesQuery();
   const navItems = [
-    {
-      id: 1,
-      name: "All Courses",
-      content: <Courses courseResponse={courseResponse} />,
-    },
-    {
-      id: 2,
-      name: "Offline Centres",
-      content: <Branches BranchResponse={BranchResponse} />,
-    },
-    {
-      id: 3,
-      name: "Online Courses",
-      content: <OnlineCourses courseResponse={onlineCourseResponse} />,
-    },
+    { id: 1, name: "All Courses", content: <Courses courseResponse={courseResponse} /> },
+    { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
+    { id: 3, name: "Online Courses", content: <OnlineCourses courseResponse={onlineCourseResponse} /> },
     // { id: 3, name: "University Programs", content: <UniversityProgram /> },
     { id: 4, name: "Corporate Training", content: "" },
     { id: 5, name: "Tuitions", content: <Tutions /> },
@@ -82,11 +67,9 @@ function NavItems() {
     { id: 7, name: "Placements", content: "" },
     { id: 8, name: "Contact Us", content: "" },
   ];
-  const filterCountryObj = BranchResponse?.data?.filter(
-    (ele) => ele?.countryName === "India"
-  );
+  const filterCountryObj = BranchResponse?.data?.filter(ele=>ele?.countryName==='India')
   const cityData = filterCountryObj?.[0]?.cities;
-  setCountryList(BranchResponse?.data);
+  setCountryList(BranchResponse?.data)
   setHomeBranchData(cityData);
 
   const [stateHovered, setStateHovered] = useState({
@@ -112,29 +95,19 @@ const handleItemLeave = useCallback(() => {
     setHoverState((prevState) => ({ ...prevState, item: null,content: false }));
   }, [setHoverState]);
 
+  const handleContentHover = useCallback((isVisible,itemName) => {
+    setHoverState((prevState) => ({ ...prevState, content: isVisible ,item: isVisible ? itemName : null,}));
+  }, [setHoverState]);
+ 
 
-  // const handleContentHover = useCallback((isVisible) => {
-  //   setHoverState((prevState) => ({ ...prevState, content: isVisible }));
-  // }, []);
-const handleContentHover = useCallback(
-    (isVisible, itemName) => {
-      if (isVisible) {
-        setHoverState((prevState) => ({
-          ...prevState,
-          content: true,
-          item: itemName,
-        }));
-      } else {
-        setHoverState((prevState) => ({
-          ...prevState,
-          content: false,
-          item: null,
-        }));
-      }
-    },
-    [setHoverState]
-  );
-
+  useEffect(() => {
+    if (!hoverState.content) {
+      setHoverState((prevState) => ({
+        ...prevState,
+        item: null,
+      }));
+    }
+  }, [hoverState.content, setHoverState]);
   const handleNavItems = (navItem) => {
     if (navItem === "Contact Us") {
       router.push(CONTACT_US_PATH);
@@ -156,6 +129,7 @@ const handleContentHover = useCallback(
       router.push(HIREFROMUS_PATH);
     }
   };
+  
 
   const [activeItem, setActiveItem] = useState("");
   const pathname = usePathname();
@@ -192,6 +166,7 @@ const handleContentHover = useCallback(
               <NavigationMenuItem
                 key={navItem.id}
                 onMouseEnter={() => handleItemHover(navItem.name)}
+               
               >
                 <NavigationMenuTrigger
                   hoverItem={hoverState.item}
@@ -220,11 +195,20 @@ const handleContentHover = useCallback(
                 </NavigationMenuTrigger>
                 <NavigationMenuContent
                   className="nav-content"
-                  onMouseEnter={() => handleContentHover(true, navItem.name)}
-                  onMouseLeave={() => handleContentHover(false, navItem.name)}
+                  onMouseEnter={() => handleContentHover(true,navItem.name)}
+                  onMouseLeave={() => {
+                    handleContentHover(false,navItem.name);
+                    setStateHovered({
+                      item: "",
+                      state: false,
+                    });
+                  }}
+                  // onMouseEnter={() => handleContentHover(true, navItem.name)}
+                  // onMouseLeave={() => handleContentHover(false, navItem.name)}
                 >
                   <div className=" mt-[0.83vw] border bg-popover shadow-lg rounded-xl overflow-hidden">
-                    {navItem.content}
+
+                  {navItem.content}
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>

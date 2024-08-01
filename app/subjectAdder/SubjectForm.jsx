@@ -21,7 +21,7 @@ const SubjectForm = () => {
   const [chapters, setChapters] = useState(
     individualSubjectData ? individualSubjectData?.chapters : []
   );
-  
+
   const [activeIndex, setActiveIndex] = useState(null); // Initially null to avoid hydration mismatch
   const [addSubject] = useAddSubjectMutation();
   const router = useRouter();
@@ -268,17 +268,16 @@ const SubjectForm = () => {
           >
             {individualSubjectData ? "Edit Subject" : "Submit Subject"}
           </button>
-         
         </div>
       </form>
       <button
-            className="py-2 px-4 bg-gradient rounded-md text-white relative float-right bottom-[6vh]"
-            onClick={() => {
-              router.push("/DashBoard");
-            }}
-          >
-            Cancel
-          </button>
+        className="py-2 px-4 bg-gradient rounded-md text-white relative float-right bottom-[6vh]"
+        onClick={() => {
+          router.push("/DashBoard");
+        }}
+      >
+        Cancel
+      </button>
       <Toaster />
     </MaxWebWidth>
   );

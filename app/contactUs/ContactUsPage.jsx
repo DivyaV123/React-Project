@@ -335,7 +335,7 @@ function ContactUsPage() {
                       <Svg
                         className=""
                         width={svgicons.contactUsMail[0]}
-                        height={16}
+                        height={17}
                         viewBox={svgicons.contactUsMail[2]}
                         icon={svgicons.contactUsMail[3]}
                         color={svgicons.contactUsMail[4]}
