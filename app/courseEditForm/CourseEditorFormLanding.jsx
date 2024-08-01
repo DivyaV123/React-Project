@@ -206,12 +206,12 @@ function CourseEditorFormLanding() {
         formikDetails.setFieldValue("subCourse", selectedCourseName);
 
         if (selectedCourseWeightage) {
-            formikDetails.setFieldValue("QSpiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
+            formikDetails.setFieldValue("Qspiders", selectedCourseWeightage?.weightageDto?.qspiders || "");
             formikDetails.setFieldValue("JSpiders", selectedCourseWeightage?.weightageDto?.jspiders || "");
             formikDetails.setFieldValue("PYSpiders", selectedCourseWeightage?.weightageDto?.pyspiders || "");
             formikDetails.setFieldValue("BSpiders", selectedCourseWeightage?.weightageDto?.bspiders || "");
         } else {
-            formikDetails.setFieldValue("QSpiders", "");
+            formikDetails.setFieldValue("Qspiders", "");
             formikDetails.setFieldValue("JSpiders", "");
             formikDetails.setFieldValue("PYSpiders", "");
             formikDetails.setFieldValue("BSpiders", "");
@@ -403,7 +403,6 @@ function CourseEditorFormLanding() {
             pageImage: files.pageImage,
             icon: files.icon
         }
-
         try {
             const response = await editSelectedCourse({ bodyData: payload }).unwrap();
             if (response.statusCode == 200) {

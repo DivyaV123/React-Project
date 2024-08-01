@@ -8,8 +8,8 @@ function UpComingBranches() {
 
   return (
     <WebLayout>
-<UpcomingBatchesLanding/>
-     {/* <BranchWithFilter /> */}
+      <UpcomingBatchesLanding />
+      {/* <BranchWithFilter /> */}
     </WebLayout>
   )
 }

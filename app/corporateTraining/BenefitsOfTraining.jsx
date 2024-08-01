@@ -32,7 +32,7 @@ const BenefitsOfTraining = () => {
           Benefits of training
         </article>
         <article className="text-[1.094vw] pt-[1.389vh] pb-[3.333vh]">
-          Corporate training with QSpiders ensures your team is equipped with
+          Corporate training with Qspiders ensures your team is equipped with
           the latest skills and knowledge in software testing, enhancing
           productivity, improving software quality, and driving overall business
           success

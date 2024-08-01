@@ -18,7 +18,7 @@ const AllBranchCards = () => {
   if (branchData?.data) {
     for (const ele of branchData.data) {
       if (ele.countryName === decodeCountry) {
-        AllBranchCourse.push(...ele.city);
+        AllBranchCourse.push(...ele.cities);
       }
     }
   }

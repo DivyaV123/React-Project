@@ -131,9 +131,8 @@ const NestedAccordion = ({
                 </div>
               </button>
               <div
-                className={`${styles.panel} ${
-                  activeSections[subsectionIndex] ? styles.active : ""
-                }`}
+                className={`${styles.panel} ${activeSections[subsectionIndex] ? styles.active : ""
+                  }`}
               >
                 {renderContent(subsectionContent, subsectionIndex)}
               </div>
@@ -210,13 +209,16 @@ const NestedAccordion = ({
   };
 
   const renderSections = () => {
-    return data?.map((section, index) => {
+    return (data.length > 0) && data.map((section, index) => {
       const sectionKey = Object.keys(section)[0];
-      const sectionContent = section[sectionKey];
-      const moduleCount = Object.keys(sectionContent[0])[0];
-      const moduleDuration = parseFloat(
-        Object.keys(sectionContent[0])[4]
-      ).toFixed(2);
+      const sectionContent = sectionKey && section[sectionKey];
+      //made empty object because after edit it was showing error(null cany be converted to object). no impact.
+      const moduleCount = {}
+      // Object.keys(sectionContent[0])[0];
+      const moduleDuration = {}
+      //   parseFloat(
+      //   Object.keys(sectionContent[0])[4]
+      // ).toFixed(2);
       // Only render the section if the subTopics array length is greater than 0
       if (Array.isArray(sectionContent) && sectionContent.length > 0) {
         return (
@@ -275,9 +277,8 @@ const NestedAccordion = ({
               )}
             </button>
             <div
-              className={`${styles.panel} ${
-                activeSections[index] ? styles.active : ""
-              }`}
+              className={`${styles.panel} ${activeSections[index] ? styles.active : ""
+                }`}
             >
               {renderContent(sectionContent, index)}
             </div>

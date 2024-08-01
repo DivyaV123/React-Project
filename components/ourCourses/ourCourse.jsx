@@ -45,7 +45,7 @@ function OurCourse({ page }) {
   const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState("Popular Courses");
 
-const typesOfClasses=Object.keys(homeCourse?.data||{})
+  const typesOfClasses = Object.keys(homeCourse?.data || {})
 
 
   const [btnState, setBtnState] = useState(
@@ -109,11 +109,10 @@ const typesOfClasses=Object.keys(homeCourse?.data||{})
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
-                className={`flex justify-center items-center px-4 py-2 mobile:py-[0.606vh] mobile:px-[2.698vw] mobile:text-[1.972vw] font-medium text-[0.75rem] text-[#454545] ${
-                  classItem === btnState
-                    ? "bg-gradient text-white  p-2 rounded-3xl"
-                    : ""
-                } `}
+                className={`flex justify-center items-center px-4 py-2 mobile:py-[0.606vh] mobile:px-[2.698vw] mobile:text-[1.972vw] font-medium text-[0.75rem] text-[#454545] ${classItem === btnState
+                  ? "bg-gradient text-white  p-2 rounded-3xl"
+                  : ""
+                  } `}
                 onClick={() => setBtnState(classItem)}
               >
                 {formatString(classItem)}
@@ -217,11 +216,10 @@ const typesOfClasses=Object.keys(homeCourse?.data||{})
                 <div
                   key={itemIndex}
                   onClick={() => setHoveredCategory(item.title)}
-                  className={`bg-orange hover:text-white hover:font-semibold  w-full flex  gradient-bg cursor-pointer  ${
-                    hoveredCategory === item.title
-                      ? "bg-gradient text-white font-semibold"
-                      : ""
-                  }`}
+                  className={`bg-orange hover:text-white hover:font-semibold  w-full flex  gradient-bg cursor-pointer  ${hoveredCategory === item.title
+                    ? "bg-gradient text-white font-semibold"
+                    : ""
+                    }`}
                 >
                   <div className="flex  items-center py-[2.222vh] px-[1.25vw] w-full">
                     <picture className="flex justify-start w-[89%] items-center">
@@ -262,11 +260,10 @@ const typesOfClasses=Object.keys(homeCourse?.data||{})
                       } */}
 
                       <aside
-                        className={` pl-[1.25vw] text-[1.094vw] text-[#454545] w-full ${
-                          hoveredCategory === item.title
-                            ? "text-white font-semibold "
-                            : "text-black"
-                        }`}
+                        className={` pl-[1.25vw] text-[1.094vw] text-[#454545] w-full ${hoveredCategory === item.title
+                          ? "text-white font-semibold "
+                          : "text-black"
+                          }`}
                       >
                         <h1>{item.title}</h1>
                       </aside>
@@ -343,8 +340,8 @@ const typesOfClasses=Object.keys(homeCourse?.data||{})
                   : "./arrowIconOrange.svg"
               }
               iconPosition="right"
-              // onMouseEnter={() => { setMouseHover(true) }}
-              // onMouseLeave={() => { setMouseHover(false) }}
+            // onMouseEnter={() => { setMouseHover(true) }}
+            // onMouseLeave={() => { setMouseHover(false) }}
             />
           </article>
         </Link>
