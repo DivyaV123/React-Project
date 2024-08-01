@@ -9,11 +9,11 @@ const domains = [
   { name: "Cloud Engineer-Aws,Assure&GCP", image: "../../data_science.svg" },
   { name: "Software Test Engineer", image: "../../project-management.svg" },
   { name: "Automation Engineer", image: "../../cyber-security.svg" },
-  { name: "Performance Test Engineer", image: "../../support_hire.svg" },
-  { name: "Banking Insurance & Finance", image: "../../AiML.svg" },
-  { name: "Data Science", image: "../../project-management.svg" },
-  { name: "Data Analytics", image: "../../cyber-security.svg" },
-  { name: "Data Engineer", image: "../../support_hire.svg" },
+  { name: "Performance Test Engineer", image: "../../speed-radar.svg" },
+  { name: "Banking Insurance & Finance", image: "../../bank.svg" },
+  { name: "Data Science", image: "../../project-project-management_hire.svg" },
+  { name: "Data Analytics", image: "../../analytics.svg" },
+  { name: "Data Engineer", image: "../../data-management.svg" },
   { name: "AI/ML", image: "../../AiML.svg" },
 ];
 const DomainContainer = () => {
