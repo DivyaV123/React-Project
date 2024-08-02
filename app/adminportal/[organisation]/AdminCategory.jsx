@@ -15,12 +15,12 @@ const AdminCategory = ({ categoryData }) => {
 
     const handleEditClick = (title) => {
         console.log(`Edit clicked for: ${title}`)
-        
+
     }
 
     const handleDeleteClick = (id) => {
         console.log(`Delete clicked for id: ${id}`)
-        
+
     }
 
     const tableHeaders = [
@@ -66,37 +66,37 @@ const AdminCategory = ({ categoryData }) => {
     ]
 
     return (
-     
-        <div className='px-[1.875vw]'>
-        <div className='rounded-2xl bg-white pt-[2.222vh]'>
-            <Table>
-                <TableHeader className="sticky top-0 bg-white z-10">
-                    <TableRow>
-                        {tableHeaders.map((header, index) => (
-                            <TableHead key={index} className={header.className}>
-                                {header.label}
-                            </TableHead>
-                        ))}
-                    </TableRow>
-                </TableHeader>
-                <TableBody>
-                    {categoryData?.data.map((category, index) => (
-                        <TableRow key={category.id || index} className="group">
-                            {renderCells(category).map((cell, cellIndex) => (
-                                <TableCell
-                                    key={cellIndex}
-                                    className={cell.className}
-                                    onClick={cell.onClick}
-                                >
-                                    {cell.content}
-                                </TableCell>
+
+        <div className='py-[3.333vh] px-[1.875vw]'>
+            <div className='rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[73.389vh] '>
+                <Table>
+                    <TableHeader className="">
+                        <TableRow>
+                            {tableHeaders.map((header, index) => (
+                                <TableHead key={index} className={header.className}>
+                                    {header.label}
+                                </TableHead>
                             ))}
                         </TableRow>
-                    ))}
-                </TableBody>
-            </Table>
+                    </TableHeader>
+                    <TableBody>
+                        {categoryData?.data.map((category, index) => (
+                            <TableRow key={category.id || index} className="group">
+                                {renderCells(category).map((cell, cellIndex) => (
+                                    <TableCell
+                                        key={cellIndex}
+                                        className={cell.className}
+                                        onClick={cell.onClick}
+                                    >
+                                        {cell.content}
+                                    </TableCell>
+                                ))}
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </div>
         </div>
-    </div>
     )
 }
 

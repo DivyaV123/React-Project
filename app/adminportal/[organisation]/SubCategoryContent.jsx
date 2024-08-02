@@ -20,7 +20,7 @@ function SubCategoryContent({ categoryData }) {
     const tableHeaders = ["SUB CATEGORY NAME", "CATEGORY", "COURSES", "ACTIONS"]
     return (
         <div className='py-[3.333vh] px-[1.875vw]'>
-            <div className='rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[73.389vh]  overflow-y-scroll myscrollbar'>
+            <div className='rounded-2xl bg-[#FFFFFF] pt-[2.222vh] '>
                 <Table className=''>
                     <TableHeader className=' z-1'>
                         <TableRow>

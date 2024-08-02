@@ -740,6 +740,11 @@ export const svgicons = {
             </g>
         </>,
     ],
+    addIcon: [
+        "24", "24", "0 0 24 24",
+        <path d="M12 19V12M12 12V5M12 12H5M12 12H19" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />,
+        "none"
+    ],
     kolkataIcon: [
         "24", "24", "0 0 24 24",
         <>
