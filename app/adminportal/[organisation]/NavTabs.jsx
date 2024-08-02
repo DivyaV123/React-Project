@@ -4,7 +4,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import "./AdminSidebar.scss";
 import { usePathname, useRouter } from "next/navigation";
 import { ADMIN_PORTAL } from "@/lib/RouteConstants";
-const NavTabs = ({categoryData}) => {
+const NavTabs = ({ categoryData }) => {
   const router = useRouter();
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
@@ -35,15 +35,14 @@ const NavTabs = ({categoryData}) => {
     router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}`);
   };
   return (
-    <section className="flex gap-4 mt-[1.389vh]">
+    <section className="flex gap-4 mt-[1.389vh] mb-[11.111vh] pl-[1.875vw]">
       {domains.map((item, index) => (
         <div
           key={index}
-          className={`pt-[0.972vh] pb-[1.528vh] cursor-pointer px-[0.625vw]  ${
-            instituteParam === item.title
-              ? "text-[#FF7B1B] font-bold activeTab"
-              : " font-medium text-[#212121] inActiveTab"
-          }`}
+          className={`pt-[0.972vh] pb-[1.528vh] cursor-pointer px-[0.625vw]  ${instituteParam === item.title
+            ? "text-[#FF7B1B] font-bold activeTab"
+            : " font-medium text-[#212121] inActiveTab"
+            }`}
           onClick={() => handleNavTab(item)}
         >
           <h1 className="text-[1.094vw] font-bold">{item.title}</h1>
