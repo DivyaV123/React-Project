@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext } from "react";
+import React, { useContext ,useEffect} from "react";
 import "./AdminSidebar.scss";
 import AdminContent from "./AdminContent";
 import { GlobalContext } from "@/components/Context/GlobalContext";
@@ -27,6 +27,9 @@ const AdminSidebar = () => {
   const { data: categoryData, refetch } = useGetAllCategoryQuery({
     organizationType: initialOrgType,
   });
+  useEffect(()=>{
+    refetch();
+  },[instituteParam])
   const sideBarList = [
     {
       name: "Category",
