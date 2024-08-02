@@ -35,7 +35,7 @@ const NavTabs = ({ categoryData }) => {
     router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}`);
   };
   return (
-    <section className="flex gap-4 mt-[1.389vh] mb-[11.111vh] pl-[1.875vw]">
+    <section className="flex gap-4 mt-[1.389vh] mb-[4.111vh] pl-[1.875vw]">
       {domains.map((item, index) => (
         <div
           key={index}
