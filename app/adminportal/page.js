@@ -1,8 +1,10 @@
 import React from 'react'
-import AdminSidebar from './AdminSidebar'
+import AdminSidebar from './[organisation]/AdminSidebar'
+import OragnisationLandning from './[organisation]/page'
 const AdminPortal = () => {
+
   return (
-    <AdminSidebar/>
+    <OragnisationLandning/>
   )
 }
 

@@ -3,8 +3,30 @@ import React, { useContext } from "react";
 import "./AdminSidebar.scss";
 import AdminContent from "./AdminContent";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { useGetAllCategoryQuery } from "@/redux/queries/adminCategorySortApi";
+import { usePathname,useRouter } from "next/navigation";
+import { ADMIN_PORTAL } from "@/lib/RouteConstants";
 const AdminSidebar = () => {
   const { selectedSideBar, setSelectedSideBar } = useContext(GlobalContext);
+  const router = useRouter();
+  const pathname = usePathname();
+  const getParams = pathname.split("/").slice(2);
+  const [sidebarParam] = getParams[0].split(",").slice(0);
+  const [instituteParam] = getParams[0].split(",").slice(1);
+  const initialOrgType =
+    instituteParam === "Qspiders"
+      ? "QSP"
+      : instituteParam === "Jspiders"
+      ? "JSP"
+      : instituteParam === "Pyspiders"
+      ? "PYSP"
+      : instituteParam === "Prospiders"
+      ? "PROSP"
+      : "QSP";
+
+  const { data: categoryData, refetch } = useGetAllCategoryQuery({
+    organizationType: initialOrgType,
+  });
   const sideBarList = [
     {
       name: "Category",
@@ -32,6 +54,7 @@ const AdminSidebar = () => {
     },
   ];
   const handleSideBar = (name) => {
+    router.push(`${ADMIN_PORTAL}/${name},${instituteParam}`); 
     setSelectedSideBar(name);
   };
   return (
@@ -46,7 +69,7 @@ const AdminSidebar = () => {
               <div
                 key={index}
                 className={`flex items-center gap-1.5 cursor-pointer text-[1.094vw] py-[1.25vh] px-[0.625vw] my-[0.694vh] ${
-                  selectedSideBar === item.name
+                  sidebarParam === item.name
                     ? "bg-[#FF7B1B] text-white  font-bold rounded-md"
                     : "text-[#6E6E6E] font-medium"
                 } `}
@@ -61,7 +84,7 @@ const AdminSidebar = () => {
           })}
         </section>
       </aside>
-      <AdminContent />
+      <AdminContent categoryData={categoryData}/>
     </section>
   );
 };

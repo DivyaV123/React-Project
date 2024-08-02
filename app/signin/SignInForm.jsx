@@ -1,15 +1,16 @@
 'use client'
-import React, { useState } from 'react';
+import React, { useState,useContext } from 'react';
 import Button from '@/components/commonComponents/button/Button';
 import Input from '@/components/commonComponents/input/Input';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { useRouter } from 'next/navigation';
 import { useLoginMutation } from '@/redux/queries/loginApi';
-import { COURSEADDER_HOME, DASHBOARD_HOME } from '@/lib/RouteConstants';
-
+import { COURSEADDER_HOME, DASHBOARD_HOME,ADMIN_PORTAL } from '@/lib/RouteConstants';
+import { GlobalContext } from '@/components/Context/GlobalContext';
 
 function SignInForm() {
+    const {domainVariable} = useContext(GlobalContext)
     const router = useRouter()
     const [login, { data: loginData, error, isLoading }] = useLoginMutation();
     const usernameOrEmailValidation = Yup.string()
@@ -54,7 +55,7 @@ function SignInForm() {
                 localStorage.setItem('authToken', token);
                 localStorage.setItem('Role', role);
                 if (role == 'COURSEADDER') {
-                    router.push(DASHBOARD_HOME)
+                    router.push(`${ADMIN_PORTAL}/Category,${domainVariable}`)
                 }
             } catch (err) {
                 console.error(err, "Error from loginAPI");
