@@ -96,7 +96,7 @@ const disableIcons =()=>{
       <header>
         <Slide top cascade>
           <h1
-            className={`font-bold text-[2rem] mobile:text-[5.581vw] text-black flex ${page === "course" || "branch" ? "justify-start" : "justify-center"} sm:mb-8 sm:mt-8 sm:h-12 mobile:bg-Pinkgradient  mobile:pt-[2.575vh] mobile:pb-[1.717vh] mobile:pl-[5.581vw]} tabView:text-[3.226vw] tabView:pt-10`}
+            className={`font-bold text-[2rem] mobile:text-[5.581vw] mobile:flex mobile:justify-center text-black flex ${page === "course" || "branch" ? "justify-start" : "justify-center"} sm:mb-8 sm:mt-8 sm:h-12 mobile:bg-Pinkgradient  mobile:pt-[2.575vh] mobile:pb-[1.717vh] mobile:pl-[5.581vw]} tabView:text-[3.226vw] tabView:pt-10`}
           >
             Our Placement Statistics
           </h1>
@@ -134,7 +134,7 @@ const disableIcons =()=>{
           </figure>
 
           <aside className="sm:pr-[2.188vw] sm:pb-[5.556vh] mobile:pt-[4.292vh] tabView:ml-11">
-            <h1 className="font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw] tabView:text-[2.688vw] tabView:mt-7 tabView:ml-3.5">
+            <h1 className="font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw] mobile:flex mobile:justify-center tabView:text-[2.688vw] tabView:mt-7 tabView:ml-3.5">
               From Various Degree
             </h1>
             <div className="flex flex-wrap mobile:gap-2.5 mobile:justify-between gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[4.292vh]">
@@ -158,7 +158,7 @@ const disableIcons =()=>{
             </div>
 
             <aside className="sm:pt-[8.333vh]">
-              <h1 className="font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:text-[4.651vw] tabView:text-[2.688vw] tabView:ml-2.5">
+              <h1 className="font-bold text-[1.563vw] sm:pb-[4.861vh] mobile:pb-[3.219vh] mobile:flex mobile:justify-center mobile:text-[4.651vw] tabView:text-[2.688vw] tabView:ml-2.5">
                 From Various Branches
               </h1>
               <div className="flex flex-wrap mobile:gap-2.5 mobile:justify-between  sm:gap-[1.125rem] sm:w-[37.094vw] mobile:w-[92.558vw] mobile:pb-[9.442vh]">

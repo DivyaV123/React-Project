@@ -185,8 +185,8 @@ const handleItemLeave = useCallback(() => {
                           (hoverState.content &&
                             hoverState.item === navItem.name)) ||
                         activeItem === navItem.name
-                          ? "text-orange-500 border-b-2 border-orange-500"
-                          : "menuHeader font-bold text-normal text-slate hover-underline-animation  text-[1.094vw]"
+                          ? "text-orange-500 border-b-2 border-orange-500 h-[4vh] text-[1.094vw]  font-bold text-normal  text-slate "
+                          : "menuHeader font-bold text-normal h-[4vh] text-slate hover-underline-animation  text-[1.094vw]"
                       }
                     >
                       {navItem.name}
