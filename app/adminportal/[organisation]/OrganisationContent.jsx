@@ -1,8 +1,11 @@
 import React from 'react'
+import SubCategoryContent from './SubCategoryContent'
 
-const OrganisationContent = () => {
+const OrganisationContent = ({ categoryData }) => {
   return (
-    <div>OrganisationContent</div>
+    <div>
+      <SubCategoryContent categoryData={categoryData} />
+    </div>
   )
 }
 
