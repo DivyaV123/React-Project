@@ -72,7 +72,7 @@ const AdminSidebar = () => {
               <div
                 key={index}
                 className={`flex items-center gap-1.5 cursor-pointer text-[1.094vw] py-[1.25vh] px-[0.625vw] my-[0.694vh] ${
-                  sidebarParam === item.name
+                  decodeURIComponent(sidebarParam) === item.name
                     ? "bg-[#FF7B1B] text-white  font-bold rounded-md"
                     : "text-[#6E6E6E] font-medium"
                 } `}
