@@ -1,16 +1,28 @@
 'use client'
-import React from 'react'
-import AdminSidebar from './AdminSidebar'
-import Homepage from '@/app/homepage'
-const OragnisationLandning = () => {
-  const storedToken = localStorage?.getItem('Role');
+import React, { useEffect, useState } from 'react';
+import AdminSidebar from './AdminSidebar';
+import Homepage from '@/app/homepage';
+
+const OragnisationLanding = () => {
+  const [storedToken, setStoredToken] = useState(null);
+
+  useEffect(() => {
+    // Ensure this code runs only in the browser
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem('Role');
+      setStoredToken(token);
+    }
+  }, []);
+
+  if (storedToken === null) {
+    return null; // Or a loading spinner
+  }
+
   return (
     <>
-    {
-      storedToken ==="COURSEADDER" ?  <AdminSidebar/> : <Homepage/>
-    }
+      {storedToken === "COURSEADDER" ? <AdminSidebar /> : <Homepage />}
     </>
-  )
-}
+  );
+};
 
-export default OragnisationLandning
+export default OragnisationLanding;
