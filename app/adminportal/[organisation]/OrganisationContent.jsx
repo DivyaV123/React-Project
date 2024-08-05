@@ -2,11 +2,10 @@ import React from 'react'
 import SubCategoryContent from './SubCategoryContent'
 import AdminCategory from './AdminCategory'
 
-const OrganisationContent = ({ categoryData }) => {
+const OrganisationContent = () => {
   return (
     <div className=''>
-      <AdminCategory categoryData={categoryData} />
-      {/* <SubCategoryContent categoryData={categoryData} /> */}
+      <AdminCategory  />
     </div>
   )
 }

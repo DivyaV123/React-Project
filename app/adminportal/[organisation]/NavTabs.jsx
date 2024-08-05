@@ -7,7 +7,7 @@ import { ADMIN_PORTAL } from "@/lib/RouteConstants";
 import Input from "@/components/commonComponents/input/Input";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-const NavTabs = ({ categoryData }) => {
+const NavTabs = () => {
   const router = useRouter();
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
@@ -58,7 +58,7 @@ const NavTabs = ({ categoryData }) => {
           <Input
             inputStyle="rounded-md"
             placeholder="search"
-            iconPath="../images/icon_outline_search.png"
+            iconPath="/images/icon_outline_search.png"
           />
         </div>
         <aside className="pt-[2.778vh] pr-[1.875vw]">
