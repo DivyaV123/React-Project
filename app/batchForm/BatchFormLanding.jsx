@@ -1,7 +1,7 @@
 'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import dayjs from "dayjs";
@@ -30,8 +30,8 @@ function BatchFormLanding() {
     const [branchDropDownDetails, setBranchDropDownDetails] = useState('');
     const [isSelectedBranchEdit, setIsSelectedBranchEdit] = useState(false);
     const [createBatch, setCreateBatch] = useState(true);
-    const [startCalender, setStartCalender] = useState(false);
-    const [endCalender, setEndCalender] = useState(false);
+    const [startCalender, setStartCalender] = useState(true);
+    const [endCalender, setEndCalender] = useState(true);
     const [selectedDates, setSelectedDates] = useState({
         startDate: '',
         endDate: ''
@@ -117,6 +117,7 @@ function BatchFormLanding() {
             const endingDate = formatDate(selectedDates.endDate);
             const courseId = allId?.courseId;
             const BranchId = branchDropDownDetails?.data?.branchId;
+            console.log(branchDropDownDetails, "branchDropDownDetailsbranchDropDownDetailsF")
             let payload = {
                 batchTitle: values.batchTitle,
                 trainerName: values.trainerName,
@@ -260,6 +261,7 @@ function BatchFormLanding() {
             [type]: newValue
         }));
     };
+
     return (
         <WebLayout>
             <MaxWebWidth sectionStyling='pt-4 pb-4' articalStyling='p-8 pt-1 border border-gray-300 rounded-xl'>
@@ -399,7 +401,7 @@ function BatchFormLanding() {
                             <div>
                                 <Button
                                     type='button'
-                                    title='Select Batch Start Day'
+                                    title='Select Batch End Day'
                                     className='p-2 bg-orange-300 rounded-xl mb-2'
                                     onClick={() => { setEndCalender(true) }}
                                 />

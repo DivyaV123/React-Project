@@ -52,6 +52,7 @@ function BranchDropDowns({ setBranchDropDownDetails, setIsSelectedBranchEdit, bt
             branch: Yup.string().required('Branch is required')
         }),
         onSubmit: async (values) => {
+            alert("working")
             if (individualBranch) {
                 setIsSelectedBranchEdit(true);
                 setBranchDropDownDetails(individualBranch)
