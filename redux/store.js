@@ -1,6 +1,4 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { courseApi } from './queries/getAllCourses';
-import CourseReducer from './slices/courses/CourseSlice';
 import CityReducer from './slices/placementFilter/CitiesSlice';
 import { citiesApi } from './queries/getAllCities';
 import { degreeAndStreamApi } from './queries/getDegreeAndStream';
@@ -62,11 +60,9 @@ import { branchesAsPerCountryApi } from './queries/getAllBranchesAsPerCountryApi
 import { subjectDeleteApi } from './queries/deletSubjectApi';
 import { addBatchApi } from './queries/addBatchApi';
 import { adminCategorySortApi } from './queries/adminCategorySortApi';
-
+import { AllCoursesApi } from './queries/getAllCourseForAdmin';
 const store = configureStore({
   reducer: {
-    [courseApi.reducerPath]: courseApi.reducer,
-    getAllCourses: CourseReducer,
 
     [citiesApi.reducerPath]: citiesApi.reducer,
     getAllCities: CityReducer,
@@ -146,14 +142,15 @@ const store = configureStore({
     [subjectDeleteApi.reducerPath]: subjectDeleteApi.reducer,
     [addBatchApi.reducerPath]: addBatchApi.reducer,
     [adminCategorySortApi.reducerPath]: adminCategorySortApi.reducer,
+    [AllCoursesApi.reducerPath]: AllCoursesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(courseApi.middleware, citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
+    getDefaultMiddleware().concat( citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
       ItandNonItApi.middleware, counsellorsApi.middleware, PlacementBranchApi.middleware, YearOfPassoutApi.middleware, PlacedDateBetweenApi.middleware, LoginApi.middleware, categoriesApi.middleware, allSubjectApi.middleware, mapSubjectApi.middleware, allSubjectApiAsPerID.middleware,
       CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, subjectAdder.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
-      addBatchApi.middleware, adminCategorySortApi.middleware,
+      addBatchApi.middleware, adminCategorySortApi.middleware,AllCoursesApi.middleware
     ),
 });
 

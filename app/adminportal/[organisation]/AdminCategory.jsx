@@ -43,6 +43,7 @@ const AdminCategory = () => {
     const checkIfSubCourse =
       categoryData?.data.find((category) => category.title === title)?.subCourse
         .length > 0;
+    
     const subCoursePath = `${basePath}/dynamic/${title}`;
     const coursePath = `${basePath}/dynamic/course/${title}`;
     if (checkIfSubCourse) {

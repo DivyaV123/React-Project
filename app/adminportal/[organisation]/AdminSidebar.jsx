@@ -44,7 +44,7 @@ const AdminSidebar = () => {
     }else if(name==="Course"){
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/courses`); 
     }else{
-      router.push(`${ADMIN_PORTAL}/${name}, ${instituteParam}`);
+      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}`);
     }
     setSelectedSideBar(name);
   };
