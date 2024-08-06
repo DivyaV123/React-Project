@@ -33,7 +33,7 @@ function CarosalHome() {
       address: "http://testpysp.pyspiders.com/"
     },
     {
-      imgSrc: '../images/BSPSideLogo.png',
+      imgSrc: '../images/proSpiders.png',
       address: "http://testpsp.prospiders.com/"
     },
   ]
@@ -54,7 +54,7 @@ function CarosalHome() {
           </figure>
           <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
             <a href='http://testpsp.prospiders.com/' target='_blank'>
-              <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
+              <img className='w-[78%] hover:w-[79%]' src='../images/proSpiders.png' alt="riteJspidersStickyLogo"></img>
             </a>
           </figure>
         </article>
@@ -73,7 +73,7 @@ function CarosalHome() {
         </figure>
         <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testpsp.prospiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/proSpiders.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
       </article>)
@@ -91,11 +91,11 @@ function CarosalHome() {
         </figure>
         <figure className='absolute right-[-9%] top-[17.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testpsp.prospiders.com/' target='_blank'>
-            <img className='w-[78%] hover:w-[79%]' src='../images/BSPSideLogo.png' alt="riteJspidersStickyLogo"></img>
+            <img className='w-[78%] hover:w-[79%]' src='../images/proSpiders.png' alt="riteJspidersStickyLogo"></img>
           </a>
         </figure>
       </article>)
-    } else if (domainVariable === "Bspiders") {
+    } else if (domainVariable === "Prospiders") {
       return (<article className='mobile:hidden'>
         <figure className='absolute right-[-8.9%] top-[2.5%] hover:right-[-9%] cursor-pointer '>
           <a href='http://testqsp.qspiders.com/' target='_blank'>
