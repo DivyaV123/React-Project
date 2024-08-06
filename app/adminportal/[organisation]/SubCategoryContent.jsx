@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo,useEffect } from "react";
 import {
   Table,
   TableBody,
@@ -30,6 +30,9 @@ function SubCategoryContent() {
   const { data: categoryData, refetch } = useGetAllCategoryQuery({
     organizationType: initialOrgType,
   });
+  useEffect(() => {
+    refetch();
+  }, [instituteParam]);
   const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem]";
 const categoryTitle=decodedCategory === "subcategory" ? categoryData?.data.filter(ele=>ele.subCourse.length>0).flatMap(ele=>ele.title) : decodedCategory
 const getSubCourseCategory = useMemo(() => {
