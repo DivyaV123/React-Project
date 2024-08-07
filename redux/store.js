@@ -61,6 +61,7 @@ import { subjectDeleteApi } from './queries/deletSubjectApi';
 import { addBatchApi } from './queries/addBatchApi';
 import { adminCategorySortApi } from './queries/adminCategorySortApi';
 import { AllCoursesApi } from './queries/getAllCourseForAdmin';
+import { updateCategoryWeightage } from './queries/updateCategoryWeightageApi';
 const store = configureStore({
   reducer: {
 
@@ -143,6 +144,7 @@ const store = configureStore({
     [addBatchApi.reducerPath]: addBatchApi.reducer,
     [adminCategorySortApi.reducerPath]: adminCategorySortApi.reducer,
     [AllCoursesApi.reducerPath]: AllCoursesApi.reducer,
+    [updateCategoryWeightage.reducerPath]:updateCategoryWeightage.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat( citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
@@ -150,7 +152,7 @@ const store = configureStore({
       CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, subjectAdder.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
-      addBatchApi.middleware, adminCategorySortApi.middleware,AllCoursesApi.middleware
+      addBatchApi.middleware, adminCategorySortApi.middleware,AllCoursesApi.middleware,updateCategoryWeightage.middleware,
     ),
 });
 
