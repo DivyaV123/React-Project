@@ -51,5 +51,6 @@ export const API_ENDPOINTS = {
   //Batch
   CREATE_BATCH: (branchId, courseId) => `/api/v1/batches?${branchId ? `branchId=${branchId}&` : ''}courseId=${courseId}`,
   //Admin Portal
-  GET_ALL_CATEGORY: (organizationType) => `/api/v1/categories/getAllCategories?organization=${organizationType}`
+  GET_ALL_CATEGORY: (organizationType) => `/api/v1/categories/getAllCategories?organization=${organizationType}`,
+  CATEGORY_WEIGHTAGE_EDIT: (categoryId,weightage,organisation) => `/api/v1/weightage/categories?categoryId=${categoryId}&weightage=${weightage}&organisation=${organisation}`,
 };
