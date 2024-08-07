@@ -119,11 +119,10 @@ function CourseFormLanding() {
           resetForm();
           alert("course created successfully")
         } else {
-          alert(response.message)
+          alert("something went wrong")
         }
       } catch (err) {
-        console.error(err, "Error from loginAPI");
-        alert(err, "Error from loginAPI")
+        alert(courseError.data.data)
       }
     },
   });
@@ -245,15 +244,12 @@ function CourseFormLanding() {
   const handleFileSelected = (e, type) => {
     const file = e.target.files[0];
     if (file) {
-      const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
-      if (validImageTypes.includes(file.type)) {
-        setFiles(prevState => ({
-          ...prevState,
-          [type]: file
-        }));
-      } else {
-        console.error("Invalid file type. Please select an image file.");
-      }
+      const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', "image/svg"];
+      setFiles(prevState => ({
+        ...prevState,
+        [type]: file
+      }));
+
     }
   };
 

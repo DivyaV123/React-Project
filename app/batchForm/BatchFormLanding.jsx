@@ -29,6 +29,7 @@ function BatchFormLanding() {
     const [selectedCourseName, setSelectedCourseName] = useState("");
     const [branchDropDownDetails, setBranchDropDownDetails] = useState('');
     const [isSelectedBranchEdit, setIsSelectedBranchEdit] = useState(false);
+    const [branchId, setBranchId] = useState("")
     const [createBatch, setCreateBatch] = useState(true);
     const [startCalender, setStartCalender] = useState(true);
     const [endCalender, setEndCalender] = useState(true);
@@ -116,8 +117,6 @@ function BatchFormLanding() {
             const startingDate = formatDate(selectedDates.startDate);
             const endingDate = formatDate(selectedDates.endDate);
             const courseId = allId?.courseId;
-            const BranchId = branchDropDownDetails?.data?.branchId;
-            console.log(branchDropDownDetails, "branchDropDownDetailsbranchDropDownDetailsF")
             let payload = {
                 batchTitle: values.batchTitle,
                 trainerName: values.trainerName,
@@ -128,14 +127,14 @@ function BatchFormLanding() {
                 extendingDays: 0
             }
             try {
-                const response = addBatch({ bodyData: payload, branchId: BranchId, courseId: courseId })
+                const response = addBatch({ bodyData: payload, branchId: branchId, courseId: courseId })
                 if (response.statusCode === 201) {
                     alert("batc created successfully")
                 } else {
-                    console.log(err)
+                console.log
                 }
             } catch (err) {
-                alert(err.message)
+                alert(courseError.data.data);
             }
         },
     });
@@ -323,6 +322,7 @@ function BatchFormLanding() {
                 <p className='font-large text-[1rem] p-2 pt-5 text-orange-500'>Selecte the Branch to create Offline Batch </p>
                 <BranchDropDowns
                     btnName='Create Batch'
+                    setBranchId={setBranchId}
                     setBranchDropDownDetails={setBranchDropDownDetails}
                     setIsSelectedBranchEdit={setIsSelectedBranchEdit}
                 />
