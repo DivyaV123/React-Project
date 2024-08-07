@@ -84,7 +84,7 @@ function BranchesLandingPage({ BranchDetails }) {
                     {/* {/ {/ <img className='h-[25vw]  w-[49.219vw] rounded-2xl mobile:h-[20.815vh] mobile:w-full object-cover' src={selectedImg} /> /}  */}
                 </figure>
                 <article className='flex gap-2 pt-[2.222vh] mobile:hidden'>
-                    <div onClick={handlePrevious}  className={` ${currentSlide === 0 ? 'disabled opacity-50 cursor-default' : 'cursor-pointer'}`}>
+                    <div onClick={handlePrevious} className={` ${currentSlide === 0 ? 'disabled opacity-50 cursor-default' : 'cursor-pointer'}`}>
                         <Svg
                             className=''
                             width={svgicons.corasalArrowLeft[0]}
@@ -179,12 +179,12 @@ function BranchesLandingPage({ BranchDetails }) {
                         ].filter(Boolean).join(' ')}
                     </p>
                 </article>
-                <article className="flex  gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh] cursor-pointer hover:text-orange-600" onClick={() => window.open(branchData?.address.location, "_blank")}>
-          <img src="../../navigation_branch.svg" />
-          <p className="text-[1.25vw] mobile:text-[2.791vw] pl-[0.625vw] mobile:flex mobile:items-center">
-            Get Navigation
-          </p>
-        </article>
+                <article className="flex  gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh] cursor-pointer " onClick={() => window.open(branchData?.address.location, "_blank")}>
+                    <img src="../../navigation_branch.svg" />
+                    <p className="text-[1.25vw] mobile:text-[2.791vw] ml-[0.625vw] mobile:flex mobile:items-center border-b border-slate-500 hover:border-orange-600 hover:text-orange-600">
+                        Get Navigation
+                    </p>
+                </article>
                 <article className='flex  gap-2.5 sm:pt-[3.333vh] mobile:pb-[1.502vh]'>
                     <span>
                         <Svg

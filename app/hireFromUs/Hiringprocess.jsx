@@ -11,17 +11,17 @@ const Hiringprocess = () => {
     domainVariable === "Qspiders"
       ? "../../hiring_process_mobileView.png"
       : domainVariable === "Bspiders"
-      ? "../../hiring_processBS.png"
-      : domainVariable === "Jspiders"
-      ? "../../hiring_processJ.png"
-      : domainVariable === "Pyspiders"
-      ? "../../hiring_processPY.png"
-      : "../../hiring_processBS.png";
+        ? "../../hiring_processBS.png"
+        : domainVariable === "Jspiders"
+          ? "../../hiring_processJ.png"
+          : domainVariable === "Pyspiders"
+            ? "../../hiring_processPY.png"
+            : "../../hiring_processBS.png";
 
   return (
     <>
       <section className="hiringprocessbg mobile:hidden">
-        <img className="w-full" src="../images/hiring_process.png" />
+        <img className="w-full" src="../images/Section 9.png" />
       </section>
       <section className="hiringprocessbg hidden mobile:block">
         {domainBasedImage && <img src={domainBasedImage} />}

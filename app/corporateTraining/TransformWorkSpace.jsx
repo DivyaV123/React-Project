@@ -36,6 +36,8 @@ const TransformWorkSpace = () => {
   }, []);
   const initialValues = {
     name: "",
+    title: '',
+    compName: '',
     phone: "",
     email: "",
     message: "",
@@ -53,6 +55,8 @@ const TransformWorkSpace = () => {
       .required("Email is required")
       .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
     message: Yup.string().required("Message is required"),
+    compName: Yup.string().required("Company Name is required"),
+    title: Yup.string().required("Title is required"),
   });
   const formikDetails = useFormik({
     initialValues,
@@ -107,7 +111,6 @@ const TransformWorkSpace = () => {
               onChange={formikDetails.handleChange}
               onBlur={formikDetails.handleBlur}
               value={formikDetails.values.name}
-              autoFocus={true}
             />
             {formikDetails.touched.name && formikDetails.errors.name ? (
               <div className="text-red-500 tabView:text-[1.5vw]  absolute mobile:text-[2.591vw] text-[0.75vw] pt-1">
@@ -123,15 +126,14 @@ const TransformWorkSpace = () => {
               inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] tabView:text-[1.491vw] tabView:pl-[5.442vw] contactInput`}
               iconPath="/nameTextFieldIcon.svg"
               placeholder="Title"
-              name="name"
+              name="title"
               onChange={formikDetails.handleChange}
               onBlur={formikDetails.handleBlur}
-              value={formikDetails.values.name}
-              autoFocus={true}
+              value={formikDetails.values.title}
             />
-            {formikDetails.touched.name && formikDetails.errors.name ? (
+            {formikDetails.touched.title && formikDetails.errors.title ? (
               <div className="text-red-500 tabView:text-[1.5vw]  absolute mobile:text-[2.591vw] text-[0.75vw] pt-1">
-                {formikDetails.errors.name}
+                {formikDetails.errors.title}
               </div>
             ) : null}
           </div>
@@ -166,7 +168,6 @@ const TransformWorkSpace = () => {
               searchPlaceholder="Search..."
               searchNotFound="No Countries Found"
               specialLabel=""
-              autoFormat={false}
               enableAreaCodeStretch
               country={"in"}
               name="phone"
@@ -191,10 +192,10 @@ const TransformWorkSpace = () => {
             />
             {(error.phone ||
               (formikDetails.errors.phone && formikDetails.touched.phone)) && (
-              <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute pt-1">
-                Mobile number is required
-              </div>
-            )}
+                <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute pt-1">
+                  Mobile number is required
+                </div>
+              )}
             {error.validPhone && !error.phone && (
               <div className="text-red-500 tabView:text-[1.5vw] tabView:my-[0.538vw mobile:text-[2.591vw] text-[0.75vw] absolute pt-1">
                 Invalid phone number
@@ -209,15 +210,14 @@ const TransformWorkSpace = () => {
               inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] tabView:text-[1.491vw] tabView:pl-[5.442vw] contactInput`}
               iconPath="/nameTextFieldIcon.svg"
               placeholder="Company name"
-              name="name"
+              name="compName"
               onChange={formikDetails.handleChange}
               onBlur={formikDetails.handleBlur}
-              value={formikDetails.values.name}
-              autoFocus={true}
+              value={formikDetails.values.compName}
             />
-            {formikDetails.touched.name && formikDetails.errors.name ? (
+            {formikDetails.touched.compName && formikDetails.errors.compName ? (
               <div className="text-red-500 tabView:text-[1.5vw]  absolute mobile:text-[2.591vw] text-[0.75vw] pt-1">
-                {formikDetails.errors.name}
+                {formikDetails.errors.compName}
               </div>
             ) : null}
           </div>
@@ -246,10 +246,10 @@ const TransformWorkSpace = () => {
 
       </section>
       <div className="flex justify-end pr-8">
-          <button className="text-white text-[0.938vw] font-medium RequestButton py-[1.111vh]">
-        Send Request
-      </button>
-          </div>
+        <button className="text-white text-[0.938vw] font-medium RequestButton py-[1.111vh]">
+          Send Request
+        </button>
+      </div>
     </section>
   );
 };

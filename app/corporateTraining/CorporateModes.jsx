@@ -15,7 +15,7 @@ const CorporateModes = () => {
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
     },
     {
-      icon: "../../selfpaced_corp.svg",
+      icon: "../images/Online_Test.png",
       title: "Self Paced Mode",
       description:
         "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
