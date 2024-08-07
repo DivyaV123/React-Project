@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useEffect } from "react";
+import React, { useMemo, useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,10 +10,13 @@ import {
 } from "@/components/ui/table";
 import { useGetAllCoursesQuery } from "@/redux/queries/getAllCourseForAdmin";
 import { usePathname } from "next/navigation";
+import { truncateText } from "@/lib/utils";
+
 function CourseCategoryContent() {
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
+
   const initialOrgType =
     instituteParam === "Qspiders"
       ? "QSP"
@@ -24,25 +27,30 @@ function CourseCategoryContent() {
       : instituteParam === "Prospiders"
       ? "PROSP"
       : "QSP";
+
   const segments = pathname.split("/");
   const desiredSegment = segments[segments.length - 1];
   const decodedCategory = decodeURIComponent(desiredSegment);
+
   const { data: courseData, refetch } = useGetAllCoursesQuery({
     organizationType: initialOrgType,
   });
+
   useEffect(() => {
     refetch();
   }, [instituteParam]);
-  const getCategoryList = courseData?.data?.filter((ele) =>
-    ele.categories
-      .map((category) => category.categoryTitle)
-      .includes(decodedCategory)
-  );
+
+  const getCategoryList = useMemo(() =>
+    courseData?.data?.filter(ele =>
+      ele.categories.find(subele => subele.categoryId === decodedCategory)
+    ), [courseData, decodedCategory]);
+
   const isDynamicCourse =
     getParams[1] === "dynamic" && getParams[2] === "course";
   const finalCourseData = isDynamicCourse ? getCategoryList : courseData?.data;
+
   const getCategoryTitle = isDynamicCourse && decodedCategory;
-  const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem]";
+  const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
 
   const dynamicCoursetableHeaders = ["COURSE NAME", "SUBJECTS", "ACTIONS"];
   const tableHeaders = [
@@ -55,6 +63,13 @@ function CourseCategoryContent() {
   const getTableHeaders = isDynamicCourse
     ? dynamicCoursetableHeaders
     : tableHeaders;
+
+
+  const [dropdownOpen, setDropdownOpen] = useState(null);
+
+  const handleMouseEnter = (index) => setDropdownOpen(index);
+  const handleMouseLeave = () => setDropdownOpen(null);
+
   return (
     <div className="py-[3.333vh] px-[1.875vw]">
       <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
@@ -76,8 +91,8 @@ function CourseCategoryContent() {
           <TableBody>
             {finalCourseData?.map((ele, index) => (
               <TableRow key={index}>
-                <TableCell className={tblTextClass}>
-                  {ele.course_name}
+                <TableCell className={tblTextClass} title={ele.course_name}>
+                  {truncateText(ele.course_name, 30)}
                 </TableCell>
                 {!isDynamicCourse && (
                   <>
@@ -85,38 +100,62 @@ function CourseCategoryContent() {
                       {ele.categories.length === 0 ? (
                         ele.categories.length
                       ) : ele.categories.length === 1 ? (
-                        ele.categories.map((category) => category.categoryTitle)
+                        ele.categories.map(category => category.categoryTitle)
                       ) : (
-                        <>
-                          {ele.categories
-                            .slice(0, 1)
-                            .map((category) => category.categoryTitle)}
-                          <button className="ml-1.5 bg-[#FFF2E8] rounded-md px-1 py-1">
-                            + {ele.categories.length - 1}
-                          </button>
-                        </>
+                        <div className="flex space-x-2 items-center">
+                          {ele.categories.slice(0, 1).map(category => category.categoryTitle)}
+                          {ele.categories.length > 1 && (
+                            <div className="relative">
+                              <button
+                                className="ml-1.5 bg-[#FFF2E8] rounded-md px-1 py-1 font-medium text-[0.938vw] hover:bg-[#FF7B1B] hover:text-white"
+                                onMouseEnter={() => handleMouseEnter(index)}
+                                onMouseLeave={handleMouseLeave}
+                              >
+                                + {ele.categories.length - 1}
+                              </button>
+                              {dropdownOpen === index && (
+                                <div className="absolute bg-white border mt-2 rounded-md shadow-lg z-10 w-max">
+                                  {ele.categories.slice(1).map((category, idx) => (
+                                    <div key={idx} className="px-2 py-1">
+                                      {category.categoryTitle}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
                       )}
                     </TableCell>
-                  </>
-                )}
-                {!isDynamicCourse && (
-                  <>
                     <TableCell className={tblTextClass}>
                       {ele.subCategories.length === 0 ? (
                         ele.subCategories.length
                       ) : ele.subCategories.length === 1 ? (
-                        ele.subCategories.map(
-                          (subcategory) => subcategory.subCategoryTitle
-                        )
+                        ele.subCategories.map(subcategory => subcategory.subCategoryTitle)
                       ) : (
-                        <>
-                          {ele.subCategories
-                            .slice(0, 1)
-                            .map((category) => category.subCategoryTitle)}
-                          <button className="ml-1.5 bg-[#FFF2E8] rounded-md px-1 py-1">
-                            + {ele.subCategories.length - 1}
-                          </button>
-                        </>
+                        <div className="flex space-x-2 items-center">
+                          {ele.subCategories.slice(0, 1).map(subcategory => subcategory.subCategoryTitle)}
+                          {ele.subCategories.length > 1 && (
+                            <div className="relative">
+                              <button
+                                className="ml-1.5 bg-[#FFF2E8] rounded-md px-1 py-1 font-medium text-[0.938vw] hover:bg-[#FF7B1B] hover:text-white"
+                                onMouseEnter={() => handleMouseEnter(`sub-${index}`)}
+                                onMouseLeave={handleMouseLeave}
+                              >
+                                + {ele.subCategories.length - 1}
+                              </button>
+                              {dropdownOpen === `sub-${index}` && (
+                                <div className="absolute bg-white border mt-2 rounded-md shadow-lg z-10 w-max">
+                                  {ele.subCategories.slice(1).map((subcategory, idx) => (
+                                    <div key={idx} className="px-2 py-1">
+                                      {subcategory.subCategoryTitle}
+                                    </div>
+                                  ))}
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
                       )}
                     </TableCell>
                   </>

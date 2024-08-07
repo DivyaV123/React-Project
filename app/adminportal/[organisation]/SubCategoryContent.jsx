@@ -9,8 +9,10 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetAllCategoryQuery } from "@/redux/queries/adminCategorySortApi";
-import { usePathname } from "next/navigation";
+import { usePathname ,useRouter} from "next/navigation";
+import { ADMIN_PORTAL } from "@/lib/RouteConstants";
 function SubCategoryContent() {
+  const router = useRouter();
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -33,8 +35,13 @@ function SubCategoryContent() {
   useEffect(() => {
     refetch();
   }, [instituteParam]);
-  const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem]";
-const categoryTitle=decodedCategory === "subcategory" ? categoryData?.data.filter(ele=>ele.subCourse.length>0).flatMap(ele=>ele.title) : decodedCategory
+  const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
+
+  const getTitle=categoryData?.data
+  .find(ele => ele.courseId == decodedCategory)?.title
+
+const categoryTitle=decodedCategory === "subcategory" ? categoryData?.data.filter(ele=>ele.subCourse.length>0).flatMap(ele=>ele.title) : getTitle
+
 const getSubCourseCategory = useMemo(() => {
   if (!categoryData?.data) return [];
 
@@ -42,12 +49,17 @@ const getSubCourseCategory = useMemo(() => {
     return categoryData.data.flatMap(ele => ele?.subCourse?.length > 0 ? ele.subCourse : []);
   } else {
     return categoryData.data
-      .filter(ele => ele.title === decodedCategory)
+      .filter(ele => ele.courseId == decodedCategory)
       .flatMap(subele => subele.subCourse.length > 0 ? subele.subCourse : []);
   }
 }, [decodedCategory, categoryData]);
 
+const handleCategoryClick=(subcourseid)=>{
+router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},${subcourseid}`)
+}
+
   const tableHeaders = ["SUB CATEGORY NAME", "CATEGORY", "COURSES", "ACTIONS"];
+
   return (
     <div className="py-[3.333vh] px-[1.875vw]">
       <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] ">
@@ -63,7 +75,7 @@ const getSubCourseCategory = useMemo(() => {
           </TableHeader>
           <TableBody>
             {getSubCourseCategory?.map((subCourse, index) => (
-              <TableRow key={index}>
+              <TableRow key={index} onClick={()=>handleCategoryClick(subCourse.subCourseId)} >
                 <TableCell className={tblTextClass}>
                   {subCourse.title}
                 </TableCell>
