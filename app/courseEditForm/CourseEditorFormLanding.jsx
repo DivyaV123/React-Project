@@ -430,7 +430,7 @@ function CourseEditorFormLanding() {
     const handleFileSelected = (e, type) => {
         const file = e.target.files[0];
         if (file) {
-            const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+            const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', "image/svg"];
             if (validImageTypes.includes(file.type)) {
                 setFiles(prevState => ({
                     ...prevState,
