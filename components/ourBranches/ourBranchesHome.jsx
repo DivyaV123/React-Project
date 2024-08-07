@@ -36,7 +36,7 @@ function OurBranchesHome({ page, tabData }) {
   if (page !== "course" && branchDetails?.length > 0) {
     branchDetails = [
       ...branchDetails,
-      { cityImage: "/images/AllCitiesCard.png", cityName: "AllCities" },
+      { cityImage: "/images/BranchCard.png", cityName: "AllCities" },
     ];
   }
 
@@ -200,16 +200,21 @@ function OurBranchesHome({ page, tabData }) {
                       // }}
                       >
                         {elements.cityImage && (
-                          <Image
-                            src={elements.cityImage}
-                            height={750}
-                            width={800}
-                            sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
-                            className={`absolute object-fit w-[100%] h-[100%] z-1 rounded-lg ${elements.cityName !== "AllCities"
-                              ? " brightness-50"
-                              : ""
-                              }`}
-                          />
+                          elements.cityName === "AllCities" ?
+                            <img className="absolute object-fit w-[100%] h-[100%] z-1 rounded-lg"
+                              src={elements.cityImage}
+                            />
+                            :
+                            <Image
+                              src={elements.cityImage}
+                              height={750}
+                              width={800}
+                              sizes="(max-width: 768px) 100vh, (max-width: 1200px) 50vw, 33vw"
+                              className={`absolute object-fit w-[100%] h-[100%] z-1 rounded-lg ${elements.cityName !== "AllCities"
+                                ? " brightness-50"
+                                : ""
+                                }`}
+                            />
                         )}
 
                         {elements.cityName !== "AllCities" && (

@@ -10,7 +10,7 @@ const DeliveryApproach = () => {
           height={700}
           width={1280}
         /> */}
-        <img className="w-full" src="../../Process.svg" />
+        {/* <img className="w-full" src="../../Process.svg" /> */}
       </section>
       <section className="deliverybg hidden mobile:block">
         <img className="w-full" src="../../deliveryApproachMobView.svg" />
