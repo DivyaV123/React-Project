@@ -38,14 +38,14 @@ const AdminCategory = () => {
   useEffect(() => {
     refetch();
   }, [instituteParam]);
-  const handleCategoryClick = (title) => {
+  const handleCategoryClick = (id) => {
     const basePath = pathname.split(",").slice(0, 2).join(",");
     const checkIfSubCourse =
-      categoryData?.data.find((category) => category.title === title)?.subCourse
+      categoryData?.data.find((category) => category.courseId === id)?.subCourse
         .length > 0;
     
-    const subCoursePath = `${basePath}/dynamic/${title}`;
-    const coursePath = `${basePath}/dynamic/course/${title}`;
+    const subCoursePath = `${basePath}/dynamic/${id}`;
+    const coursePath = `${basePath}/dynamic/course/${id}`;
     if (checkIfSubCourse) {
       router.push(subCoursePath);
     } else {
@@ -72,7 +72,7 @@ const AdminCategory = () => {
     {
       content: category.title,
       className: "text-gray-600 font-medium text-xs cursor-pointer",
-      onClick: () => handleCategoryClick(category.title),
+      onClick: () => handleCategoryClick(category.courseId),
     },
     {
       content: category.subCourse.length,
