@@ -6,7 +6,7 @@ import Dropdown from '@/components/commonComponents/dropdown/Dropdown';
 import { useGetAllBranchesAsPerCountryQuery } from '@/redux/queries/getAllBranchesAsPerCountryApi';
 import { useGetBranchDetailsByIdQuery } from '@/redux/queries/getBranchDetailsByBranchIdApi';
 
-function BranchDropDowns({ setBranchDropDownDetails, setIsSelectedBranchEdit, btnName }) {
+function BranchDropDowns({ setBranchDropDownDetails, setIsSelectedBranchEdit, btnName, setBranchId }) {
     const [countryOptions, setCountryOptions] = useState([]);
     const [cityOptions, setCityOptions] = useState([]);
     const [organizationOptions, setOrganizationOptions] = useState([]);
@@ -127,7 +127,8 @@ function BranchDropDowns({ setBranchDropDownDetails, setIsSelectedBranchEdit, bt
         if (selectedOrgData) {
             const branches = selectedOrgData.branches.map(branch => ({
                 label: branch.branchName,
-                value: branch.branchName
+                value: branch.branchName,
+                branchId: branch.branchId
             }));
             setBranchOptions(branches);
 
@@ -137,10 +138,9 @@ function BranchDropDowns({ setBranchDropDownDetails, setIsSelectedBranchEdit, bt
     };
 
     const handleBranchSelect = (event) => {
-        btnName && handleBranchSubmit();
         const selectedBranchName = event.target.value;
         formik.setFieldValue('branch', selectedBranchName);
-
+        setBranchId(event.target.option.branchId);
         // Find the branchId corresponding to the selected branchName
         const selectedCountryData = BranchResponse?.data.find(
             country => country.countryName === formik.values.country
@@ -162,7 +162,7 @@ function BranchDropDowns({ setBranchDropDownDetails, setIsSelectedBranchEdit, bt
         }
 
     };
-    const handleBranchSubmit = formik.handleSubmit;
+
     return (
         <form onSubmit={formik.handleSubmit}>
             <div className="flex gap-3 justify-between pb-4">

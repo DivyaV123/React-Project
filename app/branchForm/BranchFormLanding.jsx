@@ -186,7 +186,7 @@ function BranchFormLanding() {
 
     const handleFileSelected = (e, type) => {
         const files = Array.from(e.target.files);
-        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif'];
+        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', "image/svg"];
 
         if (files.length > 0) {
             if (type === 'imageGalary') {

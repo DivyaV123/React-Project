@@ -51,9 +51,9 @@ function MainNavbar() {
                     <Link href={HOME_PATH}>
                       <img src="../images/pypiders.png" />
                     </Link>
-                  </> : domainVariable === "Bspiders" ?
+                  </> : domainVariable === "Prospiders" ?
                     <>
-                      <img src="../images/bspMainLogo.png" />
+                      <img src="../images/ProMainLogo.png" />
                     </> : <>  <Link href={HOME_PATH}>
                       <Svg
                         className={`mobile:w-[13.953vw] mobile:h-[4.077vh]`}

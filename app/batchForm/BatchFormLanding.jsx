@@ -1,7 +1,7 @@
 'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import dayjs from "dayjs";
@@ -29,9 +29,10 @@ function BatchFormLanding() {
     const [selectedCourseName, setSelectedCourseName] = useState("");
     const [branchDropDownDetails, setBranchDropDownDetails] = useState('');
     const [isSelectedBranchEdit, setIsSelectedBranchEdit] = useState(false);
+    const [branchId, setBranchId] = useState("")
     const [createBatch, setCreateBatch] = useState(true);
-    const [startCalender, setStartCalender] = useState(false);
-    const [endCalender, setEndCalender] = useState(false);
+    const [startCalender, setStartCalender] = useState(true);
+    const [endCalender, setEndCalender] = useState(true);
     const [selectedDates, setSelectedDates] = useState({
         startDate: '',
         endDate: ''
@@ -116,7 +117,6 @@ function BatchFormLanding() {
             const startingDate = formatDate(selectedDates.startDate);
             const endingDate = formatDate(selectedDates.endDate);
             const courseId = allId?.courseId;
-            const BranchId = branchDropDownDetails?.data?.branchId;
             let payload = {
                 batchTitle: values.batchTitle,
                 trainerName: values.trainerName,
@@ -127,14 +127,14 @@ function BatchFormLanding() {
                 extendingDays: 0
             }
             try {
-                const response = addBatch({ bodyData: payload, branchId: BranchId, courseId: courseId })
+                const response = addBatch({ bodyData: payload, branchId: branchId, courseId: courseId })
                 if (response.statusCode === 201) {
                     alert("batc created successfully")
                 } else {
-                    console.log(err)
+                console.log
                 }
             } catch (err) {
-                alert(err.message)
+                alert(courseError.data.data);
             }
         },
     });
@@ -260,6 +260,7 @@ function BatchFormLanding() {
             [type]: newValue
         }));
     };
+
     return (
         <WebLayout>
             <MaxWebWidth sectionStyling='pt-4 pb-4' articalStyling='p-8 pt-1 border border-gray-300 rounded-xl'>
@@ -321,6 +322,7 @@ function BatchFormLanding() {
                 <p className='font-large text-[1rem] p-2 pt-5 text-orange-500'>Selecte the Branch to create Offline Batch </p>
                 <BranchDropDowns
                     btnName='Create Batch'
+                    setBranchId={setBranchId}
                     setBranchDropDownDetails={setBranchDropDownDetails}
                     setIsSelectedBranchEdit={setIsSelectedBranchEdit}
                 />
@@ -399,7 +401,7 @@ function BatchFormLanding() {
                             <div>
                                 <Button
                                     type='button'
-                                    title='Select Batch Start Day'
+                                    title='Select Batch End Day'
                                     className='p-2 bg-orange-300 rounded-xl mb-2'
                                     onClick={() => { setEndCalender(true) }}
                                 />
