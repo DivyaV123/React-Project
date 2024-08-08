@@ -11,6 +11,7 @@ const SubTopicForm = ({ initialValues, onUpdateSubTopic }) => {
       subTopicTitle: initialValues?.subTopicTitle || "",
       subTopicPreviewUrl: initialValues?.subTopicPreviewUrl || "",
       subTopicPreviewDuration: initialValues?.subTopicPreviewDuration || "",
+      subTopicId: initialValues?.subTopicId || null,
     },
 
     validationSchema: Yup.object({
