@@ -18,6 +18,7 @@ const ChapterForm = forwardRef(({ initialValues, onUpdateChapter }, ref) => {
       chapterTitle: initialValues?.chapterTitle || "",
       chapterPreviewUrl: initialValues?.chapterPreviewUrl || "",
       chapterPreviewDuration: initialValues?.chapterPreviewDuration || "",
+      chapterId: initialValues?.chapterId || "",
     },
     validationSchema: Yup.object({
       chapterTitle: Yup.string().required("Required"),
@@ -25,7 +26,7 @@ const ChapterForm = forwardRef(({ initialValues, onUpdateChapter }, ref) => {
       // chapterPreviewDuration: Yup.string().required('Required'),
     }),
     onSubmit: (values) => {
-      onUpdateChapter(values); // Pass updated form values to parent component (SubjectForm)
+      onUpdateChapter({ ...values, topics });
     },
   });
   const handleFormChange = (e) => {
@@ -34,8 +35,9 @@ const ChapterForm = forwardRef(({ initialValues, onUpdateChapter }, ref) => {
 
     formik.handleChange(e);
     onUpdateChapter({
-      ...formik.values, // Pass current form values
-      [name]: value, // Ensure the latest changed field is updated
+      ...formik.values,
+      [name]: value,
+      topics,
     });
     // Pass updated form values to parent component (SubjectForm)
   };
