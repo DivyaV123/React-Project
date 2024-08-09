@@ -33,8 +33,7 @@ function EditSubjectPage() {
   const [deleteSelectedSubject] = useSubjectDeleteMutation();
 
   const validationSchema = Yup.object({
-    subject: Yup.string()
-    .required("Subjects are required"),
+    subject: Yup.string().required("Subjects are required"),
     // courseName: Yup.string().required("Course name is required"),
   });
 
@@ -71,21 +70,14 @@ function EditSubjectPage() {
     data: individualSubject,
     error,
     isLoading,
+    refetch: refetchSubject,
   } = useSubjectAsPerIDQuery({ id: subJectID }, { skip: !subJectID });
 
-  // Fetch the individual subject when selectedSubjectID changes
-  // useEffect(() => {
-  //     if (subJectID) {
-  //         const fetchSubject = async () => {
-  //             const { data, error } =  useSubjectAsPerIDQuery({ id: subJectID });
-  //             if (error) {
-  //                 console.error(error);
-  //             }
-  //         };
-  //         fetchSubject();
-  //     }
-  // }, [subJectID]);
-
+  useEffect(() => {
+    if (subJectID) {
+      refetchSubject();
+    }
+  }, [subJectID, refetchSubject]);
   const formikDetails = useFormik({
     initialValues,
     validationSchema,
