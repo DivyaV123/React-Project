@@ -18,14 +18,14 @@ function CommonDialog({ header = "", footerBtnTitle = "", formfn = () => { }, fo
                     <DialogTitle className=''>{header}</DialogTitle>
                 </DialogHeader>
                 <DialogClose>
-                    <X className="mt-0 w-4" onClick={dialogCloseClick} />
+                    <X className="absolute top-5 right-6 w-4" onClick={dialogCloseClick} />
                 </DialogClose>
             </div>
             <div>
                 {formfn()}
             </div>
             <DialogFooter>
-                <div className='pt-[45%]'>
+                <div className='absolute bottom-4 right-6'>
                     <Button
                         type='submit'
                         onClick={footerBtnClick}

@@ -154,7 +154,7 @@ const SubjectForm = () => {
         //   });
         //   return;
         // }
-
+console.log({editPayload},{payload})
         const response = await addSubject(
           individualSubjectData !== undefined ? editPayload : payload
         );
