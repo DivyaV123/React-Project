@@ -19,8 +19,25 @@ import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 import { useCourseCategoryMapMutation } from "@/redux/queries/courseCategoryMapingApi";
 import { useCourseSubCategoryMapMutation } from "@/redux/queries/courseSubCategoryMapApi";
 import { useGetAllCategoryQuery } from "@/redux/queries/adminCategorySortApi";
-
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  arrayMove,
+  useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
+import { useCourseWeightageDndMutation } from "@/redux/queries/updateCourseDndApi";
 function CourseCategoryContent() {
+  const [courses, setCourses] = useState([]);
   const [storeCourseId, setStoreCourseId] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedCategoryName, setSelectedCategoryName] = useState("");
@@ -169,7 +186,85 @@ function CourseCategoryContent() {
       }
     }
   };
+  useEffect(() => {
+    if (courseData) {
+      setCourses(courseData.data);
+    }
+  }, [courseData]);
 
+  const sensors = useSensors(
+    useSensor(PointerSensor),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+  const [courseWeitageDnd, { data: courseWeitageDndData, error: courseWeitageDndError, isLoading: courseWeitageDndLoad }] = useCourseWeightageDndMutation();
+  const handleDragEnd =async (event) => {
+    const { active, over } = event;
+    
+    if (active.id !== over.id) {
+      setCourses((items) => {
+        const oldIndex = items.findIndex((item) => item.course_id === active.id);
+        const newIndex = items.findIndex((item) => item.course_id === over.id);
+        return arrayMove(items, oldIndex, newIndex);
+      });
+      console.log( {active}, {over} ,{event})
+     
+    }
+
+    // Get the new index for the course
+    const newIndex = courses.findIndex((course) => course.course_id === over.id);
+
+    // Find the course object based on active.id
+    const activeCourse = courses.find((course) => course.course_id === active.id);
+
+    // Extract categoryIds and subCategoryIds as arrays
+    const categoryIds = activeCourse.categories.map((category) => category.categoryId);
+    const subCategoryIds = activeCourse.subCategories.map((subCategory) => subCategory.subCategoryId);
+    try {
+      
+      const response=  await courseWeitageDnd({
+         categoryIds: categoryIds,
+        subCategoryIds: subCategoryIds,
+        courseId: active.id,
+        weightage: newIndex + 1,
+        organisation: initialOrgType,
+        }).unwrap();
+       
+        if(response.statusCode===200){
+          refetch()
+        }
+        
+      } catch (error) {
+        console.error("Error updating category weightage:", error);
+      }
+  };
+
+ 
+  const SortableItem = ({ id, children }) => {
+    const { attributes, listeners, setNodeRef, transform, transition } =
+      useSortable({ id });
+  
+    const style = {
+      transform: CSS.Transform.toString(transform),
+      transition: transition || "transform 150ms ease", // Ensure default transition
+      zIndex: transform ? 999 : "auto", // Make sure the item being dragged is on top
+    };
+  
+    return (
+      <TableRow
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className="group"
+      >
+        {children}
+      </TableRow>
+    );
+  };
+  
+  console.log({courses})
   return (
     <>
       <Dialog>
@@ -209,6 +304,15 @@ function CourseCategoryContent() {
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
+        <DndContext
+          sensors={sensors}
+          collisionDetection={closestCenter}
+          onDragEnd={handleDragEnd}
+        >
+          <SortableContext
+            items={courses.map((course) => course.course_id)}
+            strategy={verticalListSortingStrategy}
+          >
           <Table>
             <TableHeader className="z-1">
               <TableRow>
@@ -220,8 +324,11 @@ function CourseCategoryContent() {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {courseData?.data?.map((ele, index) => (
-                <TableRow key={index}>
+              {courses?.map((ele, index) => (
+                <SortableItem
+                        key={ele.course_id}
+                        id={ele.course_id}
+                      >
                   <TableCell className={tblTextClass} title={ele.course_name}>
                     <div className="flex space-x-2">
                       <Checkbox
@@ -308,10 +415,12 @@ function CourseCategoryContent() {
                   <TableCell className={tblTextClass}>
                     {ele.subjectCount}
                   </TableCell>
-                </TableRow>
+                </SortableItem>
               ))}
             </TableBody>
           </Table>
+          </SortableContext>
+        </DndContext>
         </div>
       </div>
     </>
