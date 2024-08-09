@@ -19,6 +19,7 @@ import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 import { useCourseCategoryMapMutation } from "@/redux/queries/courseCategoryMapingApi";
 import { useCourseSubCategoryMapMutation } from "@/redux/queries/courseSubCategoryMapApi";
 import { useGetAllCategoryQuery } from "@/redux/queries/adminCategorySortApi";
+import AddCourseForm from "./courses/AddCourseForm";
 
 function CourseCategoryContent() {
   const [storeCourseId, setStoreCourseId] = useState([]);
@@ -27,6 +28,7 @@ function CourseCategoryContent() {
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(null);
   const [selectedSubCategoryName, setSelectedSubCategoryName] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [courseAddDialog, setCourseAddDialog] = useState(false);
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -34,12 +36,12 @@ function CourseCategoryContent() {
     instituteParam === "Qspiders"
       ? "QSP"
       : instituteParam === "Jspiders"
-      ? "JSP"
-      : instituteParam === "Pyspiders"
-      ? "PYSP"
-      : instituteParam === "Prospiders"
-      ? "PROSP"
-      : "QSP";
+        ? "JSP"
+        : instituteParam === "Pyspiders"
+          ? "PYSP"
+          : instituteParam === "Prospiders"
+            ? "PROSP"
+            : "QSP";
   const { data: courseData, refetch: courseRefetch } = useGetAllCoursesQuery({
     organizationType: initialOrgType,
   });
@@ -81,7 +83,7 @@ function CourseCategoryContent() {
       Id: item.courseId,
     });
   });
-  
+
   const handleCategorySelect = (event) => {
     setSelectedCategoryName(event.target.value);
     setSelectedCategoryId(event.target.option.Id);
@@ -184,18 +186,25 @@ function CourseCategoryContent() {
             </div>
             <DialogTrigger asChild>
               <button
-                onClick={() => setDialogOpen(true)}
+                onClick={() => { setDialogOpen(true); setCourseAddDialog(false) }}
                 disabled={storeCourseId.length === 0}
-                className={`${
-                  storeCourseId.length > 0
-                    ? "cursor-pointer bg-gradient text-white"
-                    : "cursor-not-allowed bg-gray-400"
-                } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
+                className={`${storeCourseId.length > 0
+                  ? "cursor-pointer bg-gradient text-white"
+                  : "cursor-not-allowed bg-gray-400"
+                  } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
               >
                 Map to Category
               </button>
             </DialogTrigger>
           </div>
+          <DialogTrigger >
+            <button
+              onClick={() => setCourseAddDialog(true)}
+              className={"cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"}
+            >
+              Add Course
+            </button>
+          </DialogTrigger>
         </article>
         {dialogOpen && (
           <CommonDialog
@@ -205,6 +214,9 @@ function CourseCategoryContent() {
             footerBtnClick={handleCreateCategory}
             dialogCloseClick={() => setDialogOpen(false)}
           />
+        )}
+        {courseAddDialog && (
+          <AddCourseForm />
         )}
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw]">
