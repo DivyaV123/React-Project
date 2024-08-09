@@ -148,7 +148,6 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
 
   return (
     <div className="py-[3.333vh] px-[1.875vw]">
-    {decodedCategory !== "subcategory" ?"aNIL":"KUMAR"}
       <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] ">
         <Table className="">
           <TableHeader className=" z-1">
