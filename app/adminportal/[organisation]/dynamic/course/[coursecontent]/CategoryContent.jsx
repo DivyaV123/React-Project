@@ -135,17 +135,16 @@ function CategoryContent() {
         setCategoryList(updatedCategoryList);
   
         try {
-          // Make an API call to update the category order on the server
-          // categoryId,subCategoryId,courseId,weightage,organisation
+          
           const response = await editCourseWeightage({
-            categoryId: lastPath, // Ensure this is the correct ID
-            subCategoryId: undefined, // Or provide the correct ID if needed
+            categoryId: lastPath, 
+            subCategoryId: undefined, 
             courseId: parseInt(active.id, 10),
-            organisation:initialOrgType, // Ensure this is the correct value
+            organisation:initialOrgType, 
             weightage: newIndex + 1 ,
           }).unwrap();
           if (response.statusCode === 200) {
-            // Refetch data or perform any other necessary actions
+           
             refetch();
           }
         } catch (error) {
