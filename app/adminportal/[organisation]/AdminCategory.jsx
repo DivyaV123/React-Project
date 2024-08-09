@@ -24,19 +24,19 @@ import {
 } from "@/components/ui/dialog"
 import CommonDialog from "@/components/commonComponents/adminDialog/CommonDialog";
 import {
-  DndContext,
-  closestCenter,
-  KeyboardSensor,
-  PointerSensor,
-  useSensor,
-  useSensors,
+    DndContext,
+    closestCenter,
+    KeyboardSensor,
+    PointerSensor,
+    useSensor,
+    useSensors,
 } from "@dnd-kit/core";
 import {
-  SortableContext,
-  sortableKeyboardCoordinates,
-  verticalListSortingStrategy,
-  arrayMove,
-  useSortable,
+    SortableContext,
+    sortableKeyboardCoordinates,
+    verticalListSortingStrategy,
+    arrayMove,
+    useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 
@@ -47,6 +47,8 @@ import { resolve } from "styled-jsx/css";
 import { useCategoryAdderMutation } from "@/redux/queries/addCategoryApi";
 
 const AdminCategory = () => {
+    const [categories, setCategories] = useState([]);
+    const { selectedInstitute } = useContext(GlobalContext);
     const router = useRouter();
     const pathname = usePathname();
     const getParams = pathname.split("/").slice(2);
@@ -69,15 +71,15 @@ const AdminCategory = () => {
     } = useGetAllCategoryQuery({
         organizationType: initialOrgType,
     });
- const [editCategoryWeightage, { data: categoryEdit, error: categoryEditError, isLoading: categoryEditLoad }] = useCategoryWeightageEditMutation();
+    const [editCategoryWeightage, { data: categoryEdit, error: categoryEditError, isLoading: categoryEditLoad }] = useCategoryWeightageEditMutation();
     useEffect(() => {
         refetch();
     }, [instituteParam]);
-      useEffect(() => {
-    if (categoryData?.data) {
-      setCategories(categoryData.data);
-    }
-  }, [categoryData?.data]);
+    useEffect(() => {
+        if (categoryData?.data) {
+            setCategories(categoryData.data);
+        }
+    }, [categoryData?.data]);
     const pStyle = ' text-[1.094vw] font-medium pb-[1.389vh]';
     const [selectedFile, setSelectedFile] = useState({
         categoryIconDark: null,
@@ -273,16 +275,16 @@ const AdminCategory = () => {
             className: "text-gray-600 font-medium text-xs",
         },
     ];
- const sensors = useSensors(
-    useSensor(PointerSensor, {
-      activationConstraint: {
-        distance: 5,
-      },
-    }),
-    useSensor(KeyboardSensor, {
-      coordinateGetter: sortableKeyboardCoordinates,
-    })
-  );
+    const sensors = useSensors(
+        useSensor(PointerSensor, {
+            activationConstraint: {
+                distance: 5,
+            },
+        }),
+        useSensor(KeyboardSensor, {
+            coordinateGetter: sortableKeyboardCoordinates,
+        })
+    );
     const footerBtnClick = () => {
         formikDetails.handleSubmit();
 
@@ -294,83 +296,84 @@ const AdminCategory = () => {
         }
     };
 
-const handleDragEnd =async (event) => {
-    const { active, over } = event;
+    const handleDragEnd = async (event) => {
+        const { active, over } = event;
 
-    if (active.id !== over.id) {
-      const oldIndex = categories.findIndex(
-        (item) => item.courseId === active.id
-      );
-      const newIndex = categories.findIndex(
-        (item) => item.courseId === over.id
-      );
+        if (active.id !== over.id) {
+            const oldIndex = categories.findIndex(
+                (item) => item.courseId === active.id
+            );
+            const newIndex = categories.findIndex(
+                (item) => item.courseId === over.id
+            );
 
-      if (oldIndex !== -1 && newIndex !== -1) {
-        const updatedCategories = arrayMove(categories, oldIndex, newIndex);
-        const startIndex = Math.min(oldIndex, newIndex);
-        const endIndex = Math.max(oldIndex, newIndex);
-        let newWeightage;
-        for (let i = startIndex; i <= endIndex; i++) {
-            const category = updatedCategories[i];
-             newWeightage = i + 1; }
-        // for (let i = startIndex; i <= endIndex; i++) {
-        //   const category = updatedCategories[i];
-        //   const newWeightage = i + 1; // Weightage is 1-based
+            if (oldIndex !== -1 && newIndex !== -1) {
+                const updatedCategories = arrayMove(categories, oldIndex, newIndex);
+                const startIndex = Math.min(oldIndex, newIndex);
+                const endIndex = Math.max(oldIndex, newIndex);
+                let newWeightage;
+                for (let i = startIndex; i <= endIndex; i++) {
+                    const category = updatedCategories[i];
+                    newWeightage = i + 1;
+                }
+                // for (let i = startIndex; i <= endIndex; i++) {
+                //   const category = updatedCategories[i];
+                //   const newWeightage = i + 1; // Weightage is 1-based
 
-        //   try {
-        //     await editCategoryWeightage({
-        //       categoryId: category.courseId,
-        //       weightage: newWeightage,
-        //       organisation: selectedInstitute
-        //     }).unwrap();
+                //   try {
+                //     await editCategoryWeightage({
+                //       categoryId: category.courseId,
+                //       weightage: newWeightage,
+                //       organisation: selectedInstitute
+                //     }).unwrap();
 
-        //     console.log(`Updated weightage for category ${category.title}: ${newWeightage}`);
-        //   } catch (error) {
-        //     console.error(`Failed to update weightage for category ${category.title}:`, error);
-        //   }
-        // }
-        setCategories(updatedCategories);
-       
-        try {
-        const response=  await editCategoryWeightage({
-            categoryId: active.id,
-            weightage: newIndex+1,
-            organisation: initialOrgType,
-          }).unwrap();
-         
-          if(response.statusCode===200){
-            refetch()
-          }
-          
-        } catch (error) {
-          console.error("Error updating category weightage:", error);
+                //     console.log(`Updated weightage for category ${category.title}: ${newWeightage}`);
+                //   } catch (error) {
+                //     console.error(`Failed to update weightage for category ${category.title}:`, error);
+                //   }
+                // }
+                setCategories(updatedCategories);
+
+                try {
+                    const response = await editCategoryWeightage({
+                        categoryId: active.id,
+                        weightage: newIndex + 1,
+                        organisation: initialOrgType,
+                    }).unwrap();
+
+                    if (response.statusCode === 200) {
+                        refetch()
+                    }
+
+                } catch (error) {
+                    console.error("Error updating category weightage:", error);
+                }
+
+            }
         }
-      
-      }
-    }
-  };
-
-  const SortableItem = (props) => {
-    const { attributes, listeners, setNodeRef, transform, transition } =
-      useSortable({ id: props.id });
-
-    const style = {
-      transform: CSS.Transform.toString(transform),
-      transition,
     };
 
-    return (
-      <TableRow
-        ref={setNodeRef}
-        style={style}
-        {...attributes}
-        {...listeners}
-        className="group"
-      >
-        {props.children}
-      </TableRow>
-    );
-  };
+    const SortableItem = (props) => {
+        const { attributes, listeners, setNodeRef, transform, transition } =
+            useSortable({ id: props.id });
+
+        const style = {
+            transform: CSS.Transform.toString(transform),
+            transition,
+        };
+
+        return (
+            <TableRow
+                ref={setNodeRef}
+                style={style}
+                {...attributes}
+                {...listeners}
+                className="group"
+            >
+                {props.children}
+            </TableRow>
+        );
+    };
     const dialogCloseClick = () => {
         formikDetails.resetForm();
         setErrorMessage({
@@ -417,52 +420,52 @@ const handleDragEnd =async (event) => {
             </Dialog>
             <div className="py-[3.333vh] px-[1.875vw] overflow-x-hidden">
                 <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[73.389vh] ">
-<DndContext
-          sensors={sensors}
-          collisionDetection={closestCenter}
-          onDragEnd={handleDragEnd}
-        >
-          <SortableContext
-            items={categories.map((category) => category.courseId)}
-            strategy={verticalListSortingStrategy}
-          >
-                    <Table>
-                        <TableHeader className="sticky top-0 bg-white z-10">
-                            <TableRow>
-                                {tableHeaders.map((header, index) => (
-                                    <TableHead key={index} className={header.className}>
-                                        {header.label}
-                                    </TableHead>
-                                ))}
-                            </TableRow>
-                        </TableHeader>
-                        <TableBody>
-                            {isLoading ? (
-                                <Loading />
-                            ) : (
-                                <>
-                                    {categories.map((category) => (
-                      <SortableItem
-                        key={category.courseId}
-                        id={category.courseId}
-                      >
-                                            {renderCells(category).map((cell, cellIndex) => (
-                                                <TableCell
-                                                    key={cellIndex}
-                                                    className={cell.className}
-                                                    onClick={cell.onClick}
+                    <DndContext
+                        sensors={sensors}
+                        collisionDetection={closestCenter}
+                        onDragEnd={handleDragEnd}
+                    >
+                        <SortableContext
+                            items={categories.map((category) => category.courseId)}
+                            strategy={verticalListSortingStrategy}
+                        >
+                            <Table>
+                                <TableHeader className="sticky top-0 bg-white z-10">
+                                    <TableRow>
+                                        {tableHeaders.map((header, index) => (
+                                            <TableHead key={index} className={header.className}>
+                                                {header.label}
+                                            </TableHead>
+                                        ))}
+                                    </TableRow>
+                                </TableHeader>
+                                <TableBody>
+                                    {isLoading ? (
+                                        <Loading />
+                                    ) : (
+                                        <>
+                                            {categories.map((category) => (
+                                                <SortableItem
+                                                    key={category.courseId}
+                                                    id={category.courseId}
                                                 >
-                                                    {cell.content}
-                                                </TableCell>
+                                                    {renderCells(category).map((cell, cellIndex) => (
+                                                        <TableCell
+                                                            key={cellIndex}
+                                                            className={cell.className}
+                                                            onClick={cell.onClick}
+                                                        >
+                                                            {cell.content}
+                                                        </TableCell>
+                                                    ))}
+                                                </SortableItem>
                                             ))}
-                                         </SortableItem>
-                                    ))}
-                                </>
-                            )}
-                        </TableBody>
-                    </Table>
-  </SortableContext>
-        </DndContext>
+                                        </>
+                                    )}
+                                </TableBody>
+                            </Table>
+                        </SortableContext>
+                    </DndContext>
                 </div>
             </div>
         </>
