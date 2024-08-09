@@ -12,6 +12,7 @@ import HiringPartnersHome from "../HiringPartnersHome";
 import StudentsPlacedHome from "../StudentsPlacedHome";
 import CoursesFaq from "../CoursesFaq";
 import Loading from "@/lib/Loading";
+import AccordionComponen from "../AccordionComponen";
 
 const CoursePageClient = () => {
   const pathname = usePathname();
@@ -63,10 +64,11 @@ const CoursePageClient = () => {
         setTypeOfLearning={setTypeOfLearning}
         typeOfLearning={typeOfLearning}
       />
-      <CourseContent
+      {/* <CourseContent
         courseDetails={courseDetails}
         typeOfLearning={typeOfLearning}
-      />
+      /> */}
+      <AccordionComponen data={courseDetails?.data} typeOfLearning={typeOfLearning}/>
       <UpComingBranches courseDetails={courseDetails.data} />
       {/* <div className='mb-9'>
         <PlacementStatisticsHome page="course" courseDetails={courseDetails} />
