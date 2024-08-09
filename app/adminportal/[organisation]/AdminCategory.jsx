@@ -22,8 +22,10 @@ import {
     DialogClose
 } from "@/components/ui/dialog"
 import CommonDialog from "@/components/commonComponents/adminDialog/CommonDialog";
+import { useCategoryAdderMutation } from "@/redux/queries/addCategoryApi";
 
 const AdminCategory = () => {
+    const [addCategory, { data: categoryAdd, error: categoryError, isLoading: categoryAdderLoad }] = useCategoryAdderMutation()
     const router = useRouter();
     const pathname = usePathname();
     const getParams = pathname.split("/").slice(2);
@@ -68,9 +70,19 @@ const AdminCategory = () => {
     const formikDetails = useFormik({
         initialValues,
         validationSchema,
-        onSubmit: (values) => {
+        onSubmit: async (values) => {
+            let payload = {
+                title: values.categoryName,
+                icon: selectedFile.categoryIconDark,
+                alternativeIcon: selectedFile.categoryIconLite
+            }
 
-            console.log(values, "values")
+            try {
+                const response = await addCategory({ bodyData: payload }).unwrap();
+                alert("course successfully created")
+            } catch {
+                alert(categoryError.data.data)
+            }
         }
     })
 

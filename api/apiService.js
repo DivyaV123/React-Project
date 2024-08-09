@@ -23,7 +23,7 @@ export const API_ENDPOINTS = {
   GET_BRANCH_BY_COURSE_ID_AND_BRANCH_ID: (courseId, branchId) => `/api/v1/branches/getbyid?branchId=${branchId}&courseId=${courseId}`,
   GET_ALL_COURSES_BY_COURSE_ID: (courseId) => `/api/v1/courses/getbyid?courseId=${courseId}`,
   GET_ONLINE_COURSES: 'api/v1/categories/onlineCourses',
-  GET_ALL_FOR_ADMIN_PORTAL:'api/v1/courses/getall',
+  GET_ALL_FOR_ADMIN_PORTAL: 'api/v1/courses/getall',
   //placements
   GET_CITIES: 'candidate/cities',
   GET_STATES: 'candidate/states',
@@ -52,5 +52,7 @@ export const API_ENDPOINTS = {
   CREATE_BATCH: (branchId, courseId) => `/api/v1/batches?${branchId ? `branchId=${branchId}&` : ''}courseId=${courseId}`,
   //Admin Portal
   GET_ALL_CATEGORY: (organizationType) => `/api/v1/categories/getAllCategories?organization=${organizationType}`,
-  CATEGORY_WEIGHTAGE_EDIT: (categoryId,weightage,organisation) => `/api/v1/weightage/categories?categoryId=${categoryId}&weightage=${weightage}&organisation=${organisation}`,
+  CATEGORY_WEIGHTAGE_EDIT: (categoryId, weightage, organisation) => `/api/v1/weightage/categories?categoryId=${categoryId}&weightage=${weightage}&organisation=${organisation}`,
+  //Category
+  ADD_CATEGORY: '/api/v1/categories/files'
 };
