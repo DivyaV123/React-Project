@@ -62,6 +62,7 @@ import { addBatchApi } from './queries/addBatchApi';
 import { adminCategorySortApi } from './queries/adminCategorySortApi';
 import { AllCoursesApi } from './queries/getAllCourseForAdmin';
 import { updateCategoryWeightage } from './queries/updateCategoryWeightageApi';
+import { AddCategoryApi } from './queries/addCategoryApi';
 const store = configureStore({
   reducer: {
 
@@ -144,15 +145,16 @@ const store = configureStore({
     [addBatchApi.reducerPath]: addBatchApi.reducer,
     [adminCategorySortApi.reducerPath]: adminCategorySortApi.reducer,
     [AllCoursesApi.reducerPath]: AllCoursesApi.reducer,
-    [updateCategoryWeightage.reducerPath]:updateCategoryWeightage.reducer,
+    [updateCategoryWeightage.reducerPath]: updateCategoryWeightage.reducer,
+    [AddCategoryApi.reducerPath]: AddCategoryApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat( citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
+    getDefaultMiddleware().concat(citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
       ItandNonItApi.middleware, counsellorsApi.middleware, PlacementBranchApi.middleware, YearOfPassoutApi.middleware, PlacedDateBetweenApi.middleware, LoginApi.middleware, categoriesApi.middleware, allSubjectApi.middleware, mapSubjectApi.middleware, allSubjectApiAsPerID.middleware,
       CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, subjectAdder.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
-      addBatchApi.middleware, adminCategorySortApi.middleware,AllCoursesApi.middleware,updateCategoryWeightage.middleware,
+      addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware
     ),
 });
 

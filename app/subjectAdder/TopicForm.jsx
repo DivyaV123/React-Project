@@ -12,6 +12,7 @@ const TopicForm = ({ initialValues, onUpdateTopic }) => {
       topicTitle: initialValues?.topicTitle || "",
       topicPreviewUrl: initialValues?.topicPreviewUrl || "",
       topicPreviewDuration: initialValues?.topicPreviewDuration || "",
+      topicId: initialValues?.topicId || null,
     },
     validationSchema: Yup.object({
       topicTitle: Yup.string().required("Required"),

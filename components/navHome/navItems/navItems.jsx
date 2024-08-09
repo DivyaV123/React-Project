@@ -16,7 +16,7 @@ import { InputIcon } from "@radix-ui/react-icons";
 import {
   CONTACT_US_PATH,
   PLACEMENT_PATH,
-  HIREFROMUS_PATH,CORPORATE_TRAINING
+  HIREFROMUS_PATH, CORPORATE_TRAINING
 } from "@/lib/RouteConstants";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
@@ -39,7 +39,7 @@ function NavItems() {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setFilterPlacementData,
-    hoverState, setHoverState,setCountryList
+    hoverState, setHoverState, setCountryList
   } = useContext(GlobalContext);
   const {
     data: courseResponse,
@@ -61,13 +61,13 @@ function NavItems() {
     { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
     { id: 3, name: "Online Courses", content: <OnlineCourses courseResponse={onlineCourseResponse} /> },
     // { id: 3, name: "University Programs", content: <UniversityProgram /> },
-    { id: 4, name: "Corporate Training", content: "" },
     { id: 5, name: "Tuitions", content: <Tutions /> },
+    { id: 4, name: "Corporate Training", content: "" },
     { id: 6, name: "Hire From Us", content: "" },
     { id: 7, name: "Placements", content: "" },
     { id: 8, name: "Contact Us", content: "" },
   ];
-  const filterCountryObj = BranchResponse?.data?.filter(ele=>ele?.countryName==='India')
+  const filterCountryObj = BranchResponse?.data?.filter(ele => ele?.countryName === 'India')
   const cityData = filterCountryObj?.[0]?.cities;
   setCountryList(BranchResponse?.data)
   setHomeBranchData(cityData);
@@ -86,19 +86,19 @@ function NavItems() {
         "University Programs",
       ]?.includes(itemName)
     ) {
-     setHoverState({ item: itemName, content: true });
+      setHoverState({ item: itemName, content: true });
     } else {
-     setHoverState({ item: null, content: false });
+      setHoverState({ item: null, content: false });
     }
   }, [setHoverState]);
-const handleItemLeave = useCallback(() => {
-    setHoverState((prevState) => ({ ...prevState, item: null,content: false }));
+  const handleItemLeave = useCallback(() => {
+    setHoverState((prevState) => ({ ...prevState, item: null, content: false }));
   }, [setHoverState]);
 
-  const handleContentHover = useCallback((isVisible,itemName) => {
-    setHoverState((prevState) => ({ ...prevState, content: isVisible ,item: isVisible ? itemName : null,}));
+  const handleContentHover = useCallback((isVisible, itemName) => {
+    setHoverState((prevState) => ({ ...prevState, content: isVisible, item: isVisible ? itemName : null, }));
   }, [setHoverState]);
- 
+
 
   useEffect(() => {
     if (!hoverState.content) {
@@ -129,7 +129,7 @@ const handleItemLeave = useCallback(() => {
       router.push(HIREFROMUS_PATH);
     }
   };
-  
+
 
   const [activeItem, setActiveItem] = useState("");
   const pathname = usePathname();
@@ -166,7 +166,7 @@ const handleItemLeave = useCallback(() => {
               <NavigationMenuItem
                 key={navItem.id}
                 onMouseEnter={() => handleItemHover(navItem.name)}
-               
+
               >
                 <NavigationMenuTrigger
                   hoverItem={hoverState.item}
@@ -184,7 +184,7 @@ const handleItemLeave = useCallback(() => {
                         (hoverState.item === navItem.name ||
                           (hoverState.content &&
                             hoverState.item === navItem.name)) ||
-                        activeItem === navItem.name
+                          activeItem === navItem.name
                           ? "text-orange-500 border-b-2 border-orange-500 h-[4vh] text-[1.094vw]  font-bold text-normal  text-slate "
                           : "menuHeader font-bold text-normal h-[4vh] text-slate hover-underline-animation  text-[1.094vw]"
                       }
@@ -195,20 +195,20 @@ const handleItemLeave = useCallback(() => {
                 </NavigationMenuTrigger>
                 <NavigationMenuContent
                   className="nav-content"
-                  onMouseEnter={() => handleContentHover(true,navItem.name)}
+                  onMouseEnter={() => handleContentHover(true, navItem.name)}
                   onMouseLeave={() => {
-                    handleContentHover(false,navItem.name);
+                    handleContentHover(false, navItem.name);
                     setStateHovered({
                       item: "",
                       state: false,
                     });
                   }}
-                  // onMouseEnter={() => handleContentHover(true, navItem.name)}
-                  // onMouseLeave={() => handleContentHover(false, navItem.name)}
+                // onMouseEnter={() => handleContentHover(true, navItem.name)}
+                // onMouseLeave={() => handleContentHover(false, navItem.name)}
                 >
                   <div className=" mt-[0.83vw] border bg-popover shadow-lg rounded-xl overflow-hidden">
 
-                  {navItem.content}
+                    {navItem.content}
                   </div>
                 </NavigationMenuContent>
               </NavigationMenuItem>
