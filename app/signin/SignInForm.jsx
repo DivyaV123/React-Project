@@ -54,7 +54,7 @@ function SignInForm() {
                 const role = response?.data?.role
                 localStorage.setItem('authToken', token);
                 localStorage.setItem('Role', role);
-                if (role == 'COURSEADDER') {
+                if (role == 'COURSEADDER' || role==="ADMIN") {
                     router.push(`${ADMIN_PORTAL}/Category,${domainVariable}`)
                 }
             } catch (err) {

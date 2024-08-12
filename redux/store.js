@@ -65,6 +65,8 @@ import { updateCategoryWeightage } from './queries/updateCategoryWeightageApi';
 import { AddCategoryApi } from './queries/addCategoryApi';
 import { updateCourseDnd } from './queries/updateCourseDndApi';
 import { updateSubCategoryDnd } from './queries/updateSubCategoryDndApi';
+import { categoryDeleteApi } from './queries/deleteCategoryApi';
+import { CategoryEditApi } from './queries/EditCategoryApi';
 const store = configureStore({
   reducer: {
 
@@ -150,7 +152,9 @@ const store = configureStore({
     [updateCategoryWeightage.reducerPath]: updateCategoryWeightage.reducer,
     [AddCategoryApi.reducerPath]: AddCategoryApi.reducer,
     [updateCourseDnd.reducerPath]:updateCourseDnd.reducer,
-    [updateSubCategoryDnd.reducerPath]:updateSubCategoryDnd.reducer
+    [updateSubCategoryDnd.reducerPath]:updateSubCategoryDnd.reducer,
+    [categoryDeleteApi.reducerPath]:categoryDeleteApi.reducer,
+    [CategoryEditApi.reducerPath]:CategoryEditApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
@@ -158,7 +162,7 @@ const store = configureStore({
       CategoriesInCourseApi.middleware, contactUsApi.middleware, courseDetailsApi.middleware, courseAdderApi.middleware, subjectAdder.middleware, getAllBranchesApi.middleware, beancheDetailsApi.middleware, branchCourseApi.middleware,
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
-      addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware,updateCourseDnd.middleware,updateSubCategoryDnd.middleware,
+      addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware,updateCourseDnd.middleware,updateSubCategoryDnd.middleware,categoryDeleteApi.middleware,CategoryEditApi.middleware
     ),
 });
 
