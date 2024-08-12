@@ -15,8 +15,8 @@ export const updateSubCategoryDnd = createApi({
     }),
     endpoints: (builder) => ({
         subCategoryWeightageDnd: builder.mutation({
-            query: ({  categoryId,subCategoryId,weightage,organisation }) => ({
-                url: API_ENDPOINTS.SUBCATEGORY_WEIGHTAGE_DND(categoryId,subCategoryId,weightage,organisation),
+            query: ({  categoryId,subCategoryId,organisation,weightage }) => ({
+                url: API_ENDPOINTS.SUBCATEGORY_WEIGHTAGE_DND(categoryId,subCategoryId,organisation,weightage),
                 method: 'PATCH',
                 // body: bodyData
             })

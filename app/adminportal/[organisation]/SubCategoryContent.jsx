@@ -28,6 +28,7 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useSubCategoryWeightageDndMutation } from "@/redux/queries/updateSubCategoryDndApi";
 
 function SubCategoryContent() {
   const router = useRouter();
@@ -130,19 +131,53 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
       </TableRow>
     );
   };
+  const [editSubCourseWeightage] = useSubCategoryWeightageDndMutation();
+  // // Handle drag end event
+  // const handleDragEnd = (event) => {
+  //   const { active, over } = event;
 
-  // Handle drag end event
-  const handleDragEnd = (event) => {
+  //   if (active.id !== over.id) {
+  //     setSubCourses((items) => {
+  //       const oldIndex = items.findIndex((item) => item.subCourseId === active.id);
+  //       const newIndex = items.findIndex((item) => item.subCourseId === over.id);
+  //       return arrayMove(items, oldIndex, newIndex);
+  //     });
+
+  //     // Perform any API call here to update the order in the backend
+  //   }
+  // };
+  const handleDragEnd = async (event) => {
     const { active, over } = event;
 
     if (active.id !== over.id) {
-      setSubCourses((items) => {
-        const oldIndex = items.findIndex((item) => item.subCourseId === active.id);
-        const newIndex = items.findIndex((item) => item.subCourseId === over.id);
-        return arrayMove(items, oldIndex, newIndex);
-      });
+      const oldIndex = subCourses.findIndex(
+        (item) => item.subCourseId === active.id
+      );
+      const newIndex = subCourses.findIndex(
+        (item) => item.subCourseId === over.id
+      );
 
-      // Perform any API call here to update the order in the backend
+      if (oldIndex !== -1 && newIndex !== -1) {
+        const updatedSubCourses = arrayMove(subCourses, oldIndex, newIndex);
+        setSubCourses(updatedSubCourses);
+
+        try {
+          // API call to update the order
+          const response = await editSubCourseWeightage({
+            categoryId: decodedCategory, // Use the correct category ID
+            // Or provide the correct sub-category ID if needed
+            subCategoryId: active.id,
+            organisation: initialOrgType, // Ensure this is the correct value
+            weightage: newIndex + 1,
+          }).unwrap();
+
+          if (response.statusCode === 200) {
+            refetch(); // Refetch data if necessary
+          }
+        } catch (error) {
+          console.error("Error updating sub-category weightage:", error);
+        }
+      }
     }
   };
 

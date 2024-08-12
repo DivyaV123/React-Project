@@ -126,23 +126,47 @@ function CategoryContent() {
   
     // Ensure there's a difference between the active and over item
     if (active.id !== over.id) {
-      const oldIndex = categoryList.findIndex((item) => item.courseResponseId === parseInt(active.id, 10));
-      const newIndex = categoryList.findIndex((item) => item.courseResponseId === parseInt(over.id, 10));
-  
+      const oldIndex = categoryList.findIndex((item) =>
+        item?.courseResponseId === parseInt(active.id, 10) ||
+        item?.subCourseResponseId === parseInt(active.id, 10)
+      );
+      
+      const newIndex = categoryList.findIndex((item) =>
+        item?.courseResponseId === parseInt(over.id, 10) ||
+        item?.subCourseResponseId === parseInt(over.id, 10)
+      );
+      
       if (oldIndex !== -1 && newIndex !== -1) {
         // Update the local state with the new order
         const updatedCategoryList = arrayMove(categoryList, oldIndex, newIndex);
         setCategoryList(updatedCategoryList);
   
         try {
-          
-          const response = await editCourseWeightage({
-            categoryId: lastPath, 
-            subCategoryId: undefined, 
+          const [categoryId_routeCourseId, subCategoryId_routeCourseId] = lastPath.split(',').map(Number);
+          const payload = routeCourseId 
+          ? {
+            categoryId:categoryId_routeCourseId, // Assuming second last path segment is categoryId
+            subCategoryId: subCategoryId_routeCourseId, // Assuming last path segment is subCategoryId
             courseId: parseInt(active.id, 10),
-            organisation:initialOrgType, 
-            weightage: newIndex + 1 ,
-          }).unwrap();
+            organisation: initialOrgType,
+            weightage: newIndex + 1,
+            }
+          : {
+              categoryId: lastPath,
+              subCategoryId: undefined,
+              courseId: parseInt(active.id, 10),
+              organisation: initialOrgType,
+              weightage: newIndex + 1,
+            };
+
+        const response = await editCourseWeightage(payload).unwrap();
+          // const response = await editCourseWeightage({
+          //   categoryId: lastPath, 
+          //   subCategoryId: undefined, 
+          //   courseId: parseInt(active.id, 10),
+          //   organisation:initialOrgType, 
+          //   weightage: newIndex + 1 ,
+          // }).unwrap();
           if (response.statusCode === 200) {
            
             refetch();
@@ -155,7 +179,7 @@ function CategoryContent() {
       }
     }
   };
-  
+  console.log({categoryList},{routeCourseId})
   return (
     <div className="py-[3.333vh] px-[1.875vw]">
       <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
@@ -180,11 +204,13 @@ function CategoryContent() {
                 onDragEnd={handleDragEnd}
               >
                 <SortableContext
-                  items={categoryList.map((item) => item?.courseResponseId)}
+                  items={categoryList.map((item) =>
+    item?.courseResponseId ? item.courseResponseId : item.subCourseResponseId
+  )}
                   strategy={verticalListSortingStrategy}
                 >
                   {categoryList.map((item) => (
-                    <SortableItem key={item.courseResponseId} id={item.courseResponseId}>
+                    <SortableItem key={item.courseResponseId || item.subCourseResponseId} id={item.courseResponseId || item.subCourseResponseId}>
                       <TableCell onClick={()=>{console.log({item},{categoryList})}} className={tblTextClass}>{item.title}</TableCell>
                       <TableCell className={tblTextClass}>{item.subjectCount}</TableCell>
                       <TableCell className={tblTextClass}></TableCell>

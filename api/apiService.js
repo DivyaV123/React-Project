@@ -54,7 +54,7 @@ export const API_ENDPOINTS = {
   GET_ALL_CATEGORY: (organizationType) => `/api/v1/categories/getAllCategories?organization=${organizationType}`,
   CATEGORY_WEIGHTAGE_EDIT: (categoryId, weightage, organisation) => `/api/v1/weightage/categories?categoryId=${categoryId}&weightage=${weightage}&organisation=${organisation}`,
   COURSE_WEIGHTAGE_DND: (categoryId,subCategoryId,courseId,organisation,weightage) => `/api/v1/weightage/courses/form?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}&organisation=${organisation}&weightage=${weightage}`,
-  SUBCATEGORY_WEIGHTAGE_DND: (categoryId,subCategoryId,organisation,weightage) => `api/v1/weightage/subCategories?categoryId=${categoryId}&subCategoryId=${subCategoryId}&organisation=${organisation}&weightage=${weightage}`,
+  SUBCATEGORY_WEIGHTAGE_DND: (categoryId,subCategoryId,organisation,weightage) => `api/v1/weightage/subCategories?categoryId=${categoryId}&subCategoryId=${subCategoryId}&organization=${organisation}&weightage=${weightage}`,
   //Category
   ADD_CATEGORY: '/api/v1/categories/files',
   DELETE_CATEGORY: (categoryId) => `/api/v1/categories/deleteCategory?categoryId=${categoryId}`,
