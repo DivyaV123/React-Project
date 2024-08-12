@@ -25,7 +25,7 @@ const OragnisationLandning = () => {
   return (
     <>
       {
-        role === "COURSEADDER"
+        role === "COURSEADDER" || role === "ADMIN"
           ? <section className="flex w-full h-[100vh]"><AdminSidebar /><AdminContent /></section>
           : <Homepage />
       }

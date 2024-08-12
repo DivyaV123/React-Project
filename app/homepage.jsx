@@ -17,6 +17,7 @@ function Homepage() {
     const { domainVariable } = useContext(GlobalContext)
     let domain = domainVariable === "Qspiders" ? "QSP" : domainVariable === "Jspiders" ? "JSP" : domainVariable === "Pyspiders" ? "PYSP" : "BSP"
     const { data: faqData, error, isLoading } = useGetAllFaqQuery(domain);
+
     return (
         <WebLayout page='main' >
             <CarosalHome />
