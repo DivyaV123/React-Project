@@ -6,19 +6,19 @@ const CorporateModes = () => {
       icon: "../../offline_corp.svg",
       title: "Offline Mode",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "Offline classes involve face-to-face interaction, structured schedules, hands-on learning.",
     },
     {
       icon: "../../online_corp.svg",
       title: "Online Mode",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "Online classes provide remote learning flexibility through digital platforms.",
     },
     {
       icon: "../images/Online_Test.png",
       title: "Self Paced Mode",
       description:
-        "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+        "Learn at your own speed, offering flexibility and independence in your learning journey.",
     },
   ];
   return (

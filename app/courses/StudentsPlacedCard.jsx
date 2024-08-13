@@ -165,11 +165,35 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                   />
                 </AlertDialogTrigger>
                 <AlertDialogTrigger asChild>
+                <div
+                  className="videoBox cursor-pointer"
+                  onClick={openVideoDialog}
+                  style={{ position: "relative", display: "inline-block" }}
+                 >
                   <img
-                    onClick={openVideoDialog}
                     typeof="foaf:Image"
-                    className="videoBox cursor-pointer"
+                    src={element?.photoLink}
+                    alt="Video Thumbnail"
+                    style={{
+                      display: "block",
+                      width: "6.797vw",
+                      height: "10.056vh",
+                      borderRadius: "5px",
+                      objectFit: "cover",
+                    }}
                   />
+                  <img
+                    src="../play_button_placements.svg"
+                    alt="Play Button"
+                    style={{
+                      position: "absolute",
+                      top: "50%",
+                      left: "50%",
+                      transform: "translate(-50%, -50%)",
+                      pointerEvents: "none",
+                    }}
+                  />
+                </div>
                 </AlertDialogTrigger>
               </div>
               {imageDialog && (
