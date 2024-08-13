@@ -1,8 +1,8 @@
 
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getBaseUrl, API_ENDPOINTS } from '@/api/apiService';
-export const CategoryEditApi = createApi({
-    reducerPath: 'CategoryEditApi',
+export const categoryEditApi = createApi({
+    reducerPath: 'categoryEditApi',
     baseQuery: fetchBaseQuery({
         baseUrl: getBaseUrl(),
         prepareHeaders: (headers) => {
@@ -31,4 +31,4 @@ export const CategoryEditApi = createApi({
     })
 });
 
-export const { useCategoryEditDataMutation } = CategoryEditApi;
+export const { useCategoryEditDataMutation } = categoryEditApi;
