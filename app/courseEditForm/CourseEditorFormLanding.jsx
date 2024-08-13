@@ -160,14 +160,15 @@ function CourseEditorFormLanding() {
             ...prevState,
             subCategoryId: event.target.option.id
         }));
-        let allSubCourse = courseResponse.data[2].subCourse
+        const subCourseIndex = courseResponse.data.findIndex(course => course.subCourse && course.subCourse.length > 0);
+        let allSubCourse = subCourseIndex !== -1 &&  courseResponse.data[subCourseIndex].subCourse
         const selectedCourseId = event.target.value;
         setSelectedSubCourse(event.target.value);
 
         const selectedCourseData = allSubCourse?.find(
             (course) => course.title == selectedCourseId
         );
-
+console.log({selectedCourseData},{allSubCourse}, {subCourseIndex})
         if (selectedCourseData &&
             selectedCourseData.subCourseResponse.length > 0) {
             setCourseNames(
