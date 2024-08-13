@@ -42,7 +42,6 @@ import { resolve } from "styled-jsx/css";
 import { useCategoryAdderMutation } from "@/redux/queries/addCategoryApi";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCategoryDeleteMutation } from "@/redux/queries/deleteCategoryApi";
-import { useCategoryEditDataMutation } from "@/redux/queries/EditCategoryApi";
 
 const AdminCategory = () => {
   const [categories, setCategories] = useState([]);
