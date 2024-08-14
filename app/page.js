@@ -12,7 +12,7 @@ const DynamicHeader = dynamic(() => import('./homepage'), {
 
 export default function Home() {
   const router = useRouter();
-
+console.log(router?.pathname,"beforepathname");
   useEffect(() => {
     const pathname = router?.pathname || "";
     let newTitle = "Qspiders";
@@ -31,6 +31,7 @@ export default function Home() {
 
     document.title = newTitle;
   }, [router]);
+  console.log(router?.pathname,"afterpathname");
 
   return (
     <main className="">
