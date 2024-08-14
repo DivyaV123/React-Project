@@ -6,10 +6,11 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
+  DialogClose,
 } from "@/components/ui/dialogFull";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Workflow } from "lucide-react";
+import { Workflow, X } from "lucide-react";
 import Input from "@/components/commonComponents/input/Input";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import Button from "@/components/commonComponents/button/Button";
@@ -85,6 +86,12 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
     homePageImage: null,
     courseCardImage: null,
   });
+  const [previewURL, setPreviewURL] = useState({
+    courseIcon: null,
+    homePageImage: null,
+    courseCardImage: null,
+  });
+
   const [errorMessage, setErrorMessage] = useState({
     courseIcon: "",
     homePageImage: "",
@@ -165,7 +172,6 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
     setSelectedSubCourse(event.target.value);
     formikDetails.setFieldValue("subCategory", event.target.value);
   };
-
   const handleFileChange = (event, iconType) => {
     const file = event.target.files[0];
     if (file && file.type.startsWith("image/")) {
@@ -173,7 +179,12 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
 
       setSelectedFile((prevState) => ({
         ...prevState,
-        [iconType]: { file, previewURL },
+        [iconType]: file,
+      }));
+
+      setPreviewURL((prevState) => ({
+        ...prevState,
+        [iconType]: previewURL,
       }));
 
       setErrorMessage((prevState) => ({
@@ -186,14 +197,24 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
         [iconType]: null,
       }));
 
+      setPreviewURL((prevState) => ({
+        ...prevState,
+        [iconType]: null,
+      }));
+
       setErrorMessage((prevState) => ({
         ...prevState,
         [iconType]: "Please upload a valid image file.",
       }));
     }
   };
+
   const handleCancel = (iconType) => {
     setSelectedFile((prevState) => ({
+      ...prevState,
+      [iconType]: null,
+    }));
+    setPreviewURL((prevState) => ({
       ...prevState,
       [iconType]: null,
     }));
@@ -202,7 +223,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
       [iconType]: "",
     }));
   };
-  
+
   const addFAQ = (e) => {
     e.preventDefault();
     // Manually validate question and answer fields
@@ -316,6 +337,11 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
             homePageImage: null,
             courseCardImage: null,
           });
+          setPreviewURL({
+            courseIcon: null,
+            homePageImage: null,
+            courseCardImage: null,
+          });
           setFaqs([]);
         } else {
           alert("something went wrong");
@@ -335,13 +361,34 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
     setClassMode(selectedOrg);
     formikDetails.setFieldValue("classMode", event.target.option.value);
   };
-
+  const handleModelClose = () => {
+    dialogCloseClick(false);
+    formikDetails.resetForm();
+    setSelectedSubCourse("");
+    setSelectedCourse("");
+    setSelectedFile({
+      courseIcon: null,
+      homePageImage: null,
+      courseCardImage: null,
+    });
+    setPreviewURL({
+      courseIcon: null,
+      homePageImage: null,
+      courseCardImage: null,
+    });
+  };
   return (
     <DialogContent>
       <form onSubmit={formikDetails.handleSubmit}>
         <h1 className="font-bold pb-[2.222vh] text-[1.25vw] text-[#212121]">
           Add new Course
         </h1>
+        <DialogClose>
+          <X
+            className="absolute top-5 right-6 w-4"
+            onClick={handleModelClose}
+          />
+        </DialogClose>
         <div className="flex gap-[6.25rem] pb-[2.222vh]">
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
@@ -553,16 +600,10 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
               id="course-icon-upload"
               onChange={(event) => handleFileChange(event, "courseIcon")}
             />
-            <label
-              htmlFor="course-icon-upload"
-              className="block w-[12.812vw]"
-            >
-              {selectedFile.courseIcon ? (
+            <label htmlFor="course-icon-upload" className="block w-[12.812vw]">
+              {previewURL.courseIcon ? (
                 <div className="relative">
-                  <img
-                    src={selectedFile.courseIcon.previewURL}
-                    alt="Course Icon Preview"
-                  />
+                  <img src={previewURL.courseIcon} alt="Course Icon Preview" />
                   <button
                     type="button"
                     onClick={() => handleCancel("courseIcon")}
@@ -595,10 +636,10 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
               htmlFor="home-page-image-upload"
               className="block w-[12.812vw]"
             >
-              {selectedFile.homePageImage ? (
+              {previewURL.homePageImage ? (
                 <div className="relative">
                   <img
-                    src={selectedFile.homePageImage.previewURL}
+                    src={previewURL.homePageImage}
                     alt="Home Page Image Preview"
                   />
                   <button
@@ -633,10 +674,10 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
               htmlFor="course-card-image-upload"
               className="block w-[12.812vw]"
             >
-              {selectedFile.courseCardImage ? (
+              {previewURL.courseCardImage ? (
                 <div className="relative">
                   <img
-                    src={selectedFile.courseCardImage.previewURL}
+                    src={previewURL.courseCardImage}
                     alt="Course Card Image Preview"
                   />
                   <button
@@ -659,7 +700,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
           </div>
         </div>
 
-        <p className="pb-[1.111vh] font-bold text-[1.094vw]" >FAQ</p>
+        <p className="pb-[1.111vh] font-bold text-[1.094vw]">FAQ</p>
         <div className="  flex gap-8">
           <div className="flex flex-col w-[40%] bg-[#FFF7F1] p-4 rounded-lg">
             <div className="mb-[2.222vh]">
@@ -682,8 +723,8 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
                     {formikDetails.errors.question}
                   </div>
                 )}
-             </div>
-             <div>
+            </div>
+            <div>
               <p className={commonLabelStyles}>Answer :</p>
               <Input
                 name="answer"
