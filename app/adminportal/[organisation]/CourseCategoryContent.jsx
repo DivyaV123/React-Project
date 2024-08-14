@@ -36,12 +36,12 @@ function CourseCategoryContent() {
     instituteParam === "Qspiders"
       ? "QSP"
       : instituteParam === "Jspiders"
-        ? "JSP"
-        : instituteParam === "Pyspiders"
-          ? "PYSP"
-          : instituteParam === "Prospiders"
-            ? "PROSP"
-            : "QSP";
+      ? "JSP"
+      : instituteParam === "Pyspiders"
+      ? "PYSP"
+      : instituteParam === "Prospiders"
+      ? "PROSP"
+      : "QSP";
   const { data: courseData, refetch: courseRefetch } = useGetAllCoursesQuery({
     organizationType: initialOrgType,
   });
@@ -149,7 +149,6 @@ function CourseCategoryContent() {
           bodyData: storeCourseId,
           subCategoryId: selectedSubCategoryId,
         });
-        console.log("Subcategory mapping successful");
         setStoreCourseId([]);
         courseRefetch();
         setDialogOpen(false);
@@ -162,7 +161,6 @@ function CourseCategoryContent() {
           bodyData: storeCourseId,
           categoryId: selectedCategoryId,
         });
-        console.log("Category mapping successful");
         setStoreCourseId([]);
         courseRefetch();
         setDialogOpen(false);
@@ -170,6 +168,15 @@ function CourseCategoryContent() {
         console.error("Category mapping failed", error);
       }
     }
+  };
+
+  const handleEditClick = (course) => () => {
+    setCourseAddDialog(true);
+    // setCourseEditData(course)
+  };
+
+  const handleDeleteClick = (id) => () => {
+    console.log("Delete clicked for ID:", id);
   };
 
   return (
@@ -186,21 +193,27 @@ function CourseCategoryContent() {
             </div>
             <DialogTrigger asChild>
               <button
-                onClick={() => { setDialogOpen(true); setCourseAddDialog(false) }}
+                onClick={() => {
+                  setDialogOpen(true);
+                  setCourseAddDialog(false);
+                }}
                 disabled={storeCourseId.length === 0}
-                className={`${storeCourseId.length > 0
-                  ? "cursor-pointer bg-gradient text-white"
-                  : "cursor-not-allowed bg-gray-400"
-                  } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
+                className={`${
+                  storeCourseId.length > 0
+                    ? "cursor-pointer bg-gradient text-white"
+                    : "cursor-not-allowed bg-gray-400"
+                } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
               >
                 Map to Category
               </button>
             </DialogTrigger>
           </div>
-          <DialogTrigger >
+          <DialogTrigger>
             <button
               onClick={() => setCourseAddDialog(true)}
-              className={"cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"}
+              className={
+                "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
+              }
             >
               Add Course
             </button>
@@ -215,9 +228,12 @@ function CourseCategoryContent() {
             dialogCloseClick={() => setDialogOpen(false)}
           />
         )}
-        {courseAddDialog && (
-          <AddCourseForm />
-        )}
+        <Dialog open={courseAddDialog} onOpenChange={setCourseAddDialog}>
+          <AddCourseForm
+            courseRefetch={courseRefetch}
+            dialogCloseClick={setCourseAddDialog}
+          />
+        </Dialog>
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
@@ -319,6 +335,24 @@ function CourseCategoryContent() {
                   </TableCell>
                   <TableCell className={tblTextClass}>
                     {ele.subjectCount}
+                  </TableCell>
+                  <TableCell className={tblTextClass}>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <button
+                          onClick={handleEditClick(ele)}
+                          className="mr-2 text-blue-500 hover:underline"
+                        >
+                          Edit
+                        </button>
+                      </DialogTrigger>
+                    </Dialog>
+                    <button
+                      onClick={handleDeleteClick(ele.course_id)}
+                      className="text-red-500 hover:underline"
+                    >
+                      Delete
+                    </button>
                   </TableCell>
                 </TableRow>
               ))}
