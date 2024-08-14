@@ -20,6 +20,9 @@ import { useCourseCategoryMapMutation } from "@/redux/queries/courseCategoryMapi
 import { useCourseSubCategoryMapMutation } from "@/redux/queries/courseSubCategoryMapApi";
 import { useGetAllCategoryQuery } from "@/redux/queries/adminCategorySortApi";
 import AddCourseForm from "./courses/AddCourseForm";
+import { AlertDialog } from "@/components/ui/alert-dialog";
+import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
+import { useCourseDeleteMutation } from "@/redux/queries/deleteCourse";
 
 function CourseCategoryContent() {
   const [storeCourseId, setStoreCourseId] = useState([]);
@@ -29,6 +32,9 @@ function CourseCategoryContent() {
   const [selectedSubCategoryName, setSelectedSubCategoryName] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
   const [courseAddDialog, setCourseAddDialog] = useState(false);
+  const [deleteCourse, setDeleteCourse] = useState(false);
+  const [courseId, setCourseId] = useState(null);
+  const [courseName, setCourseName] = useState("");
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -52,6 +58,7 @@ function CourseCategoryContent() {
 
   const [courseCategoryMap] = useCourseCategoryMapMutation();
   const [courseSubCategoryMap] = useCourseSubCategoryMapMutation();
+  const [deleteSelectedCourse] = useCourseDeleteMutation();
 
   useEffect(() => {
     courseRefetch();
@@ -174,9 +181,20 @@ function CourseCategoryContent() {
     setCourseAddDialog(true);
     // setCourseEditData(course)
   };
-
-  const handleDeleteClick = (id) => () => {
-    console.log("Delete clicked for ID:", id);
+  const deleteICon = "/illustrate_delete.svg";
+  const handleDeleteClick = (id, courseName) => () => {
+    setCourseName(courseName);
+    setCourseId(id);
+    setDeleteCourse(true);
+  };
+  const handleDeleteSelectedCourse = async () => {
+    try {
+      const response = await deleteSelectedCourse({ courseId }).unwrap();
+        setDeleteCourse(false);
+        courseRefetch();
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -348,7 +366,10 @@ function CourseCategoryContent() {
                       </DialogTrigger>
                     </Dialog>
                     <button
-                      onClick={handleDeleteClick(ele.course_id)}
+                      onClick={handleDeleteClick(
+                        ele.course_id,
+                        ele.course_name
+                      )}
                       className="text-red-500 hover:underline"
                     >
                       Delete
@@ -359,6 +380,19 @@ function CourseCategoryContent() {
             </TableBody>
           </Table>
         </div>
+        <AlertDialog
+          open={deleteCourse}
+          onOpenChange={(open) => setDeleteCourse(open)}
+        >
+          <DeleteWarningPopup
+            header="Delete"
+            icon={deleteICon}
+            setDeleteCategory={setDeleteCourse}
+            btnText="Delete"
+            contentText={`Are you sure you want to delete ${courseName} Category`}
+            deleteFunction={handleDeleteSelectedCourse}
+          />
+        </AlertDialog>
       </div>
     </>
   );
