@@ -42,6 +42,8 @@ import { resolve } from "styled-jsx/css";
 import { useCategoryAdderMutation } from "@/redux/queries/addCategoryApi";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCategoryDeleteMutation } from "@/redux/queries/deleteCategoryApi";
+import { useCategoryEditDataMutation } from "@/redux/queries/editCategoryApi";
+
 
 const AdminCategory = () => {
   const [categories, setCategories] = useState([]);
@@ -49,7 +51,7 @@ const AdminCategory = () => {
   const [categoryId, setCategoryId] = useState(null);
   const [warningCategory, setWarningCategory] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);  
-  
+  const [editData, setEditData] = useState(null)
   const { selectedInstitute } = useContext(GlobalContext);
   const router = useRouter();
   const pathname = usePathname();
@@ -90,6 +92,14 @@ const AdminCategory = () => {
       isLoading: categoryLoading,
     },
   ] = useCategoryAdderMutation();
+  const [
+    editCategory,
+    {
+      data: editCategoryResponse,
+      error: editCategoryError,
+      isLoading:editCategoryLoading,
+    },
+  ] = useCategoryEditDataMutation();
   useEffect(() => {
     refetch();
   }, [instituteParam]);
@@ -109,7 +119,7 @@ const AdminCategory = () => {
   });
 
   const initialValues = {
-    categoryName: "",
+    categoryName: editData ? editData.title : "",
   };
   const validationSchema = Yup.object({
     categoryName: Yup.string().required("Category Name is required"),
@@ -124,6 +134,7 @@ const AdminCategory = () => {
       categoryIconDark: null,
       categoryIconLite: null,
     });
+    setEditData(null);
   };
   const formikDetails = useFormik({
     initialValues,
@@ -134,9 +145,14 @@ const AdminCategory = () => {
         icon: selectedFile.categoryIconDark,
         alternativeIcon: selectedFile.categoryIconLite,
       };
-
+      let editPayload = {
+        title: values.categoryName,
+        id:editData?.courseId,
+        icon: selectedFile.categoryIconDark,
+        alternativeIcon: selectedFile.categoryIconLite,
+      };
       try {
-        const response = await addCategory({ bodyData: payload }).unwrap();
+        const response = editData ? await editCategory({ bodyData: editPayload }).unwrap(): await addCategory({ bodyData: payload }).unwrap();
         if (response.statusCode === 200 || response.statusCode===201) {
             refetch();
           }
@@ -257,8 +273,32 @@ const AdminCategory = () => {
     }
   };
 
-  const handleEditClick = (title) => {
-    console.log(`Edit clicked for: ${title}`);
+
+useEffect(() => {
+  if (editData) {
+    formikDetails.setValues({
+      categoryName: editData.title,
+    });
+
+    setSelectedFile({
+      categoryIconDark: editData.icon
+        ? new File([], editData.icon.split('/').pop(), { type: 'image/*' })
+        : null,
+      categoryIconLite: editData.alternativeIcon
+        ? new File([], editData.alternativeIcon.split('/').pop(), { type: 'image/*' })
+        : null,
+    });
+    setErrorMessage({
+      categoryIconDark: "",
+      categoryIconLite: "",
+    });
+  }
+}, [editData]);
+  const handleEditClick = (category) => {
+    console.log(`Edit clicked for:`, category);
+    setEditData(category); 
+    setDialogOpen(true)
+    
   };
   const deleteICon = "/illustrate_delete.svg";
   const warningIcon = "/illustrate_warning.svg";
@@ -307,13 +347,18 @@ const AdminCategory = () => {
       content: (
         <>
           <div className="invisible group-hover:visible flex">
+          <Dialog>
+          <DialogTrigger asChild>
             <button
               className="text-blue-500 mr-2"
-              onClick={() => handleEditClick(category.title)}
+              onClick={() => handleEditClick(category)}
             >
               Edit
             </button>
-
+</DialogTrigger>
+  
+        
+      </Dialog>
             <button
               className="text-red-500"
               onClick={() => handleDeleteClick(category.courseId, category)}
@@ -339,7 +384,7 @@ const AdminCategory = () => {
   );
   const footerBtnClick = () => {
     formikDetails.handleSubmit();
-
+    if (!editData) {
     if (!selectedFile.categoryIconDark || !selectedFile.categoryIconLite) {
       setErrorMessage({
         categoryIconDark: selectedFile.categoryIconDark
@@ -350,6 +395,7 @@ const AdminCategory = () => {
           : "Please upload a valid image file.",
       });
     }
+  }
   };
 
   const handleDragEnd = async (event) => {
@@ -456,7 +502,7 @@ const AdminCategory = () => {
             </div>
           </aside>
         </article>
-        {dialogOpen &&
+        {/* {dialogOpen &&
             <CommonDialog
           dialogCloseClick={dialogCloseClick}
           header="Add new category"
@@ -464,7 +510,16 @@ const AdminCategory = () => {
           formfn={dialogForm}
           footerBtnClick={footerBtnClick}
         />
-        }
+        } */}
+        <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
+      <CommonDialog
+        dialogCloseClick={dialogCloseClick}
+        header={editData ? "Edit category":"Add new category"}
+        footerBtnTitle={editData ? "Edit Category":"Create Category"}
+        formfn={dialogForm}
+        footerBtnClick={footerBtnClick}
+      />
+    </Dialog>
         
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw] overflow-x-hidden">
