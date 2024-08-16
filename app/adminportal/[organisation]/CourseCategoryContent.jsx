@@ -23,6 +23,7 @@ import AddCourseForm from "./courses/AddCourseForm";
 import { AlertDialog } from "@/components/ui/alert-dialog";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCourseDeleteMutation } from "@/redux/queries/deleteCourse";
+import { useCourseEditorMutation } from "@/redux/queries/courseById";
 
 function CourseCategoryContent() {
   const [storeCourseId, setStoreCourseId] = useState([]);
@@ -35,6 +36,7 @@ function CourseCategoryContent() {
   const [deleteCourse, setDeleteCourse] = useState(false);
   const [courseId, setCourseId] = useState(null);
   const [courseName, setCourseName] = useState("");
+  const [courseEditData,setCourseEditData]=useState()
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -51,6 +53,7 @@ function CourseCategoryContent() {
   const { data: courseData, refetch: courseRefetch } = useGetAllCoursesQuery({
     organizationType: initialOrgType,
   });
+  
   const { data: categoryData, refetch: categoryRefetch } =
     useGetAllCategoryQuery({
       organizationType: initialOrgType,
@@ -176,11 +179,17 @@ function CourseCategoryContent() {
       }
     }
   };
-
-  const handleEditClick = (course) => () => {
-    setCourseAddDialog(true);
-    // setCourseEditData(course)
+  const [selectedCourseDetailsToEdit, { data: courseToEdit}] = useCourseEditorMutation();
+  const handleEditClick = (course) => async () => {
+    try {
+      const response = await selectedCourseDetailsToEdit({ courseId: course.course_id }).unwrap();
+      setCourseEditData(response?.data);
+      setCourseAddDialog(true);
+    } catch (err) {
+      console.error("Failed to fetch course details", err);
+    }
   };
+  
   const deleteICon = "/illustrate_delete.svg";
   const handleDeleteClick = (id, courseName) => () => {
     setCourseName(courseName);
@@ -228,7 +237,7 @@ function CourseCategoryContent() {
           </div>
           <DialogTrigger>
             <button
-              onClick={() => setCourseAddDialog(true)}
+              onClick={() => {setCourseAddDialog(true);setCourseEditData(null)}}
               className={
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
@@ -250,6 +259,7 @@ function CourseCategoryContent() {
           <AddCourseForm
             courseRefetch={courseRefetch}
             dialogCloseClick={setCourseAddDialog}
+            courseEditData={courseEditData}
           />
         </Dialog>
       </Dialog>

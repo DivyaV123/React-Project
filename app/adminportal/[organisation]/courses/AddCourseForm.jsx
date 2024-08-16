@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState ,useEffect} from "react";
 import {
   DialogContent,
   DialogDescription,
@@ -16,15 +16,16 @@ import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import Button from "@/components/commonComponents/button/Button";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
 import { useCourseAdderMutation } from "@/redux/queries/courseAdderApi";
+import { useCourseEditDataMutation } from "@/redux/queries/editCourseApi";
 
-function AddCourseForm({ dialogCloseClick, courseRefetch }) {
+function AddCourseForm({ dialogCloseClick, courseRefetch,courseEditData }) {
   const {
     data: courseData,
     error,
     isLoading,
     refetch: refetchCourseData,
   } = useGetAllCategoriesInCourseQuery();
-
+  const [editSelectedCourse, { data: courseEditResp, error: courseEditError, isLoading: courseEditLoad }] = useCourseEditDataMutation();
   const [
     addCourse,
     { data: courseAdd, error: courseError, isLoading: courseAdderLoad },
@@ -35,6 +36,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
   const [subCourseOptions, setSubCourseOptions] = useState([]);
   const [orgType, setOryType] = useState("");
   const [classMode, setClassMode] = useState("");
+  const [selectedClassMode, setSelectedClassMode] = useState([]);
   const [faqs, setFaqs] = useState([]);
   const [faqEditIndex, setFaqEditIndex] = useState(null);
   const [expandedIndex, setExpandedIndex] = useState(null);
@@ -97,9 +99,51 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
     homePageImage: "",
     courseCardImage: "",
   });
-
+ console.log({courseEditData})
+ useEffect(() => {
+    console.log(!!courseEditData,"before if")
+    if (courseEditData) {
+      formikDetails.setValues({
+        ...formikDetails.values,
+        courseName: courseEditData.courseName || '',
+        category: courseEditData.categoryId || '',
+        subCategory: courseEditData.subCategoryId || '',
+        courseDesc: courseEditData.courseDescription || '',
+        courseSummary: courseEditData.courseSummary || '',
+        aboutCourse: courseEditData.courseAbout || '',
+        courseHeighlights: courseEditData.courseHighlight || '',
+       orgType: courseEditData.branchType[0] || '',
+      // classMode: courseEditData.mode || '', 
+        subjects: courseEditData.subjects || [],
+        faqs: courseEditData.faqs || [],
+      });
+    setSelectedClassMode(courseEditData.mode || " ")
+      setSelectedCourse(courseEditData.categoryId || '');
+      setSelectedSubCourse(courseEditData.subCategoryId || '');
+      setFaqs(courseEditData.faqs || []);
+    
+    setSelectedFile({
+        courseIcon: courseEditData.courseIcon
+          ? new File([], courseEditData.courseIcon.split('/').pop(), { type: 'image/*' })
+          : null,
+        homePageImage: courseEditData.homePageImage
+          ? new File([], courseEditData.homePageImage.split('/').pop(), { type: 'image/*' })
+          : null,
+          courseCardImage: courseEditData.courseImage
+          ? new File([], courseEditData.courseImage.split('/').pop(), { type: 'image/*' })
+          : null,
+      });
+    
+      setPreviewURL({
+        courseIcon: courseEditData.courseIcon || null,
+        homePageImage: courseEditData.homePageImage || null,
+        courseCardImage: courseEditData.courseImage || null,
+      });
+    }
+  }, [courseEditData]);
+  console.log(classMode,"classMode")
   const initialValues = {
-    courseName: "",
+    courseName:'',
     category: "",
     subCategory: "",
     courseDesc: "",
@@ -113,7 +157,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
   };
 
   const validationSchema = Yup.object({
-    category: Yup.string().required("Course is required"),
+    category: !courseEditData && Yup.string().required("Course is required"),
     // subCourse: Yup.string().required("Sub Course is required"),
     courseName: Yup.string().required("Course Name is required"),
     courseDesc: Yup.string().required("Course Description is required"),
@@ -129,7 +173,11 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
         })
       ),
     orgType: Yup.string().required("organisation is required"),
-    classMode: Yup.string().required("Mode is required"),
+    // classMode: Yup.string().required("Mode is required"),
+    classMode: Yup.array()
+    .of(Yup.string().required("Each classMode is required"))
+    .min(1, "At least one classMode is required")
+    .required("classModes are required"),
   });
 
   const handleCourseSelect = (event) => {
@@ -296,12 +344,15 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
   const formikDetails = useFormik({
     initialValues,
     validationSchema,
+    enableReinitialize: true,
     onSubmit: async (values) => {
       let faqArray = values.faqs.map((faq) => ({
         question: faq.question,
         answer: faq.answer,
+        faqId:faq.faqId,
         faqType: "COURSE",
       }));
+      console.log({values})
       // const convertedfaqArray = JSON.stringify(faqArray);
       const courseDetails = {
         courseName: values.courseName,
@@ -326,9 +377,38 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
         categoryId: selectedId.categoryId,
         subCategoryId: selectedId.subCategoryId,
       };
+      
+
+      const courseObj = {
+        courseId:courseEditData?.courseId,
+        courseName: values.courseName,
+        courseDescription: values.courseDesc,
+        branchType: Array.isArray(values.orgType)
+          ? values.orgType
+          : [values.orgType],
+        mode: Array.isArray(values.classMode)
+          ? values.classMode
+          : [values.classMode],
+        courseSummary: values.courseSummary,
+        courseAbout: values.aboutCourse,
+        courseHighlight: values.courseHeighlights,
+        faqs: faqArray,
+    }
+    const editPayloadString = JSON.stringify(courseObj);
+
+    const editPayload = {
+        courseContent: editPayloadString,
+        icon: selectedFile.courseIcon,
+        cardImage: selectedFile.courseCardImage,
+        pageImage: selectedFile.homePageImage ,
+        categoryId: selectedId.categoryId,
+        subCategoryId: selectedId.subCategoryId,
+    }
+    console.log({editPayload})
       try {
-        const response = await addCourse({ bodyData: payload }).unwrap();
-        if (response.statusCode == 201) {
+        const response = courseEditData? await editSelectedCourse({ bodyData: editPayload }).unwrap() : await addCourse({ bodyData: payload }).unwrap();
+        console.log(response);
+        if (response.statusCode == 201 || response.statusCode == 200) {
           dialogCloseClick(false);
           formikDetails.resetForm();
           courseRefetch();
@@ -337,6 +417,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
             homePageImage: null,
             courseCardImage: null,
           });
+          setSelectedClassMode([]);
           setPreviewURL({
             courseIcon: null,
             homePageImage: null,
@@ -347,7 +428,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
           alert("something went wrong");
         }
       } catch (err) {
-        alert(courseError.data.data);
+        console.log(err);
       }
     },
   });
@@ -357,10 +438,13 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
     formikDetails.setFieldValue("orgType", event.target.option.value);
   };
   const handleModeChange = (event) => {
-    const selectedOrg = event.target.option.label;
-    setClassMode(selectedOrg);
-    formikDetails.setFieldValue("classMode", event.target.option.value);
+    // const selectedOrg = event.target.option.label;
+    console.log(event.target.value)
+    // setClassMode(selectedOrg);
+    formikDetails.setFieldValue("classMode", event.target.value);
+    setSelectedClassMode(event.target.value)
   };
+  
   const handleModelClose = () => {
     dialogCloseClick(false);
     formikDetails.resetForm();
@@ -376,6 +460,8 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
       homePageImage: null,
       courseCardImage: null,
     });
+    setFaqs([]);
+    setSelectedClassMode([]);
   };
   return (
     <DialogContent>
@@ -411,7 +497,9 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
               </div>
             </div>
           </div>
-          <div className="w-full h-full">
+          {
+            !courseEditData && <>
+            <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
                 <p className={tagHeadStyle}>Select Category</p>
@@ -448,6 +536,9 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
               </div>
             </div>
           </div>
+            </>
+          }
+         
         </div>
         <div className="flex gap-[6.25rem] pb-[2.222vh]">
           <div className="w-full h-full">
@@ -562,14 +653,15 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}>Mode of class</p>
+                <p className={tagHeadStyle} >Mode of class</p>
                 <Dropdown
                   placeholder="Enter course name"
                   inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]  text-gray-400"
                   options={classModeOption}
                   name="classMode"
                   onChange={handleModeChange}
-                  value={formikDetails.values.classMode}
+                  value={selectedClassMode}
+                  multi
                 />
                 {formikDetails.touched.classMode &&
                 formikDetails.errors.classMode ? (
@@ -603,7 +695,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
             <label htmlFor="course-icon-upload" className="block w-[12.812vw]">
               {previewURL.courseIcon ? (
                 <div className="relative">
-                  <img src={previewURL.courseIcon} alt="Course Icon Preview" />
+                  <img src={previewURL.courseIcon} alt={`${previewURL.courseIcon}`} />
                   <button
                     type="button"
                     onClick={() => handleCancel("courseIcon")}
@@ -624,7 +716,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
           </div>
 
           <div className="w-[23.438vw]">
-            <p className={tagHeadStyle}>Home Page Image</p>
+            <p className={tagHeadStyle} onClick={()=>{console.log({selectedFile},{previewURL})}}>Home Page Image</p>
             <input
               type="file"
               accept="image/*"
@@ -838,7 +930,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch }) {
               type="submit"
               className="px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium bg-gradient rounded-md text-white"
             >
-              Create Course
+             {courseEditData ? "Edit Course" : "Create Course"} 
             </button>
           </div>
         </DialogFooter>
