@@ -17,7 +17,18 @@ import Button from "@/components/commonComponents/button/Button";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
 import { useCourseAdderMutation } from "@/redux/queries/courseAdderApi";
 import { useCourseEditDataMutation } from "@/redux/queries/editCourseApi";
-
+import "react-quill/dist/quill.snow.css";
+import dynamic from "next/dynamic";
+import "react-quill/dist/quill.bubble.css";
+const ReactQuill = dynamic(
+    async () => {
+      const { default: RQ } = await import("react-quill");
+      return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
+    },
+    {
+      ssr: false,
+    }
+  );
 function AddCourseForm({ dialogCloseClick, courseRefetch,courseEditData }) {
   const {
     data: courseData,
@@ -548,7 +559,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch,courseEditData }) {
                 <Input
                   name="courseDesc"
                   placeholder="Enter course name"
-                  inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]"
+                  inputStyle=" h-[2.813vw]  text-[12px]"
                   value={formikDetails.values.courseDesc}
                   onChange={formikDetails.handleChange}
                   onBlur={formikDetails.handleBlur}
@@ -569,7 +580,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch,courseEditData }) {
                 <Input
                   name="courseSummary"
                   placeholder="Enter course name"
-                  inputStyle="!w-[23.438vw] h-[2.813vw] text-[12px]"
+                  inputStyle=" h-[2.813vw] text-[12px]"
                   iconStyle="w-[10%]"
                   onChange={formikDetails.handleChange}
                   onBlur={formikDetails.handleBlur}
@@ -584,18 +595,19 @@ function AddCourseForm({ dialogCloseClick, courseRefetch,courseEditData }) {
               </div>
             </div>
           </div>
-          <div className="w-full h-full">
+          
+        </div>
+        <div className="flex justify-between gap-[6.25rem] ">
+        <div className="w-[50%] h-full">
             <div className="pt-[2.222vh]">
               <div>
                 <p className={tagHeadStyle}>About Course</p>
-                <Input
-                  name="aboutCourse"
-                  placeholder="Enter course name"
-                  inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]"
-                  value={formikDetails.values.aboutCourse}
-                  onChange={formikDetails.handleChange}
-                  onBlur={formikDetails.handleBlur}
-                />
+                <ReactQuill
+                value={formikDetails.values.aboutCourse}
+                onChange={(value) =>
+                  formikDetails.setFieldValue("aboutCourse", value)
+                }
+              />
                 {formikDetails.touched.aboutCourse &&
                 formikDetails.errors.aboutCourse ? (
                   <div className="text-red-500 text-[12px]">
@@ -605,36 +617,34 @@ function AddCourseForm({ dialogCloseClick, courseRefetch,courseEditData }) {
               </div>
             </div>
           </div>
-        </div>
-        <div className="flex gap-[6.25rem] pb-[2.222vh]">
-          <div className="w-full h-full">
+          <div className="w-[50%] h-full">
             <div className="pt-[2.222vh]">
               <div>
                 <p className={tagHeadStyle}>Course highlights</p>
-                <Input
-                  placeholder="Enter course name"
-                  name="courseHeighlights"
-                  inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]"
-                  value={formikDetails.values.courseHeighlights}
-                  onChange={formikDetails.handleChange}
-                  onBlur={formikDetails.handleBlur}
-                />
+                <ReactQuill
+                value={formikDetails.values.courseHeighlights}
+                onChange={(value) =>
+                  formikDetails.setFieldValue("courseHeighlights", value)
+                }
+              />
                 {formikDetails.touched.courseHeighlights &&
                 formikDetails.errors.courseHeighlights ? (
-                  <div className="text-red-500 text-[12px]">
+                    <div className="text-red-500 text-[12px]">
                     {formikDetails.errors.courseHeighlights}
                   </div>
                 ) : null}
               </div>
             </div>
           </div>
+          </div>
+                      <div className="flex gap-[6.25rem] pb-[2.222vh]">
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
                 <p className={tagHeadStyle}>Organigation</p>
                 <Dropdown
                   placeholder="Enter course name"
-                  inputStyle="!w-[23.438vw] h-[2.813vw] text-[12px]  text-gray-400"
+                  inputStyle=" h-[2.813vw] text-[12px]  text-gray-400"
                   iconStyle="w-[10%]"
                   options={orgOptions}
                   name="orgType"
@@ -656,7 +666,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch,courseEditData }) {
                 <p className={tagHeadStyle} >Mode of class</p>
                 <Dropdown
                   placeholder="Enter course name"
-                  inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]  text-gray-400"
+                  inputStyle=" h-[2.813vw]  text-[12px]  text-gray-400"
                   options={classModeOption}
                   name="classMode"
                   onChange={handleModeChange}
@@ -678,7 +688,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch,courseEditData }) {
             <p className={tagHeadStyle}>Add Subjects</p>
             <Dropdown
               placeholder="Enter course name"
-              inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px] text-gray-400"
+              inputStyle="!w-[42.695vw] h-[2.813vw]  text-[12px] text-gray-400"
             />
           </div>
         </div>
