@@ -3,6 +3,7 @@ import React from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import Input from "@/components/commonComponents/input/Input";
+import Button from "@/components/commonComponents/button/Button";
 
 const SubTopicForm = ({ initialValues, onUpdateSubTopic }) => {
 
@@ -33,9 +34,15 @@ const SubTopicForm = ({ initialValues, onUpdateSubTopic }) => {
     <div className="m-auto border mt-4 mb-4 border-gray-300 p-8 rounded-xl">
       <form onSubmit={formik.handleSubmit}>
         <div>
-          <label>
-            <span className="text-red-500 pr-1 ">*</span> SubTopic Name
-          </label>
+          <div className="flex justify-between w-full">
+            <label>
+              <span className="text-red-500 pr-1 ">*</span> SubTopic Name
+            </label>
+            <Button
+              title='delete this SubTitle'
+              className="p-1 bg-gradient text-white m-2 rounded"
+            />
+          </div>
           <Input
             type="text"
             name="subTopicTitle"

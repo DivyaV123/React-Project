@@ -43,7 +43,7 @@ const ChapterForm = forwardRef(({ initialValues, onUpdateChapter }, ref) => {
   };
   const handleAddTopic = () => {
     formik.handleSubmit();
-   
+
     formik.values.chapterTitle &&
       setTopics([
         ...topics,
@@ -117,6 +117,7 @@ const ChapterForm = forwardRef(({ initialValues, onUpdateChapter }, ref) => {
       </div>
       {topics.map((topic, index) => (
         <TopicForm
+          allTopics={topics}
           key={index}
           initialValues={topic}
           onUpdateTopic={(updatedTopic) =>
