@@ -44,14 +44,13 @@ import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup
 import { useCategoryDeleteMutation } from "@/redux/queries/deleteCategoryApi";
 import { useCategoryEditDataMutation } from "@/redux/queries/editCategoryApi";
 
-
 const AdminCategory = () => {
   const [categories, setCategories] = useState([]);
   const [deleteCategory, setDeleteCategory] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const [warningCategory, setWarningCategory] = useState(false);
-  const [dialogOpen, setDialogOpen] = useState(false);  
-  const [editData, setEditData] = useState(null)
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editData, setEditData] = useState(null);
   const { selectedInstitute } = useContext(GlobalContext);
   const router = useRouter();
   const pathname = usePathname();
@@ -83,7 +82,14 @@ const AdminCategory = () => {
       isLoading: categoryEditLoad,
     },
   ] = useCategoryWeightageEditMutation();
-  const [deleteSelectedCategory, { data: CategoryDeleteResp, error: CategoryDeleteError, isLoading: CategoryDeleteLoad }] = useCategoryDeleteMutation();
+  const [
+    deleteSelectedCategory,
+    {
+      data: CategoryDeleteResp,
+      error: CategoryDeleteError,
+      isLoading: CategoryDeleteLoad,
+    },
+  ] = useCategoryDeleteMutation();
   const [
     addCategory,
     {
@@ -97,7 +103,7 @@ const AdminCategory = () => {
     {
       data: editCategoryResponse,
       error: editCategoryError,
-      isLoading:editCategoryLoading,
+      isLoading: editCategoryLoading,
     },
   ] = useCategoryEditDataMutation();
   useEffect(() => {
@@ -110,6 +116,10 @@ const AdminCategory = () => {
   }, [categoryData?.data]);
   const pStyle = " text-[1.094vw] font-medium pb-[1.389vh]";
   const [selectedFile, setSelectedFile] = useState({
+    categoryIconDark: null,
+    categoryIconLite: null,
+  });
+  const [previewURL, setPreviewURL] = useState({
     categoryIconDark: null,
     categoryIconLite: null,
   });
@@ -147,17 +157,19 @@ const AdminCategory = () => {
       };
       let editPayload = {
         title: values.categoryName,
-        id:editData?.courseId,
+        id: editData?.courseId,
         icon: selectedFile.categoryIconDark,
         alternativeIcon: selectedFile.categoryIconLite,
       };
       try {
-        const response = editData ? await editCategory({ bodyData: editPayload }).unwrap(): await addCategory({ bodyData: payload }).unwrap();
-        if (response.statusCode === 200 || response.statusCode===201) {
-            refetch();
-          }
-          setDialogOpen(false);
-        dialogCloseClick()
+        const response = editData
+          ? await editCategory({ bodyData: editPayload }).unwrap()
+          : await addCategory({ bodyData: payload }).unwrap();
+        if (response.statusCode === 200 || response.statusCode === 201) {
+          refetch();
+        }
+        setDialogOpen(false);
+        dialogCloseClick();
       } catch {
         alert(categoryError.data.data);
       }
@@ -166,10 +178,15 @@ const AdminCategory = () => {
 
   const handleFileChange = (event, iconType) => {
     const file = event.target.files[0];
+    const previewURL = URL.createObjectURL(file);
     if (file && file.type.startsWith("image/")) {
       setSelectedFile((prevState) => ({
         ...prevState,
         [iconType]: file,
+      }));
+      setPreviewURL((prevState) => ({
+        ...prevState,
+        [iconType]: previewURL,
       }));
       setErrorMessage((prevState) => ({
         ...prevState,
@@ -180,13 +197,63 @@ const AdminCategory = () => {
         ...prevState,
         [iconType]: null,
       }));
+      setPreviewURL((prevState) => ({
+        ...prevState,
+        [iconType]: previewURL,
+      }));
       setErrorMessage((prevState) => ({
         ...prevState,
         [iconType]: "Please upload a valid image file.",
       }));
     }
   };
+  const handleCancel = (iconType) => {
+    setSelectedFile((prevState) => ({
+      ...prevState,
+      [iconType]: null,
+    }));
+    setPreviewURL((prevState) => ({
+      ...prevState,
+      [iconType]: null,
+    }));
+    setErrorMessage((prevState) => ({
+      ...prevState,
+      [iconType]: "",
+    }));
+  };
+  useEffect(() => {
+    if (editData) {
+      formikDetails.setValues({
+        categoryName: editData.title,
+      });
 
+      setSelectedFile({
+        categoryIconDark: editData.icon
+          ? new File([], editData.icon.split("/").pop(), { type: "image/*" })
+          : null,
+        categoryIconLite: editData.alternativeIcon
+          ? new File([], editData.alternativeIcon.split("/").pop(), {
+              type: "image/*",
+            })
+          : null,
+      });
+
+      setErrorMessage({
+        categoryIconDark: "",
+        categoryIconLite: "",
+      });
+    }
+  }, [editData]);
+  const handleEditClick = (category) => {
+    console.log(`Edit clicked for:`, category);
+    setEditData(category);
+    setDialogOpen(true);
+    setPreviewURL({
+      categoryIconDark: category.icon,
+      categoryIconLite: category.alternativeIcon,
+    });
+  };
+  console.log(!!previewURL?.categoryIconDark);
   const dialogForm = () => {
     return (
       <form onSubmit={formikDetails.handleSubmit}>
@@ -207,53 +274,96 @@ const AdminCategory = () => {
           ) : null}
         </div>
         <p className={pStyle}>Category Icon Dark</p>
-        <div>
-          <input
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            id="file-upload-dark"
-            onChange={(event) => handleFileChange(event, "categoryIconDark")}
-          />
-          <label htmlFor="file-upload-dark">
-            <img src="../images/uploadinput.png" alt="file upload" />
-          </label>
-          {selectedFile.categoryIconDark && (
-            <p className="text-gray-700 text-[0.6rem]">
-              <span className="font-medium text-[0.6rem]">Selected file:</span>{" "}
-              {selectedFile.categoryIconDark.name}
-            </p>
-          )}
-          {errorMessage.categoryIconDark && (
-            <p className="text-red-500 text-[0.6rem]">
-              {errorMessage.categoryIconDark}
-            </p>
-          )}
+        <div className="flex gap-4 items-center">
+          <div className="w-[50%]">
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              id="file-upload-dark"
+              onChange={(event) => handleFileChange(event, "categoryIconDark")}
+            />
+            <label htmlFor="file-upload-dark">
+              <img src="../images/uploadinput.png" alt="file upload" />
+            </label>
+            {selectedFile.categoryIconDark && (
+              <p className="text-gray-700 text-[0.6rem]">
+                <span className="font-medium text-[0.6rem]">
+                  Selected file:
+                </span>{" "}
+                {selectedFile.categoryIconDark.name}
+              </p>
+            )}
+            {errorMessage.categoryIconDark && (
+              <p className="text-red-500 text-[0.6rem]">
+                {errorMessage.categoryIconDark}
+              </p>
+            )}
+          </div>
+          <div className="w-[50%]">
+            {previewURL.categoryIconDark && (
+              <div className=" flex justify-center gap-4">
+                <img
+                  src={previewURL.categoryIconDark}
+                  alt="Course Icon Preview"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleCancel("categoryIconDark")}
+                  className=" text-[0.93vw] text-red-500 rounded-full p-1"
+                >
+                  cancel
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         <p className={pStyle}>Category Icon Lite</p>
-        <div>
-          <input
-            type="file"
-            accept="image/*"
-            style={{ display: "none" }}
-            id="file-upload-lite"
-            onChange={(event) => handleFileChange(event, "categoryIconLite")}
-          />
-          <label htmlFor="file-upload-lite">
-            <img src="../images/uploadinput.png" alt="file upload" />
-          </label>
-          {selectedFile.categoryIconLite && (
-            <p className="text-gray-700 text-[0.6rem]">
-              <span className="font-medium text-[0.6rem]">Selected file:</span>{" "}
-              {selectedFile.categoryIconLite.name}
-            </p>
-          )}
-          {errorMessage.categoryIconLite && (
-            <p className="text-red-500 text-[0.6rem]">
-              {errorMessage.categoryIconLite}
-            </p>
-          )}
+        <div className="flex gap-4 items-center">
+          <div className="w-[50%]">
+            <input
+              type="file"
+              accept="image/*"
+              style={{ display: "none" }}
+              id="file-upload-lite"
+              onChange={(event) => handleFileChange(event, "categoryIconLite")}
+            />
+            <label htmlFor="file-upload-lite">
+              <img src="../images/uploadinput.png" alt="file upload" />
+            </label>
+            {selectedFile.categoryIconLite && (
+              <p className="text-gray-700 text-[0.6rem]">
+                <span className="font-medium text-[0.6rem]">
+                  Selected file:
+                </span>{" "}
+                {selectedFile.categoryIconLite.name}
+              </p>
+            )}
+            {errorMessage.categoryIconLite && (
+              <p className="text-red-500 text-[0.6rem]">
+                {errorMessage.categoryIconLite}
+              </p>
+            )}
+          </div>
+          <div className="w-[50%] ">
+            {previewURL.categoryIconLite && (
+              <div className=" flex justify-center gap-4">
+                <img
+                  className="bg-orange-300"
+                  src={previewURL.categoryIconLite}
+                  alt="Course Icon Preview"
+                />
+                <button
+                  type="button"
+                  onClick={() => handleCancel("categoryIconLite")}
+                  className=" text-[0.93vw] text-red-500 rounded-full p-1"
+                >
+                  cancel
+                </button>
+              </div>
+            )}
+          </div>
         </div>
       </form>
     );
@@ -273,33 +383,6 @@ const AdminCategory = () => {
     }
   };
 
-
-useEffect(() => {
-  if (editData) {
-    formikDetails.setValues({
-      categoryName: editData.title,
-    });
-
-    setSelectedFile({
-      categoryIconDark: editData.icon
-        ? new File([], editData.icon.split('/').pop(), { type: 'image/*' })
-        : null,
-      categoryIconLite: editData.alternativeIcon
-        ? new File([], editData.alternativeIcon.split('/').pop(), { type: 'image/*' })
-        : null,
-    });
-    setErrorMessage({
-      categoryIconDark: "",
-      categoryIconLite: "",
-    });
-  }
-}, [editData]);
-  const handleEditClick = (category) => {
-    console.log(`Edit clicked for:`, category);
-    setEditData(category); 
-    setDialogOpen(true)
-    
-  };
   const deleteICon = "/illustrate_delete.svg";
   const warningIcon = "/illustrate_warning.svg";
   const handleDeleteClick = (id, category) => {
@@ -311,16 +394,18 @@ useEffect(() => {
     }
   };
   const handledeleteSelectedCategory = async () => {
-        try {
-            const response = await deleteSelectedCategory({ categoryId: categoryId }).unwrap();
-            setDeleteCategory(false);
-          if (response.statusCode === 200 || response.statusCode===201) {
-            refetch();
-          }
-        } catch (err) {
-            console.log(err)
-        }
-}
+    try {
+      const response = await deleteSelectedCategory({
+        categoryId: categoryId,
+      }).unwrap();
+      setDeleteCategory(false);
+      if (response.statusCode === 200 || response.statusCode === 201) {
+        refetch();
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
   const tableHeaders = [
     { label: "CATEGORY NAME", className: "text-gray-600 font-medium text-xs" },
@@ -347,18 +432,16 @@ useEffect(() => {
       content: (
         <>
           <div className="invisible group-hover:visible flex">
-          <Dialog>
-          <DialogTrigger asChild>
-            <button
-              className="text-blue-500 mr-2"
-              onClick={() => handleEditClick(category)}
-            >
-              Edit
-            </button>
-</DialogTrigger>
-  
-        
-      </Dialog>
+            <Dialog>
+              <DialogTrigger asChild>
+                <button
+                  className="text-blue-500 mr-2"
+                  onClick={() => handleEditClick(category)}
+                >
+                  Edit
+                </button>
+              </DialogTrigger>
+            </Dialog>
             <button
               className="text-red-500"
               onClick={() => handleDeleteClick(category.courseId, category)}
@@ -385,17 +468,17 @@ useEffect(() => {
   const footerBtnClick = () => {
     formikDetails.handleSubmit();
     if (!editData) {
-    if (!selectedFile.categoryIconDark || !selectedFile.categoryIconLite) {
-      setErrorMessage({
-        categoryIconDark: selectedFile.categoryIconDark
-          ? ""
-          : "Please upload a valid image file.",
-        categoryIconLite: selectedFile.categoryIconLite
-          ? ""
-          : "Please upload a valid image file.",
-      });
+      if (!selectedFile.categoryIconDark || !selectedFile.categoryIconLite) {
+        setErrorMessage({
+          categoryIconDark: selectedFile.categoryIconDark
+            ? ""
+            : "Please upload a valid image file.",
+          categoryIconLite: selectedFile.categoryIconLite
+            ? ""
+            : "Please upload a valid image file.",
+        });
+      }
     }
-  }
   };
 
   const handleDragEnd = async (event) => {
@@ -443,7 +526,7 @@ useEffect(() => {
             organisation: initialOrgType,
           }).unwrap();
 
-          if (response.statusCode === 200 || response.statusCode===201) {
+          if (response.statusCode === 200 || response.statusCode === 201) {
             refetch();
           }
         } catch (error) {
@@ -512,15 +595,14 @@ useEffect(() => {
         />
         } */}
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
-      <CommonDialog
-        dialogCloseClick={dialogCloseClick}
-        header={editData ? "Edit category":"Add new category"}
-        footerBtnTitle={editData ? "Edit Category":"Create Category"}
-        formfn={dialogForm}
-        footerBtnClick={footerBtnClick}
-      />
-    </Dialog>
-        
+          <CommonDialog
+            dialogCloseClick={dialogCloseClick}
+            header={editData ? "Edit category" : "Add new category"}
+            footerBtnTitle={editData ? "Edit Category" : "Create Category"}
+            formfn={dialogForm}
+            footerBtnClick={footerBtnClick}
+          />
+        </Dialog>
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw] overflow-x-hidden">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[73.389vh] ">
