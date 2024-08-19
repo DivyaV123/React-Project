@@ -4,8 +4,9 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import SubTopicForm from "./SubTopicForm";
 import Input from "@/components/commonComponents/input/Input";
+import Button from "@/components/commonComponents/button/Button";
 
-const TopicForm = ({ initialValues, onUpdateTopic }) => {
+const TopicForm = ({ initialValues, onUpdateTopic, allTopics, key }) => {
   const [subTopics, setSubTopics] = useState(initialValues.subTopics || []);
   const formik = useFormik({
     initialValues: {
@@ -53,14 +54,27 @@ const TopicForm = ({ initialValues, onUpdateTopic }) => {
     });
   };
 
+  const handleTopicDelete = (event) => {
+    console.log(event, "eventevent")
+    console.log(allTopics, key, initialValues, "allTopics, key")
+
+  }
   return (
     <div className="m-auto border border-gray-300 p-8 mt-4 mb-4 rounded-xl">
       <div>
         <form onSubmit={formik.handleSubmit}>
           <div>
-            <label>
-              <span className="text-red-500 pr-1 ">*</span>Topic Name
-            </label>
+            <div className="flex w-full justify-between">
+              <label>
+                <span className="text-red-500 pr-1 ">*</span>Topic Name
+              </label>
+              <Button
+                title='Delete this Topic'
+                type="button"
+                onClick={() => handleTopicDelete(key)}
+                className="p-1 bg-gradient rounded text-white m-2"
+              />
+            </div>
             <Input
               type="text"
               name="topicTitle"
