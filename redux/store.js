@@ -67,6 +67,7 @@ import { updateCourseDnd } from './queries/updateCourseDndApi';
 import { updateSubCategoryDnd } from './queries/updateSubCategoryDndApi';
 import { categoryDeleteApi } from './queries/deleteCategoryApi';
 import { categoryEditApi } from './queries/editCategoryApi';
+import { AddCitiesApi } from './queries/addCitiesApi';
 import { DeleteChapterApi } from './queries/DeleteChapterApi';
 import { DeleteTopicApi } from './queries/DeleteTopicApi';
 import { DeleteSubTopicApi } from './queries/DeleteSubTopicApi';
@@ -160,7 +161,8 @@ const store = configureStore({
     [categoryEditApi.reducerPath]: categoryEditApi.reducer,
     [DeleteChapterApi.reducerPath]: DeleteChapterApi.reducer,
     [DeleteTopicApi.reducerPath]: DeleteTopicApi.reducer,
-    [DeleteSubTopicApi.reducerPath]: DeleteSubTopicApi.reducer
+    [DeleteSubTopicApi.reducerPath]: DeleteSubTopicApi.reducer,
+    [AddCitiesApi.reducerPath]:AddCitiesApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
@@ -169,7 +171,7 @@ const store = configureStore({
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
       addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware, updateCourseDnd.middleware, updateSubCategoryDnd.middleware, categoryDeleteApi.middleware, categoryEditApi.middleware, DeleteChapterApi.middleware,
-      DeleteTopicApi.middleware, DeleteSubTopicApi.middleware
+      DeleteTopicApi.middleware, DeleteSubTopicApi.middleware,AddCitiesApi.middleware
     ),
 });
 

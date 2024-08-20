@@ -61,5 +61,7 @@ export const API_ENDPOINTS = {
   //Category
   ADD_CATEGORY: '/api/v1/categories/files',
   DELETE_CATEGORY: (categoryId) => `/api/v1/categories/deleteCategory?categoryId=${categoryId}`,
-  EDIT_CATEGORY: 'api/v1/categories',
+  EDIT_CATEGORY: 'api/v1/categories', 
+  //cities
+  ADD_CITY: '/api/v1/cities',
 };
