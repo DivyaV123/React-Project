@@ -39,6 +39,7 @@ export const API_ENDPOINTS = {
   CATEGORY_UNMAP: (categoryId) => `/api/v1/categories/removeCourseFromCategory?categoryId=${categoryId}`,
   SUBCATEGORY_UNMAP: (subCategoryId) => `/api/v1/subcategories/removeCourseFromSubCategory?subCategoryId=${subCategoryId}`,
   COURSE_MAP_SUBCATEGORY: (subCategoryId) => `/api/v1/subcategories/assigncourses?subCategoryId=${subCategoryId}`,
+  COURSE_UN_MAP: (courseId) => `/api/v1/courses/unmapCategoryAndSubCategoryFromCourse?courseId=${courseId}`,
   GET_PASS_OUT_YEAR: 'candidate/passoutyear',
   GET_PLACEMENT_COUNTS: '/candidate/getCounts',
   GET_THROUGH_OUT_SIXTY: 'candidate/getThroughOutSixty',
