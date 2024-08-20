@@ -43,6 +43,8 @@ const AdminSidebar = () => {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/subcategory`); 
     }else if(name==="Course"){
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/courses`); 
+    }else if(name==="City"){
+      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/city/country`);
     }else{
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}`);
     }

@@ -24,6 +24,8 @@ import { AlertDialog } from "@/components/ui/alert-dialog";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCourseDeleteMutation } from "@/redux/queries/deleteCourse";
 import { useCourseEditorMutation } from "@/redux/queries/courseById";
+import { useCategoryUnMapMutation } from "@/redux/queries/categoryUnMapApi";
+import { useSubCategortyUnMapMutation } from "@/redux/queries/subCategortyUnMapApi";
 
 function CourseCategoryContent() {
   const [storeCourseId, setStoreCourseId] = useState([]);
@@ -32,11 +34,18 @@ function CourseCategoryContent() {
   const [selectedSubCategoryId, setSelectedSubCategoryId] = useState(null);
   const [selectedSubCategoryName, setSelectedSubCategoryName] = useState("");
   const [dialogOpen, setDialogOpen] = useState(false);
+  const [unMapDialog, setUnMapDialog] = useState(false);
   const [courseAddDialog, setCourseAddDialog] = useState(false);
   const [deleteCourse, setDeleteCourse] = useState(false);
   const [courseId, setCourseId] = useState(null);
   const [courseName, setCourseName] = useState("");
   const [courseEditData,setCourseEditData]=useState()
+  const [unMapCategoryOptions, setUnMapCategoryOptions] = useState([]);
+  const [unMapSubCategoryOptions, setUnMapSubCategoryOptions] = useState([]);
+  const [selectedUnMapCategory, setSelectedUnMapCategory] = useState("");
+  const [selectedUnMapSubCategory, setSelectedUnMapSubCategory] = useState("");
+  const [unMapCategoryId, setUnMapCategoryId] = useState(null);
+  const [unMapSubCategoryId, setUnMapSubCategoryId] = useState(null);
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -62,6 +71,8 @@ function CourseCategoryContent() {
   const [courseCategoryMap] = useCourseCategoryMapMutation();
   const [courseSubCategoryMap] = useCourseSubCategoryMapMutation();
   const [deleteSelectedCourse] = useCourseDeleteMutation();
+  const [categoryUnmap] = useCategoryUnMapMutation();
+  const [subCategoryUnmap] = useSubCategortyUnMapMutation();
 
   useEffect(() => {
     courseRefetch();
@@ -114,7 +125,16 @@ function CourseCategoryContent() {
   });
   const handleSubCategorySelect = (event) => {
     setSelectedSubCategoryName(event.target.value);
-    setSelectedSubCategoryId(event.target.option.Id);
+    setSelectedSubCategoryId(event.target.option);
+  };
+  const handleUnmapSelected = (event, type) => {
+    if (type === "category") {
+      setSelectedUnMapCategory(event.target.value);
+      setUnMapCategoryId(event.target.options);
+    } else {
+      setSelectedUnMapSubCategory(event.target.value);
+      setUnMapSubCategoryId(event.target.options);
+    }
   };
 
   const dialogForm = () => {
@@ -143,13 +163,59 @@ function CourseCategoryContent() {
       </section>
     );
   };
+  const unMapDialogForm = () => {
+    return (
+      <section>
+        <p className={pStyle}>Select Category</p>
+        <Dropdown
+          multi
+          sectionStyle="my-section-style"
+          name="category"
+          value={selectedUnMapCategory}
+          onChange={(e) => handleUnmapSelected(e, "category")}
+          placeholder="Select to Map Category"
+          options={unMapCategoryOptions}
+        />
 
-  const handleCourseCheckbox = (courseId) => () => {
+        <p className={pStyle}>Select SubCategory</p>
+        <Dropdown
+          multi
+          sectionStyle="my-section-style"
+          name="subcategory"
+          placeholder="Select to unMap SubCategory"
+          value={selectedUnMapSubCategory}
+          onChange={(e) => handleUnmapSelected(e, "subcategory")}
+          options={unMapSubCategoryOptions}
+          disabled={unMapSubCategoryOptions.length > 0 ? false : true}
+        />
+      </section>
+    );
+  };
+
+  const handleCourseCheckbox = (courseId, course) => () => {
     setStoreCourseId((prevIds) =>
       prevIds.includes(courseId)
         ? prevIds.filter((id) => id !== courseId)
         : [...prevIds, courseId]
     );
+
+    if (course) {
+      const newCategoryOptions =
+        course.categories?.map(({ categoryTitle, categoryId }) => ({
+          label: categoryTitle,
+          value: categoryTitle,
+          Id: categoryId,
+        })) || [];
+
+      const newSubCategoryOptions =
+        course.subCategories?.map(({ subCategoryTitle, subCategoryId }) => ({
+          label: subCategoryTitle,
+          value: subCategoryTitle,
+          Id: subCategoryId,
+        })) || [];
+      setUnMapCategoryOptions(newCategoryOptions);
+      setUnMapSubCategoryOptions(newSubCategoryOptions);
+    }
   };
 
   const handleCreateCategory = async () => {
@@ -199,18 +265,42 @@ function CourseCategoryContent() {
   const handleDeleteSelectedCourse = async () => {
     try {
       const response = await deleteSelectedCourse({ courseId }).unwrap();
-        setDeleteCourse(false);
-        courseRefetch();
+      setDeleteCourse(false);
+      courseRefetch();
     } catch (err) {
       console.log(err);
     }
   };
-
+  const handleUnMapCategories = async () => {
+    if (unMapCategoryId.length > 0) {
+      let payload = [];
+      unMapCategoryId.map((ele) => {
+        payload.push(ele.Id);
+      });
+      try {
+        const response = await categoryUnmap({
+          bodyData: storeCourseId,
+          categoryId: payload,
+        }).unwrap();
+        alert(response.status === 204 ? "maped successfully" : response.status);
+        showmapCategory(false);
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  };
+  console.log(
+    unMapCategoryOptions,
+    unMapSubCategoryOptions,
+    storeCourseId,
+    unMapCategoryId,
+    unMapSubCategoryId
+  );
   return (
     <>
       <Dialog>
-        <article className="flex justify-between">
-          <div className="flex gap-3 pt-[2.222vh] ">
+        <article className="flex justify-between items-center">
+          <div className="flex gap-3 pt-[2.222vh] items-center">
             <div className="pl-[1.875vw] w-[29.688vw]">
               <Input
                 inputStyle="rounded-md"
@@ -234,6 +324,23 @@ function CourseCategoryContent() {
                 Map to Category
               </button>
             </DialogTrigger>
+            <DialogTrigger asChild>
+              <button
+                onClick={() => {
+                  setUnMapDialog(true);
+                  setDialogOpen(false);
+                  setCourseAddDialog(false);
+                }}
+                disabled={storeCourseId.length !== 1}
+                className={`${
+                  storeCourseId.length === 1
+                    ? "cursor-pointer bg-gradient text-white"
+                    : "cursor-not-allowed bg-gray-400"
+                } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
+              >
+                Unmap
+              </button>
+            </DialogTrigger>
           </div>
           <DialogTrigger>
             <button
@@ -253,6 +360,15 @@ function CourseCategoryContent() {
             formfn={dialogForm}
             footerBtnClick={handleCreateCategory}
             dialogCloseClick={() => setDialogOpen(false)}
+          />
+        )}
+        {unMapDialog && (
+          <CommonDialog
+            header="UnMap"
+            footerBtnTitle="UnMap"
+            formfn={unMapDialogForm}
+            footerBtnClick={handleUnMapCategories}
+            dialogCloseClick={() => setUnMapDialog(false)}
           />
         )}
         <Dialog open={courseAddDialog} onOpenChange={setCourseAddDialog}>
@@ -281,7 +397,7 @@ function CourseCategoryContent() {
                   <TableCell className={tblTextClass} title={ele.course_name}>
                     <div className="flex space-x-2">
                       <Checkbox
-                        onChange={handleCourseCheckbox(ele.course_id)}
+                        onChange={handleCourseCheckbox(ele.course_id, ele)}
                         checked={storeCourseId.includes(ele.course_id)}
                       />{" "}
                       {truncateText(ele.course_name, 30)}

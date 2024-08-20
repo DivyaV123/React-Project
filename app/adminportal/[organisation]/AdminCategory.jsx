@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -10,7 +10,6 @@ import {
 } from "@/components/ui/table";
 import { useGetAllCategoryQuery } from "@/redux/queries/adminCategorySortApi";
 import { usePathname, useRouter } from "next/navigation";
-import { GlobalContext } from "@/components/Context/GlobalContext";
 import Loading from "@/lib/Loading";
 import Input from "@/components/commonComponents/input/Input";
 import Svg from "@/components/commonComponents/Svg/Svg";
@@ -38,7 +37,6 @@ import {
 import { CSS } from "@dnd-kit/utilities";
 
 import { useCategoryWeightageEditMutation } from "@/redux/queries/updateCategoryWeightageApi";
-import { resolve } from "styled-jsx/css";
 import { useCategoryAdderMutation } from "@/redux/queries/addCategoryApi";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCategoryDeleteMutation } from "@/redux/queries/deleteCategoryApi";
@@ -51,7 +49,6 @@ const AdminCategory = () => {
   const [warningCategory, setWarningCategory] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editData, setEditData] = useState(null);
-  const { selectedInstitute } = useContext(GlobalContext);
   const router = useRouter();
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
@@ -73,7 +70,7 @@ const AdminCategory = () => {
     isLoading,
   } = useGetAllCategoryQuery({
     organizationType: initialOrgType,
-  });
+  }); 
   const [
     editCategoryWeightage,
     {
