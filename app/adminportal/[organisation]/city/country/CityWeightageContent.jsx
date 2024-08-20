@@ -19,6 +19,7 @@ import { useCitiesAdderMutation } from "@/redux/queries/addCitiesApi";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 const CityWeightageContent = () => {
+  const [cityEditDialog, setCityEditDialog] = useState(false);
   const [cityAddDialog, setCityAddDialog] = useState(false);
   const [activeCountry, setActiveCountry] = useState("India");
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -29,12 +30,12 @@ const CityWeightageContent = () => {
     instituteParam === "Qspiders"
       ? "QSP"
       : instituteParam === "Jspiders"
-      ? "JSP"
-      : instituteParam === "Pyspiders"
-      ? "PYSP"
-      : instituteParam === "Prospiders"
-      ? "PROSP"
-      : "QSP";
+        ? "JSP"
+        : instituteParam === "Pyspiders"
+          ? "PYSP"
+          : instituteParam === "Prospiders"
+            ? "PROSP"
+            : "QSP";
   const [addCity] = useCitiesAdderMutation();
   const { data: branchData, refetch } = useGetAllBranchesQuery();
   const countryOptions = [];
@@ -285,12 +286,23 @@ const CityWeightageContent = () => {
       </form>
     );
   };
+
   const handleCountryClick = (countryName) => {
     setActiveCountry(countryName);
   };
   const getCityData = branchData?.data?.find(
     (ele) => ele.countryName === activeCountry
   );
+
+  const handleSubEditClick = (ele, getCityData) => {
+
+    setCityEditDialog(true);
+    setCityAddDialog(false);
+    formikDetails.setFieldValue("cityName", ele.cityName);
+    formikDetails.setFieldValue("stateName", ele.cityName);
+
+  }
+
   return (
     <>
       <Dialog>
@@ -306,7 +318,10 @@ const CityWeightageContent = () => {
           </div>
           <DialogTrigger>
             <button
-              onClick={() => setCityAddDialog(true)}
+              onClick={() => {
+                setCityAddDialog(true);
+                setCityEditDialog(false);
+              }}
               className={
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
@@ -332,11 +347,10 @@ const CityWeightageContent = () => {
               <div key={index} className="flex justify-between items-center  ">
                 <button
                   onClick={() => handleCountryClick(ele.countryName)}
-                  className={`text-[#212121] py-[1.389vh] border-b-2 border-transparent text-[1.094vw] font-medium ${
-                    activeCountry === ele.countryName
-                      ? " text-[#FF7B1B] font-bold border-b-2 border-[#FF7B1B]"
-                      : ""
-                  }`}
+                  className={`text-[#212121] py-[1.389vh] border-b-2 border-transparent text-[1.094vw] font-medium ${activeCountry === ele.countryName
+                    ? " text-[#FF7B1B] font-bold border-b-2 border-[#FF7B1B]"
+                    : ""
+                    }`}
                 >
                   {ele.countryName}
                 </button>
@@ -362,13 +376,44 @@ const CityWeightageContent = () => {
                   <TableCell className={tblTextClass} title={ele.branchCount}>
                     {ele.branchCount}
                   </TableCell>
+                  <TableCell className={tblTextClass}>
+                    <Dialog>
+                      <DialogTrigger>
+                        <button
+                          onClick={() => handleSubEditClick(ele, getCityData)}
+                          className="mr-2 text-blue-500 hover:underline"
+                        >
+                          Edit
+                        </button>
+                      </DialogTrigger>
+                      {cityEditDialog && (
+                        <CommonDialog
+                          header="Edit City"
+                          footerBtnTitle="Edit City"
+                          formfn={dialogForm}
+                          dialogCloseClick={dialogCloseClick}
+                          footerBtnClick={footerBtnClick}
+                        />
+                      )}
+                    </Dialog>
+                    <button
+                      // onClick={handleDeleteClick(
+                      //   ele.course_id,
+                      //   ele.course_name
+                      // )}
+                      className="text-red-500 hover:underline"
+                    >
+                      Delete
+                    </button>
+                  </TableCell>
                 </TableRow>
-              ))}  
+              ))}
             </TableBody>
           </Table>
         </div>
       </div>
     </>
+
   );
 };
 

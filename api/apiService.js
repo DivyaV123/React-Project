@@ -16,7 +16,7 @@ export const API_ENDPOINTS = {
   DELETE_COURSE: (courseId) => `api/v1/courses?courseId=${courseId}`,
   DELETE_CHAPTER: (chapterId) => `/api/v1/chapters?chapterId=${chapterId}`,
   DELETE_TOPIC: (topicId) => `/api/v1/topics?topicId=${topicId}`,
-  DELETE_SUBTOPIC: (subtopicId) => `/api/v1/subtopics?subtopicId=${subtopicId}`,
+  DELETE_SUBTOPIC: (subtopicId) => `/api/v1/subtopics?subTopicId=${subtopicId}`,
   DELETE_SUBJECT: (subjectId) => `api/v1/subjects?subjectId=${subjectId}`,
   COURSE_WEIGHTAGE_ADDER: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   COURSE_WEIGHTAGE_EDIT: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
