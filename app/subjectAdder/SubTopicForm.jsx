@@ -4,8 +4,19 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import Input from "@/components/commonComponents/input/Input";
 import Button from "@/components/commonComponents/button/Button";
+import { useSubTopicdeleteMutation } from "@/redux/queries/DeleteSubTopicApi";
 
 const SubTopicForm = ({ initialValues, onUpdateSubTopic }) => {
+  const [deleteSubTpic] = useSubTopicdeleteMutation()
+  const handleSubTopicDelete = async () => {
+    let subTopicId = initialValues.subTopicId;
+    try {
+      const response = await deleteSubTpic({ subtopicId: subTopicId }).unwrap();
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
 
   const formik = useFormik({
     initialValues: {
@@ -39,7 +50,9 @@ const SubTopicForm = ({ initialValues, onUpdateSubTopic }) => {
               <span className="text-red-500 pr-1 ">*</span> SubTopic Name
             </label>
             <Button
+              onClick={handleSubTopicDelete}
               title='delete this SubTitle'
+              type="button"
               className="p-1 bg-gradient text-white m-2 rounded"
             />
           </div>
