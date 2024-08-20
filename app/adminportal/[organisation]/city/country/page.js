@@ -7,7 +7,7 @@ import CityWeightageContent from './CityWeightageContent'
 const CountryAndWeightage = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 100);
+    const timer = setTimeout(() => setLoading(false), 400);
     return () => clearTimeout(timer);
   }, []);
 

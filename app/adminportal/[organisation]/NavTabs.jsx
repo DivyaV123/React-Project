@@ -30,7 +30,7 @@ const NavTabs = () => {
       key: "PROSP",
     },
   ];
-  const decodedCourse = decodeURIComponent(getParams[3])
+  const decodedCourse = decodeURIComponent(getParams[3]);
   const handleNavTab = async (item) => {
     setSelectedInstitute(item.title);
     const decodedCategory = decodeURIComponent(sidebarParam);
@@ -38,13 +38,18 @@ const NavTabs = () => {
       router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}/subcategory`);
     } else if (decodedCategory === "Course") {
       router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}/courses`);
+    } else if (decodedCategory === "Subject") {
+      router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}/subject`);
+    } else if (decodedCategory === "City") {
+      router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}/city/country`);
     } else if (getParams[1] === "dynamic" && getParams[2] === "course") {
-      router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}/dynamic/course/${decodedCourse}`);
+      router.push(
+        `${ADMIN_PORTAL}/${sidebarParam},${item.title}/dynamic/course/${decodedCourse}`
+      );
     } else {
       router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}`);
-    };
-  }
-
+    }
+  };
 
   return (
     <>
@@ -52,17 +57,17 @@ const NavTabs = () => {
         {domains.map((item, index) => (
           <div
             key={index}
-            className={`pt-[0.972vh] pb-[1.528vh] cursor-pointer px-[0.625vw]  ${instituteParam === item.title
-              ? "text-[#FF7B1B] font-bold activeTab"
-              : " font-medium text-[#212121] inActiveTab"
-              }`}
+            className={`pt-[0.972vh] pb-[1.528vh] cursor-pointer px-[0.625vw]  ${
+              instituteParam === item.title
+                ? "text-[#FF7B1B] font-bold activeTab"
+                : " font-medium text-[#212121] inActiveTab"
+            }`}
             onClick={() => handleNavTab(item)}
           >
             <h1 className="text-[1.094vw] font-bold">{item.title}</h1>
           </div>
         ))}
       </section>
-
     </>
   );
 };
