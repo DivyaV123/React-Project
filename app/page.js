@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect } from 'react';
-import { useRouter } from 'next/navigation'; 
+import { useRouter } from 'next/navigation';
 import Loading from "@/lib/Loading";
 import dynamic from "next/dynamic";
 
@@ -12,7 +12,7 @@ const DynamicHeader = dynamic(() => import('./homepage'), {
 
 export default function Home() {
   const router = useRouter();
-console.log(router?.pathname,"beforepathname");
+  // console.log(router?.pathname,"beforepathname");
   useEffect(() => {
     const pathname = router?.pathname || "";
     let newTitle = "Qspiders";
@@ -31,7 +31,7 @@ console.log(router?.pathname,"beforepathname");
 
     document.title = newTitle;
   }, [router]);
-  console.log(router?.pathname,"afterpathname");
+  console.log(router?.pathname, "afterpathname");
 
   return (
     <main className="">

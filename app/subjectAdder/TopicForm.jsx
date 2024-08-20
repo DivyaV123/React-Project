@@ -5,8 +5,10 @@ import * as Yup from "yup";
 import SubTopicForm from "./SubTopicForm";
 import Input from "@/components/commonComponents/input/Input";
 import Button from "@/components/commonComponents/button/Button";
+import { useTopicdeleteMutation } from "@/redux/queries/DeleteTopicApi";
 
 const TopicForm = ({ initialValues, onUpdateTopic, allTopics, key }) => {
+  const [deleteTopic] = useTopicdeleteMutation()
   const [subTopics, setSubTopics] = useState(initialValues.subTopics || []);
   const formik = useFormik({
     initialValues: {
@@ -54,10 +56,13 @@ const TopicForm = ({ initialValues, onUpdateTopic, allTopics, key }) => {
     });
   };
 
-  const handleTopicDelete = (event) => {
-    console.log(event, "eventevent")
-    console.log(allTopics, key, initialValues, "allTopics, key")
-
+  const handleTopicDelete = async (event) => {
+    let topicId = initialValues.topicId;
+    try {
+      const response = await deleteTopic({ topicId: topicId }).unwrap();
+    } catch (err) {
+      console.log(err);
+    }
   }
   return (
     <div className="m-auto border border-gray-300 p-8 mt-4 mb-4 rounded-xl">
