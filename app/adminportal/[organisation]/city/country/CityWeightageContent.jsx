@@ -298,7 +298,6 @@ const CityWeightageContent = () => {
 
     setCityEditDialog(true);
     setCityAddDialog(false);
-    console.log(ele, getCityData, "ele to be edited")
     formikDetails.setFieldValue("cityName", ele.cityName);
     formikDetails.setFieldValue("stateName", ele.cityName);
 
@@ -340,7 +339,6 @@ const CityWeightageContent = () => {
             footerBtnClick={footerBtnClick}
           />
         )}
-        {console.log(cityEditDialog, "cityEditDialogcityEditDialog")}
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
