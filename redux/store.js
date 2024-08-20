@@ -69,7 +69,7 @@ import { categoryDeleteApi } from './queries/deleteCategoryApi';
 import { categoryEditApi } from './queries/editCategoryApi';
 import { DeleteChapterApi } from './queries/DeleteChapterApi';
 import { DeleteTopicApi } from './queries/DeleteTopicApi';
-import { DeleteSubTopicApi } from './queries/deleteSubTopicApi';
+import { DeleteSubTopicApi } from './queries/DeleteSubTopicApi';
 const store = configureStore({
   reducer: {
 

@@ -2,7 +2,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { getBaseUrl, API_ENDPOINTS } from '@/api/apiService';
 export const DeleteSubTopicApi = createApi({
-    reducerPath: 'deleteSubTopicApi',
+    reducerPath: 'DeleteSubTopicApi',
     baseQuery: fetchBaseQuery({
         baseUrl: getBaseUrl(),
         prepareHeaders: (headers) => {
