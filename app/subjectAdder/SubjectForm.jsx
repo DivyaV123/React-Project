@@ -16,14 +16,19 @@ import Input from "@/components/commonComponents/input/Input";
 import { useAddSubjectMutation } from "@/redux/queries/addSubjectApi";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { useRouter } from "next/navigation";
+import Button from "@/components/commonComponents/button/Button";
+import { useChapterdeleteMutation } from "@/redux/queries/DeleteChapterApi";
+
 const SubjectForm = () => {
   const { individualSubjectData } = useContext(GlobalContext);
+  const [subjectId, setSubjectId] = useState(null)
   const [chapters, setChapters] = useState(
     individualSubjectData ? individualSubjectData?.chapters : []
   );
-
+  const [deleteChapter] = useChapterdeleteMutation()
   const [activeIndex, setActiveIndex] = useState(null); // Initially null to avoid hydration mismatch
   const [addSubject] = useAddSubjectMutation();
+
   const router = useRouter();
   useEffect(() => {
     // Ensure this state is set only on the client side to avoid hydration issues
@@ -129,23 +134,23 @@ const SubjectForm = () => {
         };
         const initialData = individualSubjectData
           ? {
-              subjectTitle: individualSubjectData.subjectTitle,
-              chapters: individualSubjectData.chapters,
-            }
+            subjectTitle: individualSubjectData.subjectTitle,
+            chapters: individualSubjectData.chapters,
+          }
           : {
-              subjectTitle: "",
-              chapters: [
-                {
-                  chapterTitle: "",
-                  chapterPreviewUrl: "",
-                  chapterPreviewDuration: "",
-                  topics: [],
-                },
-              ],
-            };
+            subjectTitle: "",
+            chapters: [
+              {
+                chapterTitle: "",
+                chapterPreviewUrl: "",
+                chapterPreviewDuration: "",
+                topics: [],
+              },
+            ],
+          };
         const hasNoChanges =
           JSON.stringify(values.subjectTitle) ===
-            JSON.stringify(initialData.subjectTitle) &&
+          JSON.stringify(initialData.subjectTitle) &&
           JSON.stringify(chapters) === JSON.stringify(initialData.chapters);
         // if (hasNoChanges) {
         //   toast({
@@ -154,7 +159,7 @@ const SubjectForm = () => {
         //   });
         //   return;
         // }
-console.log({editPayload},{payload})
+        console.log({ editPayload }, { payload })
         const response = await addSubject(
           individualSubjectData !== undefined ? editPayload : payload
         );
@@ -174,11 +179,11 @@ console.log({editPayload},{payload})
 
           individualSubjectData
             ? setTimeout(() => {
-                router.push("/editSubject");
-              }, 5000)
+              router.push("/editSubject");
+            }, 5000)
             : setTimeout(() => {
-                window.location.reload();
-              }, 5000);
+              window.location.reload();
+            }, 5000);
         }
       } catch (err) {
         console.error(err, "Error from SubjectAdder api");
@@ -197,6 +202,15 @@ console.log({editPayload},{payload})
       });
   };
 
+  const handleSubjectDelete = async (event, index) => {
+    console.log(event, index, chapters[index], "eventeventevent");
+    const sibId = chapters[index].chapterId;
+    try {
+      const response = await deleteChapter({ chapterId: sibId }).unwrap();
+    } catch (err) {
+      console.log(err);
+    }
+  }
   return (
     <MaxWebWidth
       sectionStyling="p-8"
@@ -240,13 +254,23 @@ console.log({editPayload},{payload})
             >
               {chapters.map((chapter, index) => (
                 <AccordionItem
-                  className={`border border-gray-300 mt-6 mb-6 rounded-xl ${
-                    activeIndex === index ? "p-8" : "p-2"
-                  }`}
+                  className={`border border-gray-300 mt-6 mb-6 rounded-xl ${activeIndex === index ? "p-8" : "p-2"
+                    }`}
                   key={index}
                   value={`chapter-${index}`}
                 >
-                  <AccordionTrigger>Chapter {index + 1}</AccordionTrigger>
+                  <AccordionTrigger>
+                    <div className="flex w-full justify-between">
+                      Chapter {index + 1}
+                      <Button
+                        onClick={(event) => handleSubjectDelete(event, index)}
+                        type="button"
+                        title='Delete this Chapter'
+                        className='p-1 mr-2 text-white bg-gradient rounded'
+                      />
+                    </div>
+                  </AccordionTrigger>
+
                   <AccordionContent>
                     <ChapterForm
                       key={index} // Ensure each ChapterForm instance has a unique key
