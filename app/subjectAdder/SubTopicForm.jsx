@@ -7,11 +7,11 @@ import Button from "@/components/commonComponents/button/Button";
 import { useSubTopicdeleteMutation } from "@/redux/queries/DeleteSubTopicApi";
 
 const SubTopicForm = ({ initialValues, onUpdateSubTopic }) => {
-  const [deleteSubTpic] = useSubTopicdeleteMutation()
+  const [deleteSubTopic] = useSubTopicdeleteMutation()
   const handleSubTopicDelete = async () => {
     let subTopicId = initialValues.subTopicId;
     try {
-      const response = await deleteSubTpic({ subtopicId: subTopicId }).unwrap();
+      const response = await deleteSubTopic({ subtopicId: subTopicId }).unwrap();
     } catch (err) {
       console.log(err);
     }
