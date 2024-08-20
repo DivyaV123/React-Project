@@ -24,8 +24,7 @@ import { AlertDialog } from "@/components/ui/alert-dialog";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCourseDeleteMutation } from "@/redux/queries/deleteCourse";
 import { useCourseEditorMutation } from "@/redux/queries/courseById";
-import { useCategoryUnMapMutation } from "@/redux/queries/categoryUnMapApi";
-import { useSubCategortyUnMapMutation } from "@/redux/queries/subCategortyUnMapApi";
+import { useCourseUnMapMutation } from "@/redux/queries/courseUnMapApi";
 
 function CourseCategoryContent() {
   const [storeCourseId, setStoreCourseId] = useState([]);
@@ -39,7 +38,7 @@ function CourseCategoryContent() {
   const [deleteCourse, setDeleteCourse] = useState(false);
   const [courseId, setCourseId] = useState(null);
   const [courseName, setCourseName] = useState("");
-  const [courseEditData,setCourseEditData]=useState()
+  const [courseEditData, setCourseEditData] = useState();
   const [unMapCategoryOptions, setUnMapCategoryOptions] = useState([]);
   const [unMapSubCategoryOptions, setUnMapSubCategoryOptions] = useState([]);
   const [selectedUnMapCategory, setSelectedUnMapCategory] = useState("");
@@ -62,7 +61,7 @@ function CourseCategoryContent() {
   const { data: courseData, refetch: courseRefetch } = useGetAllCoursesQuery({
     organizationType: initialOrgType,
   });
-  
+
   const { data: categoryData, refetch: categoryRefetch } =
     useGetAllCategoryQuery({
       organizationType: initialOrgType,
@@ -71,8 +70,7 @@ function CourseCategoryContent() {
   const [courseCategoryMap] = useCourseCategoryMapMutation();
   const [courseSubCategoryMap] = useCourseSubCategoryMapMutation();
   const [deleteSelectedCourse] = useCourseDeleteMutation();
-  const [categoryUnmap] = useCategoryUnMapMutation();
-  const [subCategoryUnmap] = useSubCategortyUnMapMutation();
+  const [courseUnMap] = useCourseUnMapMutation();
 
   useEffect(() => {
     courseRefetch();
@@ -125,7 +123,7 @@ function CourseCategoryContent() {
   });
   const handleSubCategorySelect = (event) => {
     setSelectedSubCategoryName(event.target.value);
-    setSelectedSubCategoryId(event.target.option);
+    setSelectedSubCategoryId(event.target.option.Id);
   };
   const handleUnmapSelected = (event, type) => {
     if (type === "category") {
@@ -218,7 +216,7 @@ function CourseCategoryContent() {
     }
   };
 
-  const handleCreateCategory = async () => {
+  const handleCreateCategory = async () => {  
     if (selectedSubCategoryId) {
       try {
         await courseSubCategoryMap({
@@ -228,6 +226,8 @@ function CourseCategoryContent() {
         setStoreCourseId([]);
         courseRefetch();
         setDialogOpen(false);
+        setSelectedCategoryName(null)
+        setSelectedSubCategoryName(null)
       } catch (error) {
         console.error("Subcategory mapping failed", error);
       }
@@ -240,22 +240,28 @@ function CourseCategoryContent() {
         setStoreCourseId([]);
         courseRefetch();
         setDialogOpen(false);
+        setSelectedCategoryName(null)
+        setSelectedSubCategoryName(null)
       } catch (error) {
         console.error("Category mapping failed", error);
       }
     }
+    
   };
-  const [selectedCourseDetailsToEdit, { data: courseToEdit}] = useCourseEditorMutation();
+  const [selectedCourseDetailsToEdit, { data: courseToEdit }] =
+    useCourseEditorMutation();
   const handleEditClick = (course) => async () => {
     try {
-      const response = await selectedCourseDetailsToEdit({ courseId: course.course_id }).unwrap();
+      const response = await selectedCourseDetailsToEdit({
+        courseId: course.course_id,
+      }).unwrap();
       setCourseEditData(response?.data);
       setCourseAddDialog(true);
     } catch (err) {
       console.error("Failed to fetch course details", err);
     }
   };
-  
+
   const deleteICon = "/illustrate_delete.svg";
   const handleDeleteClick = (id, courseName) => () => {
     setCourseName(courseName);
@@ -272,30 +278,33 @@ function CourseCategoryContent() {
     }
   };
   const handleUnMapCategories = async () => {
-    if (unMapCategoryId.length > 0) {
-      let payload = [];
-      unMapCategoryId.map((ele) => {
-        payload.push(ele.Id);
-      });
-      try {
-        const response = await categoryUnmap({
-          bodyData: storeCourseId,
-          categoryId: payload,
-        }).unwrap();
-        alert(response.status === 204 ? "maped successfully" : response.status);
-        showmapCategory(false);
-      } catch (err) {
-        console.log(err);
-      }
+    const getCategoryId = [];
+    const getSubCategoryId = [];
+    unMapCategoryId?.forEach((item) => {
+      getCategoryId.push(item.Id);
+    });
+    unMapSubCategoryId?.forEach((item) => {
+      getSubCategoryId.push(item.Id);
+    });
+    const payload = {
+      categoryIds: getCategoryId,
+      subCategoryIds: getSubCategoryId,
+    };
+    try {
+      const response = await courseUnMap({
+        bodyData: payload,
+        courseId: storeCourseId,
+      }).unwrap();
+      courseRefetch();
+      setUnMapDialog(false)
+      setSelectedUnMapCategory("")
+      setSelectedUnMapSubCategory("")
+      setStoreCourseId([]);
+    } catch (err) {
+      console.log(err);
     }
   };
-  console.log(
-    unMapCategoryOptions,
-    unMapSubCategoryOptions,
-    storeCourseId,
-    unMapCategoryId,
-    unMapSubCategoryId
-  );
+
   return (
     <>
       <Dialog>
@@ -344,7 +353,10 @@ function CourseCategoryContent() {
           </div>
           <DialogTrigger>
             <button
-              onClick={() => {setCourseAddDialog(true);setCourseEditData(null)}}
+              onClick={() => {
+                setCourseAddDialog(true);
+                setCourseEditData(null);
+              }}
               className={
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
