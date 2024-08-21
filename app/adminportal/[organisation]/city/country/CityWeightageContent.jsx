@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import Input from "@/components/commonComponents/input/Input";
 import { Dialog, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import CommonDialog from "@/components/commonComponents/adminDialog/CommonDialog";
@@ -17,6 +17,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useCitiesAdderMutation } from "@/redux/queries/addCitiesApi";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
+import { useGetAllCitiesForFormQuery } from "@/redux/queries/getCitiesApi";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 const CityWeightageContent = () => {
   const [cityEditDialog, setCityEditDialog] = useState(false);
@@ -37,9 +38,12 @@ const CityWeightageContent = () => {
             ? "PROSP"
             : "QSP";
   const [addCity] = useCitiesAdderMutation();
-  const { data: branchData, refetch } = useGetAllBranchesQuery();
+  const { data: cityData, refetch: cityRefetch } = useGetAllCitiesForFormQuery({organizationType: initialOrgType});
+  useEffect(() => {
+    cityRefetch();
+  }, [instituteParam]);
   const countryOptions = [];
-  branchData?.data?.map((item) => {
+  cityData?.data?.map((item) => {
     countryOptions.push({
       label: item.countryName,
       value: item.countryName,
@@ -85,7 +89,7 @@ const CityWeightageContent = () => {
       try {
         const response = await addCity({ bodyData: payload }).unwrap();
         if (response.statusCode === 200 || response.statusCode === 201) {
-          refetch();
+          cityRefetch();
         }
         setCityAddDialog(false);
         dialogCloseClick();
@@ -290,7 +294,7 @@ const CityWeightageContent = () => {
   const handleCountryClick = (countryName) => {
     setActiveCountry(countryName);
   };
-  const getCityData = branchData?.data?.find(
+  const getCityData = cityData?.data?.find(
     (ele) => ele.countryName === activeCountry
   );
 
@@ -343,7 +347,7 @@ const CityWeightageContent = () => {
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
           <div className="flex gap-6 pl-4">
-            {branchData?.data?.map((ele, index) => (
+            {cityData?.data?.map((ele, index) => (
               <div key={index} className="flex justify-between items-center  ">
                 <button
                   onClick={() => handleCountryClick(ele.countryName)}

@@ -65,4 +65,5 @@ export const API_ENDPOINTS = {
   EDIT_CATEGORY: 'api/v1/categories', 
   //cities
   ADD_CITY: '/api/v1/cities',
+  GET_ALL_CITIES:(organizationType)=>`/api/v1/cities?organization=${organizationType}`
 };
