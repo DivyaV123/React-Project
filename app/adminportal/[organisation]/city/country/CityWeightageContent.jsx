@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Input from "@/components/commonComponents/input/Input";
 import { Dialog, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import CommonDialog from "@/components/commonComponents/adminDialog/CommonDialog";
@@ -50,7 +50,7 @@ const CityWeightageContent = () => {
     },
   ] = useCityDeleteMutation();
   const [addCity] = useCitiesAdderMutation();
-  const { data: cityData, refetch: cityRefetch } = useGetAllCitiesForFormQuery({organizationType: initialOrgType});
+  const { data: cityData, refetch: cityRefetch } = useGetAllCitiesForFormQuery({ organizationType: initialOrgType });
   useEffect(() => {
     cityRefetch();
   }, [instituteParam]);
@@ -190,7 +190,7 @@ const CityWeightageContent = () => {
     try {
       const response = await deleteSelectedCity({ cityId: selectedCityId }).unwrap();
       setdeleteCity(false);
-        cityRefetch();
+      cityRefetch();
     } catch (err) {
       console.log(err);
     }
@@ -422,7 +422,6 @@ const CityWeightageContent = () => {
                     </Dialog>
                     <button
                       onClick={() => {
-                        console.log(ele, "cleonClick")
                         setdeleteCity(true);
                         setSelectedCityId(ele.cityId)
                       }}

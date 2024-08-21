@@ -14,7 +14,6 @@ export const API_ENDPOINTS = {
   EDITCOURSE_WITHFILE: `api/v1/courses/updateCourse`,
   EDITBRANCH_WITHFILE: "api/v1/branches/updateFileAndData",
   DELETE_COURSE: (courseId) => `api/v1/courses?courseId=${courseId}`,
-  DELETE_CITY: (cityId) => `api/v1/cities?cityId=${cityId}`,
   DELETE_CHAPTER: (chapterId) => `/api/v1/chapters?chapterId=${chapterId}`,
   DELETE_TOPIC: (topicId) => `/api/v1/topics?topicId=${topicId}`,
   DELETE_SUBTOPIC: (subtopicId) => `/api/v1/subtopics?subTopicId=${subtopicId}`,
@@ -66,5 +65,6 @@ export const API_ENDPOINTS = {
   EDIT_CATEGORY: 'api/v1/categories',
   //cities
   ADD_CITY: '/api/v1/cities',
-  GET_ALL_CITIES:(organizationType)=>`/api/v1/cities?organization=${organizationType}`
+  GET_ALL_CITIES: (organizationType) => `/api/v1/cities?organization=${organizationType}`,
+  DELETE_CITY: (cityId) => `api/v1/cities?cityId=${cityId}`,
 };
