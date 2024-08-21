@@ -73,6 +73,7 @@ import { DeleteTopicApi } from './queries/DeleteTopicApi';
 import { DeleteSubTopicApi } from './queries/DeleteSubTopicApi';
 import { courseUnMapApi } from './queries/courseUnMapApi';
 import { citiesForAdminApi } from './queries/getCitiesApi';
+import { cityDeleteApi } from './queries/deleteCityApi';
 const store = configureStore({
   reducer: {
 
@@ -166,6 +167,7 @@ const store = configureStore({
     [DeleteSubTopicApi.reducerPath]: DeleteSubTopicApi.reducer,
     [AddCitiesApi.reducerPath]:AddCitiesApi.reducer,
     [courseUnMapApi.reducerPath]:courseUnMapApi.reducer,
+    [citiesForAdminApi.reducerPath]: citiesForAdminApi.reducer,
     [citiesForAdminApi.reducerPath]:citiesForAdminApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
@@ -175,7 +177,7 @@ const store = configureStore({
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
       addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware, updateCourseDnd.middleware, updateSubCategoryDnd.middleware, categoryDeleteApi.middleware, categoryEditApi.middleware, DeleteChapterApi.middleware,
-      DeleteTopicApi.middleware, DeleteSubTopicApi.middleware,AddCitiesApi.middleware,courseUnMapApi.middleware,citiesForAdminApi.middleware
+      DeleteTopicApi.middleware, DeleteSubTopicApi.middleware,AddCitiesApi.middleware,courseUnMapApi.middleware,citiesForAdminApi.middleware,cityDeleteApi.middleware
     ),
 });
 

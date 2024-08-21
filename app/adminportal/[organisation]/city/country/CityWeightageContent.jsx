@@ -19,8 +19,12 @@ import { useCitiesAdderMutation } from "@/redux/queries/addCitiesApi";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { useGetAllCitiesForFormQuery } from "@/redux/queries/getCitiesApi";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
+import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
+import { useCityDeleteMutation } from "@/redux/queries/deleteCityApi";
 const CityWeightageContent = () => {
   const [cityEditDialog, setCityEditDialog] = useState(false);
+  const [selectedCityId, setSelectedCityId] = useState(null)
+  const [deleteCity, setdeleteCity] = useState(false);
   const [cityAddDialog, setCityAddDialog] = useState(false);
   const [activeCountry, setActiveCountry] = useState("India");
   const [selectedCountry, setSelectedCountry] = useState("");
@@ -37,6 +41,14 @@ const CityWeightageContent = () => {
           : instituteParam === "Prospiders"
             ? "PROSP"
             : "QSP";
+  const [
+    deleteSelectedCity,
+    {
+      data: CityDeleteResp,
+      error: CityDeleteError,
+      isLoading: CityDeleteLoad,
+    },
+  ] = useCityDeleteMutation();
   const [addCity] = useCitiesAdderMutation();
   const { data: cityData, refetch: cityRefetch } = useGetAllCitiesForFormQuery({organizationType: initialOrgType});
   useEffect(() => {
@@ -49,9 +61,9 @@ const CityWeightageContent = () => {
       value: item.countryName,
     });
   });
-  const tblTextClass =
-    "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
+  const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
   const pStyle = " text-[1.094vw] font-medium pb-[1.389vh]";
+  const deleteICon = "/illustrate_delete.svg";
   const tableHeaders = ["CITY NAMES", "BRANCHES", "ACTIONS"];
   const [selectedFile, setSelectedFile] = useState({
     cityIcon: null,
@@ -172,6 +184,15 @@ const CityWeightageContent = () => {
     }
     if (!selectedCountry) {
       setErrorCountry("Please select a country");
+    }
+  };
+  const handledeleteSelectedCity = async () => {
+    try {
+      const response = await deleteSelectedCity({ cityId: selectedCityId }).unwrap();
+      setdeleteCity(false);
+        cityRefetch();
+    } catch (err) {
+      console.log(err);
     }
   };
   const handleCountrySelect = (event) => {
@@ -299,7 +320,6 @@ const CityWeightageContent = () => {
   );
 
   const handleSubEditClick = (ele, getCityData) => {
-
     setCityEditDialog(true);
     setCityAddDialog(false);
     formikDetails.setFieldValue("cityName", ele.cityName);
@@ -401,10 +421,11 @@ const CityWeightageContent = () => {
                       )}
                     </Dialog>
                     <button
-                      // onClick={handleDeleteClick(
-                      //   ele.course_id,
-                      //   ele.course_name
-                      // )}
+                      onClick={() => {
+                        console.log(ele, "cleonClick")
+                        setdeleteCity(true);
+                        setSelectedCityId(ele.cityId)
+                      }}
                       className="text-red-500 hover:underline"
                     >
                       Delete
@@ -415,6 +436,19 @@ const CityWeightageContent = () => {
             </TableBody>
           </Table>
         </div>
+        <AlertDialog
+          open={deleteCity}
+          onOpenChange={(open) => setdeleteCity(open)}
+        >
+          <DeleteWarningPopup
+            header="Delete"
+            icon={deleteICon}
+            setDeleteCategory={setdeleteCity}
+            btnText="Delete"
+            contentText="Are you sure you want to delete"
+            deleteFunction={handledeleteSelectedCity}
+          />
+        </AlertDialog>
       </div>
     </>
 
