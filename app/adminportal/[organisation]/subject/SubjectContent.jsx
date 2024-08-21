@@ -21,7 +21,13 @@ import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { useGetAllSubjectsQuery } from "@/redux/queries/getAllSubjectsApi";
 import { useAddSubjectMutation } from "@/redux/queries/addSubjectApi";
+import { truncateText } from "@/lib/utils";
+import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
+import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
+import { useGetAllCoursesQuery } from "@/redux/queries/getAllCourseForAdmin";
+import { useSubjectMappingMutation } from "@/redux/queries/mapSubjectApi";
 import { useSubjectDeleteMutation } from "@/redux/queries/deletSubjectApi";
+
 const SubjectContent = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -29,6 +35,12 @@ const SubjectContent = () => {
   const [subjectNameDialog, setSubjectNameDialog] = useState(false);
   const [subjectId, setSubjectId] = useState(null);
   const [deleteDialog, setDeleteDialog] = useState(false);
+   const [storeCourseId, setStoreCourseId] = useState([]);
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [unMapDialog, setUnMapDialog] = useState(false);
+  const [unMapSubjectOptions, setUnMapSubjactOptions] = useState([]);
+  const [selectedCourseName, setSelectedCourseName] = useState("");
+  const [selectedCourseId, setSelectedCourseId] = useState(null);
   const {
     data: subjectResponse,
     isLoading: subjectIsLoading,
@@ -60,6 +72,8 @@ const SubjectContent = () => {
       : instituteParam === "Prospiders"
       ? "PROSP"
       : "QSP";
+
+ 
   const initialValues = {
     SubjectName: "",
   };
@@ -133,6 +147,81 @@ const SubjectContent = () => {
       </form>
     );
   };
+
+  const handleCourseCheckbox = (subjectId, subject) => () => {
+    setStoreCourseId((prevIds) =>
+      prevIds.includes(subjectId)
+        ? prevIds.filter((id) => id !== subjectId)
+        : [...prevIds, subjectId]
+    );
+
+    if (subject) {
+      const newCategoryOptions =
+        subject.chapters?.map(({ chapterTitle, chapterId }) => ({
+          label: chapterTitle,
+          value: chapterTitle,
+          Id: chapterId,
+        })) || [];
+
+      setUnMapSubjactOptions(newCategoryOptions);
+    }
+  };
+  const { data: coursesData, refetch: categoryRefetch } =
+  useGetAllCoursesQuery({
+    organizationType: initialOrgType,
+  });
+  const coursesOptions = [];
+  coursesData?.data?.map((item) => {
+    coursesOptions.push({
+      label: item.course_name,
+      value: item.course_name,
+      Id: item.course_id,
+    });
+  });
+  const handleCourseSelect = (event) => {
+    setSelectedCourseName(event.target.value);
+    setSelectedCourseId(event.target.option.Id);
+  };
+  const mapSubjectForm = () => {
+    return (
+      <section>
+        <p className={pStyle}>Select Course</p>
+        <Dropdown
+          sectionStyle="my-section-style"
+          name="category"
+          value={selectedCourseName}
+          onChange={handleCourseSelect}
+          placeholder="Select the Category"
+          options={coursesOptions}
+        />
+
+        
+      </section>
+    );
+  };
+  const [subjectMapping, { isLoading: mapSubjectLoading }] =
+  useSubjectMappingMutation();
+  const handleCreateCourse = async () => {  
+   
+    if (selectedCourseId) {
+      try {
+        await subjectMapping({
+            payload: storeCourseId,
+            courseId: selectedCourseId,
+         
+          
+        });
+        setStoreCourseId([]);
+        refetchSubjects();
+        setDialogOpen(false);
+        setSelectedCourseName(null)
+       
+      } catch (error) {
+        console.error(" mapping failed", error);
+      }
+    } 
+    
+  };
   return (
     <>
       <Dialog>
@@ -145,6 +234,39 @@ const SubjectContent = () => {
                 iconPath="/images/icon_outline_search.png"
               />
             </div>
+            <DialogTrigger asChild>
+              <button
+                onClick={() => {
+                  setDialogOpen(true);
+                  
+                }}
+                disabled={storeCourseId.length === 0}
+                className={`${
+                  storeCourseId.length > 0
+                    ? "cursor-pointer bg-gradient text-white"
+                    : "cursor-not-allowed bg-gray-400"
+                } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
+              >
+                Map to Subject
+              </button>
+            </DialogTrigger>
+            <DialogTrigger asChild>
+              <button
+                onClick={() => {
+                  setUnMapDialog(true);
+                  setDialogOpen(false);
+                 
+                }}
+                disabled={storeCourseId.length !== 1}
+                className={`${
+                  storeCourseId.length === 1
+                    ? "cursor-pointer bg-gradient text-white"
+                    : "cursor-not-allowed bg-gray-400"
+                } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
+              >
+                Unmap
+              </button>
+            </DialogTrigger>
           </div>
           <DialogTrigger>
             <button
@@ -157,6 +279,15 @@ const SubjectContent = () => {
             </button>
           </DialogTrigger>
         </article>
+        {dialogOpen && (
+          <CommonDialog
+            header="Add new Subject"
+            footerBtnTitle="Create Subject"
+            formfn={mapSubjectForm}
+            footerBtnClick={handleCreateCourse}
+            dialogCloseClick={() => setDialogOpen(false)}
+          />
+        )}
         {subjectNameDialog && (
           <CommonDialog
             header="Add New Subject"
@@ -181,8 +312,17 @@ const SubjectContent = () => {
             <TableBody>
               <>
                 {subjectResponse?.data?.map((ele) => (
-                  <TableRow key={ele.subjectId}>
-                    <TableCell>{ele.subjectTitle}</TableCell>
+                  <TableRow key={ele.id}>
+                    <TableCell>
+                      {" "}
+                      <div className="flex space-x-2">
+                        <Checkbox
+                          onChange={handleCourseCheckbox(ele.subjectId, ele)}
+                          checked={storeCourseId.includes(ele.subjectId)}
+                        />{" "}
+                        {truncateText(ele.subjectTitle, 30)}
+                      </div>
+                    </TableCell>
                     <TableCell>{ele.chapters.length}</TableCell>
                     <TableCell>
                       {ele.chapters.reduce(

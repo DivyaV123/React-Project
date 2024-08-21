@@ -161,7 +161,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
     subjects: [],
     faqs: [],
   };
-  console.log({ courseEditData });
+
   const validationSchema = Yup.object({
     category: !courseEditData && Yup.string().required("Course is required"),
     // subCourse: Yup.string().required("Sub Course is required"),
@@ -228,7 +228,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
   };
   const handleFileChange = (event, iconType) => {
     const file = event.target.files[0];
-    console.log({ file }, file?.type);
+
     if (file && file.type.startsWith("image/")) {
       const previewURL = URL.createObjectURL(file);
 
@@ -387,7 +387,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
         faqId: faq.faqId,
         faqType: "COURSE",
       }));
-      console.log({ values });
+
       // const convertedfaqArray = JSON.stringify(faqArray);
       const courseDetails = {
         courseName: values.courseName,
@@ -438,12 +438,12 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
         categoryId: selectedId.categoryId,
         subCategoryId: selectedId.subCategoryId,
       };
-      console.log({ editPayload });
+
       try {
         const response = courseEditData
           ? await editSelectedCourse({ bodyData: editPayload }).unwrap()
           : await addCourse({ bodyData: payload }).unwrap();
-        console.log(response);
+
         if (response.statusCode == 201 || response.statusCode == 200) {
           dialogCloseClick(false);
           formikDetails.resetForm();
@@ -470,7 +470,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           alert("something went wrong");
         }
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     },
   });
@@ -480,8 +480,6 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
     formikDetails.setFieldValue("orgType", event.target.option.value);
   };
   const handleModeChange = (event) => {
-    // const selectedOrg = event.target.option.label;
-    console.log(event.target.value);
     setClassMode(event.target.value);
     setSelectedClassMode(event.target.value);
     formikDetails.setFieldValue("classMode", event.target.value);
@@ -693,14 +691,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p
-                  className={tagHeadStyle}
-                  onClick={() => {
-                    console.log(formikDetails);
-                  }}
-                >
-                  Mode of class
-                </p>
+                <p className={tagHeadStyle}>Mode of class</p>
                 <Dropdown
                   placeholder="Enter course name"
                   inputStyle=" h-[2.813vw]  text-[12px]  text-gray-400"
@@ -731,14 +722,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
         </div>
         <div className="flex justify-between items-center pb-[2.222vh] pt-[2.222vh]">
           <div className="w-[23.438vw]">
-            <p
-              className={tagHeadStyle}
-              onClick={() => {
-                console.log({ errorMessage });
-              }}
-            >
-              Course Icon
-            </p>
+            <p className={tagHeadStyle}>Course Icon</p>
             <input
               type="file"
               accept="image/*"
@@ -773,14 +757,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           </div>
 
           <div className="w-[23.438vw]">
-            <p
-              className={tagHeadStyle}
-              onClick={() => {
-                console.log({ selectedFile }, { previewURL });
-              }}
-            >
-              Home Page Image
-            </p>
+            <p className={tagHeadStyle}>Home Page Image</p>
             <input
               type="file"
               accept="image/*"
