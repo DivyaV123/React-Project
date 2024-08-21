@@ -1,9 +1,9 @@
 "use client";
-import React, { useContext ,useEffect} from "react";
+import React, { useContext, useEffect } from "react";
 import "./AdminSidebar.scss";
 import AdminContent from "./AdminContent";
 import { GlobalContext } from "@/components/Context/GlobalContext";
-import { usePathname,useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ADMIN_PORTAL } from "@/lib/RouteConstants";
 const AdminSidebar = () => {
   const { selectedSideBar, setSelectedSideBar } = useContext(GlobalContext);
@@ -39,15 +39,17 @@ const AdminSidebar = () => {
     },
   ];
   const handleSideBar = (name) => {
-    if(name==="Sub Category"){
-      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/subcategory`); 
-    }else if(name==="Course"){
-      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/courses`); 
-    }else if(name==="Subject"){
+    if (name === "Sub Category") {
+      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/subcategory`);
+    } else if (name === "Course") {
+      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/courses`);
+    } else if (name === "Subject") {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/subject`);
-    }else if(name==="City"){
+    } else if (name === "City") {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/city/country`);
-    }else{
+    } else if (name === "Branch") {
+      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/branch`);
+    } else {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}`);
     }
     setSelectedSideBar(name);
@@ -79,7 +81,6 @@ const AdminSidebar = () => {
           })}
         </section>
       </aside>
-      
     </>
   );
 };
