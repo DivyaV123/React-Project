@@ -20,7 +20,7 @@ export const API_ENDPOINTS = {
   DELETE_SUBJECT: (subjectId) => `api/v1/subjects?subjectId=${subjectId}`,
   COURSE_WEIGHTAGE_ADDER: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   COURSE_WEIGHTAGE_EDIT: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
-  BRANCH_ADDER: `api/v1/branches`,
+  BRANCH_ADDER: `api/v1/branches/uploadFileAndData`,
   GET_ALL_FAQ: (domain) => `api/v1/faqs?organization=${domain}`,
   GET_BRANCH_BY_BRANCHID: (branchId) => `/api/v1/branches/getbyidform?branchId=${branchId}`,
   GET_BRANCH_BY_COURSE_ID_AND_BRANCH_ID: (courseId, branchId) => `/api/v1/branches/getbyid?branchId=${branchId}&courseId=${courseId}`,

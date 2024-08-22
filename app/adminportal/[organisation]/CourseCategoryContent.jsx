@@ -361,7 +361,7 @@ function CourseCategoryContent() {
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
             >
-              Add Course
+              + Course
             </button>
           </DialogTrigger>
         </article>
