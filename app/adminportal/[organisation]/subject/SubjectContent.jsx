@@ -27,6 +27,8 @@ import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useGetAllCoursesQuery } from "@/redux/queries/getAllCourseForAdmin";
 import { useSubjectMappingMutation } from "@/redux/queries/mapSubjectApi";
 import { useSubjectDeleteMutation } from "@/redux/queries/deletSubjectApi";
+import { useUnMapsubjectMappingMutation } from "@/redux/queries/unMapSubjectApi";
+
 
 const SubjectContent = () => {
   const router = useRouter();
@@ -94,7 +96,7 @@ const SubjectContent = () => {
         refetchSubjects();
         setSubjectNameDialog(false);
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     },
   });
@@ -182,16 +184,20 @@ const SubjectContent = () => {
     setSelectedCourseName(event.target.value);
     setSelectedCourseId(event.target.option.Id);
   };
+  const handleUnmapSelected = (event) => {
+    setSelectedCourseName(event.target.value);
+    setSelectedCourseId(event.target.option.Id);
+  };
   const mapSubjectForm = () => {
     return (
       <section>
         <p className={pStyle}>Select Course</p>
         <Dropdown
           sectionStyle="my-section-style"
-          name="category"
+          name="Course"
           value={selectedCourseName}
           onChange={handleCourseSelect}
-          placeholder="Select the Category"
+          placeholder="Select the Course"
           options={coursesOptions}
         />
 
@@ -201,6 +207,8 @@ const SubjectContent = () => {
   };
   const [subjectMapping, { isLoading: mapSubjectLoading }] =
   useSubjectMappingMutation();
+
+  const [unMapsubjectMapping] = useUnMapsubjectMappingMutation();
   const handleCreateCourse = async () => {  
    
     if (selectedCourseId) {
@@ -221,6 +229,43 @@ const SubjectContent = () => {
       }
     } 
     
+  };
+  const unMapDialogForm = () => {
+    return (
+      <section>
+        <p className={pStyle}>Select Course</p>
+        <Dropdown
+          
+          sectionStyle="my-section-style"
+          name="Course"
+          value={selectedCourseName}
+          onChange={handleUnmapSelected}
+          placeholder="Select to Map Course"
+          options={coursesOptions}
+        />
+
+       
+      </section>
+    );
+  };
+  const handleUnMapSubject = async () => {
+    
+   
+    try {
+      const response = await unMapsubjectMapping({
+        payload: storeCourseId ,
+        courseId: selectedCourseId,
+      }).unwrap();
+     
+      setUnMapDialog(false)
+      
+      refetchSubjects();
+      setDialogOpen(false);
+      setSelectedCourseName(null)
+      setStoreCourseId([]);
+    } catch (err) {
+      console.error(err);
+    }
   };
   return (
     <>
@@ -257,9 +302,10 @@ const SubjectContent = () => {
                   setDialogOpen(false);
                  
                 }}
-                disabled={storeCourseId.length !== 1}
+                // disabled={storeCourseId.length !== 1}
+                disabled={storeCourseId.length === 0}
                 className={`${
-                  storeCourseId.length === 1
+                  storeCourseId.length > 0
                     ? "cursor-pointer bg-gradient text-white"
                     : "cursor-not-allowed bg-gray-400"
                 } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
@@ -296,6 +342,15 @@ const SubjectContent = () => {
             footerBtnClick={footerBtnClick}
           />
         )}
+        {unMapDialog && (
+          <CommonDialog
+            header="UnMap"
+            footerBtnTitle="UnMap"
+            formfn={unMapDialogForm}
+            footerBtnClick={handleUnMapSubject}
+            dialogCloseClick={() => setUnMapDialog(false)}
+          />
+        )}
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
@@ -323,25 +378,12 @@ const SubjectContent = () => {
                         {truncateText(ele.subjectTitle, 30)}
                       </div>
                     </TableCell>
-                    <TableCell>{ele.chapters.length}</TableCell>
+                    <TableCell>{ele.chapterCount}</TableCell>
                     <TableCell>
-                      {ele.chapters.reduce(
-                        (totalTopics, chapter) =>
-                          totalTopics + chapter.topics.length,
-                        0
-                      )}
+                      {ele.topicCount}
                     </TableCell>
                     <TableCell>
-                      {ele.chapters.reduce(
-                        (totalSubtopics, chapter) =>
-                          totalSubtopics +
-                          chapter.topics.reduce(
-                            (total, topic) =>
-                              total + (topic.subTopics?.length || 0),
-                            0
-                          ),
-                        0
-                      )}
+                      {ele.subTopicCount}
                     </TableCell>
                     <TableCell className={tblTextClass}>
                       <button
