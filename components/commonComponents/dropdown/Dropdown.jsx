@@ -24,7 +24,7 @@ function Dropdown({
     useEffect(() => {
         let initialSelectedOptions = [];
         if (multi) {
-            initialSelectedOptions = options.filter(option => value.includes(option.value));
+            initialSelectedOptions = options?.filter(option => value?.includes(option.value));
         } else {
             const initialSelectedOption = options.find(option => option.value === value);
             initialSelectedOptions = initialSelectedOption ? [initialSelectedOption] : [];

@@ -50,6 +50,7 @@ export const API_ENDPOINTS = {
   //Add Subject
   SUBJECT_ADDER: `api/v1/subjects`,
   MAP_SUBJECT: (courseId) => `api/v1/courses?courseId=${courseId}`,
+  UN_MAP_SUBJECT:(courseId)=> `api/v1/courses/removeSubjectsFromCourse?courseId=${courseId}`,
   // Branches as per country Select
   ALL_Branch_LIST: `api/v1/branches/getAllBranches/formfilter`,
   //Batch
