@@ -60,7 +60,7 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
   const [yearSearchQuery, setYearSearchQuery] = useState("");
   const [streamSearchQuery, setStreamSearchQuery] = useState("");
   // edit Subject
-  const [individualSubjectData, setIndividualSubjectData] = useState(); 56
+  const [individualSubjectData, setIndividualSubjectData] = useState();
   //course testimonialpopup
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);

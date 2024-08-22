@@ -323,25 +323,12 @@ const SubjectContent = () => {
                         {truncateText(ele.subjectTitle, 30)}
                       </div>
                     </TableCell>
-                    <TableCell>{ele.chapters.length}</TableCell>
+                    <TableCell>{ele.chapterCount}</TableCell>
                     <TableCell>
-                      {ele.chapters.reduce(
-                        (totalTopics, chapter) =>
-                          totalTopics + chapter.topics.length,
-                        0
-                      )}
+                      {ele.topicCount}
                     </TableCell>
                     <TableCell>
-                      {ele.chapters.reduce(
-                        (totalSubtopics, chapter) =>
-                          totalSubtopics +
-                          chapter.topics.reduce(
-                            (total, topic) =>
-                              total + (topic.subTopics?.length || 0),
-                            0
-                          ),
-                        0
-                      )}
+                      {ele.subTopicCount}
                     </TableCell>
                     <TableCell className={tblTextClass}>
                       <button
