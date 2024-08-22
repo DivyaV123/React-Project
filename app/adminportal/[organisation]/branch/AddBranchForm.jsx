@@ -1,92 +1,29 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import {
     DialogContent,
-    DialogDescription,
     DialogFooter,
-    DialogHeader,
-    DialogTitle,
     DialogClose,
 } from "@/components/ui/dialogFull";
 import PhoneInput from "react-phone-input-2";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Workflow, X } from "lucide-react";
+import { X } from "lucide-react";
 import Input from "@/components/commonComponents/input/Input";
 import { isValidPhoneNumber } from 'react-phone-number-input';
 import Button from "@/components/commonComponents/button/Button";
-import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
-import { useCourseAdderMutation } from "@/redux/queries/courseAdderApi";
-import { useCourseEditDataMutation } from "@/redux/queries/editCourseApi";
-import "react-quill/dist/quill.snow.css";
-import dynamic from "next/dynamic";
-import "react-quill/dist/quill.bubble.css";
-import { useBranchAdderMutation } from "@/redux/queries/branchAdderApi";
-const ReactQuill = dynamic(
-    async () => {
-        const { default: RQ } = await import("react-quill");
-        return ({ forwardedRef, ...props }) => <RQ ref={forwardedRef} {...props} />;
-    },
-    {
-        ssr: false,
-    }
-);
-function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, setBranchAddDialog }) {
+
+function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
     const [addBranch, { data: branchAdd, error: courseError, isLoading: courseAdderLoad }] = useBranchAdderMutation();
-    const [selectedCourse, setSelectedCourse] = useState("");
-    const [selectedSubCourse, setSelectedSubCourse] = useState("");
     const [error, setError] = useState({ phone: false, validPhone: false });
     const [phoneValue, setPhoneValue] = useState();
     const [countryCode, setCountryCode] = useState("");
-    const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);
-    const [subCourseOptions, setSubCourseOptions] = useState([]);
-    const [orgType, setOryType] = useState("");
-    const [classMode, setClassMode] = useState("");
-    const [selectedClassMode, setSelectedClassMode] = useState([]);
     const [faqs, setFaqs] = useState([]);
     const [faqEditIndex, setFaqEditIndex] = useState(null);
     const [expandedIndex, setExpandedIndex] = useState(null);
-    const [branchImage, setBranchImage] = useState({
-        mainImage: null,
-        imageGalary: []
-    })
     const commonLabelStyles = "pb-[1.111vh]";
-    const orgOptions = [
-        {
-            label: "Jspiders",
-            value: "JSP",
-        },
-        {
-            label: "Qspiders",
-            value: "QSP",
-        },
-        {
-            label: "Pyspiders",
-            value: "PYSP",
-        },
-    ];
-    const classModeOption = [
-        {
-            label: "Self Paced",
-            value: "SELF_PACED",
-        },
-        {
-            label: "Corporate Training",
-            value: "CORPORATE_TRAINING",
-        },
-        {
-            label: "Online Classes",
-            value: "ONLINE_CLASSES",
-        },
-        {
-            label: "Offline Classes",
-            value: "OFFLINE_CLASSES",
-        },
-    ];
-    const [selectedId, setSelectedId] = useState({
-        categoryId: "",
-        subCategoryId: "",
-    });
+
+
     const tagHeadStyle = "font-medium text-[1.094vw] pb-[1.389vh]";
     const [selectedFile, setSelectedFile] = useState({
         branchGallery: [],
@@ -111,38 +48,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, setBra
             setError({ ...error, [id]: false, validPhone: false });
         }
     };
-    useEffect(() => {
-        if (courseEditData) {
-            formikDetails.setValues({
-                ...formikDetails.values,
-                courseName: courseEditData.courseName || "",
-                city: courseEditData.categoryId || "",
-                subCategory: courseEditData.subCategoryId || "",
-                courseDesc: courseEditData.courseDescription || "",
-                courseSummary: courseEditData.courseSummary || "",
-                aboutCourse: courseEditData.courseAbout || "",
-                courseHeighlights: courseEditData.courseHighlight || "",
-                orgType: courseEditData.branchType[0] || "",
-                classMode: courseEditData.mode || [],
-                subjects: courseEditData.subjects || [],
-                faqs: courseEditData.faqs || [],
-            });
-            setSelectedClassMode(courseEditData.mode || " ");
-            setSelectedCourse(courseEditData.categoryId || "");
-            setSelectedSubCourse(courseEditData.subCategoryId || "");
-            setFaqs(courseEditData.faqs || []);
 
-            setSelectedFile({
-                branchMainImage: null,
-                homePageImage: null,
-            });
-            setPreviewURL({
-                branchMainImage: courseEditData.branchMainImage || null,
-                homePageImage: courseEditData.homePageImage || null,
-                courseCardImage: courseEditData.courseImage || null,
-            });
-        }
-    }, [courseEditData]);
     const commonFieldClass = "pb-1 text-semibold"
     const initialValues = {
         BranchName: "",
@@ -182,47 +88,6 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, setBra
                 })
             ),
     });
-
-    const handleCourseSelect = (event) => {
-        setSelectedId((prevState) => ({
-            ...prevState,
-            categoryId: event.target.option.id,
-        }));
-        const selectedCourseId = event.target.value;
-        setSelectedCourse(selectedCourseId);
-
-        const selectedCourseData = courseData?.data.find(
-            (branch) => branch.categoryId == selectedCourseId
-        );
-        if (
-            selectedCourseData &&
-            selectedCourseData.subCategoryResponse.length > 0
-        ) {
-            setSubCourseOptions(
-                selectedCourseData.subCategoryResponse.map((sub) => ({
-                    label: sub.subCategoryName,
-                    value: sub.subCategoryId,
-                    id: sub.subCategoryId,
-                }))
-            );
-            setIsSubCourseDisabled(false);
-        } else {
-            setSubCourseOptions([]);
-            setIsSubCourseDisabled(true);
-        }
-
-        formikDetails.setFieldValue("city", selectedCourseId);
-        formikDetails.setFieldValue("subCategory", "");
-    };
-
-    const handleSubCourseSelect = (event) => {
-        setSelectedId((prevState) => ({
-            ...prevState,
-            subCategoryId: event.target.option.id,
-        }));
-        setSelectedSubCourse(event.target.value);
-        formikDetails.setFieldValue("subCategory", event.target.value);
-    };
 
     const handleFileChange = (event, iconType) => {
         const files = Array.from(event.target.files);
@@ -397,63 +262,20 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, setBra
             }
         },
     });
-    const handleOrgChange = (event) => {
-        const selectedOrg = event.target.option.label;
-        setOryType(selectedOrg);
-        formikDetails.setFieldValue("orgType", event.target.option.value);
-    };
-    const handleModeChange = (event) => {
-        setClassMode(event.target.value);
-        setSelectedClassMode(event.target.value);
-        formikDetails.setFieldValue("classMode", event.target.value);
-    };
 
     const handleModelClose = () => {
         dialogCloseClick(false);
         formikDetails.resetForm();
-        setSelectedSubCourse("");
-        setSelectedCourse("");
         setSelectedFile({
+            branchGallery: [],
             branchMainImage: null,
-            homePageImage: null,
-            courseCardImage: null,
         });
         setPreviewURL({
+            branchGallery: [],
             branchMainImage: null,
-            homePageImage: null,
-            courseCardImage: null,
         });
         setFaqs([]);
-        setSelectedClassMode([]);
-        setErrorMessage({ branchMainImage: "", homePageImage: "", courseCardImage: "" });
-    };
-
-    const handleFileSelected = (e, type) => {
-        const files = Array.from(e.target.files);
-        const validImageTypes = ['image/jpeg', 'image/png', 'image/gif', "image/svg"];
-
-        if (files.length > 0) {
-            if (type === 'imageGalary') {
-                const validFiles = files.filter(file => validImageTypes.includes(file.type));
-                if (validFiles.length !== files.length) {
-                    alert("Some files have an invalid file type. Only image files are accepted.");
-                }
-                setBranchImage(prevState => ({
-                    ...prevState,
-                    [type]: [...prevState[type], ...validFiles]
-                }));
-            } else {
-                const file = files[0];
-                if (validImageTypes.includes(file.type)) {
-                    setBranchImage(prevState => ({
-                        ...prevState,
-                        [type]: file
-                    }));
-                } else {
-                    alert("Invalid file type. Please select an image file.");
-                }
-            }
-        }
+        setErrorMessage({ branchGallery: "", branchMainImage: "" });
     };
 
     return (
@@ -490,47 +312,6 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, setBra
                             </div>
                         </div>
                     </div>
-                    {/* {!courseEditData && (
-                        <>
-                            <div className="w-full h-full">
-                                <div className="pt-[2.222vh]">
-                                    <div>
-                                        <p className={tagHeadStyle}>City</p>
-                                        <Dropdown
-                                            placeholder="Enter City name"
-                                            inputStyle="!w-[23.438vw] h-[2.813vw] text-[12px]  text-gray-400"
-                                            iconStyle="w-[10%]"
-                                            name="city"
-                                            value={selectedCourse}
-                                            onChange={handleCourseSelect}
-                                            options={courseOptions}
-                                        />
-                                        {formikDetails.touched.city &&
-                                            formikDetails.errors.city ? (
-                                            <div className="text-red-500 text-[12px] text-[12px]">
-                                                {formikDetails.errors.city}
-                                            </div>
-                                        ) : null}
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="w-full h-full">
-                                <div className="pt-[2.222vh]">
-                                    <div>
-                                        <p className={tagHeadStyle}>Batches</p>
-                                        <Dropdown
-                                            placeholder="Enter Batches name"
-                                            inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]  text-gray-400"
-                                            value={selectedSubCourse}
-                                            onChange={handleSubCourseSelect}
-                                            options={subCourseOptions}
-                                            disabled={isSubCourseDisabled}
-                                        />
-                                    </div>
-                                </div>
-                            </div>
-                        </>
-                    )} */}
                 </div>
                 <div className="w-full flex gap-[18vw]  pb-[2.222vh]  h-full">
                     <div>
@@ -842,46 +623,6 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, setBra
                             </p>
                         )}
                     </div>
-
-
-
-                    {/* <div className="w-[23.438vw]">
-                        <p className={tagHeadStyle}>Branch Gallary</p>
-                        <input
-                            type="file"
-                            accept="image/*"
-                            style={{ display: "none" }}
-                            id="home-page-image-upload"
-                            onChange={(event) => handleFileChange(event, "homePageImage")}
-                        />
-                        <label
-                            htmlFor="home-page-image-upload"
-                            className="block w-[12.812vw]"
-                        >
-                            {previewURL.homePageImage ? (
-                                <div className="relative">
-                                    <img
-                                        src={previewURL.homePageImage}
-                                        alt="Home Page Image Preview"
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={() => handleCancel("homePageImage")}
-                                        className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
-                                    >
-                                        &#10005;
-                                    </button>
-                                </div>
-                            ) : (
-                                <img src="/images/uploadinput.png" alt="file upload" />
-                            )}
-                        </label>
-                        {errorMessage.homePageImage && (
-                            <p className="text-red-500 text-[12px] pt-[3.333vh] text-[0.6rem]">
-                                {errorMessage.homePageImage}
-                            </p>
-                        )}
-                    </div> */}
                 </div>
 
                 <p className="pb-[1.111vh] font-bold text-[1.094vw]">FAQ</p>
