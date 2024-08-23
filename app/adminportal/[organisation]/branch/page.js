@@ -4,7 +4,7 @@ import React,{useState,useEffect} from 'react'
 import Loading from '@/lib/Loading'
 import NavTabs from '../NavTabs';
 import AdminSidebar from '../AdminSidebar';
-import AdminBranchesList from '../AdminBranchesList';
+import AdminBranchesList from './AdminBranchesList';
 const AdminBranch = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {

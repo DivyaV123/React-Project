@@ -26,8 +26,7 @@ export const branchAdderApi = createApi({
                 });
 
                 return {
-                    // url: API_ENDPOINTS.BRANCH_ADDER,
-                    url: 'http://192.168.0.41:8080/api/v1/branches/uploadFileAndData',
+                    url: API_ENDPOINTS.BRANCH_ADDER,
                     method: 'POST',
                     body: formData,
                 };

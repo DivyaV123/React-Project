@@ -13,26 +13,24 @@ import { usePathname } from "next/navigation";
 import { truncateText } from "@/lib/utils";
 import Input from "@/components/commonComponents/input/Input";
 import { Dialog, DialogTrigger, DialogClose } from "@/components/ui/dialog";
-
 import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
-
-import AddCourseForm from "./courses/AddCourseForm";
 import { AlertDialog } from "@/components/ui/alert-dialog";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCourseDeleteMutation } from "@/redux/queries/deleteCourse";
 import { useCourseEditorMutation } from "@/redux/queries/courseById";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { useGetAllBranchesAsPerCountryQuery } from "@/redux/queries/getAllBranchesAsPerCountryApi";
+import AddBranchForm from "./AddBranchForm";
 
 function AdminBranchesList() {
   const [storeCourseId, setStoreCourseId] = useState([]);
-
   const [courseAddDialog, setCourseAddDialog] = useState(false);
   const [deleteCourse, setDeleteCourse] = useState(false);
   const [courseId, setCourseId] = useState(null);
   const [courseName, setCourseName] = useState("");
   const [courseEditData, setCourseEditData] = useState();
-
+  const [branchAddDialog, setBranchAddDialog] = useState(true);
+  const [branchEditData, setBranchEditData] = useState(null);
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -40,12 +38,12 @@ function AdminBranchesList() {
     instituteParam === "Qspiders"
       ? "QSP"
       : instituteParam === "Jspiders"
-      ? "JSP"
-      : instituteParam === "Pyspiders"
-      ? "PYSP"
-      : instituteParam === "Prospiders"
-      ? "PROSP"
-      : "QSP";
+        ? "JSP"
+        : instituteParam === "Pyspiders"
+          ? "PYSP"
+          : instituteParam === "Prospiders"
+            ? "PROSP"
+            : "QSP";
   const { data: branchData, refetch: branchRefetch } = useGetAllBranchesQuery({
     organizationType: initialOrgType,
   });
@@ -166,25 +164,26 @@ function AdminBranchesList() {
           <DialogTrigger>
             <button
               onClick={() => {
-                setCourseAddDialog(true);
-                setCourseEditData(null);
+                setBranchAddDialog(true);
+                setBranchEditData(null);
               }}
               className={
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
             >
-              + BATCH
+              + BRANCH
             </button>
           </DialogTrigger>
         </article>
 
-        {/* <Dialog open={courseAddDialog} onOpenChange={setCourseAddDialog}>
-          <AddCourseForm
+        <Dialog open={branchAddDialog} onOpenChange={setBranchAddDialog}>
+          <AddBranchForm
+            setBranchAddDialog={setBranchAddDialog}
             courseRefetch={branchRefetch}
             dialogCloseClick={setCourseAddDialog}
             courseEditData={courseEditData}
           />
-        </Dialog> */}
+        </Dialog>
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
