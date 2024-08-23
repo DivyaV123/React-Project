@@ -29,15 +29,16 @@ import { useSubjectMappingMutation } from "@/redux/queries/mapSubjectApi";
 import { useSubjectDeleteMutation } from "@/redux/queries/deletSubjectApi";
 import { useUnMapsubjectMappingMutation } from "@/redux/queries/unMapSubjectApi";
 
-
 const SubjectContent = () => {
   const router = useRouter();
   const pathname = usePathname();
   const { toast } = useToast();
   const [subjectNameDialog, setSubjectNameDialog] = useState(false);
+  const [editData, setEditData] = useState(false);
   const [subjectId, setSubjectId] = useState(null);
+  const [subjectName, setSubjectName] = useState("");
   const [deleteDialog, setDeleteDialog] = useState(false);
-   const [storeCourseId, setStoreCourseId] = useState([]);
+  const [storeCourseId, setStoreCourseId] = useState([]);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [unMapDialog, setUnMapDialog] = useState(false);
   const [unMapSubjectOptions, setUnMapSubjactOptions] = useState([]);
@@ -75,7 +76,6 @@ const SubjectContent = () => {
       ? "PROSP"
       : "QSP";
 
- 
   const initialValues = {
     SubjectName: "",
   };
@@ -168,10 +168,11 @@ const SubjectContent = () => {
       setUnMapSubjactOptions(newCategoryOptions);
     }
   };
-  const { data: coursesData, refetch: categoryRefetch } =
-  useGetAllCoursesQuery({
-    organizationType: initialOrgType,
-  });
+  const { data: coursesData, refetch: categoryRefetch } = useGetAllCoursesQuery(
+    {
+      organizationType: initialOrgType,
+    }
+  );
   const coursesOptions = [];
   coursesData?.data?.map((item) => {
     coursesOptions.push({
@@ -200,42 +201,34 @@ const SubjectContent = () => {
           placeholder="Select the Course"
           options={coursesOptions}
         />
-
-        
       </section>
     );
   };
   const [subjectMapping, { isLoading: mapSubjectLoading }] =
-  useSubjectMappingMutation();
+    useSubjectMappingMutation();
 
   const [unMapsubjectMapping] = useUnMapsubjectMappingMutation();
-  const handleCreateCourse = async () => {  
-   
+  const handleCreateCourse = async () => {
     if (selectedCourseId) {
       try {
         await subjectMapping({
-            payload: storeCourseId,
-            courseId: selectedCourseId,
-         
-          
+          payload: storeCourseId,
+          courseId: selectedCourseId,
         });
         setStoreCourseId([]);
         refetchSubjects();
         setDialogOpen(false);
-        setSelectedCourseName(null)
-       
+        setSelectedCourseName(null);
       } catch (error) {
         console.error(" mapping failed", error);
       }
-    } 
-    
+    }
   };
   const unMapDialogForm = () => {
     return (
       <section>
         <p className={pStyle}>Select Course</p>
         <Dropdown
-          
           sectionStyle="my-section-style"
           name="Course"
           value={selectedCourseName}
@@ -243,30 +236,40 @@ const SubjectContent = () => {
           placeholder="Select to Map Course"
           options={coursesOptions}
         />
-
-       
       </section>
     );
   };
   const handleUnMapSubject = async () => {
-    
-   
     try {
       const response = await unMapsubjectMapping({
-        payload: storeCourseId ,
+        payload: storeCourseId,
         courseId: selectedCourseId,
       }).unwrap();
-     
-      setUnMapDialog(false)
-      
+
+      setUnMapDialog(false);
+
       refetchSubjects();
       setDialogOpen(false);
-      setSelectedCourseName(null)
+      setSelectedCourseName(null);
       setStoreCourseId([]);
     } catch (err) {
       console.error(err);
     }
   };
+  const handleCreateSubject = () => {
+    setEditData(false); 
+    setSubjectId(null); 
+    formikDetails.setValues({ SubjectName: "" }); 
+    setSubjectNameDialog(true); 
+  };
+  const handleEditSubject = (subjectId, subjectTitle) => {
+    setEditData(true); 
+    setSubjectId(subjectId); 
+    formikDetails.setValues({ SubjectName: subjectTitle }); 
+    setSubjectNameDialog(false); 
+    setTimeout(() => setSubjectNameDialog(true), 0); 
+  };
+
   return (
     <>
       <Dialog>
@@ -283,7 +286,6 @@ const SubjectContent = () => {
               <button
                 onClick={() => {
                   setDialogOpen(true);
-                  
                 }}
                 disabled={storeCourseId.length === 0}
                 className={`${
@@ -300,7 +302,6 @@ const SubjectContent = () => {
                 onClick={() => {
                   setUnMapDialog(true);
                   setDialogOpen(false);
-                 
                 }}
                 // disabled={storeCourseId.length !== 1}
                 disabled={storeCourseId.length === 0}
@@ -316,7 +317,7 @@ const SubjectContent = () => {
           </div>
           <DialogTrigger>
             <button
-              onClick={() => setSubjectNameDialog(true)}
+             onClick={() => handleCreateSubject()}
               className={
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
@@ -336,8 +337,8 @@ const SubjectContent = () => {
         )}
         {subjectNameDialog && (
           <CommonDialog
-            header="Add New Subject"
-            footerBtnTitle="Add New Subject"
+            header={`${editData ? "Edit" : "Add new"} Subject`}
+            footerBtnTitle={`${editData ? "Update" : "Create"}`}
             formfn={dialogForm}
             footerBtnClick={footerBtnClick}
           />
@@ -351,76 +352,82 @@ const SubjectContent = () => {
             dialogCloseClick={() => setUnMapDialog(false)}
           />
         )}
-      </Dialog>
-      <div className="py-[3.333vh] px-[1.875vw]">
-        <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
-          <Table>
-            <TableHeader className="z-1">
-              <TableRow>
-                {tableHeaders.map((header, index) => (
-                  <TableHead key={index} className={tblTextClass}>
-                    {header}
-                  </TableHead>
-                ))}
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              <>
-                {subjectResponse?.data?.map((ele) => (
-                  <TableRow key={ele.id}>
-                    <TableCell>
-                      {" "}
-                      <div className="flex space-x-2">
-                        <Checkbox
-                          onChange={handleCourseCheckbox(ele.subjectId, ele)}
-                          checked={storeCourseId.includes(ele.subjectId)}
-                        />{" "}
-                        {truncateText(ele.subjectTitle, 30)}
-                      </div>
-                    </TableCell>
-                    <TableCell>{ele.chapterCount}</TableCell>
-                    <TableCell>
-                      {ele.topicCount}
-                    </TableCell>
-                    <TableCell>
-                      {ele.subTopicCount}
-                    </TableCell>
-                    <TableCell className={tblTextClass}>
-                      <button
-                        onClick={() => handleCreateEditSubject(ele.subjectId)}
-                        className="mr-2 text-blue-500 hover:underline"
-                      >
-                        Edit
-                      </button>
-                      <button
-                        onClick={() => {
-                          setDeleteDialog(true), setSubjectId(ele.subjectId);
-                        }}
-                        className="text-red-500 hover:underline"
-                      >
-                        Delete
-                      </button>
-                    </TableCell>
-                  </TableRow>
-                ))}
-              </>
-            </TableBody>
-          </Table>
+
+        <div className="py-[3.333vh] px-[1.875vw]">
+          <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
+            <Table>
+              <TableHeader className="z-1">
+                <TableRow>
+                  {tableHeaders.map((header, index) => (
+                    <TableHead key={index} className={tblTextClass}>
+                      {header}
+                    </TableHead>
+                  ))}
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                <>
+                  {subjectResponse?.data?.map((ele) => (
+                    <TableRow key={ele.id}>
+                      <TableCell>
+                        {" "}
+                        <div className="flex space-x-2 items-center">
+                          <Checkbox
+                            onChange={handleCourseCheckbox(ele.subjectId, ele)}
+                            checked={storeCourseId.includes(ele.subjectId)}
+                          />{" "}
+                          <div
+                            className="cursor-pointer"
+                            onClick={() =>
+                              handleCreateEditSubject(ele.subjectId)
+                            }
+                          >
+                            {truncateText(ele.subjectTitle, 30)}
+                          </div>
+                        </div>
+                      </TableCell>
+                      <TableCell>{ele.chapterCount}</TableCell>
+                      <TableCell>{ele.topicCount}</TableCell>
+                      <TableCell>{ele.subTopicCount}</TableCell>
+                      <TableCell className={tblTextClass}>
+                        <DialogTrigger>
+                          <button
+                            onClick={() => handleEditSubject(ele.subjectId, ele.subjectTitle)}
+                            className="mr-2 text-blue-500 hover:underline"
+                          >
+                            Edit
+                          </button>
+                        </DialogTrigger>
+                        <button
+                          onClick={() => {
+                            setDeleteDialog(true), setSubjectId(ele.subjectId);
+                          }}
+                          className="text-red-500 hover:underline"
+                        >
+                          Delete
+                        </button>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </>
+              </TableBody>
+            </Table>
+          </div>
+          <AlertDialog
+            open={deleteDialog}
+            onOpenChange={(open) => setDeleteDialog(open)}
+          >
+            <DeleteWarningPopup
+              header="Delete"
+              icon={deleteICon}
+              setDeleteCategory={setDeleteDialog}
+              btnText="Delete"
+              contentText="Are you sure you want to delete"
+              deleteFunction={handleDeleteSelectedSubject}
+            />
+          </AlertDialog>
         </div>
-        <AlertDialog
-          open={deleteDialog}
-          onOpenChange={(open) => setDeleteDialog(open)}
-        >
-          <DeleteWarningPopup
-            header="Delete"
-            icon={deleteICon}
-            setDeleteCategory={setDeleteDialog}
-            btnText="Delete"
-            contentText="Are you sure you want to delete"
-            deleteFunction={handleDeleteSelectedSubject}
-          />
-        </AlertDialog>
-      </div>
+      </Dialog>
     </>
   );
 };
