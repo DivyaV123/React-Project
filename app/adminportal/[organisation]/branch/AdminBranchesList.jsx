@@ -21,16 +21,16 @@ import { useCourseEditorMutation } from "@/redux/queries/courseById";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { useGetAllBranchesAsPerCountryQuery } from "@/redux/queries/getAllBranchesAsPerCountryApi";
 import AddBranchForm from "./AddBranchForm";
+import { useBranchDeleteMutation } from "@/redux/queries/deleteBranch";
+import { useGetBranchDetailsByIdQuery } from "@/redux/queries/getBranchDetailsByBranchIdApi";
 
 function AdminBranchesList() {
-  const [storeCourseId, setStoreCourseId] = useState([]);
-  const [courseAddDialog, setCourseAddDialog] = useState(false);
+  const [storebranchId, setStorebranchId] = useState([]);
   const [deleteCourse, setDeleteCourse] = useState(false);
-  const [courseId, setCourseId] = useState(null);
+  const [branchId, setBranchId] = useState(null);
   const [courseName, setCourseName] = useState("");
-  const [courseEditData, setCourseEditData] = useState();
-  const [branchAddDialog, setBranchAddDialog] = useState(true);
-  const [branchEditData, setBranchEditData] = useState(null);
+  const [branchEditData, setBranchEditData] = useState();
+  const [branchAddDialog, setBranchAddDialog] = useState(false);
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -53,8 +53,7 @@ function AdminBranchesList() {
       organizationType: initialOrgType,
     });
 
-  const [deleteSelectedCourse] = useCourseDeleteMutation();
-
+  const [deleteSelectedBranch] = useBranchDeleteMutation();
   useEffect(() => {
     branchRefetch();
     categoryRefetch();
@@ -77,37 +76,30 @@ function AdminBranchesList() {
   const handleMouseEnter = (index) => setDropdownOpen(index);
   const handleMouseLeave = () => setDropdownOpen(null);
 
-  const handleCourseCheckbox = (courseId, course) => () => {
-    setStoreCourseId((prevIds) =>
-      prevIds.includes(courseId)
-        ? prevIds.filter((id) => id !== courseId)
-        : [...prevIds, courseId]
+  const handleCourseCheckbox = (branchId, course) => () => {
+    setStorebranchId((prevIds) =>
+      prevIds.includes(branchId)
+        ? prevIds.filter((id) => id !== branchId)
+        : [...prevIds, branchId]
     );
   };
 
   const [selectedCourseDetailsToEdit, { data: courseToEdit }] =
     useCourseEditorMutation();
-  const handleEditClick = (course) => async () => {
-    try {
-      const response = await selectedCourseDetailsToEdit({
-        courseId: course.course_id,
-      }).unwrap();
-      setCourseEditData(response?.data);
-      setCourseAddDialog(true);
-    } catch (err) {
-      console.error("Failed to fetch course details", err);
-    }
+  const handleEditClick = (branch) => async () => {
+    setBranchEditData(branch);
+    setBranchAddDialog(true);
   };
 
   const deleteICon = "/illustrate_delete.svg";
   const handleDeleteClick = (id, courseName) => () => {
     setCourseName(courseName);
-    setCourseId(id);
+    setBranchId(id);
     setDeleteCourse(true);
   };
-  const handleDeleteSelectedCourse = async () => {
+  const handledeleteSelectedBranch = async () => {
     try {
-      const response = await deleteSelectedCourse({ courseId }).unwrap();
+      const response = await deleteSelectedBranch({ branchId }).unwrap();
       setDeleteCourse(false);
       branchRefetch();
     } catch (err) {
@@ -126,28 +118,6 @@ function AdminBranchesList() {
       });
     });
   });
-  // const filteredBranches = [];
-
-  // const seenBranches = new Set();
-
-  // branchData?.data?.forEach(country => {
-  //   country.cities.forEach(city => {
-  //     city.courses.forEach(course => {
-  //       const matchingBranches = course.branches.filter(branch => branch.organizationType === initialOrgType);
-
-  //       matchingBranches.forEach(branch => {
-  //        
-  //         const uniqueIdentifier = branch.branchName; // or branch.id
-
-  //         if (!seenBranches.has(uniqueIdentifier)) {
-  //           seenBranches.add(uniqueIdentifier);
-  //           filteredBranches.push(branch);
-  //         }
-  //       });
-  //     });
-  //   });
-  // });
-
   return (
     <>
       <Dialog>
@@ -180,8 +150,8 @@ function AdminBranchesList() {
           <AddBranchForm
             setBranchAddDialog={setBranchAddDialog}
             courseRefetch={branchRefetch}
-            dialogCloseClick={setCourseAddDialog}
-            courseEditData={courseEditData}
+            dialogCloseClick={setBranchAddDialog}
+            branchEditData={branchEditData}
           />
         </Dialog>
       </Dialog>
@@ -204,7 +174,7 @@ function AdminBranchesList() {
                     <div className="flex space-x-2">
                       <Checkbox
                         onChange={handleCourseCheckbox(ele.course_id, ele)}
-                        checked={storeCourseId.includes(ele.course_id)}
+                        checked={storebranchId.includes(ele.course_id)}
                       />{" "}
                       {truncateText(ele.branchName, 30)}
                     </div>
@@ -284,7 +254,7 @@ function AdminBranchesList() {
                     <Dialog>
                       <DialogTrigger asChild>
                         <button
-                          // onClick={handleEditClick(ele)}
+                          onClick={handleEditClick(ele)}
                           className="mr-2 text-blue-500 hover:underline"
                         >
                           Edit
@@ -292,7 +262,7 @@ function AdminBranchesList() {
                       </DialogTrigger>
                     </Dialog>
                     <button
-                      // onClick={handleDeleteClick(ele.branchId, ele.branchName)}
+                      onClick={handleDeleteClick(ele.branchId, ele.branchName)}
                       className="text-red-500 hover:underline"
                     >
                       Delete
@@ -313,7 +283,7 @@ function AdminBranchesList() {
             setDeleteCategory={setDeleteCourse}
             btnText="Delete"
             contentText={`Are you sure you want to delete ${courseName} Category`}
-            deleteFunction={handleDeleteSelectedCourse}
+            deleteFunction={handledeleteSelectedBranch}
           />
         </AlertDialog>
       </div>

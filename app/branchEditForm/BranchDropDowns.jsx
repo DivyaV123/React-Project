@@ -140,7 +140,7 @@ function BranchDropDowns({ setBranchDropDownDetails, setIsSelectedBranchEdit, bt
     const handleBranchSelect = (event) => {
         const selectedBranchName = event.target.value;
         formik.setFieldValue('branch', selectedBranchName);
-        setBranchId(event.target.option.branchId);
+        setBranchId(event?.target?.option?.branchId);
         // Find the branchId corresponding to the selected branchName
         const selectedCountryData = BranchResponse?.data.find(
             country => country.countryName === formik.values.country

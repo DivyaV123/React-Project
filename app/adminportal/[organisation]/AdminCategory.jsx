@@ -242,7 +242,6 @@ const AdminCategory = () => {
     }
   }, [editData]);
   const handleEditClick = (category) => {
-    console.log(`Edit clicked for:`, category);
     setEditData(category);
     setDialogOpen(true);
     setPreviewURL({

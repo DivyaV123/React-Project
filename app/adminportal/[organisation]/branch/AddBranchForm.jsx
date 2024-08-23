@@ -1,5 +1,5 @@
 "use client";
-import React, { useState} from "react";
+import React, { useEffect, useState } from "react";
 import {
     DialogContent,
     DialogFooter,
@@ -12,9 +12,13 @@ import { X } from "lucide-react";
 import Input from "@/components/commonComponents/input/Input";
 import { isValidPhoneNumber } from 'react-phone-number-input';
 import Button from "@/components/commonComponents/button/Button";
+import { useBranchAdderMutation } from "@/redux/queries/branchAdderApi";
+import { useGetBranchDetailsByIdQuery } from "@/redux/queries/getBranchDetailsByBranchIdApi";
+import { useBranchEditDataMutation } from "@/redux/queries/editBranchApi";
 
-function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
-    const [addBranch, { data: branchAdd, error: courseError, isLoading: courseAdderLoad }] = useBranchAdderMutation();
+function AddBranchForm({ dialogCloseClick, courseRefetch, branchEditData, }) {
+    const [addBranch, { data: branchAdd, error: branchError, isLoading: branchAdderLoad }] = useBranchAdderMutation();
+    const [EditBranch, { data: branchEdit, error: branchEditError, isLoading: branchEditLoad }] = useBranchEditDataMutation();
     const [error, setError] = useState({ phone: false, validPhone: false });
     const [phoneValue, setPhoneValue] = useState();
     const [countryCode, setCountryCode] = useState("");
@@ -22,8 +26,6 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
     const [faqEditIndex, setFaqEditIndex] = useState(null);
     const [expandedIndex, setExpandedIndex] = useState(null);
     const commonLabelStyles = "pb-[1.111vh]";
-
-
     const tagHeadStyle = "font-medium text-[1.094vw] pb-[1.389vh]";
     const [selectedFile, setSelectedFile] = useState({
         branchGallery: [],
@@ -33,6 +35,12 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
         branchGallery: [],
         branchMainImage: null,
     });
+    const branchId = branchEditData?.branchId
+    const {
+        data: individualBranch,
+        error: individualBranchError,
+        isLoading: individualBranchIsLoading
+    } = useGetBranchDetailsByIdQuery({ branchId: branchId });
 
     const [errorMessage, setErrorMessage] = useState({
         branchGallery: "",
@@ -64,6 +72,41 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
         question: "",
         answer: "",
     };
+    const selectedBranchData = individualBranch?.data
+    useEffect(() => {
+        if (selectedBranchData) {
+            formikDetails.setValues({
+                ...formikDetails.values,
+                BranchName: selectedBranchData.branchTitle || "",
+                country: selectedBranchData.branchAddress.country || "",
+                city: selectedBranchData.branchAddress.city || "",
+                state: selectedBranchData.branchAddress.state || "",
+                location: selectedBranchData.branchAddress.location || "",
+                street: selectedBranchData.branchAddress.street || "",
+                pincode: selectedBranchData.branchAddress.pincode || "",
+                phone: selectedBranchData.contacts,
+                faqs: selectedBranchData.branchFaqs,
+                gmail: selectedBranchData.emails
+            });
+            setFaqs(selectedBranchData.branchFaqs)
+            setPreviewURL((prevState) => ({
+                ...prevState,
+                branchGallery: [...(prevState["branchGallery"] || []), ...selectedBranchData.gallery],
+            }));
+            setSelectedFile((prevState) => ({
+                ...prevState,
+                branchGallery: [...(prevState["branchGallery"] || []), ...selectedBranchData.gallery],
+            }));
+            setPreviewURL((prevState) => ({
+                ...prevState,
+                branchMainImage: selectedBranchData.branchImage,
+            }));
+            setSelectedFile((prevState) => ({
+                ...prevState,
+                branchMainImage: selectedBranchData.branchImage,
+            }));
+        }
+    }, [selectedBranchData]);
 
     const validationSchema = Yup.object({
         BranchName: Yup.string().required("BranchName is required"),
@@ -248,17 +291,52 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
                     answer: faq.answer,
                 })),
             };
+            const branchEdit = {
+                displayName: values.BranchName,
+                branchId: selectedBranchData?.branchId,
+                branchType: values.organisation,
+                emails: values.gmail,
+                branchAddress: {
+                    country: values.country,
+                    state: values.state,
+                    city: values.city,
+                    street: values.street,
+                    pincode: values.pincode,
+                    location: values.location
+                },
+                contacts: phoneNumbers,
+                faqs: values.faqs.map((faq) => ({
+                    question: faq.question,
+                    answer: faq.answer,
+                })),
+            };
             const payloadString = JSON.stringify(branch);
+            const editPayload = JSON.stringify(branchEdit);
             const payload = {
                 branch: payloadString,
                 branchImage: selectedFile.branchMainImage[0],
                 branchGallery: selectedFile.branchGallery
             }
-            try {
-                const response = await addBranch({ bodyData: payload }).unwrap();
-                setCourseAddDialog(false);
-            } catch (err) {
-                console.error(err, "Error from loginAPI");
+            const payloadEdit = {
+                branch: editPayload,
+                branchImage: selectedFile.branchMainImage[0],
+                branchGallery: selectedFile.branchGallery
+            }
+            if (!branchEditData) {
+                try {
+                    const response = await addBranch({ bodyData: payload }).unwrap();
+                    setCourseAddDialog(false);
+                } catch (err) {
+                    console.error(err, "Error from loginAPI");
+                }
+            } else {
+                try {
+                    const response = await EditBranch({ bodyData: payloadEdit }).unwrap();
+                    formikDetails.resetForm();
+                    setCourseAddDialog(false);
+                } catch (err) {
+                    console.error(err, "Error from loginAPI");
+                }
             }
         },
     });
@@ -282,7 +360,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
         <DialogContent>
             <form onSubmit={formikDetails.handleSubmit}>
                 <h1 className="font-bold pb-[2.222vh] text-[1.25vw] text-[#212121]">
-                    Add new Branch
+                    {branchEditData ? `Edit ${branchEditData?.branchName} Branch` : "Add new Branch"}
                 </h1>
                 <DialogClose>
                     <X
@@ -315,7 +393,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
                 </div>
                 <div className="w-full flex gap-[18vw]  pb-[2.222vh]  h-full">
                     <div>
-                        <p className={commonFieldClass} onClick={() => { console.log(formikDetails, "formikDetails") }}>Phone</p>
+                        <p className={commonFieldClass}>Phone</p>
                         {formikDetails.values.phone.map((phone, index) => (
                             <div key={index} className="flex  pb-3 items-center gap-2">
                                 <PhoneInput
@@ -485,7 +563,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
                     <div className="w-[50%] h-full">
                         <div className="pt-[2.222vh]">
                             <div>
-                                <p className={tagHeadStyle}>PinCode</p>
+                                <p className={tagHeadStyle}>Street</p>
                                 <Input
                                     name='street'
                                     placeholder="Please Enter Street"
@@ -506,7 +584,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
                     <div className="w-[50%] h-full">
                         <div className="pt-[2.222vh]">
                             <div>
-                                <p className={tagHeadStyle}>State</p>
+                                <p className={tagHeadStyle}>PinCode</p>
                                 <Input
                                     name='pincode'
                                     placeholder="Please Enter PinCode"
@@ -582,7 +660,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
                         )}
                     </div>
 
-                    <div className="w-[23.438vw]">
+                    <div className="w-[100%] mt-4">
                         <p className={tagHeadStyle}>Branch Gallery</p>
                         <input
                             type="file"
@@ -598,7 +676,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
                         >
                             <img src="/images/uploadinput.png" alt="file upload" />
                         </label>
-                        <div className="flex flex-wrap mt-2 gap-2">
+                        <div className="flex flex-wrap mt-2 gap-2 w-[100%]">
                             {previewURL.branchGallery &&
                                 previewURL.branchGallery.map((url, index) => (
                                     <div key={index} className="relative w-[10vw]">
@@ -763,7 +841,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, courseEditData, }) {
                             type="submit"
                             className="px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium bg-gradient rounded-md text-white"
                         >
-                            {courseEditData ? "Edit Branch" : "Create Branch"}
+                            {branchEditData ? "Edit Branch" : "Create Branch"}
                         </button>
                     </div>
                 </DialogFooter>
