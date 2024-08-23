@@ -8,8 +8,12 @@ import { usePathname } from "next/navigation";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useAddSubjectMutation } from "@/redux/queries/addSubjectApi";
 import Svg from "@/components/commonComponents/Svg/Svg";
+import { AlertDialog } from "@/components/ui/alert-dialog";
+import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { svgicons } from "@/components/assets/icons/svgassets";
-
+import { useChapterdeleteMutation } from "@/redux/queries/DeleteChapterApi";
+import { useTopicdeleteMutation } from "@/redux/queries/DeleteTopicApi";
+import { useSubTopicdeleteMutation } from "@/redux/queries/DeleteSubTopicApi";
 const renderIcon = (isOpen, hasChildren, hasVideoUrl) => {
   if (hasChildren) {
     return isOpen ? (
@@ -60,7 +64,9 @@ const AccordionItem = ({
   if (!title) return null;
 
   const backgroundColor = level === 1 ? "#FFF5F0" : "#FFFFFF";
-  const containerClass = `bg-[${backgroundColor}] rounded-lg ${isOpen ? 'shadow-md' : ''}`;
+  const containerClass = `bg-[${backgroundColor}] rounded-lg ${
+    isOpen ? "shadow-md" : ""
+  }`;
 
   return (
     <div className={`mb-4 ${containerClass}`}>
@@ -99,14 +105,14 @@ const AccordionItem = ({
   );
 };
 
-
-
-
 const CreateEditSubject = () => {
   const pathname = usePathname();
   const segments = pathname.split("/");
   const subJectID = segments[segments.length - 1];
   const [addDetailDialog, setAddDetailDialog] = useState(false);
+  const [deleteDialog, setDeleteDialog] = useState(false);
+  const [deleteId, setDeleteId] = useState(null);
+  const [deleteType, setDeleteType] = useState("");
   const [contentData, setContentData] = useState({
     chapterLength: 0,
     topicLength: 0,
@@ -132,7 +138,9 @@ const CreateEditSubject = () => {
   } = useSubjectAsPerIDQuery({ id: subJectID }, { skip: !subJectID });
 
   const [addSubject] = useAddSubjectMutation();
-
+  const [deleteChapter] = useChapterdeleteMutation();
+  const [deleteTopic] = useTopicdeleteMutation()
+  const [deleteSubTopic] = useSubTopicdeleteMutation()
   useEffect(() => {
     if (individualSubject?.data) {
       const chapters = individualSubject.data.chapters || [];
@@ -205,8 +213,34 @@ const CreateEditSubject = () => {
   };
 
   const handleDelete = (type, id) => {
-    console.log(`Delete ${type} with id:`, id);
+    setDeleteDialog(true);
+    setDeleteId(id);
+    setDeleteType(type);
   };
+  const handleDeleteDialog = async () => {
+    const deleteActions = {
+      chapter: deleteChapter,
+      topic: deleteTopic,
+      subtopic: deleteSubTopic,
+    };
+  
+    const deleteAction = deleteActions[deleteType];
+  
+    if (deleteAction) {
+      try {
+        await deleteAction({ [`${deleteType}Id`]: deleteId }).unwrap();
+        refetchSubject();
+      } catch {
+        console.log("error");
+      }
+    }
+  
+    setDeleteDialog(false);
+    setDeleteId(null);
+    setDeleteType("");
+  };
+  
+  const deleteICon = "/illustrate_delete.svg";
   const pStyle = " text-[1.094vw] font-medium pb-[1.389vh]";
   const chooseLevels = [
     {
@@ -472,14 +506,14 @@ const CreateEditSubject = () => {
                               <img
                                 src="/icon_outline_edit.svg"
                                 onClick={() =>
-                                  handleEdit("subTopic", subTopic.subTopicId)
+                                  handleEdit("subtopic", subTopic.subTopicId)
                                 }
                                 className="text-blue-500 hover:text-blue-700 cursor-pointer"
                               />
                               <img
                                 src="/icon_outline_delete.svg"
                                 onClick={() =>
-                                  handleDelete("subTopic", subTopic.subTopicId)
+                                  handleDelete("subtopic", subTopic.subTopicId)
                                 }
                                 className="text-red-500 hover:text-red-700 cursor-pointer"
                               />
@@ -492,6 +526,19 @@ const CreateEditSubject = () => {
             ))}
           </section>
         </div>
+        <AlertDialog
+          open={deleteDialog}
+          onOpenChange={(open) => setDeleteDialog(open)}
+        >
+          <DeleteWarningPopup
+            header="Delete"
+            icon={deleteICon}
+            setDeleteCategory={setDeleteDialog}
+            btnText="Delete"
+            contentText={`Are you sure you want to delete ${deleteType}`}
+            deleteFunction={handleDeleteDialog}
+          />
+        </AlertDialog>
       </div>
     </>
   );
