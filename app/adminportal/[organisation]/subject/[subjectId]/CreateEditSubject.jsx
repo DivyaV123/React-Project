@@ -68,6 +68,7 @@ const AccordionItem = ({
     setStoreTitle(title);
   } else if (level == 2 && isOpen) {
     setStoreIndex(index);
+    setStoreTitle(title);
   }
   if (!title) return null;
 
@@ -139,6 +140,7 @@ const CreateEditSubject = () => {
   const [storeTopicIndex, setStoreTopicIndex] = useState(null);
   const [storeSubTopicIndex, setStoreSubTopicIndex] = useState(null);
   const [storeChapterTitle, setStoreChapterTitle] = useState("");
+  const [storeTopicTitle, setStoreTopicTitle] = useState("");
   const [formState, setFormState] = useState({
     selectedLabel: "",
     selectedChapter: "",
@@ -146,6 +148,12 @@ const CreateEditSubject = () => {
     chapterName: "",
     topicName: "",
     subTopicName: "",
+    chapterPreviewUrl: "",
+    topicPreviewUrl: "",
+    subTopicPreviewUrl: "",
+    chapterPreviewDuration: "",
+    topicPreviewDuration: "",
+    subTopicPreviewDuration: "",
   });
   const [chaptersData, setChaptersData] = useState([]);
   const {
@@ -241,6 +249,8 @@ const CreateEditSubject = () => {
         ...prevState,
         selectedLabel: "Chapter",
         selectedChapter: title,
+        chapterPreviewUrl: getChapter[index].chapterPreviewUrl,
+        chapterPreviewDuration: getChapter[index].chapterPreviewDuration,
       }));
       setStoreChapterIndex(index);
     } else if (type === "topic") {
@@ -248,7 +258,9 @@ const CreateEditSubject = () => {
         ...prevState,
         selectedLabel: "Topic",
         selectedTopic: title,
-        selectedChapter: getChapter.chapterTitle,
+        selectedChapter: storeChapterTitle,
+        topicPreviewUrl: getChapter.topicPreviewUrl,
+        topicPreviewDuration: getChapter.topicPreviewDuration,
       }));
       setStoreTopicIndex(index);
     } else if (type === "subtopic") {
@@ -256,8 +268,10 @@ const CreateEditSubject = () => {
         ...prevState,
         selectedLabel: "SubTopic",
         subTopicName: title,
-        selectedTopic: getChapter.topicTitle,
+        selectedTopic: storeTopicTitle,
         selectedChapter: storeChapterTitle,
+        subTopicPreviewUrl: getChapter.subTopicPreviewUrl,
+        subTopicPreviewDuration: getChapter.subTopicPreviewDuration,
       }));
       setStoreSubTopicIndex(index);
     }
@@ -307,6 +321,7 @@ const CreateEditSubject = () => {
       value: "SubTopic",
     },
   ];
+
   const handleChange = (event) => {
     const { name, value } = event.target;
     setFormState((prevState) => ({
@@ -330,6 +345,12 @@ const CreateEditSubject = () => {
       subTopicName,
       selectedChapter,
       selectedTopic,
+      chapterPreviewUrl,
+      topicPreviewUrl,
+      subTopicPreviewUrl,
+      chapterPreviewDuration,
+      topicPreviewDuration,
+      subTopicPreviewDuration,
     } = formState;
 
     const updatedChapters = structuredClone(chaptersData);
@@ -340,8 +361,8 @@ const CreateEditSubject = () => {
       if (chapterIndex === -1 && !editDialog) {
         updatedChapters.push({
           chapterTitle: chapterName,
-          chapterPreviewUrl: "",
-          chapterPreviewDuration: "",
+          chapterPreviewUrl: chapterPreviewUrl,
+          chapterPreviewDuration: chapterPreviewDuration,
           topics: [],
         });
       }
@@ -350,6 +371,8 @@ const CreateEditSubject = () => {
           ...updatedChapters[storeChapterIndex],
           chapterId: updatedChapters[storeChapterIndex].chapterId,
           chapterTitle: chapterName,
+          chapterPreviewUrl: chapterPreviewUrl,
+          chapterPreviewDuration: chapterPreviewDuration,
         };
       }
     }
@@ -365,6 +388,8 @@ const CreateEditSubject = () => {
         if (topicIndex === -1 && !editDialog) {
           updatedChapters[chapterIndex].topics.push({
             topicTitle: topicName,
+            topicPreviewUrl: topicPreviewUrl,
+            topicPreviewDuration: topicPreviewDuration,
             subTopics: [],
           });
         }
@@ -375,6 +400,8 @@ const CreateEditSubject = () => {
               updatedChapters[storeChapterIndex].topics[storeTopicIndex]
                 .topicId,
             topicTitle: topicName,
+            topicPreviewUrl: topicPreviewUrl,
+            topicPreviewDuration: topicPreviewDuration,
           };
         }
       }
@@ -402,6 +429,8 @@ const CreateEditSubject = () => {
           if (subTopicIndex === -1 && !editDialog) {
             updatedChapters[chapterIndex].topics[topicIndex].subTopics.push({
               subTopicTitle: subTopicName,
+              subTopicPreviewUrl: subTopicPreviewUrl,
+              subTopicPreviewDuration: subTopicPreviewDuration,
             });
           }
           if (editDialog) {
@@ -414,6 +443,8 @@ const CreateEditSubject = () => {
                 updatedChapters[storeChapterIndex].topics[storeTopicIndex]
                   .subTopics[storeSubTopicIndex].subTopicId,
               subTopicTitle: subTopicName,
+              subTopicPreviewUrl: subTopicPreviewUrl,
+              subTopicPreviewDuration: subTopicPreviewDuration,
             };
           }
         }
@@ -431,8 +462,8 @@ const CreateEditSubject = () => {
     try {
       const response = await addSubject(payload);
       if (
-        response?.data?.statusCode === 200 ||
-        response?.data?.statusCode === 201
+        response?.data?.statusCode == 200 ||
+        response?.data?.statusCode == 201
       ) {
         await refetchSubject();
         setAddDetailDialog(false);
@@ -443,6 +474,12 @@ const CreateEditSubject = () => {
           chapterName: "",
           topicName: "",
           subTopicName: "",
+          chapterPreviewUrl: "",
+          topicPreviewUrl: "",
+          subTopicPreviewUrl: "",
+          chapterPreviewDuration: "",
+          topicPreviewDuration: "",
+          subTopicPreviewDuration: "",
         });
       } else {
         console.error("Failed to add/update subject:", response?.data);
@@ -451,7 +488,24 @@ const CreateEditSubject = () => {
       console.error("Error submitting details:", error);
     }
   };
-
+const handleAddDetails=()=>{
+    setAddDetailDialog(true), 
+    setEditDialog(false),
+    setFormState({
+      selectedLabel: "",
+      selectedChapter: "",
+      selectedTopic: "",
+      chapterName: "",
+      topicName: "",
+      subTopicName: "",
+      chapterPreviewUrl: "",
+      topicPreviewUrl: "",
+      subTopicPreviewUrl: "",
+      chapterPreviewDuration: "",
+      topicPreviewDuration: "",
+      subTopicPreviewDuration: "",
+    });
+}
   const dialogForm = () => {
     return (
       <section>
@@ -468,20 +522,35 @@ const CreateEditSubject = () => {
         {(contentData?.chapterLength == 0 ||
           formState.selectedLabel === "Chapter") && (
           <>
-            <p className={`${pStyle} pt-4`}>Chapter Name</p>
+            <p className={`${pStyle} pt-2`}>Chapter Name</p>
             <Input
               name="chapterName"
               onChange={handleChange}
               value={formState.chapterName}
               placeholder="Enter Chapter Name"
             />
+            <p className={`${pStyle} pt-2`}>Chapter URL</p>
+            <Input
+              name="chapterPreviewUrl"
+              onChange={handleChange}
+              value={formState.chapterPreviewUrl}
+              placeholder="Enter Chapter URL"
+            />
+            <p className={`${pStyle} pt-2`}>Chapter Duration</p>
+            <Input
+              name="chapterPreviewDuration"
+              onChange={handleChange}
+              value={formState.chapterPreviewDuration}
+              placeholder="Enter Chapter Duration"
+            />
           </>
         )}
 
         {contentData?.chapterLength > 0 &&
-          formState.selectedLabel !== "Chapter" && (
+          formState.selectedLabel !== "Chapter" &&
+          formState.selectedLabel !== "" && (
             <>
-              <p className={`${pStyle} pt-4`}>Chapter</p>
+              <p className={`${pStyle} pt-2`}>Chapter</p>
               <Dropdown
                 sectionStyle="my-section-style"
                 name="selectedChapter"
@@ -495,19 +564,33 @@ const CreateEditSubject = () => {
         {contentData?.chapterLength > 0 &&
           formState.selectedLabel === "Topic" && (
             <>
-              <p className={`${pStyle} pt-4`}>Topic</p>
+              <p className={`${pStyle} pt-2`}>Topic</p>
               <Input
                 name="topicName"
                 placeholder="Enter Topic Name"
                 onChange={handleChange}
                 value={formState.topicName}
               />
+              <p className={`${pStyle} pt-2`}>Topic URL</p>
+              <Input
+                name="topicPreviewUrl"
+                onChange={handleChange}
+                value={formState.topicPreviewUrl}
+                placeholder="Enter Topic URL"
+              />
+              <p className={`${pStyle} pt-2`}>Topic Duration</p>
+              <Input
+                name="topicPreviewDuration"
+                onChange={handleChange}
+                value={formState.topicPreviewDuration}
+                placeholder="Enter Topic Duration"
+              />
             </>
           )}
         {contentData?.chapterLength > 0 &&
           formState.selectedLabel === "SubTopic" && (
             <>
-              <p className={`${pStyle} pt-4`}>Topic</p>
+              <p className={`${pStyle} pt-2`}>Topic</p>
               <Dropdown
                 sectionStyle="my-section-style"
                 name="selectedTopic"
@@ -516,12 +599,26 @@ const CreateEditSubject = () => {
                 onChange={handleChange}
                 options={topicOptions}
               />
-              <p className={`${pStyle} pt-4`}>Sub Topic</p>
+              <p className={`${pStyle} pt-2`}>Sub Topic</p>
               <Input
                 name="subTopicName"
                 placeholder="Enter Sub Topic Name"
                 onChange={handleChange}
                 value={formState.subTopicName}
+              />
+              <p className={`${pStyle} pt-2`}>SubTopic URL</p>
+              <Input
+                name="subTopicPreviewUrl"
+                onChange={handleChange}
+                value={formState.subTopicPreviewUrl}
+                placeholder="Enter subTopic URL"
+              />
+              <p className={`${pStyle} pt-2`}>SubTopic Duration</p>
+              <Input
+                name="subTopicPreviewDuration"
+                onChange={handleChange}
+                value={formState.subTopicPreviewDuration}
+                placeholder="Enter SubTopic Duration"
               />
             </>
           )}
@@ -543,9 +640,7 @@ const CreateEditSubject = () => {
           </div>
           <DialogTrigger>
             <button
-              onClick={() => {
-                setAddDetailDialog(true), setEditDialog(false);
-              }}
+              onClick={handleAddDetails}
               className={
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw]  text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
@@ -593,7 +688,7 @@ const CreateEditSubject = () => {
                               "topic",
                               topic.topicId,
                               topic.topicTitle,
-                              chapter,
+                              topic,
                               topicIndex
                             )
                           }
@@ -603,6 +698,7 @@ const CreateEditSubject = () => {
                           level={2}
                           index={topicIndex}
                           setStoreIndex={setStoreTopicIndex}
+                          setStoreTitle={setStoreTopicTitle}
                         >
                           {topic.subTopics.length > 0 &&
                             topic.subTopics.map((subTopic, subtopicIndex) => (
@@ -633,7 +729,7 @@ const CreateEditSubject = () => {
                                           "subtopic",
                                           subTopic.subTopicId,
                                           subTopic.subTopicTitle,
-                                          topic,
+                                          subTopic,
                                           subtopicIndex
                                         )
                                       }
@@ -663,7 +759,7 @@ const CreateEditSubject = () => {
           </div>
           <Dialog open={addDetailDialog} onOpenChange={setAddDetailDialog}>
             <CommonDialog
-              header="Add Details"
+              header={`${editDialog ? "Edit Details" : "Add Details"}`}
               footerBtnTitle={`${editDialog ? "Update" : "Create"}`}
               formfn={dialogForm}
               footerBtnClick={handleSubmitDetails}

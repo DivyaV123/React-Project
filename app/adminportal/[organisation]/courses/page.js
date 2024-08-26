@@ -7,7 +7,7 @@ import Loading from '@/lib/Loading'
 const CourseContent = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 100);
+    const timer = setTimeout(() => setLoading(false), 400);
     return () => clearTimeout(timer);
   }, []);
 
