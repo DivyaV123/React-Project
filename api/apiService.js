@@ -69,4 +69,5 @@ export const API_ENDPOINTS = {
   ADD_CITY: '/api/v1/cities',
   GET_ALL_CITIES: (organizationType) => `/api/v1/cities?organization=${organizationType}`,
   DELETE_CITY: (cityId) => `api/v1/cities?cityId=${cityId}`,
+  GET_ALL_BATCHES: (organizationType) => `/api/v1/batches/getAll/form?organization=${organizationType}`,
 };

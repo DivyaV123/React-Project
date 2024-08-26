@@ -2,13 +2,15 @@
 'use client'
 import React,{useState,useEffect} from 'react'
 import Loading from '@/lib/Loading'
-import NavTabs from '../NavTabs';
 import AdminSidebar from '../AdminSidebar';
-import AdminBranchesList from './AdminBranchesList';
+import NavTabs from '../NavTabs';
+import AdminBatchesList from '../../AdminBatchesList';
+
+
 const AdminBranch = () => {
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    const timer = setTimeout(() => setLoading(false), 400);
+    const timer = setTimeout(() => setLoading(false), 100);
     return () => clearTimeout(timer);
   }, []);
 
@@ -20,7 +22,7 @@ const AdminBranch = () => {
       <AdminSidebar />
       <aside className='bg-[#F5F5F5] w-[82.813vw]  h-full'>
         <NavTabs />
-        <AdminBranchesList />
+        <AdminBatchesList />
       </aside>
     </section>
   )
