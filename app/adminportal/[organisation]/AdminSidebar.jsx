@@ -37,6 +37,10 @@ const AdminSidebar = () => {
       name: "Branch",
       icon: "/icon_outline_branch.svg",
     },
+    {
+      name: "Batches",
+      icon: "/icon_linear_batch.svg",
+    },
   ];
   const handleSideBar = (name) => {
     if (name === "Sub Category") {
@@ -49,7 +53,9 @@ const AdminSidebar = () => {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/city/country`);
     } else if (name === "Branch") {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/branch`);
-    } else {
+    }else if (name === "Batches") {
+      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/batch`);
+    }  else {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}`);
     }
     setSelectedSideBar(name);
