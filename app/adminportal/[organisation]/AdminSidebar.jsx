@@ -41,6 +41,10 @@ const AdminSidebar = () => {
       name: "Batches",
       icon: "/icon_linear_batch.svg",
     },
+    {
+      name: "Trainers",
+      icon: "/icon_trainers.png",
+    },
   ];
   const handleSideBar = (name) => {
     if (name === "Sub Category") {
@@ -53,9 +57,11 @@ const AdminSidebar = () => {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/city/country`);
     } else if (name === "Branch") {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/branch`);
-    }else if (name === "Batches") {
+    } else if (name === "Batches") {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/batch`);
-    }  else {
+    } else if (name === "Trainers") {
+      router.push(`${ADMIN_PORTAL}/${name},${instituteParam}/trainers`);
+    } else {
       router.push(`${ADMIN_PORTAL}/${name},${instituteParam}`);
     }
     setSelectedSideBar(name);
@@ -71,11 +77,10 @@ const AdminSidebar = () => {
             return (
               <div
                 key={index}
-                className={`flex items-center gap-1.5 cursor-pointer text-[1.094vw] py-[1.25vh] px-[0.625vw] my-[0.694vh] ${
-                  decodeURIComponent(sidebarParam) === item.name
-                    ? "bg-[#FF7B1B] text-white  font-bold rounded-md"
-                    : "text-[#6E6E6E] font-medium"
-                } `}
+                className={`flex items-center gap-1.5 cursor-pointer text-[1.094vw] py-[1.25vh] px-[0.625vw] my-[0.694vh] ${decodeURIComponent(sidebarParam) === item.name
+                  ? "bg-[#FF7B1B] text-white  font-bold rounded-md"
+                  : "text-[#6E6E6E] font-medium"
+                  } `}
                 onClick={() => handleSideBar(item.name)}
               >
                 <picture>
