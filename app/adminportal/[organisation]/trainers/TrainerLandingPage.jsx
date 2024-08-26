@@ -25,12 +25,8 @@ function TrainerLandingPage() {
         "PHONE",
         "ACTIONS"
     ];
-    const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
-
+    const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";F
     const { data: trainersData, refetch: trainersRefetch } = useGetAllTrainersQuery();
-
-    console.log(trainersData, "trainersDatatrainersData")
-
     useEffect(() => {
         setIsClient(true);
     }, []);
