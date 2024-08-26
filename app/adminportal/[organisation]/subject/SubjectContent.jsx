@@ -90,6 +90,7 @@ const SubjectContent = () => {
     onSubmit: async (values) => {
       const payload = {
         subjectTitle: values.SubjectName,
+        subjectId: subjectId ? subjectId : null,
       };
       try {
         const response = await addSubject(payload).unwrap();
@@ -294,7 +295,7 @@ const SubjectContent = () => {
                     : "cursor-not-allowed bg-gray-400"
                 } py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw]  rounded-lg`}
               >
-                Map to Subject
+                Map to Course
               </button>
             </DialogTrigger>
             <DialogTrigger asChild>
