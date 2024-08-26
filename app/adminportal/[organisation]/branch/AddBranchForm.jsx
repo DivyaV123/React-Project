@@ -40,7 +40,7 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, branchEditData, }) {
         data: individualBranch,
         error: individualBranchError,
         isLoading: individualBranchIsLoading
-    } = useGetBranchDetailsByIdQuery({ branchId: branchId });
+    } = useGetBranchDetailsByIdQuery({ branchId: branchId }, { skip: !branchId });
 
     const [errorMessage, setErrorMessage] = useState({
         branchGallery: "",
