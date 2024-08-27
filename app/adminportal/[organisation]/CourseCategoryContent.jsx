@@ -412,6 +412,7 @@ function CourseCategoryContent() {
                         onChange={handleCourseCheckbox(ele.course_id, ele)}
                         checked={storeCourseId.includes(ele.course_id)}
                       />{" "}
+                      <img src="/course_icon_admin.svg" className=" h-[3vh] relative right-[0.5vw] bottom-[0.3vh]"/>
                       {truncateText(ele.course_name, 30)}
                     </div>
                   </TableCell>
