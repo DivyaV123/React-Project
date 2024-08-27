@@ -39,7 +39,7 @@ const AdminSidebar = () => {
     },
     {
       name: "Batches",
-      icon: "/icon_linear_batch.svg",
+      icon: "/course_icon_admin.svg",
     },
     {
       name: "Trainers",

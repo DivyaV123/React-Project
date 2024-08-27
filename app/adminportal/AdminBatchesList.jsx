@@ -18,7 +18,7 @@ import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
 
 import { AlertDialog } from "@/components/ui/alert-dialog";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
-import { useCourseDeleteMutation } from "@/redux/queries/deleteCourse";
+// import { useCourseDeleteMutation } from "@/redux/queries/deleteBatch";
 import { useCourseEditorMutation } from "@/redux/queries/courseById";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { useGetAllBranchesAsPerCountryQuery } from "@/redux/queries/getAllBranchesAsPerCountryApi";
@@ -30,21 +30,35 @@ import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useGetAllCoursesQuery } from "@/redux/queries/getAllCourseForAdmin";
 import { useAddBatchApiMutation } from "@/redux/queries/addBatchApi";
 import { useGetAllBatchQuery } from "@/redux/queries/getAllBatchesApi";
+import { useGetAllBranchOptionsQuery } from "@/redux/queries/getAllBrancesDropDownApi";
+import { useBatchDeleteMutation } from "@/redux/queries/deleteBatchApi";
 
 function AdminBatchesList() {
+  
+  const [dialogOpen, setDialogOpen] = useState(false);
+
+  const [storeBatchId, setStoreBatchId] = useState([]);
+
+  const [courseAddDialog, setCourseAddDialog] = useState(false);
+  const [deleteBatch, setDeleteBatch] = useState(false);
+  const [courseId, setCourseId] = useState(null);
+  const [branchId, setBranchId] = useState(null);
+  const [batchName, setBatchName] = useState("");
+  const [batchId, setBatchId] = useState("");
+  const [batchEditData, setBatchEditData] = useState();
   const initialValues = {
-    batchName: "",
-    branch: "",
-    tutor: "",
-    dateRange: { start: "", end: "" },
-    timeRange: { start: "", end: "" },
+    batchName:batchEditData?batchEditData.batchName : "",
+    branch:batchEditData?batchEditData.branchName : "",
+    tutor:batchEditData?batchEditData.trainerName : "",
+    dateRange: { start:batchEditData?batchEditData.startingDate: "", end: batchEditData?batchEditData.endingDate: "" },
+    timeRange: { start: batchEditData?batchEditData.startingTime: "", end: batchEditData?batchEditData.endingTime: "" },
     time: "",
     courses: "",
   };
 
   const validationSchema = Yup.object({
     batchName: Yup.string().required("Batch name is required"),
-    branch: Yup.string().required("Branch is required"),
+    branch:!batchEditData && Yup.string().required("Branch is required"),
     tutor: Yup.string().required("Tutor is required"),
     dateRange: Yup.object().shape({
       start: Yup.date()
@@ -67,25 +81,17 @@ function AdminBatchesList() {
           }
         ),
     }),
-    courses: Yup.string().required("course is required"),
+    courses:!batchEditData && Yup.string().required("course is required"),
   });
 
   const tutorOptions = [
+    { label: "Sashi Kunal", value: "Sashi Kunal" },
     { label: "Nithish T", value: "Nithish T" },
     { label: "Shanthala", value: "Shanthala" },
+    { label: "Anil Kumar", value: "Anil Kumar" },
     { label: "Shubhash", value: "Shubhash" },
   ];
 
-  const [dialogOpen, setDialogOpen] = useState(false);
-
-  const [storeCourseId, setStoreCourseId] = useState([]);
-
-  const [courseAddDialog, setCourseAddDialog] = useState(false);
-  const [deleteCourse, setDeleteCourse] = useState(false);
-  const [courseId, setCourseId] = useState(null);
-  const [branchId, setBranchId] = useState(null);
-  const [courseName, setCourseName] = useState("");
-  const [courseEditData, setCourseEditData] = useState();
 
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
@@ -100,21 +106,19 @@ function AdminBatchesList() {
       : instituteParam === "Prospiders"
       ? "PROSP"
       : "QSP";
-  const { data: branchData, refetch: branchRefetch } = useGetAllBranchesQuery({
-    organizationType: initialOrgType,
-  });
+
   const { data: batchData, refetch: batchDataRefetch } = useGetAllBatchQuery({
     organizationType: initialOrgType,
   });
   const [
     addBatch,
-    { data: branchAdd, error: courseError, isLoading: courseAdderLoad },
+    { data: batchAdd, error: batchError, isLoading: batchAdderLoad },
   ] = useAddBatchApiMutation();
 
-  const [deleteSelectedCourse] = useCourseDeleteMutation();
+  const [deleteSelectedBatch] = useBatchDeleteMutation();
 
   useEffect(() => {
-    branchRefetch();
+   
     batchDataRefetch()
   }, [instituteParam]);
 
@@ -137,7 +141,7 @@ function AdminBatchesList() {
   const handleMouseLeave = () => setDropdownOpen(null);
 
   const handleCourseCheckbox = (courseId, course) => () => {
-    setStoreCourseId((prevIds) =>
+    setStoreBatchId((prevIds) =>
       prevIds.includes(courseId)
         ? prevIds.filter((id) => id !== courseId)
         : [...prevIds, courseId]
@@ -146,64 +150,37 @@ function AdminBatchesList() {
 
   const [selectedCourseDetailsToEdit, { data: courseToEdit }] =
     useCourseEditorMutation();
-  // const handleEditClick = (course) => async () => {
-  //   try {
-  //     const response = await selectedCourseDetailsToEdit({
-  //       courseId: course.course_id,
-  //     }).unwrap();
-  //     setCourseEditData(response?.data);
-  //     setCourseAddDialog(true);
-  //   } catch (err) {
-  //     console.error("Failed to fetch course details", err);
-  //   }
-  // };
+  const handleEditClick = (batch) => async () => {
+   
+   
+    setDialogOpen(true);
+    setBatchEditData(batch);
+   
+  };
 
   const deleteICon = "/illustrate_delete.svg";
-  // const handleDeleteClick = (id, courseName) => () => {
-  //   setCourseName(courseName);
-  //   setCourseId(id);
-  //   setDeleteCourse(true);
-  // };
-  // const handleDeleteSelectedCourse = async () => {
-  //   try {
-  //     const response = await deleteSelectedCourse({ courseId }).unwrap();
-  //     setDeleteCourse(false);
-  //     branchRefetch();
-  //   } catch (err) {
-  //     console.error(err);
-  //   }
-  // };
-  const filteredBranches = [];
-
-  branchData?.data?.forEach((country) => {
-    country.cities.forEach((city) => {
-      city.courses.forEach((course) => {
-        const matchingBranches = course.branches.filter(
-          (branch) => branch.organizationType === initialOrgType
-        );
-        filteredBranches.push(...matchingBranches);
-      });
-    });
+  const handleDeleteClick = (id, batchName) => () => {
+    setBatchName(batchName);
+    setBatchId(id);
+    setDeleteBatch(true);
+  };
+  const handleDeleteSelectedCourse = async () => {
+    console.log({batchId})
+    try {
+      const response = await deleteSelectedBatch({ batchId }).unwrap();
+      setDeleteBatch(false);
+      batchDataRefetch();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const { data: filteredBranches, refetch: filteredBranchesRefetch } = useGetAllBranchOptionsQuery({
+    hostName: initialOrgType,
   });
 
-  //   let branchOptions=[]
-  //   branchData?.data?.forEach((country) => {
-  //     country.cities.forEach((city) => {
-  //       city.courses.forEach((course) => {
-  //         const matchingBranches = course.branches.filter(
-  //           (branch) => branch.organizationType === initialOrgType
-  //         );
-  //         filteredBranches.push(...matchingBranches);
-  //         branchOptions.push({
-  //             label: matchingBranches.branchName,
-  //             value: matchingBranches.branchName,
-  //             Id: matchingBranches.branchId,
-  //           });
-  //       });
-  //     });
-  //   });
+  
   const branchOptions = [];
-  filteredBranches?.map((item) => {
+  filteredBranches?.data.map((item) => {
     branchOptions.push({
       label: item.branchName,
       value: item.branchName,
@@ -242,7 +219,9 @@ function AdminBatchesList() {
             </div>
           ) : null}
         </div>
-        <div>
+        {
+          !batchEditData && <>
+          <div>
           <label htmlFor="courses">Course</label>
           <Dropdown
             placeholder="Select Course"
@@ -253,7 +232,7 @@ function AdminBatchesList() {
             value={formikDetails.values.courses}
             onChange={(event) => {
               formikDetails.setFieldValue("courses", event.target.value);
-             
+           
               setCourseId(event.target.option.Id);
             }}
           />
@@ -275,7 +254,7 @@ function AdminBatchesList() {
             onChange={(event) => {
               formikDetails.setFieldValue("branch", event.target.value);
               setBranchId(event.target.option.Id);
-           
+             
             }}
           />
           {formikDetails.touched.branch && formikDetails.errors.branch ? (
@@ -285,9 +264,13 @@ function AdminBatchesList() {
           ) : null}
         </div>
 
+          </>
+        }
+       
+
         <div>
-          <label htmlFor="tutor">Tutor</label>
-          <Dropdown
+          <label htmlFor="tutor"  >Tutor</label>
+          {/* <Dropdown
             placeholder="Select Tutor"
             inputStyle=" h-[2.813vw] text-[12px] text-gray-400"
             iconStyle="w-[10%]"
@@ -297,7 +280,17 @@ function AdminBatchesList() {
             onChange={(event) =>
               formikDetails.setFieldValue("tutor", event.target.value)
             }
+          /> */}
+          <Input
+            id="tutor"
+            name="tutor"
+            placeholder="Enter tutor"
+            value={formikDetails.values.tutor}
+            onChange={formikDetails.handleChange}
+            onBlur={formikDetails.handleBlur}
+            className="input-class"
           />
+         
           {formikDetails.touched.tutor && formikDetails.errors.tutor ? (
             <div className="text-red-500 text-[12px] absolute">
               {formikDetails.errors.tutor}
@@ -388,7 +381,7 @@ function AdminBatchesList() {
     );
   };
   const handleCreateBatch = async (values) => {
-  
+   
     let payload = {
       batchTitle: values.batchName,
       trainerName: values.tutor,
@@ -407,9 +400,10 @@ function AdminBatchesList() {
      
       if (response.data.statusCode === 201) {
         setDialogOpen(false);
+        batchDataRefetch()
       } 
     } catch (err) {
-      alert(courseError.data.data);
+      console.error(err)
     }
   };
   return (
@@ -429,7 +423,7 @@ function AdminBatchesList() {
             <button
               onClick={() => {
                 setDialogOpen(true);
-                setCourseEditData(null);
+                setBatchEditData(null);
               }}
               className={
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
@@ -477,7 +471,7 @@ function AdminBatchesList() {
                     <div className="flex space-x-2">
                       <Checkbox
                         onChange={handleCourseCheckbox(ele.batchId, ele)}
-                        checked={storeCourseId.includes(ele.batchId)}
+                        checked={storeBatchId.includes(ele.batchId)}
                       />{" "}
                       {truncateText(ele.batchName, 30)}
                     </div>
@@ -517,15 +511,32 @@ function AdminBatchesList() {
                     <Dialog>
                       <DialogTrigger asChild>
                         <button
-                          // onClick={handleEditClick(ele)}
+                          onClick={handleEditClick(ele)}
                           className="mr-2 text-blue-500 hover:underline"
                         >
                           Edit
                         </button>
                       </DialogTrigger>
+                      {dialogOpen && (
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleCreateBatch}
+          >
+            {(formikDetails) => (
+              <CommonDialog
+                header="Add new Batches"
+                footerBtnTitle="Create Batches"
+                formfn={() => createBatchForm(formikDetails)}
+                footerBtnClick={formikDetails.handleSubmit}
+                dialogCloseClick={() => setDialogOpen(false)}
+              />
+            )}
+          </Formik>
+        )}
                     </Dialog>
                     <button
-                      // onClick={handleDeleteClick(ele.branchId, ele.branchName)}
+                      onClick={handleDeleteClick(ele.batchId, ele.batchName)}
                       className="text-red-500 hover:underline"
                     >
                       Delete
@@ -537,16 +548,16 @@ function AdminBatchesList() {
           </Table>
         </div>
         <AlertDialog
-          open={deleteCourse}
-          onOpenChange={(open) => setDeleteCourse(open)}
+          open={deleteBatch}
+          onOpenChange={(open) => setDeleteBatch(open)}
         >
           <DeleteWarningPopup
             header="Delete"
             icon={deleteICon}
-            setDeleteCategory={setDeleteCourse}
+            setDeleteCategory={setDeleteBatch}
             btnText="Delete"
-            contentText={`Are you sure you want to delete ${courseName} Category`}
-            // deleteFunction={handleDeleteSelectedCourse}
+            contentText={`Are you sure you want to delete ${batchName} Category`}
+            deleteFunction={handleDeleteSelectedCourse}
           />
         </AlertDialog>
       </div>
