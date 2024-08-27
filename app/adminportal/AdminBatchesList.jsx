@@ -165,7 +165,7 @@ function AdminBatchesList() {
     setDeleteBatch(true);
   };
   const handleDeleteSelectedCourse = async () => {
-    console.log({batchId})
+    
     try {
       const response = await deleteSelectedBatch({ batchId }).unwrap();
       setDeleteBatch(false);
