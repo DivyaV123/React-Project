@@ -184,6 +184,7 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
   return (
     <div className="py-[3.333vh] px-[1.875vw]">
       <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] ">
+        <p className="px-4 font-bold text-[#434343]">{categoryTitle}</p>
         <Table className="">
           <TableHeader className=" z-1">
             <TableRow>

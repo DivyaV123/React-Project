@@ -49,10 +49,13 @@ const AdminCategory = () => {
   const [warningCategory, setWarningCategory] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editData, setEditData] = useState(null);
+  const [createCategory,setCreateCategory]=useState(false)
   const router = useRouter();
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
+  const[getCategoryName,setGetCategoryName]=useState('')
+  const [errorCategoryName,setErrorCategoryName]=useState('')
   const initialOrgType =
     instituteParam === "Qspiders"
       ? "QSP"
@@ -137,7 +140,12 @@ const AdminCategory = () => {
       categoryIconDark: "",
       categoryIconLite: "",
     });
+    setErrorCategoryName("")
     setSelectedFile({
+      categoryIconDark: null,
+      categoryIconLite: null,
+    });
+    setPreviewURL({
       categoryIconDark: null,
       categoryIconLite: null,
     });
@@ -168,7 +176,10 @@ const AdminCategory = () => {
         setDialogOpen(false);
         dialogCloseClick();
       } catch {
-        alert(categoryError.data.data);
+        console.error(categoryError.data.data);
+        if(editData){
+          setCreateCategory(false)
+        }
       }
     },
   });
@@ -217,6 +228,7 @@ const AdminCategory = () => {
       ...prevState,
       [iconType]: "",
     }));
+
   };
   useEffect(() => {
     if (editData) {
@@ -239,9 +251,11 @@ const AdminCategory = () => {
         categoryIconDark: "",
         categoryIconLite: "",
       });
+      setErrorCategoryName(categoryError?.data?.data?.includes("already exists") ? "Category Name Already Exists":"")
     }
   }, [editData]);
   const handleEditClick = (category) => {
+    setCreateCategory(true)
     setEditData(category);
     setDialogOpen(true);
     setPreviewURL({
@@ -249,7 +263,7 @@ const AdminCategory = () => {
       categoryIconLite: category.alternativeIcon,
     });
   };
-  console.log(!!previewURL?.categoryIconDark);
+ 
   const dialogForm = () => {
     return (
       <form onSubmit={formikDetails.handleSubmit}>
@@ -268,6 +282,12 @@ const AdminCategory = () => {
               {formikDetails.errors.categoryName}
             </div>
           ) : null}
+          <div className="text-red-500 text-[0.6rem] ">
+              {editData && formikDetails.values.categoryName && !createCategory&&  categoryError?.data?.data?.includes("already exists") ? "Category Name Already Exists" : ""}
+            </div>
+            <div className="text-red-500 text-[0.6rem] ">
+              {!editData && formikDetails.values.categoryName &&  categoryError?.data?.data?.includes("already exists") ? "Category Name Already Exists" : ""}
+            </div>
         </div>
         <p className={pStyle}>Category Icon Dark</p>
         <div className="flex gap-4 items-center">
@@ -387,6 +407,7 @@ const AdminCategory = () => {
     } else {
       setCategoryId(id);
       setDeleteCategory(true);
+      setGetCategoryName(category.title)
     }
   };
   const handledeleteSelectedCategory = async () => {
@@ -574,7 +595,7 @@ const AdminCategory = () => {
                 color={svgicons.addIcon[4]}
               />
               <DialogTrigger asChild>
-                <button onClick={() => setDialogOpen(true)} className="">
+                <button onClick={() => {setDialogOpen(true),setEditData(null)}} className="">
                   Category
                 </button>
               </DialogTrigger>
@@ -658,7 +679,11 @@ const AdminCategory = () => {
             icon={deleteICon}
             setDeleteCategory={setDeleteCategory}
             btnText="Delete"
-            contentText="Are you sure you want to delete Software Testing Category"
+            contentText={
+              <>
+                Are you sure you want to delete <strong className="font-extrabold">{getCategoryName}</strong> Category?
+              </>
+            }
             deleteFunction={handledeleteSelectedCategory}
           />
         </AlertDialog>
