@@ -46,6 +46,10 @@ const NavTabs = () => {
       router.push(
         `${ADMIN_PORTAL}/${sidebarParam},${item.title}/dynamic/course/${decodedCourse}`
       );
+    }else if (decodedCategory === "Branch") {
+      router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}/branch`);
+    } else if (decodedCategory === "Batches") {
+      router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}/batch`);
     } else {
       router.push(`${ADMIN_PORTAL}/${sidebarParam},${item.title}`);
     }

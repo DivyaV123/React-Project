@@ -77,6 +77,8 @@ import { cityDeleteApi } from './queries/deleteCityApi';
 import { unMapSubjectApi } from './queries/unMapSubjectApi';
 import { batchListApi } from './queries/getAllBatchesApi';
 import { getAllTrainersApi } from './queries/getAllTrainersApi';
+import { branchOptions } from './queries/getAllBrancesDropDownApi';
+import { batchDeleteApi } from './queries/deleteBatchApi';
 
 const store = configureStore({
   reducer: {
@@ -176,6 +178,8 @@ const store = configureStore({
     [unMapSubjectApi.reducerPath]: unMapSubjectApi.reducer,
     [getAllTrainersApi.reducerPath]: getAllTrainersApi.reducer,
     [batchListApi.reducerPath]: batchListApi.reducer,
+    [branchOptions.reducerPath]:branchOptions.reducer,
+    [batchDeleteApi.reducerPath]:batchDeleteApi.reducer,
 
   },
   middleware: (getDefaultMiddleware) =>
@@ -185,7 +189,7 @@ const store = configureStore({
       getHomePageCourseApi.middleware, courseCategoryMapApi.middleware, courseSubCategoryMapApi.middleware, getAllFaqApi.middleware, enquriesApi.middleware, courseWeightageApi.middleware, courseWeightageEditApi.middleware, getcourseByIdApi.middleware, CourseEditAPI.middleware,
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
       addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware, updateCourseDnd.middleware, updateSubCategoryDnd.middleware, categoryDeleteApi.middleware, categoryEditApi.middleware, DeleteChapterApi.middleware,
-      DeleteTopicApi.middleware, DeleteSubTopicApi.middleware, AddCitiesApi.middleware, courseUnMapApi.middleware, citiesForAdminApi.middleware, cityDeleteApi.middleware, unMapSubjectApi.middleware, batchListApi.middleware, getAllTrainersApi.middleware
+      DeleteTopicApi.middleware, DeleteSubTopicApi.middleware, AddCitiesApi.middleware, courseUnMapApi.middleware, citiesForAdminApi.middleware, cityDeleteApi.middleware, unMapSubjectApi.middleware, batchListApi.middleware, getAllTrainersApi.middleware,branchOptions.middleware,batchDeleteApi.middleware,
     ),
 });
 

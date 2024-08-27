@@ -39,7 +39,7 @@ const AdminSidebar = () => {
     },
     {
       name: "Batches",
-      icon: "/icon_linear_batch.svg",
+      icon: "/course_icon_admin.svg",
     },
     {
       name: "Trainers",
@@ -70,17 +70,29 @@ const AdminSidebar = () => {
     <>
       <aside className="w-[17.188vw] rounded-r-2xl  bg-white h-full mx-[1.25vw] pt-[2.222vh]">
         <picture>
-          <img src="/adminqspiders.svg" className="pb-[2.222vh]" />
+          <img
+            src={
+              instituteParam === "Qspiders"
+                ? "/qpidersnew.svg"
+                : instituteParam === "Jspiders"
+                ? "/adminjpiders.svg"
+                : instituteParam === "Pyspiders"
+                ? "/admin_pypiders.svg"
+                : "/admin_prospiders.svg"
+            }
+            className="pb-[2.222vh] relative left-[1vw] h-[10vh]"
+          />
         </picture>
         <section className="mt-[2.222vh]">
           {sideBarList.map((item, index) => {
             return (
               <div
                 key={index}
-                className={`flex items-center gap-1.5 cursor-pointer text-[1.094vw] py-[1.25vh] px-[0.625vw] my-[0.694vh] ${decodeURIComponent(sidebarParam) === item.name
-                  ? "bg-[#FF7B1B] text-white  font-bold rounded-md"
-                  : "text-[#6E6E6E] font-medium"
-                  } `}
+                className={`flex items-center gap-1.5 cursor-pointer text-[1.094vw] py-[1.25vh] px-[0.625vw] my-[0.694vh] ${
+                  decodeURIComponent(sidebarParam) === item.name
+                    ? "bg-[#FF7B1B] text-white  font-bold rounded-md"
+                    : "text-[#6E6E6E] font-medium"
+                } `}
                 onClick={() => handleSideBar(item.name)}
               >
                 <picture>
