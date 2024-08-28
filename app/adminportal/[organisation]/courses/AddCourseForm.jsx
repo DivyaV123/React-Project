@@ -447,6 +447,8 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
         if (response.statusCode == 201 || response.statusCode == 200) {
           dialogCloseClick(false);
           formikDetails.resetForm();
+          setSelectedCourse("");
+          setSelectedSubCourse("");
           courseRefetch();
           setSelectedFile({
             courseIcon: null,

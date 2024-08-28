@@ -1,5 +1,5 @@
 "use client";
-import React, {  useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   TableBody,
@@ -49,13 +49,13 @@ const AdminCategory = () => {
   const [warningCategory, setWarningCategory] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editData, setEditData] = useState(null);
-  const [createCategory,setCreateCategory]=useState(false)
+  const [createCategory, setCreateCategory] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
-  const[getCategoryName,setGetCategoryName]=useState('')
-  const [errorCategoryName,setErrorCategoryName]=useState('')
+  const [getCategoryName, setGetCategoryName] = useState("");
+  const [errorCategoryName, setErrorCategoryName] = useState("");
   const initialOrgType =
     instituteParam === "Qspiders"
       ? "QSP"
@@ -73,39 +73,11 @@ const AdminCategory = () => {
     isLoading,
   } = useGetAllCategoryQuery({
     organizationType: initialOrgType,
-  }); 
-  const [
-    editCategoryWeightage,
-    {
-      data: categoryEdit,
-      error: categoryEditError,
-      isLoading: categoryEditLoad,
-    },
-  ] = useCategoryWeightageEditMutation();
-  const [
-    deleteSelectedCategory,
-    {
-      data: CategoryDeleteResp,
-      error: CategoryDeleteError,
-      isLoading: CategoryDeleteLoad,
-    },
-  ] = useCategoryDeleteMutation();
-  const [
-    addCategory,
-    {
-      data: categoryResponse,
-      error: categoryError,
-      isLoading: categoryLoading,
-    },
-  ] = useCategoryAdderMutation();
-  const [
-    editCategory,
-    {
-      data: editCategoryResponse,
-      error: editCategoryError,
-      isLoading: editCategoryLoading,
-    },
-  ] = useCategoryEditDataMutation();
+  });
+  const [editCategoryWeightage] = useCategoryWeightageEditMutation();
+  const [deleteSelectedCategory] = useCategoryDeleteMutation();
+  const [addCategory] = useCategoryAdderMutation();
+  const [editCategory] = useCategoryEditDataMutation();
   useEffect(() => {
     refetch();
   }, [instituteParam]);
@@ -140,7 +112,7 @@ const AdminCategory = () => {
       categoryIconDark: "",
       categoryIconLite: "",
     });
-    setErrorCategoryName("")
+    setErrorCategoryName("");
     setSelectedFile({
       categoryIconDark: null,
       categoryIconLite: null,
@@ -151,10 +123,18 @@ const AdminCategory = () => {
     });
     setEditData(null);
   };
+
   const formikDetails = useFormik({
     initialValues,
     validationSchema,
-    onSubmit: async (values) => {
+    onSubmit: async (values, { setFieldError }) => {
+      const checkDuplicates = categories.find(
+        (item) => item.title.toLowerCase() === values.categoryName.toLowerCase()
+      );
+      if (checkDuplicates.title) {
+        setFieldError("categoryName", "Category Name already exists");
+        return;
+      }
       let payload = {
         title: values.categoryName,
         icon: selectedFile.categoryIconDark,
@@ -177,13 +157,12 @@ const AdminCategory = () => {
         dialogCloseClick();
       } catch {
         console.error(categoryError.data.data);
-        if(editData){
-          setCreateCategory(false)
+        if (editData) {
+          setCreateCategory(false);
         }
       }
     },
   });
-
   const handleFileChange = (event, iconType) => {
     const file = event.target.files[0];
     const previewURL = URL.createObjectURL(file);
@@ -228,7 +207,6 @@ const AdminCategory = () => {
       ...prevState,
       [iconType]: "",
     }));
-
   };
   useEffect(() => {
     if (editData) {
@@ -251,11 +229,15 @@ const AdminCategory = () => {
         categoryIconDark: "",
         categoryIconLite: "",
       });
-      setErrorCategoryName(categoryError?.data?.data?.includes("already exists") ? "Category Name Already Exists":"")
+      setErrorCategoryName(
+        categoryError?.data?.data?.includes("already exists")
+          ? "Category Name Already Exists"
+          : ""
+      );
     }
   }, [editData]);
   const handleEditClick = (category) => {
-    setCreateCategory(true)
+    setCreateCategory(true);
     setEditData(category);
     setDialogOpen(true);
     setPreviewURL({
@@ -263,7 +245,7 @@ const AdminCategory = () => {
       categoryIconLite: category.alternativeIcon,
     });
   };
- 
+
   const dialogForm = () => {
     return (
       <form onSubmit={formikDetails.handleSubmit}>
@@ -282,12 +264,6 @@ const AdminCategory = () => {
               {formikDetails.errors.categoryName}
             </div>
           ) : null}
-          <div className="text-red-500 text-[0.6rem] ">
-              {editData && formikDetails.values.categoryName && !createCategory&&  categoryError?.data?.data?.includes("already exists") ? "Category Name Already Exists" : ""}
-            </div>
-            <div className="text-red-500 text-[0.6rem] ">
-              {!editData && formikDetails.values.categoryName &&  categoryError?.data?.data?.includes("already exists") ? "Category Name Already Exists" : ""}
-            </div>
         </div>
         <p className={pStyle}>Category Icon Dark</p>
         <div className="flex gap-4 items-center">
@@ -408,7 +384,7 @@ const AdminCategory = () => {
     } else {
       setCategoryId(id);
       setDeleteCategory(true);
-      setGetCategoryName(category.title)
+      setGetCategoryName(category.title);
     }
   };
   const handledeleteSelectedCategory = async () => {
@@ -596,7 +572,12 @@ const AdminCategory = () => {
                 color={svgicons.addIcon[4]}
               />
               <DialogTrigger asChild>
-                <button onClick={() => {setDialogOpen(true),setEditData(null)}} className="">
+                <button
+                  onClick={() => {
+                    setDialogOpen(true), setEditData(null);
+                  }}
+                  className=""
+                >
                   Category
                 </button>
               </DialogTrigger>
@@ -682,7 +663,9 @@ const AdminCategory = () => {
             btnText="Delete"
             contentText={
               <>
-                Are you sure you want to delete <strong className="font-extrabold">{getCategoryName}</strong> Category?
+                Are you sure you want to delete{" "}
+                <strong className="font-extrabold">{getCategoryName}</strong>{" "}
+                Category?
               </>
             }
             deleteFunction={handledeleteSelectedCategory}
@@ -698,7 +681,9 @@ const AdminCategory = () => {
             setDeleteCategory={setWarningCategory}
             btnText="Close"
             contentText="You can’t delete the Category until there is a course in it"
-            deleteFunction={()=>{setWarningCategory(false)}}
+            deleteFunction={() => {
+              setWarningCategory(false);
+            }}
           />
         </AlertDialog>
       </div>

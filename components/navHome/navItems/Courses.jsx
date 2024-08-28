@@ -108,7 +108,7 @@ getAllCourses?.[hoveredIndex]?.subCourse?.length > 0
                         content: false,
                       }))
                     }
-                  >
+                   >
                     <div className="flex  gap-2.5 items-center">
                       {content?.icon && (
                         <Image
@@ -125,7 +125,7 @@ getAllCourses?.[hoveredIndex]?.subCourse?.length > 0
                       )}
 
                       {/* <img className="h-8 w-8" src={content?.icon} /> */}
-                      <h3 className="text-left  text-[0.938vw] font-bold items-center flex pt-1">
+                      <h3 className="text-left  text-[0.938vw] font-bold items-center flex pt-1" style={{ wordBreak: "break-word" }}>
                         {content?.title ? content?.title : ""}
                       </h3>
                     </div>
