@@ -138,7 +138,7 @@ function CourseCategoryContent() {
   const dialogForm = () => {
     return (
       <section>
-        <p className={pStyle}>Select Category</p>
+        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select Category</p>
         <Dropdown
           sectionStyle="my-section-style"
           name="category"
@@ -148,7 +148,7 @@ function CourseCategoryContent() {
           options={categoryOptions}
         />
 
-        <p className={pStyle}>Select SubCategory</p>
+        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select SubCategory</p>
         <Dropdown
           sectionStyle="my-section-style"
           name="subcategory"
@@ -164,7 +164,7 @@ function CourseCategoryContent() {
   const unMapDialogForm = () => {
     return (
       <section>
-        <p className={pStyle}>Select Category</p>
+        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select Category</p>
         <Dropdown
           multi
           sectionStyle="my-section-style"
@@ -175,7 +175,7 @@ function CourseCategoryContent() {
           options={unMapCategoryOptions}
         />
 
-        <p className={pStyle}>Select SubCategory</p>
+        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select SubCategory</p>
         <Dropdown
           multi
           sectionStyle="my-section-style"

@@ -131,7 +131,7 @@ const AdminCategory = () => {
       const checkDuplicates = categories.find(
         (item) => item.title.toLowerCase() === values.categoryName.toLowerCase()
       );
-      if (checkDuplicates.title) {
+      if (checkDuplicates?.title) {
         setFieldError("categoryName", "Category Name already exists");
         return;
       }
@@ -246,7 +246,7 @@ const AdminCategory = () => {
     return (
       <form onSubmit={formikDetails.handleSubmit}>
         <div className="pb-[2.222vh]">
-          <p className={pStyle}>Category name</p>
+          <p className={pStyle}><span class="text-red-500 pr-1">*</span>Category name</p>
           <Input
             onChange={formikDetails.handleChange}
             onBlur={formikDetails.handleBlur}
@@ -261,7 +261,7 @@ const AdminCategory = () => {
             </div>
           ) : null}
         </div>
-        <p className={pStyle}>Category Icon Dark</p>
+        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Category Icon Dark</p>
         <div className="flex gap-4 items-center">
           <div className="w-[50%] break-all">
             <input
@@ -308,7 +308,7 @@ const AdminCategory = () => {
           </div>
         </div>
 
-        <p className={pStyle}>Category Icon Lite</p>
+        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Category Icon Lite</p>
         <div className="flex gap-4 items-center">
           <div className="w-[50%] break-all">
             <input
@@ -600,7 +600,7 @@ const AdminCategory = () => {
         </Dialog>
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw] overflow-x-hidden">
-        <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[73.389vh] ">
+        <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[73.389vh]  overflow-y-hidden">
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}

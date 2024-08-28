@@ -163,8 +163,9 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
   };
 
   const validationSchema = Yup.object({
-    category: !courseEditData && Yup.string().required("Course is required"),
-    // subCourse: Yup.string().required("Sub Course is required"),
+    category: !courseEditData && Yup.string().required("category is required"),
+      // subCourse: Yup.string().required("Sub Course is required"),
+    subCategory:!isSubCourseDisabled && Yup.string().required("Sub Category is required"),
     courseName: Yup.string().required("Course Name is required"),
     courseDesc: Yup.string().required("Course Description is required"),
     courseSummary: Yup.string().required("Course Summary is required"),
@@ -348,6 +349,17 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
   const toggleAccordion = (index) => {
     setExpandedIndex((prevIndex) => (prevIndex === index ? null : index));
   };
+  const validateFiles = () => {
+    const newErrorMessage = {
+      courseIcon: selectedFile.courseIcon ? "" : "Please upload a valid image file.",
+      homePageImage: selectedFile.homePageImage ? "" : "Please upload a valid image file.",
+      courseCardImage: selectedFile.courseCardImage ? "" : "Please upload a valid image file.",
+    };
+
+    setErrorMessage(newErrorMessage);
+
+    return !Object.values(newErrorMessage).some((message) => message);
+  };
   const formikDetails = useFormik({
     initialValues,
     validationSchema,
@@ -506,9 +518,15 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
     setSelectedClassMode([]);
     setErrorMessage({ courseIcon: "", homePageImage: "", courseCardImage: "" });
   };
+  useEffect(() => {
+    if (formikDetails.values.category) {
+      formikDetails.setFieldTouched("category", true);
+      formikDetails.validateField("category");
+    }
+  }, [formikDetails.values.category]);
   return (
     <DialogContent>
-      <form onSubmit={formikDetails.handleSubmit}>
+      <form onSubmit={(e)=>{formikDetails.handleSubmit(e);validateFiles();}}>
         <h1 className="font-bold pb-[2.222vh] text-[1.25vw] text-[#212121]">
           Add new Course
         </h1>
@@ -522,7 +540,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}>Course name</p>
+                <p  className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course name</p>
                 <Input
                   placeholder="Enter course name"
                   inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]"
@@ -545,9 +563,9 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               <div className="w-full h-full">
                 <div className="pt-[2.222vh]">
                   <div>
-                    <p className={tagHeadStyle}>Select Category</p>
+                    <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Select Category</p>
                     <Dropdown
-                      placeholder="Enter course name"
+                      placeholder="Enter category name"
                       inputStyle="!w-[23.438vw] h-[2.813vw] text-[12px]  text-gray-400"
                       iconStyle="w-[10%]"
                       name="category"
@@ -576,6 +594,12 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                       options={subCourseOptions}
                       disabled={isSubCourseDisabled}
                     />
+                     {formikDetails.touched.subCategory &&
+                    formikDetails.errors.subCategory ? (
+                      <div className="text-red-500 text-[12px]">
+                        {formikDetails.errors.subCategory}
+                      </div>
+                    ) : null}
                   </div>
                 </div>
               </div>
@@ -586,7 +610,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}>Course Description</p>
+                <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course Description</p>
                 <Input
                   name="courseDesc"
                   placeholder="Enter course name"
@@ -607,7 +631,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}>Course Summary</p>
+                <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course Summary</p>
                 <Input
                   name="courseSummary"
                   placeholder="Enter course name"
@@ -631,7 +655,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-[50%] h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}>About Course</p>
+                <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>About Course</p>
                 <ReactQuill
                   value={formikDetails.values.aboutCourse}
                   onChange={(value) =>
@@ -650,7 +674,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-[50%] h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}>Course highlights</p>
+                <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course highlights</p>
                 <ReactQuill
                   value={formikDetails.values.courseHeighlights}
                   onChange={(value) =>
@@ -671,7 +695,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}>Organigation</p>
+                <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Organigation</p>
                 <Dropdown
                   placeholder="Enter course name"
                   inputStyle=" h-[2.813vw] text-[12px]  text-gray-400"
@@ -693,7 +717,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}>Mode of class</p>
+                <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Mode of class</p>
                 <Dropdown
                   placeholder="Enter course name"
                   inputStyle=" h-[2.813vw]  text-[12px]  text-gray-400"
@@ -724,7 +748,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
         </div>
         <div className="flex justify-between items-center pb-[2.222vh] pt-[2.222vh]">
           <div className="w-[23.438vw]">
-            <p className={tagHeadStyle}>Course Icon</p>
+            <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course Icon</p>
             <input
               type="file"
               accept="image/*"
@@ -759,7 +783,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           </div>
 
           <div className="w-[23.438vw]">
-            <p className={tagHeadStyle}>Home Page Image</p>
+            <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Home Page Image</p>
             <input
               type="file"
               accept="image/*"
@@ -797,7 +821,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           </div>
 
           <div className="w-[23.438vw]">
-            <p className={tagHeadStyle}>Course Card Image</p>
+            <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course Card Image</p>
             <input
               type="file"
               accept="image/*"
@@ -835,7 +859,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           </div>
         </div>
 
-        <p className="pb-[1.111vh] font-bold text-[1.094vw]">FAQ</p>
+        <p className="pb-[1.111vh] font-bold text-[1.094vw]"><span class="text-red-500 pr-1">*</span>FAQ</p>
         <div className="  flex gap-8">
           <div className="flex flex-col w-[40%] bg-[#FFF7F1] p-4 rounded-lg">
             <div className="mb-[2.222vh]">
