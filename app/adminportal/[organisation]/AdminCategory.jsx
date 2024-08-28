@@ -291,7 +291,7 @@ const AdminCategory = () => {
         </div>
         <p className={pStyle}>Category Icon Dark</p>
         <div className="flex gap-4 items-center">
-          <div className="w-[50%]">
+          <div className="w-[50%] break-all">
             <input
               type="file"
               accept="image/*"
@@ -318,10 +318,11 @@ const AdminCategory = () => {
           </div>
           <div className="w-[50%]">
             {previewURL.categoryIconDark && (
-              <div className=" flex justify-center gap-4">
+              <div className=" flex justify-center gap-[0.6vw] h-[24vh] w-[14vw]">
                 <img
                   src={previewURL.categoryIconDark}
                   alt="Course Icon Preview"
+                  className=" max-w-[12vw] w-[10vw] object-contain "
                 />
                 <button
                   type="button"
@@ -337,7 +338,7 @@ const AdminCategory = () => {
 
         <p className={pStyle}>Category Icon Lite</p>
         <div className="flex gap-4 items-center">
-          <div className="w-[50%]">
+          <div className="w-[50%] break-all">
             <input
               type="file"
               accept="image/*"
@@ -364,9 +365,9 @@ const AdminCategory = () => {
           </div>
           <div className="w-[50%] ">
             {previewURL.categoryIconLite && (
-              <div className=" flex justify-center gap-4">
+              <div className=" flex justify-center gap-[0.6vw] h-[24vh] w-[14vw]">
                 <img
-                  className="bg-orange-300"
+                  className=" max-w-[12vw] w-[10vw] object-contain "
                   src={previewURL.categoryIconLite}
                   alt="Course Icon Preview"
                 />
@@ -697,7 +698,7 @@ const AdminCategory = () => {
             setDeleteCategory={setWarningCategory}
             btnText="Close"
             contentText="You can’t delete the Category until there is a course in it"
-            deleteFunction={handledeleteSelectedCategory}
+            deleteFunction={()=>{setWarningCategory(false)}}
           />
         </AlertDialog>
       </div>
