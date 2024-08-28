@@ -540,7 +540,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p onClick={()=>{console.log({formikDetails})}} className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course name</p>
+                <p  className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course name</p>
                 <Input
                   placeholder="Enter course name"
                   inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]"
