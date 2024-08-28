@@ -85,37 +85,67 @@ const PlacementSideBar = ({
     },
   ];
   const searchParams = useSearchParams(); // Initialize searchParams
-const pathname=usePathname()
-const params = pathname.split('/').pop();
+  const pathname = usePathname();
+  const params = pathname.split("/").pop();
+  // const getSideBarTitleFromTimePeriod = (timePeriod) => {
+  //   if (!timePeriod) return "Recent Placements";
+
+  //   const dateRange = timePeriod.split(",").map((date) => new Date(date));
+  //   const differenceInDays =
+  //     (dateRange[1] - dateRange[0]) / (1000 * 60 * 60 * 24);
+  //   switch (differenceInDays) {
+  //     case 7:
+  //       return "Last week";
+  //     case 31:
+  //       return "Last month";
+  //     case 30:
+  //       return "Last month";
+  //     case 91:
+  //       return "Last 3 months";
+  //     case 92:
+  //       return "Last 3 months";
+  //     case 181:
+  //       return "Last 6 months";
+  //     case 182:
+  //       return "Last 6 months";
+  //     default:
+  //       return "Recent Placements";
+  //   }
+  // };
   const getSideBarTitleFromTimePeriod = (timePeriod) => {
     if (!timePeriod) return "Recent Placements";
-
-    const dateRange = timePeriod.split(',').map(date => new Date(date));
-    const differenceInDays = (dateRange[1] - dateRange[0]) / (1000 * 60 * 60 * 24);
-
-    switch (differenceInDays) {
-      case 7:
-        return "Last week";
-      case 30:
-        return "Last month";
-      case 91:
-        return "Last 3 months";
-      case 182:
-        return "Last 6 months";
-      default:
-        return "Recent Placements";
-    }
-  };
-  const degree = searchParams.get('degree');
-  const stream = searchParams.get('stream');
-  const yop = searchParams.get('yop');
-  useEffect(() => {
-    const timePeriod = searchParams.get('timePeriod');
+  
+    const dateRange = timePeriod.split(",").map((date) => new Date(date));
+    const differenceInDays = Math.round(
+      (dateRange[1] - dateRange[0]) / (1000 * 60 * 60 * 24)
+    );
     
-   
-    timePeriod && !degree && setSideBarBtn(getSideBarTitleFromTimePeriod(timePeriod));
-   ( params==="placements" && !timePeriod && !degree && !stream && !yop) && setSideBarBtn("Recent Placements")
-  }, [searchParams,degree,stream,yop]);
+    
+  
+    if (differenceInDays <= 7) return "Last week";
+    if (differenceInDays <= 31) return "Last month";
+    if (differenceInDays <= 92) return "Last 3 months";
+    if (differenceInDays <= 182) return "Last 6 months";
+  
+    return "Recent Placements";
+  };
+  
+  const degree = searchParams.get("degree");
+  const stream = searchParams.get("stream");
+  const yop = searchParams.get("yop");
+  useEffect(() => {
+    const timePeriod = searchParams.get("timePeriod");
+
+    timePeriod &&
+      !degree &&
+      setSideBarBtn(getSideBarTitleFromTimePeriod(timePeriod));
+    params === "placements" &&
+      !timePeriod &&
+      !degree &&
+      !stream &&
+      !yop &&
+      setSideBarBtn("Recent Placements");
+  }, [searchParams, degree, stream, yop]);
   useEffect(() => {
     if (counsellorFilterResponse) {
       if (page > 0) {
@@ -146,7 +176,7 @@ const params = pathname.split('/').pop();
   };
   useEffect(() => {
     if (isFetchData && !counsellorFilterResponse?.response?.candidates?.last) {
-      setLoaderKey(prevKey => prevKey + 1);
+      setLoaderKey((prevKey) => prevKey + 1);
     }
   }, [isFetchData, counsellorFilterResponse]);
   return (
@@ -232,9 +262,9 @@ const params = pathname.split('/').pop();
             <PlacementContent counsellorFilterResponse={accumulatedData} />
 
             {isFetchData &&
-        !counsellorFilterResponse?.response?.candidates?.last && (
-          <LineLoader key={loaderKey} />
-        )}
+              !counsellorFilterResponse?.response?.candidates?.last && (
+                <LineLoader key={loaderKey} />
+              )}
             {counsellorFilterResponse?.response?.candidates?.empty && (
               <div className="w-full h-full flex justify-center items-center">
                 <NoContent />
