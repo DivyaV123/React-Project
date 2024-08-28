@@ -391,111 +391,111 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, branchEditData, }) {
                         </div>
                     </div>
                 </div>
-                <div className="w-full flex gap-[18vw]  pb-[2.222vh]  h-full">
-                    <div>
-                        <p className={commonFieldClass}>Phone</p>
-                        {formikDetails.values.phone.map((phone, index) => (
-                            <div key={index} className="flex  pb-3 items-center gap-2">
-                                <PhoneInput
-                                    inputStyle={{ width: "23.438vw", height: "2.813vw", fontSize: "12px", padding: "12px", border: "1px solid #EEEEEE", borderRadius: "4px" }}
-                                    type="text"
-                                    searchPlaceholder="Search..."
-                                    searchNotFound="No Countries Found"
-                                    specialLabel=""
-                                    autoFormat={false}
-                                    enableAreaCodeStretch
-                                    country={"in"}
-                                    name={`phone[${index}]`}
-                                    id={`phone-${index}`}
-                                    value={phone}
-                                    onChange={(e, country) => {
-                                        const updatedPhones = [...formikDetails.values.phone];
-                                        updatedPhones[index] = e;
-                                        formikDetails.setFieldValue("phone", updatedPhones);
-                                        setPhoneValue(e);
-                                        setCountryCode(country.dialCode);
-                                    }}
-                                    enableSearch
-                                    international
-                                    autoComplete="off"
-                                    onBlur={() => handleOnBlur(`phone[${index}]`)}
-                                    countryCodeEditable={false}
-                                />
-                                <Button
-                                    title='Remove'
-                                    type="button"
-                                    className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-red-500'
-                                    onClick={() => {
-                                        const updatedPhones = [...formikDetails.values.phone];
-                                        updatedPhones.splice(index, 1);
-                                        formikDetails.setFieldValue("phone", updatedPhones);
-                                    }}
-                                />
-                            </div>
-                        ))}
-                        <Button
-                            title='+ Phone'
-                            type="button"
-                            className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-green-500'
-                            onClick={() =>
-                                formikDetails.setFieldValue("phone", [
-                                    ...formikDetails.values.phone,
-                                    ""
-                                ])
-                            }
-                        />
-
-                        {formikDetails.errors.phone &&
-                            formikDetails.touched.phone && (
-                                <div className="text-red-500 text-[12px]">
-                                    {formikDetails.errors.phone}
+                    <div className="w-full flex gap-[18vw]  pb-[2.222vh]  h-full">
+                        <div>
+                            <p className={commonFieldClass}>Phone</p>
+                            {formikDetails.values.phone.map((phone, index) => (
+                                <div key={index} className="flex  pb-3 items-center gap-2">
+                                    <PhoneInput
+                                        inputStyle={{ width: "23.438vw", height: "2.813vw", fontSize: "12px", padding: "12px", border: "1px solid #EEEEEE", borderRadius: "4px" }}
+                                        type="text"
+                                        searchPlaceholder="Search..."
+                                        searchNotFound="No Countries Found"
+                                        specialLabel=""
+                                        autoFormat={false}
+                                        enableAreaCodeStretch
+                                        country={"in"}
+                                        name={`phone[${index}]`}
+                                        id={`phone-${index}`}
+                                        value={phone}
+                                        onChange={(e, country) => {
+                                            const updatedPhones = [...formikDetails.values.phone];
+                                            updatedPhones[index] = e;
+                                            formikDetails.setFieldValue("phone", updatedPhones);
+                                            setPhoneValue(e);
+                                            setCountryCode(country.dialCode);
+                                        }}
+                                        enableSearch
+                                        international
+                                        autoComplete="off"
+                                        onBlur={() => handleOnBlur(`phone[${index}]`)}
+                                        countryCodeEditable={false}
+                                    />
+                                    <Button
+                                        title='Remove'
+                                        type="button"
+                                        className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-red-500'
+                                        onClick={() => {
+                                            const updatedPhones = [...formikDetails.values.phone];
+                                            updatedPhones.splice(index, 1);
+                                            formikDetails.setFieldValue("phone", updatedPhones);
+                                        }}
+                                    />
                                 </div>
-                            )}
-                    </div>
-                    <div className=''>
-                        <p>Gmail</p>
-                        {formikDetails.values.gmail.map((gmail, index) => (
-                            <div key={index} className="flex justify-between pb-3 items-center gap-2">
-                                <Input
-                                    inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]"
-                                    name={`gmail[${index}]`}
-                                    value={gmail}
-                                    handleBlur={formikDetails.handleBlur}
-                                    onChange={formikDetails.handleChange}
-                                    placeholder="Please add gmail"
-                                />
-                                <Button
-                                    title='Remove'
-                                    type="button"
-                                    className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-red-500'
-                                    onClick={() => {
-                                        const updatedGmails = [...formikDetails.values.gmail];
-                                        updatedGmails.splice(index, 1);
-                                        formikDetails.setFieldValue("gmail", updatedGmails);
+                            ))}
+                            <Button
+                                title='+ Phone'
+                                type="button"
+                                className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-green-500'
+                                onClick={() =>
+                                    formikDetails.setFieldValue("phone", [
+                                        ...formikDetails.values.phone,
+                                        ""
+                                    ])
+                                }
+                            />
 
-                                    }}
-                                />
-                            </div>
-                        ))}
-                        <Button
-                            title='+ Gmail'
-                            type="button"
-                            className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-green-500'
-                            onClick={() =>
-                                formikDetails.setFieldValue("gmail", [
-                                    ...formikDetails.values.gmail,
-                                    ""
-                                ])
-                            }
-                        />
-                        {formikDetails.touched.gmail &&
-                            formikDetails.errors.gmail ? (
-                            <div className="text-red-500 text-[12px]">
-                                {formikDetails.errors.gmail}
-                            </div>
-                        ) : null}
+                            {formikDetails.errors.phone &&
+                                formikDetails.touched.phone && (
+                                    <div className="text-red-500 text-[12px]">
+                                        {formikDetails.errors.phone}
+                                    </div>
+                                )}
+                        </div>
+                        <div className=''>
+                            <p>Gmail</p>
+                            {formikDetails.values.gmail.map((gmail, index) => (
+                                <div key={index} className="flex justify-between pb-3 items-center gap-2">
+                                    <Input
+                                        inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]"
+                                        name={`gmail[${index}]`}
+                                        value={gmail}
+                                        handleBlur={formikDetails.handleBlur}
+                                        onChange={formikDetails.handleChange}
+                                        placeholder="Please add gmail"
+                                    />
+                                    <Button
+                                        title='Remove'
+                                        type="button"
+                                        className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-red-500'
+                                        onClick={() => {
+                                            const updatedGmails = [...formikDetails.values.gmail];
+                                            updatedGmails.splice(index, 1);
+                                            formikDetails.setFieldValue("gmail", updatedGmails);
+
+                                        }}
+                                    />
+                                </div>
+                            ))}
+                            <Button
+                                title='+ Gmail'
+                                type="button"
+                                className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-green-500'
+                                onClick={() =>
+                                    formikDetails.setFieldValue("gmail", [
+                                        ...formikDetails.values.gmail,
+                                        ""
+                                    ])
+                                }
+                            />
+                            {formikDetails.touched.gmail &&
+                                formikDetails.errors.gmail ? (
+                                <div className="text-red-500 text-[12px]">
+                                    {formikDetails.errors.gmail}
+                                </div>
+                            ) : null}
+                        </div>
                     </div>
-                </div>
                 <p className='text-[16px] font-bold'>Branch Adress</p>
                 <div className="flex justify-between gap-[6.25rem] ">
                     <div className="w-[50%] h-full">
