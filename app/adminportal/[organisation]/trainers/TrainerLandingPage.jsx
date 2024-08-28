@@ -157,8 +157,6 @@ function TrainerLandingPage() {
                         phoneNumber: phoneNumber
                     });
                 });
-
-                console.log(phone, "phone array");
             }
 
             let payload = {
@@ -168,7 +166,6 @@ function TrainerLandingPage() {
                 branches: selectedBranches.selectedId,
                 subjects: selectedSubjects.selectedId
             }
-            console.log(payload, "payload")
             try {
                 const resp = await addTrainer({ bodyData: payload }).unwrap();
             } catch (err) {
@@ -202,7 +199,6 @@ function TrainerLandingPage() {
             });
             formikDetails.setFieldValue("subject", selectedValues)
         }
-        console.log(event, type, "event, typeevent, type");
     };
 
     const mapSubjectForm = () => {
@@ -243,7 +239,6 @@ function TrainerLandingPage() {
                     ) : null}
                 </div>
                 <div className='pb-2'>
-                    {console.log("subjectOptionssubjectOptions")}
                     <label className={pStyle} htmlFor="subject">Subject</label>
                     <Dropdown
                         placeholder="Select subject"
