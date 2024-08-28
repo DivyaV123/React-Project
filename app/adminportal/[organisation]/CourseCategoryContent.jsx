@@ -394,7 +394,7 @@ function CourseCategoryContent() {
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
           <Table>
-            <TableHeader className="z-1">
+            <TableHeader className="sticky top-0 bg-white z-10">
               <TableRow>
                 {tableHeaders.map((header, index) => (
                   <TableHead key={index} className={tblTextClass}>
@@ -405,7 +405,7 @@ function CourseCategoryContent() {
             </TableHeader>
             <TableBody>
               {courseData?.data?.map((ele, index) => (
-                <TableRow key={index}>
+                <TableRow key={index} className="group">
                   <TableCell className={tblTextClass} title={ele.course_name}>
                     <div className="flex space-x-2">
                       <Checkbox
@@ -494,6 +494,7 @@ function CourseCategoryContent() {
                     {ele.subjectCount}
                   </TableCell>
                   <TableCell className={tblTextClass}>
+                  <div className="invisible group-hover:visible flex">
                     <Dialog>
                       <DialogTrigger asChild>
                         <button
@@ -513,6 +514,7 @@ function CourseCategoryContent() {
                     >
                       Delete
                     </button>
+                    </div>
                   </TableCell>
                 </TableRow>
               ))}
