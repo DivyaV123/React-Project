@@ -156,7 +156,7 @@ const AdminCategory = () => {
         setDialogOpen(false);
         dialogCloseClick();
       } catch {
-        console.error(categoryError.data.data);
+        
         if (editData) {
           setCreateCategory(false);
         }
@@ -229,11 +229,7 @@ const AdminCategory = () => {
         categoryIconDark: "",
         categoryIconLite: "",
       });
-      setErrorCategoryName(
-        categoryError?.data?.data?.includes("already exists")
-          ? "Category Name Already Exists"
-          : ""
-      );
+      
     }
   }, [editData]);
   const handleEditClick = (category) => {
