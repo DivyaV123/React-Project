@@ -74,6 +74,7 @@ export const API_ENDPOINTS = {
   GET_ALL_CITIES: (organizationType) => `/api/v1/cities?organization=${organizationType}`,
   DELETE_CITY: (cityId) => `api/v1/cities?cityId=${cityId}`,
   GET_ALL_BATCHES: (organizationType) => `/api/v1/batches/getAll/form?organization=${organizationType}`,
+  CITY_WEIGHTAGE: (countryId,cityId, weightage, organisation) => `/api/v1/weightage/city?countryId=${countryId}&cityId=${cityId}&weightage=${weightage}&organization=${organisation}`,
   //trainers
   GET_ALLTRAINERS: `api/v1/users/trainers/getall`,
   ADD_TRAINERS: `api/v1/users/saveTrainer`
