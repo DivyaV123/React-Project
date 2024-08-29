@@ -1,5 +1,6 @@
 export const getBaseUrl = () => process.env.NEXT_PUBLIC_PROD2_URL;
 export const getPlacementUrl = () => process.env.NEXT_PUBLIC_PROD_URL;
+export const getStatisticsUrl = () => process.env.NEXT_PUBLIC_PLACEMENT_URL;
 export const API_ENDPOINTS = {
   LOGIN: 'api/v1/users/login',
   GET_ALL_CATEGORIES: 'api/v1/categories/getAllCategories',
