@@ -16,20 +16,21 @@ const StateFilter = () => {
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
   const { data: statesData, error, isLoading } = useGetAllStatesQuery();
-  const statesList = statesData?.response
-    .filter((state) => state !== "")
-    .filter((states) =>
-      states.toLowerCase().includes(stateSearchQuery.toLowerCase())
-    );
-  const renderCheckbox = (item, index) => (
+  const getStatesData = statesData?.results?.filter(
+    (state) => state.name !== ""
+  ); 
+  const statesList = getStatesData?.filter((state) =>
+    state.name.toLowerCase().includes(stateSearchQuery.toLowerCase())
+  );
+  const renderCheckbox = (item) => (
     <Checkbox
-      key={index}
-      id={item}
-      label={item}
-      checked={stateItems.includes(item)}
+      key={item.id}
+      id={item.id}
+      label={item.name}
+      checked={stateItems.includes(item.id)}
       onChange={() =>
         handleCounsellorCommonFilter(
-          item,
+          item.id,
           stateItems,
           setStateItems,
           statesData,
@@ -68,7 +69,7 @@ const StateFilter = () => {
             </div>
             <ExpandableList
               items={statesList}
-              renderItem={(item, index) => renderCheckbox(item, index)}
+              renderItem={(item) => renderCheckbox(item)}
             />
           </>
         )}

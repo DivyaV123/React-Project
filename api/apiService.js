@@ -29,9 +29,9 @@ export const API_ENDPOINTS = {
   GET_ONLINE_COURSES: 'api/v1/categories/onlineCourses',
   GET_ALL_FOR_ADMIN_PORTAL: 'api/v1/courses/getall',
   //placements
+  GET_STATES:(id)=> `placementsstatelist/?id=${id ? id : ""}`,
+  GET_COLLEGES:(id,district_id,state_id,university_id)=> `placementcollegelist/?${id ? id : ""}&district_id=${district_id ? district_id : ""}&state_id=${state_id ? state_id : ""}&university_id=${university_id ? university_id : ""}`,
   GET_CITIES: (state_id) => `/placementscitylist/?id&state_id=${state_id ? state_id : ''}`,
-  GET_STATES: 'candidate/states',
-  GET_COLLEGES: `candidate/colleges`,
   GET_UNIVERSITIES: 'candidate/universities',
   GET_DEGREE:(type_name,id,name,qualification_type_id)=> `placementsdegree/?type_name=${type_name ? type_name : ''}&id=${id ? id : ''}&name=${name ? name : ''}&qualification_type_id=${qualification_type_id ? qualification_type_id : ''}`,
   GET_STREAM:(type_id,id,degree_id)=>`placementsstream/?type_id=${type_id ? type_id : ''}&id=${id ? id:''}&name=${degree_id ? degree_id : ''}`,

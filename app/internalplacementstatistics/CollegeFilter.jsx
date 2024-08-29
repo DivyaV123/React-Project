@@ -19,24 +19,23 @@ const CollegeFilter = () => {
 
   const { data: collegeData, refetch } =
     useGetAllCollegesQuery(universitySelected);
-  const collegeList = collegeData?.response
-    .filter((college) => college !== "")
-    .filter((college) =>
-      college.toLowerCase().includes(collegeSearchQuery.toLowerCase())
+    const getCollegeData = collegeData?.results?.filter((college) => college !== "")
+  const collegeList = getCollegeData?.filter((college) =>
+      college.name.toLowerCase().includes(collegeSearchQuery.toLowerCase())
     );
   useEffect(() => {
     refetch();
   }, [universitySelected]);
 
-  const renderCheckbox = (item, index) => (
+  const renderCheckbox = (item) => (
     <Checkbox
-      key={index}
-      id={item}
-      label={item}
-      checked={selectedCollege.includes(item)}
+      key={item.id}
+      id={item.id}
+      label={item.name}
+      checked={selectedCollege.includes(item.id)}
       onChange={() =>
         handleCounsellorCommonFilter(
-          item,
+          item.id,
           selectedCollege,
           setSelectedCollege,
           collegeData,
@@ -74,7 +73,7 @@ const CollegeFilter = () => {
           </div>
           <ExpandableList
             items={collegeList}
-            renderItem={(item, index) => renderCheckbox(item, index)}
+            renderItem={(item) => renderCheckbox(item)}
           />
         </>
       )}
