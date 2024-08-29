@@ -21,13 +21,31 @@ import { useGetAllCitiesForFormQuery } from "@/redux/queries/getCitiesApi";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCityDeleteMutation } from "@/redux/queries/deleteCityApi";
+import { useCityWeightageMutation } from "@/redux/queries/cityweightageApi";
+import {
+  DndContext,
+  closestCenter,
+  KeyboardSensor,
+  PointerSensor,
+  useSensor,
+  useSensors,
+} from "@dnd-kit/core";
+import {
+  SortableContext,
+  sortableKeyboardCoordinates,
+  verticalListSortingStrategy,
+  arrayMove,
+  useSortable,
+} from "@dnd-kit/sortable";
+import { CSS } from "@dnd-kit/utilities";
 const CityWeightageContent = () => {
   const [cityEditDialog, setCityEditDialog] = useState(false);
-  const [selectedCityId, setSelectedCityId] = useState(null)
+  const [selectedCityId, setSelectedCityId] = useState(null);
   const [deleteCity, setdeleteCity] = useState(false);
   const [cityAddDialog, setCityAddDialog] = useState(false);
   const [activeCountry, setActiveCountry] = useState("India");
   const [selectedCountry, setSelectedCountry] = useState("");
+
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -35,22 +53,21 @@ const CityWeightageContent = () => {
     instituteParam === "Qspiders"
       ? "QSP"
       : instituteParam === "Jspiders"
-        ? "JSP"
-        : instituteParam === "Pyspiders"
-          ? "PYSP"
-          : instituteParam === "Prospiders"
-            ? "PROSP"
-            : "QSP";
+      ? "JSP"
+      : instituteParam === "Pyspiders"
+      ? "PYSP"
+      : instituteParam === "Prospiders"
+      ? "PROSP"
+      : "QSP";
   const [
     deleteSelectedCity,
-    {
-      data: CityDeleteResp,
-      error: CityDeleteError,
-      isLoading: CityDeleteLoad,
-    },
+    { data: CityDeleteResp, error: CityDeleteError, isLoading: CityDeleteLoad },
   ] = useCityDeleteMutation();
   const [addCity] = useCitiesAdderMutation();
-  const { data: cityData, refetch: cityRefetch } = useGetAllCitiesForFormQuery({ organizationType: initialOrgType });
+  const [editCityWeightage] = useCityWeightageMutation();
+  const { data: cityData, refetch: cityRefetch } = useGetAllCitiesForFormQuery({
+    organizationType: initialOrgType,
+  });
   useEffect(() => {
     cityRefetch();
   }, [instituteParam]);
@@ -61,7 +78,8 @@ const CityWeightageContent = () => {
       value: item.countryName,
     });
   });
-  const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
+  const tblTextClass =
+    "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
   const pStyle = " text-[1.094vw] font-medium pb-[1.389vh]";
   const deleteICon = "/illustrate_delete.svg";
   const tableHeaders = ["CITY NAMES", "BRANCHES", "ACTIONS"];
@@ -188,7 +206,9 @@ const CityWeightageContent = () => {
   };
   const handledeleteSelectedCity = async () => {
     try {
-      const response = await deleteSelectedCity({ cityId: selectedCityId }).unwrap();
+      const response = await deleteSelectedCity({
+        cityId: selectedCityId,
+      }).unwrap();
       setdeleteCity(false);
       cityRefetch();
     } catch (err) {
@@ -324,9 +344,115 @@ const CityWeightageContent = () => {
     setCityAddDialog(false);
     formikDetails.setFieldValue("cityName", ele.cityName);
     formikDetails.setFieldValue("stateName", ele.cityName);
+  };
+  const [cityList, setCityList] = useState(getCityData?.cities || []);
 
-  }
+  useEffect(() => {
+    setCityList(getCityData?.cities || []);
+  }, [getCityData]);
 
+  const sensors = useSensors(
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 5,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    })
+  );
+  const SortableItem = (props) => {
+    const { attributes, listeners, setNodeRef, transform, transition } =
+      useSortable({ id: props.id });
+
+    const style = {
+      transform: CSS.Transform.toString(transform),
+      transition,
+    };
+
+    return (
+      <TableRow
+        ref={setNodeRef}
+        style={style}
+        {...attributes}
+        {...listeners}
+        className="group"
+      >
+        {props.children}
+      </TableRow>
+    );
+  };
+  const handleDragEnd = async (event) => {
+    const { active, over } = event;
+
+    if (active.id !== over.id) {
+      const oldIndex = cityList.findIndex(
+        (city) => city.cityId === parseInt(active.id)
+      );
+      const newIndex = cityList.findIndex(
+        (city) => city.cityId === parseInt(over.id)
+      );
+      if (oldIndex !== -1 && newIndex !== -1) {
+        const updatedCityList = arrayMove(cityList, oldIndex, newIndex);
+        setCityList(updatedCityList);
+
+        try {
+          const payload = {
+            countryId: getCityData.countryId,
+            cityId: parseInt(active.id),
+            weightage: newIndex + 1,
+            organisation: initialOrgType,
+          };
+
+          const response = await editCityWeightage(payload).unwrap();
+          if (response.statusCode === 200) {
+            cityRefetch();
+          }
+        } catch (error) {
+          console.error("Error updating city weightage:", error);
+        }
+      }
+    }
+  };
+  const renderCells = (city) => [
+    {
+      content: city.cityName,
+      className: "text-gray-600 font-medium text-xs cursor-pointer",
+    },
+    {
+      content: city.branchCount,
+      className: "text-gray-600 font-medium text-xs",
+    },
+
+    {
+      content: (
+        <>
+          <div className="invisible group-hover:visible flex">
+            <Dialog>
+              <DialogTrigger>
+                <button
+                  onClick={() => handleSubEditClick(city, getCityData)}
+                  className="mr-2 text-blue-500 hover:underline"
+                >
+                  Edit
+                </button>
+              </DialogTrigger>
+            </Dialog>
+            <button
+              onClick={() => {
+                setdeleteCity(true);
+                setSelectedCityId(city.cityId);
+              }}
+              className="text-red-500 hover:underline"
+            >
+              Delete
+            </button>
+          </div>
+        </>
+      ),
+      className: "text-gray-600 font-medium text-xs",
+    },
+  ];
   return (
     <>
       <Dialog>
@@ -371,10 +497,11 @@ const CityWeightageContent = () => {
               <div key={index} className="flex justify-between items-center  ">
                 <button
                   onClick={() => handleCountryClick(ele.countryName)}
-                  className={`text-[#212121] py-[1.389vh] border-b-2 border-transparent text-[1.094vw] font-medium ${activeCountry === ele.countryName
-                    ? " text-[#FF7B1B] font-bold border-b-2 border-[#FF7B1B]"
-                    : ""
-                    }`}
+                  className={`text-[#212121] py-[1.389vh] border-b-2 border-transparent text-[1.094vw] font-medium ${
+                    activeCountry === ele.countryName
+                      ? " text-[#FF7B1B] font-bold border-b-2 border-[#FF7B1B]"
+                      : ""
+                  }`}
                 >
                   {ele.countryName}
                 </button>
@@ -391,50 +518,40 @@ const CityWeightageContent = () => {
                 ))}
               </TableRow>
             </TableHeader>
-            <TableBody>
-              {getCityData?.cities.map((ele, index) => (
-                <TableRow key={index}>
-                  <TableCell className={tblTextClass} title={ele.cityName}>
-                    {ele.cityName}
-                  </TableCell>
-                  <TableCell className={tblTextClass} title={ele.branchCount}>
-                    {ele.branchCount}
-                  </TableCell>
-                  <TableCell className={tblTextClass}>
-                    <Dialog>
-                      <DialogTrigger>
-                        <button
-                          onClick={() => handleSubEditClick(ele, getCityData)}
-                          className="mr-2 text-blue-500 hover:underline"
-                        >
-                          Edit
-                        </button>
-                      </DialogTrigger>
-                      {cityEditDialog && (
-                        <CommonDialog
-                          header="Edit City"
-                          footerBtnTitle="Edit City"
-                          formfn={dialogForm}
-                          dialogCloseClick={dialogCloseClick}
-                          footerBtnClick={footerBtnClick}
-                        />
-                      )}
-                    </Dialog>
-                    <button
-                      onClick={() => {
-                        setdeleteCity(true);
-                        setSelectedCityId(ele.cityId)
-                      }}
-                      className="text-red-500 hover:underline"
-                    >
-                      Delete
-                    </button>
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
+
+            <DndContext
+              sensors={sensors}
+              collisionDetection={closestCenter}
+              onDragEnd={handleDragEnd}
+            >
+              <SortableContext
+                items={cityList.map((city) => city.cityId)}
+                strategy={verticalListSortingStrategy}
+              >
+                <TableBody>
+                  {cityList.map((city) => (
+                    <SortableItem key={city.cityId} id={city.cityId}>
+                      {renderCells(city).map((cell, index) => (
+                        <TableCell key={index} className={cell.className}>
+                          {cell.content}
+                        </TableCell>
+                      ))}
+                    </SortableItem>
+                  ))}
+                </TableBody>
+              </SortableContext>
+            </DndContext>
           </Table>
         </div>
+        <Dialog open={cityEditDialog} onOpenChange={setCityEditDialog}>
+          <CommonDialog
+            header="Edit City"
+            footerBtnTitle="Edit City"
+            formfn={dialogForm}
+            dialogCloseClick={dialogCloseClick}
+            footerBtnClick={footerBtnClick}
+          />
+        </Dialog>
         <AlertDialog
           open={deleteCity}
           onOpenChange={(open) => setdeleteCity(open)}
@@ -450,7 +567,6 @@ const CityWeightageContent = () => {
         </AlertDialog>
       </div>
     </>
-
   );
 };
 
