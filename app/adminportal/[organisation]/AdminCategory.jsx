@@ -41,7 +41,8 @@ import { useCategoryAdderMutation } from "@/redux/queries/addCategoryApi";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useCategoryDeleteMutation } from "@/redux/queries/deleteCategoryApi";
 import { useCategoryEditDataMutation } from "@/redux/queries/editCategoryApi";
-
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 const AdminCategory = () => {
   const [categories, setCategories] = useState([]);
   const [deleteCategory, setDeleteCategory] = useState(false);
@@ -56,6 +57,7 @@ const AdminCategory = () => {
   const [instituteParam] = getParams[0].split(",").slice(1);
   const [getCategoryName, setGetCategoryName] = useState("");
   const [errorCategoryName, setErrorCategoryName] = useState("");
+  const { toast } = useToast();
   const initialOrgType =
     instituteParam === "Qspiders"
       ? "QSP"
@@ -151,6 +153,14 @@ const AdminCategory = () => {
           ? await editCategory({ bodyData: editPayload }).unwrap()
           : await addCategory({ bodyData: payload }).unwrap();
         if (response.statusCode === 200 || response.statusCode === 201) {
+          toast({
+            title: editData
+              ? `${values.categoryName} updated successfully`
+              : `${values.categoryName} added successfully`,
+            variant: "success",
+          });
+          
+          formikDetails.resetForm();
           refetch();
         }
         setDialogOpen(false);
@@ -390,6 +400,10 @@ const AdminCategory = () => {
       }).unwrap();
       setDeleteCategory(false);
       if (response.statusCode === 200 || response.statusCode === 201) {
+        toast({
+          title: `${getCategoryName} deleted successfully`,
+          variant: "delete",
+        })
         refetch();
       }
     } catch (err) {
@@ -593,14 +607,14 @@ const AdminCategory = () => {
           <CommonDialog
             dialogCloseClick={dialogCloseClick}
             header={editData ? "Edit category" : "Add new category"}
-            footerBtnTitle={editData ? "Edit Category" : "Create Category"}
+            footerBtnTitle={editData ? "Update" : "Create Category"}
             formfn={dialogForm}
             footerBtnClick={footerBtnClick}
           />
         </Dialog>
       </Dialog>
       <div className="py-[3.333vh] px-[1.875vw] overflow-x-hidden">
-        <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[73.389vh]  overflow-y-hidden">
+        <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
           <DndContext
             sensors={sensors}
             collisionDetection={closestCenter}
@@ -683,6 +697,7 @@ const AdminCategory = () => {
           />
         </AlertDialog>
       </div>
+      <Toaster />
     </>
   );
 };
