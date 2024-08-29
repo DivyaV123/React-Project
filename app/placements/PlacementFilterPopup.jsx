@@ -6,6 +6,7 @@ import {
 import "./PlacementCards.scss";
 import "./Degree_Branch_passout.scss";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
+import { useGetAllStreamQuery } from "@/redux/queries/getAllStream";
 import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import Svg from "@/components/commonComponents/Svg/Svg";
@@ -25,6 +26,10 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
     data: degreeAndStreamdata,
     error,
   } = useGetAllDegreeAndStreamQuery();
+  const {
+    data: streamData,
+    error: streamError,
+  } = useGetAllStreamQuery();
   const {
     data: yopData,
     error: yopError,
@@ -60,12 +65,12 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
     setFIlterPopup(false);
   };
 
-  const filteredDegrees = degreeAndStreamdata?.response?.degreeList?.filter((degree) =>
-    degree.toLowerCase().includes(searchInput.toLowerCase())
+  const filteredDegrees = degreeAndStreamdata?.results?.filter((degree) =>
+    degree.name.toLowerCase().includes(searchInput.toLowerCase())
   );
 
-  const filteredBranches = degreeAndStreamdata?.response?.streamList?.filter((stream) =>
-    stream.toLowerCase().includes(searchInput.toLowerCase())
+  const filteredBranches = streamData?.results?.filter((stream) =>
+    stream.name.toLowerCase().includes(searchInput.toLowerCase())
   );
 
   const filteredYops = yopData?.response?.filter((yop) =>
@@ -126,7 +131,7 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
               key={index}
               className="py-[0.858vh] text-[3.256vw]"
               onClick={() => {
-                handleItemClick("degree", degree);
+                handleItemClick("degree", degree.name);
                 setDegreeList(false);
               }}
             >

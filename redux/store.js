@@ -80,7 +80,7 @@ import { getAllTrainersApi } from './queries/getAllTrainersApi';
 import { addTrainerApi } from './queries/addTrainerApi';
 import { branchOptions } from './queries/getAllBrancesDropDownApi';
 import { batchDeleteApi } from './queries/deleteBatchApi';
-
+import { streamApi } from './queries/getAllStream';
 
 const store = configureStore({
   reducer: {
@@ -182,7 +182,9 @@ const store = configureStore({
     [batchListApi.reducerPath]: batchListApi.reducer,
     [branchOptions.reducerPath]: branchOptions.reducer,
     [batchDeleteApi.reducerPath]: batchDeleteApi.reducer,
-    [addTrainerApi.reducerPath]: addTrainerApi.reducer
+    [addTrainerApi.reducerPath]: addTrainerApi.reducer,
+    [streamApi.reducerPath]: streamApi.reducer,
+
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
@@ -192,7 +194,7 @@ const store = configureStore({
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
       addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware, updateCourseDnd.middleware, updateSubCategoryDnd.middleware, categoryDeleteApi.middleware, categoryEditApi.middleware, DeleteChapterApi.middleware,
       DeleteTopicApi.middleware, DeleteSubTopicApi.middleware, AddCitiesApi.middleware, courseUnMapApi.middleware, citiesForAdminApi.middleware, cityDeleteApi.middleware, unMapSubjectApi.middleware, batchListApi.middleware, getAllTrainersApi.middleware, branchOptions.middleware, batchDeleteApi.middleware,
-      addTrainerApi.middleware,
+      addTrainerApi.middleware,streamApi.middleware
     ),
 });
 

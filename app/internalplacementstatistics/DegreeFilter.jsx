@@ -5,22 +5,24 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const DegreeFilter = ({ degreeList }) => {
-  const { handleCounsellorCommonFilter, selectedDegrees, setSelectedDegrees ,degreeSearchQuery,setDegreeSearchQuery,} =
+  const { handleCounsellorCommonFilter, selectedDegrees, setSelectedDegrees, degreeSearchQuery, setDegreeSearchQuery } =
     useContext(GlobalContext);
-    const [isExpanded, setIsExpanded] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(true);
+
+  // Filter the degree list based on the search query
   const searchDegreeList = degreeList?.filter((degree) =>
-    degree.toLowerCase().includes(degreeSearchQuery.toLowerCase())
+    degree.name.toLowerCase().includes(degreeSearchQuery.toLowerCase())
   );
 
-  const renderCheckbox = (item, index) => (
+  const renderCheckbox = (item) => (
     <Checkbox
-      key={index}
-      id={item}  // Use degree value as the id
-      label={item}
-      checked={selectedDegrees.includes(item)}
+      key={item.id} 
+      id={item.id}  // Use degree ID as the id
+      label={item.name}  // Use degree name as the label
+      checked={selectedDegrees.includes(item.id)}
       onChange={() =>
         handleCounsellorCommonFilter(
-          item,  // Pass the degree value instead of index
+          item.id,  // Pass the degree ID instead of name
           selectedDegrees,
           setSelectedDegrees,
           degreeList,  // Use the full degreeList for response
@@ -47,22 +49,22 @@ const DegreeFilter = ({ degreeList }) => {
         />
       </div>
       {isExpanded && (
-      <>
-      <div className="search-container pb-[1.111vh]">
-        <input
-          type="text"
-          placeholder="Search..."
-          className="text-[0.781vw]"
-          value={degreeSearchQuery}
-          onChange={(e) => setDegreeSearchQuery(e.target.value)}
-        />
-        <div className="search-icon"></div>
-      </div>
-      <ExpandableList
-        items={searchDegreeList}
-        renderItem={(item, index) => renderCheckbox(item, index)}
-      />
-      </>
+        <>
+          <div className="search-container pb-[1.111vh]">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="text-[0.781vw]"
+              value={degreeSearchQuery}
+              onChange={(e) => setDegreeSearchQuery(e.target.value)}
+            />
+            <div className="search-icon"></div>
+          </div>
+          <ExpandableList
+            items={searchDegreeList}
+            renderItem={(item) => renderCheckbox(item)}
+          />
+        </>
       )}
     </div>
   );
