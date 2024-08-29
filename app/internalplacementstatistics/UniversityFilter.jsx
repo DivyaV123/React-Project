@@ -7,19 +7,23 @@ import { useGetAllUniversitiesQuery } from "@/redux/queries/getAllUniversities";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const UniversityFilter = () => {
-  const { handleCounsellorCommonFilter,selectedUniversity, setSelectedUniversity,universitySearchQuery,setUniversitySearchQuery, } = useContext(GlobalContext);
+  const { handleCounsellorCommonFilter, selectedUniversity, setSelectedUniversity, universitySearchQuery, setUniversitySearchQuery, } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
   const { data: universityData } = useGetAllUniversitiesQuery();
-  const universityList = universityData?.response.filter(university => university !== "").filter(university => university.toLowerCase().includes(universitySearchQuery.toLowerCase()));
-
+  const universityList = universityData?.results
+    ?.filter((uni) => uni.name !== "")
+    ?.map((uni) => ({
+      name: uni.name,
+      id: uni.id,
+    }));
   const renderCheckbox = (item, index) => (
     <Checkbox
-      key={index}
-      id={item}
-      label={item}
-      checked={selectedUniversity.includes(item)}
+      key={index.id}
+      id={item.id}
+      label={item.name}
+      checked={selectedUniversity.includes(item.id)}
       onChange={() =>
-        handleCounsellorCommonFilter(item, selectedUniversity, setSelectedUniversity, universityData, "university")
+        handleCounsellorCommonFilter(item.id, selectedUniversity, setSelectedUniversity, universityData, "university")
       }
     />
   );
@@ -37,22 +41,22 @@ const UniversityFilter = () => {
         />
       </div>
       {isExpanded && (
-      <>
-      <div className="search-container pb-[1.111vh]">
-        <input 
-          type="text" 
-          placeholder="Search..." 
-          className="text-[0.781vw]" 
-          value={universitySearchQuery}
-          onChange={(e) => setUniversitySearchQuery(e.target.value)}
-        />
-        <div className="search-icon"></div>
-      </div>
-      <ExpandableList
-        items={universityList}
-        renderItem={(item, index) => renderCheckbox(item, index)}
-      />
-      </>
+        <>
+          <div className="search-container pb-[1.111vh]">
+            <input
+              type="text"
+              placeholder="Search..."
+              className="text-[0.781vw]"
+              value={universitySearchQuery}
+              onChange={(e) => setUniversitySearchQuery(e.target.value)}
+            />
+            <div className="search-icon"></div>
+          </div>
+          <ExpandableList
+            items={universityList}
+            renderItem={(item, index) => renderCheckbox(item, index)}
+          />
+        </>
       )}
     </div>
   );
