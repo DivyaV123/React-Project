@@ -1,12 +1,12 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
-import { API_ENDPOINTS, getPlacementUrl } from '@/api/apiService';
+import { API_ENDPOINTS, getStatisticsUrl } from '@/api/apiService';
 
 export const PlacementBranchApi = createApi({
     reducerPath: 'PlacementBranchApi',
-    baseQuery: fetchBaseQuery({ baseUrl: getPlacementUrl() }),
+    baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
         getAllPlacementBranch: builder.query({
-            query: () => API_ENDPOINTS.GET_BRANCH,
+            query: (organization_id, id) => API_ENDPOINTS.GET_BRANCH(organization_id, id),
         }),
     }),
 });

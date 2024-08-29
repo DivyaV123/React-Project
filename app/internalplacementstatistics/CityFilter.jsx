@@ -17,24 +17,24 @@ const CityFilter = ({ selectedState }) => {
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
   const { data: cityData, refetch } = useGetAllCitiesQuery(stateSelected);
-  const cityList = cityData?.response
-    .filter((city) => city !== "")
-    .filter((cities) =>
-      cities.toLowerCase().includes(citySearchQuery.toLowerCase())
-    );
+  const cityList = cityData?.results
+    ?.filter((city) => city.name !== "")
+    ?.map((city) => ({
+      name: city.name,
+      id: city.id,
+    }));
   useEffect(() => {
     refetch();
   }, [stateSelected, refetch]);
-
   const renderCheckbox = (item, index) => (
     <Checkbox
       key={index}
-      id={item}
-      label={item}
-      checked={selectedCity.includes(item)}
+      id={item.id}
+      label={item.name}
+      checked={selectedCity.includes(item.id)}
       onChange={() =>
         handleCounsellorCommonFilter(
-          item,
+          item.id,
           selectedCity,
           setSelectedCity,
           cityData,
