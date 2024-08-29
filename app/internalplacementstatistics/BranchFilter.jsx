@@ -3,7 +3,7 @@ import "./CounserllorFilters.scss";
 import ExpandableList from "@/components/commonComponents/ExpandableList/ExpandableList";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import Checkbox from "@/components/commonComponents/checkbox/Checkbox";
-const BranchFilter = ({ searchBranchList, BranchList }) => {
+const BranchFilter = ({ BranchList }) => {
   const {
     handleCounsellorCommonFilter,
     selectedBranchFilter,
@@ -12,15 +12,16 @@ const BranchFilter = ({ searchBranchList, BranchList }) => {
     setYearSearchQuery,
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
+  const searchBranchList = BranchList?.filter((branch) => branch.name.toLowerCase().includes(yearSearchQuery.toLowerCase()))
   const renderBranchCheckbox = (item, index, selected, setSelected, items) => (
     <Checkbox
-      key={item}
-      id={item}
-      label={item}
-      checked={selected?.includes(item)}
+      key={item.id}
+      id={item.id}
+      label={item.name}
+      checked={selected?.includes(item.id)}
       onChange={() =>
         handleCounsellorCommonFilter(
-          item,
+          item.id,
           selected,
           setSelected,
           items,

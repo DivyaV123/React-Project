@@ -29,13 +29,13 @@ export const API_ENDPOINTS = {
   GET_ONLINE_COURSES: 'api/v1/categories/onlineCourses',
   GET_ALL_FOR_ADMIN_PORTAL: 'api/v1/courses/getall',
   //placements
-  GET_CITIES: 'candidate/cities',
   GET_STATES:(id)=> `placementsstatelist/?id=${id ? id : ""}`,
   GET_COLLEGES:(id,district_id,state_id,university_id)=> `placementcollegelist/?${id ? id : ""}&district_id=${district_id ? district_id : ""}&state_id=${state_id ? state_id : ""}&university_id=${university_id ? university_id : ""}`,
+  GET_CITIES: (state_id) => `/placementscitylist/?id&state_id=${state_id ? state_id : ''}`,
   GET_UNIVERSITIES: 'candidate/universities',
   GET_DEGREE:(type_name,id,name,qualification_type_id)=> `placementsdegree/?type_name=${type_name ? type_name : ''}&id=${id ? id : ''}&name=${name ? name : ''}&qualification_type_id=${qualification_type_id ? qualification_type_id : ''}`,
   GET_STREAM:(type_id,id,degree_id)=>`placementsstream/?type_id=${type_id ? type_id : ''}&id=${id ? id:''}&name=${degree_id ? degree_id : ''}`,
-  GET_BRANCH: 'candidate/branch',
+  GET_BRANCH: (organization_id, id) => `/placementsbranchlist/?organization_id=${organization_id ? organization_id : ''}&id=${id ? id : ''}`,
   GET_COURSE_BY_ID: (courseId) => `api/v1/courses/getbyid?courseId=${courseId}`,
   COURSE_MAP_CATEGORY: (categoryId) => `/api/v1/categories/assigncourses?categoryId=${categoryId}`,
   CATEGORY_UNMAP: (categoryId) => `/api/v1/categories/removeCourseFromCategory?categoryId=${categoryId}`,
@@ -74,6 +74,7 @@ export const API_ENDPOINTS = {
   GET_ALL_CITIES: (organizationType) => `/api/v1/cities?organization=${organizationType}`,
   DELETE_CITY: (cityId) => `api/v1/cities?cityId=${cityId}`,
   GET_ALL_BATCHES: (organizationType) => `/api/v1/batches/getAll/form?organization=${organizationType}`,
+  CITY_WEIGHTAGE: (countryId,cityId, weightage, organisation) => `/api/v1/weightage/city?countryId=${countryId}&cityId=${cityId}&weightage=${weightage}&organization=${organisation}`,
   //trainers
   GET_ALLTRAINERS: `api/v1/users/trainers/getall`,
   ADD_TRAINERS: `api/v1/users/saveTrainer`
