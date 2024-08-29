@@ -530,7 +530,7 @@ function CourseCategoryContent() {
             icon={deleteICon}
             setDeleteCategory={setDeleteCourse}
             btnText="Delete"
-            contentText={`Are you sure you want to delete ${courseName} Category`}
+            contentText={`Are you sure you want to delete ${courseName} Course`}
             deleteFunction={handleDeleteSelectedCourse}
           />
         </AlertDialog>
