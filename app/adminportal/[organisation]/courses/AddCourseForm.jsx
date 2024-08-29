@@ -285,6 +285,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
     // Manually validate question and answer fields
 
     const errors = {};
+
     if (
       !formikDetails.values.question ||
       formikDetails.values.question === ""
@@ -524,6 +525,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
       formikDetails.validateField("category");
     }
   }, [formikDetails.values.category]);
+
   return (
     <DialogContent>
       <form onSubmit={(e)=>{formikDetails.handleSubmit(e);validateFiles();}}>
@@ -543,7 +545,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <p  className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course name</p>
                 <Input
                   placeholder="Enter course name"
-                  inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]"
+                  inputStyle="!w-[23.438vw] h-[2.813vw] flex items-center  text-[12px]"
                   name="courseName"
                   onChange={formikDetails.handleChange}
                   onBlur={formikDetails.handleBlur}
@@ -566,7 +568,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                     <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Select Category</p>
                     <Dropdown
                       placeholder="Enter category name"
-                      inputStyle="!w-[23.438vw] h-[2.813vw] text-[12px]  text-gray-400"
+                      inputStyle="!w-[23.438vw] h-[2.813vw] flex items-center text-[12px]  text-gray-400"
                       iconStyle="w-[10%]"
                       name="category"
                       value={selectedCourse}
@@ -588,7 +590,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                     <p className={tagHeadStyle}>Select Sub-Category</p>
                     <Dropdown
                       placeholder="Enter course name"
-                      inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]  text-gray-400"
+                      inputStyle="!w-[23.438vw] h-[2.813vw] flex items-center  text-[12px]  text-gray-400"
                       value={selectedSubCourse}
                       onChange={handleSubCourseSelect}
                       options={subCourseOptions}
@@ -614,7 +616,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <Input
                   name="courseDesc"
                   placeholder="Enter course name"
-                  inputStyle=" h-[2.813vw]  text-[12px]"
+                  inputStyle=" h-[2.813vw] flex items-center  text-[12px]"
                   value={formikDetails.values.courseDesc}
                   onChange={formikDetails.handleChange}
                   onBlur={formikDetails.handleBlur}
@@ -635,7 +637,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <Input
                   name="courseSummary"
                   placeholder="Enter course name"
-                  inputStyle=" h-[2.813vw] text-[12px]"
+                  inputStyle=" h-[2.813vw] flex items-center text-[12px]"
                   iconStyle="w-[10%]"
                   onChange={formikDetails.handleChange}
                   onBlur={formikDetails.handleBlur}
@@ -658,6 +660,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>About Course</p>
                 <ReactQuill
                   value={formikDetails.values.aboutCourse}
+                  placeholder="Enter About Course"
                   onChange={(value) =>
                     formikDetails.setFieldValue("aboutCourse", value)
                   }
@@ -677,6 +680,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course highlights</p>
                 <ReactQuill
                   value={formikDetails.values.courseHeighlights}
+                  placeholder="Enter Course highlights"
                   onChange={(value) =>
                     formikDetails.setFieldValue("courseHeighlights", value)
                   }
@@ -698,7 +702,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Organigation</p>
                 <Dropdown
                   placeholder="Enter course name"
-                  inputStyle=" h-[2.813vw] text-[12px]  text-gray-400"
+                  inputStyle=" h-[2.813vw] flex items-center text-[12px]  text-gray-400"
                   iconStyle="w-[10%]"
                   options={orgOptions}
                   name="orgType"
@@ -720,7 +724,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Mode of class</p>
                 <Dropdown
                   placeholder="Enter course name"
-                  inputStyle=" h-[2.813vw]  text-[12px]  text-gray-400"
+                  inputStyle=" h-[2.813vw] flex items-center  text-[12px]  text-gray-400"
                   options={classModeOption}
                   name="classMode"
                   onChange={handleModeChange}
@@ -742,7 +746,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
             <p className={tagHeadStyle}>Add Subjects</p>
             <Dropdown
               placeholder="Enter course name"
-              inputStyle="!w-[42.695vw] h-[2.813vw]  text-[12px] text-gray-400"
+              inputStyle="!w-[42.695vw] h-[2.813vw] flex items-center  text-[12px] text-gray-400"
             />
           </div>
         </div>
@@ -756,7 +760,9 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               id="course-icon-upload"
               onChange={(event) => handleFileChange(event, "courseIcon")}
             />
-            <label htmlFor="course-icon-upload" className="block w-[12.812vw]">
+                        <label htmlFor="file-upload-dark">
+              <img src="../images/uploadinput.png" alt="file upload" />
+            </label>
               {previewURL.courseIcon ? (
                 <div className="relative">
                   <img
@@ -774,7 +780,6 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               ) : (
                 <img src="/images/uploadinput.png" alt="file upload" />
               )}
-            </label>
             {errorMessage.courseIcon && (
               <p className="text-red-500 pt-[3.333vh] text-[0.6rem]">
                 {errorMessage.courseIcon}
@@ -876,7 +881,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                     : " border-gray-400"
                 }`}
               />
-              {formikDetails.touched.question &&
+              {formikDetails.touched.question ||
                 formikDetails.errors.question && (
                   <div className="text-red-500">
                     {formikDetails.errors.question}
@@ -896,7 +901,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                     : " border-gray-400"
                 }`}
               />
-              {formikDetails.touched.answer && formikDetails.errors.answer && (
+              {formikDetails.touched.answer || formikDetails.errors.answer && (
                 <div className="text-red-500">
                   {formikDetails.errors.answer}
                 </div>
@@ -905,7 +910,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
             <div className="flex justify-end gap-2  px-[1.5vw] pt-[1.5vw] ">
               <div>
                 <Button
-                  title={faqEditIndex === null ? "Save" : "Update"}
+                  title={faqEditIndex === null ? "Add" : "Update"}
                   onClick={addFAQ}
                   className="py-[0.5vw] px-[1vw]  rounded-md border border-[#FF7B1B] text-[#FF7B1B]"
                 />
