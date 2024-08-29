@@ -28,13 +28,10 @@ const YearFilter = () => {
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
   const { data: PlacementBranchData } = useGetAllPlacementBranchQuery();
-  const BranchList = PlacementBranchData?.response;
+  const BranchList = PlacementBranchData?.results?.filter((branch) => branch.name !== "");
   const { data: YearOfPassoutData } = useGetAllYearOfPassoutQuery();
   const YopList = YearOfPassoutData?.response;
   const sortedYearList = [...(YopList || [])].sort((a, b) => b - a);
-  const searchBranchList = BranchList?.filter((branch) => branch !== "").filter(
-    (ele) => ele.toLowerCase().includes(yearSearchQuery.toLowerCase())
-  );
 
   const handleFromYearChange = (year) => {
     setFromYear(year);
@@ -152,7 +149,6 @@ const YearFilter = () => {
       </div>
       <div className={commonClassforAllFilters}>
         <BranchFilter
-          searchBranchList={searchBranchList}
           BranchList={BranchList}
         />
       </div>
