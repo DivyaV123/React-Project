@@ -184,7 +184,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
     classMode: Yup.array()
       .of(Yup.string().required("Each classMode is required"))
       .min(1, "At least one classMode is required")
-      .required("classModes are required"),
+      .required("Mode of class are required"),
   });
 
   const handleCourseSelect = (event) => {
@@ -285,7 +285,6 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
     // Manually validate question and answer fields
 
     const errors = {};
-
     if (
       !formikDetails.values.question ||
       formikDetails.values.question === ""
@@ -525,7 +524,6 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
       formikDetails.validateField("category");
     }
   }, [formikDetails.values.category]);
-
   return (
     <DialogContent>
       <form onSubmit={(e)=>{formikDetails.handleSubmit(e);validateFiles();}}>
@@ -562,7 +560,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           </div>
           {!courseEditData && (
             <>
-              <div className="w-full h-full">
+              <div className="w-full h-full backdrop-blur-sm z-10 opacity-100 ">
                 <div className="pt-[2.222vh]">
                   <div>
                     <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Select Category</p>
@@ -584,12 +582,12 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                   </div>
                 </div>
               </div>
-              <div className="w-full h-full">
+              <div className="w-full h-full backdrop-blur-sm z-10 opacity-100">
                 <div className="pt-[2.222vh]">
                   <div>
                     <p className={tagHeadStyle}>Select Sub-Category</p>
                     <Dropdown
-                      placeholder="Enter course name"
+                      placeholder="Enter Sub-Category"
                       inputStyle="!w-[23.438vw] h-[2.813vw] flex items-center  text-[12px]  text-gray-400"
                       value={selectedSubCourse}
                       onChange={handleSubCourseSelect}
@@ -615,8 +613,8 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course Description</p>
                 <Input
                   name="courseDesc"
-                  placeholder="Enter course name"
-                  inputStyle=" h-[2.813vw] flex items-center  text-[12px]"
+                  placeholder="Enter course description"
+                  inputStyle=" h-[2.813vw] flex items-center text-[12px]"
                   value={formikDetails.values.courseDesc}
                   onChange={formikDetails.handleChange}
                   onBlur={formikDetails.handleBlur}
@@ -636,7 +634,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
                 <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course Summary</p>
                 <Input
                   name="courseSummary"
-                  placeholder="Enter course name"
+                  placeholder="Enter course summary"
                   inputStyle=" h-[2.813vw] flex items-center text-[12px]"
                   iconStyle="w-[10%]"
                   onChange={formikDetails.handleChange}
@@ -701,8 +699,8 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               <div>
                 <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Organigation</p>
                 <Dropdown
-                  placeholder="Enter course name"
-                  inputStyle=" h-[2.813vw] flex items-center text-[12px]  text-gray-400"
+                  placeholder="Enter organigation"
+                  inputStyle=" h-[2.813vw]  flex items-center text-[12px]  text-gray-400"
                   iconStyle="w-[10%]"
                   options={orgOptions}
                   name="orgType"
@@ -723,8 +721,8 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               <div>
                 <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Mode of class</p>
                 <Dropdown
-                  placeholder="Enter course name"
-                  inputStyle=" h-[2.813vw] flex items-center  text-[12px]  text-gray-400"
+                  placeholder="Enter class mode"
+                  inputStyle=" h-[2.813vw] flex items-center text-[12px]  text-gray-400"
                   options={classModeOption}
                   name="classMode"
                   onChange={handleModeChange}
@@ -745,7 +743,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           <div>
             <p className={tagHeadStyle}>Add Subjects</p>
             <Dropdown
-              placeholder="Enter course name"
+              placeholder="Enter subject"
               inputStyle="!w-[42.695vw] h-[2.813vw] flex items-center  text-[12px] text-gray-400"
             />
           </div>
@@ -910,7 +908,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
             <div className="flex justify-end gap-2  px-[1.5vw] pt-[1.5vw] ">
               <div>
                 <Button
-                  title={faqEditIndex === null ? "Add" : "Update"}
+                  title={faqEditIndex === null ? "Save" : "Update"}
                   onClick={addFAQ}
                   className="py-[0.5vw] px-[1vw]  rounded-md border border-[#FF7B1B] text-[#FF7B1B]"
                 />
