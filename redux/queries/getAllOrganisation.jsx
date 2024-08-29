@@ -1,14 +1,14 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 import { API_ENDPOINTS, getStatisticsUrl } from '@/api/apiService';
 
-export const universitiesApi = createApi({
-    reducerPath: ' universitiesApi',
+export const organisationApi = createApi({
+    reducerPath: ' organisationApi',
     baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
-        getAllUniversities: builder.query({
-            query: (id) => API_ENDPOINTS.GET_UNIVERSITIES(id),
+        getAllOrganisation: builder.query({
+            query: (id) => API_ENDPOINTS.GET_ORGANISATION(id),
         }),
     }),
 });
 
-export const { useGetAllUniversitiesQuery } = universitiesApi;
+export const { useGetAllOrganisationQuery } = organisationApi;
