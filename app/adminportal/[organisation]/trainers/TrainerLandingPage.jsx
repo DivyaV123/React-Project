@@ -167,7 +167,10 @@ function TrainerLandingPage() {
                 subjects: selectedSubjects.selectedId
             }
             try {
-                const resp = await addTrainer({ bodyData: payload }).unwrap();
+                const resp = await addTrainer(payload).unwrap();
+                setAddTrainerForm(false)
+                formikDetails.resetForm
+                trainersRefetch()
             } catch (err) {
                 console.log(err)
             }
