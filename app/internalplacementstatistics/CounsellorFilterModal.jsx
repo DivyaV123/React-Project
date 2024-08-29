@@ -12,6 +12,7 @@ import PercentageFilter from "./PercentageFilter";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import "./CounsellorFilterModal.scss"
+import { useGetAllStreamQuery } from "@/redux/queries/getAllStream";
 
 
 const CounsellorFilterModal = ({ isModalOpen,handleCloseModal }) => {
@@ -20,11 +21,16 @@ const CounsellorFilterModal = ({ isModalOpen,handleCloseModal }) => {
         error,
         isLoading,
       } = useGetAllDegreeAndStreamQuery();
-      const degreeList = degreeAndStreamdata?.response.degreeList.filter(
-        (degree) => degree !== ""
+      const {
+        data: streamData,
+        error: streamError,
+        isLoading: streamIsLoading,
+      } = useGetAllStreamQuery();
+      const degreeList = degreeAndStreamdata?.results?.filter(
+        (degree) => degree.name !== ""
       );
-      const streamList = degreeAndStreamdata?.response.streamList.filter(
-        (stream) => stream !== ""
+      const streamList = streamData?.results?.filter(
+        (stream) => stream.name !== ""
       );
       const [activeFilter, setActiveFilter] = useState("Time Period");
       useEffect(() => {

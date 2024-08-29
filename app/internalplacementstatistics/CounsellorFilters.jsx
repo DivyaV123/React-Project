@@ -11,6 +11,7 @@ import StreamFilter from "./StreamFilter";
 import PercentageFilter from "./PercentageFilter";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { useGetAllStreamQuery } from "@/redux/queries/getAllStream";
 
 const CounsellorFilters = () => {
   const {
@@ -50,11 +51,16 @@ const CounsellorFilters = () => {
     error,
     isLoading,
   } = useGetAllDegreeAndStreamQuery();
-  const degreeList = degreeAndStreamdata?.response.degreeList.filter(
-    (degree) => degree !== ""
+  const {
+    data: streamData,
+    error: streamError,
+    isLoading: streamIsLoading,
+  } = useGetAllStreamQuery();
+  const degreeList = degreeAndStreamdata?.results?.filter(
+    (degree) => degree.name !== ""
   );
-  const streamList = degreeAndStreamdata?.response.streamList.filter(
-    (stream) => stream !== ""
+  const streamList = streamData?.results?.filter(
+    (stream) => stream.name !== ""
   );
   const filterClass = "text-[#002248] text-[1.25vw] font-semibold";
 

@@ -14,18 +14,18 @@ const StreamFilter = ({ streamList }) => {
     setStreamSearchQuery,
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
-  const searchStreamList = streamList?.filter((degree) =>
-    degree.toLowerCase().includes(streamSearchQuery.toLowerCase())
+  const searchStreamList = streamList?.filter((stream) =>
+    stream.name.toLowerCase().includes(streamSearchQuery.toLowerCase())
   );
-  const renderCheckbox = (item, index) => (
+  const renderCheckbox = (item) => (
     <Checkbox
-      key={index}
-      id={item}
-      label={item}
-      checked={selectedStream.includes(item)}
+      key={item.id}
+      id={item.id}
+      label={item.name}
+      checked={selectedStream.includes(item.id)}
       onChange={() =>
         handleCounsellorCommonFilter(
-          item,
+          item.id,
           selectedStream,
           setSelectedStream,
           streamList,
@@ -61,7 +61,7 @@ const StreamFilter = ({ streamList }) => {
       </div>
       <ExpandableList
         items={searchStreamList}
-        renderItem={(item, index) => renderCheckbox(item, index)}
+        renderItem={(item) => renderCheckbox(item)}
       />
       </>
       )}

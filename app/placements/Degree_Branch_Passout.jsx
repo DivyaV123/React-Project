@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useContext } from "react";
 import "./Degree_Branch_passout.scss";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
+import { useGetAllStreamQuery } from "@/redux/queries/getAllStream";
 import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { branchAbbreviations } from "@/lib/utils";
@@ -43,6 +44,10 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
     error,
   } = useGetAllDegreeAndStreamQuery();
   const {
+    data: streamData,
+    error: streamError,
+  } = useGetAllStreamQuery();
+  const {
     data: yopData,
     error: yopError,
   } = useGetAllYearOfPassoutQuery();
@@ -53,8 +58,14 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
 
   useEffect(() => {
     if (degreeAndStreamdata) {
-      setDegreeList(degreeAndStreamdata.response.degreeList);
-      setBranchList(degreeAndStreamdata.response.streamList);
+      const getDegree=degreeAndStreamdata?.results?.map(
+        (degree) => degree.name
+      )
+      const getStream=streamData?.results?.map(
+        (stream) => stream.name
+      )
+      setDegreeList(getDegree);
+      setBranchList(getStream);
     }
     if (yopData) {
       setYopList([...(yopData?.response || [])].sort((a, b) => b - a));
