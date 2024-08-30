@@ -3,7 +3,6 @@ import React, { useEffect, useState, useContext } from "react";
 import "./Degree_Branch_passout.scss";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 import { useGetAllStreamQuery } from "@/redux/queries/getAllStream";
-import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { branchAbbreviations } from "@/lib/utils";
 import BarSkeleton from "@/components/skeletons/BarSkeleton";
@@ -50,10 +49,6 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     data: streamData,
     error: streamError,
   } = useGetAllStreamQuery();
-  // const {
-  //   data: yopData,
-  //   error: yopError,
-  // } = useGetAllYearOfPassoutQuery();
 
   const currentYear = dayjs().year();
   const yopData = Array.from({ length: 15 }, (_, i) => currentYear - i);
