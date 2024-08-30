@@ -32,6 +32,7 @@ import { useAddBatchApiMutation } from "@/redux/queries/addBatchApi";
 import { useGetAllBatchQuery } from "@/redux/queries/getAllBatchesApi";
 import { useGetAllBranchOptionsQuery } from "@/redux/queries/getAllBrancesDropDownApi";
 import { useBatchDeleteMutation } from "@/redux/queries/deleteBatchApi";
+import { useEditBatchAdminMutation } from "@/redux/queries/batchEditAdminApi";
 
 function AdminBatchesList() {
   
@@ -62,8 +63,8 @@ function AdminBatchesList() {
     tutor: Yup.string().required("Tutor is required"),
     dateRange: Yup.object().shape({
       start: Yup.date()
-        .required("Start date is required")
-        .max(new Date(), "Start date cannot exceed today's date"),
+        .required("Start date is required"),
+        
       end: Yup.date()
         .required("End date is required")
         .min(Yup.ref("start"), "End date must be after start date"),
@@ -114,6 +115,10 @@ function AdminBatchesList() {
     addBatch,
     { data: batchAdd, error: batchError, isLoading: batchAdderLoad },
   ] = useAddBatchApiMutation();
+  const [
+    editBatch,
+    { data: editBatchData, error: editBatchError, isLoading: editBatchLoad },
+  ] = useEditBatchAdminMutation();
 
   const [deleteSelectedBatch] = useBatchDeleteMutation();
 
@@ -391,14 +396,24 @@ function AdminBatchesList() {
       endingTime: `${values.timeRange.end}:00`,
       extendingDays: 0,
     };
+    let editPayload = {
+      batchTitle: values.batchName,
+      trainerName:  values.tutor,
+      startDate:  values.dateRange.start,
+      endDate:  values.dateRange.end,
+      startTime:  values.timeRange.start,
+      endTime: values.timeRange.end
+    
+  }
     try {
-      const response = await addBatch({
+      const response =batchEditData? await editBatch({ payload: editPayload,
+        batchId: batchEditData.batchId}) : await addBatch({
         bodyData: payload,
         branchId: branchId,
         courseId: courseId,
       });
      
-      if (response.data.statusCode === 201) {
+      if (response.data.statusCode === 201 || response.data.statusCode === 200) {
         setDialogOpen(false);
         batchDataRefetch()
       } 
@@ -525,8 +540,8 @@ function AdminBatchesList() {
           >
             {(formikDetails) => (
               <CommonDialog
-                header="Add new Batches"
-                footerBtnTitle="Create Batches"
+                header="Edit Batch"
+                footerBtnTitle="update"
                 formfn={() => createBatchForm(formikDetails)}
                 footerBtnClick={formikDetails.handleSubmit}
                 dialogCloseClick={() => setDialogOpen(false)}

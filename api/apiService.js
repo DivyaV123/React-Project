@@ -62,6 +62,7 @@ export const API_ENDPOINTS = {
   CREATE_BATCH: (branchId, courseId) => `/api/v1/batches?${branchId ? `branchId=${branchId}&` : ''}courseId=${courseId}`,
   GET_ALL_BRANCHES_ADMIN_CREATE_BATCH: (hostName) => `/api/v1/branches/getallbranches/batchform?hostName=${hostName}`,
   DELETE_BATCH: (batchId) => `/api/v1/batches?batchId=${batchId}`,
+  EDIT_BATCH: (batchId) => `api/v1/batches/updatebatch?batchId=${batchId}`,
   //Admin Portal
   GET_ALL_CATEGORY: (organizationType) => `/api/v1/categories/getAllCategories?organization=${organizationType}`,
   CATEGORY_WEIGHTAGE_EDIT: (categoryId, weightage, organisation) => `/api/v1/weightage/categories?categoryId=${categoryId}&weightage=${weightage}&organisation=${organisation}`,
