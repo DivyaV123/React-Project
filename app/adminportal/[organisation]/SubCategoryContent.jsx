@@ -257,7 +257,7 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
     );
   };
   const handleCreateBatch = async (values) => {
-   console.log({values})
+   
     let payload = {
       subCategoryTitle: values.subCategory,
     };
