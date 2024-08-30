@@ -15,6 +15,7 @@ const PlacementSideBar = ({
   isFetching,
   isLoading,
   refetch,
+  placementList
 }) => {
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterPopup, setFIlterPopup] = useState(false);
@@ -259,7 +260,7 @@ const PlacementSideBar = ({
             }}
             className="sm:ml-6 mobile:mx-[3.721vw] sm:w-[71.641vw] h-full overflow-y-scroll courseScroll"
           >
-            <PlacementContent counsellorFilterResponse={accumulatedData} />
+            <PlacementContent counsellorFilterResponse={accumulatedData} placementList={placementList}/>
 
             {isFetchData &&
               !counsellorFilterResponse?.response?.candidates?.last && (
