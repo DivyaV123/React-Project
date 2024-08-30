@@ -68,6 +68,7 @@ export const API_ENDPOINTS = {
   CATEGORY_WEIGHTAGE_EDIT: (categoryId, weightage, organisation) => `/api/v1/weightage/categories?categoryId=${categoryId}&weightage=${weightage}&organisation=${organisation}`,
   COURSE_WEIGHTAGE_DND: (categoryId, subCategoryId, courseId, organisation, weightage) => `/api/v1/weightage/courses/form?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}&organisation=${organisation}&weightage=${weightage}`,
   SUBCATEGORY_WEIGHTAGE_DND: (categoryId, subCategoryId, organisation, weightage) => `api/v1/weightage/subCategories?categoryId=${categoryId}&subCategoryId=${subCategoryId}&organization=${organisation}&weightage=${weightage}`,
+  CREATE_SUBCATEGORY: (categoryId) => `/api/v1/subcategories?categoryId=${categoryId}`,
   //Category
   ADD_CATEGORY: '/api/v1/categories/files',
   DELETE_CATEGORY: (categoryId) => `/api/v1/categories/deleteCategory?categoryId=${categoryId}`,
