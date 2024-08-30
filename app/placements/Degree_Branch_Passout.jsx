@@ -3,16 +3,17 @@ import React, { useEffect, useState, useContext } from "react";
 import "./Degree_Branch_passout.scss";
 import { useGetAllDegreeAndStreamQuery } from "@/redux/queries/getDegreeAndStream";
 import { useGetAllStreamQuery } from "@/redux/queries/getAllStream";
-import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { branchAbbreviations } from "@/lib/utils";
 import BarSkeleton from "@/components/skeletons/BarSkeleton";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { Suspense } from 'react'
 import { truncateText } from "@/lib/utils";
+import { Suspense } from 'react';
+import dayjs from "dayjs";
 
-const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
+
+const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
   const [isBranchMoreOpen, setIsBranchMoreOpen] = useState(false);
   const [isPassOutMoreOpen, setIsPassOutMoreOpen] = useState(false);
@@ -35,7 +36,7 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
     throughcheckedIcon,
     itCheckedIcon,
     nonItCheckedIcon,
-    placeCheckedIcon,setPage,sideBarBtn
+    placeCheckedIcon, setPage, sideBarBtn
   } = useContext(GlobalContext);
 
   const searchParams = useSearchParams();
@@ -48,10 +49,9 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
     data: streamData,
     error: streamError,
   } = useGetAllStreamQuery();
-  const {
-    data: yopData,
-    error: yopError,
-  } = useGetAllYearOfPassoutQuery();
+
+  const currentYear = dayjs().year();
+  const yopData = Array.from({ length: 15 }, (_, i) => currentYear - i);
 
   const [degreeList, setDegreeList] = useState([]);
   const [branchList, setBranchList] = useState([]);
@@ -59,25 +59,25 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
 
   useEffect(() => {
     if (degreeAndStreamdata) {
-      const getDegree=degreeAndStreamdata?.results?.map(
+      const getDegree = degreeAndStreamdata?.results?.map(
         (degree) => degree.short_form || degree.name
       )
-      const getStream=streamData?.results?.map(
+      const getStream = streamData?.results?.map(
         (stream) => stream.short_form || stream.name
       )
       setDegreeList(getDegree);
       setBranchList(getStream);
     }
     if (yopData) {
-      setYopList([...(yopData?.response || [])].sort((a, b) => b - a));
+      setYopList([...(yopData || [])].sort((a, b) => b - a));
     }
   }, [degreeAndStreamdata, yopData]);
 
   useEffect(() => {
-    const degree = searchParams.get('degree') ;
-    const stream = searchParams.get('stream') ;
-    const yop = searchParams.get('yop') ;
-    
+    const degree = searchParams.get('degree');
+    const stream = searchParams.get('stream');
+    const yop = searchParams.get('yop');
+
 
 
     if (degree) {
@@ -192,20 +192,19 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
       {items.slice(0, 6).map((item, index) => (
         <button
           key={index}
-          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
-            item === buttonState &&
+          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${item === buttonState &&
             !lesscheckedIcon &&
             !throughcheckedIcon &&
             !itCheckedIcon &&
             !nonItCheckedIcon &&
             !placeCheckedIcon
-              ? "activeButton font-medium"
-              : ""
-          }`}
-          onClick={() => {handleButtonClick(item, setButtonState, key);setPage(0)}}
+            ? "activeButton font-medium"
+            : ""
+            }`}
+          onClick={() => { handleButtonClick(item, setButtonState, key); setPage(0) }}
           title={item}
         >
-          {truncateText(item,6)}
+          {truncateText(item, 6)}
         </button>
       ))}
       {items.length > 6 && (
@@ -235,50 +234,50 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
       )}
     </div>
   );
- 
-  
 
-//NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
-useEffect(() => {
-  // Get stream value from URL
-  const streamFromURL = searchParams.get('stream');
-  const degreeFromURL = searchParams.get('degree');
 
-  // Check conditions for updating branchList
-  if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
-    // Ensure streamFromURL exists in branchList
-    if (branchList.includes(streamFromURL)) {
-      // Create a new array with streamFromURL replacing the last item of the first 6 items
-      const newBranchItems = [...branchList];
-      const branchLastIndex = 5;
-      const branchUrlItemIndex = newBranchItems.indexOf(streamFromURL);
 
-      // Swap the streamFromURL with the item at the lastIndex
-      [newBranchItems[branchLastIndex], newBranchItems[branchUrlItemIndex]] = [newBranchItems[branchUrlItemIndex], newBranchItems[branchLastIndex]];
+  //NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
+  useEffect(() => {
+    // Get stream value from URL
+    const streamFromURL = searchParams.get('stream');
+    const degreeFromURL = searchParams.get('degree');
 
-      // Update branchList state with the new items
-      setBranchList(newBranchItems);
+    // Check conditions for updating branchList
+    if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
+      // Ensure streamFromURL exists in branchList
+      if (branchList.includes(streamFromURL)) {
+        // Create a new array with streamFromURL replacing the last item of the first 6 items
+        const newBranchItems = [...branchList];
+        const branchLastIndex = 5;
+        const branchUrlItemIndex = newBranchItems.indexOf(streamFromURL);
 
-      // Update the active button state if necessary
-      setBranchButton(streamFromURL);
+        // Swap the streamFromURL with the item at the lastIndex
+        [newBranchItems[branchLastIndex], newBranchItems[branchUrlItemIndex]] = [newBranchItems[branchUrlItemIndex], newBranchItems[branchLastIndex]];
+
+        // Update branchList state with the new items
+        setBranchList(newBranchItems);
+
+        // Update the active button state if necessary
+        setBranchButton(streamFromURL);
+      }
     }
-  }
 
-  // Check conditions for updating degreeList
-  if (degreeFromURL && degreeList.length > 6 && !degreeList.slice(0, 6).includes(degreeFromURL)) {
-   
-    if (degreeList.includes(degreeFromURL)) {
-      
-      const newDegreeItems = [...degreeList];
-      const degreeLastIndex = 5;
-      const degreeUrlItemIndex = newDegreeItems.indexOf(degreeFromURL);
-      [newDegreeItems[degreeLastIndex], newDegreeItems[degreeUrlItemIndex]] = [newDegreeItems[degreeUrlItemIndex], newDegreeItems[degreeLastIndex]];
-      setDegreeList(newDegreeItems);
-      setDegreeButton(degreeFromURL);
+    // Check conditions for updating degreeList
+    if (degreeFromURL && degreeList.length > 6 && !degreeList.slice(0, 6).includes(degreeFromURL)) {
+
+      if (degreeList.includes(degreeFromURL)) {
+
+        const newDegreeItems = [...degreeList];
+        const degreeLastIndex = 5;
+        const degreeUrlItemIndex = newDegreeItems.indexOf(degreeFromURL);
+        [newDegreeItems[degreeLastIndex], newDegreeItems[degreeUrlItemIndex]] = [newDegreeItems[degreeUrlItemIndex], newDegreeItems[degreeLastIndex]];
+        setDegreeList(newDegreeItems);
+        setDegreeButton(degreeFromURL);
+      }
     }
-  }
-}, [searchParams, branchList, setBranchList, setBranchButton, degreeList, setDegreeList, setDegreeButton]);
-  
+  }, [searchParams, branchList, setBranchList, setBranchButton, degreeList, setDegreeList, setDegreeButton]);
+
   return (
     <Suspense>
       <section className="mt-2 flex mb-4 ml-[1.5rem] mr-[2.25rem] gap-2 mobile:hidden">
