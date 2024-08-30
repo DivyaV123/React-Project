@@ -83,6 +83,8 @@ import { batchDeleteApi } from './queries/deleteBatchApi';
 import { streamApi } from './queries/getAllStream';
 import { cityWeightage } from './queries/cityweightageApi';
 import { placementListApi } from './queries/getPlacementsList';
+import { organisationApi } from './queries/getAllOrganisation';
+
 const store = configureStore({
   reducer: {
 
@@ -188,6 +190,7 @@ const store = configureStore({
     [cityWeightage.reducerPath]: cityWeightage.reducer,
     [placementListApi.reducerPath]: placementListApi.reducer,
 
+    [organisationApi.reducerPath]: organisationApi.reducer
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
@@ -197,7 +200,7 @@ const store = configureStore({
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
       addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware, updateCourseDnd.middleware, updateSubCategoryDnd.middleware, categoryDeleteApi.middleware, categoryEditApi.middleware, DeleteChapterApi.middleware,
       DeleteTopicApi.middleware, DeleteSubTopicApi.middleware, AddCitiesApi.middleware, courseUnMapApi.middleware, citiesForAdminApi.middleware, cityDeleteApi.middleware, unMapSubjectApi.middleware, batchListApi.middleware, getAllTrainersApi.middleware, branchOptions.middleware, batchDeleteApi.middleware,
-      addTrainerApi.middleware,streamApi.middleware,cityWeightage.middleware,placementListApi.middleware,
+      addTrainerApi.middleware, streamApi.middleware, cityWeightage.middleware, organisationApi.middleware,placementListApi.middleware,
     ),
 });
 
