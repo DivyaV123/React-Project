@@ -71,7 +71,7 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     if (yopData) {
       setYopList([...(yopData || [])].sort((a, b) => b - a));
     }
-  }, [degreeAndStreamdata, yopData]);
+  }, [degreeAndStreamdata]);
 
   useEffect(() => {
     const degree = searchParams.get('degree');
