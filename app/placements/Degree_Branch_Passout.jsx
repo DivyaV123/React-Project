@@ -321,7 +321,6 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
               {/* <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
                 Year of passout
               </p> */}
-              {console.log(yopList, "yopListyopList")}
               {renderButtonSection(
                 yopList,
                 passOutButton,
