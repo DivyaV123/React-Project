@@ -120,6 +120,7 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
   const [upComingBatches, setupComingBatches] = useState(null)
   const [onGoingBatches, setOnGoingBatches] = useState(null)
   const [homePlacements, setHomePlacements] = useState(false)
+  const [scrollPage,setScrollPage]=useState(1)
   const emptySearch = citySearchQuery === "" && stateSearchQuery === "" && citySearchQuery === "" &&
     universitySearchQuery === "" && streamSearchQuery === "" && yearSearchQuery === ""
 
@@ -179,8 +180,8 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
         Math.ceil(target?.scrollTop + target?.clientHeight) >=
         target?.scrollHeight - 1;
       setScrollConst(scrolledToBottom);
-
       if (scrolledToBottom) {
+        setScrollPage(scrollPage + 1)
         if (placementParam !== "") {
           if (repData?.response?.last === false) {
             setIsFetchData(true);
@@ -422,7 +423,7 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
         homeBranchData, setHomeBranchData,
         domainVariable, hoverState, setHoverState, imageDialog, setImageDialog, videoDialog, setVideoDialog,
         homePlacements, setHomePlacements, countryList, setCountryList, individualSubjectData, setIndividualSubjectData,
-        selectedSideBar,setSelectedSideBar,selectedInstitute,setSelectedInstitute
+        selectedSideBar,setSelectedSideBar,selectedInstitute,setSelectedInstitute,scrollPage,setScrollPage
       }}
     >
       {children}

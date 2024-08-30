@@ -15,12 +15,12 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { PLACEMENT_PATH } from "@/lib/RouteConstants";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Suspense } from 'react';
-
+import { useGetAllPlacementListQuery } from "@/redux/queries/getPlacementsList";
 const PlacementCards = () => {
   const router = useRouter();
   const pathname = usePathname();
  const searchParams =  typeof window !== "undefined" && useSearchParams();
-  const { filterPlacementData, setFilterPlacementData, placementParam, page, size, setSideBarBtn, homePlacements } = useContext(GlobalContext);
+  const { filterPlacementData, setFilterPlacementData, placementParam, page, size, setSideBarBtn, homePlacements,scrollPage } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const { data: counsellorFilterResponse, error, refetch, isLoading, isFetching } = useFetchCounsellorsQuery({
     pageNumber: page,
@@ -28,6 +28,12 @@ const PlacementCards = () => {
     parameter: placementParam,
     bodyData: filterPlacementData
   });
+  const {
+    data: placementList,
+    error: placementError,
+    isLoading: placementLoading,
+    isFetching: placementFetching,
+  } = useGetAllPlacementListQuery(scrollPage);
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -117,7 +123,7 @@ const PlacementCards = () => {
         )}
       </div>
       <Degree_Branch_Passout isLoading={isLoading} scrollToTop={scrollToTop}/>
-      <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching} />
+      <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching} placementList={placementList}/>
     </Suspense>
   );
 };

@@ -15,6 +15,7 @@ import CounsellorFilters from "./CounsellorFilters";
 import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
 import NoContent from "./NoContent";
 import CounsellorFilterModal from "./CounsellorFilterModal";
+import { useGetAllPlacementListQuery } from "@/redux/queries/getPlacementsList";
 const CounsellorCardHeader = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -44,7 +45,7 @@ const CounsellorCardHeader = () => {
     setGeneratedPath,
     generateLink,
     setGenerateLink,
-    generatedPath,
+    generatedPath,scrollPage,setScrollPage
   } = useContext(GlobalContext);
 
   const isEmptyObject = Object.keys(filteringData).length === 0;
@@ -61,6 +62,14 @@ const CounsellorCardHeader = () => {
     parameter: isEmptyObject ? filterParameter : "",
     bodyData: filteringData,
   });
+
+  const {
+    data: placementList,
+    error: placementError,
+    isLoading: placementLoading,
+    isFetching: placementFetching,
+  } = useGetAllPlacementListQuery(scrollPage);
+
   const [isFetchData, setIsFetchData] = useState(isFetching);
   useEffect(() => {
     refetch();
@@ -226,7 +235,7 @@ const CounsellorCardHeader = () => {
               <CardContentSkeleton />
             ) : (
               <>
-                <PlacementContent counsellorFilterResponse={accumulatedData} />
+                <PlacementContent  placementList={placementList}/>
                 {isFetchData && !counsellorFilterResponse?.response?.candidates?.last &&  <LineLoader key={loaderKey}/> }
               </>
             )
