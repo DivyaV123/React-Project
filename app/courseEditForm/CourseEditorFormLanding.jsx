@@ -168,7 +168,6 @@ function CourseEditorFormLanding() {
         const selectedCourseData = allSubCourse?.find(
             (course) => course.title == selectedCourseId
         );
-console.log({selectedCourseData},{allSubCourse}, {subCourseIndex})
         if (selectedCourseData &&
             selectedCourseData.subCourseResponse.length > 0) {
             setCourseNames(

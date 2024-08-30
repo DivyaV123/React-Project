@@ -14,6 +14,7 @@ const StreamFilter = ({ streamList }) => {
     setStreamSearchQuery,
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
+
   const searchStreamList = streamList?.filter((stream) =>
     stream.name.toLowerCase().includes(streamSearchQuery.toLowerCase())
   );
@@ -21,7 +22,7 @@ const StreamFilter = ({ streamList }) => {
     <Checkbox
       key={item.id}
       id={item.id}
-      label={item.name}
+      label={item.name || item.short_form}
       checked={selectedStream.includes(item.id)}
       onChange={() =>
         handleCounsellorCommonFilter(

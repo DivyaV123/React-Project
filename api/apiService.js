@@ -50,7 +50,7 @@ export const API_ENDPOINTS = {
   GET_LESS_THAN_SIXTY: (pageNo, pageSize) => `candidate/lessThanSixty?pageNo=${pageNo}&pageSize=${pageSize}`,
   GET_PLACED_BETWEEN: (startDate, endDate, pageNo, pageSize) => `candidate/placedDate?startDate=${startDate}&endDate=${endDate}&pageNumber=${pageNo}&size=${pageSize}`,
   COUNSELLOR_FILTER: (pageNumber, pageSize, parameter) => `candidate/counsellor/filter?pageNumber=${pageNumber}&pageSize=${pageSize}${parameter ? `&parameter=${parameter}` : ''}`,
-  PLACEMENT_LIST:(page,testimonial_id)=>`placementslist/?page=${page ? page : ""}&testimonial_id=${testimonial_id ? testimonial_id : ""}`,
+  PLACEMENT_LIST:(page,testimonial_id,joining_date_after,joining_date_before)=>`placementslist/?page=${page ? page : ""}&testimonial_id=${testimonial_id ? testimonial_id : ""}&joining_date_after=${joining_date_after ? joining_date_after : ""}&joining_date_before=${joining_date_before ?  joining_date_before : ""}`,
   //Add Subject
   SUBJECT_ADDER: `api/v1/subjects`,
   MAP_SUBJECT: (courseId) => `api/v1/courses?courseId=${courseId}`,

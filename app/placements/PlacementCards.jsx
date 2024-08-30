@@ -14,30 +14,53 @@ import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCou
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { PLACEMENT_PATH } from "@/lib/RouteConstants";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import { Suspense } from 'react';
+import { Suspense } from "react";
 import { useGetAllPlacementListQuery } from "@/redux/queries/getPlacementsList";
 const PlacementCards = () => {
   const router = useRouter();
   const pathname = usePathname();
- const searchParams =  typeof window !== "undefined" && useSearchParams();
-  const { filterPlacementData, setFilterPlacementData, placementParam, page, size, setSideBarBtn, homePlacements,scrollPage } = useContext(GlobalContext);
+  const searchParams = typeof window !== "undefined" && useSearchParams();
+  const {
+    filterPlacementData,
+    setFilterPlacementData,
+    placementParam,
+    page,
+    size,
+    setSideBarBtn,
+    homePlacements,
+    scrollPage,
+    filteredDateRange,
+    setFilteredRange,
+  } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
-  const { data: counsellorFilterResponse, error, refetch, isLoading, isFetching } = useFetchCounsellorsQuery({
+  const {
+    data: counsellorFilterResponse,
+    error,
+    refetch,
+    isLoading,
+    isFetching,
+  } = useFetchCounsellorsQuery({
     pageNumber: page,
     pageSize: size,
     parameter: placementParam,
-    bodyData: filterPlacementData
+    bodyData: filterPlacementData,
   });
   const {
     data: placementList,
     error: placementError,
     isLoading: placementLoading,
     isFetching: placementFetching,
-  } = useGetAllPlacementListQuery(scrollPage);
+    refetch: placementRefetch,
+  } = useGetAllPlacementListQuery({
+    page: scrollPage,
+    testimonial_id: filteredDateRange?.testimonial_id,
+    joining_date_after: filteredDateRange?.joining_date_after,
+    joining_date_before: filteredDateRange?.joining_date_before,
+  });
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
-      behavior: 'smooth'
+      behavior: "smooth",
     });
   };
 
@@ -46,16 +69,16 @@ const PlacementCards = () => {
     const params = new URLSearchParams(searchParams.toString());
     const newFilterPlacementData = {};
     params.forEach((value, key) => {
-      newFilterPlacementData[key] = value.split(',');
+      newFilterPlacementData[key] = value.split(",");
     });
     setFilterPlacementData(newFilterPlacementData);
   }, [searchParams]);
 
   useEffect(() => {
-    if(!homePlacements){
+    if (!homePlacements) {
       const resetStateAndURL = () => {
         setFilterPlacementData({});
-        setSideBarBtn('');
+        setSideBarBtn("");
         scrollToTop();
         router.replace(PLACEMENT_PATH);
       };
@@ -66,12 +89,17 @@ const PlacementCards = () => {
   useEffect(() => {
     refetch();
   }, [filterPlacementData, placementParam]);
+  useEffect(() => {
+    placementRefetch();
+  }, [scrollPage, filteredDateRange]);
 
   const emptyObj = Object.keys(filterPlacementData).length === 0;
 
   useEffect(() => {
     const searchParamsString = constructSearchParams();
-    const fullURL = `${PLACEMENT_PATH}${searchParamsString ? `?${searchParamsString}` : ''}`;
+    const fullURL = `${PLACEMENT_PATH}${
+      searchParamsString ? `?${searchParamsString}` : ""
+    }`;
 
     if (!emptyObj) {
       router.push(fullURL);
@@ -99,31 +127,52 @@ const PlacementCards = () => {
         {isLoading ? (
           <CardSkeleton />
         ) : (
-          <TotalPlacedCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
+          <TotalPlacedCard
+            allCounts={allPlacementCount}
+            placementPage="GeneralPlacements"
+          />
         )}
         {isLoading ? (
           <CardSkeleton />
         ) : (
-          <DegreeCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
+          <DegreeCard
+            allCounts={allPlacementCount}
+            placementPage="GeneralPlacements"
+          />
         )}
         {isLoading ? (
           <CardSkeleton />
         ) : (
-          <NonItCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
+          <NonItCard
+            allCounts={allPlacementCount}
+            placementPage="GeneralPlacements"
+          />
         )}
         {isLoading ? (
           <CardSkeleton />
         ) : (
-          <BranchCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
+          <BranchCard
+            allCounts={allPlacementCount}
+            placementPage="GeneralPlacements"
+          />
         )}
         {isLoading ? (
           <CardSkeleton />
         ) : (
-          <OverviewCard allCounts={allPlacementCount} placementPage="GeneralPlacements" />
+          <OverviewCard
+            allCounts={allPlacementCount}
+            placementPage="GeneralPlacements"
+          />
         )}
       </div>
-      <Degree_Branch_Passout isLoading={isLoading} scrollToTop={scrollToTop}/>
-      <PlacementSideBar counsellorFilterResponse={counsellorFilterResponse} refetch={refetch} isLoading={isLoading} isFetching={isFetching} placementList={placementList}/>
+      <Degree_Branch_Passout isLoading={isLoading} scrollToTop={scrollToTop} />
+      <PlacementSideBar
+        counsellorFilterResponse={counsellorFilterResponse}
+        refetch={refetch}
+        isLoading={isLoading}
+        isFetching={isFetching}
+        placementList={placementList}
+      />
     </Suspense>
   );
 };
