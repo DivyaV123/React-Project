@@ -110,6 +110,11 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
 
   //placement general login
   const [filterPlacementData, setFilterPlacementData] = useState({});
+  const [filteredDateRange,setFilteredRange]=useState({
+    joining_date_after:"",
+    joining_date_before:"",
+    testimonial_id:""
+  })
   const [placementParam, setPlacementParam] = useState("");
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
   const [degreeButton, setDegreeButton] = useState("");
@@ -297,6 +302,10 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
     switch (title) {
       case "Recent Placements":
         setFilterPlacementData({});
+        setFilteredRange({
+          joining_date_after:"",
+          joining_date_before:""
+        })
         setPage(0)
         setPlacementParam("");
         break;
@@ -314,6 +323,10 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
         setFilterPlacementData({
           timePeriod: [startDate, endDate],
         });
+        setFilteredRange({
+          joining_date_after:startDate,
+          joining_date_before:endDate
+        })
         break;
       default:
         break;
@@ -423,7 +436,7 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
         homeBranchData, setHomeBranchData,
         domainVariable, hoverState, setHoverState, imageDialog, setImageDialog, videoDialog, setVideoDialog,
         homePlacements, setHomePlacements, countryList, setCountryList, individualSubjectData, setIndividualSubjectData,
-        selectedSideBar,setSelectedSideBar,selectedInstitute,setSelectedInstitute,scrollPage,setScrollPage
+        selectedSideBar,setSelectedSideBar,selectedInstitute,setSelectedInstitute,scrollPage,setScrollPage,filteredDateRange,setFilteredRange
       }}
     >
       {children}

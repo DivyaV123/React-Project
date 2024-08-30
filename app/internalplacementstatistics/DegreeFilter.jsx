@@ -18,7 +18,7 @@ const DegreeFilter = ({ degreeList }) => {
     <Checkbox
       key={item.id} 
       id={item.id}  // Use degree ID as the id
-      label={item.name}  // Use degree name as the label
+      label={item.name || item.short_form}  // Use degree name as the label
       checked={selectedDegrees.includes(item.id)}
       onChange={() =>
         handleCounsellorCommonFilter(

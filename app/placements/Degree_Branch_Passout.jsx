@@ -10,6 +10,7 @@ import BarSkeleton from "@/components/skeletons/BarSkeleton";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
 import { Suspense } from 'react'
+import { truncateText } from "@/lib/utils";
 
 const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
@@ -59,10 +60,10 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
   useEffect(() => {
     if (degreeAndStreamdata) {
       const getDegree=degreeAndStreamdata?.results?.map(
-        (degree) => degree.name
+        (degree) => degree.short_form || degree.name
       )
       const getStream=streamData?.results?.map(
-        (stream) => stream.name
+        (stream) => stream.short_form || stream.name
       )
       setDegreeList(getDegree);
       setBranchList(getStream);
@@ -202,8 +203,9 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
               : ""
           }`}
           onClick={() => {handleButtonClick(item, setButtonState, key);setPage(0)}}
+          title={item}
         >
-          {abbreviations[item] || item}
+          {truncateText(item,6)}
         </button>
       ))}
       {items.length > 6 && (
@@ -224,8 +226,9 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
                 handleItemClick(item, items, setItems, setButtonState, key);
                 setMoreState(false);
               }}
+              title={item}
             >
-              {abbreviations[item] || item}
+              {truncateText(item, 6)}
             </li>
           ))}
         </ul>

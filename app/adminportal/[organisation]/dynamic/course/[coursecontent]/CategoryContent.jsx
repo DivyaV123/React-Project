@@ -179,7 +179,7 @@ function CategoryContent() {
       }
     }
   };
-  console.log({categoryList},{routeCourseId})
+
   return (
     <div className="py-[3.333vh] px-[1.875vw]">
       <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
@@ -211,7 +211,7 @@ function CategoryContent() {
                 >
                   {categoryList.map((item) => (
                     <SortableItem key={item.courseResponseId || item.subCourseResponseId} id={item.courseResponseId || item.subCourseResponseId}>
-                      <TableCell onClick={()=>{console.log({item},{categoryList})}} className={tblTextClass}>{item.title}</TableCell>
+                      <TableCell  className={tblTextClass}>{item.title}</TableCell>
                       <TableCell className={tblTextClass}>{item.subjectCount}</TableCell>
                       <TableCell className={tblTextClass}></TableCell>
                     </SortableItem>
