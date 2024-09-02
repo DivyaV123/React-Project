@@ -16,6 +16,7 @@ import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
 import NoContent from "./NoContent";
 import CounsellorFilterModal from "./CounsellorFilterModal";
 import { useGetAllPlacementListQuery } from "@/redux/queries/getPlacementsList";
+import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 import BlinkingDots from "@/components/skeletons/BlinkingDots";
 const CounsellorCardHeader = () => {
   const router = useRouter();
@@ -71,6 +72,7 @@ const CounsellorCardHeader = () => {
     isFetching: placementFetching,
     refetch: placementRefetch,
   } = useGetAllPlacementListQuery({page: scrollPage});
+  const { data: allPlacementCount } = useGetAllPlacementCountQuery();
     useEffect(() => {
       placementRefetch();
     }, [scrollPage]);
@@ -86,7 +88,7 @@ const CounsellorCardHeader = () => {
 
   useEffect(() => {
     if (placementList) {
-      if (scrollPage > 0) {
+      if (scrollPage > 1) {
         setAccumulatedData((prevData) => [
           ...prevData,
           ...(placementList?.results || []),
@@ -170,7 +172,7 @@ const CounsellorCardHeader = () => {
             <LinkCardSkeleton />
           ) : (
             <TotalPlacedCard
-              allCounts={counsellorFilterResponse}
+              allCounts={allPlacementCount}
               handleCandidates={refetch}
               handleParameter={handleParameter}
             />
@@ -179,7 +181,7 @@ const CounsellorCardHeader = () => {
             <LinkCardSkeleton />
           ) : (
             <DegreeCard
-              allCounts={counsellorFilterResponse}
+              allCounts={allPlacementCount}
               handleParameter={handleParameter}
               isEmptyObject={isEmptyObject}
             />
@@ -188,7 +190,7 @@ const CounsellorCardHeader = () => {
             <LinkCardSkeleton />
           ) : (
             <OverviewCard
-              allCounts={counsellorFilterResponse}
+              allCounts={allPlacementCount}
               handleParameter={handleParameter}
             />
           )}

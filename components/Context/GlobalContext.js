@@ -117,7 +117,8 @@ const GlobalContextProvider = ({ children }) => {
     degree_id:"",
     d_stream_id:"",
     masters_id:"",
-    m_stream_id:""
+    m_stream_id:"",
+    highestyop:""
   })
   const [placementParam, setPlacementParam] = useState("");
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");

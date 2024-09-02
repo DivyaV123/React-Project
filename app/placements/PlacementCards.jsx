@@ -61,6 +61,7 @@ const PlacementCards = () => {
     d_stream_id:filteredDateRange?.d_stream_id,
     masters_id:filteredDateRange?.masters_id,
     m_stream_id:filteredDateRange?.m_stream_id,
+    highestyop: filteredDateRange?.highestyop,
   });
   const scrollToTop = () => {
     window.scrollTo({
@@ -68,7 +69,6 @@ const PlacementCards = () => {
       behavior: "smooth",
     });
   };
-
   // Parse query parameters on initial load or when URL changes
   useEffect(() => {
     const params = new URLSearchParams(searchParams.toString());
