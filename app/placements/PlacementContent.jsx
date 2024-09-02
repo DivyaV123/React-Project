@@ -320,7 +320,7 @@ const PlacementContent = ({ placementList }) => {
                 <AlertDialogTrigger asChild>
                   <img
                     onClick={openImageDialog}
-                    src={getFilteredTestimonials(
+                    src={student.base_url+getFilteredTestimonials(
                       student?.gotjob[0]?.mini_testimonial?.img_details
                         ?.written_testimonial_image
                     )}
@@ -362,11 +362,17 @@ const PlacementContent = ({ placementList }) => {
               </div>
               {imageDialog && (
                 <ImagePopup
-                  testimonialLink={student?.testimonial?.testimonialLink}
+                  testimonialLink={student.base_url+getFilteredTestimonials(
+                    student?.gotjob[0]?.mini_testimonial?.img_details
+                      ?.written_testimonial_image
+                  )}
                 />
               )}
               {videoDialog && (
-                <VideoPopup videoLink={student?.testimonial?.youtubeReview} />
+                <VideoPopup videoLink={getFilteredTestimonials(
+                  student?.gotjob[0]?.mini_testimonial?.url_details
+                    ?.youtube_video_with_company_name
+                )} />
               )}
               {testimonialDialog && (
                 <TestimonialPopup student={student} extractText={extractText} />

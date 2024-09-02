@@ -39,7 +39,8 @@ const PlacementSideBar = ({
     itCheckedIcon,
     nonItCheckedIcon,
     activeSidebarBtn,
-    scrollPage
+    scrollPage,
+    filteredDateRange
   } = useContext(GlobalContext);
   const [isFetchData, setIsFetchData] = useState(isFetching);
   const sideBar = [
@@ -151,7 +152,7 @@ const PlacementSideBar = ({
   }, [searchParams, degree, stream, yop]);
   useEffect(() => {
     if (placementList) {
-      if (scrollPage > 0) {
+      if (scrollPage > 1) {
         setAccumulatedData((prevData) => [
           ...prevData,
           ...(placementList?.results || []),

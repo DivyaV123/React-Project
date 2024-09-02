@@ -201,6 +201,11 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
         [keyToUpdate]: item.id,
       });
     }
+    if(key==="yop"){
+      setFilteredRange({
+        highestyop: item.name,
+      });
+    }
   };
   
 
@@ -219,7 +224,7 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
       {items?.slice(0, 6).map((item, index) => (
         <button
           key={index}
-          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
+          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.938vw] ${
             item.name === buttonState &&
             !lesscheckedIcon &&
             !throughcheckedIcon &&
@@ -240,7 +245,7 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
       ))}
       {items?.length > 6 && (
         <button
-          className="flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] text-[#4987CE] font-extrabold"
+          className="flex justify-center items-center w-[7.5vw] py-2 text-[0.938vw] text-[#4987CE] font-extrabold"
           onClick={() => handleToggleMore(setMoreState, otherSetMoreStates)}
         >
           {moreState ? "Less..." : "More..."}
@@ -251,7 +256,7 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
           {items?.slice(6).map((item, index) => (
             <li
               key={index}
-              className="flex justify-center items-center w-[4.219vw] py-2 text-[0.63rem] text-[#707070] font-medium"
+              className="flex justify-center items-center w-[4.219vw] py-2 text-[0.938vw] text-[#707070] font-medium"
               onClick={() => {
                 handleItemClick(item, items, setItems, setButtonState, key);
                 setMoreState(false);
