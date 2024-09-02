@@ -8,10 +8,9 @@ import { branchAbbreviations } from "@/lib/utils";
 import BarSkeleton from "@/components/skeletons/BarSkeleton";
 import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
-import { truncateText } from "@/lib/utils";
-import { Suspense } from 'react';
+import { truncateText, toProperCase } from "@/lib/utils";
+import { Suspense } from "react";
 import dayjs from "dayjs";
-
 
 const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
@@ -36,19 +35,17 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     throughcheckedIcon,
     itCheckedIcon,
     nonItCheckedIcon,
-    placeCheckedIcon, setPage, sideBarBtn
+    placeCheckedIcon,
+    setPage,
+    sideBarBtn,
+    filteredDateRange,
+    setFilteredRange,
   } = useContext(GlobalContext);
 
   const searchParams = useSearchParams();
 
-  const {
-    data: degreeAndStreamdata,
-    error,
-  } = useGetAllDegreeAndStreamQuery();
-  const {
-    data: streamData,
-    error: streamError,
-  } = useGetAllStreamQuery();
+  const { data: degreeAndStreamdata, error } = useGetAllDegreeAndStreamQuery();
+  const { data: streamData, error: streamError } = useGetAllStreamQuery();
 
   const currentYear = dayjs().year();
   const yopData = Array.from({ length: 15 }, (_, i) => currentYear - i);
@@ -59,26 +56,37 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
 
   useEffect(() => {
     if (degreeAndStreamdata) {
-      const getDegree = degreeAndStreamdata?.results?.map(
-        (degree) => degree.short_form || degree.name
-      )
-      const getStream = streamData?.results?.map(
-        (stream) => stream.short_form || stream.name
-      )
-      setDegreeList(getDegree);
-      setBranchList(getStream);
+        const getDegree = degreeAndStreamdata?.results?.map((degree) => ({
+            id: degree.id,
+            name: degree.short_form || degree.name,
+            qualification_type_name: degree.qualification_type_name,
+        }));
+        setDegreeList(getDegree);
     }
+
+    if (streamData) {
+        const getStream = streamData?.results?.map((stream) => ({
+            id: stream.id,
+            name: stream.short_form || stream.name,
+            qualification_type_name: stream.qualification_type_name,
+        }));
+        setBranchList(getStream);
+    }
+
     if (yopData) {
-      setYopList([...(yopData || [])].sort((a, b) => b - a));
+        setYopList(
+            [...(yopData || [])]
+                .sort((a, b) => b - a)
+                .map((yop) => ({ id: yop, name: yop.toString() }))
+        );
     }
-  }, [degreeAndStreamdata]);
+}, [degreeAndStreamdata, streamData]);
+
 
   useEffect(() => {
-    const degree = searchParams.get('degree');
-    const stream = searchParams.get('stream');
-    const yop = searchParams.get('yop');
-
-
+    const degree = searchParams.get("degree");
+    const stream = searchParams.get("stream");
+    const yop = searchParams.get("yop");
 
     if (degree) {
       setDegreeButton(degree);
@@ -102,9 +110,9 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
       }));
     }
     return () => {
-      setDegreeButton('');
-      setBranchButton('');
-      setPassOutButton('');
+      setDegreeButton("");
+      setBranchButton("");
+      setPassOutButton("");
     };
   }, []);
 
@@ -118,9 +126,8 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     if (exceptKey !== "stream") setBranchButton("");
     if (exceptKey !== "yop") setPassOutButton("");
   };
-
   const handleItemClick = (item, items, setItems, setButtonState, key) => {
-    const index = items.indexOf(item);
+    const index = items.findIndex(({ name }) => name === item.name);
 
     if (index >= 6) {
       const newItems = [...items];
@@ -130,23 +137,23 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
 
       const unsortedPart = newItems.slice(6);
       unsortedPart.push(sixthItem);
-      const isNumeric = unsortedPart.every((el) => !isNaN(el));
+      const isNumeric = unsortedPart.every((el) => !isNaN(el.name));
 
       unsortedPart.sort((a, b) => {
         if (isNumeric) {
-          return b - a;
+          return b.name - a.name;
         } else {
-          if (a < b) return -1;
-          if (a > b) return 1;
+          if (a.name < b.name) return -1;
+          if (a.name > b.name) return 1;
           return 0;
         }
       });
       const sortedItems = [...newItems.slice(0, 6), ...unsortedPart];
 
       setItems(sortedItems);
-      setButtonState(item);
+      setButtonState(item.name);
     } else {
-      setButtonState(item);
+      setButtonState(item.name);
     }
 
     setPlacementParam("");
@@ -156,15 +163,15 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     setNonItCheckedIcon(false);
     setItCheckedIcon(false);
     setFilterPlacementData({
-      [key]: [item],
+      [key]: [item.id],
     });
     resetButtonStates(key);
   };
 
   const handleButtonClick = (item, setButtonState, key) => {
-    scrollToTop()
+    scrollToTop();
     resetButtonStates(key);
-    setButtonState(item);
+    setButtonState(item.name);
     setPlacementParam("");
     setSideBarBtn("");
     setPlacedCheckedIcon(false);
@@ -173,9 +180,29 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     setNonItCheckedIcon(false);
     setItCheckedIcon(false);
     setFilterPlacementData({
-      [key]: [item],
+      [key]: [item.id],
     });
+  
+    const qualificationKeyMap = {
+      Degree: {
+        degree: "degree_id",
+        stream: "d_stream_id",
+      },
+      Masters: {
+        degree: "masters_id",
+        stream: "m_stream_id",
+      }
+    };
+  
+    const keyToUpdate = qualificationKeyMap[item?.qualification_type_name]?.[key];
+  
+    if (keyToUpdate) {
+      setFilteredRange({
+        [keyToUpdate]: item.id,
+      });
+    }
   };
+  
 
   const renderButtonSection = (
     items,
@@ -192,19 +219,23 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
       {items?.slice(0, 6).map((item, index) => (
         <button
           key={index}
-          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${item === buttonState &&
+          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
+            item.name === buttonState &&
             !lesscheckedIcon &&
             !throughcheckedIcon &&
             !itCheckedIcon &&
             !nonItCheckedIcon &&
             !placeCheckedIcon
-            ? "activeButton font-medium"
-            : ""
-            }`}
-          onClick={() => { handleButtonClick(item, setButtonState, key); setPage(0) }}
-          title={item}
+              ? "activeButton font-medium"
+              : ""
+          }`}
+          onClick={() => {
+            handleButtonClick(item, setButtonState, key);
+            setPage(0);
+          }}
+          title={item.name}
         >
-          {truncateText(item, 6)}
+          {toProperCase(truncateText(item.name, 6))}
         </button>
       ))}
       {items?.length > 6 && (
@@ -225,9 +256,9 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
                 handleItemClick(item, items, setItems, setButtonState, key);
                 setMoreState(false);
               }}
-              title={item}
+              title={item.name}
             >
-              {truncateText(item, 6)}
+              {toProperCase(truncateText(item.name, 6))}
             </li>
           ))}
         </ul>
@@ -235,48 +266,55 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     </div>
   );
 
-
-
   //NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
   useEffect(() => {
-    // Get stream value from URL
-    const streamFromURL = searchParams.get('stream');
-    const degreeFromURL = searchParams.get('degree');
+    const streamFromURL = searchParams.get("stream");
+    const degreeFromURL = searchParams.get("degree");
 
-    // Check conditions for updating branchList
-    if (streamFromURL && branchList.length > 6 && !branchList.slice(0, 6).includes(streamFromURL)) {
-      // Ensure streamFromURL exists in branchList
-      if (branchList.includes(streamFromURL)) {
-        // Create a new array with streamFromURL replacing the last item of the first 6 items
+    if (
+      streamFromURL &&
+      branchList.length > 6 &&
+      !branchList.slice(0, 6).some((item) => item.name === streamFromURL)
+    ) {
+      if (branchList.some((item) => item.name === streamFromURL)) {
         const newBranchItems = [...branchList];
         const branchLastIndex = 5;
-        const branchUrlItemIndex = newBranchItems.indexOf(streamFromURL);
-
-        // Swap the streamFromURL with the item at the lastIndex
-        [newBranchItems[branchLastIndex], newBranchItems[branchUrlItemIndex]] = [newBranchItems[branchUrlItemIndex], newBranchItems[branchLastIndex]];
-
-        // Update branchList state with the new items
+        const branchUrlItemIndex = newBranchItems.findIndex(
+          (item) => item.name === streamFromURL
+        );
+        [newBranchItems[branchLastIndex], newBranchItems[branchUrlItemIndex]] =
+          [newBranchItems[branchUrlItemIndex], newBranchItems[branchLastIndex]];
         setBranchList(newBranchItems);
-
-        // Update the active button state if necessary
         setBranchButton(streamFromURL);
       }
     }
 
-    // Check conditions for updating degreeList
-    if (degreeFromURL && degreeList.length > 6 && !degreeList.slice(0, 6).includes(degreeFromURL)) {
-
-      if (degreeList.includes(degreeFromURL)) {
-
+    if (
+      degreeFromURL &&
+      degreeList?.length > 6 &&
+      !degreeList.slice(0, 6).some((item) => item.name === degreeFromURL)
+    ) {
+      if (degreeList.some((item) => item.name === degreeFromURL)) {
         const newDegreeItems = [...degreeList];
         const degreeLastIndex = 5;
-        const degreeUrlItemIndex = newDegreeItems.indexOf(degreeFromURL);
-        [newDegreeItems[degreeLastIndex], newDegreeItems[degreeUrlItemIndex]] = [newDegreeItems[degreeUrlItemIndex], newDegreeItems[degreeLastIndex]];
+        const degreeUrlItemIndex = newDegreeItems.findIndex(
+          (item) => item.name === degreeFromURL
+        );
+        [newDegreeItems[degreeLastIndex], newDegreeItems[degreeUrlItemIndex]] =
+          [newDegreeItems[degreeUrlItemIndex], newDegreeItems[degreeLastIndex]];
         setDegreeList(newDegreeItems);
         setDegreeButton(degreeFromURL);
       }
     }
-  }, [searchParams, branchList, setBranchList, setBranchButton, degreeList, setDegreeList, setDegreeButton]);
+  }, [
+    searchParams,
+    branchList,
+    setBranchList,
+    setBranchButton,
+    degreeList,
+    setDegreeList,
+    setDegreeButton,
+  ]);
 
   return (
     <Suspense>
@@ -286,9 +324,6 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
         ) : (
           <>
             <div className="w-[31.328vw]">
-              {/* <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-                Degree
-              </p> */}
               {renderButtonSection(
                 degreeList,
                 degreeButton,
@@ -302,9 +337,6 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
               )}
             </div>
             <div className="w-[31.328vw]">
-              {/* <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-                Stream
-              </p> */}
               {renderButtonSection(
                 branchList,
                 branchButton,
@@ -318,9 +350,6 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
               )}
             </div>
             <div className="w-[31.328vw]">
-              {/* <p className="text-[0.75rem] text-[#002248] font-medium pl-1 pb-1">
-                Year of passout
-              </p> */}
               {renderButtonSection(
                 yopList,
                 passOutButton,
@@ -335,7 +364,7 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
             </div>
           </>
         )}
-      </section >
+      </section>
     </Suspense>
   );
 };

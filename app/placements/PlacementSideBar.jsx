@@ -41,7 +41,7 @@ const PlacementSideBar = ({
     activeSidebarBtn,
     scrollPage
   } = useContext(GlobalContext);
-  const [isFetchData, setIsFetchData] = useState(placementRefetch);
+  const [isFetchData, setIsFetchData] = useState(isFetching);
   const sideBar = [
     {
       title: "Recent Placements",
@@ -255,7 +255,7 @@ const PlacementSideBar = ({
               !counsellorFilterResponse?.response?.candidates?.last && (
                 <LineLoader key={loaderKey} />
               )}
-            {placementList.results.length == 0 && (
+            {placementList?.results?.length == 0 && (
               <div className="w-full h-full flex justify-center items-center">
                 <NoContent />
               </div>
