@@ -33,6 +33,7 @@ const PlacementCards = () => {
     setFilteredRange,
   } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
+
   const {
     data: counsellorFilterResponse,
     error,

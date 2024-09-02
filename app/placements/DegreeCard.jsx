@@ -30,7 +30,7 @@ const DegreeCard = ({ allCounts,placementPage }) => {
     } else return;
   };
   const degreeCardCount=placementPage === "GeneralPlacements"
-  ? allCounts?.response?.lessThanSixtyPercent
+  ? allCounts?.results[0]?.report?.less_than_60
   : allCounts?.response?.filterDataCounts?.lessThanSixty
   return (
     <div className={`${placementPage === "GeneralPlacements" ?'degreeCard' :'degreeInternal'} relative cursor-pointer`} onClick={handleClick}>

@@ -9,10 +9,10 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 const ImageScroller = ({ onRightBarFix, isRightBarFixed, cardData }) => {
   const { allStaticsCount } = useContext(GlobalContext)
   const statisticsData = [
-    { number: `${allStaticsCount?.response?.allPlacedCount}+`, text: "Students placed" },
+    { number: `${allStaticsCount?.results[0]?.report?.total_placed}+`, text: "Students placed" },
     { number: "4870+", text: "Hiring Companies" },
-    { number: `${allStaticsCount?.response?.nonItCount}+`, text: "Non IT Students placed" },
-    { number: `${allStaticsCount?.response?.itCount}+`, text: "IT Students placed" },
+    { number: `${allStaticsCount?.results[0]?.report?.non_it}+`, text: "Non IT Students placed" },
+    { number: `${allStaticsCount?.results[0]?.report?.it}+`, text: "IT Students placed" },
   ];
 
 

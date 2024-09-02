@@ -17,16 +17,16 @@ const CourseLanding = ({
 }) => {
   const statisticsData = [
     {
-      number: `${formatToIndianCurrency(countDetails?.response?.allPlacedCount)}+`,
+      number: `${formatToIndianCurrency(countDetails?.results[0]?.report?.total_placed)}+`,
       text: "Students placed",
     },
     { number: "4,870+", text: "Hiring Companies" },
     {
-      number: `${formatToIndianCurrency(countDetails?.response?.nonItCount)}+`,
+      number: `${formatToIndianCurrency(countDetails?.results[0]?.report?.non_it)}+`,
       text: "Non IT Students placed",
     },
     {
-      number: `${formatToIndianCurrency(countDetails?.response?.itCount)}+`,
+      number: `${formatToIndianCurrency(countDetails?.results[0]?.report?.it)}+`,
       text: "IT Students placed",
     },
   ];

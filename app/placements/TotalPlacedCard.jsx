@@ -31,7 +31,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
   };
   const TotalPlaceCount =
     placementPage === "GeneralPlacements"
-      ? allCounts?.response?.allPlacedCount
+      ? allCounts?.results[0]?.report?.total_placed
       : allCounts?.response?.filterDataCounts?.total;
   return (
     <div

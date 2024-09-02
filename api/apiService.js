@@ -44,7 +44,7 @@ export const API_ENDPOINTS = {
   COURSE_MAP_SUBCATEGORY: (subCategoryId) => `/api/v1/subcategories/assigncourses?subCategoryId=${subCategoryId}`,
   COURSE_UN_MAP: (courseId) => `/api/v1/courses/unmapCategoryAndSubCategoryFromCourse?courseId=${courseId}`,
   GET_PASS_OUT_YEAR: 'candidate/passoutyear',
-  GET_PLACEMENT_COUNTS: '/candidate/getCounts',
+  GET_PLACEMENT_COUNTS: 'website_data_reportSummary/',
   GET_THROUGH_OUT_SIXTY: 'candidate/getThroughOutSixty',
   GET_IT_AND_NON_IT: (course) => `candidate/getCandidates/${course}`,
   GET_LESS_THAN_SIXTY: (pageNo, pageSize) => `candidate/lessThanSixty?pageNo=${pageNo}&pageSize=${pageSize}`,
