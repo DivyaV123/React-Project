@@ -5,9 +5,10 @@ import ImagePopup from "./ImagePopup";
 import VideoPopup from "./VideoPopup";
 import Link from "next/link";
 import { branchAbbreviations } from "@/lib/utils";
-import { truncateText } from "@/lib/utils";
+import { truncateText, toProperCase } from "@/lib/utils";
 import TestimonialPopup from "./TestimonialPopup";
-const PlacementContent = ({  placementList }) => {
+
+const PlacementContent = ({ placementList }) => {
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
   const [testimonialDialog, setTestimonialDialog] = useState(false);
@@ -30,7 +31,7 @@ const PlacementContent = ({  placementList }) => {
     setVideoDialog(false);
     setImageDialog(false);
   };
-const defaultImage="/user.svg"
+  const defaultImage = "/user.svg";
   return (
     <>
       {placementList?.map((student) => {
@@ -44,29 +45,34 @@ const defaultImage="/user.svg"
           } else return "";
         };
         const studentInfoMap = {
-          "Masters": {
-            degree: student?.masters?.short_form || student?.masters?.name ,
+          Masters: {
+            degree: student?.masters?.short_form || student?.masters?.name,
             percentage: student?.percentage_mas,
             stream: student?.m_stream?.short_form || student?.m_stream?.name,
           },
-          "Degree": {
+          Degree: {
             degree: student?.degree?.short_form || student?.degree?.name,
             percentage: student?.percentage_deg,
             stream: student?.d_stream?.short_form || student?.d_stream?.name,
           },
-          "Diploma": {
+          Diploma: {
             degree: "Diploma",
             percentage: student?.percentage_dip,
-            stream: student?.dip_stream?.short_form || student?.dip_stream?.name,
+            stream:
+              student?.dip_stream?.short_form || student?.dip_stream?.name,
           },
         };
-      
-        const studentInfo = studentInfoMap[student?.highest_degree] || { degree: "Diploma", percentage: "", stream: "" };
+
+        const studentInfo = studentInfoMap[student?.highest_degree] || {
+          degree: "Diploma",
+          percentage: "",
+          stream: "",
+        };
 
         const degree = studentInfo.degree;
         const percentage = studentInfo.percentage;
         const stream = studentInfo.stream;
-      
+
         return (
           <section
             className="w-[99.4%] mobile:w-[92.558vw]  contentCard flex mobile:flex-row-reverse sm:pt-[0.556vh]
@@ -76,7 +82,10 @@ const defaultImage="/user.svg"
               <div className="mobile:flex mobile:flex-col flex mobile:w-full mobile:pr-[3.721vw]">
                 <div className="sm:w-[15.547vw] ">
                   <div className="h-[24.861vh] overflow-hidden w-full rounded-2xl mobile:hidden">
-                    <img src={student?.image || defaultImage} className="w-full" />
+                    <img
+                      src={student?.image || defaultImage}
+                      className="w-full"
+                    />
                   </div>
                   <div className="imageCard">
                     <header className="studentName font-semibold sm:py-[1.111vh] mobile:pt-[1.717vh] mobile:pb-[1.502vh] sm:text-center">
@@ -84,17 +93,21 @@ const defaultImage="/user.svg"
                     </header>
                     <div className="flex gap-1 studentDetails mobile:pb-[1.609vh]">
                       <div>
-                        <div className="studentDetails flex justify-center" title={degree}>
-                          {truncateText(degree,5)}
+                        <div
+                          className="studentDetails flex justify-center"
+                          title={degree}
+                        >
+                          {toProperCase(truncateText(degree, 5))}
                         </div>
                         <div className="educationDetails">Degree</div>
                       </div>
                       <div>|</div>
                       <div>
-                        <div className="studentDetails flex justify-center" title={stream}>
-                          {truncateText(
-                            stream,3
-                          )}
+                        <div
+                          className="studentDetails flex justify-center"
+                          title={stream}
+                        >
+                          {truncateText(stream, 3)?.toUpperCase()}
                         </div>
                         <div className="educationDetails">Stream</div>
                       </div>

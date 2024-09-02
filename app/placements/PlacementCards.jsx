@@ -56,6 +56,10 @@ const PlacementCards = () => {
     testimonial_id: filteredDateRange?.testimonial_id,
     joining_date_after: filteredDateRange?.joining_date_after,
     joining_date_before: filteredDateRange?.joining_date_before,
+    degree_id: filteredDateRange?.degree_id,
+    d_stream_id:filteredDateRange?.d_stream_id,
+    masters_id:filteredDateRange?.masters_id,
+    m_stream_id:filteredDateRange?.m_stream_id,
   });
   const scrollToTop = () => {
     window.scrollTo({
@@ -170,7 +174,7 @@ const PlacementCards = () => {
         counsellorFilterResponse={counsellorFilterResponse}
         refetch={refetch}
         isLoading={isLoading}
-        isFetching={isFetching}
+        isFetching={placementFetching}
         placementList={placementList}
         placementRefetch={placementRefetch}
       />

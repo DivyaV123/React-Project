@@ -113,7 +113,11 @@ const GlobalContextProvider = ({ children }) => {
   const [filteredDateRange, setFilteredRange] = useState({
     joining_date_after: "",
     joining_date_before: "",
-    testimonial_id: ""
+    testimonial_id: "",
+    degree_id:"",
+    d_stream_id:"",
+    masters_id:"",
+    m_stream_id:""
   })
   const [placementParam, setPlacementParam] = useState("");
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
