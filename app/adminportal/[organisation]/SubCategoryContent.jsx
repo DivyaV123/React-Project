@@ -9,7 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { useGetAllCategoryQuery } from "@/redux/queries/adminCategorySortApi";
-import { usePathname ,useRouter} from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { ADMIN_PORTAL } from "@/lib/RouteConstants";
 import Input from "@/components/commonComponents/input/Input";
 import Svg from "@/components/commonComponents/Svg/Svg";
@@ -40,25 +40,36 @@ import { CSS } from "@dnd-kit/utilities";
 import { useSubCategoryWeightageDndMutation } from "@/redux/queries/updateSubCategoryDndApi";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import { useCreateSubCategoryMutation } from "@/redux/queries/createSubCategoryApi";
+import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
+import { useSubCategoryDeleteMutation } from "@/redux/queries/deleteSubCategoryApi";
+import { useUpdateSubCategoryMutation } from "@/redux/queries/updateSubCategoryApi";
 
 function SubCategoryContent() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editData, setEditData] = useState(null);
-  const [assignCategoryID,setAssignCategoryID]= useState(null);
+  const [assignCategoryID, setAssignCategoryID] = useState(null);
+  const [subCategoryId, setSubCategoryId] = useState("");
+  const [deleteSubCategoryModal, setDeleteSubCategoryModal] = useState(false);
+  const [subCategoryName, setSubCategoryName] = useState("");
   const initialValues = {
-    subCategory:editData?editData.subCategory : "",
-    assignCategory:editData?editData.assignCategory : "",
-  
+    subCategory: editData ? editData.title : "",
+    assignCategory: editData ? editData.assignCategory : "",
   };
   const validationSchema = Yup.object({
     subCategory: Yup.string().required("subCategory is required"),
-    assignCategory:!editData && Yup.string().required("assignCategory is required"),
-   
+    assignCategory:
+      !editData && Yup.string().required("assignCategory is required"),
   });
+  const [updateSubCategory] = useUpdateSubCategoryMutation();
   const [
     craeteSubCategory,
-    { data: postSubCategory, error: postSubCategoryError, isLoading: postSubCategoryLoad },
+    {
+      data: postSubCategory,
+      error: postSubCategoryError,
+      isLoading: postSubCategoryLoad,
+    },
   ] = useCreateSubCategoryMutation();
+  const [deleteSubCategory] = useSubCategoryDeleteMutation();
   const router = useRouter();
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
@@ -76,44 +87,56 @@ function SubCategoryContent() {
   const segments = pathname.split("/");
   const desiredSegment = segments[segments.length - 1];
   const decodedCategory = decodeURIComponent(desiredSegment);
-  const { data: categoryData, refetch:categoryDataRefetch } = useGetAllCategoryQuery({
-    organizationType: initialOrgType,
-  });
+  const { data: categoryData, refetch: categoryDataRefetch } =
+    useGetAllCategoryQuery({
+      organizationType: initialOrgType,
+    });
   useEffect(() => {
     categoryDataRefetch();
   }, [instituteParam]);
 
   const [subCourses, setSubCourses] = useState([]);
 
-  
+  const tblTextClass =
+    "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
 
-  const tblTextClass = "text-[#6E6E6E] font-medium text-[0.75rem] cursor-pointer";
+  const getTitle = categoryData?.data.find(
+    (ele) => ele.courseId == decodedCategory
+  )?.title;
 
-  const getTitle=categoryData?.data
-  .find(ele => ele.courseId == decodedCategory)?.title
+  const categoryTitle =
+    decodedCategory === "subcategory"
+      ? categoryData?.data
+          .filter((ele) => ele.subCourse.length > 0)
+          .flatMap((ele) => ele.title)
+      : getTitle;
 
-const categoryTitle=decodedCategory === "subcategory" ? categoryData?.data.filter(ele=>ele.subCourse.length>0).flatMap(ele=>ele.title) : getTitle
+  const getSubCourseCategory = useMemo(() => {
+    if (!categoryData?.data) return [];
 
-const getSubCourseCategory = useMemo(() => {
-  if (!categoryData?.data) return [];
-
-  if (decodedCategory === "subcategory") {
-    return categoryData.data.flatMap(ele => ele?.subCourse?.length > 0 ? ele.subCourse : []);
-  } else {
-    return categoryData.data
-      .filter(ele => ele.courseId == decodedCategory)
-      .flatMap(subele => subele.subCourse.length > 0 ? subele.subCourse : []);
-  }
-}, [decodedCategory, categoryData]);
-useEffect(() => {
-  if (categoryData?.data) {
-    const initialSubCourses = getSubCourseCategory;
-    setSubCourses(initialSubCourses);
-  }
-}, [categoryData, decodedCategory]);
-const handleCategoryClick=(subcourseid)=>{
-router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},${subcourseid}`)
-}
+    if (decodedCategory === "subcategory") {
+      return categoryData.data.flatMap((ele) =>
+        ele?.subCourse?.length > 0 ? ele.subCourse : []
+      );
+    } else {
+      return categoryData.data
+        .filter((ele) => ele.courseId == decodedCategory)
+        .flatMap((subele) =>
+          subele.subCourse.length > 0 ? subele.subCourse : []
+        );
+    }
+  }, [decodedCategory, categoryData]);
+  useEffect(() => {
+    if (categoryData?.data) {
+      const initialSubCourses = getSubCourseCategory;
+      setSubCourses(initialSubCourses);
+    }
+  }, [categoryData, decodedCategory]);
+  const handleCategoryClick = (subcourseid) => {
+    router.push(
+      `${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},${subcourseid}`
+    );
+  };
 
   const tableHeaders = ["SUB CATEGORY NAME", "CATEGORY", "COURSES", "ACTIONS"];
 
@@ -196,8 +219,6 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
     }
   };
 
-
-  
   const assignCategoryOptions = [];
   categoryData?.data.map((item) => {
     assignCategoryOptions.push({
@@ -210,7 +231,12 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
     return (
       <Form className="space-y-4">
         <div>
-          <label htmlFor="subCategory">Sub Category</label>
+          <label
+            htmlFor="subCategory"
+           
+          >
+            Sub Category
+          </label>
           <Input
             id="subCategory"
             name="subCategory"
@@ -220,66 +246,95 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
             onBlur={formikDetails.handleBlur}
             className="input-class"
           />
-          {formikDetails.touched.subCategory && formikDetails.errors.subCategory ? (
+          {formikDetails.touched.subCategory &&
+          formikDetails.errors.subCategory ? (
             <div className="text-red-500 text-[12px] absolute">
               {formikDetails.errors.subCategory}
             </div>
           ) : null}
         </div>
-        {
-          !editData && <>
-          
-        <div>
-          <label htmlFor="assignCategory">Assign Category</label>
-          <Dropdown
-            placeholder="--Select--"
-            inputStyle=" h-[2.813vw] text-[12px] text-gray-400"
-            iconStyle="w-[10%]"
-            options={assignCategoryOptions}
-            name="assignCategory"
-            value={formikDetails.values.assignCategory}
-            onChange={(event) => {
-              formikDetails.setFieldValue("assignCategory", event.target.value);
-              setAssignCategoryID(event.target.option.Id);
-             
-            }}
-          />
-          {formikDetails.touched.assignCategory && formikDetails.errors.assignCategory ? (
-            <div className="text-red-500 text-[12px] absolute">
-              {formikDetails.errors.assignCategory}
+        {!editData && (
+          <>
+            <div>
+              <label htmlFor="assignCategory">Assign Category</label>
+              <Dropdown
+                placeholder="--Select--"
+                inputStyle=" h-[2.813vw] text-[12px] text-gray-400"
+                iconStyle="w-[10%]"
+                options={assignCategoryOptions}
+                name="assignCategory"
+                value={formikDetails.values.assignCategory}
+                onChange={(event) => {
+                  formikDetails.setFieldValue(
+                    "assignCategory",
+                    event.target.value
+                  );
+                  setAssignCategoryID(event.target.option.Id);
+                }}
+              />
+              {formikDetails.touched.assignCategory &&
+              formikDetails.errors.assignCategory ? (
+                <div className="text-red-500 text-[12px] absolute">
+                  {formikDetails.errors.assignCategory}
+                </div>
+              ) : null}
             </div>
-          ) : null}
-        </div>
-
           </>
-        }
+        )}
       </Form>
     );
   };
   const handleCreateBatch = async (values) => {
-   
     let payload = {
       subCategoryTitle: values.subCategory,
     };
+    let editPayload = {
+      subCategoryTitle: values.subCategory,
+      subCategoryId: editData.subCourseId,
+    };
+
     try {
-      const response = await craeteSubCategory({
-        payload: payload,
-        
-        categoryId: assignCategoryID,
-      });
-     
+      const response = editData
+        ? await updateSubCategory({ payload: editPayload })
+        : await craeteSubCategory({
+            payload: payload,
+
+            categoryId: assignCategoryID,
+          });
+
       if (response.data.statusCode === 201) {
         setDialogOpen(false);
-        categoryDataRefetch()
-      } 
+        categoryDataRefetch();
+      }
     } catch (err) {
-      console.error(err)
+      console.error(err);
+    }
+  };
+  const handleEditClick = (category) => {
+    setEditData(category);
+    setDialogOpen(true);
+  };
+  const deleteICon = "/illustrate_delete.svg";
+  const handleDeleteClick = (id, batchName) => () => {
+    setSubCategoryId(id);
+    setDeleteSubCategoryModal(true);
+    setSubCategoryName(batchName);
+   
+  };
+
+  const handleDeleteSubCategory = async () => {
+    try {
+      const response = await deleteSubCategory({ subCategoryId }).unwrap();
+      setDeleteSubCategoryModal(false);
+      categoryDataRefetch();
+    } catch (err) {
+      console.error(err);
     }
   };
   return (
     <>
       <Dialog>
-    <article className="flex justify-between">
+        <article className="flex justify-between">
           <div className="pt-[2.222vh] pl-[1.875vw] w-[29.688vw]">
             <Input
               inputStyle="rounded-md"
@@ -299,9 +354,8 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
               <DialogTrigger asChild>
                 <button
                   onClick={() => {
-                    // setEditData(null);
-                    setDialogOpen(true)
-                    
+                    setEditData(null);
+                    setDialogOpen(true);
                   }}
                   className=""
                 >
@@ -328,66 +382,128 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
             )}
           </Formik>
         )}
-        </Dialog>
-  
-    <div className="py-[3.333vh] px-[1.875vw]">
-     
-      <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] ">
-        <p className="px-4 font-bold text-[#434343]">{categoryTitle}</p>
-        <Table className="">
-          <TableHeader className=" z-1">
-            <TableRow>
-              {tableHeaders.map((header, index) => (
-                <TableHead key={index} className={tblTextClass}>
-                  {header}
-                </TableHead>
-              ))}
-            </TableRow>
-          </TableHeader>
-          <TableBody>
-            {decodedCategory !== "subcategory" ? (
-              // With Drag-and-Drop
-              <DndContext
-                sensors={sensors}
-                collisionDetection={closestCenter}
-                onDragEnd={handleDragEnd}
-              >
-                <SortableContext
-                  items={subCourses.map((item) => item.subCourseId)}
-                  strategy={verticalListSortingStrategy}
+      </Dialog>
+
+      <div className="py-[3.333vh] px-[1.875vw]">
+        <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] ">
+          <p className="px-4 font-bold text-[#434343]">{categoryTitle}</p>
+          <Table className="">
+            <TableHeader className=" z-1">
+              <TableRow>
+                {tableHeaders.map((header, index) => (
+                  <TableHead key={index} className={tblTextClass}>
+                    {header}
+                  </TableHead>
+                ))}
+              </TableRow>
+            </TableHeader>
+            <TableBody>
+              {decodedCategory !== "subcategory" ? (
+                // With Drag-and-Drop
+                <DndContext
+                  sensors={sensors}
+                  collisionDetection={closestCenter}
+                  onDragEnd={handleDragEnd}
                 >
-                  {subCourses.map((subCourse) => (
-                    <SortableItem key={subCourse.subCourseId} id={subCourse.subCourseId}>
-                      <TableCell className={tblTextClass}>{subCourse.title}</TableCell>
-                      <TableCell className={tblTextClass}>{categoryTitle}</TableCell>
-                      <TableCell className={tblTextClass}>
-                        {subCourse?.subCourseResponse?.length}
-                      </TableCell>
-                      <TableCell className={tblTextClass}></TableCell>
-                    </SortableItem>
-                  ))}
-                </SortableContext>
-              </DndContext>
-            ) : (
-              // Without Drag-and-Drop
-              getSubCourseCategory.map((subCourse, index) => (
-                <TableRow
-                  key={index}
-                  onClick={() => handleCategoryClick(subCourse.subCourseId)}
-                >
-                  <TableCell className={tblTextClass}>{subCourse.title}</TableCell>
-                  <TableCell className={tblTextClass}>{categoryTitle}</TableCell>
-                  <TableCell className={tblTextClass}>
-                    {subCourse?.subCourseResponse?.length}
-                  </TableCell>
-                  <TableCell className={tblTextClass}></TableCell>
-                </TableRow>
-              ))
-            )}
-          </TableBody>
-        </Table>
+                  <SortableContext
+                    items={subCourses.map((item) => item.subCourseId)}
+                    strategy={verticalListSortingStrategy}
+                  >
+                    {subCourses.map((subCourse) => (
+                      <SortableItem
+                        key={subCourse.subCourseId}
+                        id={subCourse.subCourseId}
+                      >
+                        <TableCell className={tblTextClass}>
+                          {subCourse.title}
+                        </TableCell>
+                        <TableCell className={tblTextClass}>
+                          {categoryTitle}
+                        </TableCell>
+                        <TableCell className={tblTextClass}>
+                          {subCourse?.subCourseResponse?.length}
+                        </TableCell>
+                        <TableCell className={tblTextClass}></TableCell>
+                      </SortableItem>
+                    ))}
+                  </SortableContext>
+                </DndContext>
+              ) : (
+                // Without Drag-and-Drop
+                getSubCourseCategory.map((subCourse, index) => (
+                  <TableRow key={index} className="cursor-pointer group">
+                    <TableCell
+                      onClick={() => handleCategoryClick(subCourse.subCourseId)}
+                      className={tblTextClass}
+                    >
+                      {subCourse.title}
+                    </TableCell>
+                    <TableCell className={tblTextClass}>
+                      {categoryTitle}
+                    </TableCell>
+                    <TableCell className={tblTextClass}>
+                      {subCourse?.subCourseResponse?.length}
+                    </TableCell>
+                    <TableCell className={tblTextClass}>
+                      <div className="invisible group-hover:visible flex">
+                        <Dialog>
+                          <DialogTrigger asChild>
+                            <button
+                              className="text-blue-500 mr-2"
+                              onClick={() => handleEditClick(subCourse)}
+                            >
+                              Edit
+                            </button>
+                          </DialogTrigger>
+                          {dialogOpen && (
+                            <Formik
+                              initialValues={initialValues}
+                              validationSchema={validationSchema}
+                              onSubmit={handleCreateBatch}
+                            >
+                              {(formikDetails) => (
+                                <CommonDialog
+                                  header="Edit sub-Category"
+                                  footerBtnTitle="Update"
+                                  formfn={() => createBatchForm(formikDetails)}
+                                  footerBtnClick={formikDetails.handleSubmit}
+                                  dialogCloseClick={() => setDialogOpen(false)}
+                                />
+                              )}
+                            </Formik>
+                          )}
+                        </Dialog>
+                        <button
+                          className="text-red-500"
+                          onClick={handleDeleteClick(
+                            subCourse.subCourseId,
+                            subCourse.title
+                          )}
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </TableCell>
+                  </TableRow>
+                ))
+              )}
+            </TableBody>
+          </Table>
+        </div>
+        <AlertDialog
+          open={deleteSubCategoryModal}
+          onOpenChange={(open) => setDeleteSubCategoryModal(open)}
+        >
+          <DeleteWarningPopup
+            header="Delete"
+            icon={deleteICon}
+            setDeleteCategory={setDeleteSubCategoryModal}
+            btnText="Delete"
+            contentText={`Are you sure you want to delete ${subCategoryName} Course`}
+            deleteFunction={handleDeleteSubCategory}
+          />
+        </AlertDialog>
       </div>
-    </div>
     </>
   );
 }
