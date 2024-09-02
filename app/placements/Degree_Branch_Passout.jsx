@@ -189,7 +189,7 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
     otherSetMoreStates
   ) => (
     <div className="bg-white h-[2.65vw] flex w-full buttonSection relative mobile:hidden">
-      {items.slice(0, 6).map((item, index) => (
+      {items?.slice(0, 6).map((item, index) => (
         <button
           key={index}
           className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] ${
@@ -208,7 +208,7 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
           {truncateText(item,6)}
         </button>
       ))}
-      {items.length > 6 && (
+      {items?.length > 6 && (
         <button
           className="flex justify-center items-center w-[7.5vw] py-2 text-[0.63rem] text-[#4987CE] font-extrabold"
           onClick={() => handleToggleMore(setMoreState, otherSetMoreStates)}
@@ -218,7 +218,7 @@ const Degree_Branch_Passout = ({ isLoading ,scrollToTop}) => {
       )}
       {moreState && (
         <ul className="additional-years-list max-h-60 overflow-y-scroll myscrollbar">
-          {items.slice(6).map((item, index) => (
+          {items?.slice(6).map((item, index) => (
             <li
               key={index}
               className="flex justify-center items-center w-[4.219vw] py-2 text-[0.63rem] text-[#707070] font-medium"

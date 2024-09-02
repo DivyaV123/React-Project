@@ -172,6 +172,7 @@ const PlacementCards = () => {
         isLoading={isLoading}
         isFetching={isFetching}
         placementList={placementList}
+        placementRefetch={placementRefetch}
       />
     </Suspense>
   );

@@ -33,7 +33,7 @@ const PlacementContent = ({  placementList }) => {
 const defaultImage="/user.svg"
   return (
     <>
-      {placementList?.results?.map((student) => {
+      {placementList?.map((student) => {
         const getFilteredTestimonials = (getTestimonialArray) => {
           if (getTestimonialArray?.length > 0) {
             const checkArray = getTestimonialArray?.filter((testimonial) => {
@@ -70,7 +70,7 @@ const defaultImage="/user.svg"
         return (
           <section
             className="w-[99.4%] mobile:w-[92.558vw]  contentCard flex mobile:flex-row-reverse sm:pt-[0.556vh]
-         sm:pl-[0.469vw] sm:pb-[1.111vh] sm:mb-[3.333vh] sm:mt-[0.556vh] sm:ml-[0.078vw] mobile:my-[2.575vh] mobile:gap-4 mobile:justify-end"
+           sm:pl-[0.469vw] sm:pb-[1.111vh] sm:mb-[3.333vh] sm:mt-[0.556vh] sm:ml-[0.078vw] mobile:my-[2.575vh] mobile:gap-4 mobile:justify-end"
           >
             <AlertDialog popup="imagepopup">
               <div className="mobile:flex mobile:flex-col flex mobile:w-full mobile:pr-[3.721vw]">
