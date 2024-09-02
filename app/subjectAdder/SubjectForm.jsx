@@ -159,7 +159,6 @@ const SubjectForm = () => {
         //   });
         //   return;
         // }
-        console.log({ editPayload }, { payload })
         const response = await addSubject(
           individualSubjectData !== undefined ? editPayload : payload
         );
@@ -203,7 +202,6 @@ const SubjectForm = () => {
   };
 
   const handleSubjectDelete = async (event, index) => {
-    console.log(event, index, chapters[index], "eventeventevent");
     const sibId = chapters[index].chapterId;
     try {
       const response = await deleteChapter({ chapterId: sibId }).unwrap();

@@ -29,7 +29,7 @@ const OverviewCard = ({ allCounts, placementPage }) => {
     } else return;
   };
   const overviewCount=placementPage === "GeneralPlacements"
-  ? allCounts?.response?.throughOutSixtyPercent
+  ? allCounts?.results[0]?.report?.above_60
   : allCounts?.response?.filterDataCounts?.throughOutSixty
   return (
     <div className={`${placementPage === "GeneralPlacements" ?'overviewCard' :'overviewInternal'} relative cursor-pointer`} onClick={handleClick}>

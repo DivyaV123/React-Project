@@ -40,8 +40,7 @@ const PlacementContent = ({ placementList }) => {
             const checkArray = getTestimonialArray?.filter((testimonial) => {
               return testimonial?.verify;
             });
-
-            return checkArray[0]?.url;
+            return checkArray[0]?.url || checkArray[0]?.img;
           } else return "";
         };
         const studentInfoMap = {
@@ -321,7 +320,10 @@ const PlacementContent = ({ placementList }) => {
                 <AlertDialogTrigger asChild>
                   <img
                     onClick={openImageDialog}
-                    src={student?.testimonial?.testimonialLink}
+                    src={getFilteredTestimonials(
+                      student?.gotjob[0]?.mini_testimonial?.img_details
+                        ?.written_testimonial_image
+                    )}
                     className="imageBox cursor-pointer"
                     alt="Testimonial Image"
                   />

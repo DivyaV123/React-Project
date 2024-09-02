@@ -11,7 +11,6 @@ function Button({ className = "", title, disable = false, type = "", onClick = (
             <button onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave} onClick={onClick} type={type} disable={disable} className={`${className} `}>
                 <span className='flex align-center justify-center'>
                     {iconPosition === 'left' && (<span className='w-[75%] flex justify-start'>
-                        {console.log(icon, "iconicon")}
                         {(icon.includes(".img")) || (icon.includes(".svg")) ? <img src={icon} /> :
                             <Svg
                                 width={svgicons?.icon[0]}
