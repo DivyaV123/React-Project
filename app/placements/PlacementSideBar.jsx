@@ -12,6 +12,7 @@ import PlacementFilterPopup from "./PlacementFilterPopup";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 const PlacementSideBar = ({
   counsellorFilterResponse,
+  placementRefetch,
   isFetching,
   isLoading,
   refetch,
@@ -38,8 +39,9 @@ const PlacementSideBar = ({
     itCheckedIcon,
     nonItCheckedIcon,
     activeSidebarBtn,
+    scrollPage
   } = useContext(GlobalContext);
-  const [isFetchData, setIsFetchData] = useState(isFetching);
+  const [isFetchData, setIsFetchData] = useState(placementRefetch);
   const sideBar = [
     {
       title: "Recent Placements",
@@ -148,38 +150,25 @@ const PlacementSideBar = ({
       setSideBarBtn("Recent Placements");
   }, [searchParams, degree, stream, yop]);
   useEffect(() => {
-    if (counsellorFilterResponse) {
-      if (page > 0) {
-        if (placementParam !== "") {
-          setAccumulatedData((prevData) => [
-            ...prevData,
-            ...(counsellorFilterResponse?.response?.content || []),
-          ]);
-        } else {
-          setAccumulatedData((prevData) => [
-            ...prevData,
-            ...(counsellorFilterResponse?.response?.candidates?.content || []),
-          ]);
-        }
+    if (placementList) {
+      if (scrollPage > 0) {
+        setAccumulatedData((prevData) => [
+          ...prevData,
+          ...(placementList?.results || []),
+        ]);
       } else {
-        if (placementParam !== "") {
-          setAccumulatedData(counsellorFilterResponse?.response?.content || []);
-        } else {
-          setAccumulatedData(
-            counsellorFilterResponse?.response?.candidates?.content || []
-          );
-        }
+        setAccumulatedData(placementList?.results || []);
       }
     }
-  }, [counsellorFilterResponse, placementParam]);
+  }, [placementList]);
   const handleFilterButton = () => {
     setFIlterPopup(true);
   };
   useEffect(() => {
-    if (isFetchData && !counsellorFilterResponse?.response?.candidates?.last) {
+    if (isFetchData ) {
       setLoaderKey((prevKey) => prevKey + 1);
     }
-  }, [isFetchData, counsellorFilterResponse]);
+  }, [isFetchData]);
   return (
     <AlertDialog popup="filterPopup">
       <section className="flex mobile:flex-col sm:ml-[1.875vw] sm:mb-[1.111vh] h-[58.889vh]">
@@ -254,19 +243,19 @@ const PlacementSideBar = ({
                 event,
                 page,
                 setPage,
-                counsellorFilterResponse,
+                placementList,
                 setIsFetchData
               );
             }}
             className="sm:ml-6 mobile:mx-[3.721vw] sm:w-[71.641vw] h-full overflow-y-scroll courseScroll"
           >
-            <PlacementContent counsellorFilterResponse={accumulatedData} placementList={placementList}/>
+            <PlacementContent  placementList={accumulatedData}/>
 
             {isFetchData &&
               !counsellorFilterResponse?.response?.candidates?.last && (
                 <LineLoader key={loaderKey} />
               )}
-            {counsellorFilterResponse?.response?.candidates?.empty && (
+            {placementList.results.length == 0 && (
               <div className="w-full h-full flex justify-center items-center">
                 <NoContent />
               </div>

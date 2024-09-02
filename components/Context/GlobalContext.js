@@ -187,17 +187,7 @@ const GlobalContextProvider = ({ children }) => {
       setScrollConst(scrolledToBottom);
       if (scrolledToBottom) {
         setScrollPage(scrollPage + 1)
-        if (placementParam !== "") {
-          if (repData?.response?.last === false) {
-            setIsFetchData(true);
-            setPage(page + 1);
-          }
-        } else {
-          if (repData?.response?.candidates?.last === false) {
-            setIsFetchData(true);
-            setPage(page + 1);
-          }
-        }
+        setIsFetchData(true);
       }
     },
     300

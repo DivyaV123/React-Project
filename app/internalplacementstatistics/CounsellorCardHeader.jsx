@@ -16,6 +16,7 @@ import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
 import NoContent from "./NoContent";
 import CounsellorFilterModal from "./CounsellorFilterModal";
 import { useGetAllPlacementListQuery } from "@/redux/queries/getPlacementsList";
+import BlinkingDots from "@/components/skeletons/BlinkingDots";
 const CounsellorCardHeader = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -45,7 +46,7 @@ const CounsellorCardHeader = () => {
     setGeneratedPath,
     generateLink,
     setGenerateLink,
-    generatedPath,scrollPage,setScrollPage
+    generatedPath,scrollPage,setScrollPage,filteredDateRange
   } = useContext(GlobalContext);
 
   const isEmptyObject = Object.keys(filteringData).length === 0;
@@ -68,9 +69,12 @@ const CounsellorCardHeader = () => {
     error: placementError,
     isLoading: placementLoading,
     isFetching: placementFetching,
-  } = useGetAllPlacementListQuery(scrollPage);
-
-  const [isFetchData, setIsFetchData] = useState(isFetching);
+    refetch: placementRefetch,
+  } = useGetAllPlacementListQuery({page: scrollPage});
+    useEffect(() => {
+      placementRefetch();
+    }, [scrollPage]);
+  const [isFetchData, setIsFetchData] = useState(placementFetching);
   useEffect(() => {
     refetch();
     if (!isEmptyObject) {
@@ -81,19 +85,17 @@ const CounsellorCardHeader = () => {
   }, [filteringData, page, size, filterParameter]);
 
   useEffect(() => {
-    if (counsellorFilterResponse) {
-      if (page > 0) {
+    if (placementList) {
+      if (scrollPage > 0) {
         setAccumulatedData((prevData) => [
           ...prevData,
-          ...counsellorFilterResponse?.response?.candidates?.content,
+          ...(placementList?.results || []),
         ]);
       } else {
-        setAccumulatedData(
-          counsellorFilterResponse?.response?.candidates?.content || []
-        );
+        setAccumulatedData(placementList?.results || []);
       }
     }
-  }, [counsellorFilterResponse]);
+  }, [placementList]);
 
   const handleParameter = (param) => {
     setFilterParamter(param);
@@ -138,10 +140,10 @@ const CounsellorCardHeader = () => {
   };
 
   useEffect(() => {
-    if (isFetchData && !counsellorFilterResponse?.response?.candidates?.last) {
+    if (isFetchData) {
       setLoaderKey(prevKey => prevKey + 1);
     }
-  }, [isFetchData, counsellorFilterResponse]);
+  }, [isFetchData]);
   return (
     <div
       className={`${
@@ -224,7 +226,7 @@ const CounsellorCardHeader = () => {
               event,
               page,
               setPage,
-              counsellorFilterResponse,
+              placementList,
               setIsFetchData
             );
           }}
@@ -235,8 +237,9 @@ const CounsellorCardHeader = () => {
               <CardContentSkeleton />
             ) : (
               <>
-                <PlacementContent  placementList={placementList}/>
-                {isFetchData && !counsellorFilterResponse?.response?.candidates?.last &&  <LineLoader key={loaderKey}/> }
+                <PlacementContent  placementList={accumulatedData}/>
+                {isFetchData  &&
+                  <BlinkingDots/>}
               </>
             )
           ) : (
