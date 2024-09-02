@@ -11,6 +11,15 @@ import {
 import { useGetAllCategoryQuery } from "@/redux/queries/adminCategorySortApi";
 import { usePathname ,useRouter} from "next/navigation";
 import { ADMIN_PORTAL } from "@/lib/RouteConstants";
+import Input from "@/components/commonComponents/input/Input";
+import Svg from "@/components/commonComponents/Svg/Svg";
+import { svgicons } from "@/components/assets/icons/svgassets";
+import { useFormik } from "formik";
+import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from "yup";
+import { Dialog, DialogTrigger, DialogClose } from "@/components/ui/dialog";
+import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
+import CommonDialog from "@/components/commonComponents/adminDialog/CommonDialog";
 
 // Import DnD Kit modules
 import {
@@ -29,8 +38,27 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useSubCategoryWeightageDndMutation } from "@/redux/queries/updateSubCategoryDndApi";
+import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
+import { useCreateSubCategoryMutation } from "@/redux/queries/createSubCategoryApi";
 
 function SubCategoryContent() {
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const [editData, setEditData] = useState(null);
+  const [assignCategoryID,setAssignCategoryID]= useState(null);
+  const initialValues = {
+    subCategory:editData?editData.subCategory : "",
+    assignCategory:editData?editData.assignCategory : "",
+  
+  };
+  const validationSchema = Yup.object({
+    subCategory: Yup.string().required("subCategory is required"),
+    assignCategory:!editData && Yup.string().required("assignCategory is required"),
+   
+  });
+  const [
+    craeteSubCategory,
+    { data: postSubCategory, error: postSubCategoryError, isLoading: postSubCategoryLoad },
+  ] = useCreateSubCategoryMutation();
   const router = useRouter();
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
@@ -48,11 +76,11 @@ function SubCategoryContent() {
   const segments = pathname.split("/");
   const desiredSegment = segments[segments.length - 1];
   const decodedCategory = decodeURIComponent(desiredSegment);
-  const { data: categoryData, refetch } = useGetAllCategoryQuery({
+  const { data: categoryData, refetch:categoryDataRefetch } = useGetAllCategoryQuery({
     organizationType: initialOrgType,
   });
   useEffect(() => {
-    refetch();
+    categoryDataRefetch();
   }, [instituteParam]);
 
   const [subCourses, setSubCourses] = useState([]);
@@ -132,20 +160,7 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
     );
   };
   const [editSubCourseWeightage] = useSubCategoryWeightageDndMutation();
-  // // Handle drag end event
-  // const handleDragEnd = (event) => {
-  //   const { active, over } = event;
 
-  //   if (active.id !== over.id) {
-  //     setSubCourses((items) => {
-  //       const oldIndex = items.findIndex((item) => item.subCourseId === active.id);
-  //       const newIndex = items.findIndex((item) => item.subCourseId === over.id);
-  //       return arrayMove(items, oldIndex, newIndex);
-  //     });
-
-  //     // Perform any API call here to update the order in the backend
-  //   }
-  // };
   const handleDragEnd = async (event) => {
     const { active, over } = event;
 
@@ -181,8 +196,142 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
     }
   };
 
+
+  
+  const assignCategoryOptions = [];
+  categoryData?.data.map((item) => {
+    assignCategoryOptions.push({
+      label: item.title,
+      value: item.title,
+      Id: item.courseId,
+    });
+  });
+  const createBatchForm = (formikDetails) => {
+    return (
+      <Form className="space-y-4">
+        <div>
+          <label htmlFor="subCategory">Sub Category</label>
+          <Input
+            id="subCategory"
+            name="subCategory"
+            placeholder="Enter category name"
+            value={formikDetails.values.subCategory}
+            onChange={formikDetails.handleChange}
+            onBlur={formikDetails.handleBlur}
+            className="input-class"
+          />
+          {formikDetails.touched.subCategory && formikDetails.errors.subCategory ? (
+            <div className="text-red-500 text-[12px] absolute">
+              {formikDetails.errors.subCategory}
+            </div>
+          ) : null}
+        </div>
+        {
+          !editData && <>
+          
+        <div>
+          <label htmlFor="assignCategory">Assign Category</label>
+          <Dropdown
+            placeholder="--Select--"
+            inputStyle=" h-[2.813vw] text-[12px] text-gray-400"
+            iconStyle="w-[10%]"
+            options={assignCategoryOptions}
+            name="assignCategory"
+            value={formikDetails.values.assignCategory}
+            onChange={(event) => {
+              formikDetails.setFieldValue("assignCategory", event.target.value);
+              setAssignCategoryID(event.target.option.Id);
+             
+            }}
+          />
+          {formikDetails.touched.assignCategory && formikDetails.errors.assignCategory ? (
+            <div className="text-red-500 text-[12px] absolute">
+              {formikDetails.errors.assignCategory}
+            </div>
+          ) : null}
+        </div>
+
+          </>
+        }
+      </Form>
+    );
+  };
+  const handleCreateBatch = async (values) => {
+   
+    let payload = {
+      subCategoryTitle: values.subCategory,
+    };
+    try {
+      const response = await craeteSubCategory({
+        payload: payload,
+        
+        categoryId: assignCategoryID,
+      });
+     
+      if (response.data.statusCode === 201) {
+        setDialogOpen(false);
+        categoryDataRefetch()
+      } 
+    } catch (err) {
+      console.error(err)
+    }
+  };
   return (
+    <>
+      <Dialog>
+    <article className="flex justify-between">
+          <div className="pt-[2.222vh] pl-[1.875vw] w-[29.688vw]">
+            <Input
+              inputStyle="rounded-md"
+              placeholder="search"
+              iconPath="/images/icon_outline_search.png"
+            />
+          </div>
+          <aside className="pt-[2.778vh] pr-[1.875vw]">
+            <div className=" bg-gradient rounded-md py-[1.111vh] px-[0.938vw] text-white font-bold flex gap-2 text-[1.094vw]">
+              <Svg
+                width={svgicons.addIcon[0]}
+                height={svgicons.addIcon[1]}
+                viewBox={svgicons.addIcon[2]}
+                icon={svgicons.addIcon[3]}
+                color={svgicons.addIcon[4]}
+              />
+              <DialogTrigger asChild>
+                <button
+                  onClick={() => {
+                    // setEditData(null);
+                    setDialogOpen(true)
+                    
+                  }}
+                  className=""
+                >
+                  Sub Category
+                </button>
+              </DialogTrigger>
+            </div>
+          </aside>
+        </article>
+        {dialogOpen && (
+          <Formik
+            initialValues={initialValues}
+            validationSchema={validationSchema}
+            onSubmit={handleCreateBatch}
+          >
+            {(formikDetails) => (
+              <CommonDialog
+                header="Add new sub-Category"
+                footerBtnTitle="Save"
+                formfn={() => createBatchForm(formikDetails)}
+                footerBtnClick={formikDetails.handleSubmit}
+                dialogCloseClick={() => setDialogOpen(false)}
+              />
+            )}
+          </Formik>
+        )}
+        </Dialog>
+  
     <div className="py-[3.333vh] px-[1.875vw]">
+     
       <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] ">
         <p className="px-4 font-bold text-[#434343]">{categoryTitle}</p>
         <Table className="">
@@ -239,6 +388,7 @@ router.push(`${ADMIN_PORTAL}/${getParams[0]}/dynamic/course/${decodedCategory},$
         </Table>
       </div>
     </div>
+    </>
   );
 }
 

@@ -27,9 +27,9 @@ const GlobalContextProvider = ({ children }) => {
     }
   }, []);
 
-//adminportal
-const [selectedSideBar,setSelectedSideBar]=useState('Category')
-const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
+  //adminportal
+  const [selectedSideBar, setSelectedSideBar] = useState('Category')
+  const [selectedInstitute, setSelectedInstitute] = useState("Qspiders")
 
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
@@ -110,10 +110,10 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
 
   //placement general login
   const [filterPlacementData, setFilterPlacementData] = useState({});
-  const [filteredDateRange,setFilteredRange]=useState({
-    joining_date_after:"",
-    joining_date_before:"",
-    testimonial_id:""
+  const [filteredDateRange, setFilteredRange] = useState({
+    joining_date_after: "",
+    joining_date_before: "",
+    testimonial_id: ""
   })
   const [placementParam, setPlacementParam] = useState("");
   const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
@@ -125,7 +125,7 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
   const [upComingBatches, setupComingBatches] = useState(null)
   const [onGoingBatches, setOnGoingBatches] = useState(null)
   const [homePlacements, setHomePlacements] = useState(false)
-  const [scrollPage,setScrollPage]=useState(1)
+  const [scrollPage, setScrollPage] = useState(1)
   const emptySearch = citySearchQuery === "" && stateSearchQuery === "" && citySearchQuery === "" &&
     universitySearchQuery === "" && streamSearchQuery === "" && yearSearchQuery === ""
 
@@ -293,8 +293,8 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
       case "Recent Placements":
         setFilterPlacementData({});
         setFilteredRange({
-          joining_date_after:"",
-          joining_date_before:""
+          joining_date_after: "",
+          joining_date_before: ""
         })
         setPage(0)
         setPlacementParam("");
@@ -314,8 +314,8 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
           timePeriod: [startDate, endDate],
         });
         setFilteredRange({
-          joining_date_after:startDate,
-          joining_date_before:endDate
+          joining_date_after: startDate,
+          joining_date_before: endDate
         })
         break;
       default:
@@ -426,7 +426,7 @@ const [selectedInstitute,setSelectedInstitute]=useState("Qspiders")
         homeBranchData, setHomeBranchData,
         domainVariable, hoverState, setHoverState, imageDialog, setImageDialog, videoDialog, setVideoDialog,
         homePlacements, setHomePlacements, countryList, setCountryList, individualSubjectData, setIndividualSubjectData,
-        selectedSideBar,setSelectedSideBar,selectedInstitute,setSelectedInstitute,scrollPage,setScrollPage,filteredDateRange,setFilteredRange
+        selectedSideBar, setSelectedSideBar, selectedInstitute, setSelectedInstitute, scrollPage, setScrollPage, filteredDateRange, setFilteredRange
       }}
     >
       {children}
