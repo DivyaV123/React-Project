@@ -1,23 +1,29 @@
-.pointsList{
-      ul li {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: nowrap;
-        align-items:center;
-      }
-      
-      ul li::before {
-        content: "•";
-        line-height: 1.5em !important;
-        padding-right: 10px;
-        font-size: 22px;
-        color: #373737;
-        opacity: 0.4;
-        width: content;
-        margin: 0;
-      }
-      
-      ul li>*:first-child {
-        flex-grow:2;
-      }
+.pointsList {
+  ul li {
+    // display: flex;
+    // flex-direction: row;
+    // flex-wrap: nowrap;
+    // align-items:center;
+    gap: 0.6vw;
+    line-height: 5vh;
+    margin-left: 3vw;
+  }
+
+  ul li::before {
+    content: "•";
+    line-height: 1.5em !important;
+    // padding-right: 10px;
+    font-size: 22px;
+    color: #373737;
+    opacity: 0.4;
+    width: content;
+    // margin: 0.5vw;
+    padding-right: 1vw;
+    margin-left: -2vw;
+  }
+
+  ul li > *:first-child {
+    // flex-grow:2;
+    text-wrap: nowrap;
+  }
 }
