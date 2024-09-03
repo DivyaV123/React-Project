@@ -12,7 +12,7 @@ import { truncateText, toProperCase } from "@/lib/utils";
 import { Suspense } from "react";
 import dayjs from "dayjs";
 
-const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
+const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
   const [isBranchMoreOpen, setIsBranchMoreOpen] = useState(false);
   const [isPassOutMoreOpen, setIsPassOutMoreOpen] = useState(false);
@@ -128,6 +128,7 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     if (exceptKey !== "yop") setPassOutButton("");
   };
   const handleItemClick = (item, items, setItems, setButtonState, key) => {
+    setScrollPage(1)
     const index = items.findIndex(({ name }) => name === item.name);
 
     if (index >= 6) {
@@ -166,10 +167,34 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     setFilterPlacementData({
       [key]: [item.id],
     });
+    const qualificationKeyMap = {
+      Degree: {
+        degree: "degree_id",
+        stream: "d_stream_id",
+      },
+      Masters: {
+        degree: "masters_id",
+        stream: "m_stream_id",
+      }
+    };
+  
+    const keyToUpdate = qualificationKeyMap[item?.qualification_type_name]?.[key];
+  
+    if (keyToUpdate) {
+      setFilteredRange({
+        [keyToUpdate]: item.id,
+      });
+    }
+    if(key==="yop"){
+      setFilteredRange({
+        highestyop: item.name,
+      });
+    }
     resetButtonStates(key);
   };
 
   const handleButtonClick = (item, setButtonState, key) => {
+    setScrollPage(1)
     scrollToTop();
     resetButtonStates(key);
     setButtonState(item.name);

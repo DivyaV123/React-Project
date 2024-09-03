@@ -87,8 +87,8 @@ const PlacementContent = ({ placementList }) => {
                 <div className="sm:w-[15.547vw] ">
                   <div className="h-[24.861vh] overflow-hidden w-full rounded-2xl mobile:hidden">
                     <img
-                      src={student?.image || defaultImage}
-                      className="w-full"
+                      src={student?.thumbnail_img ? `${student.base_url}${student.thumbnail_img}` : defaultImage}
+                      className="w-full object-cover"
                     />
                   </div>
                   <div className="imageCard">
@@ -325,17 +325,17 @@ const PlacementContent = ({ placementList }) => {
                 <AlertDialogTrigger asChild>
                   <img
                     onClick={openImageDialog}
-                    src={student.base_url+getFilteredTestimonials(
+                    src={student?.gotjob[0]?.testimonial ? student.base_url+getFilteredTestimonials(
                       student?.gotjob[0]?.mini_testimonial?.img_details
-                        ?.written_testimonial_image
-                    )}
-                    className="imageBox cursor-pointer"
-                    alt="Testimonial Image"
+                        ?.written_testimonial_image 
+                    ) : "Error.src"}
+                    className={`imageBox ${student?.gotjob[0]?.testimonial ? "cursor-pointer" : "cursor-not-allowed" }`}
+                    // alt="Testimonial Image"
                   />
                 </AlertDialogTrigger>
                 <AlertDialogTrigger asChild>
                   <div
-                    className="videoBox cursor-pointer"
+                    className={`videoBox ${student?.gotjob[0]?.testimonial ? "cursor-pointer" : "cursor-not-allowed" }`}
                     onClick={openVideoDialog}
                     style={{ position: "relative", display: "inline-block" }}
                   >
@@ -373,7 +373,7 @@ const PlacementContent = ({ placementList }) => {
                   )}
                 />
               )}
-              {videoDialog && (
+              {(videoDialog && student?.gotjob[0]?.testimonial) && (
                 <VideoPopup videoLink={getFilteredTestimonials(
                   student?.gotjob[0]?.mini_testimonial?.url_details
                     ?.youtube_video_without_company_name)} />
