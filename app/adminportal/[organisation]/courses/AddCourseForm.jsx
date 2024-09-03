@@ -759,14 +759,14 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               onChange={(event) => handleFileChange(event, "courseIcon")}
             />
             <label
-              htmlFor="home-page-image-upload"
+              htmlFor="course-icon-upload"
               className="block w-[12.812vw]"
             >
               {previewURL.courseIcon ? (
                 <div className="relative">
                   <img
                     src={previewURL.courseIcon}
-                    alt="Home Page Image Preview"
+                    alt="course icon Preview"
                   />
                   <button
                     type="button"
