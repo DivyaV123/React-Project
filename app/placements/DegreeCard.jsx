@@ -44,7 +44,7 @@ const DegreeCard = ({ allCounts,placementPage }) => {
             Less than 60% in <br /> Degree
           </p>
           <p className="font-bold text-[1.875vw] text-[#F28C21] pl-[1.563vw] pb-[2.778vh] mobile:text-[4.651vw] mobile:pl-[2.791vw] mobile:pb-[2.146vh]">
-            {formatToIndianCurrency(allCounts?.results[0]?.report?.less_than_60)}
+            {formatToIndianCurrency(allCounts?.less_than_60)}
           </p>
         </div>
       </div>
