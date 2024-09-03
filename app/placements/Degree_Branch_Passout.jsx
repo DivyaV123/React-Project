@@ -88,7 +88,6 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
     const degree = searchParams.get("degree");
     const stream = searchParams.get("stream");
     const yop = searchParams.get("yop");
-
     if (degree) {
       setDegreeButton(degree);
       setFilterPlacementData((prevData) => ({
@@ -165,7 +164,7 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
     setNonItCheckedIcon(false);
     setItCheckedIcon(false);
     setFilterPlacementData({
-      [key]: [item.id],
+      [key]: [item.name],
     });
     const qualificationKeyMap = {
       Degree: {
@@ -206,7 +205,7 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
     setNonItCheckedIcon(false);
     setItCheckedIcon(false);
     setFilterPlacementData({
-      [key]: [item.id],
+      [key]: [item.name],
     });
   
     const qualificationKeyMap = {
