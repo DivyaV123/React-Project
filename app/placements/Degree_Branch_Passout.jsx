@@ -40,6 +40,7 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
     sideBarBtn,
     filteredDateRange,
     setFilteredRange,
+    setScrollPage
   } = useContext(GlobalContext);
 
   const searchParams = useSearchParams();
@@ -236,7 +237,6 @@ const Degree_Branch_Passout = ({ isLoading, scrollToTop }) => {
           }`}
           onClick={() => {
             handleButtonClick(item, setButtonState, key);
-            setPage(0);
           }}
           title={item.name}
         >

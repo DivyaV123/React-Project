@@ -6,7 +6,8 @@ import {
 import "./PlacementCards.scss";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-import { GlobalContext } from '@/components/Context/GlobalContext';
+import { GlobalContext } from "@/components/Context/GlobalContext";
+import { extractVideoId } from "@/lib/utils";
 
 const VideoPopup = ({ videoLink }) => {
   const { setVideoDialog } = useContext(GlobalContext);
@@ -35,10 +36,7 @@ const VideoPopup = ({ videoLink }) => {
     };
   }, []);
 
-  function extractLastWord(url) {
-    const match = url.match(/youtu\.be\/([^\/]+)$/);
-    return match ? match[1] : null;
-  }
+  const videoId = extractVideoId(videoLink);
 
   return (
     <div className="">
@@ -63,11 +61,11 @@ const VideoPopup = ({ videoLink }) => {
             color={svgicons.cancelButtonIcon[4]}
           />
         </AlertDialogCancel>
-        <iframe
-          className="videoPopup"
-          src={`https://www.youtube.com/embed/${extractLastWord(videoLink)}`}
-          allowFullScreen
-        ></iframe>
+          <iframe
+            className="videoPopup"
+            src={`https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1`}
+            allowFullScreen
+          ></iframe>
       </AlertDialogContent>
     </div>
   );

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { branchAbbreviations } from "@/lib/utils";
 import { truncateText, toProperCase } from "@/lib/utils";
 import TestimonialPopup from "./TestimonialPopup";
+import { extractVideoId } from "@/lib/utils";
 
 const PlacementContent = ({ placementList }) => {
   const [imageDialog, setImageDialog] = useState(false);
@@ -43,6 +44,10 @@ const PlacementContent = ({ placementList }) => {
             return checkArray[0]?.url || checkArray[0]?.img;
           } else return "";
         };
+        const videoId = extractVideoId(getFilteredTestimonials(
+          student?.gotjob[0]?.mini_testimonial?.url_details
+            ?.youtube_video_without_company_name));
+        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
         const studentInfoMap = {
           Masters: {
             degree: student?.masters?.short_form || student?.masters?.name,
@@ -262,13 +267,13 @@ const PlacementContent = ({ placementList }) => {
                         href={
                           getFilteredTestimonials(
                             student?.gotjob[0]?.mini_testimonial?.url_details
-                              ?.youtube_video_with_company_name
+                              ?.youtube_video_without_company_name
                           ) || "#"
                         }
                         target={
                           getFilteredTestimonials(
                             student?.gotjob[0]?.mini_testimonial?.url_details
-                              ?.youtube_video_with_company_name
+                              ?.youtube_video_without_company_name
                           )
                             ? "_blank"
                             : "_self"
@@ -277,7 +282,7 @@ const PlacementContent = ({ placementList }) => {
                           if (
                             !getFilteredTestimonials(
                               student?.gotjob[0]?.mini_testimonial?.url_details
-                                ?.youtube_video_with_company_name
+                                ?.youtube_video_without_company_name
                             )
                           ) {
                             e.preventDefault();
@@ -286,7 +291,7 @@ const PlacementContent = ({ placementList }) => {
                         className={`${
                           !getFilteredTestimonials(
                             student?.gotjob[0]?.mini_testimonial?.url_details
-                              ?.youtube_video_with_company_name
+                              ?.youtube_video_without_company_name
                           )
                             ? "pointer-events-none"
                             : ""
@@ -298,7 +303,7 @@ const PlacementContent = ({ placementList }) => {
                           className={`${
                             !getFilteredTestimonials(
                               student?.gotjob[0]?.mini_testimonial?.url_details
-                                ?.youtube_video_with_company_name
+                                ?.youtube_video_without_company_name
                             )
                               ? "opacity-30 pointer-events-none"
                               : ""
@@ -336,7 +341,7 @@ const PlacementContent = ({ placementList }) => {
                   >
                     <img
                       typeof="foaf:Image"
-                      src={student?.photoLink}
+                      src={thumbnailUrl}
                       alt="Video Thumbnail"
                       style={{
                         display: "block",
@@ -371,8 +376,7 @@ const PlacementContent = ({ placementList }) => {
               {videoDialog && (
                 <VideoPopup videoLink={getFilteredTestimonials(
                   student?.gotjob[0]?.mini_testimonial?.url_details
-                    ?.youtube_video_with_company_name
-                )} />
+                    ?.youtube_video_without_company_name)} />
               )}
               {testimonialDialog && (
                 <TestimonialPopup student={student} extractText={extractText} />

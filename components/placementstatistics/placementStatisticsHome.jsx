@@ -50,28 +50,28 @@ function PlacementStatisticsHome({ page }) {
   ];
   const statistics = [
     {
-      count: `${formatToIndianCurrency(countDetails?.results[0]?.report?.above_60)}`,
+      count: `${formatToIndianCurrency(countDetails?.above_60)}`,
       info: "Students who have throughout 60% Aggregate",
       icon: "../placementIcon1.svg",
       key: "throughoutsixty",
       toSet: setNonItCheckedIcon,
     },
     {
-      count: `${formatToIndianCurrency(countDetails?.results[0]?.report?.non_it)}`,
+      count: `${formatToIndianCurrency(countDetails?.non_it)}`,
       info: "Students who have graduated in Non - IT",
       icon: "../staticsIcon02.svg",
       key: "nonit",
       toSet: setNonItCheckedIcon,
     },
     {
-      count: `${formatToIndianCurrency(countDetails?.results[0]?.report?.it)}`,
+      count: `${formatToIndianCurrency(countDetails?.it)}`,
       info: "Students who have graduated in IT/CS/IS",
       icon: "../placementIcon03.svg",
       key: "it",
       toSet: setNonItCheckedIcon,
     },
     {
-      count: `${formatToIndianCurrency(countDetails?.results[0]?.report?.less_than_60)}`,
+      count: `${formatToIndianCurrency(countDetails?.less_than_60)}`,
       info: "Students who have less than 60% Aggregate",
       icon: "../placementIcon04.svg",
       key: "lessthansixty",

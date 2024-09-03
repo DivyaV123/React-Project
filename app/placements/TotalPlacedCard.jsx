@@ -48,7 +48,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
           Total Placed
         </p>
         <p className="font-bold text-[2.5vw] pl-[1.563vw] pb-[2.778vh] text-[#FAFAFA] mobile:text-[5.581vw] mobile:pl-[5.581vw] mobile:pb-[1.073vh] ">
-          {formatToIndianCurrency(allCounts?.results[0]?.report?.total_placed)}
+          {formatToIndianCurrency(allCounts?.total_placed)}
         </p>
       </div>
     </div>

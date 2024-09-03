@@ -758,14 +758,15 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               id="course-icon-upload"
               onChange={(event) => handleFileChange(event, "courseIcon")}
             />
-                        <label htmlFor="file-upload-dark">
-              <img src="../images/uploadinput.png" alt="file upload" />
-            </label>
+            <label
+              htmlFor="home-page-image-upload"
+              className="block w-[12.812vw]"
+            >
               {previewURL.courseIcon ? (
                 <div className="relative">
                   <img
                     src={previewURL.courseIcon}
-                    alt={`${previewURL.courseIcon}`}
+                    alt="Home Page Image Preview"
                   />
                   <button
                     type="button"
@@ -778,6 +779,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               ) : (
                 <img src="/images/uploadinput.png" alt="file upload" />
               )}
+            </label>
             {errorMessage.courseIcon && (
               <p className="text-red-500 pt-[3.333vh] text-[0.6rem]">
                 {errorMessage.courseIcon}
