@@ -11,7 +11,6 @@ import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import PlacementFilterPopup from "./PlacementFilterPopup";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 const PlacementSideBar = ({
-  counsellorFilterResponse,
   placementRefetch,
   isFetching,
   isLoading,
@@ -166,7 +165,7 @@ const PlacementSideBar = ({
     setFIlterPopup(true);
   };
   useEffect(() => {
-    if (isFetchData ) {
+    if (isFetchData && placementList?.next_page_url !==null) {
       setLoaderKey((prevKey) => prevKey + 1);
     }
   }, [isFetchData]);
@@ -252,8 +251,7 @@ const PlacementSideBar = ({
           >
             <PlacementContent  placementList={accumulatedData}/>
 
-            {isFetchData &&
-              !counsellorFilterResponse?.response?.candidates?.last && (
+            {(isFetchData  && placementList?.next_page_url !==null) && (
                 <LineLoader key={loaderKey} />
               )}
             {placementList?.results?.length == 0 && (

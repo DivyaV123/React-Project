@@ -141,48 +141,6 @@ const GlobalContextProvider = ({ children }) => {
       timeout = setTimeout(() => func.apply(this, args), wait);
     };
   }
-
-  // const handleScroll = debounce(
-  //   (event, page, setPage, repData, setIsFetchData) => {
-  //     const target = event.target;
-  //     const scrolledToBottom =
-  //       Math.ceil(target?.scrollTop + target?.clientHeight) >=
-  //       target?.scrollHeight - 1;
-  //     setScrollConst(scrolledToBottom);
-
-  //     if (scrolledToBottom) {
-  //       if (placementParam !== "") {
-  //         console.log(!repData.response.last,placementParam !== "","placementParam")
-  //         if (!repData?.response?.last) {
-  //           setIsFetchData(true);
-  //           setPage(page + 1);
-  //         }
-  //       }
-  //       else if (!repData?.response?.candidates?.last) {
-  //         setIsFetchData(true);
-  //         setPage(page + 1);
-  //       }
-  //     }
-  //   },
-  //   100
-  // );
-  // const handleScroll = debounce(
-  //   (event, page, setPage, repData, setIsFetchData) => {
-  //     const target = event.target;
-  //     const scrolledToBottom =
-  //       Math.ceil(target?.scrollTop + target?.clientHeight) >=
-  //       target?.scrollHeight - 1;
-  //     setScrollConst(scrolledToBottom);
-
-  //     if (scrolledToBottom) {
-  //       if (!repData.response.last) {
-  //         setIsFetchData(true);
-  //         setPage(page + 1);
-  //       }
-  //     }
-  //   },
-  //   300
-  // );
   const handleScroll = debounce(
     (event, page, setPage, repData, setIsFetchData) => {
       const target = event.target;
@@ -190,27 +148,13 @@ const GlobalContextProvider = ({ children }) => {
         Math.ceil(target?.scrollTop + target?.clientHeight) >=
         target?.scrollHeight - 1;
       setScrollConst(scrolledToBottom);
-      if (scrolledToBottom) {
+      if (scrolledToBottom && repData?.next_page_url !==null) {
         setScrollPage(scrollPage + 1)
         setIsFetchData(true);
       }
     },
     300
   );
-
-
-  // const handleScroll = (event, page, setPage, repData) => {
-  //   const target = event.target;
-  //   const scrolledToBottom =
-  //     Math.ceil(target?.scrollTop + target?.clientHeight) > target?.scrollHeight - 1;
-  //   setScrollConst(scrolledToBottom)
-  //   if (scrolledToBottom) {
-  //     console.log("handleScroll is calaing", scrolledToBottom)
-  //     if (!repData.response.last) {
-  //       setPage(page + 1)
-  //     }
-  //   };
-  // }
 
   const timePeriods = {
     "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),

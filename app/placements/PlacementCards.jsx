@@ -18,14 +18,11 @@ import { Suspense } from "react";
 import { useGetAllPlacementListQuery } from "@/redux/queries/getPlacementsList";
 const PlacementCards = () => {
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = typeof window !== "undefined" && useSearchParams();
   const {
     filterPlacementData,
     setFilterPlacementData,
     placementParam,
-    page,
-    size,
     setSideBarBtn,
     homePlacements,
     scrollPage,
@@ -33,19 +30,6 @@ const PlacementCards = () => {
     setFilteredRange,
   } = useContext(GlobalContext);
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
-
-  const {
-    data: counsellorFilterResponse,
-    error,
-    refetch,
-    isLoading,
-    isFetching,
-  } = useFetchCounsellorsQuery({
-    pageNumber: page,
-    pageSize: size,
-    parameter: placementParam,
-    bodyData: filterPlacementData,
-  });
   const {
     data: placementList,
     error: placementError,
@@ -92,9 +76,6 @@ const PlacementCards = () => {
     scrollToTop();
   }, [homePlacements]);
   useEffect(() => {
-    refetch();
-  }, [filterPlacementData, placementParam]);
-  useEffect(() => {
     placementRefetch();
   }, [scrollPage, filteredDateRange]);
 
@@ -125,11 +106,10 @@ const PlacementCards = () => {
     }
     return searchParams;
   };
-
   return (
     <Suspense>
       <div className="flex mobile:flex-wrap mb-4 sm:ml-[1.5rem] sm:mr-[2.25rem] sm:gap-[1.875rem]">
-        {isLoading ? (
+        {placementLoading ? (
           <CardSkeleton />
         ) : (
           <TotalPlacedCard
@@ -137,7 +117,7 @@ const PlacementCards = () => {
             placementPage="GeneralPlacements"
           />
         )}
-        {isLoading ? (
+        {placementLoading ? (
           <CardSkeleton />
         ) : (
           <DegreeCard
@@ -145,7 +125,7 @@ const PlacementCards = () => {
             placementPage="GeneralPlacements"
           />
         )}
-        {isLoading ? (
+        {placementLoading ? (
           <CardSkeleton />
         ) : (
           <NonItCard
@@ -153,7 +133,7 @@ const PlacementCards = () => {
             placementPage="GeneralPlacements"
           />
         )}
-        {isLoading ? (
+        {placementLoading ? (
           <CardSkeleton />
         ) : (
           <BranchCard
@@ -161,7 +141,7 @@ const PlacementCards = () => {
             placementPage="GeneralPlacements"
           />
         )}
-        {isLoading ? (
+        {placementLoading ? (
           <CardSkeleton />
         ) : (
           <OverviewCard
@@ -170,11 +150,9 @@ const PlacementCards = () => {
           />
         )}
       </div>
-      <Degree_Branch_Passout isLoading={isLoading} scrollToTop={scrollToTop} />
+      <Degree_Branch_Passout isLoading={placementLoading} isFetching={placementFetching} scrollToTop={scrollToTop} />
       <PlacementSideBar
-        counsellorFilterResponse={counsellorFilterResponse}
-        refetch={refetch}
-        isLoading={isLoading}
+        isLoading={placementLoading}
         isFetching={placementFetching}
         placementList={placementList}
         placementRefetch={placementRefetch}
