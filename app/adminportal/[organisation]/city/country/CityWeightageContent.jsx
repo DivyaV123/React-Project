@@ -38,6 +38,7 @@ import {
   useSortable,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { useCitiesEditMutation } from "@/redux/queries/editAdminCityApi";
 const CityWeightageContent = () => {
   const [cityEditDialog, setCityEditDialog] = useState(false);
   const [selectedCityId, setSelectedCityId] = useState(null);
@@ -45,7 +46,7 @@ const CityWeightageContent = () => {
   const [cityAddDialog, setCityAddDialog] = useState(false);
   const [activeCountry, setActiveCountry] = useState("India");
   const [selectedCountry, setSelectedCountry] = useState("");
-
+  const [editData, setEditData] = useState(null);
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
@@ -64,6 +65,7 @@ const CityWeightageContent = () => {
     { data: CityDeleteResp, error: CityDeleteError, isLoading: CityDeleteLoad },
   ] = useCityDeleteMutation();
   const [addCity] = useCitiesAdderMutation();
+  const [editCity] = useCitiesEditMutation();
   const [editCityWeightage] = useCityWeightageMutation();
   const { data: cityData, refetch: cityRefetch } = useGetAllCitiesForFormQuery({
     organizationType: initialOrgType,
@@ -105,6 +107,29 @@ const CityWeightageContent = () => {
     cityName: Yup.string().required("city Name is required"),
     stateName: Yup.string().required("state Name is required"),
   });
+
+  useEffect(() => {
+    if (editData) {
+      formikDetails.setValues({
+        ...formikDetails.values,
+        cityName: editData.cityName || "",
+        stateName: editData.state || "",
+      });
+
+      setSelectedFile({
+        cityIcon: null,
+        cityImage: null,
+      });
+      setPreviewURL({
+        cityIcon: editData.cityIcon || null,
+        cityImage: editData.cityImage || null,
+      });
+      setErrorMessage({
+        cityIcon: "",
+        cityImage: "",
+      });
+    }
+  }, [editData]);
   const formikDetails = useFormik({
     initialValues,
     validationSchema,
@@ -116,18 +141,62 @@ const CityWeightageContent = () => {
         stateName: values.stateName,
         countryName: selectedCountry,
       };
+      let editPayload = {
+        cityName: values.cityName,
+        cityIcon: selectedFile.cityIcon,
+        cityImage: selectedFile.cityImage,
+        state: values.stateName,
+        countryName: selectedCountry,
+        cityId: selectedCityId,
+      };
+
       try {
-        const response = await addCity({ bodyData: payload }).unwrap();
+        const response = editData
+          ? await editCity({ bodyData: editPayload }).unwrap()
+          : await addCity({ bodyData: payload }).unwrap();
         if (response.statusCode === 200 || response.statusCode === 201) {
           cityRefetch();
         }
         setCityAddDialog(false);
+        setCityEditDialog(false);
         dialogCloseClick();
       } catch (err) {
-        console.log(err);
+        console.error(err);
       }
     },
   });
+  // const handleFileChange = (event, iconType) => {
+  //   const file = event.target.files[0];
+  //   const previewURL = URL.createObjectURL(file);
+  //   if (file && file.type.startsWith("image/")) {
+  //     setSelectedFile((prevState) => ({
+  //       ...prevState,
+  //       [iconType]: file,
+  //     }));
+  //     setPreviewURL((prevState) => ({
+  //       ...prevState,
+  //       [iconType]: previewURL,
+  //     }));
+  //     setErrorMessage((prevState) => ({
+  //       ...prevState,
+  //       [iconType]: "",
+  //     }));
+  //   } else {
+  //     setSelectedFile((prevState) => ({
+  //       ...prevState,
+  //       [iconType]: null,
+  //     }));
+  //     setPreviewURL((prevState) => ({
+  //       ...prevState,
+  //       [iconType]: previewURL,
+  //     }));
+  //     setErrorMessage((prevState) => ({
+  //       ...prevState,
+  //       [iconType]: "Please upload a valid image file.",
+  //     }));
+  //   }
+  // };
+
   const handleFileChange = (event, iconType) => {
     const file = event.target.files[0];
     const previewURL = URL.createObjectURL(file);
@@ -187,19 +256,23 @@ const CityWeightageContent = () => {
       cityIcon: null,
       cityImage: null,
     });
+    setEditData(null);
   };
   const footerBtnClick = () => {
     formikDetails.handleSubmit();
-    if (!selectedFile.cityIcon || !selectedFile.cityImage) {
-      setErrorMessage({
-        cityIcon: selectedFile.cityIcon
-          ? ""
-          : "Please upload a valid image file.",
-        cityImage: selectedFile.cityImage
-          ? ""
-          : "Please upload a valid image file.",
-      });
+    if (!editData) {
+      if (!selectedFile.cityIcon || !selectedFile.cityImage) {
+        setErrorMessage({
+          cityIcon: selectedFile.cityIcon
+            ? ""
+            : "Please upload a valid image file.",
+          cityImage: selectedFile.cityImage
+            ? ""
+            : "Please upload a valid image file.",
+        });
+      }
     }
+
     if (!selectedCountry) {
       setErrorCountry("Please select a country");
     }
@@ -212,7 +285,7 @@ const CityWeightageContent = () => {
       setdeleteCity(false);
       cityRefetch();
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
   const handleCountrySelect = (event) => {
@@ -340,11 +413,19 @@ const CityWeightageContent = () => {
   );
 
   const handleSubEditClick = (ele, getCityData) => {
+    setEditData(ele);
     setCityEditDialog(true);
     setCityAddDialog(false);
-    formikDetails.setFieldValue("cityName", ele.cityName);
-    formikDetails.setFieldValue("stateName", ele.cityName);
+    setSelectedCityId(ele.cityId);
+
+    setPreviewURL({
+      cityIcon: ele.cityIcon || null,
+      cityImage: ele.cityImage || null,
+    });
+
+    setSelectedCountry(getCityData.countryName);
   };
+
   const [cityList, setCityList] = useState(getCityData?.cities || []);
 
   useEffect(() => {
@@ -471,6 +552,7 @@ const CityWeightageContent = () => {
               onClick={() => {
                 setCityAddDialog(true);
                 setCityEditDialog(false);
+                setEditData(null);
               }}
               className={
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
