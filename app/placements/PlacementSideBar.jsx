@@ -10,12 +10,14 @@ import NoContent from "../internalplacementstatistics/NoContent";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import PlacementFilterPopup from "./PlacementFilterPopup";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import PlacementFilterSkeleton from "@/components/skeletons/PlacementFilterSkeleton";
+import MobileCardContentSkeleton from "@/components/skeletons/MobileCardContentSkeleton";
 const PlacementSideBar = ({
   placementRefetch,
   isFetching,
   isLoading,
   refetch,
-  placementList
+  placementList,
 }) => {
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterPopup, setFIlterPopup] = useState(false);
@@ -39,7 +41,7 @@ const PlacementSideBar = ({
     nonItCheckedIcon,
     activeSidebarBtn,
     scrollPage,
-    filteredDateRange
+    filteredDateRange,
   } = useContext(GlobalContext);
   const [isFetchData, setIsFetchData] = useState(isFetching);
   const sideBar = [
@@ -117,22 +119,20 @@ const PlacementSideBar = ({
   // };
   const getSideBarTitleFromTimePeriod = (timePeriod) => {
     if (!timePeriod) return "Recent Placements";
-  
+
     const dateRange = timePeriod.split(",").map((date) => new Date(date));
     const differenceInDays = Math.round(
       (dateRange[1] - dateRange[0]) / (1000 * 60 * 60 * 24)
     );
-    
-    
-  
+
     if (differenceInDays <= 7) return "Last week";
     if (differenceInDays <= 31) return "Last month";
     if (differenceInDays <= 92) return "Last 3 months";
     if (differenceInDays <= 182) return "Last 6 months";
-  
+
     return "Recent Placements";
   };
-  
+
   const degree = searchParams.get("degree");
   const stream = searchParams.get("stream");
   const yop = searchParams.get("yop");
@@ -165,7 +165,7 @@ const PlacementSideBar = ({
     setFIlterPopup(true);
   };
   useEffect(() => {
-    if (isFetchData && placementList?.next_page_url !==null) {
+    if (isFetchData && placementList?.next_page_url !== null) {
       setLoaderKey((prevKey) => prevKey + 1);
     }
   }, [isFetchData]);
@@ -173,7 +173,10 @@ const PlacementSideBar = ({
     <AlertDialog popup="filterPopup">
       <section className="flex mobile:flex-col sm:ml-[1.875vw] sm:mb-[1.111vh] h-[58.889vh]">
         {isLoading ? (
-          <PlacementSidebarSkeleton />
+          <>
+            <PlacementSidebarSkeleton />
+            <PlacementFilterSkeleton />
+          </>
         ) : (
           <aside className="sidebarContainer sm:pt-[3.333vh] mobile:ml-[3.721vw] mobile:items-center">
             <div className="mobile:w-[68.372vw] mobile:flex items-center">
@@ -235,25 +238,22 @@ const PlacementSideBar = ({
         )}
 
         {isLoading ? (
-          <CardContentSkeleton />
+          <>
+            <CardContentSkeleton />
+            <MobileCardContentSkeleton />
+          </>
         ) : (
           <section
             onScroll={(event) => {
-              handleScroll(
-                event,
-                page,
-                setPage,
-                placementList,
-                setIsFetchData
-              );
+              handleScroll(event, page, setPage, placementList, setIsFetchData);
             }}
             className="sm:ml-6 mobile:mx-[3.721vw] sm:w-[71.641vw] h-full overflow-y-scroll courseScroll"
           >
-            <PlacementContent  placementList={accumulatedData}/>
+            <PlacementContent placementList={accumulatedData} />
 
-            {(isFetchData  && placementList?.next_page_url !==null) && (
-                <LineLoader key={loaderKey} />
-              )}
+            {isFetchData && placementList?.next_page_url !== null && (
+              <LineLoader key={loaderKey} />
+            )}
             {placementList?.results?.length == 0 && (
               <div className="w-full h-full flex justify-center items-center">
                 <NoContent />
