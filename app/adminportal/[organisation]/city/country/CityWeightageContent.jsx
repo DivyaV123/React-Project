@@ -165,37 +165,6 @@ const CityWeightageContent = () => {
       }
     },
   });
-  // const handleFileChange = (event, iconType) => {
-  //   const file = event.target.files[0];
-  //   const previewURL = URL.createObjectURL(file);
-  //   if (file && file.type.startsWith("image/")) {
-  //     setSelectedFile((prevState) => ({
-  //       ...prevState,
-  //       [iconType]: file,
-  //     }));
-  //     setPreviewURL((prevState) => ({
-  //       ...prevState,
-  //       [iconType]: previewURL,
-  //     }));
-  //     setErrorMessage((prevState) => ({
-  //       ...prevState,
-  //       [iconType]: "",
-  //     }));
-  //   } else {
-  //     setSelectedFile((prevState) => ({
-  //       ...prevState,
-  //       [iconType]: null,
-  //     }));
-  //     setPreviewURL((prevState) => ({
-  //       ...prevState,
-  //       [iconType]: previewURL,
-  //     }));
-  //     setErrorMessage((prevState) => ({
-  //       ...prevState,
-  //       [iconType]: "Please upload a valid image file.",
-  //     }));
-  //   }
-  // };
 
   const handleFileChange = (event, iconType) => {
     const file = event.target.files[0];
@@ -324,19 +293,22 @@ const CityWeightageContent = () => {
             </div>
           ) : null}
         </div>
-        <div className="pb-[2.222vh]">
-          <p className={pStyle}>Select Country Name</p>
-          <Dropdown
-            name="countryname"
-            value={selectedCountry}
-            onChange={handleCountrySelect}
-            placeholder="Select the country name"
-            options={countryOptions}
-          />
-          {errorCountry && (
-            <div className="text-red-500 text-[0.6rem]">{errorCountry}</div>
-          )}
-        </div>
+        {!editData && (
+          <div className="pb-[2.222vh]">
+            <p className={pStyle}>Select Country Name</p>
+            <Dropdown
+              name="countryname"
+              value={selectedCountry}
+              onChange={handleCountrySelect}
+              placeholder="Select the country name"
+              options={countryOptions}
+            />
+            {errorCountry && (
+              <div className="text-red-500 text-[0.6rem]">{errorCountry}</div>
+            )}
+          </div>
+        )}
+
         <div className="flex justify-between">
           <div className="w-[23.438vw] pb-[2.222vh]">
             <p className={pStyle}>City Icon</p>

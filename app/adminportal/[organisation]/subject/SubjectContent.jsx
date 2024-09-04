@@ -323,7 +323,7 @@ const SubjectContent = () => {
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
             >
-              Subject
+              + Subject
             </button>
           </DialogTrigger>
         </article>
@@ -369,7 +369,7 @@ const SubjectContent = () => {
               <TableBody>
                 <>
                   {subjectResponse?.data?.map((ele) => (
-                    <TableRow key={ele.id}>
+                    <TableRow key={ele.id}  className="group">
                       <TableCell>
                         {" "}
                         <div className="flex space-x-2 items-center">
@@ -390,7 +390,7 @@ const SubjectContent = () => {
                       <TableCell>{ele.chapterCount}</TableCell>
                       <TableCell>{ele.topicCount}</TableCell>
                       <TableCell>{ele.subTopicCount}</TableCell>
-                      <TableCell className={tblTextClass}>
+                      <TableCell className={`${tblTextClass} invisible group-hover:visible flex`}>
                         <DialogTrigger>
                           <button
                             onClick={() => handleEditSubject(ele.subjectId, ele.subjectTitle)}
