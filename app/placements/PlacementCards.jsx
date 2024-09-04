@@ -48,6 +48,10 @@ const PlacementCards = () => {
     m_stream_id: filteredDateRange?.m_stream_id,
     highestyop: filteredDateRange?.highestyop,
     verified_testimonial: true,
+    less_than60:filteredDateRange?.less_than60,
+    above_60:filteredDateRange?.above_60,
+    non_it: filteredDateRange?.non_it,
+    it: filteredDateRange?.it,
   });
   const scrollToTop = () => {
     window.scrollTo({

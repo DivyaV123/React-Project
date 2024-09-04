@@ -44,6 +44,7 @@ const Degree_Branch_Passout = ({ isLoading, isFetching, scrollToTop }) => {
     filteredDateRange,
     setFilteredRange,
     setScrollPage,
+    scrollPage
   } = useContext(GlobalContext);
 
   const searchParams = useSearchParams();
@@ -167,6 +168,7 @@ const Degree_Branch_Passout = ({ isLoading, isFetching, scrollToTop }) => {
     setLessCheckedIcon(false);
     setThroughCheckedIcon(false);
     setNonItCheckedIcon(false);
+    setSideBarBtn("");
     setItCheckedIcon(false);
     setFilterPlacementData({
       [key]: [item.name],

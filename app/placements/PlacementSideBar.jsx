@@ -37,6 +37,8 @@ const PlacementSideBar = ({
     handlePlacementCommonFilter,
     lesscheckedIcon,
     throughcheckedIcon,
+    placeCheckedIcon,
+
     itCheckedIcon,
     nonItCheckedIcon,
     activeSidebarBtn,
@@ -92,31 +94,6 @@ const PlacementSideBar = ({
   const searchParams = useSearchParams(); // Initialize searchParams
   const pathname = usePathname();
   const params = pathname.split("/").pop();
-  // const getSideBarTitleFromTimePeriod = (timePeriod) => {
-  //   if (!timePeriod) return "Recent Placements";
-
-  //   const dateRange = timePeriod.split(",").map((date) => new Date(date));
-  //   const differenceInDays =
-  //     (dateRange[1] - dateRange[0]) / (1000 * 60 * 60 * 24);
-  //   switch (differenceInDays) {
-  //     case 7:
-  //       return "Last week";
-  //     case 31:
-  //       return "Last month";
-  //     case 30:
-  //       return "Last month";
-  //     case 91:
-  //       return "Last 3 months";
-  //     case 92:
-  //       return "Last 3 months";
-  //     case 181:
-  //       return "Last 6 months";
-  //     case 182:
-  //       return "Last 6 months";
-  //     default:
-  //       return "Recent Placements";
-  //   }
-  // };
   const getSideBarTitleFromTimePeriod = (timePeriod) => {
     if (!timePeriod) return "Recent Placements";
 
@@ -136,9 +113,8 @@ const PlacementSideBar = ({
   const degree = searchParams.get("degree");
   const stream = searchParams.get("stream");
   const yop = searchParams.get("yop");
+  const timePeriod = searchParams.get("timePeriod");
   useEffect(() => {
-    const timePeriod = searchParams.get("timePeriod");
-
     timePeriod &&
       !degree &&
       setSideBarBtn(getSideBarTitleFromTimePeriod(timePeriod));
@@ -147,7 +123,13 @@ const PlacementSideBar = ({
       !degree &&
       !stream &&
       !yop &&
+      !lesscheckedIcon&&
+      !placeCheckedIcon&&
+      !throughcheckedIcon&&
+      !itCheckedIcon&&
+      !nonItCheckedIcon&&
       setSideBarBtn("Recent Placements");
+
   }, [searchParams, degree, stream, yop]);
   useEffect(() => {
     if (placementList) {

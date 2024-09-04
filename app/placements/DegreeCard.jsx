@@ -14,11 +14,14 @@ const DegreeCard = ({ allCounts,placementPage }) => {
     setPlacementParam,
     setSideBarBtn,
     setFilteringData,
+    setFilteredRange,
     setFilterPlacementData
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {     
-      setPlacementParam("lessthansixty");
+      setFilteredRange({
+        less_than60:true
+      })
       setLessCheckedIcon(true);
       setPlacedCheckedIcon(false);
       setThroughCheckedIcon(false);

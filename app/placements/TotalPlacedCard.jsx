@@ -15,6 +15,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
     setSideBarBtn,
     setFilterPlacementData,
     setPage,
+    setFilteredRange
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
@@ -26,7 +27,8 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
       setItCheckedIcon(false);
       setSideBarBtn("");
       setFilterPlacementData({});
-      setPage(0);
+      setFilteredRange({})
+    setPage(0);
     } else return;
   };
 
