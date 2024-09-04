@@ -138,7 +138,9 @@ function CourseCategoryContent() {
   const dialogForm = () => {
     return (
       <section>
-        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select Category</p>
+        <p className={pStyle}>
+          <span class="text-red-500 pr-1">*</span>Select Category
+        </p>
         <Dropdown
           sectionStyle="my-section-style"
           name="category"
@@ -148,7 +150,9 @@ function CourseCategoryContent() {
           options={categoryOptions}
         />
 
-        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select SubCategory</p>
+        <p className={pStyle}>
+          <span class="text-red-500 pr-1">*</span>Select SubCategory
+        </p>
         <Dropdown
           sectionStyle="my-section-style"
           name="subcategory"
@@ -164,7 +168,9 @@ function CourseCategoryContent() {
   const unMapDialogForm = () => {
     return (
       <section>
-        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select Category</p>
+        <p className={pStyle}>
+          <span class="text-red-500 pr-1">*</span>Select Category
+        </p>
         <Dropdown
           multi
           sectionStyle="my-section-style"
@@ -175,7 +181,9 @@ function CourseCategoryContent() {
           options={unMapCategoryOptions}
         />
 
-        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select SubCategory</p>
+        <p className={pStyle}>
+          <span class="text-red-500 pr-1">*</span>Select SubCategory
+        </p>
         <Dropdown
           multi
           sectionStyle="my-section-style"
@@ -216,7 +224,7 @@ function CourseCategoryContent() {
     }
   };
 
-  const handleCreateCategory = async () => {  
+  const handleCreateCategory = async () => {
     if (selectedSubCategoryId) {
       try {
         await courseSubCategoryMap({
@@ -226,8 +234,8 @@ function CourseCategoryContent() {
         setStoreCourseId([]);
         courseRefetch();
         setDialogOpen(false);
-        setSelectedCategoryName(null)
-        setSelectedSubCategoryName(null)
+        setSelectedCategoryName(null);
+        setSelectedSubCategoryName(null);
       } catch (error) {
         console.error("Subcategory mapping failed", error);
       }
@@ -240,13 +248,12 @@ function CourseCategoryContent() {
         setStoreCourseId([]);
         courseRefetch();
         setDialogOpen(false);
-        setSelectedCategoryName(null)
-        setSelectedSubCategoryName(null)
+        setSelectedCategoryName(null);
+        setSelectedSubCategoryName(null);
       } catch (error) {
         console.error("Category mapping failed", error);
       }
     }
-    
   };
   const [selectedCourseDetailsToEdit, { data: courseToEdit }] =
     useCourseEditorMutation();
@@ -296,9 +303,9 @@ function CourseCategoryContent() {
         courseId: storeCourseId,
       }).unwrap();
       courseRefetch();
-      setUnMapDialog(false)
-      setSelectedUnMapCategory("")
-      setSelectedUnMapSubCategory("")
+      setUnMapDialog(false);
+      setSelectedUnMapCategory("");
+      setSelectedUnMapSubCategory("");
       setStoreCourseId([]);
     } catch (err) {
       console.log(err);
@@ -358,7 +365,7 @@ function CourseCategoryContent() {
                 setCourseEditData(null);
               }}
               className={
-                "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
+                "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
             >
               + Course
@@ -412,7 +419,10 @@ function CourseCategoryContent() {
                         onChange={handleCourseCheckbox(ele.course_id, ele)}
                         checked={storeCourseId.includes(ele.course_id)}
                       />{" "}
-                      <img src="/course_icon_admin.svg" className=" h-[3vh] relative right-[0.5vw] bottom-[0.3vh]"/>
+                      <img
+                        src="/course_icon_admin.svg"
+                        className=" h-[3vh] relative right-[0.5vw] bottom-[0.3vh]"
+                      />
                       {truncateText(ele.course_name, 30)}
                     </div>
                   </TableCell>
@@ -494,26 +504,26 @@ function CourseCategoryContent() {
                     {ele.subjectCount}
                   </TableCell>
                   <TableCell className={tblTextClass}>
-                  <div className="invisible group-hover:visible flex">
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <button
-                          onClick={handleEditClick(ele)}
-                          className="mr-2 text-blue-500 hover:underline"
-                        >
-                          Edit
-                        </button>
-                      </DialogTrigger>
-                    </Dialog>
-                    <button
-                      onClick={handleDeleteClick(
-                        ele.course_id,
-                        ele.course_name
-                      )}
-                      className="text-red-500 hover:underline"
-                    >
-                      Delete
-                    </button>
+                    <div className="invisible group-hover:visible flex">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <button
+                            onClick={handleEditClick(ele)}
+                            className="mr-2 text-blue-500 "
+                          >
+                            Edit
+                          </button>
+                        </DialogTrigger>
+                      </Dialog>
+                      <button
+                        onClick={handleDeleteClick(
+                          ele.course_id,
+                          ele.course_name
+                        )}
+                        className="text-red-500 "
+                      >
+                        Delete
+                      </button>
                     </div>
                   </TableCell>
                 </TableRow>
