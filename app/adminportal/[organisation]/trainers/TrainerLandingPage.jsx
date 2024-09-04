@@ -27,10 +27,13 @@ import PhoneInput from "react-phone-input-2";
 import { useAddTrainerMutation } from '@/redux/queries/addTrainerApi';
 
 function TrainerLandingPage() {
+    const [editData, setEditData] = useState(null);
+    const [error, setError] = useState({ phone: false, validPhone: false });
     const [isClient, setIsClient] = useState(false);
     const [addTrainerForm, setAddTrainerForm] = useState(false);
     const [phoneValue, setPhoneValue] = useState();
     const [countryCode, setCountryCode] = useState("");
+    const [isEditMode, setIsEditMode] = useState(false); 
     const tableHeaders = [
         "TRAINER NAME",
         "BRANCH",
@@ -53,6 +56,10 @@ function TrainerLandingPage() {
         selectedId: [],
         selectedName: []
     })
+    const [dropdownOpen, setDropdownOpen] = useState(null);
+
+    const handleMouseEnter = (index) => setDropdownOpen(index);
+    const handleMouseLeave = () => setDropdownOpen(null);
     const initialOrgType =
         instituteParam === "Qspiders"
             ? "QSP"
@@ -121,15 +128,31 @@ function TrainerLandingPage() {
         });
     });
 
+    // const branchOptions = [];
+    // filteredBranches?.map((item) => {
+    //     branchOptions.push({
+    //         label: item.branchName,
+    //         value: item.branchName,
+    //         Id: item.branchId,
+    //     });
+    // });
     const branchOptions = [];
-    filteredBranches?.map((item) => {
-        branchOptions.push({
+
+    const uniqueBranches = new Set();
+    
+    filteredBranches?.forEach((item) => {
+        if (!uniqueBranches.has(item.branchId)) {
+         
+          uniqueBranches.add(item.branchId); 
+          branchOptions.push({
             label: item.branchName,
             value: item.branchName,
             Id: item.branchId,
-        });
-    });
-
+          });
+        }
+      });
+      
+    
     const subjectOptions = [];
     allSubjectData?.data?.map((item) => {
         subjectOptions.push({
@@ -367,7 +390,15 @@ function TrainerLandingPage() {
             </section>
         );
     };
+  
 
+    const handleAddClick = () => {
+        setIsEditMode(false); 
+        setAddTrainerForm(true);
+        setEditData(null); 
+        formikDetails.resetForm();
+    };
+  
     return (
         <>
             <Dialog>
@@ -384,7 +415,7 @@ function TrainerLandingPage() {
                     <DialogTrigger>
                         <button
                             type='button'
-                            onClick={() => setAddTrainerForm(true)}
+                            onClick={handleAddClick}
                             className="cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
                         >+ Trainer</button>
                     </DialogTrigger>
@@ -405,29 +436,165 @@ function TrainerLandingPage() {
                                 {trainersData?.data?.map((ele, index) => (
                                     <TableRow key={index}>
                                         <TableCell className={tblTextClass}>
-                                            {ele.userName}
+                                            {ele.trainerName}
                                         </TableCell>
+                                       
                                         <TableCell className={tblTextClass}>
-                                        </TableCell>
+                    {ele.branchs.length === 0 ? (
+                      ele.branchs.length
+                    ) : ele.branchs.length === 1 ? (
+                      ele.branchs.map((branches) =>branches.branchName)
+                    ) : (
+                      <div className="flex space-x-2 items-center">
+                        {ele.branchs
+                          .slice(0, 1)
+                          .map((branches) => branches.branchName)}
+                        {ele.branchs.length > 1 && (
+                          <div className="relative">
+                            <button
+                              className="ml-1.5 bg-[#FFF2E8] rounded-md px-1 py-1 font-medium text-[0.938vw] hover:bg-[#FF7B1B] hover:text-white"
+                              onMouseEnter={() => handleMouseEnter(index)}
+                              onMouseLeave={handleMouseLeave}
+                            >
+                              + {ele.branchs.length - 1}
+                            </button>
+                            {dropdownOpen === index && (
+                              <div className="absolute bg-white border mt-2 rounded-md shadow-lg z-10 w-max">
+                                {ele.branchs
+                                  .slice(1)
+                                  .map((branches, idx) => (
+                                    <div key={idx} className="px-2 py-1">
+                                      {branches.branchName}
+                                    </div>
+                                  ))}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </TableCell>
+                                       
                                         <TableCell className={tblTextClass}>
-                                        </TableCell>
+                    {ele.subjects.length === 0 ? (
+                      ele.subjects.length
+                    ) : ele.subjects.length === 1 ? (
+                      ele.subjects.map((subject) =>subject?.subjectName)
+                    ) : (
+                      <div className="flex space-x-2 items-center">
+                        {ele.subjects
+                          .slice(0, 1)
+                          .map((subject) => subject?.subjectName)}
+                        {ele.subjects.length > 1 && (
+                          <div className="relative">
+                            <button
+                              className="ml-1.5 bg-[#FFF2E8] rounded-md px-1 py-1 font-medium text-[0.938vw] hover:bg-[#FF7B1B] hover:text-white"
+                              onMouseEnter={() => handleMouseEnter(`sub-${index}`)}
+                              onMouseLeave={handleMouseLeave}
+                            >
+                              + {ele.subjects.length - 1}
+                            </button>
+                            {dropdownOpen === `sub-${index}` && (
+                              <div className="absolute bg-white border mt-2 rounded-md shadow-lg z-10 w-max">
+                                {ele.subjects
+                                  .slice(1)
+                                  .map((subject, idx) => (
+                                    <div key={idx} className="px-2 py-1">
+                                      {subject?.subjectName}
+                                    </div>
+                                  ))}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </TableCell>
+                                        {/* <TableCell className={tblTextClass}>
+                                            {ele.trainerEmail[0].email}
+                                        </TableCell> */}
                                         <TableCell className={tblTextClass}>
-                                            {ele.userEmail[0].email}
-                                        </TableCell>
+                    {ele.trainerEmail.length === 0 ? (
+                      ele.trainerEmail.length
+                    ) : ele.trainerEmail.length === 1 ? (
+                      ele.trainerEmail.map((trainermail) =>trainermail?.email)
+                    ) : (
+                      <div className="flex space-x-2 items-center">
+                        {ele.trainerEmail
+                          .slice(0, 1)
+                          .map((trainermail) => trainermail?.email)}
+                        {ele.trainerEmail.length > 1 && (
+                          <div className="relative">
+                            <button
+                              className="ml-1.5 bg-[#FFF2E8] rounded-md px-1 py-1 font-medium text-[0.938vw] hover:bg-[#FF7B1B] hover:text-white"
+                              onMouseEnter={() => handleMouseEnter(`subTrainer-${index}`)}
+                              onMouseLeave={handleMouseLeave}
+                            >
+                              + {ele.trainerEmail.length - 1}
+                            </button>
+                            {dropdownOpen === `subTrainer-${index}` && (
+                              <div className="absolute bg-white border mt-2 rounded-md shadow-lg z-10 w-max">
+                                {ele.trainerEmail
+                                  .slice(1)
+                                  .map((trainermail, idx) => (
+                                    <div key={idx} className="px-2 py-1">
+                                      {trainermail?.email}
+                                    </div>
+                                  ))}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </TableCell>
+                                        
                                         <TableCell className={tblTextClass}>
-                                            {ele.phoneNumber[0].phoneNumber}
-                                        </TableCell>
+                    {ele.phoneNumber.length === 0 ? (
+                      ele.phoneNumber.length
+                    ) : ele.phoneNumber.length === 1 ? (
+                      ele.phoneNumber.map((phoneNumber) =>phoneNumber?.phoneNumber)
+                    ) : (
+                      <div className="flex space-x-2 items-center">
+                        {ele.phoneNumber
+                          .slice(0, 1)
+                          .map((phoneNumber) => phoneNumber?.phoneNumber)}
+                        {ele.phoneNumber.length > 1 && (
+                          <div className="relative">
+                            <button
+                              className="ml-1.5 bg-[#FFF2E8] rounded-md px-1 py-1 font-medium text-[0.938vw] hover:bg-[#FF7B1B] hover:text-white"
+                              onMouseEnter={() => handleMouseEnter(`phoneNumber-${index}`)}
+                              onMouseLeave={handleMouseLeave}
+                            >
+                              + {ele.phoneNumber.length - 1}
+                            </button>
+                            {dropdownOpen === `phoneNumber-${index}` && (
+                              <div className="absolute bg-white border mt-2 rounded-md shadow-lg z-10 w-max">
+                                {ele.phoneNumber
+                                  .slice(1)
+                                  .map((phoneNumber, idx) => (
+                                    <div key={idx} className="px-2 py-1">
+                                      {phoneNumber?.phoneNumber}
+                                    </div>
+                                  ))}
+                              </div>
+                            )}
+                          </div>
+                        )}
+                      </div>
+                    )}
+                  </TableCell>
                                         <TableCell className={tblTextClass}>
-                                            <Dialog>
+                                           
                                                 <DialogTrigger asChild>
                                                     <button
-                                                        // onClick={handleEditClick(ele)}
+                                                        // onClick={() => handleEditClick(ele)}
                                                         className="mr-2 text-blue-500 hover:underline"
                                                     >
                                                         Edit
                                                     </button>
                                                 </DialogTrigger>
-                                            </Dialog>
+                                           
                                             <button
                                                 // onClick={handleDeleteClick(
                                                 //     ele.course_id,
@@ -450,7 +617,7 @@ function TrainerLandingPage() {
                         footerBtnTitle="Add Trainer"
                         formfn={mapSubjectForm}
                         footerBtnClick={footerBtnClick}
-                        dialogCloseClick={() => setAddTrainerForm(false)}
+                        dialogCloseClick={() => {setAddTrainerForm(false);setEditData(null)}}
                     />
                 )}
             </Dialog>
