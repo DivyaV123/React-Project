@@ -12,10 +12,13 @@ import { truncateText, toProperCase } from "@/lib/utils";
 import { Suspense } from "react";
 import dayjs from "dayjs";
 
-const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
+const Degree_Branch_Passout = ({ isLoading, isFetching, scrollToTop }) => {
   const [isDegreeMoreOpen, setIsDegreeMoreOpen] = useState(false);
   const [isBranchMoreOpen, setIsBranchMoreOpen] = useState(false);
   const [isPassOutMoreOpen, setIsPassOutMoreOpen] = useState(false);
+  const [degreeSearchInput, setDegreeSearchInput] = useState("");
+  const [branchSearchInput, setBranchSearchInput] = useState("");
+  const [yopSearchInput, setYopSearchInput] = useState("");
   const {
     setFilterPlacementData,
     setPlacementParam,
@@ -40,7 +43,7 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
     sideBarBtn,
     filteredDateRange,
     setFilteredRange,
-    setScrollPage
+    setScrollPage,
   } = useContext(GlobalContext);
 
   const searchParams = useSearchParams();
@@ -57,32 +60,31 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
 
   useEffect(() => {
     if (degreeAndStreamdata) {
-        const getDegree = degreeAndStreamdata?.results?.map((degree) => ({
-            id: degree.id,
-            name: degree.short_form || degree.name,
-            qualification_type_name: degree.qualification_type_name,
-        }));
-        setDegreeList(getDegree);
+      const getDegree = degreeAndStreamdata?.results?.map((degree) => ({
+        id: degree.id,
+        name: degree.short_form || degree.name,
+        qualification_type_name: degree.qualification_type_name,
+      }));
+      setDegreeList(getDegree);
     }
 
     if (streamData) {
-        const getStream = streamData?.results?.map((stream) => ({
-            id: stream.id,
-            name: stream.short_form || stream.name,
-            qualification_type_name: stream.qualification_type_name,
-        }));
-        setBranchList(getStream);
+      const getStream = streamData?.results?.map((stream) => ({
+        id: stream.id,
+        name: stream.short_form || stream.name,
+        qualification_type_name: stream.qualification_type_name,
+      }));
+      setBranchList(getStream);
     }
 
     if (yopData) {
-        setYopList(
-            [...(yopData || [])]
-                .sort((a, b) => b - a)
-                .map((yop) => ({ id: yop, name: yop.toString() }))
-        );
+      setYopList(
+        [...(yopData || [])]
+          .sort((a, b) => b - a)
+          .map((yop) => ({ id: yop, name: yop.toString() }))
+      );
     }
-}, [degreeAndStreamdata, streamData]);
-
+  }, [degreeAndStreamdata, streamData]);
 
   useEffect(() => {
     const degree = searchParams.get("degree");
@@ -119,6 +121,9 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
   const handleToggleMore = (setMoreOpen, otherSetMoreStates) => {
     setMoreOpen((prevState) => !prevState);
     otherSetMoreStates.forEach((setState) => setState(false));
+    setDegreeSearchInput("")
+    setBranchSearchInput("")
+    setYopSearchInput("")
   };
 
   const resetButtonStates = (exceptKey) => {
@@ -127,7 +132,7 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
     if (exceptKey !== "yop") setPassOutButton("");
   };
   const handleItemClick = (item, items, setItems, setButtonState, key) => {
-    setScrollPage(1)
+    setScrollPage(1);
     const index = items.findIndex(({ name }) => name === item.name);
 
     if (index >= 6) {
@@ -174,17 +179,18 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
       Masters: {
         degree: "masters_id",
         stream: "m_stream_id",
-      }
+      },
     };
-  
-    const keyToUpdate = qualificationKeyMap[item?.qualification_type_name]?.[key];
-  
+
+    const keyToUpdate =
+      qualificationKeyMap[item?.qualification_type_name]?.[key];
+
     if (keyToUpdate) {
       setFilteredRange({
         [keyToUpdate]: item.id,
       });
     }
-    if(key==="yop"){
+    if (key === "yop") {
       setFilteredRange({
         highestyop: item.name,
       });
@@ -193,7 +199,7 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
   };
 
   const handleButtonClick = (item, setButtonState, key) => {
-    setScrollPage(1)
+    setScrollPage(1);
     scrollToTop();
     resetButtonStates(key);
     setButtonState(item.name);
@@ -207,7 +213,7 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
     setFilterPlacementData({
       [key]: [item.name],
     });
-  
+
     const qualificationKeyMap = {
       Degree: {
         degree: "degree_id",
@@ -216,23 +222,36 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
       Masters: {
         degree: "masters_id",
         stream: "m_stream_id",
-      }
+      },
     };
-  
-    const keyToUpdate = qualificationKeyMap[item?.qualification_type_name]?.[key];
-  
+
+    const keyToUpdate =
+      qualificationKeyMap[item?.qualification_type_name]?.[key];
+
     if (keyToUpdate) {
       setFilteredRange({
         [keyToUpdate]: item.id,
       });
     }
-    if(key==="yop"){
+    if (key === "yop") {
       setFilteredRange({
         highestyop: item.name,
       });
     }
   };
-  
+
+  const renderSearchBar = (searchInput, setSearchInput,hasResults) => (
+    <>
+    <input
+      type="text"
+      value={searchInput}
+      onChange={(e) => setSearchInput(e.target.value)}
+      placeholder="Search..."
+      className="w-full p-2 border-b border-gray-300 mb-2 outline-none"
+    />
+    {!hasResults && <p className="text-gray-500 flex justify-center items-center py-4">No content available</p>}
+    </>
+  );
 
   const renderButtonSection = (
     items,
@@ -243,57 +262,69 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
     setItems,
     abbreviations,
     key,
-    otherSetMoreStates
-  ) => (
-    <div className="bg-white h-[2.65vw] flex w-full buttonSection relative mobile:hidden">
-      {items?.slice(0, 6).map((item, index) => (
-        <button
-          key={index}
-          className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.938vw] ${
-            item.name === buttonState &&
-            !lesscheckedIcon &&
-            !throughcheckedIcon &&
-            !itCheckedIcon &&
-            !nonItCheckedIcon &&
-            !placeCheckedIcon
-              ? "activeButton font-medium"
-              : ""
-          }`}
-          onClick={() => {
-            handleButtonClick(item, setButtonState, key);
-          }}
-          title={item.name}
-        >
-          {toProperCase(truncateText(item.name, 6))}
-        </button>
-      ))}
-      {items?.length > 6 && (
-        <button
-          className="flex justify-center items-center w-[7.5vw] py-2 text-[0.938vw] text-[#4987CE] font-extrabold"
-          onClick={() => handleToggleMore(setMoreState, otherSetMoreStates)}
-        >
-          {moreState ? "Less..." : "More..."}
-        </button>
-      )}
-      {moreState && (
-        <ul className="additional-years-list max-h-60 overflow-y-scroll myscrollbar">
-          {items?.slice(6).map((item, index) => (
-            <li
-              key={index}
-              className="flex justify-center items-center w-[4.219vw] py-2 text-[0.938vw] text-[#707070] font-medium"
-              onClick={() => {
-                handleItemClick(item, items, setItems, setButtonState, key);
-                setMoreState(false);
-              }}
-              title={item.name}
-            >
-              {toProperCase(truncateText(item.name, 6))}
-            </li>
-          ))}
-        </ul>
-      )}
-    </div>
-  );
+    otherSetMoreStates,
+    searchInput,
+    setSearchInput
+  ) => {
+    const remainingItems = items.slice(6);
+    const filteredItems = remainingItems.filter((item) =>
+      item.name.toLowerCase().includes(searchInput.toLowerCase())
+    );
+  const hasResults=filteredItems.length > 0;
+    return (
+      <div className="bg-white h-[2.65vw] flex w-full buttonSection relative mobile:hidden">
+        {items.slice(0, 6).map((item, index) => (
+          <button
+            key={index}
+            className={`flex justify-center items-center w-[7.5vw] py-2 text-[0.938vw] ${
+              item.name === buttonState &&
+              !lesscheckedIcon &&
+              !throughcheckedIcon &&
+              !itCheckedIcon &&
+              !nonItCheckedIcon &&
+              !placeCheckedIcon
+                ? "activeButton font-medium"
+                : ""
+            }`}
+            onClick={() => {
+              handleButtonClick(item, setButtonState, key);
+            }}
+            title={item.name}
+          >
+            {toProperCase(truncateText(item.name, 6))}
+          </button>
+        ))}
+        {items.length > 6 && (
+          <button
+            className="flex justify-center items-center w-[7.5vw] py-2 text-[0.938vw] text-[#4987CE] font-extrabold"
+            onClick={() => handleToggleMore(setMoreState, otherSetMoreStates)}
+          >
+            {moreState ? "Less..." : "More..."}
+          </button>
+        )}
+        {moreState && (
+          <ul className="additional-years-list max-h-60 overflow-y-scroll myscrollbar">
+            {renderSearchBar(searchInput, setSearchInput,hasResults)}
+            {filteredItems.map((item, index) => (
+              <li
+                key={index}
+                className="flex  items-center w-[4.219vw] py-2 text-[0.938vw] text-[#707070] font-medium"
+                onClick={() => {
+                  handleItemClick(item, items, setItems, setButtonState, key);
+                  setMoreState(false);
+                }}
+                title={item.name}
+              >
+                {toProperCase(item.name)}
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+    );
+  };
+  
+  
 
   //NOTE : this below useEffect for auto selecting the degree and stream values by taking values from URL(it helps when we are comming from Homepage for auto selecting)
   useEffect(() => {
@@ -362,7 +393,9 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
                 setDegreeList,
                 {},
                 "degree",
-                [setIsBranchMoreOpen, setIsPassOutMoreOpen]
+                [setIsBranchMoreOpen, setIsPassOutMoreOpen],
+                degreeSearchInput,
+                setDegreeSearchInput
               )}
             </div>
             <div className="w-[31.328vw]">
@@ -375,7 +408,9 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
                 setBranchList,
                 branchAbbreviations,
                 "stream",
-                [setIsDegreeMoreOpen, setIsPassOutMoreOpen]
+                [setIsDegreeMoreOpen, setIsPassOutMoreOpen],
+                branchSearchInput,
+                setBranchSearchInput
               )}
             </div>
             <div className="w-[31.328vw]">
@@ -388,7 +423,9 @@ const Degree_Branch_Passout = ({ isLoading,isFetching, scrollToTop }) => {
                 setYopList,
                 {},
                 "yop",
-                [setIsDegreeMoreOpen, setIsBranchMoreOpen]
+                [setIsDegreeMoreOpen, setIsBranchMoreOpen],
+                yopSearchInput,
+                setYopSearchInput
               )}
             </div>
           </>
