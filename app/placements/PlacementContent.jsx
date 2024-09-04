@@ -343,9 +343,9 @@ const PlacementContent = ({ placementList }) => {
                       typeof="foaf:Image"
                       src={thumbnailUrl}
                       alt="Video Thumbnail"
+                      className="sm:w-[6.797vw] sm:h-[10.056vh] mobile:h-[6.797vh]"
                       style={{
                         display: "block",
-                        height: "6.3vh",
                         borderRadius: "5px",
                         objectFit: "cover",
                       }}
