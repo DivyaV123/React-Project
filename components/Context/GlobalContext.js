@@ -118,10 +118,14 @@ const GlobalContextProvider = ({ children }) => {
     d_stream_id:"",
     masters_id:"",
     m_stream_id:"",
-    highestyop:""
+    highestyop:"",
+    less_than60:"",
+    above_60:"",
+    non_it:"",
+    it:""
   })
   const [placementParam, setPlacementParam] = useState("");
-  const [sideBarBtn, setSideBarBtn] = useState("Recent Placements");
+  const [sideBarBtn, setSideBarBtn] = useState("");
   const [degreeButton, setDegreeButton] = useState("");
   const [branchButton, setBranchButton] = useState("");
   const [passOutButton, setPassOutButton] = useState("");
@@ -236,7 +240,7 @@ const GlobalContextProvider = ({ children }) => {
     setDegreeButton("");
     setBranchButton("");
     setPassOutButton("");
-    setPage(0);
+    setScrollPage(1)
     setActiveSidebarBtn(true);
     switch (title) {
       case "Recent Placements":
@@ -245,7 +249,7 @@ const GlobalContextProvider = ({ children }) => {
           joining_date_after: "",
           joining_date_before: ""
         })
-        setPage(0)
+        setScrollPage(1)
         setPlacementParam("");
         break;
       // case "Top Salaries":
@@ -256,7 +260,7 @@ const GlobalContextProvider = ({ children }) => {
       case "Last 3 months":
       case "Last 6 months":
         const startDate = timePeriods[title];
-        setPage(0)
+        setScrollPage(1)
         const endDate = dayjs().format("YYYY-MM-DD");
         setPlacementParam("");
         setFilterPlacementData({

@@ -10,14 +10,16 @@ const BranchCard = ({allCounts,placementPage}) => {
     setPlacedCheckedIcon,
     setNonItCheckedIcon,
     setItCheckedIcon,
-    setPlacementParam,
+    setFilteredRange,
     setSideBarBtn,
     setPage,
     setFilterPlacementData
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
-      setPlacementParam("it");
+      setFilteredRange({
+        it:true
+      })
       setItCheckedIcon(true);
       setNonItCheckedIcon(false);
       setThroughCheckedIcon(false);

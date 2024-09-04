@@ -10,14 +10,16 @@ const OverviewCard = ({ allCounts, placementPage }) => {
     setPlacedCheckedIcon,
     setNonItCheckedIcon,
     setItCheckedIcon,
-    setPlacementParam,
     setSideBarBtn,
+    setFilteredRange,
     setFilterPlacementData,
     setPage,
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
-      setPlacementParam("throughoutsixty");
+      setFilteredRange({
+        above_60:true
+      })
       setThroughCheckedIcon(true);
       setPlacedCheckedIcon(false);
       setLessCheckedIcon(false);

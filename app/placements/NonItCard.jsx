@@ -10,14 +10,16 @@ const NonItCard = ({allCounts,placementPage}) => {
     setPlacedCheckedIcon,
     setNonItCheckedIcon,
     setItCheckedIcon,
-    setPlacementParam,
+    setFilteredRange,
     setSideBarBtn,
     setFilterPlacementData,
     setPage,
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
-      setPlacementParam("nonit");
+      setFilteredRange({
+        non_it:true
+      })
       setNonItCheckedIcon(true);
       setThroughCheckedIcon(false);
       setPlacedCheckedIcon(false);
