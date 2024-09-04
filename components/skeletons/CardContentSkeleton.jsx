@@ -2,7 +2,7 @@ import React from "react";
 import { Skeleton } from "../ui/skeleton";
 const CardContentSkeleton = () => {
   return (
-    <section className=" w-[69.063vw] h-full flex ">
+    <section className=" w-[69.063vw] h-full flex mobile:hidden">
       <div className="w-[15.547vw] flex m-3">
         <Skeleton className="h-[15vw] w-[71vw]" />
       </div>

@@ -16,6 +16,7 @@ import { PLACEMENT_PATH } from "@/lib/RouteConstants";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Suspense } from "react";
 import { useGetAllPlacementListQuery } from "@/redux/queries/getPlacementsList";
+import TotalPlacedMobileSkeleton from "@/components/skeletons/TotalPlacedMobileSkeleton";
 const PlacementCards = () => {
   const router = useRouter();
   const searchParams = typeof window !== "undefined" && useSearchParams();
@@ -33,7 +34,7 @@ const PlacementCards = () => {
   const {
     data: placementList,
     error: placementError,
-    isLoading: placementLoading,
+    // isLoading: placementLoading,
     isFetching: placementFetching,
     refetch: placementRefetch,
   } = useGetAllPlacementListQuery({
@@ -42,11 +43,11 @@ const PlacementCards = () => {
     joining_date_after: filteredDateRange?.joining_date_after,
     joining_date_before: filteredDateRange?.joining_date_before,
     degree_id: filteredDateRange?.degree_id,
-    d_stream_id:filteredDateRange?.d_stream_id,
-    masters_id:filteredDateRange?.masters_id,
-    m_stream_id:filteredDateRange?.m_stream_id,
+    d_stream_id: filteredDateRange?.d_stream_id,
+    masters_id: filteredDateRange?.masters_id,
+    m_stream_id: filteredDateRange?.m_stream_id,
     highestyop: filteredDateRange?.highestyop,
-    verified_testimonial:true,
+    verified_testimonial: true,
   });
   const scrollToTop = () => {
     window.scrollTo({
@@ -107,11 +108,19 @@ const PlacementCards = () => {
     }
     return searchParams;
   };
+  const placementLoading = true;
   return (
     <Suspense>
       <div className="flex mobile:flex-wrap mb-4 sm:ml-[1.5rem] sm:mr-[2.25rem] sm:gap-[1.875rem]">
         {placementLoading ? (
-          <CardSkeleton />
+          <>
+            <div className="mobile:hidden">
+              <CardSkeleton />
+            </div>
+            <div className="sm:hidden">
+              <TotalPlacedMobileSkeleton />
+            </div>
+          </>
         ) : (
           <TotalPlacedCard
             allCounts={allPlacementCount}
@@ -151,7 +160,11 @@ const PlacementCards = () => {
           />
         )}
       </div>
-      <Degree_Branch_Passout isLoading={placementLoading} isFetching={placementFetching} scrollToTop={scrollToTop} />
+      <Degree_Branch_Passout
+        isLoading={placementLoading}
+        isFetching={placementFetching}
+        scrollToTop={scrollToTop}
+      />
       <PlacementSideBar
         isLoading={placementLoading}
         isFetching={placementFetching}
