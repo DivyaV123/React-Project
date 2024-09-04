@@ -46,6 +46,7 @@ const PlacementCards = () => {
     masters_id:filteredDateRange?.masters_id,
     m_stream_id:filteredDateRange?.m_stream_id,
     highestyop: filteredDateRange?.highestyop,
+    verified_testimonial:true,
   });
   const scrollToTop = () => {
     window.scrollTo({
