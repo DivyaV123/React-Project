@@ -231,7 +231,7 @@ function TrainerLandingPage() {
         return (
             <section>
                 <div className='pb-2'>
-                    <p className={pStyle} onClick={()=>{console.log({editData})}}>Trainer Name</p>
+                    <p className={pStyle}>Trainer Name</p>
                     <Input
                         onChange={formikDetails.handleChange}
                         onBlur={formikDetails.handleBlur}
