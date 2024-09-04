@@ -34,7 +34,7 @@ const PlacementCards = () => {
   const {
     data: placementList,
     error: placementError,
-    // isLoading: placementLoading,
+    isLoading: placementLoading,
     isFetching: placementFetching,
     refetch: placementRefetch,
   } = useGetAllPlacementListQuery({
@@ -108,7 +108,7 @@ const PlacementCards = () => {
     }
     return searchParams;
   };
-  const placementLoading = true;
+
   return (
     <Suspense>
       <div className="flex mobile:flex-wrap mb-4 sm:ml-[1.5rem] sm:mr-[2.25rem] sm:gap-[1.875rem]">
