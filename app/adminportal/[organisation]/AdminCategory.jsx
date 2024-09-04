@@ -159,14 +159,13 @@ const AdminCategory = () => {
               : `${values.categoryName} added successfully`,
             variant: "success",
           });
-          
+
           formikDetails.resetForm();
           refetch();
         }
         setDialogOpen(false);
         dialogCloseClick();
       } catch {
-        
         if (editData) {
           setCreateCategory(false);
         }
@@ -239,7 +238,6 @@ const AdminCategory = () => {
         categoryIconDark: "",
         categoryIconLite: "",
       });
-      
     }
   }, [editData]);
   const handleEditClick = (category) => {
@@ -256,7 +254,9 @@ const AdminCategory = () => {
     return (
       <form onSubmit={formikDetails.handleSubmit}>
         <div className="pb-[2.222vh]">
-          <p className={pStyle}><span class="text-red-500 pr-1">*</span>Category name</p>
+          <p className={pStyle}>
+            <span class="text-red-500 pr-1">*</span>Category name
+          </p>
           <Input
             onChange={formikDetails.handleChange}
             onBlur={formikDetails.handleBlur}
@@ -271,7 +271,9 @@ const AdminCategory = () => {
             </div>
           ) : null}
         </div>
-        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Category Icon Dark</p>
+        <p className={pStyle}>
+          <span class="text-red-500 pr-1">*</span>Category Icon Dark
+        </p>
         <div className="flex gap-4 items-center">
           <div className="w-[50%] break-all">
             <input
@@ -311,14 +313,16 @@ const AdminCategory = () => {
                   onClick={() => handleCancel("categoryIconDark")}
                   className=" text-[0.93vw] text-red-500 rounded-full p-1"
                 >
-                  cancel
+                  Cancel
                 </button>
               </div>
             )}
           </div>
         </div>
 
-        <p className={pStyle}><span class="text-red-500 pr-1">*</span>Category Icon Lite</p>
+        <p className={pStyle}>
+          <span class="text-red-500 pr-1">*</span>Category Icon Lite
+        </p>
         <div className="flex gap-4 items-center">
           <div className="w-[50%] break-all">
             <input
@@ -358,7 +362,7 @@ const AdminCategory = () => {
                   onClick={() => handleCancel("categoryIconLite")}
                   className=" text-[0.93vw] text-red-500 rounded-full p-1"
                 >
-                  cancel
+                  Cancel
                 </button>
               </div>
             )}
@@ -403,7 +407,7 @@ const AdminCategory = () => {
         toast({
           title: `${getCategoryName} deleted successfully`,
           variant: "delete",
-        })
+        });
         refetch();
       }
     } catch (err) {
@@ -505,22 +509,7 @@ const AdminCategory = () => {
           const category = updatedCategories[i];
           newWeightage = i + 1;
         }
-        // for (let i = startIndex; i <= endIndex; i++) {
-        //   const category = updatedCategories[i];
-        //   const newWeightage = i + 1; // Weightage is 1-based
 
-        //   try {
-        //     await editCategoryWeightage({
-        //       categoryId: category.courseId,
-        //       weightage: newWeightage,
-        //       organisation: selectedInstitute
-        //     }).unwrap();
-
-        //     console.log(`Updated weightage for category ${category.title}: ${newWeightage}`);
-        //   } catch (error) {
-        //     console.error(`Failed to update weightage for category ${category.title}:`, error);
-        //   }
-        // }
         setCategories(updatedCategories);
 
         try {
@@ -568,41 +557,31 @@ const AdminCategory = () => {
           <div className="pt-[2.222vh] pl-[1.875vw] w-[29.688vw]">
             <Input
               inputStyle="rounded-md"
-              placeholder="search"
+              placeholder="Search"
               iconPath="../images/icon_outline_search.png"
             />
           </div>
           <aside className="pt-[2.778vh] pr-[1.875vw]">
-            <div className=" bg-gradient rounded-md py-[1.111vh] px-[0.938vw] text-white font-bold flex gap-2 text-[1.094vw]">
-              <Svg
+            <DialogTrigger asChild>
+              <button
+                onClick={() => {
+                  setDialogOpen(true), setEditData(null);
+                }}
+                className="bg-gradient rounded-md py-[1.111vh] px-[0.938vw] text-white font-bold flex gap-2 text-[1.094vw] flex"
+              >
+                {/* <Svg
                 width={svgicons.addIcon[0]}
                 height={svgicons.addIcon[1]}
                 viewBox={svgicons.addIcon[2]}
                 icon={svgicons.addIcon[3]}
                 color={svgicons.addIcon[4]}
-              />
-              <DialogTrigger asChild>
-                <button
-                  onClick={() => {
-                    setDialogOpen(true), setEditData(null);
-                  }}
-                  className=""
-                >
-                  Category
-                </button>
-              </DialogTrigger>
-            </div>
+              /> */}
+                + Category
+              </button>
+            </DialogTrigger>
           </aside>
         </article>
-        {/* {dialogOpen &&
-            <CommonDialog
-          dialogCloseClick={dialogCloseClick}
-          header="Add new category"
-          footerBtnTitle="Create Category"
-          formfn={dialogForm}
-          footerBtnClick={footerBtnClick}
-        />
-        } */}
+
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
           <CommonDialog
             dialogCloseClick={dialogCloseClick}
