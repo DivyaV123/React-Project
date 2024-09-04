@@ -6,7 +6,7 @@ export const placementListApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
         getAllPlacementList: builder.query({
-            query: ({page=1,testimonial_id,joining_date_after,joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id,highestyop}) => API_ENDPOINTS.PLACEMENT_LIST(page,testimonial_id,joining_date_after,joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id,highestyop),
+            query: ({page=1,testimonial_id,joining_date_after,joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id,highestyop,verified_testimonial=true}) => API_ENDPOINTS.PLACEMENT_LIST(page,testimonial_id,joining_date_after,joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id,highestyop,verified_testimonial),
             keepUnusedDataFor: 0
         }),
     }),

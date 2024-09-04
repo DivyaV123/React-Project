@@ -345,8 +345,7 @@ const PlacementContent = ({ placementList }) => {
                       alt="Video Thumbnail"
                       style={{
                         display: "block",
-                        width: "6.797vw",
-                        height: "10.056vh",
+                        height: "6.3vh",
                         borderRadius: "5px",
                         objectFit: "cover",
                       }}
