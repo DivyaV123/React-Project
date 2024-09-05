@@ -378,7 +378,7 @@ const PlacementContent = ({ placementList }) => {
                     ?.youtube_video_without_company_name)} />
               )}
               {testimonialDialog && (
-                <TestimonialPopup student={student} extractText={extractText} />
+                <TestimonialPopup student={student} degree={degree} stream={stream} percentage={percentage} getFilteredTestimonials={getFilteredTestimonials} extractText={extractText} />
               )}
             </AlertDialog>
           </section>
