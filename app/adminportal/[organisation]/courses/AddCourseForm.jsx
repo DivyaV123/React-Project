@@ -166,7 +166,10 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
     category: !courseEditData && Yup.string().required("category is required"),
       // subCourse: Yup.string().required("Sub Course is required"),
     subCategory:!isSubCourseDisabled && Yup.string().required("Sub Category is required"),
-    courseName: Yup.string().required("Course Name is required"),
+    courseName: Yup.string()
+    .min(4, "Course Name must be at least 4 characters")
+    .max(80, "Course Name cannot exceed 80 characters")
+    .required("Course Name is required"),
     courseDesc: Yup.string().required("Course Description is required"),
     courseSummary: Yup.string().required("Course Summary is required"),
     aboutCourse: Yup.string().required("About the Course is required"),
