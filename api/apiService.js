@@ -85,6 +85,7 @@ export const API_ENDPOINTS = {
   CITY_WEIGHTAGE: (countryId, cityId, weightage, organisation) => `/api/v1/weightage/city?countryId=${countryId}&cityId=${cityId}&weightage=${weightage}&organization=${organisation}`,
   //trainers
   GET_ALLTRAINERS: `api/v1/users/trainers/getall`,
-  ADD_TRAINERS: `api/v1/users/saveTrainer`
+  ADD_TRAINERS: `api/v1/users/saveTrainer`,
+  DELETE_TRAINER: (trainerId) => `api/v1/users/deleteTrainer=${trainerId}`,
 
 };
