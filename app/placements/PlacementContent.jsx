@@ -99,7 +99,7 @@ const PlacementContent = ({ placementList }) => {
                       <div>
                         <div
                           className="studentDetails flex justify-center"
-                          title={degree}
+                          title={degree || "N/A"}
                         >
                           {toProperCase(truncateText(degree, 5))}
                         </div>
@@ -109,23 +109,23 @@ const PlacementContent = ({ placementList }) => {
                       <div>
                         <div
                           className="studentDetails flex justify-center"
-                          title={stream}
+                          title={stream || "N/A"}
                         >
-                          {truncateText(stream, 3)?.toUpperCase()}
+                          {truncateText(stream, 3)?.toUpperCase()|| "N/A"}
                         </div>
                         <div className="educationDetails">Stream</div>
                       </div>
                       <div>|</div>
                       <div>
                         <div className="studentDetails flex justify-center">
-                          {percentage}
+                          {percentage || "N/A"}
                         </div>
                         <div className="educationDetails">Aggregate</div>
                       </div>
                       <div>|</div>
                       <div>
                         <div className="studentDetails flex justify-center">
-                          {student?.highestyop}
+                          {student?.highestyop || "N/A"}
                         </div>
                         <div className="educationDetails">YOP</div>
                       </div>
@@ -312,11 +312,102 @@ const PlacementContent = ({ placementList }) => {
                       </Link>
                     </div>
                     <div className="iconContainer">
+                    <Link
+                        href={
+                          getFilteredTestimonials(
+                            student?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.twitter
+                          ) || "#"
+                        }
+                        target={
+                          getFilteredTestimonials(
+                            student?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.twitter
+                          )
+                            ? "_blank"
+                            : "_self"
+                        }
+                        onClick={(e) => {
+                          if (
+                            !getFilteredTestimonials(
+                              student?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.twitter
+                            )
+                          ) {
+                            e.preventDefault();
+                          }
+                        }}
+                        className={`${
+                          !getFilteredTestimonials(
+                            student?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.twitter
+                          )
+                            ? "pointer-events-none"
+                            : ""
+                        }`}
+                      >
                       <img
                         src="../share 1.svg"
                         alt="Share"
-                        className="cursor-pointer"
-                      />
+                        className={`${
+                          !getFilteredTestimonials(
+                            student?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.twitter
+                          )
+                            ? "opacity-30 pointer-events-none"
+                            : ""
+                        }`}
+                       />
+                       </Link>
+                    </div>
+                    <div className="iconContainer">
+                    <Link
+                        href={
+                          getFilteredTestimonials(
+                            student?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.instagram
+                          ) || "#"
+                        }
+                        target={
+                          getFilteredTestimonials(
+                            student?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.instagram
+                          )
+                            ? "_blank"
+                            : "_self"
+                        }
+                        onClick={(e) => {
+                          if (
+                            !getFilteredTestimonials(
+                              student?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.instagram
+                            )
+                          ) {
+                            e.preventDefault();
+                          }
+                        }}
+                        className={`${
+                          !getFilteredTestimonials(
+                            student?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.instagram
+                          )
+                            ? "pointer-events-none"
+                            : ""
+                        }`}
+                      >
+                      <img
+                        src="../share 1.svg"
+                        alt="Share"
+                        className={`${
+                          !getFilteredTestimonials(
+                            student?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.instagram
+                          )
+                            ? "opacity-30 pointer-events-none"
+                            : ""
+                        }`}
+                       />
+                       </Link>
                     </div>
                   </div>
                 </div>
@@ -325,11 +416,11 @@ const PlacementContent = ({ placementList }) => {
                 <AlertDialogTrigger asChild>
                   <img
                     onClick={openImageDialog}
-                    src={student?.gotjob[0]?.testimonial ? student.base_url+getFilteredTestimonials(
+                    src={student?.gotjob[0]?.mini_testimonial?.img_details?.written_testimonial_image ? student.base_url+getFilteredTestimonials(
                       student?.gotjob[0]?.mini_testimonial?.img_details
                         ?.written_testimonial_image 
                     ) : "Error.src"}
-                    className={`imageBox ${student?.gotjob[0]?.testimonial ? "cursor-pointer" : "cursor-not-allowed" }`}
+                    className={`imageBox ${student?.gotjob[0]?.mini_testimonial?.img_details?.written_testimonial_image ? "cursor-pointer" : "cursor-not-allowed" }`}
                     // alt="Testimonial Image"
                   />
                 </AlertDialogTrigger>
@@ -364,7 +455,7 @@ const PlacementContent = ({ placementList }) => {
                   </div>
                 </AlertDialogTrigger>
               </div>
-              {imageDialog && (
+              {(imageDialog && student?.gotjob[0]?.mini_testimonial?.img_details?.written_testimonial_image) &&(
                 <ImagePopup
                   testimonialLink={student.base_url+getFilteredTestimonials(
                     student?.gotjob[0]?.mini_testimonial?.img_details
