@@ -25,6 +25,9 @@ import { useGetAllCoursesQuery } from '@/redux/queries/getAllCourseForAdmin';
 import { useGetAllSubjectsQuery } from '@/redux/queries/getAllSubjectsApi';
 import PhoneInput from "react-phone-input-2";
 import { useAddTrainerMutation } from '@/redux/queries/addTrainerApi';
+import { useTrainerDeleteMutation } from '@/redux/queries/deleteTrainerApi';
+import { AlertDialog } from "@/components/ui/alert-dialog";
+import DeleteWarningPopup from '@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup';
 
 function TrainerLandingPage() {
     const [editData, setEditData] = useState(null);
@@ -81,7 +84,10 @@ function TrainerLandingPage() {
             isLoading: addTrainerLoading,
         },
     ] = useAddTrainerMutation();
-
+    const [
+      deleteSelectedTrainer,
+      {  isLoading: trainerDeleteLoad },
+    ] = useTrainerDeleteMutation();
     const initialValues = {
         trainerName: "",
         branch: [],
@@ -226,6 +232,55 @@ function TrainerLandingPage() {
             formikDetails.setFieldValue("subject", selectedValues)
         }
     };
+    const [phoneError, setPhoneError] = useState('');
+    const [gmailError, setGmailError] = useState('');
+
+   
+    const handleAddPhone = () => {
+      const phoneFields = formikDetails.values.phone;
+  
+      // Allow adding the first phone field if there are none
+      if (phoneFields.length === 0) {
+          formikDetails.setFieldValue('phone', ['']);
+          setPhoneError('');
+      } else {
+          const lastPhoneField = phoneFields[phoneFields.length - 1];
+  
+          // Check if
+          const phoneWithoutCountryCode = lastPhoneField.replace(/^\+\d+/, ''); 
+          const isPhoneValid = phoneWithoutCountryCode.length === 12; 
+  
+          if (lastPhoneField.trim() === '' || !isPhoneValid) {
+              if (lastPhoneField.trim() === '') {
+                  setPhoneError('Please fill the current phone field before adding another.');
+              } else {
+                  setPhoneError('Enter valid phone number');
+              }
+          } else {
+              setPhoneError('');
+              formikDetails.setFieldValue('phone', [...phoneFields, '']);
+          }
+      }
+  };
+  const handleAddGmail = () => {
+    const gmailFields = formikDetails.values.gmail;
+
+    // Allow adding the first Gmail field if there are none
+    if (gmailFields.length === 0) {
+        formikDetails.setFieldValue('gmail', ['']);
+        setGmailError('');
+    } else {
+        const lastGmailField = gmailFields[gmailFields.length - 1];
+
+        // Check if the last Gmail field is empty
+        if (lastGmailField.trim() === '') {
+            setGmailError('Please fill the current Gmail field before adding another.');
+        } else {
+            setGmailError('');
+            formikDetails.setFieldValue('gmail', [...gmailFields, '']);
+        }
+    }
+};
 
     const mapSubjectForm = () => {
         return (
@@ -305,6 +360,7 @@ function TrainerLandingPage() {
                                     formikDetails.setFieldValue("phone", updatedPhones);
                                     setPhoneValue(e);
                                     setCountryCode(country.dialCode);
+                                    
                                 }}
                                 enableSearch
                                 international
@@ -320,6 +376,9 @@ function TrainerLandingPage() {
                                     const updatedPhones = [...formikDetails.values.phone];
                                     updatedPhones.splice(index, 1);
                                     formikDetails.setFieldValue("phone", updatedPhones);
+                                    if (updatedPhones.length === 0 || updatedPhones[updatedPhones.length - 1].trim() !== '') {
+            setPhoneError('');
+        }
                                 }}
                             />
                         </div>
@@ -328,16 +387,17 @@ function TrainerLandingPage() {
                         title='+ Phone'
                         type="button"
                         className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-green-500'
-                        onClick={() =>
-                            formikDetails.setFieldValue("phone", [
-                                ...formikDetails.values.phone,
-                                ""
-                            ])
-                        }
-                    />
+                        onClick= {handleAddPhone}
+                        disabled={phoneError !== ''}
 
+                    />
+ {phoneError && (
+                    <div className="text-red-500 text-[0.6rem]">
+                        {phoneError}
+                    </div>
+                )}
                     {formikDetails.errors.phone &&
-                        formikDetails.touched.phone && (
+                        formikDetails.touched.phone && !phoneError &&  (
                             <div className="text-red-500 text-[0.6rem]">
                                 {formikDetails.errors.phone}
                             </div>
@@ -352,7 +412,7 @@ function TrainerLandingPage() {
                                 name={`gmail[${index}]`}
                                 value={gmail}
                                 handleBlur={formikDetails.handleBlur}
-                                onChange={formikDetails.handleChange}
+                                onChange={(e)=>{formikDetails.handleChange(e);setGmailError("")}}
                                 placeholder="Please add gmail"
                             />
                             <Button
@@ -363,8 +423,12 @@ function TrainerLandingPage() {
                                     const updatedGmails = [...formikDetails.values.gmail];
                                     updatedGmails.splice(index, 1);
                                     formikDetails.setFieldValue("gmail", updatedGmails);
-
+                                    if (updatedGmails.length === 0 || updatedGmails[updatedGmails.length - 1].trim() !== '') {
+            setGmailError('');
+        }
                                 }}
+
+                              
                             />
                         </div>
                     ))}
@@ -372,15 +436,15 @@ function TrainerLandingPage() {
                         title='+ Gmail'
                         type="button"
                         className='px-[0.625vw] py-[0.833vh] text-[1.094vw] font-medium rounded-md text-white bg-green-500'
-                        onClick={() =>
-                            formikDetails.setFieldValue("gmail", [
-                                ...formikDetails.values.gmail,
-                                ""
-                            ])
-                        }
+                        onClick={handleAddGmail}
                     />
+                     {gmailError && (
+        <div className="text-red-500 text-[0.6rem]">
+            {gmailError}
+        </div>
+    )}
                     {formikDetails.touched.gmail &&
-                        formikDetails.errors.gmail ? (
+                        formikDetails.errors.gmail && !gmailError ? (
                         <div className="text-red-500 text-[0.6rem]">
                             {formikDetails.errors.gmail}
                         </div>
@@ -392,13 +456,39 @@ function TrainerLandingPage() {
     };
   
 
+    const handleEditClick = (trainer) => {
+        setEditData(trainer);
+        setIsEditMode(true); 
+        setAddTrainerForm(true);
+    };
+
     const handleAddClick = () => {
         setIsEditMode(false); 
         setAddTrainerForm(true);
         setEditData(null); 
         formikDetails.resetForm();
     };
-  
+   
+
+    const [trainerName, setTrainerName] = useState("");
+    const [trainerID, setTrainerID] = useState("");
+    const [deleteTrainer, setDeleteTrainer] = useState(false);
+    const deleteICon = "/illustrate_delete.svg";
+    const handleDeleteClick = (id, trainerName) => () => {
+      setTrainerName(trainerName);
+      setTrainerID(id);
+      setDeleteTrainer(true);
+    };
+    const handleDeleteSelectedCourse = async () => {
+      
+      try {
+        const response = await deleteSelectedTrainer({trainerId:trainerID }).unwrap();
+        setDeleteTrainer(false);
+        batchDataRefetch();
+      } catch (err) {
+        console.error(err);
+      }
+    };
     return (
         <>
             <Dialog>
@@ -510,9 +600,7 @@ function TrainerLandingPage() {
                       </div>
                     )}
                   </TableCell>
-                                        {/* <TableCell className={tblTextClass}>
-                                            {ele.trainerEmail[0].email}
-                                        </TableCell> */}
+                                       
                                         <TableCell className={tblTextClass}>
                     {ele.trainerEmail.length === 0 ? (
                       ele.trainerEmail.length
@@ -597,8 +685,8 @@ function TrainerLandingPage() {
                                            
                                             <button
                                                 // onClick={handleDeleteClick(
-                                                //     ele.course_id,
-                                                //     ele.course_name
+                                                //     ele.trainerId,
+                                                //     ele.trainerName
                                                 // )}
                                                 className="text-red-500 hover:underline"
                                             >
@@ -613,14 +701,27 @@ function TrainerLandingPage() {
                 </div>
                 {addTrainerForm && (
                     <CommonDialog
-                        header="Add new Trainer"
-                        footerBtnTitle="Add Trainer"
+                        header={editData?"Edit Trainer":"Add new Trainer" }
+                        footerBtnTitle={editData ? "Update" : "Add Trainer"}
                         formfn={mapSubjectForm}
                         footerBtnClick={footerBtnClick}
                         dialogCloseClick={() => {setAddTrainerForm(false);setEditData(null)}}
                     />
                 )}
             </Dialog>
+            <AlertDialog
+          open={deleteTrainer}
+          onOpenChange={(open) => setDeleteTrainer(open)}
+        >
+          <DeleteWarningPopup
+            header="Delete"
+            icon={deleteICon}
+            setDeleteCategory={setDeleteTrainer}
+            btnText="Delete"
+            contentText={`Are you sure you want to delete ${trainerName} trainer`}
+            deleteFunction={handleDeleteSelectedCourse}
+          />
+        </AlertDialog>
         </>
     )
 }
