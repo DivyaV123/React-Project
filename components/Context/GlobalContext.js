@@ -159,7 +159,6 @@ const GlobalContextProvider = ({ children }) => {
     },
     300
   );
-
   const timePeriods = {
     "Last week": dayjs().subtract(1, "week").format("YYYY-MM-DD"),
     "Last month": dayjs().subtract(1, "month").format("YYYY-MM-DD"),
@@ -249,7 +248,6 @@ const GlobalContextProvider = ({ children }) => {
           joining_date_after: "",
           joining_date_before: ""
         })
-        setScrollPage(1)
         setPlacementParam("");
         break;
       // case "Top Salaries":
@@ -260,7 +258,6 @@ const GlobalContextProvider = ({ children }) => {
       case "Last 3 months":
       case "Last 6 months":
         const startDate = timePeriods[title];
-        setScrollPage(1)
         const endDate = dayjs().format("YYYY-MM-DD");
         setPlacementParam("");
         setFilterPlacementData({

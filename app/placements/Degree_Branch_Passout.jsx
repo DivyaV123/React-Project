@@ -65,6 +65,7 @@ const Degree_Branch_Passout = ({ isLoading, isFetching, scrollToTop }) => {
         id: degree.id,
         name: degree.short_form || degree.name,
         qualification_type_name: degree.qualification_type_name,
+        fullName:degree.name
       }));
       setDegreeList(getDegree);
     }
@@ -74,6 +75,7 @@ const Degree_Branch_Passout = ({ isLoading, isFetching, scrollToTop }) => {
         id: stream.id,
         name: stream.short_form || stream.name,
         qualification_type_name: stream.qualification_type_name,
+        fullName:stream.name
       }));
       setBranchList(getStream);
     }
@@ -291,9 +293,9 @@ const Degree_Branch_Passout = ({ isLoading, isFetching, scrollToTop }) => {
             onClick={() => {
               handleButtonClick(item, setButtonState, key);
             }}
-            title={item.name}
+            title={toProperCase(item.fullName)}
           >
-            {toProperCase(truncateText(item.name, 6))}
+            {(truncateText(item.name, 6)).toUpperCase()}
           </button>
         ))}
         {items.length > 6 && (
@@ -315,9 +317,9 @@ const Degree_Branch_Passout = ({ isLoading, isFetching, scrollToTop }) => {
                   handleItemClick(item, items, setItems, setButtonState, key);
                   setMoreState(false);
                 }}
-                title={item.name}
+                title={toProperCase(item.fullName)}
               >
-                {toProperCase(item.name)}
+                {item.name.toUpperCase()}
               </li>
             ))}
           </ul>

@@ -146,7 +146,7 @@ const PlacementCards = () => {
             allCounts={allPlacementCount}
             placementPage="GeneralPlacements"
           />
-        )}
+        )} 
         {placementLoading ? (
           <CardSkeleton />
         ) : (
@@ -173,7 +173,6 @@ const PlacementCards = () => {
         isLoading={placementLoading}
         isFetching={placementFetching}
         placementList={placementList}
-        placementRefetch={placementRefetch}
       />
     </Suspense>
   );

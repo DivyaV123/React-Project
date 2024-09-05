@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState,useRef } from "react";
 import PlacementContent from "./PlacementContent";
 import "./PlacementSidebar.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
@@ -13,7 +13,6 @@ import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import PlacementFilterSkeleton from "@/components/skeletons/PlacementFilterSkeleton";
 import MobileCardContentSkeleton from "@/components/skeletons/MobileCardContentSkeleton";
 const PlacementSideBar = ({
-  placementRefetch,
   isFetching,
   isLoading,
   refetch,
@@ -45,6 +44,15 @@ const PlacementSideBar = ({
     scrollPage,
     filteredDateRange,
   } = useContext(GlobalContext);
+  const scrollContainerRef = useRef(null);
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth", 
+      });
+    }
+  }, [sideBarBtn,filteredDateRange]);
   const [isFetchData, setIsFetchData] = useState(isFetching);
   const sideBar = [
     {
@@ -105,7 +113,7 @@ const PlacementSideBar = ({
     if (differenceInDays <= 7) return "Last week";
     if (differenceInDays <= 31) return "Last month";
     if (differenceInDays <= 92) return "Last 3 months";
-    if (differenceInDays <= 182) return "Last 6 months";
+    if (differenceInDays <= 184) return "Last 6 months";
 
     return "Recent Placements";
   };
@@ -151,6 +159,7 @@ const PlacementSideBar = ({
       setLoaderKey((prevKey) => prevKey + 1);
     }
   }, [isFetchData]);
+
   return (
     <AlertDialog popup="filterPopup">
       <section className="flex mobile:flex-col sm:ml-[1.875vw] sm:mb-[1.111vh] h-[58.889vh]">
@@ -224,8 +233,9 @@ const PlacementSideBar = ({
             <CardContentSkeleton />
             <MobileCardContentSkeleton />
           </>
-        ) : (
+         ) : (
           <section
+          ref={scrollContainerRef}
             onScroll={(event) => {
               handleScroll(event, page, setPage, placementList, setIsFetchData);
             }}
