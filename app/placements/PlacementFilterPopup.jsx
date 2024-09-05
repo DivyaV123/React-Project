@@ -11,8 +11,8 @@ import { useGetAllYearOfPassoutQuery } from "@/redux/queries/getYearOfPassout";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
-
-const PlacementFilterPopup = ({ setFIlterPopup }) => {
+import dayjs from "dayjs";
+const PlacementFilterPopup = ({ setFilterPopup }) => {
   const [degreeList, setDegreeList] = useState(true);
   const [branchList, setBranchList] = useState(false);
   const [yopList, setYopList] = useState(false);
@@ -30,10 +30,8 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
     data: streamData,
     error: streamError,
   } = useGetAllStreamQuery();
-  const {
-    data: yopData,
-    error: yopError,
-  } = useGetAllYearOfPassoutQuery();
+  const currentYear = dayjs().year();
+  const yopData = Array.from({ length: 15 }, (_, i) => currentYear - i);
 
   const handleDegreeList = (key) => {
     setDegreeList(true);
@@ -62,7 +60,7 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
       [key]: [value],
     });
     setPlacementParam("");
-    setFIlterPopup(false);
+    setFilterPopup(false);
   };
 
   const filteredDegrees = degreeAndStreamdata?.results?.filter((degree) =>
@@ -71,10 +69,6 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
 
   const filteredBranches = streamData?.results?.filter((stream) =>
     stream.name.toLowerCase().includes(searchInput.toLowerCase())
-  );
-
-  const filteredYops = yopData?.response?.filter((yop) =>
-    yop.toString().toLowerCase().includes(searchInput.toLowerCase())
   );
 
   return (
@@ -135,7 +129,7 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
                 setDegreeList(false);
               }}
             >
-              {degree}
+              {degree.name}
             </li>
           ))}
         </ul>
@@ -151,14 +145,14 @@ const PlacementFilterPopup = ({ setFIlterPopup }) => {
                 setBranchList(false);
               }}
             >
-              {stream}
+              {stream.name}
             </li>
           ))}
         </ul>
       )}
       {yopList && (
         <ul className="pl-[7.442vw]">
-          {filteredYops?.map((yop, index) => (
+          {yopData?.map((yop, index) => (
             <li
               key={index}
               className="py-[0.858vh] text-[3.256vw]"

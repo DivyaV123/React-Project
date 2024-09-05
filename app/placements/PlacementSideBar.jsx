@@ -20,7 +20,7 @@ const PlacementSideBar = ({
   placementList,
 }) => {
   const [accumulatedData, setAccumulatedData] = useState([]);
-  const [filterPopup, setFIlterPopup] = useState(false);
+  const [filterPopup, setFilterPopup] = useState(false);
   const [loaderKey, setLoaderKey] = useState(0);
   const {
     page,
@@ -144,7 +144,7 @@ const PlacementSideBar = ({
     }
   }, [placementList]);
   const handleFilterButton = () => {
-    setFIlterPopup(true);
+    setFilterPopup(true);
   };
   useEffect(() => {
     if (isFetchData && placementList?.next_page_url !== null) {
@@ -245,7 +245,7 @@ const PlacementSideBar = ({
         )}
 
         {filterPopup && (
-          <PlacementFilterPopup setFIlterPopup={setFIlterPopup} />
+          <PlacementFilterPopup setFilterPopup={setFilterPopup} />
         )}
       </section>
     </AlertDialog>

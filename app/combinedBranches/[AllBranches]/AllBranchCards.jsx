@@ -22,6 +22,7 @@ const AllBranchCards = () => {
       }
     }
   }
+
   const handleCountryTab = (country, ele) => {
     router.push(`${COMBINED_BRANCHES}/${country}`);
     if (country === countryTab) {
@@ -30,11 +31,10 @@ const AllBranchCards = () => {
       setActiveTab(false);
     }
   };
-
   return (
     <>
       <section className="w-[87.5vw] m-auto mobile:w-[92.558vw]">
-        <header className="pt-10  font-bold text-[1.875vw] mobile:text-[5.581vw] mobile:pb-[4.292vh] mobile:pt-[2.575vh]">
+        <header className="pt-10  font-bold text-[1.875vw] mobile:text-[5.581vw] mobile:pb-[2.292vh] mobile:pt-[2.575vh]">
           Our Offline branches
         </header>
         <section className="flex gap-6 w-[87.5vw] m-auto  pt-4  items-center pb-4">
@@ -48,7 +48,7 @@ const AllBranchCards = () => {
 
             return (
               <button
-                className={`text-[0.938vw] font-bold ${
+                className={`text-[0.938vw] mobile:text-[2.326vw] font-bold ${
                   ele.countryName === decodeCountry ? "activecountry" : ""
                 }`}
                 onClick={() => handleCountryTab(ele.countryName, ele)}
@@ -80,7 +80,7 @@ const AllBranchCards = () => {
               </header>
             </div>
             <section className=" sm:hidden flex flex-wrap gap-6 pl-[5.581vw]">
-              {ele?.branches?.map((branch, branchIndex) => (
+              {ele?.branchDtos?.map((branch, branchIndex) => (
                 <button
                   key={branchIndex}
                   className="w-[41.628vw] h-[7.296vh] text-[3.721vw] bg-[#ffffff] text-center"

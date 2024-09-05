@@ -13,7 +13,7 @@ const CommonBranch = ({ selectedId, page }) => {
   return (
     <section className={`${page === 'offlineBranches' ? ' w-full pl-[6%] py-2 pr-[2%] pt-[2%]  mobile:hidden overflow-x-scroll offlineScrollbar gap-6 flex' : "sm:w-[73.656vw] overflow-y-scroll myscrollbar flex  flex-wrap mobile:px-[1.395vw] sm:mt-6    mobile:flex-col sm:gap-4"}`}>
       {selectedId &&
-        selectedId?.branches?.map((branch, branchIndex) => (
+        selectedId?.branchDtos?.map((branch, branchIndex) => (
           <div
             key={branchIndex}
             className={` sm:w-[23.438vw] mobile:mt-[1.717vh] sm:h-[27.969vw] cardShawdow  p-3 flex flex-col justify-evenly  rounded-md ${page === 'offlineBranches' ? "flex-shrink-0 flex-wrap" : ""} `}

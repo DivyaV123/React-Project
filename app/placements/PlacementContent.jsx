@@ -335,7 +335,7 @@ const PlacementContent = ({ placementList }) => {
                 </AlertDialogTrigger>
                 <AlertDialogTrigger asChild>
                   <div
-                    className={`videoBox ${student?.gotjob[0]?.testimonial ? "cursor-pointer" : "cursor-not-allowed" }`}
+                    className={`videoBox ${student?.gotjob[0]?.mini_testimonial?.url_details.youtube_video_without_company_name ? "cursor-pointer" : "cursor-not-allowed" }`}
                     onClick={openVideoDialog}
                     style={{ position: "relative", display: "inline-block" }}
                   >
@@ -372,7 +372,7 @@ const PlacementContent = ({ placementList }) => {
                   )}
                 />
               )}
-              {(videoDialog && student?.gotjob[0]?.testimonial) && (
+              {(videoDialog && student?.gotjob[0]?.mini_testimonial?.url_details.youtube_video_without_company_name) && (
                 <VideoPopup videoLink={getFilteredTestimonials(
                   student?.gotjob[0]?.mini_testimonial?.url_details
                     ?.youtube_video_without_company_name)} />
