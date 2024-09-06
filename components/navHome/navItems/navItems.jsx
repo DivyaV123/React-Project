@@ -55,7 +55,7 @@ function NavItems() {
     data: onlineCourseResponse,
     error: onlineCourseError,
     isLoading: onlineCourseIsLoading,
-  } = useGetAllOnlineCoursesQuery();
+  } = useGetAllOnlineCoursesQuery("online");
   const navItems = [
     { id: 1, name: "All Courses", content: <Courses courseResponse={courseResponse} /> },
     { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
