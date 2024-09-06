@@ -13,7 +13,7 @@ const OverviewCard = ({ allCounts, placementPage }) => {
     setSideBarBtn,
     setFilteredRange,
     setFilterPlacementData,
-    setPage,
+    setScrollPage,
   } = useContext(GlobalContext);
   const handleClick = () => {
     if (placementPage === "GeneralPlacements") {
@@ -27,7 +27,7 @@ const OverviewCard = ({ allCounts, placementPage }) => {
       setNonItCheckedIcon(false);
       setSideBarBtn('')
       setFilterPlacementData({})
-      setPage(0)
+      setScrollPage(1)
     } else return;
   };
 

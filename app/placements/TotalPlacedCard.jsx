@@ -14,7 +14,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
     setPlacementParam,
     setSideBarBtn,
     setFilterPlacementData,
-    setPage,
+    setScrollPage,
     setFilteredRange
   } = useContext(GlobalContext);
   const handleClick = () => {
@@ -28,7 +28,7 @@ const TotalPlacedCard = ({ allCounts, placementPage }) => {
       setSideBarBtn("");
       setFilterPlacementData({});
       setFilteredRange({})
-    setPage(0);
+      setScrollPage(1);
     } else return;
   };
 

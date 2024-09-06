@@ -4,7 +4,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { formatToIndianCurrency } from "@/lib/utils";
 const DegreeCard = ({ allCounts,placementPage }) => {
   const {
-    setPage,
+    setScrollPage,
     setThroughCheckedIcon,
     setLessCheckedIcon,
     lesscheckedIcon,
@@ -29,7 +29,7 @@ const DegreeCard = ({ allCounts,placementPage }) => {
       setNonItCheckedIcon(false);
       setSideBarBtn('')
       setFilterPlacementData({})
-      setPage(0)
+      setScrollPage(1)
     } else return;
   };
 
