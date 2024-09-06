@@ -331,7 +331,7 @@ function AddBranchForm({ dialogCloseClick, branchRefetch, branchEditData,setBran
                 try {
                     const response = await addBranch({ bodyData: payload }).unwrap();
                     setBranchAddDialog(false);
-                   console.log({response})
+                  
                     branchRefetch()
                 } catch (err) {
                     console.error(err, "Error from loginAPI");
