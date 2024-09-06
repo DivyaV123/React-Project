@@ -16,7 +16,7 @@ import { useBranchAdderMutation } from "@/redux/queries/branchAdderApi";
 import { useGetBranchDetailsByIdQuery } from "@/redux/queries/getBranchDetailsByBranchIdApi";
 import { useBranchEditDataMutation } from "@/redux/queries/editBranchApi";
 
-function AddBranchForm({ dialogCloseClick, courseRefetch, branchEditData, }) {
+function AddBranchForm({ dialogCloseClick, branchRefetch, branchEditData,setBranchAddDialog }) {
     const [addBranch, { data: branchAdd, error: branchError, isLoading: branchAdderLoad }] = useBranchAdderMutation();
     const [EditBranch, { data: branchEdit, error: branchEditError, isLoading: branchEditLoad }] = useBranchEditDataMutation();
     const [error, setError] = useState({ phone: false, validPhone: false });
@@ -273,6 +273,13 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, branchEditData, }) {
             values.phone.map((num) => {
                 phoneNumbers.push("+" + num)
             })
+          
+            let faqArray = values.faqs.map((faq) => ({
+                question: faq.question,
+                answer: faq.answer,
+                faqId: faq.faqId,
+                faqType: "BRANCH",
+              }));
             const branch = {
                 displayName: values.BranchName,
                 branchType: values.organisation,
@@ -286,11 +293,9 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, branchEditData, }) {
                     location: values.location
                 },
                 contacts: phoneNumbers,
-                faqs: values.faqs.map((faq) => ({
-                    question: faq.question,
-                    answer: faq.answer,
-                })),
+                faqs:faqArray
             };
+            
             const branchEdit = {
                 displayName: values.BranchName,
                 branchId: selectedBranchData?.branchId,
@@ -325,7 +330,9 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, branchEditData, }) {
             if (!branchEditData) {
                 try {
                     const response = await addBranch({ bodyData: payload }).unwrap();
-                    setCourseAddDialog(false);
+                    setBranchAddDialog(false);
+                  
+                    branchRefetch()
                 } catch (err) {
                     console.error(err, "Error from loginAPI");
                 }
@@ -333,7 +340,8 @@ function AddBranchForm({ dialogCloseClick, courseRefetch, branchEditData, }) {
                 try {
                     const response = await EditBranch({ bodyData: payloadEdit }).unwrap();
                     formikDetails.resetForm();
-                    setCourseAddDialog(false);
+                    setBranchAddDialog(false);
+                    branchRefetch()
                 } catch (err) {
                     console.error(err, "Error from loginAPI");
                 }

@@ -133,10 +133,7 @@ const AdminCategory = () => {
       const checkDuplicates = categories.find(
         (item) => item.title.toLowerCase() === values.categoryName.toLowerCase()
       );
-      if (checkDuplicates?.title) {
-        setFieldError("categoryName", "Category Name already exists");
-        return;
-      }
+
       let payload = {
         title: values.categoryName,
         icon: selectedFile.categoryIconDark,
@@ -152,6 +149,7 @@ const AdminCategory = () => {
         const response = editData
           ? await editCategory({ bodyData: editPayload }).unwrap()
           : await addCategory({ bodyData: payload }).unwrap();
+
         if (response.statusCode === 200 || response.statusCode === 201) {
           toast({
             title: editData
@@ -165,7 +163,14 @@ const AdminCategory = () => {
         }
         setDialogOpen(false);
         dialogCloseClick();
-      } catch {
+      } catch (err) {
+        if (err.status == 400) {
+          if (err.data.data.includes("already exists")) {
+            setFieldError("categoryName", "Category Name already exists");
+            return;
+          }
+        }
+
         if (editData) {
           setCreateCategory(false);
         }

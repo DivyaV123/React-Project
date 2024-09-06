@@ -149,7 +149,7 @@ function AdminBranchesList() {
         <Dialog open={branchAddDialog} onOpenChange={setBranchAddDialog}>
           <AddBranchForm
             setBranchAddDialog={setBranchAddDialog}
-            courseRefetch={branchRefetch}
+            branchRefetch={branchRefetch}
             dialogCloseClick={setBranchAddDialog}
             branchEditData={branchEditData}
           />
