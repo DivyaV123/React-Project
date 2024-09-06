@@ -14,7 +14,8 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import { useChapterdeleteMutation } from "@/redux/queries/DeleteChapterApi";
 import { useTopicdeleteMutation } from "@/redux/queries/DeleteTopicApi";
 import { useSubTopicdeleteMutation } from "@/redux/queries/DeleteSubTopicApi";
-const renderIcon = (isOpen, hasChildren, hasVideoUrl) => {
+import VideoPreview from "@/app/courses/VideoPreview";
+const renderIcon = (isOpen, hasChildren, hasVideoUrl,handleVideoPreview) => {
   if (hasChildren) {
     return isOpen ? (
       <Svg
@@ -36,7 +37,7 @@ const renderIcon = (isOpen, hasChildren, hasVideoUrl) => {
   }
 
   if (hasVideoUrl && !hasChildren) {
-    return <img src="/play_button.svg" alt="Play" />;
+    return <img src="/play_button.svg" onClick={handleVideoPreview} alt="Play" />;
   }
 
   return (
@@ -50,6 +51,7 @@ const renderIcon = (isOpen, hasChildren, hasVideoUrl) => {
   );
 };
 
+
 const AccordionItem = ({
   title,
   onEdit,
@@ -57,10 +59,12 @@ const AccordionItem = ({
   children,
   hasVideoUrl,
   hasChildren,
+  videoUrl,
   level = 1,
   index,
   setStoreIndex,
   setStoreTitle,
+  handleVideoPreview
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   if (level == 1 && isOpen) {
@@ -87,7 +91,7 @@ const AccordionItem = ({
             onClick={() => setIsOpen(!isOpen)}
             className={`w-full text-left py-2.5 px-4 rounded-md font-semibold text-[#434343] flex gap-4 items-center`}
           >
-            {renderIcon(isOpen, hasChildren, hasVideoUrl)}
+            {renderIcon(isOpen, hasChildren, hasVideoUrl, (e) => handleVideoPreview(e,videoUrl))}
             {title}
           </button>
           <div className="flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pr-6">
@@ -156,6 +160,13 @@ const CreateEditSubject = () => {
     subTopicPreviewDuration: "",
   });
   const [chaptersData, setChaptersData] = useState([]);
+  const [videoPreview, setVideoPreview] = useState(false);
+  const [currentVideoUrl, setCurrentVideoUrl] = useState('');
+  const handleVideoPreview = (e,url) => {
+    e.stopPropagation(); 
+    setVideoPreview(true);
+    setCurrentVideoUrl(url)
+  };
   const {
     data: individualSubject,
     error,
@@ -235,6 +246,7 @@ const CreateEditSubject = () => {
     }));
   }, [contentData.chapterLength]);
 
+
   const handleEdit = (type, id, title, getChapter, index) => {
     setEditDialog(true);
     setAddDetailDialog(true);
@@ -296,7 +308,7 @@ const CreateEditSubject = () => {
         await deleteAction({ [`${deleteType}Id`]: deleteId }).unwrap();
         refetchSubject();
       } catch {
-        console.log("error");
+        console.error("error");
       }
     }
 
@@ -492,7 +504,7 @@ const handleAddDetails=()=>{
     setAddDetailDialog(true), 
     setEditDialog(false),
     setFormState({
-      selectedLabel: "",
+      selectedLabel: contentData.chapterLength > 0 ? "" : "Chapter",
       selectedChapter: "",
       selectedTopic: "",
       chapterName: "",
@@ -650,8 +662,8 @@ const handleAddDetails=()=>{
           </DialogTrigger>
         </article>
 
-        <div className="py-[3.333vh] px-[1.875vw]">
-          <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
+        <div className="py-[3.333vh] px-[1.875vw] ">
+          <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[78vh] overflow-x-hidden overflow-y-scroll myscrollbar">
             <p className="pl-4 text-[#434343] font-bold text-[1.25vw] pb-2">
               Subject - {individualSubject?.data?.subjectTitle}
             </p>
@@ -672,11 +684,13 @@ const handleAddDetails=()=>{
                     }
                     onDelete={() => handleDelete("chapter", chapter.chapterId)}
                     hasVideoUrl={!!chapter.chapterPreviewUrl}
+                    videoUrl={chapter.chapterPreviewUrl}
                     hasChildren={chapter.topics.length > 0}
                     level={1}
                     index={chapterIdx}
                     setStoreIndex={setStoreChapterIndex}
                     setStoreTitle={setStoreChapterTitle}
+                    handleVideoPreview={handleVideoPreview}
                   >
                     {chapter.topics.length > 0 &&
                       chapter.topics.map((topic, topicIndex) => (
@@ -694,11 +708,13 @@ const handleAddDetails=()=>{
                           }
                           onDelete={() => handleDelete("topic", topic.topicId)}
                           hasVideoUrl={!!topic.topicPreviewUrl}
+                          videoUrl={topic.topicPreviewUrl}
                           hasChildren={topic.subTopics.length > 0}
                           level={2}
                           index={topicIndex}
                           setStoreIndex={setStoreTopicIndex}
                           setStoreTitle={setStoreTopicTitle}
+                          handleVideoPreview={handleVideoPreview}
                         >
                           {topic.subTopics.length > 0 &&
                             topic.subTopics.map((subTopic, subtopicIndex) => (
@@ -708,7 +724,7 @@ const handleAddDetails=()=>{
                               >
                                 <div className="flex gap-4 items-center">
                                   {subTopic?.subTopicPreviewUrl ? (
-                                    <img src="/play_button.svg" alt="Play" />
+                                    <img src="/play_button.svg" alt="Play"  onClick={(e)=>{handleVideoPreview(e,subTopic?.subTopicPreviewUrl)}} />
                                   ) : (
                                     <Svg
                                       width={svgicons.smallDoc[0]}
@@ -777,6 +793,17 @@ const handleAddDetails=()=>{
               contentText={`Are you sure you want to delete ${deleteType}`}
               deleteFunction={handleDeleteDialog}
             />
+          </AlertDialog>
+       
+          <AlertDialog open={videoPreview}
+          onOpenChange={(open) => setVideoPreview(open)}>
+           
+            {videoPreview && (
+              <VideoPreview
+                videoUrl={currentVideoUrl}
+                setVideoPreview={setVideoPreview}
+              />
+            )}
           </AlertDialog>
         </div>
       </Dialog>
