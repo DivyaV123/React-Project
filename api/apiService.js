@@ -10,7 +10,7 @@ export const API_ENDPOINTS = {
   FEEDBACK: 'api/v1/feedback',
   GET_CATEGORY_IN_COURSE_FORM: 'api/v1/categories/getCategory',
   VIEW_ALL_COURSES: 'api/v1/branches/viewAll',
-  FIND_ALL_CATEGORIES: 'api/v1/categories/findAllCategories',
+  FIND_ALL_CATEGORIES: 'backend/api/v1/categories/findAllCategories',
   GET_COURSE_ID_AND_SUBCOURSE_ID: (courseId, subcourseId) => `api/v1/courses?categoryId=${courseId}${subcourseId}`,
   ADDCOURES_WITHFILE: `api/v1/courses/saveCourse`,
   EDITCOURSE_WITHFILE: `api/v1/courses/updateCourse`,
