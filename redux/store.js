@@ -90,6 +90,7 @@ import { subCategoryDeleteApi } from './queries/deleteSubCategoryApi';
 import { editSubCategory } from './queries/updateSubCategoryApi';
 import { editAdminCitiesApi } from './queries/editAdminCityApi';
 import { trainerDeleteApi } from './queries/deleteTrainerApi';
+import { branchAdderApi } from './queries/branchAdderApi';
 
 const store = configureStore({
   reducer: {
@@ -202,6 +203,7 @@ const store = configureStore({
     [editSubCategory.reducerPath]: editSubCategory.reducer,
     [editAdminCitiesApi.reducerPath]: editAdminCitiesApi.reducer,
     [trainerDeleteApi.reducerPath]: trainerDeleteApi.reducer,
+    [branchAdderApi.reducerPath]: branchAdderApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
@@ -211,7 +213,7 @@ const store = configureStore({
       categoryUnMapApi.middleware, subCategortyUnMapApi.middleware, onlineCoursesApi.middleware, courseDeleteApi.middleware, courseEditerApi.middleware, getBranchDetailsByBranchIdApi.middleware, branchesAsPerCountryApi.middleware, BranchEditAPI.middleware, subjectDeleteApi.middleware,
       addBatchApi.middleware, adminCategorySortApi.middleware, AllCoursesApi.middleware, updateCategoryWeightage.middleware, AddCategoryApi.middleware, updateCourseDnd.middleware, updateSubCategoryDnd.middleware, categoryDeleteApi.middleware, categoryEditApi.middleware, DeleteChapterApi.middleware,
       DeleteTopicApi.middleware, DeleteSubTopicApi.middleware, AddCitiesApi.middleware, courseUnMapApi.middleware, citiesForAdminApi.middleware, cityDeleteApi.middleware, unMapSubjectApi.middleware, batchListApi.middleware, getAllTrainersApi.middleware, branchOptions.middleware, batchDeleteApi.middleware,
-      addTrainerApi.middleware, streamApi.middleware, cityWeightage.middleware, organisationApi.middleware,placementListApi.middleware,editBatch.middleware,createSubCategory.middleware,subCategoryDeleteApi.middleware,editSubCategory.middleware,editAdminCitiesApi.middleware,trainerDeleteApi.middleware,
+      addTrainerApi.middleware, streamApi.middleware, cityWeightage.middleware, organisationApi.middleware,placementListApi.middleware,editBatch.middleware,createSubCategory.middleware,subCategoryDeleteApi.middleware,editSubCategory.middleware,editAdminCitiesApi.middleware,trainerDeleteApi.middleware,branchAdderApi.middleware,
     ),
 });
 
