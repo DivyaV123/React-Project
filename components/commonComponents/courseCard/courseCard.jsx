@@ -10,10 +10,13 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-function CourseCard({ cardData ,branchId}) {
+import HiringModal from "@/app/hireFromUs/Modal/HiringModal";
+function CourseCard({ cardData ,branchId,page}) {
   const { toast } = useToast();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState('General Enquiries')
+
   const handleCardClick = () => {
     setIsModalOpen(true);
   };
@@ -21,6 +24,7 @@ function CourseCard({ cardData ,branchId}) {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
+
   const handleKnowMore = (id) => {
     router.push(`/courses/${id}`);
   };
@@ -95,7 +99,7 @@ function CourseCard({ cardData ,branchId}) {
               <Button
                 onClick={() => handleCardClick()}
                 className="courseCardBtn text-[1.094vw] mobile:text-[2.791vw]  font-semibold text-white bg-gradient rounded-md"
-                title="Enroll now"
+                title={`${page==="corporate" ? "Enquire Now" : "Enroll Now"}`}
               />
             </aside>
             <aside>
@@ -108,13 +112,26 @@ function CourseCard({ cardData ,branchId}) {
           </div>
         </aside>
       </section>
-      <EnrollPopUp
+      {
+       page==="corporate"  ?
+       <HiringModal
+       isModalOpen={isModalOpen}
+       handleCloseModal={handleCloseModal}
+       cardData={cardData}
+       toast={toast}
+       branchId={branchId}
+       setActiveTab={setActiveTab}
+       activeTab={activeTab}
+     />
+         :
+         <EnrollPopUp
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
         cardData={cardData}
         toast={toast}
         branchId={branchId}
-      />
+      /> 
+      }
       <Toaster/>
     </>
   );

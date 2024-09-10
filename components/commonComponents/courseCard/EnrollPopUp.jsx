@@ -46,7 +46,7 @@ function EnrollPopUp({
       .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
     message: Yup.string().required("Message is required"),
   });
-
+ 
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,

@@ -59,13 +59,13 @@ const HiringModal = ({ isModalOpen, selectedCity, activeTab, handleCloseModal, s
        </div>
         <div className="tab-content">
           {activeTab === 'Corporate Training' && <div>
-          <HiringFromUsForm activeTab={activeTab}/>
+          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal}/>
           </div>}
           {activeTab === 'Hire From Us' && <div>
-          <HiringFromUsForm activeTab={activeTab}/>
+          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal}/>
           </div>}
           {activeTab === 'General Enquiries' && <div>
-          <HiringFromUsForm activeTab={activeTab}/>
+          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal}/>
           </div>}
         </div>
       </div>

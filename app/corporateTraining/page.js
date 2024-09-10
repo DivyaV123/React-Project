@@ -27,7 +27,7 @@ const CorporateTraining = () => {
       {/* <OurCourse /> */}
       <CorporateModes/>
       <div className='w-[87.5vw] m-auto'>
-        <TrendingCourses />
+        <TrendingCourses page="corporate"/>
         {/* <BenefitsOfTraining /> */}
       </div>
       <CorporateTrainingFeatures/>

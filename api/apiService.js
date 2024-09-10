@@ -25,7 +25,7 @@ export const API_ENDPOINTS = {
   COURSE_WEIGHTAGE_ADDER: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   COURSE_WEIGHTAGE_EDIT: (categoryId, subCategoryId, courseId) => `api/v1/weightage/courses?categoryId=${categoryId}${subCategoryId ? `&subCategoryId=${subCategoryId}` : ''}&courseId=${courseId}`,
   BRANCH_ADDER: `api/v1/branches/uploadFileAndData`,
-  GET_ALL_FAQ: (domain) => `api/v1/faqs?organization=${domain}`,
+  GET_ALL_FAQ: (domain) => `backend/api/v1/faqs?organization=${domain}`,
   GET_BRANCH_BY_BRANCHID: (branchId) => `/api/v1/branches/getbyidform?branchId=${branchId}`,
   GET_BRANCH_BY_COURSE_ID_AND_BRANCH_ID: (courseId, branchId) => `/api/v1/branches/getbyid?branchId=${branchId}&courseId=${courseId}`,
   GET_ALL_COURSES_BY_COURSE_ID: (courseId) => `/api/v1/courses/getbyid?courseId=${courseId}`,

@@ -6,9 +6,9 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import "./HirefromusLanding.scss";
-import { useEnquriesMutation } from "@/redux/queries/enquriesApi";
+import { useEnrollMutation } from "@/redux/queries/enrollNowApi";
 import { toast } from "@/components/ui/use-toast";
-const HiringFromUsForm = ({ activeTab }) => {
+const HiringFromUsForm = ({ activeTab,handleCloseModal }) => {
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [error, setError] = useState({
@@ -90,45 +90,64 @@ const HiringFromUsForm = ({ activeTab }) => {
         });
     }
   };
-  const [enquirie, { data: loginData, error: submitError, isLoading }] =
-    useEnquriesMutation();
+  const [enquirie] =useEnrollMutation();
   const formik = useFormik({
     initialValues: getInitialValues(),
     validationSchema: getValidationSchema(),
     onSubmit: async (values) => {
       let payload = {};
+      const fullMobileNumber = values.mobileNumber;
+      const numberWithoutCountryCode = fullMobileNumber.replace(
+        countryCode,
+        ""
+      );
       if (activeTab === "Corporate Training") {
         payload = {
           userName: values.fullName,
-          mobileNumber: `+${values.mobileNumber}`,
+          mobileNumber: {
+          code: `+${countryCode}`,
+          number: numberWithoutCountryCode,
+        },
           email: values.email,
           message: values.message,
-          enquiryType: "CORPORATETRAINING",
+          type: "CORPORATETRAINING",
           requiredTraining: values.requiredTraining,
         };
       } else if (activeTab === "General Enquiries") {
         payload = {
           userName: values.fullName,
-          mobileNumber: `+${values.mobileNumber}`,
+          mobileNumber: {
+            code: `+${countryCode}`,
+            number: numberWithoutCountryCode,
+          },
           email: values.email,
           message: values.message,
-          enquiryType: "GENERALENQUIRIES",
+          type: "GENERALENQUIRIES",
         };
       } else {
         payload = {
           userName: values.fullName,
-          mobileNumber: `+${values.mobileNumber}`,
+          mobileNumber: {
+            code: `+${countryCode}`,
+            number: numberWithoutCountryCode,
+          },
           email: values.email,
           message: values.message,
-          enquiryType: "HIREFROMUS",
+          type: "HIREFROMUS",
           companyName: values.companyName,
         };
       }
       try {
         const response = await enquirie(payload).unwrap();
-        toast({
-          description: "Your message has been sent.",
-        });
+        if (response) {
+          toast({
+            title: response?.message,
+
+            variant: "success",
+          });
+          handleCloseModal(false);
+        }
+        formik.resetForm();
       } catch (err) {
         console.error(err, "error in the submit");
       }
