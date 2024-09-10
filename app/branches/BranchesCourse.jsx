@@ -5,8 +5,14 @@ import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
 import React, { useEffect, useState } from "react";
 import "./branchesCourseCard.scss";
 import CourseCardSkeleton from "@/components/commonComponents/courseCard/CourseCardSkeleton";
-
+import { usePathname } from 'next/navigation'
 function BranchesCourse({ branchCourseData }) {
+  const pathname = usePathname();
+  const params = pathname.split('/').pop();
+  const digitIds = params.match(/\b\d+\b/g);
+
+  const branchId = digitIds[0];
+  
   const [visibleCards, setVisibleCards] = useState(4);
   const [showAll, setShowAll] = useState(false);
   const [isloading, setisLoading] = useState(false);
@@ -23,6 +29,7 @@ function BranchesCourse({ branchCourseData }) {
   };
 
   const cardsToDisplay = branchCourseData.slice(0, visibleCards);
+ 
 
   useEffect(() => {
     setTimeout(() => {
@@ -44,7 +51,7 @@ function BranchesCourse({ branchCourseData }) {
                     {isloading ? (
                       <CourseCardSkeleton />
                     ) : (
-                      <CourseCard cardData={element} />
+                      <CourseCard cardData={element} branchId={branchId}/>
                     )}
                     <div className="viewmore"></div>
                   </article>

@@ -22,7 +22,7 @@ function BatchCourseAPiById() {
 
     const branchId = digitIds[0];
     const courseID = digitIds[1];
-
+   
     const { data: BranchDetails, error, isLoading } = useGetAllBranchDetailsQuery({ courseId: courseID, branchId: branchId }, {
         skip: !courseID || !branchId,
     });
@@ -32,18 +32,19 @@ function BatchCourseAPiById() {
     </div>
     if (error) return <div>Error: {error.message}</div>
     if (!BranchDetails) return <div>No course details found.</div>
+    const {courses,name,batches,faqs}=BranchDetails?.data
     return (
         <WebLayout>
             <BranchesLandingPage BranchDetails={BranchDetails} />
-            <BranchesCourse branchCourseData={BranchDetails?.data?.courses} />
-            <UpCommingBatches branchName={BranchDetails?.data?.name} branchesData={BranchDetails?.data?.batches} />
+            <BranchesCourse branchCourseData={courses} />
+            <UpCommingBatches branchCourseData={courses} branchName={name} branchesData={batches} branchId={branchId}/>
             <PlacementStatisticsHome page='branch' />
             <section className='mb-4 mt-5'>
                 <HiringPartners page='branch' />
             </section>
-            <StidentsPlaced branchName={BranchDetails?.data?.name} />
+            <StidentsPlaced branchName={name} />
             {/* <Testimonials /> */}
-            <FaqHome page='branch' faqData={BranchDetails?.data?.faqs} />
+            <FaqHome page='branch' faqData={faqs} />
         </WebLayout>
     )
 }

@@ -9,6 +9,8 @@ import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
 import Image from "next/image";
 import HtmlContent from "@/components/commonComponents/htmlTextConvert/HtmlContent";
 import { formatToIndianCurrency,formatString,toProperCase } from "@/lib/utils";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 const CourseLanding = ({
   courseDetails,
   countDetails,
@@ -30,6 +32,7 @@ const CourseLanding = ({
       text: "IT Students placed",
     },
   ];
+  const { toast } = useToast();
   const imageSrc = "../illustrate_tickmark.svg";
   const tutionClasses = courseDetails?.courseAbout;
   let splitText = tutionClasses?.split(".");
@@ -182,10 +185,14 @@ const CourseLanding = ({
         </aside>
       </MaxWebWidth >
       {/* <ImageScroller cardData={courseDetails} onRightBarFix={handleRightBarFix} isRightBarFixed={isRightBarFixed} /> */}
-      < EnrollPopUp
-        isModalOpen={isModalOpen}
+      <EnrollPopUp
+        isModalOpen={isModalOpen} 
         handleCloseModal={handleCloseModal}
+        cardData={courseDetails}
+        toast={toast}
       />
+      
+      <Toaster/>
     </>
   );
 };

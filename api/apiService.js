@@ -2,10 +2,12 @@ export const getBaseUrl = () => process.env.NEXT_PUBLIC_PROD2_URL;
 export const getPlacementUrl = () => process.env.NEXT_PUBLIC_PROD_URL;
 export const getStatisticsUrl = () => process.env.NEXT_PUBLIC_PLACEMENT_URL;
 export const getWebsiteUrl = () => process.env.NEXT_PUBLIC_QSPIDERS_URL;
+export const getEnrollUrl = () => process.env.NEXT_PUBLIC_GOLANG_ENROLL_URL;
 export const API_ENDPOINTS = {
   LOGIN: 'api/v1/users/login',
   GET_ALL_CATEGORIES: '/backend/api/v1/categories/getAllCategories',
   GET_ALL_BRANCHES: 'api/v1/branches/getAllBranches',
+  ENROLL_NOW:"add-website-enquiry",
   ENQUIRE: 'api/v1/enquiry',
   FEEDBACK: 'api/v1/feedback',
   GET_CATEGORY_IN_COURSE_FORM: 'api/v1/categories/getCategory',
