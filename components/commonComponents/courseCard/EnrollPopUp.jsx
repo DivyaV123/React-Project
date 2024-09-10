@@ -10,10 +10,14 @@ import Svg from "../Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import { useEnrollMutation } from "@/redux/queries/enrollNowApi";
 
-
-function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) {
- 
- const {courseResponseId,courseId,batchId,courseName,title}=cardData
+function EnrollPopUp({
+  isModalOpen,
+  handleCloseModal,
+  cardData,
+  toast,
+  branchId,
+}) {
+  const { courseResponseId, courseId, batchId, courseName, title } = cardData;
   const modalRef = useRef(null);
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("");
@@ -47,41 +51,39 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
     initialValues: initialValues,
     validationSchema: validationSchema,
     onSubmit: async (values) => {
-     
       let payload = {};
       const fullMobileNumber = values.mobileNumber;
-      const numberWithoutCountryCode = fullMobileNumber.replace(countryCode, "");
-        payload = {
-          userName: values.fullName,
+      const numberWithoutCountryCode = fullMobileNumber.replace(
+        countryCode,
+        ""
+      );
+      payload = {
+        userName: values.fullName,
         mobileNumber: {
-              code :`+${countryCode}`,
-              number :numberWithoutCountryCode
-      
-          },
-          email: values.email,
-          message: values.message,
-          enquiryType: "",
-          requiredTraining: "",
-          branchid: branchId ? Number(branchId) : null, 
-          courseid :cardData ? courseResponseId || courseId: null,
-          batchid :cardData &&  batchId ?  batchId.toString():null,
-          type: ""
-        };
-       
-     
+          code: `+${countryCode}`,
+          number: numberWithoutCountryCode,
+        },
+        email: values.email,
+        message: values.message,
+        enquiryType: "",
+        requiredTraining: "",
+        branchid: branchId ? Number(branchId) : null,
+        courseid: cardData ? courseResponseId || courseId : null,
+        batchid: cardData && batchId ? batchId.toString() : null,
+        type: "",
+      };
+
       try {
         const response = await enrollNow(payload).unwrap();
-       if (response) {
-        toast({
-          title: response?.message ,
-           
-           
-          variant: "success",
-        });
-        handleCloseModal(false)
+        if (response) {
+          toast({
+            title: response?.message,
+
+            variant: "success",
+          });
+          handleCloseModal(false);
         }
-        formik.resetForm()
-       
+        formik.resetForm();
       } catch (err) {
         console.error(err, "error in the submit");
       }
@@ -92,7 +94,10 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
     formik.setFieldTouched(id, true);
     if (!phoneValue) {
       setError({ ...error, [id]: true });
-    } else if (!isValidPhoneNumber("+" + phoneValue?.toString()) || phoneValue.startsWith('911234')) {
+    } else if (
+      !isValidPhoneNumber("+" + phoneValue?.toString()) ||
+      phoneValue.startsWith("911234")
+    ) {
       setError({ ...error, [id]: false, validPhone: true });
     } else {
       setError({ ...error, [id]: false, validPhone: false });
@@ -124,10 +129,10 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
   const handlePhoneChange = (value, country) => {
     if (country?.dialCode !== countryCode) {
       setPhoneValue(country.dialCode);
-      formik.setFieldValue('mobileNumber', country.dialCode);
+      formik.setFieldValue("mobileNumber", country.dialCode);
     } else {
       setPhoneValue(value);
-      formik.setFieldValue('mobileNumber', value);
+      formik.setFieldValue("mobileNumber", value);
     }
     setCountryCode(country?.dialCode);
   };
@@ -142,7 +147,10 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                   Enroll now
                 </h1>
                 <div
-                  onClick={()=>{handleCloseModal();formik.resetForm()}}
+                  onClick={() => {
+                    handleCloseModal();
+                    formik.resetForm();
+                  }}
                   className="border-none cursor-pointer hover:bg-white p-0"
                 >
                   <Svg
@@ -159,8 +167,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                 onSubmit={formik.handleSubmit}
                 className="custom-grid-form grid grid-cols-1 md:grid-cols-2 gap-4"
               >
-
-<div className="mb-2">
+                <div className="mb-2">
                   <label
                     htmlFor="fullName"
                     className="block font-bold mb-2 text-left mobile:text-[3.721vw]"
@@ -219,7 +226,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                     htmlFor="mobileNumber"
                     className="block font-bold mb-2 mobile:text-[3.721vw]"
                   >
-                   <span className="text-red-500 pr-1">*</span> Mobile Number
+                    <span className="text-red-500 pr-1">*</span> Mobile Number
                   </label>
                   <PhoneInput
                     type="text"
@@ -234,11 +241,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                     id="mobileNumber"
                     value={formik.values.mobileNumber}
                     className="outline-none"
-                    onChange={(e, country) =>handlePhoneChange(e,country)}
-                    // style={{
-                    //   border: `${error.mobileNumber || error.validPhone ? inputBorderErr : inputBorder}`,
-                    //   borderRadius: "5px",
-                    // }}
+                    onChange={(e, country) => handlePhoneChange(e, country)}
                     style={{
                       border: `${
                         error.mobileNumber || error.validPhone
@@ -250,7 +253,6 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                     enableSearch
                     international
                     inputProps={{
-                      // autoFocus: true,
                       style: {
                         height: "0.43em !important",
                       },
@@ -272,7 +274,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                     </div>
                   )}
                 </div>
-               
+
                 <div className="mb-2">
                   <label
                     htmlFor="course"
@@ -293,7 +295,9 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                         ? "border-red-500"
                         : "border-gray-300"
                     }`}
-                  ><option>{courseName ? courseName : title}</option></select>
+                  >
+                    <option>{courseName ? courseName : title}</option>
+                  </select>
                   {formik.touched.course && formik.errors.course ? (
                     <div className="text-red-500 absolute text-sm">
                       {formik.errors.course}
@@ -301,14 +305,12 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                   ) : null}
                 </div>
 
-               
-
                 <div className="mb-2 ">
                   <label
                     htmlFor="message"
                     className="block font-bold mb-2 mobile:text-[3.721vw]"
                   >
-                   <span className="text-red-500 pr-1">*</span> Message
+                    <span className="text-red-500 pr-1">*</span> Message
                   </label>
                   <textarea
                     id="message"
@@ -343,7 +345,6 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
           </div>
         </div>
       </div>
-     
     </div>
   );
 }
