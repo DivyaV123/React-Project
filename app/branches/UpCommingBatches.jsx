@@ -2,7 +2,7 @@ import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
 import OnlineLiveClasses from "@/components/ourBranches/OnlineLiveClasses";
 import React, { useState } from "react";
 import Button from "@/components/commonComponents/button/Button";
-function UpCommingBatches({ branchesData, branchName,branchCourseData }) {
+function UpCommingBatches({ branchesData, branchName,branchCourseData ,branchId}) {
   const [visibleCards, setVisibleCards] = useState(4);
   const [showAll, setShowAll] = useState(false);
   const showViewMoreButton =
@@ -38,6 +38,7 @@ function UpCommingBatches({ branchesData, branchName,branchCourseData }) {
           page="course"
           className="border mobile:m-2 rounded shadow shadow-gray-500/50"
           branchCourseData={branchCourseData}
+          branchId={branchId}
         />
       </MaxWebWidth>
       {(showViewMoreButton || showAll) &&  (

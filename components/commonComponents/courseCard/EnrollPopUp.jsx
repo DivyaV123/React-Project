@@ -13,7 +13,7 @@ import { useEnrollMutation } from "@/redux/queries/enrollNowApi";
 
 function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) {
  
- 
+ const {courseResponseId,courseId,batchId,courseName,title}=cardData
   const modalRef = useRef(null);
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("");
@@ -63,8 +63,8 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
           enquiryType: "",
           requiredTraining: "",
           branchid: branchId ? Number(branchId) : null, 
-          courseid :cardData ? cardData.courseResponseId || cardData.courseId: null,
-          batchid :cardData && cardData.batchId?  cardData.batchId.toString():null,
+          courseid :cardData ? courseResponseId || courseId: null,
+          batchid :cardData &&  batchId ?  batchId.toString():null,
           type: ""
         };
        
@@ -293,7 +293,7 @@ function EnrollPopUp({ isModalOpen, handleCloseModal,cardData,toast,branchId }) 
                         ? "border-red-500"
                         : "border-gray-300"
                     }`}
-                  ><option>{cardData?.courseName ? cardData?.courseName : cardData?.title}</option></select>
+                  ><option>{courseName ? courseName : title}</option></select>
                   {formik.touched.course && formik.errors.course ? (
                     <div className="text-red-500 absolute text-sm">
                       {formik.errors.course}

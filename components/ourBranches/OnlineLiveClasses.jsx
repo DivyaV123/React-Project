@@ -7,7 +7,7 @@ import EnrollPopUp from "../commonComponents/courseCard/EnrollPopUp";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { usePathname } from 'next/navigation'
-const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData, branchName ,branchCourseData}) => {
+const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData, branchName ,branchCourseData,branchId}) => {
  
   const [isloading, setisLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -121,7 +121,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
   const handleCardClick = (data) => {
     const courseName = extractCourseName(branchCourseData, courseID);
    
-    setCardDetails({ ...data, courseName });
+    setCardDetails({ ...data, courseName ,courseId:Number(courseID)});
     // setCardDetails(data)
     setIsModalOpen(true);
 };
@@ -237,7 +237,7 @@ const handleCloseModal = () => {
           </section>
         );
       })}
-      <EnrollPopUp isModalOpen={isModalOpen}  toast={toast}  cardData={cardDetails} handleCloseModal={handleCloseModal} />  
+      <EnrollPopUp isModalOpen={isModalOpen} branchId={branchId} toast={toast}  cardData={cardDetails} handleCloseModal={handleCloseModal} />  
       <Toaster/>
     </>
   );
