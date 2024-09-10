@@ -4,7 +4,7 @@ import CourseCard from "@/components/commonComponents/courseCard/courseCard";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 
 import CourseCardSkeleton from "@/components/commonComponents/courseCard/CourseCardSkeleton";
-const TrendingCourses = () => {
+const TrendingCourses = ({page}) => {
   const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery();
   const getPopularCourses = (AllCourse && AllCourse.data) 
   ? AllCourse.data
@@ -24,7 +24,7 @@ const TrendingCourses = () => {
          {isloading ? (
            <CourseCardSkeleton />
          ) : (
-           <CourseCard cardData={element} />
+           <CourseCard cardData={element} page={page}/>
          )}
        </article>
      </div>
