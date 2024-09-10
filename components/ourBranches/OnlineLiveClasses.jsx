@@ -3,8 +3,22 @@ import Svg from "../commonComponents/Svg/Svg";
 import { svgicons } from "../assets/icons/svgassets";
 import { Skeleton } from "../ui/skeleton";
 import { truncateText } from "@/lib/utils";
-const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData, branchName }) => {
+import EnrollPopUp from "../commonComponents/courseCard/EnrollPopUp";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
+import { usePathname } from 'next/navigation'
+const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData, branchName ,branchCourseData}) => {
+ 
   const [isloading, setisLoading] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [cardDetails, setCardDetails] = useState({});
+  const pathname = usePathname();
+  const params = pathname.split('/').pop();
+  const digitIds = params.match(/\b\d+\b/g);
+
+  const courseID = digitIds[1];
+ 
+  const { toast } = useToast();
   const upcomingBatchesData = branchesData?.length > 0 ? branchesData : [
     {
       course: "Advanced React",
@@ -100,6 +114,20 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
       setisLoading(false);
     }, 500);
   }, []);
+  function extractCourseName(branchCourseData, courseID) {
+    const foundCourse = branchCourseData.find(course => course.courseId == courseID);
+    return foundCourse?.courseName || null;
+  }
+  const handleCardClick = (data) => {
+    const courseName = extractCourseName(branchCourseData, courseID);
+   
+    setCardDetails({ ...data, courseName });
+    // setCardDetails(data)
+    setIsModalOpen(true);
+};
+const handleCloseModal = () => {
+  setIsModalOpen(false);
+};
   return (
     <>
       {upcomingBatchesData.map((batch, index) => {
@@ -193,6 +221,7 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
               </div>
               <div className="flex justify-between">
                 <button
+                 onClick={() => handleCardClick(batch)}
                   className={`${enrollEnquire} EnrollButton bg-gradient rounded text-white`}
                 >
                   Enroll now
@@ -203,10 +232,13 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
                   Know more
                 </button>
               </div>
+            
             </div>
           </section>
         );
       })}
+      <EnrollPopUp isModalOpen={isModalOpen}  toast={toast}  cardData={cardDetails} handleCloseModal={handleCloseModal} />  
+      <Toaster/>
     </>
   );
 };

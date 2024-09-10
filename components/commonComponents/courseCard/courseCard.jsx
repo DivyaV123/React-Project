@@ -8,7 +8,10 @@ import { svgicons } from "@/components/assets/icons/svgassets";
 import EnrollPopUp from "./EnrollPopUp";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-function CourseCard({ cardData }) {
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
+function CourseCard({ cardData ,branchId}) {
+  const { toast } = useToast();
   const router = useRouter();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleCardClick = () => {
@@ -108,7 +111,11 @@ function CourseCard({ cardData }) {
       <EnrollPopUp
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
+        cardData={cardData}
+        toast={toast}
+        branchId={branchId}
       />
+      <Toaster/>
     </>
   );
 }

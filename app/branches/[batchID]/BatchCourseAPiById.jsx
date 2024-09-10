@@ -32,11 +32,12 @@ function BatchCourseAPiById() {
     </div>
     if (error) return <div>Error: {error.message}</div>
     if (!BranchDetails) return <div>No course details found.</div>
+   
     return (
         <WebLayout>
             <BranchesLandingPage BranchDetails={BranchDetails} />
             <BranchesCourse branchCourseData={BranchDetails?.data?.courses} />
-            <UpCommingBatches branchName={BranchDetails?.data?.name} branchesData={BranchDetails?.data?.batches} />
+            <UpCommingBatches branchCourseData={BranchDetails?.data?.courses} branchName={BranchDetails?.data?.name} branchesData={BranchDetails?.data?.batches} />
             <PlacementStatisticsHome page='branch' />
             <section className='mb-4 mt-5'>
                 <HiringPartners page='branch' />

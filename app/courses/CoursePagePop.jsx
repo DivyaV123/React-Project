@@ -3,11 +3,13 @@ import React, { useEffect, useState, useContext } from 'react'
 import "./CourseLanding.scss";
 import EnrollPopUp from '@/components/commonComponents/courseCard/EnrollPopUp';
 import { GlobalContext } from '@/components/Context/GlobalContext';
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 function CoursePagePop({ courseDetails }) {
     const [showDiv, setShowDiv] = useState(false);
     const [isModalOpen, setIsModalOpen] = useState(false);
     const { imageDialog, videoDialog } = useContext(GlobalContext)
-
+    const { toast } = useToast();
     const handleCardClick = () => {
         setIsModalOpen(true);
     };
@@ -51,7 +53,8 @@ function CoursePagePop({ courseDetails }) {
                     </div>
                 </div>
             </article>
-            <EnrollPopUp isModalOpen={isModalOpen} handleCloseModal={handleCloseModal} />
+            <EnrollPopUp isModalOpen={isModalOpen}  toast={toast}  cardData={courseDetails} handleCloseModal={handleCloseModal} />
+            <Toaster />
         </>
 
     )
