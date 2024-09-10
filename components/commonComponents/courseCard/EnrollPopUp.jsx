@@ -17,7 +17,7 @@ function EnrollPopUp({
   toast,
   branchId,
 }) {
-  const { courseResponseId, courseId, batchId, courseName, title } = cardData;
+  const { courseResponseId, courseId, batchId, courseName, title } =  cardData || {};
   const modalRef = useRef(null);
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("");
