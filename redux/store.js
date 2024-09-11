@@ -93,6 +93,7 @@ import { trainerDeleteApi } from './queries/deleteTrainerApi';
 import { branchAdderApi } from './queries/branchAdderApi';
 import { enrollNowApi } from './queries/enrollNowApi';
 
+
 const store = configureStore({
   reducer: {
 
@@ -206,6 +207,7 @@ const store = configureStore({
     [trainerDeleteApi.reducerPath]: trainerDeleteApi.reducer,
     [branchAdderApi.reducerPath]: branchAdderApi.reducer,
     [enrollNowApi.reducerPath]: enrollNowApi.reducer,
+ 
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(citiesApi.middleware, degreeAndStreamApi.middleware, universitiesApi.middleware, collegesApi.middleware, statesApi.middleware, PlacementCountApi.middleware, LessthanSixtyApi.middleware, ThroughOutSixtyApi.middleware,
