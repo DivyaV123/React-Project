@@ -53,6 +53,8 @@ export const API_ENDPOINTS = {
   GET_LESS_THAN_SIXTY: (pageNo, pageSize) => `candidate/lessThanSixty?pageNo=${pageNo}&pageSize=${pageSize}`,
   GET_PLACED_BETWEEN: (startDate, endDate, pageNo, pageSize) => `candidate/placedDate?startDate=${startDate}&endDate=${endDate}&pageNumber=${pageNo}&size=${pageSize}`,
   COUNSELLOR_FILTER: (pageNumber, pageSize, parameter) => `candidate/counsellor/filter?pageNumber=${pageNumber}&pageSize=${pageSize}${parameter ? `&parameter=${parameter}` : ''}`,
+  STUDENT_FILTER_FOR_COURSE: (organisationID) => `/placementslist/?stud_org_id=${organisationID}&verified_testimonial=true`,
+  STUDENT_FILTER_FOR_BRANCH: (branchID) => `/placementslist/?stud_branch_id=${branchID}&verified_testimonial=true`,
   PLACEMENT_LIST: (page, testimonial_id, joining_date_after, joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id,highestyop,verified_testimonial,less_than60,above_60,non_it,it) => `placementslist/?page=${page ? page : ""}&testimonial_id=${testimonial_id ? testimonial_id : ""}&joining_date_after=${joining_date_after ? joining_date_after : ""}&joining_date_before=${joining_date_before ? joining_date_before : ""}&degree_id=${degree_id ? degree_id : ""}&d_stream_id=${d_stream_id ? d_stream_id : ""}&masters_id=${masters_id ? masters_id : ""}&m_stream_id=${m_stream_id ? m_stream_id : ""}&highestyop=${highestyop ? highestyop : ""}&verified_testimonial=${verified_testimonial}&less_than60=${less_than60 ? less_than60 : ""}
   &above_60=${above_60 ? above_60 : ""}&non_it=${non_it ? non_it : ""}&it=${it ? it : ""}`,
   //Add Subject

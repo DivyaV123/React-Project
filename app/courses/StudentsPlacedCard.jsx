@@ -7,9 +7,11 @@ import Image from "next/image";
 import Link from "next/link";
 import ImagePopup from "../placements/ImagePopup";
 import VideoPopup from "../placements/VideoPopup";
-import { truncateText, toProperCase } from "@/lib/utils";
+import { truncateText, toProperCase ,extractVideoId} from "@/lib/utils";
+
 
 function StudentsPlacedCard({ studentsInfo, page }) {
+
   const [isloading, setisLoading] = useState(true);
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
@@ -36,7 +38,19 @@ function StudentsPlacedCard({ studentsInfo, page }) {
       }`}
     >
       {studentsInfo?.map((element) => {
-        let detail = `${element.degree.degreeName}(${element.degree.degreeAggregate}%)- ${element.degree.degreeYop}`;
+        let detail = `${element?.degree?.name}(${element?.percentage_deg}%)- ${element.highestyop}`;
+        const getFilteredTestimonials = (getTestimonialArray) => {
+          if (getTestimonialArray?.length > 0) {
+            const checkArray = getTestimonialArray?.filter((testimonial) => {
+              return testimonial?.verify;
+            });
+            return checkArray[0]?.url || checkArray[0]?.img;
+          } else return "";
+        };
+        const videoId = extractVideoId(getFilteredTestimonials(
+          element?.gotjob[0]?.mini_testimonial?.url_details
+            ?.youtube_video_without_company_name));
+        const thumbnailUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
         return isloading ? (
           <TrainingCardSkeleton />
         ) : (
@@ -46,8 +60,8 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                 <img
                   className="h-10 w-[3.125vw] mobile:w-[9.302vw] rounded-full"
                   src={
-                    element.photoLink.length
-                      ? element.photoLink
+                    element.image.length
+                      ? element.image
                       : "../../images/user.jpg"
                   }
                   alt="no image"
@@ -64,103 +78,169 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                   {detail}
                 </p>
                 <p
-                  title={element?.degree?.degreeStream}
+                  title={element?.d_stream?.name}
                   className="pb-[1.389vh] mobile:pb-[1.288vh] text-[#454545] text-[1.094vw] mobile:text-[3.256vw]"
                 >
-                  {truncateText(element?.degree?.degreeStream, 20)}
+                  {truncateText(element?.d_stream?.name, 20)}
                 </p>
                 <div className="flex gap-4">
-                  <div className="iconContainer ">
-                    <Link
-                      href={element?.testimonial?.googleReview || "#"}
-                      target={
-                        element?.testimonial?.googleReview ? "_blank" : "_self"
-                      }
-                      onClick={(e) => {
-                        if (!element?.testimonial?.googleReview) {
-                          e.preventDefault();
+                <div className="iconContainer ">
+                      <Link
+                        href={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.google_review
+                          ) || "#"
                         }
-                      }}
-                      className={`${
-                        !element?.testimonial?.googleReview
-                          ? "pointer-events-none"
-                          : ""
-                      }`}
-                    >
-                      <img
-                        src="../google 1.svg"
-                        alt="Google review"
+                        target={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.google_review
+                          )
+                            ? "_blank"
+                            : "_self"
+                        }
+                        onClick={(e) => {
+                          if (
+                            !getFilteredTestimonials(
+                              element?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.google_review
+                            )
+                          ) {
+                            e.preventDefault();
+                          }
+                        }}
                         className={`${
-                          !element?.testimonial?.googleReview
-                            ? "opacity-30 pointer-events-none"
+                          !getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.google_review
+                          )
+                            ? "pointer-events-none"
                             : ""
                         }`}
-                      />
-                    </Link>
-                  </div>
-                  <div className="iconContainer">
-                    <Link
-                      href={element?.testimonial?.fbReview || "#"}
-                      target={
-                        element?.testimonial?.googleReview ? "_blank" : "_self"
-                      }
-                      onClick={(e) => {
-                        if (!element?.testimonial?.fbReview) {
-                          e.preventDefault();
+                      >
+                        <img
+                          src="../google 1.svg"
+                          alt="Google review"
+                          className={`${
+                            !getFilteredTestimonials(
+                              element?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.google_review
+                            )
+                              ? "opacity-30 pointer-events-none"
+                              : ""
+                          }`}
+                        />
+                      </Link>
+                    </div>
+                    <div className="iconContainer">
+                      <Link
+                        href={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.facebook
+                          ) || "#"
                         }
-                      }}
-                      className={`${
-                        !element?.testimonial?.fbReview
-                          ? "pointer-events-none"
-                          : ""
-                      }`}
-                    >
-                      <img
-                        src="../facebook 1.svg"
-                        alt="Facebook Review"
+                        target={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.facebook
+                          )
+                            ? "_blank"
+                            : "_self"
+                        }
+                        onClick={(e) => {
+                          if (
+                            !getFilteredTestimonials(
+                              element?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.facebook
+                            )
+                          ) {
+                            e.preventDefault();
+                          }
+                        }}
                         className={`${
-                          !element?.testimonial?.fbReview
-                            ? "opacity-30 pointer-events-none"
+                          !getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.facebook
+                          )
+                            ? "pointer-events-none"
                             : ""
                         }`}
-                      />
-                    </Link>
-                  </div>
-                  <div className="iconContainer">
-                    <Link
-                      href={element?.testimonial?.youtubeReview || "#"}
-                      target={
-                        element?.testimonial?.googleReview ? "_blank" : "_self"
-                      }
-                      onClick={(e) => {
-                        if (!element?.testimonial?.youtubeReview) {
-                          e.preventDefault();
+                      >
+                        <img
+                          src="../facebook 1.svg"
+                          alt="Facebook Review"
+                          className={`${
+                            !getFilteredTestimonials(
+                              element?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.facebook
+                            )
+                              ? "opacity-30 pointer-events-none"
+                              : ""
+                          }`}
+                        />
+                      </Link>
+                    </div>
+                    <div className="iconContainer">
+                      <Link
+                        href={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.youtube_video_without_company_name
+                          ) || "#"
                         }
-                      }}
-                      className={`${
-                        !element?.testimonial?.youtubeReview
-                          ? "pointer-events-none"
-                          : ""
-                      }`}
-                    >
-                      <img
-                        src="../youtube 1.svg"
-                        alt="YouTube Review"
+                        target={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.youtube_video_without_company_name
+                          )
+                            ? "_blank"
+                            : "_self"
+                        }
+                        onClick={(e) => {
+                          if (
+                            !getFilteredTestimonials(
+                              element?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.youtube_video_without_company_name
+                            )
+                          ) {
+                            e.preventDefault();
+                          }
+                        }}
                         className={`${
-                          !element?.testimonial?.youtubeReview
-                            ? "opacity-30 pointer-events-none"
+                          !getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.youtube_video_without_company_name
+                          )
+                            ? "pointer-events-none"
                             : ""
                         }`}
-                      />
-                    </Link>
-                  </div>
+                      >
+                        <img
+                          src="../youtube 1.svg"
+                          alt="YouTube Review"
+                          className={`${
+                            !getFilteredTestimonials(
+                              element?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.youtube_video_without_company_name
+                            )
+                              ? "opacity-30 pointer-events-none"
+                              : ""
+                          }`}
+                        />
+                      </Link>
+                    </div>
                 </div>
               </div>
               <div className=" flex flex-col gap-2.5">
                 <AlertDialogTrigger asChild>
                   <img
                     onClick={openImageDialog}
-                    src={element?.testimonial?.testimonialLink}
+                    src={element?.gotjob[0]?.mini_testimonial?.img_details?.written_testimonial_image ? element.base_url+getFilteredTestimonials(
+                      element?.gotjob[0]?.mini_testimonial?.img_details
+                        ?.written_testimonial_image 
+                    ) : "Error.src"}
                     className="imageBox cursor-pointer"
                   />
                 </AlertDialogTrigger>
@@ -172,7 +252,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                  >
                   <img
                     typeof="foaf:Image"
-                    src={element?.photoLink}
+                    src={thumbnailUrl}
                     alt="Video Thumbnail"
                     style={{
                       display: "block",
@@ -198,11 +278,17 @@ function StudentsPlacedCard({ studentsInfo, page }) {
               </div>
               {imageDialog && (
                 <ImagePopup
-                  testimonialLink={element?.testimonial?.testimonialLink}
+                  testimonialLink={element.base_url+getFilteredTestimonials(
+                    element?.gotjob[0]?.mini_testimonial?.img_details
+                      ?.written_testimonial_image
+                  )}
                 />
+                
               )}
-              {videoDialog && (
-                <VideoPopup videoLink={element?.testimonial?.youtubeReview} />
+              {videoDialog  && element?.gotjob[0]?.mini_testimonial?.url_details.youtube_video_without_company_name && (
+                <VideoPopup videoLink={getFilteredTestimonials(
+                  element?.gotjob[0]?.mini_testimonial?.url_details
+                    ?.youtube_video_without_company_name)}  />
               )}
             </section>
           </AlertDialog>
