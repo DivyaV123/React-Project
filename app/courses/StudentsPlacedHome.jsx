@@ -11,9 +11,7 @@ import StudentsTestimonialsHome from './StudentsTestimonialsHome'
 import Link from 'next/link'
 import { PLACEMENT_PATH } from '@/lib/RouteConstants'
 import { usePathname } from 'next/navigation'
-import { useStuCourseFilterQuery } from '@/redux/queries/studentFilterForCourseAPi'
-import { useStuBranchFilterQuery } from '@/redux/queries/studentBranchFilterApi'
-
+import { useGetAllPlacementListQuery } from '@/redux/queries/getPlacementsList'
 function StudentsPlacedHome({ page, courseDetails, branchName }) {
   
     let organisation = courseDetails?.data?.branchType.map((element) => {
@@ -44,15 +42,17 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
     })
    
     const pathname = usePathname()
-    const params = pathname.split('/').pop();
-    const digitIds = params.match(/\b\d+\b/g);
+    const params = pathname?.split('/').pop();
+    const digitIds = params?.match(/\b\d+\b/g);
 
     const branchId = digitIds[0];
     const bodyData = pathname.includes('branches') ? { branchLocation: [branchName] } : { branchType: organisation }
   
-    const { data: studentsList_course, isLoading:stu_courseFilter_loading } = useStuCourseFilterQuery( { organisationID: Number(organisationID)}, { skip: pathname.includes('branches') } )
-    const { data: studentsList_branch, isLoading:stu_branchFilter_loading } = useStuBranchFilterQuery({ branchID: branchId }, { skip: pathname.includes('courses') })
-  
+    const { data: studentsList, isLoading: studentsListLoading } = useGetAllPlacementListQuery(
+        pathname.includes('branches') ? { branchID: branchId } : { organisationID: Number(organisationID) }
+      );
+      
+    
     return (
         <>
             <section className='w-full sm:bg-[#F6F6F6] '>
@@ -62,7 +62,7 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
                             {`${pathname.includes('courses') ? "Students placed through this course" : "Students placed through this branch"}`}
                         </h1>
                     </header>
-                    <StudentsPlacedCard page={page} studentsInfo={pathname.includes('branches')? studentsList_branch?.results: studentsList_course?.results} />
+                    <StudentsPlacedCard page={page} studentsInfo={studentsList?.results} />
                     <Link href={PLACEMENT_PATH} >
                         <article className={`flex justify-center  ${page === 'branch' ? 'sm:mt-[5.278vh] pb-[4.444vh] mobile:pb-[1.717vh]' : 'mt-[1.667vh] pb-[1.667vh]'}`}>
                             <Button
