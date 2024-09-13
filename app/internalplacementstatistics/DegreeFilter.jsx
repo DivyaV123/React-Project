@@ -5,8 +5,15 @@ import "./CounserllorFilters.scss";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 
 const DegreeFilter = ({ degreeList }) => {
-  const { handleCounsellorCommonFilter, selectedDegrees, setSelectedDegrees, degreeSearchQuery, setDegreeSearchQuery } =
-    useContext(GlobalContext);
+  const {
+    handleCounsellorCommonFilter,
+    selectedDegrees,
+    setSelectedDegrees,
+    degreeSearchQuery,
+    setDegreeSearchQuery,
+    selectedMasters,
+    setSelectedMasters,
+  } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
 
   // Filter the degree list based on the search query
@@ -16,19 +23,33 @@ const DegreeFilter = ({ degreeList }) => {
 
   const renderCheckbox = (item) => (
     <Checkbox
-      key={item.id} 
-      id={item.id}  // Use degree ID as the id
-      label={item.name || item.short_form}  // Use degree name as the label
-      checked={selectedDegrees.includes(item.id)}
-      onChange={() =>
-        handleCounsellorCommonFilter(
-          item.id,  // Pass the degree ID instead of name
-          selectedDegrees,
-          setSelectedDegrees,
-          degreeList,  // Use the full degreeList for response
-          "degree"
-        )
+      key={item.id}
+      id={item.id} // Use degree ID as the id
+      label={item.name || item.short_form} // Use degree name as the label
+      checked={
+        selectedDegrees.includes(item.id) || selectedMasters.includes(item.id)
       }
+      onChange={() => {
+        if (item?.qualification_type_name === "Degree") {
+          handleCounsellorCommonFilter(
+            item.id, // Pass the degree ID instead of name
+            selectedDegrees,
+            setSelectedDegrees,
+            degreeList, // Use the full degreeList for response
+
+            "degree_id"
+          );
+        } else {
+          handleCounsellorCommonFilter(
+            item.id,
+            selectedMasters,
+            setSelectedMasters,
+            degreeList, 
+
+            "masters_id"
+          );
+        }
+      }}
     />
   );
 

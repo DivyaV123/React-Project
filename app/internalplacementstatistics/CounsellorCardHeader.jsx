@@ -52,39 +52,44 @@ const CounsellorCardHeader = () => {
 
   const isEmptyObject = Object.keys(filteringData).length === 0;
   const filterClass = "text-[#002248] text-[1.25vw] font-semibold mobile:text-[4.651vw]";
-  const {
-    data: counsellorFilterResponse,
-    error,
-    refetch,
-    isLoading,
-    isFetching,
-  } = useFetchCounsellorsQuery({
-    pageNumber: page,
-    pageSize: size,
-    parameter: isEmptyObject ? filterParameter : "",
-    bodyData: filteringData,
-  });
-
+  
   const {
     data: placementList,
     error: placementError,
     isLoading: placementLoading,
     isFetching: placementFetching,
     refetch: placementRefetch,
-  } = useGetAllPlacementListQuery({page: scrollPage});
+  } = useGetAllPlacementListQuery({ page: scrollPage,
+    
+    joining_date_after: filteredDateRange?.joining_date_after,
+    joining_date_before: filteredDateRange?.joining_date_before,
+    degree_id: filteredDateRange?.degree_id,
+    d_stream_id: filteredDateRange?.d_stream_id,
+    masters_id: filteredDateRange?.masters_id,
+    m_stream_id: filteredDateRange?.m_stream_id,
+    highestyop: filteredDateRange?.highestyop,
+    stud_org_id:filteredDateRange?.stud_org_id,
+    stud_branch_id:filteredDateRange?.stud_branch_id,
+    state:filteredDateRange?.state,
+    city:filteredDateRange?.city,
+    university:filteredDateRange.university,
+    college:filteredDateRange?.college,
+    less_than60:filteredDateRange?.less_than60,
+    above_60:filteredDateRange?.above_60,
+   });
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
     useEffect(() => {
       placementRefetch();
     }, [scrollPage]);
   const [isFetchData, setIsFetchData] = useState(placementFetching);
-  useEffect(() => {
-    refetch();
-    if (!isEmptyObject) {
-      setPlacedCheckedIcon(true);
-      setLessCheckedIcon(false);
-      setThroughCheckedIcon(false);
-    }
-  }, [filteringData, page, size, filterParameter]);
+  // useEffect(() => {
+  //   refetch();
+  //   if (!isEmptyObject) {
+  //     setPlacedCheckedIcon(true);
+  //     setLessCheckedIcon(false);
+  //     setThroughCheckedIcon(false);
+  //   }
+  // }, [filteringData, page, size, filterParameter]);
 
   useEffect(() => {
     if (placementList) {
@@ -168,16 +173,16 @@ const CounsellorCardHeader = () => {
         }`}
       >
         <section className="sm:px-[1.875vw] flex mobile:flex-wrap sm:gap-5 sm:pb-[3.333vh] sm:items-center">
-          {isLoading ? (
+          {placementLoading ? (
             <LinkCardSkeleton />
           ) : (
             <TotalPlacedCard
               allCounts={allPlacementCount}
-              handleCandidates={refetch}
+              handleCandidates={placementRefetch}
               handleParameter={handleParameter}
             />
           )}
-          {isLoading ?? isFetching ? (
+          {placementLoading ?? placementFetching ? (
             <LinkCardSkeleton />
           ) : (
             <DegreeCard
@@ -186,7 +191,7 @@ const CounsellorCardHeader = () => {
               isEmptyObject={isEmptyObject}
             />
           )}
-          {isLoading ? (
+          {placementLoading ? (
             <LinkCardSkeleton />
           ) : (
             <OverviewCard
@@ -235,7 +240,7 @@ const CounsellorCardHeader = () => {
           className="h-[58.889vh] overflow-auto myscrollbar mobile:w-[96vw] w-[69.063vw] ml-[1.875vw] rounded-2xl"
         >
           {accumulatedData.length > 0 ? (
-            isLoading ? (
+            placementLoading ? (
               <CardContentSkeleton />
             ) : (
               <>

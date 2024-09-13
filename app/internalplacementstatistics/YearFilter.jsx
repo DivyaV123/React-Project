@@ -53,7 +53,7 @@ const YearFilter = () => {
   };
 
   const handleCommonFilterForYear = (yearRange) => {
-    handleCounsellorCommonFilter(-1, [], setSelectedYop, yearRange, "yop");
+    handleCounsellorCommonFilter(-1, [], setSelectedYop, yearRange, "highestyop");
   };
 
   const clearYearRange = () => {
@@ -69,7 +69,7 @@ const YearFilter = () => {
       checked={selected?.includes(item)}
       onChange={() => {
         clearYearRange();
-        handleCounsellorCommonFilter(item, selected, setSelected, items, "yop");
+        handleCounsellorCommonFilter(item, selected, setSelected, items, "highestyop");
       }}
     />
   );

@@ -33,7 +33,7 @@ export const API_ENDPOINTS = {
   GET_ALL_FOR_ADMIN_PORTAL: 'api/v1/courses/getall',
   //placements
   GET_STATES: (id) => `placementsstatelist/?id=${id ? id : ""}`,
-  GET_COLLEGES: (id, district_id, state_id, university_id) => `placementcollegelist/?${id ? id : ""}&district_id=${district_id ? district_id : ""}&state_id=${state_id ? state_id : ""}&university_id=${university_id ? university_id : ""}`,
+  GET_COLLEGES: (id, district_id, state_id) => `placementcollegelist/?district_id=${district_id ? district_id : ""}&state_id=${state_id ? state_id : ""}&university_id=${id ? id : ""}`,
   GET_CITIES: (state_id) => `/placementscitylist/?id&state_id=${state_id ? state_id : ''}`,
   GET_UNIVERSITIES: (id) => `placementsuniversities/?id=${id ? id : ''}`,
   GET_ORGANISATION: (id) => `placementorganisationlist/?id=${id ? id : ""}`,
@@ -54,8 +54,8 @@ export const API_ENDPOINTS = {
   GET_PLACED_BETWEEN: (startDate, endDate, pageNo, pageSize) => `candidate/placedDate?startDate=${startDate}&endDate=${endDate}&pageNumber=${pageNo}&size=${pageSize}`,
   COUNSELLOR_FILTER: (pageNumber, pageSize, parameter) => `candidate/counsellor/filter?pageNumber=${pageNumber}&pageSize=${pageSize}${parameter ? `&parameter=${parameter}` : ''}`,
  
-  PLACEMENT_LIST: (page, testimonial_id, joining_date_after, joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id,highestyop,organisationID,branchID,verified_testimonial,less_than60,above_60,non_it,it) => `placementslist/?page=${page ? page : ""}&testimonial_id=${testimonial_id ? testimonial_id : ""}&joining_date_after=${joining_date_after ? joining_date_after : ""}&joining_date_before=${joining_date_before ? joining_date_before : ""}&degree_id=${degree_id ? degree_id : ""}&d_stream_id=${d_stream_id ? d_stream_id : ""}&masters_id=${masters_id ? masters_id : ""}&m_stream_id=${m_stream_id ? m_stream_id : ""}&highestyop=${highestyop ? highestyop : ""}&&stud_org_id=${organisationID ? organisationID :""}&stud_branch_id=${branchID ? branchID :""}&verified_testimonial=${verified_testimonial}&less_than60=${less_than60 ? less_than60 : ""}
-  &above_60=${above_60 ? above_60 : ""}&non_it=${non_it ? non_it : ""}&it=${it ? it : ""}`,
+  PLACEMENT_LIST: (page, testimonial_id, joining_date_after, joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id,highestyop,stud_org_id,stud_branch_id,verified_testimonial,less_than60,above_60,non_it,it,university,college,state,city) => `placementslist/?page=${page ? page : ""}&testimonial_id=${testimonial_id ? testimonial_id : ""}&joining_date_after=${joining_date_after ? joining_date_after : ""}&joining_date_before=${joining_date_before ? joining_date_before : ""}&degree_id=${degree_id ? degree_id : ""}&d_stream_id=${d_stream_id ? d_stream_id : ""}&masters_id=${masters_id ? masters_id : ""}&m_stream_id=${m_stream_id ? m_stream_id : ""}&highestyop=${highestyop ? highestyop : ""}&&stud_org_id=${stud_org_id ? stud_org_id :""}&stud_branch_id=${stud_branch_id ? stud_branch_id :""}&verified_testimonial=${verified_testimonial}&less_than60=${less_than60 ? less_than60 : ""}
+  &above_60=${above_60 ? above_60 : ""}&non_it=${non_it ? non_it : ""}&it=${it ? it : ""}&university=${university ? university : ""}&college=${college ? college : ""}&state=${state ? state : ""}&city=${city ? city : ""}`,
   //Add Subject
   SUBJECT_ADDER: `api/v1/subjects`,
   MAP_SUBJECT: (courseId) => `api/v1/courses?courseId=${courseId}`,

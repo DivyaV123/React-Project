@@ -26,7 +26,7 @@ const BranchTypeFilter = () => {
           selectedBranchType,
           setSelectedBranchType,
           branchType,
-          "branchType"
+          "stud_org_id"
         )
       }
     />

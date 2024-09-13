@@ -6,7 +6,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 const PercentageFilter = () => {
   const {
     filteringData,
-    setFilteringData,
+    setFilteredRange,
     handleCounsellorCommonFilter,
     fromPercentage,
     setFromPercentage,
@@ -18,6 +18,7 @@ const PercentageFilter = () => {
   const [isExpanded, setIsExpanded] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
   const percentageType = ["Lessthansixty", "Throughoutsixty"];
+  const percentageKeys = ["less_than60", "above_60"];
 
   const validateFrom = (value) => {
     if (isNaN(value) || value < 0 || value > 100) {
@@ -59,9 +60,10 @@ const PercentageFilter = () => {
     ) {
       const percentageRange =
         toPercentage !== "" ? [fromPercentage, toPercentage] : [fromPercentage];
-      setFilteringData((prevFilteringData) => ({
+      setFilteredRange((prevFilteringData) => ({
         ...prevFilteringData,
-        percentage: percentageRange,
+        less_than60: percentageRange[0] || null,
+        above_60: percentageRange[1] || null,
       }));
     } else {
       setErrorMessage("Please enter valid percentage values");
@@ -73,10 +75,22 @@ const PercentageFilter = () => {
     setFromPercentage("");
     setToPercentage("");
     const selectedValue = percentageType[index].toLowerCase();
-    setFilteringData((prevFilteringData) => ({
-      ...prevFilteringData,
-      percentage: [selectedValue],
-    }));
+   
+    if(index===0){
+      setFilteredRange((prevFilteringData) => ({
+        ...prevFilteringData,
+        less_than60: true,
+        above_60: null,
+      }));
+    }else{
+      setFilteredRange((prevFilteringData) => ({
+        ...prevFilteringData,
+        less_than60: null,
+        above_60: true,
+      }));
+    }
+    
+    
   };
   const isApplyDisabled = !(
     fromPercentage !== "" &&

@@ -25,7 +25,7 @@ const BranchFilter = ({ BranchList }) => {
           selected,
           setSelected,
           items,
-          "branchLocation"
+          "stud_branch_id"
         )
       }
     />
