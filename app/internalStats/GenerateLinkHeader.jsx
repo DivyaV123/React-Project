@@ -12,6 +12,8 @@ import PlacementContent from "../placements/PlacementContent";
 import BlinkingDots from "@/components/skeletons/BlinkingDots";
 import LinkCardSkeleton from "@/components/skeletons/LinkCardSkeleton";
 import NoContent from "../internalplacementstatistics/NoContent";
+import { useGetAllPlacementListQuery } from "@/redux/queries/getPlacementsList";
+import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
 const GenerateLinkHeader = () => {
   const [accumulatedData, setAccumulatedData] = useState([]);
   const [filterParameter, setFilterParamter] = useState("");
@@ -21,37 +23,53 @@ const GenerateLinkHeader = () => {
     page,
     size,
     setPage,
-    handleScroll,
+    handleScroll,filteredDateRange,scrollPage
   } = useContext(GlobalContext);
 
   const isEmptyObject = Object.keys(filteringData).length === 0;
+  
+  
+  const { data: allPlacementCount } = useGetAllPlacementCountQuery();
   const {
-    data: counsellorFilterResponse,
-    error,
-    refetch,
-    isLoading,
-    isFetching,
-  } = useFetchCounsellorsQuery({
-    pageNumber: page,
-    pageSize: size,
-    parameter: isEmptyObject ? filterParameter : "",
-    bodyData: queryParams,
-  });
-  const [isFetchData, setIsFetchData] = useState(isFetching);
+    data: placementList,
+    error: placementError,
+    isLoading: placementLoading,
+    isFetching: placementFetching,
+    refetch: placementRefetch,
+  } = useGetAllPlacementListQuery({ page: scrollPage,
+    
+    joining_date_after: queryParams?.joining_date_after,
+    joining_date_before: queryParams?.joining_date_before,
+    degree_id: queryParams?.degree_id,
+    d_stream_id: queryParams?.d_stream_id,
+    masters_id: queryParams?.masters_id,
+    m_stream_id: queryParams?.m_stream_id,
+    highestyop: queryParams?.highestyop,
+    stud_org_id:queryParams?.stud_org_id,
+    stud_branch_id:queryParams?.stud_branch_id,
+    state:queryParams?.state,
+    city:queryParams?.city,
+    university:queryParams.university,
+    college:queryParams?.college,
+    less_than60:queryParams?.less_than60,
+    above_60:queryParams?.above_60,
+   });
+  const [isFetchData, setIsFetchData] = useState(placementFetching);
+  
+
+
   useEffect(() => {
-    if (counsellorFilterResponse) {
-      if (page > 0) {
+    if (placementList) {
+      if (scrollPage > 1) {
         setAccumulatedData((prevData) => [
           ...prevData,
-          ...counsellorFilterResponse?.response?.candidates?.content,
+          ...(placementList?.results || []),
         ]);
       } else {
-        setAccumulatedData(
-          counsellorFilterResponse?.response?.candidates?.content || []
-        );
+        setAccumulatedData(placementList?.results || []);
       }
     }
-  }, [counsellorFilterResponse]);
+  }, [placementList]);
 
   const handleParameter = (param) => {
     setFilterParamter(param);
@@ -82,30 +100,30 @@ const GenerateLinkHeader = () => {
       // className="px-[1.875vw] flex gap-5 pb-[3.333vh] items-center"
       className="sm:px-[1.875vw] mobile:w-fit flex mobile:flex-wrap sm:gap-5 sm:pb-[3.333vh] sm:items-center"
       >
-        {isLoading ? (
+        {placementLoading ? (
           <LinkCardSkeleton />
         ) : (
           <TotalPlacedCard
-            allCounts={counsellorFilterResponse}
-            handleCandidates={refetch}
+            allCounts={allPlacementCount}
+            handleCandidates={placementRefetch}
             handleParameter={handleParameter}
           />
         )}
         
-        {isLoading ? (
+        {placementLoading ? (
           <LinkCardSkeleton />
         ) : (
           <DegreeCard
-            allCounts={counsellorFilterResponse}
-            handleCandidates={refetch}
+            allCounts={allPlacementCount}
+            handleCandidates={placementRefetch}
             handleParameter={handleParameter}
           />
         )}
-        {isLoading ? (
+        {placementLoading ? (
           <LinkCardSkeleton />
         ) : (
           <OverviewCard
-            allCounts={counsellorFilterResponse}
+            allCounts={allPlacementCount}
             handleParameter={handleParameter}
           />
         )}
@@ -117,19 +135,19 @@ const GenerateLinkHeader = () => {
             event,
             page,
             setPage,
-            counsellorFilterResponse,
+            placementList,
             setIsFetchData
           );
         }}
         className="h-[58.889vh] overflow-auto myscrollbar mobile:w-fit w-[69.063vw] ml-[1.875vw] rounded-2xl"
       >
-        {isLoading ? (
+        {placementLoading ? (
           <CardContentSkeleton />
         ) : (
           <>
             {accumulatedData.length > 0 ? (
               <>
-                <PlacementContent counsellorFilterResponse={accumulatedData} />
+                <PlacementContent placementList={accumulatedData} />
                 {isFetchData && <BlinkingDots />}
               </>
             ) : (

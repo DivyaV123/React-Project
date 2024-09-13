@@ -231,7 +231,7 @@ const GlobalContextProvider = ({ children }) => {
           const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
           const largestPeriod = response[sortedPeriods[0]];
           const today = dayjs().format("YYYY-MM-DD");
-
+          updatedFilteringData[key] = [timePeriods[largestPeriod], today];
           setFilteredRange((prev) => {
             return {
               ...prev,

@@ -49,7 +49,7 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
     const bodyData = pathname.includes('branches') ? { branchLocation: [branchName] } : { branchType: organisation }
   
     const { data: studentsList, isLoading: studentsListLoading } = useGetAllPlacementListQuery(
-        pathname.includes('branches') ? { branchID: branchId } : { organisationID: Number(organisationID) }
+        pathname.includes('branches') ? { stud_branch_id: branchId } : { stud_org_id: Number(organisationID) }
       );
       
     
