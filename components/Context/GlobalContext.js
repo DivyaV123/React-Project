@@ -6,7 +6,7 @@ import dayjs from "dayjs";
 
 const initalFilter = {};
 const GlobalContextProvider = ({ children }) => {
-  const [domainVariable, setDomainVariable] = useState('');
+  const [domainVariable, setDomainVariable] = useState("");
   useEffect(() => {
     const routerName = window.location.hostname;
     switch (true) {
@@ -28,14 +28,14 @@ const GlobalContextProvider = ({ children }) => {
   }, []);
 
   //adminportal
-  const [selectedSideBar, setSelectedSideBar] = useState('Category')
-  const [selectedInstitute, setSelectedInstitute] = useState("Qspiders")
+  const [selectedSideBar, setSelectedSideBar] = useState("Category");
+  const [selectedInstitute, setSelectedInstitute] = useState("Qspiders");
 
   const [hoverState, setHoverState] = useState({ item: null, content: false });
   const [selectedBranch, setSelectedBranch] = useState("Bengalore");
   const [selectedCourseId, setSelectedCourseId] = useState("1");
-  const [countryList, setCountryList] = useState([])
-  const [homeBranchData, setHomeBranchData] = useState([])
+  const [countryList, setCountryList] = useState([]);
+  const [homeBranchData, setHomeBranchData] = useState([]);
   const [selectedBatch, setSelectedBatch] = useState("Bengalore");
   const [selectedClassMode, setSelectedClassMode] = useState("offline");
   const todayDate = dayjs().format("YYYY-MM-DD");
@@ -96,8 +96,11 @@ const GlobalContextProvider = ({ children }) => {
   //degreeType
   const [selectedDegrees, setSelectedDegrees] = useState([]);
 
+  const [selectedMasters, setSelectedMasters] = useState([]);
+
   //streamType
   const [selectedStream, setSelectedStream] = useState([]);
+  const [selectedMstream, setSelectedMstream] = useState([]);
 
   //percentage
   const [fromPercentage, setFromPercentage] = useState("");
@@ -114,29 +117,40 @@ const GlobalContextProvider = ({ children }) => {
     joining_date_after: "",
     joining_date_before: "",
     testimonial_id: "",
-    degree_id:"",
-    d_stream_id:"",
-    masters_id:"",
-    m_stream_id:"",
-    highestyop:"",
-    less_than60:"",
-    above_60:"",
-    non_it:"",
-    it:""
-  })
+    degree_id: "",
+    d_stream_id: "",
+    masters_id: "",
+    m_stream_id: "",
+    highestyop: "",
+    less_than60: "",
+    above_60: "",
+    non_it: "",
+    it: "",
+    stud_org_id: "",
+    stud_branch_id: "",
+    state: "",
+    city: "",
+    college: "",
+    university: "",
+  });
   const [placementParam, setPlacementParam] = useState("");
   const [sideBarBtn, setSideBarBtn] = useState("");
   const [degreeButton, setDegreeButton] = useState("");
   const [branchButton, setBranchButton] = useState("");
   const [passOutButton, setPassOutButton] = useState("");
   const [selectedCourseDetailsId, setSelectedCoursDetailseId] = useState(null);
-  const [activeSidebarBtn, setActiveSidebarBtn] = useState(false)
-  const [upComingBatches, setupComingBatches] = useState(null)
-  const [onGoingBatches, setOnGoingBatches] = useState(null)
-  const [homePlacements, setHomePlacements] = useState(false)
-  const [scrollPage, setScrollPage] = useState(1)
-  const emptySearch = citySearchQuery === "" && stateSearchQuery === "" && citySearchQuery === "" &&
-    universitySearchQuery === "" && streamSearchQuery === "" && yearSearchQuery === ""
+  const [activeSidebarBtn, setActiveSidebarBtn] = useState(false);
+  const [upComingBatches, setupComingBatches] = useState(null);
+  const [onGoingBatches, setOnGoingBatches] = useState(null);
+  const [homePlacements, setHomePlacements] = useState(false);
+  const [scrollPage, setScrollPage] = useState(1);
+  const emptySearch =
+    citySearchQuery === "" &&
+    stateSearchQuery === "" &&
+    citySearchQuery === "" &&
+    universitySearchQuery === "" &&
+    streamSearchQuery === "" &&
+    yearSearchQuery === "";
 
   function debounce(func, wait) {
     let timeout;
@@ -152,8 +166,8 @@ const GlobalContextProvider = ({ children }) => {
         Math.ceil(target?.scrollTop + target?.clientHeight) >=
         target?.scrollHeight - 1;
       setScrollConst(scrolledToBottom);
-      if (scrolledToBottom && repData?.next_page_url !==null) {
-        setScrollPage(scrollPage + 1)
+      if (scrolledToBottom && repData?.next_page_url !== null) {
+        setScrollPage(scrollPage + 1);
         setIsFetchData(true);
       }
     },
@@ -173,13 +187,22 @@ const GlobalContextProvider = ({ children }) => {
     response,
     key
   ) => {
-    setPage(0);
+    setScrollPage(1);
+
     let updatedSelectedItems = [...items];
 
     if (value === -1) {
       // Handle calendar or dropdown selection
       setItems([]);
-      updatedSelectedItems = response; // response contains the date range for calendar or dropdown selection
+
+      // response contains the date range for calendar or dropdown selection
+      setFilteredRange((prev) => {
+        return {
+          ...prev,
+          joining_date_after: response[0],
+          joining_date_before: response[1],
+        };
+      });
     } else {
       // Handle checkbox selection
       if (updatedSelectedItems.includes(value)) {
@@ -205,18 +228,36 @@ const GlobalContextProvider = ({ children }) => {
         delete updatedFilteringData[key];
       } else {
         if (key === "timePeriod") {
-          if (value === -1) {
-            // Calendar selection
-            updatedFilteringData[key] = selectedFilterData;
-          } else {
-            // Checkbox selection, get the largest period
-            const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
-            const largestPeriod = response[sortedPeriods[0]];
-            const today = dayjs().format("YYYY-MM-DD");
-            updatedFilteringData[key] = [timePeriods[largestPeriod], today];
-          }
+          const sortedPeriods = updatedSelectedItems.sort((a, b) => b - a);
+          const largestPeriod = response[sortedPeriods[0]];
+          const today = dayjs().format("YYYY-MM-DD");
+
+          setFilteredRange((prev) => {
+            return {
+              ...prev,
+              joining_date_after: timePeriods[largestPeriod],
+              joining_date_before: today,
+            };
+          });
         } else {
           updatedFilteringData[key] = selectedFilterData;
+          if (key !== "degree_id" && key !== "masters_id") {
+            setFilteredRange((prev) => {
+              return { ...prev, [key]: selectedFilterData.toString() };
+            });
+          } else {
+            setFilteredRange((prev) => ({
+              ...prev,
+              degree_id:
+                key === "degree_id"
+                  ? selectedFilterData.toString()
+                  : prev.degree_id,
+              masters_id:
+                key === "masters_id"
+                  ? selectedFilterData.toString()
+                  : prev.masters_id,
+            }));
+          }
         }
       }
       return updatedFilteringData;
@@ -224,8 +265,18 @@ const GlobalContextProvider = ({ children }) => {
 
     if (key === "university") {
       setUniversitySelected(selectedFilterData);
+      setFilteredRange((prev) => {
+        return { ...prev, university: selectedFilterData.toString() };
+      });
     } else if (key === "state") {
       setStateSelected(selectedFilterData);
+      setFilteredRange((prev) => {
+        return { ...prev, state: selectedFilterData.toString() };
+      });
+    } else {
+      setFilteredRange((prev) => {
+        return { ...prev, [key]: selectedFilterData.toString() };
+      });
     }
   };
 
@@ -239,15 +290,14 @@ const GlobalContextProvider = ({ children }) => {
     setDegreeButton("");
     setBranchButton("");
     setPassOutButton("");
-    setScrollPage(1)
+    setScrollPage(1);
     setActiveSidebarBtn(true);
     switch (title) {
       case "Recent Placements":
-        setFilterPlacementData({});
         setFilteredRange({
           joining_date_after: "",
-          joining_date_before: ""
-        })
+          joining_date_before: "",
+        });
         setPlacementParam("");
         break;
       // case "Top Salaries":
@@ -260,21 +310,16 @@ const GlobalContextProvider = ({ children }) => {
         const startDate = timePeriods[title];
         const endDate = dayjs().format("YYYY-MM-DD");
         setPlacementParam("");
-        setFilterPlacementData({
-          timePeriod: [startDate, endDate],
-        });
+
         setFilteredRange({
           joining_date_after: startDate,
-          joining_date_before: endDate
-        })
+          joining_date_before: endDate,
+        });
         break;
       default:
         break;
     }
   };
-
-
-
 
   return (
     <GlobalContext.Provider
@@ -330,8 +375,12 @@ const GlobalContextProvider = ({ children }) => {
         setSelectedCollege,
         selectedDegrees,
         setSelectedDegrees,
+        selectedMasters,
+        setSelectedMasters,
         selectedStream,
         setSelectedStream,
+        selectedMstream,
+        setSelectedMstream,
         fromPercentage,
         setFromPercentage,
         toPercentage,
@@ -365,18 +414,50 @@ const GlobalContextProvider = ({ children }) => {
         setAllStaticsCount,
         selectedCourseDetails,
         setSelectedCourseDetails,
-        citySearchQuery, setCitySearchQuery,
-        collegeSearchQuery, setCollegeSearchQuery,
-        degreeSearchQuery, setDegreeSearchQuery,
-        stateSearchQuery, setStateSearchQuery,
-        universitySearchQuery, setUniversitySearchQuery,
-        yearSearchQuery, setYearSearchQuery,
-        streamSearchQuery, setStreamSearchQuery, emptySearch, activeSidebarBtn, setActiveSidebarBtn,
-        onGoingBatches, setOnGoingBatches, upComingBatches, setupComingBatches,
-        homeBranchData, setHomeBranchData,
-        domainVariable, hoverState, setHoverState, imageDialog, setImageDialog, videoDialog, setVideoDialog,
-        homePlacements, setHomePlacements, countryList, setCountryList, individualSubjectData, setIndividualSubjectData,
-        selectedSideBar, setSelectedSideBar, selectedInstitute, setSelectedInstitute, scrollPage, setScrollPage, filteredDateRange, setFilteredRange
+        citySearchQuery,
+        setCitySearchQuery,
+        collegeSearchQuery,
+        setCollegeSearchQuery,
+        degreeSearchQuery,
+        setDegreeSearchQuery,
+        stateSearchQuery,
+        setStateSearchQuery,
+        universitySearchQuery,
+        setUniversitySearchQuery,
+        yearSearchQuery,
+        setYearSearchQuery,
+        streamSearchQuery,
+        setStreamSearchQuery,
+        emptySearch,
+        activeSidebarBtn,
+        setActiveSidebarBtn,
+        onGoingBatches,
+        setOnGoingBatches,
+        upComingBatches,
+        setupComingBatches,
+        homeBranchData,
+        setHomeBranchData,
+        domainVariable,
+        hoverState,
+        setHoverState,
+        imageDialog,
+        setImageDialog,
+        videoDialog,
+        setVideoDialog,
+        homePlacements,
+        setHomePlacements,
+        countryList,
+        setCountryList,
+        individualSubjectData,
+        setIndividualSubjectData,
+        selectedSideBar,
+        setSelectedSideBar,
+        selectedInstitute,
+        setSelectedInstitute,
+        scrollPage,
+        setScrollPage,
+        filteredDateRange,
+        setFilteredRange,
       }}
     >
       {children}

@@ -12,6 +12,8 @@ const StreamFilter = ({ streamList }) => {
     setSelectedStream,
     streamSearchQuery,
     setStreamSearchQuery,
+    selectedMstream, 
+        setSelectedMstream,
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
 
@@ -23,15 +25,29 @@ const StreamFilter = ({ streamList }) => {
       key={item.id}
       id={item.id}
       label={item.name || item.short_form}
-      checked={selectedStream.includes(item.id)}
+      checked={selectedStream.includes(item.id) || selectedMstream.includes(item.id)}
       onChange={() =>
-        handleCounsellorCommonFilter(
+        {
+          if(item?.qualification_type_name=== "Degree"){
+            handleCounsellorCommonFilter(
           item.id,
           selectedStream,
           setSelectedStream,
           streamList,
-          "stream"
+          "d_stream_id"
         )
+
+          }else{
+            handleCounsellorCommonFilter(
+              item.id,
+              selectedMstream,
+              setSelectedMstream,
+              streamList,
+              "m_stream_id"
+            )
+          }
+          
+         }
       }
     />
   );
