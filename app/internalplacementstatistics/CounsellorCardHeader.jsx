@@ -80,7 +80,7 @@ const CounsellorCardHeader = () => {
   const { data: allPlacementCount } = useGetAllPlacementCountQuery();
     useEffect(() => {
       placementRefetch();
-    }, [scrollPage]);
+    }, [scrollPage,filteredDateRange]);
   const [isFetchData, setIsFetchData] = useState(placementFetching);
   // useEffect(() => {
   //   refetch();
@@ -111,6 +111,7 @@ const CounsellorCardHeader = () => {
   const constructSearchParams = () => {
     let searchParams = "";
     for (const key in filteringData) {
+
       if (filteringData.hasOwnProperty(key)) {
         if (searchParams !== "") {
           searchParams += "&";
