@@ -14,11 +14,12 @@ const IndividualBranches = () => {
   const [branchName, branchcountry] = branchPath.split(",");
   const decodeCountry = decodeURIComponent(branchcountry);
 
-  const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery();
-
-  const [countryTab, setCountryTab] = useState("India");
+  
+  const [countryTab, setCountryTab] = useState("india");
   const [activeTab, setActiveTab] = useState(true);
-  const { setSelectedCourseId } = useContext(GlobalContext);
+  const { setSelectedCourseId ,domainVariable} = useContext(GlobalContext);
+    let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
+  const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery(domain);
 
   const filterCountryObj = homeBranchData?.data?.filter(
     (ele) => ele?.countryName === countryTab

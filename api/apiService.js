@@ -6,7 +6,7 @@ export const getEnrollUrl = () => process.env.NEXT_PUBLIC_GOLANG_ENROLL_URL;
 export const API_ENDPOINTS = {
   LOGIN: 'api/v1/users/login',
   GET_ALL_CATEGORIES: '/backend/api/v1/categories/getAllCategories',
-  GET_ALL_BRANCHES: 'api/v1/branches/getAllBranches',
+  GET_ALL_BRANCHES:(domain)=> `/backend/api/v1/branches/getAllBranches?organization=${domain}`,
   ENROLL_NOW:"add-website-enquiry",
   ENQUIRE: 'api/v1/enquiry',
   FEEDBACK: 'api/v1/feedback',
