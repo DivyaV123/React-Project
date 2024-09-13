@@ -12,16 +12,15 @@ const Branches = ({ BranchResponse }) => {
     useContext(GlobalContext);
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
-  const [countryTab, setCountryTab] = useState("India");
+  const [countryTab, setCountryTab] = useState("india");
   const [activeTab, setActiveTab] = useState(true);
-
   const filterCountryObj = BranchResponse?.data?.filter(ele => ele?.countryName === countryTab)
   const cityData = filterCountryObj && filterCountryObj[0]?.cities;
   const courseData = cityData && cityData[hoveredIndex]?.courses;
   const finalContent = cityData && cityData[hoveredIndex]?.courses[hoveredItemIndex]?.branches
   const getContact = (data) => {
-    let numbersList = data.split(", ");
-    let result = numbersList.slice(0, 2).join(" | ");
+    let numbersList = data?.split(", ");
+    let result = numbersList?.slice(0, 2).join(" | ");
     return result;
   };
   const handleCountryTab = (country) => {

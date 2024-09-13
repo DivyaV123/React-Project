@@ -39,8 +39,9 @@ function NavItems() {
     setNonItCheckedIcon,
     setItCheckedIcon,
     setFilterPlacementData,
-    hoverState, setHoverState, setCountryList
+    hoverState, setHoverState, setCountryList,domainVariable
   } = useContext(GlobalContext);
+  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
   const {
     data: courseResponse,
     isLoading: CourseIsLoading,
@@ -50,7 +51,7 @@ function NavItems() {
     data: BranchResponse,
     error: branchError,
     isLoading: branchIsLoading,
-  } = useGetAllBranchesQuery();
+  } = useGetAllBranchesQuery(domain);
   const {
     data: onlineCourseResponse,
     error: onlineCourseError,
@@ -67,7 +68,7 @@ function NavItems() {
     { id: 7, name: "Placements", content: "" },
     { id: 8, name: "Contact Us", content: "" },
   ];
-  const filterCountryObj = BranchResponse?.data?.filter(ele => ele?.countryName === 'India')
+  const filterCountryObj = BranchResponse?.data?.filter(ele => ele?.countryName === 'india')
   const cityData = filterCountryObj?.[0]?.cities;
   setCountryList(BranchResponse?.data)
   setHomeBranchData(cityData);

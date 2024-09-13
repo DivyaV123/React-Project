@@ -24,7 +24,7 @@ function OurBranchesHome({ page, tabData }) {
   const { setSelectedBranch, setSelectedBatch, homeBranchData, countryList } =
     useContext(GlobalContext);
   const [btnState, setBtnState] = useState("OfflineClasses");
-  const [countryTab, setCountryTab] = useState("India");
+  const [countryTab, setCountryTab] = useState("india");
   const [activeTab, setActiveTab] = useState(true);
 
   const filterCountryObj = countryList?.filter(
@@ -32,7 +32,6 @@ function OurBranchesHome({ page, tabData }) {
   );
   const cityData = filterCountryObj && filterCountryObj[0]?.cities;
   let branchDetails = cityData;
-
   if (page !== "course" && branchDetails?.length > 0) {
     branchDetails = [
       ...branchDetails,
