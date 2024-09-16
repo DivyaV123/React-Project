@@ -109,9 +109,9 @@ function AdminBranchesList() {
   const filteredBranches = [];
 
   branchData?.data?.forEach((country) => {
-    country.cities.forEach((city) => {
-      city.courses.forEach((course) => {
-        const matchingBranches = course.branches.filter(
+    country?.cities?.forEach((city) => {
+      city?.courses?.forEach((course) => {
+        const matchingBranches = course?.branches?.filter(
           (branch) => branch.organizationType === initialOrgType
         );
         filteredBranches.push(...matchingBranches);

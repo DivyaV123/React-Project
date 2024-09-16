@@ -7,6 +7,7 @@ import {  OFFLINE_BRANCHES } from "@/lib/RouteConstants";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { truncateText } from "@/lib/utils";
 import { usePathname } from "next/navigation";
+import { toProperCase } from "@/lib/utils";
 const IndividualBranches = () => {
   const router = useRouter();
   const pathname = usePathname();
@@ -80,7 +81,7 @@ const IndividualBranches = () => {
               onClick={() => handleCountryTab(ele.countryName, ele)}
               key={ele.countryName}
             >
-              {countryName}
+              {toProperCase(countryName)}
             </button>
           );
         })}
@@ -96,7 +97,7 @@ const IndividualBranches = () => {
                 }`}
                 key={index}
               >
-                {ele.name}
+                {toProperCase(ele.name)}
               </button>
             ))}
           </div>

@@ -6,7 +6,7 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import Image from "next/image";
-
+import { toProperCase } from "@/lib/utils";
 const Branches = ({ BranchResponse }) => {
   const { setOnGoingBatches, setupComingBatches, setHoverState } =
     useContext(GlobalContext);
@@ -50,7 +50,7 @@ const Branches = ({ BranchResponse }) => {
               onClick={() => handleCountryTab(ele.countryName)}
               key={ele.countryName}
             >
-              {countryName}
+              {toProperCase(countryName)}
             </button>
           );
         })}
@@ -73,7 +73,7 @@ const Branches = ({ BranchResponse }) => {
               >
                 <img src={courseItem.cityIcon} />
                 <div className="flex justify-between grow">
-                  <button className="p-2.5 text-sm">{courseItem.cityName}</button>
+                  <button className="p-2.5 text-sm">{toProperCase(courseItem.cityName)}</button>
                   <img
                     src="/arrowIconDark.svg"
                     className={`${hoveredIndex === index ? "visible" : "invisible"
@@ -145,7 +145,7 @@ const Branches = ({ BranchResponse }) => {
                           <div className="pl-[0.781vw]">
                             <div className="flex justify-between pb-[1.111vh]">
                               <h3 className="text-left h-5 text-[0.938vw] font-bold">
-                                {content.branchName}
+                                {toProperCase(content.branchName)}
                               </h3>
                               <button onClick={() => window.open(content.location, "_blank")} className="flex gap-1 text-xs text z-1 items-center">
                                 <p className="text-[#7298FF] text-[0.703vw] p-[0.156vw]">Get Directions</p>

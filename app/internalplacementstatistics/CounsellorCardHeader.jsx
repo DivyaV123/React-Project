@@ -152,6 +152,7 @@ const CounsellorCardHeader = () => {
       setLoaderKey(prevKey => prevKey + 1);
     }
   }, [isFetchData]);
+
   return (
     <div
       className={`${

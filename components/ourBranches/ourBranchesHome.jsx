@@ -16,6 +16,7 @@ import { Skeleton } from "@/components/ui/skeleton";
 import "./ourBranchesHome.scss";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import { toProperCase } from "@/lib/utils";
 function OurBranchesHome({ page, tabData }) {
   const router = useRouter();
   const pathname = usePathname();
@@ -48,7 +49,7 @@ function OurBranchesHome({ page, tabData }) {
       setSelectedBatch(cityName);
       router.push(`/courses/${courseId}/${cityName}`);
     } else if (page !== "course" && cityName === "AllCities") {
-      router.push(`${COMBINED_BRANCHES}/${countryTab}`);
+      router.push(`${COMBINED_BRANCHES}/${toProperCase(countryTab)}`);
     }
   };
   useEffect(() => {
@@ -130,7 +131,7 @@ function OurBranchesHome({ page, tabData }) {
                 onClick={() => handleCountryTab(ele.countryName)}
                 key={ele.countryName}
               >
-                {countryName}
+                {toProperCase(countryName)}
               </button>
             );
           })}
@@ -180,7 +181,7 @@ function OurBranchesHome({ page, tabData }) {
                         {elements.cityName !== "AllCities" && (
                           <p className="absolute">
                             <h1 className="font-bold text-white text-[1.875vw] mobile:text-[4.651vw] flex flex-col justify-center items-center">
-                              {elements.cityName}
+                              {toProperCase(elements.cityName)}
                             </h1>
                             <h1 className="text-white text-[1.094vw] mobile:text-[3.256vw] flex flex-col justify-center items-center">
                               {elements.branchCount} Branches
@@ -219,7 +220,7 @@ function OurBranchesHome({ page, tabData }) {
                         {elements.cityName !== "AllCities" && (
                           <p className="absolute">
                             <h1 className="font-bold text-white text-[1.875vw] mobile:text-[4.651vw] flex flex-col justify-center items-center">
-                              {elements.cityName}
+                              {toProperCase(elements.cityName)}
                             </h1>
                             <h1 className="text-white text-[1.094vw] mobile:text-[3.256vw] flex flex-col justify-center items-center">
                               {elements.branchCount} Branches
