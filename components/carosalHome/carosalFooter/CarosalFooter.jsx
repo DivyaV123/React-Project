@@ -3,40 +3,14 @@ import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import React from 'react'
 import { Fade } from 'react-reveal'
 
-function CarosalFooter() {
-    const detail = [
-        {
-            count: 'NO.1',
-            details: 'Largest Training Institute # in the world'
-        },
-        {
-            count: '2.5L+',
-            details: 'Students have been # placed'
-        },
-        {
-            count: '4,000+',
-            details: 'Multinational companies # hire from us'
-        },
-        {
-            count: '20+',
-            details: 'Companies conduct interview  every working day'
-        },
-        {
-            count: '1,300+',
-            details: 'Students attend interview every day across companies'
-        },
-        {
-            count: '3,800+',
-            details: 'Students get placed in a month across the globe'
-        },
-    ]
+function CarosalFooter({heroPageData}) {
     return (
 
         <MaxWebWidth sectionStyling='z-100 flex justify-center sm:absolute sm:top-[74%] w-full sm:bottom-2 tabView:relative tabView:p-6' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3  items-center'>
             <Fade bottom duration={1000} delay={0} >
                 <div className='grid md:grid-cols-6 mobile:flex mobile:flex-wrap   mobile:py-[2.039vh] tabView:grid-cols-3'>
                     {
-                        detail.map((element) => {
+                        heroPageData?.data?.details?.map((element) => {
                             let content = element.details.replace(/#/g, "<br/>")
                             return (
                                 <div className='sm:p-2 mobile:w-[50%]  mobile:py-[2.039vh] mobile:pr-[5.581vw] mobile:pl-[3.721vw]'>

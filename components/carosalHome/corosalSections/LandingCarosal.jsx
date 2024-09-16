@@ -10,8 +10,10 @@ import LandingCarosalSkeleton from "./LandingCarosalSkeleton";
 import HiringModal from "@/app/hireFromUs/Modal/HiringModal";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import Image from "next/image";
+import { useGetHeroPageQuery } from "@/redux/queries/getheroPageApi";
 function LandingCarosal() {
   const { domainVariable } = useContext(GlobalContext)
+      let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "prospiders"
   const [isloading, setisLoading] = useState(true);
   const [active, setActive] = useState(false);
   const [activeTab, setActiveTab] = useState('General Enquiries')
@@ -23,6 +25,7 @@ function LandingCarosal() {
   const handleCloseModal = () => {
     setActive(false);
   };
+  const { data:heroPageData, isLoading, error } = useGetHeroPageQuery(domain);
   return (
     // isloading ? <LandingCarosalSkeleton />
     //   :
@@ -32,13 +35,13 @@ function LandingCarosal() {
           <aside className="flex items-center mb-8 2xl:mb-12 3xl:mb-16 mobile:m-0">
             <article className="headerArticle mb-10 w-full mobile:m-0">
               <h1 className="mainHead pb-[2.222vh] text-[3.75vw] mobile:text-[7.907vw] opacity-100 mobile:pt-[6.438vh] mobile:pb-[1.288vh] tabView:text-[4.57vw] tabView:font-normal">
-                Largest Software <br />{" "}
+                {heroPageData?.data?.title} <br />{" "}
                 <span className="gradient-text text-[3.75vw] mobile:text-[7.907vw] font-extra-bold tabView:text-[3.59vw]">
-                  Training Organization
+                  {heroPageData?.data?.subtitle}
                 </span>{" "}
               </h1>
               <p className="paragraph text-[1.25vw] mobile:text-[2.791vw] font-medium pb-[2.222vh] text-ash mobile:pb-[1.717vh]">
-                World's premier software training institution, dedicated to bridging the gap between industry demands and academic curricula. With centers worldwide, {domainVariable} provides a platform for young minds to cultivate successful careers.
+                {heroPageData?.data?.description}
               </p>
               <article className="sm:pb-[2.222vh] mobile:pb-[4.292vh]">
                 <Button
@@ -170,7 +173,7 @@ function LandingCarosal() {
           </aside>
         </Fade>
       </div>
-      <CarosalFooter />
+      <CarosalFooter heroPageData={heroPageData}/>
       {active && (
         <HiringModal
           isModalOpen={active}
