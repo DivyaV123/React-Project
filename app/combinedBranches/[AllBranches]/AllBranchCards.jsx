@@ -6,12 +6,12 @@ import { useGetAllBranchCourseQuery } from "@/redux/queries/getBranchCourseApi";
 import { COMBINED_BRANCHES } from "@/lib/RouteConstants";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { toProperCase } from "@/lib/utils";
 const AllBranchCards = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [branchcountry] = pathname.split("/").slice(2);
-  const capitalizedBranchCountry = branchcountry.charAt(0).toUpperCase() + branchcountry.slice(1);
-  const decodeCountry = decodeURIComponent(capitalizedBranchCountry);
+  const decodeCountry = decodeURIComponent(toProperCase(branchcountry));
   const { data: branchData, error, isLoading } = useGetAllBranchCourseQuery();
   const [countryTab, setCountryTab] = useState("India");
   const [activeTab, setActiveTab] = useState(true);
@@ -60,12 +60,11 @@ const AllBranchCards = () => {
             );
           })} */}
           <button
-                className={`text-[0.938vw] mobile:text-[2.326vw] font-bold activecountry
+            className={`text-[0.938vw] mobile:text-[2.326vw] font-bold activecountry
                 }`}
-               
-              >
-                {decodeCountry}
-              </button>
+          >
+            {decodeCountry}
+          </button>
         </section>
       </section>
       {AllBranchCourse?.length > 0 &&
