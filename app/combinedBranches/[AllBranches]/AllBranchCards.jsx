@@ -6,11 +6,12 @@ import { useGetAllBranchCourseQuery } from "@/redux/queries/getBranchCourseApi";
 import { COMBINED_BRANCHES } from "@/lib/RouteConstants";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
+import { toProperCase } from "@/lib/utils";
 const AllBranchCards = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [branchcountry] = pathname.split("/").slice(2);
-  const decodeCountry = decodeURIComponent(branchcountry);
+  const decodeCountry = decodeURIComponent(toProperCase(branchcountry));
   const { data: branchData, error, isLoading } = useGetAllBranchCourseQuery();
   const [countryTab, setCountryTab] = useState("India");
   const [activeTab, setActiveTab] = useState(true);
@@ -38,7 +39,7 @@ const AllBranchCards = () => {
           Our Offline branches
         </header>
         <section className="flex gap-6 w-[87.5vw] m-auto  pt-4  items-center pb-4">
-          {branchData?.data?.map((ele) => {
+          {/* {branchData?.data?.map((ele) => {
             const countryName =
               ele.countryName === "United Kingdom"
                 ? "UK"
@@ -57,7 +58,13 @@ const AllBranchCards = () => {
                 {countryName}
               </button>
             );
-          })}
+          })} */}
+          <button
+            className={`text-[0.938vw] mobile:text-[2.326vw] font-bold activecountry
+                }`}
+          >
+            {decodeCountry}
+          </button>
         </section>
       </section>
       {AllBranchCourse?.length > 0 &&
