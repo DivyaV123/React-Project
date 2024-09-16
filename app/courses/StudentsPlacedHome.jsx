@@ -53,7 +53,7 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
        
       );
       
-      console.log({organisationID})
+   
     return (
         <>
             <section className='w-full sm:bg-[#F6F6F6] '>
