@@ -1,5 +1,5 @@
 "use client";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect, useContext, use } from "react";
 import "./IndividualCentres.scss";
 import "../../IndividualBranches.scss";
 import CommonBranch from "./CommonBranch";
@@ -8,20 +8,24 @@ import { truncateText } from "@/lib/utils";
 import { OFFLINE_BRANCHES } from "@/lib/RouteConstants";
 import { usePathname, useRouter } from "next/navigation";
 import Svg from "@/components/commonComponents/Svg/Svg";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const IndividualCentres = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [branchNameAndCountry, courseId] = pathname.split("/").slice(2, 4);
   const [branchName, branchcountry] = branchNameAndCountry.split(",");
   const decodeCountry = decodeURIComponent(branchcountry);
-
+  const { domainVariable } = useContext(GlobalContext);
+        let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "prospiders"
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [countryTab, setCountryTab] = useState("India");
+  const [countryTab, setCountryTab] = useState("india");
   const [activeTab, setActiveTab] = useState(true);
-  const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery();
-  const filterCountryObj = homeBranchData?.data?.filter(ele=>ele?.countryName===countryTab)
+  const { data: homeBranchData, error, isLoading } = useGetAllBranchesQuery(domain);
+  const filterCountryObj = homeBranchData?.data?.filter(
+    (ele) => ele?.countryName === countryTab
+  );
   const navCities = filterCountryObj?.[0]?.cities;
-  const selectedCity = navCities?.find((city) => city.cityName === branchName);
+  const selectedCity = navCities?.find((city) => city.cityName.toLowerCase() === branchName.toLowerCase());
   const selectedId = selectedCity?.courses?.find(
     (item) => String(item.courseId) === String(courseId)
   );
@@ -34,7 +38,6 @@ const IndividualCentres = () => {
   });
 
   const totalCities = newNavCities?.length;
-
 
   useEffect(() => {
     setCountryTab(decodeCountry);
@@ -55,7 +58,9 @@ const IndividualCentres = () => {
 
   return (
     <div className="w-full cityNavbar">
-      <header className="offlineHeader w-[87.5vw] m-auto">Our Offline Centres</header>
+      <header className="offlineHeader w-[87.5vw] m-auto">
+        Our Offline Centres
+      </header>
       <section className="flex gap-6 w-[87.5vw] m-auto  pt-4  items-center pb-4">
         {homeBranchData?.data?.map((ele) => {
           const countryName =
@@ -80,8 +85,7 @@ const IndividualCentres = () => {
       </section>
       <section className="citySection w-[95vw] mobile:w-[92.558vw] m-auto pt-[1.667vh] pb-[8.889vh]">
         <div className="flex justify-between items-center gap-1 sm:w-[87.5vw] sm:m-auto">
-
-        <div className="flex  items-center  sm:flex-wrap sm:gap-2 w-full">
+          <div className="flex  items-center  sm:flex-wrap sm:gap-2 w-full">
             {newNavCities?.map((ele, index) => (
               <button
                 onClick={() => handleBranchClick(ele.name)}
