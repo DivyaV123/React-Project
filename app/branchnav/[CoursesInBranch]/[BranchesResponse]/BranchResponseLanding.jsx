@@ -1,17 +1,20 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo ,useContext} from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import "../../BranchPopup.scss";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const BranchResponseLanding = () => {
+  const { domainVariable } = useContext(GlobalContext);
+      let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
   const {
     data: BranchResponse,
     error: branchError,
     isLoading: branchIsLoading,
-  } = useGetAllBranchesQuery();
+  } = useGetAllBranchesQuery(domain);
   const pathname = usePathname();
   const [branchName, branchId] = pathname.split("/").slice(2, 4);
 

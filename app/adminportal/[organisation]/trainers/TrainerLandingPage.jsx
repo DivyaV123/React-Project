@@ -1,6 +1,6 @@
 'use client'
 import Input from '@/components/commonComponents/input/Input'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState ,useContext} from 'react'
 import {
     Table,
     TableBody,
@@ -28,6 +28,7 @@ import { useAddTrainerMutation } from '@/redux/queries/addTrainerApi';
 import { useTrainerDeleteMutation } from '@/redux/queries/deleteTrainerApi';
 import { AlertDialog } from "@/components/ui/alert-dialog";
 import DeleteWarningPopup from '@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup';
+import { GlobalContext } from '@/components/Context/GlobalContext';
 
 function TrainerLandingPage() {
     const [editData, setEditData] = useState(null);
@@ -63,6 +64,8 @@ function TrainerLandingPage() {
 
     const handleMouseEnter = (index) => setDropdownOpen(index);
     const handleMouseLeave = () => setDropdownOpen(null);
+         const { domainVariable } = useContext(GlobalContext);
+      let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
     const initialOrgType =
         instituteParam === "Qspiders"
             ? "QSP"
@@ -75,7 +78,7 @@ function TrainerLandingPage() {
                         : "QSP";
     const { data: trainersData, refetch: trainersRefetch } = useGetAllTrainersQuery();
     const { data: allSubjectData, refetch: subjectRefetch } = useGetAllSubjectsQuery();
-    const { data: branchData, refetch: branchRefetch } = useGetAllBranchesQuery({ organizationType: initialOrgType });
+    const { data: branchData, refetch: branchRefetch } = useGetAllBranchesQuery(domain);
     const [
         addTrainer,
         {

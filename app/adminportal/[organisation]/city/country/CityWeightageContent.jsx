@@ -16,7 +16,6 @@ import {
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useCitiesAdderMutation } from "@/redux/queries/addCitiesApi";
-import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { useGetAllCitiesForFormQuery } from "@/redux/queries/getCitiesApi";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";

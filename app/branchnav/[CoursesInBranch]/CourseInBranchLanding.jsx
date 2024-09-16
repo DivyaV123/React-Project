@@ -1,17 +1,20 @@
 "use client";
-import React, { useMemo } from "react";
+import React, { useMemo ,useContext} from "react";
 import { usePathname } from "next/navigation";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { BRANCH_NAV_BAR } from "@/lib/RouteConstants";
 import Link from "next/link";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const CourseInBranchLanding = () => {
+    const { domainVariable } = useContext(GlobalContext);
+      let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
   const pathname = usePathname();
   const branchName = pathname.split("/").pop();
   const {
     data: BranchResponse,
     error: branchError,
     isLoading: branchIsLoading,
-  } = useGetAllBranchesQuery();
+  } = useGetAllBranchesQuery(domain);
 
   const filteredBranch = useMemo(() => {
     if (!BranchResponse?.data) return null;
