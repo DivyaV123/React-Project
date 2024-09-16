@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import Link from "next/link";
@@ -8,17 +8,21 @@ import Loading from "@/lib/Loading";
 import { NAV_BAR, HOME_PATH } from "@/lib/RouteConstants";
 import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import "./BranchPopup.scss";
+import { GlobalContext } from "@/components/Context/GlobalContext";
+import { toProperCase } from "@/lib/utils";
 const BranchPopup = () => {
+     const { domainVariable } = useContext(GlobalContext);
+      let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
   const router = useRouter();
-  const [countryTab, setCountryTab] = useState("India");
+  const [countryTab, setCountryTab] = useState("india");
   const [activeTab, setActiveTab] = useState(true);
   const {
     data: BranchResponse,
     error: branchError,
     isLoading: branchIsLoading,
-  } = useGetAllBranchesQuery();
+  } = useGetAllBranchesQuery(domain);
   const getAllBranches = BranchResponse?.data;
-  const countryNames = ["India", "USA", "UK"];
+  const countryNames = ["india", "USA", "UK"];
   const handleGetAllBranches = (city) => {
     router.push(`/branchnav/${city}`);
   };
@@ -60,7 +64,7 @@ const BranchPopup = () => {
                 } `}
                 onClick={() => handleCountryTab(ele)}
               >
-                {ele}
+                {toProperCase(ele)}
               </button>
             ))}
           </section>
@@ -73,7 +77,7 @@ const BranchPopup = () => {
                 <div className="flex gap-4">
                   <img src={branch.cityIcon} />
                   <div className="text-[2.791vw] text-[#454545] font-semibold">
-                    {branch.cityName}
+                    {toProperCase(branch.cityName)}
                   </div>
                 </div>
                 <div>

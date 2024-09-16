@@ -20,7 +20,6 @@ import { AlertDialog } from "@/components/ui/alert-dialog";
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 // import { useCourseDeleteMutation } from "@/redux/queries/deleteBatch";
 import { useCourseEditorMutation } from "@/redux/queries/courseById";
-import { useGetAllBranchesQuery } from "@/redux/queries/getAllBranchData";
 import { useGetAllBranchesAsPerCountryQuery } from "@/redux/queries/getAllBranchesAsPerCountryApi";
 import CommonDialog from "@/components/commonComponents/adminDialog/CommonDialog";
 

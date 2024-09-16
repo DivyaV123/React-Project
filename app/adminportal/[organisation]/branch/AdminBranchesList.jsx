@@ -1,5 +1,5 @@
 "use client";
-import React, { useMemo, useEffect, useState } from "react";
+import React, { useMemo, useEffect, useState,useContext } from "react";
 import {
   Table,
   TableBody,
@@ -23,7 +23,7 @@ import { useGetAllBranchesAsPerCountryQuery } from "@/redux/queries/getAllBranch
 import AddBranchForm from "./AddBranchForm";
 import { useBranchDeleteMutation } from "@/redux/queries/deleteBranch";
 import { useGetBranchDetailsByIdQuery } from "@/redux/queries/getBranchDetailsByBranchIdApi";
-
+import { GlobalContext } from "@/components/Context/GlobalContext";
 function AdminBranchesList() {
   const [storebranchId, setStorebranchId] = useState([]);
   const [deleteCourse, setDeleteCourse] = useState(false);
@@ -34,19 +34,26 @@ function AdminBranchesList() {
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
+  const { domainVariable } = useContext(GlobalContext);
+  let domain =
+    domainVariable === "Qspiders"
+      ? "qspiders"
+      : domainVariable === "Jspiders"
+      ? "jspiders"
+      : domainVariable === "Pyspiders"
+      ? "pyspiders"
+      : "bspiders";
   const initialOrgType =
     instituteParam === "Qspiders"
       ? "QSP"
       : instituteParam === "Jspiders"
-        ? "JSP"
-        : instituteParam === "Pyspiders"
-          ? "PYSP"
-          : instituteParam === "Prospiders"
-            ? "PROSP"
-            : "QSP";
-  const { data: branchData, refetch: branchRefetch } = useGetAllBranchesQuery({
-    organizationType: initialOrgType,
-  });
+      ? "JSP"
+      : instituteParam === "Pyspiders"
+      ? "PYSP"
+      : instituteParam === "Prospiders"
+      ? "PROSP"
+      : "QSP";
+  const { data: branchData, refetch: branchRefetch } = useGetAllBranchesQuery(domain);
 
   const { data: categoryData, refetch: categoryRefetch } =
     useGetAllBranchesAsPerCountryQuery({

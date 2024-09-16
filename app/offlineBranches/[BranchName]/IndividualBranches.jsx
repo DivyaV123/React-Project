@@ -37,7 +37,7 @@ const IndividualBranches = () => {
 
   const handleCourseRoute = (e, course) => {
     e.preventDefault();
-    router.push(`${OFFLINE_BRANCHES}/${branchName},${countryTab}/${course}`);
+    router.push(`/courses/${course}`);
     setSelectedCourseId(course);
   };
 
