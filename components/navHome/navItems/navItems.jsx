@@ -62,7 +62,7 @@ function NavItems() {
     { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
     { id: 3, name: "Online Courses", content: <OnlineCourses courseResponse={onlineCourseResponse} /> },
     // { id: 3, name: "University Programs", content: <UniversityProgram /> },
-    { id: 5, name: "Tuitions", content: <Tutions /> },
+    // { id: 5, name: "Tuitions", content: <Tutions /> },
     { id: 4, name: "Corporate Training", content: "" },
     { id: 6, name: "Hire From Us", content: "" },
     { id: 7, name: "Placements", content: "" },
