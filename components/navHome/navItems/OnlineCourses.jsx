@@ -5,11 +5,14 @@ import Link from "next/link";
 import { truncateText } from "@/lib/utils";
 import Image from "next/image";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { filterOnlineCourses } from "@/lib/utils";
 const OnlineCourses = ({ courseResponse }) => {
   const { setHoverState } = useContext(GlobalContext);
   const [hoveredIndex, setHoveredIndex] = useState(0);
   const [hoveredItemIndex, setHoveredItemIndex] = useState(0);
-  const getAllCourses = courseResponse?.data;
+    
+  const getAllCourses = filterOnlineCourses(courseResponse?.data);
+
   const subCourse =
     getAllCourses?.[hoveredIndex]?.subCourse?.length > 0 &&
     getAllCourses?.[hoveredIndex]?.subCourse;
