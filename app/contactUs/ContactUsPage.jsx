@@ -11,10 +11,11 @@ import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import "./contactUsPage.scss";
-import { usePostContactMutation } from "../../redux/queries/contactUSApi";
+
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 import { GlobalContext } from "@/components/Context/GlobalContext";
+import { useEnrollMutation } from "@/redux/queries/enrollNowApi";
 import Image from "next/image";
 
 function ContactUsPage() {
@@ -24,7 +25,7 @@ function ContactUsPage() {
   const { toast } = useToast();
   const [isMobileView, setIsMobileView] = useState(false);
   const { domainVariable } = useContext(GlobalContext);
-
+  const [enrollNow] = useEnrollMutation();
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
 
@@ -62,24 +63,33 @@ function ContactUsPage() {
       .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
     message: Yup.string().required("Message is required"),
   });
-  const [postContact] = usePostContactMutation();
+  
   const onSubmit = async (values, { resetForm }) => {
     try {
+      const fullMobileNumber = values.phone;
+      const numberWithoutCountryCode = fullMobileNumber.replace(
+        countryCode,
+        ""
+      );
       const payload = {
         userName: values.name,
-        phoneNumber: "+" + values.phone,
+        mobileNumber: {
+          code: `+${countryCode}`,
+          number: numberWithoutCountryCode,
+        },
         email: values.email,
         message: values.message,
       };
 
-      const response = await postContact(payload);
-      if (response.data.statusCode === 201) {
+      const response = await enrollNow(payload);
+     
+      if (response) {
         formikDetails.setFieldValue("name", "");
         formikDetails.setFieldValue("email", "");
         formikDetails.setFieldValue("message", "");
         formikDetails.setFieldValue("phone", countryCode);
         toast({
-          variant: "customizeGradient",
+          variant: "success",
           title: "Thank you, We will get back to you soon",
           // description: "Friday, February 10, 2023 at 5:57 PM",
         });
