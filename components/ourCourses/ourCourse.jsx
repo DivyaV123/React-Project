@@ -25,11 +25,12 @@ import Image from "next/image";
 
 function OurCourse({ page }) {
   const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery();
-  const {
-    data: homeCourse,
-    error: homeCourseError,
-    isloading: homeCourseLoading,
-  } = useGetHomePageCourseQuery();
+  //commented upto testing to be done for Explore our courses , we are using getAllcategories for Explore our courses as well
+  // const {
+  //   data: homeCourse,
+  //   error: homeCourseError,
+  //   isloading: homeCourseLoading,
+  // } = useGetHomePageCourseQuery();
 
   const [openIndex, setOpenIndex] = useState(0);
 
@@ -41,11 +42,85 @@ function OurCourse({ page }) {
       arrow: "./arrowIconDark.svg",
     };
   });
+  const groupCoursesByMode=(data)=> {
+    const result = {
+      SELF_PACED: [],
+      ONLINE_CLASSES: [],
+      CORPORATE_TRAINING: [],
+      OFFLINE_CLASSES: []
+    };
+    const findOrCreateCategory=(mode, categoryInfo)=> {
+      const existingCategory = result[mode].find(
+        (item) => item.category.categoryId === categoryInfo.categoryId
+      );
+      if (existingCategory) {
+        return existingCategory;
+      } else {
+        const newCategory = {
+          category: categoryInfo,
+          courses: []
+        };
+        result[mode].push(newCategory);
+        return newCategory;
+      }
+    }
+  
+    data?.forEach(category => {
+      const categoryInfo = {
+        categoryId: category.courseId,
+        icon: category.icon,
+        alternativeIcon: category.alternativeIcon,
+        title: category.title,
+        subCourses: []
+      };
+  
+      if (category?.courseResponse) {
+        category?.courseResponse.forEach(course => {
+          course?.modes?.forEach(mode => {
+            if (result[mode]) {
+              const categoryEntry = findOrCreateCategory(mode, categoryInfo);
+              const courseInfo = { ...course, category: { ...categoryInfo } };
+              categoryEntry.courses.push(courseInfo);
+            }
+          });
+        });
+      }
+  
+      if (category?.subCourse) {
+        category?.subCourse?.forEach(subCourse => {
+          const subCourseInfo = {
+            subCourseId: subCourse.subCourseId,
+            icon: subCourse.icon,
+            title: subCourse.title,
+            courses: []
+          };
+  
+          if (subCourse?.subCourseResponse) {
+            subCourse?.subCourseResponse?.forEach(course => {
+              course?.modes?.forEach(mode => {
+                if (result[mode]) {
+                  const categoryEntry = findOrCreateCategory(mode, categoryInfo);
+                  const courseInfo = { ...course, category: { ...categoryInfo }, subCourse: { ...subCourseInfo } };
+                  categoryEntry.courses.push(courseInfo);
+                }
+              });
+            });
+          }
+          categoryInfo.subCourses.push(subCourseInfo);
+        });
+      }
+    });
+  
+    return result;
+  }
+  
+  const groupedCourses = groupCoursesByMode(AllCourse?.data);  
+
 
   const [viewAllCoursesHover, setviewAllCoursesHover] = useState(false);
   const [hoveredCategory, setHoveredCategory] = useState("Popular Courses");
 
-  const typesOfClasses = Object.keys(homeCourse?.data || {})
+  const typesOfClasses = Object.keys(groupedCourses || {})
 
 
   const [btnState, setBtnState] = useState(
@@ -62,10 +137,10 @@ function OurCourse({ page }) {
 
   const noSpaceText = btnState.replace(/\s+/g, "").toUpperCase();
   const getFinalCourseList =
-    homeCourse?.data?.[noSpaceText]
-      ?.filter((ele) => ele.categoryName === hoveredCategory)
+  groupedCourses?.[noSpaceText]
+      ?.filter((ele) => ele?.category?.title === hoveredCategory)
       ?.flatMap((ele) => ele.courses) ?? [];
-
+console.log(getFinalCourseList,"getFinalCourseList")
   return (
     <MaxWebWidth>
       {page !== "explore" && (
