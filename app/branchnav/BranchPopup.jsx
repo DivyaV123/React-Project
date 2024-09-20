@@ -22,7 +22,8 @@ const BranchPopup = () => {
     isLoading: branchIsLoading,
   } = useGetAllBranchesQuery(domain);
   const getAllBranches = BranchResponse?.data;
-  const countryNames = ["india", "USA", "UK"];
+  // const countryNames = ["india", "USA", "UK"];
+  const countryNames = ["india"];
   const handleGetAllBranches = (city) => {
     router.push(`/branchnav/${city}`);
   };

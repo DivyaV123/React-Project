@@ -69,7 +69,7 @@ function CourseEditorFormLanding() {
         category: Yup.string().required("category is required"),
         // subCourse: Yup.string().required("Sub Course is required"),
         // courseName: Yup.string().required("Course name is required"),
-        courseName: Yup.string().required("Course Name is required"),
+        courseName: Yup.string().trim().required("Course Name is required"),
         courseDescription: Yup.string().required("Course Description is required"),
         courseSummary: Yup.string().required("Course Summary is required"),
         aboutCourse: Yup.string().required("About the Course is required"),
@@ -362,58 +362,129 @@ function CourseEditorFormLanding() {
 
 
 
+    // const courseEditSubmit = async () => {
+    //     setSelectedCourseEdit(false);
+    //     setSelectedCourseName("");
+    //     setSelectedSubCourse('');
+    //     setSelectedCourse('');
+    //     refetch();
+    //     formikDetails.handleSubmit()
+    //     let editedValues = formikDetails.values;
+    //     let faqArray = []
+    //     editedValues.faqs.map((element) => {
+    //         faqArray.push({
+    //             answer: element.answer,
+    //             faqId: element.faqId,
+    //             faqType: "COURSE",
+    //             question: element.question,
+    //             createdDateAndTime: null,
+    //             updatedDateAndTime: null
+    //         })
+    //     })
+
+    //     const courseObj = {
+    //         courseId: courseToEditData.data.courseId,
+    //         courseName: editedValues.courseName,
+    //         mode: editedValues.mode,
+    //         courseDescription: editedValues.courseDescription,
+    //         courseSummary: editedValues.courseSummary,
+    //         courseAbout: editedValues.aboutCourse,
+    //         courseHighlight: editedValues.courseHighlights,
+    //         faqs: faqArray,
+    //         branchType: courseToEditData.data.branchType,
+    //         courseIcon: courseToEditData.data.courseIcon,
+    //         courseImage: courseToEditData.data.courseImage,
+    //         homePageImage: courseToEditData.data.homePageImage
+    //     }
+    //     const payloadString = JSON.stringify(courseObj);
+
+    //     const payload = {
+    //         courseContent: payloadString,
+    //         cardImage: files.cardImage,
+    //         pageImage: files.pageImage,
+    //         icon: files.icon
+    //     }
+    //     try {
+    //         const response = await editSelectedCourse({ bodyData: payload }).unwrap();
+    //         if (response.statusCode == 200) {
+    //             alert(`course ${editedValues.courseName} edited successfully`);
+    //         } else {
+    //             alert(response.statusCode)
+    //         }
+
+    //     } catch (err) {
+    //         console.error(err, "Error from loginAPI");
+    //         alert(err.message)
+    //     }
+    // }
     const courseEditSubmit = async () => {
-        setSelectedCourseEdit(false);
-        setSelectedCourseName("");
-        setSelectedSubCourse('');
-        setSelectedCourse('');
-        refetch()
-        let editedValues = formikDetails.values;
-        let faqArray = []
-        editedValues.faqs.map((element) => {
-            faqArray.push({
-                answer: element.answer,
-                faqId: element.faqId,
-                faqType: "COURSE",
-                question: element.question,
-                createdDateAndTime: null,
-                updatedDateAndTime: null
+        
+        const errors = await formikDetails.validateForm();
+        
+        if (Object.keys(errors).length === 0) {
+            setSelectedCourseEdit(false);
+            setSelectedCourseName("");
+            setSelectedSubCourse('');
+            setSelectedCourse('');
+            refetch();
+            
+            let editedValues = formikDetails.values;
+            let faqArray = []
+            editedValues.faqs.map((element) => {
+                faqArray.push({
+                    answer: element.answer,
+                    faqId: element.faqId,
+                    faqType: "COURSE",
+                    question: element.question,
+                    createdDateAndTime: null,
+                    updatedDateAndTime: null
+                })
             })
-        })
-
-        const courseObj = {
-            courseId: courseToEditData.data.courseId,
-            courseName: editedValues.courseName,
-            mode: editedValues.mode,
-            courseDescription: editedValues.courseDescription,
-            courseSummary: editedValues.courseSummary,
-            courseAbout: editedValues.aboutCourse,
-            courseHighlight: editedValues.courseHighlights,
-            faqs: faqArray,
-            branchType: courseToEditData.data.branchType,
-            courseIcon: courseToEditData.data.courseIcon,
-            courseImage: courseToEditData.data.courseImage,
-            homePageImage: courseToEditData.data.homePageImage
-        }
-        const payloadString = JSON.stringify(courseObj);
-
-        const payload = {
-            courseContent: payloadString,
-            cardImage: files.cardImage,
-            pageImage: files.pageImage,
-            icon: files.icon
-        }
-        try {
-            const response = await editSelectedCourse({ bodyData: payload }).unwrap();
-            if (response.statusCode == 200) {
-                alert(`course ${editedValues.courseName} edited successfully`);
-            } else {
-                alert(response.statusCode)
+    
+            const courseObj = {
+                courseId: courseToEditData.data.courseId,
+                courseName: editedValues.courseName,
+                mode: editedValues.mode,
+                courseDescription: editedValues.courseDescription,
+                courseSummary: editedValues.courseSummary,
+                courseAbout: editedValues.aboutCourse,
+                courseHighlight: editedValues.courseHighlights,
+                faqs: faqArray,
+                branchType: courseToEditData.data.branchType,
+                courseIcon: courseToEditData.data.courseIcon,
+                courseImage: courseToEditData.data.courseImage,
+                homePageImage: courseToEditData.data.homePageImage
             }
-
-        } catch (err) {
-            console.error(err, "Error from loginAPI");
-            alert(err.message)
+            const payloadString = JSON.stringify(courseObj);
+    
+            const payload = {
+                courseContent: payloadString,
+                cardImage: files.cardImage,
+                pageImage: files.pageImage,
+                icon: files.icon
+            }
+            try {
+                const response = await editSelectedCourse({ bodyData: payload }).unwrap();
+                if (response.statusCode == 200) {
+                    alert(`course ${editedValues.courseName} edited successfully`);
+                } else {
+                    alert(response.statusCode)
+                }
+    
+            } catch (err) {
+                console.error(err, "Error from loginAPI");
+                alert(err.message)
+            }
+        } else {
+          
+            formikDetails.setErrors(errors);
+           
+            formikDetails.setTouched(
+                Object.keys(formikDetails.values).reduce((acc, key) => {
+                    acc[key] = true;
+                    return acc;
+                }, {})
+            );
         }
     }
     const handleDeleteSelectedCourse = async () => {
@@ -818,7 +889,7 @@ function CourseEditorFormLanding() {
                                     placeholder="select a file"
                                     type="file"
                                 />
-                                <p className='text-[0.8rem] text-gray-500'>{courseToEditData.data.homePageImage || "No file selected"}</p>
+                                <p className='text-[0.8rem] text-gray-500'>{courseToEditData?.data?.homePageImage || "No file selected"}</p>
                             </div>
                             <div>
                                 <p>Course Card Image</p>
@@ -827,7 +898,7 @@ function CourseEditorFormLanding() {
                                     placeholder="select a file"
                                     type="file"
                                 />
-                                <p className='text-[0.8rem] text-gray-500'>{courseToEditData.data.courseImage || "No file selected"}</p>
+                                <p className='text-[0.8rem] text-gray-500'>{courseToEditData?.data?.courseImage || "No file selected"}</p>
                             </div>
                         </div>
 
@@ -835,6 +906,7 @@ function CourseEditorFormLanding() {
                             <button
                                 type="submit"
                                 onClick={courseEditSubmit}
+                               
                                 className="py-2 px-4 bg-gradient rounded-md text-white"
                             >
                                 Edit

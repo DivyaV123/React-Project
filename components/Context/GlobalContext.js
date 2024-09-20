@@ -59,6 +59,7 @@ const GlobalContextProvider = ({ children }) => {
   const [universitySearchQuery, setUniversitySearchQuery] = useState("");
   const [yearSearchQuery, setYearSearchQuery] = useState("");
   const [streamSearchQuery, setStreamSearchQuery] = useState("");
+  const [selecteCourseDetails, setSelecteCourseDetails] = useState({});
   // edit Subject
   const [individualSubjectData, setIndividualSubjectData] = useState();
   //course testimonialpopup
@@ -458,6 +459,8 @@ const GlobalContextProvider = ({ children }) => {
         setScrollPage,
         filteredDateRange,
         setFilteredRange,
+        selecteCourseDetails, 
+        setSelecteCourseDetails
       }}
     >
       {children}

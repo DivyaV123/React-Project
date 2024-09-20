@@ -52,17 +52,17 @@ function CourseFormLanding() {
   const validationSchema = Yup.object({
     course: Yup.string().required("Course is required"),
     // subCourse: Yup.string().required("Sub Course is required"),
-    courseName: Yup.string().required("Course Name is required"),
-    courseDescription: Yup.string().required("Course Description is required"),
-    courseSummary: Yup.string().required("Course Summary is required"),
-    aboutCourse: Yup.string().required("About the Course is required"),
-    courseHighlights: Yup.string().required("Course Highlights are required"),
+    courseName: Yup.string().trim().required("Course Name is required"),
+    courseDescription: Yup.string().trim().required("Course Description is required"),
+    courseSummary: Yup.string().trim().required("Course Summary is required"),
+    aboutCourse: Yup.string().trim().required("About the Course is required"),
+    courseHighlights: Yup.string().trim().required("Course Highlights are required"),
     faqs: Yup.array()
       .min(1, "At least one FAQ is required")
       .of(
         Yup.object().shape({
-          question: Yup.string().required("Question is required"),
-          answer: Yup.string().required("Answer is required"),
+          question: Yup.string().trim().required("Question is required"),
+          answer: Yup.string().trim().required("Answer is required"),
         })
       ),
     organisation: Yup.array().min(1, "At least one organisation is required"),
@@ -143,7 +143,31 @@ function CourseFormLanding() {
     if (!formikDetails.values.answer) {
       errors.answer = "Answer is required";
     }
-
+    const trimmedQuestion = formikDetails.values.question.trim();
+    const trimmedAnswer = formikDetails.values.answer.trim();
+    
+    if (!trimmedQuestion) {
+      errors.question = "Question is required";
+    }
+    
+    if (!trimmedAnswer) {
+      errors.answer = "Answer is required";
+    }
+    const question = formikDetails.values.question;
+    const answer = formikDetails.values.answer;
+    
+    // Regular expression to check for only one space at the beginning
+    const leadingSpaceRegex = /^ {0,1}[^ ]/;
+  
+   
+    if (!question.trim() || !leadingSpaceRegex.test(question)) {
+      errors.question = "Question cannot be empty and must start with at most one space";
+    }
+  
+   
+    if (!answer.trim() || !leadingSpaceRegex.test(answer)) {
+      errors.answer = "Answer cannot be empty and must start with at most one space";
+    }
     // Set errors and return if there are any
     if (Object.keys(errors).length > 0) {
       formikDetails.setErrors({

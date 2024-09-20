@@ -1,18 +1,22 @@
 "use client";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import "./upComingBranches.scss";
 import SendRequestForm from "./SendRequestForm";
 import CourseDetails from "./CourseDetails";
 import BranchWithFilter from "./BranchWithFilter";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const UpcomingBatchesLanding = () => {
   const [modeOfClass, setModeOfClass] = useState("Online");
   const upComingSchedule = ["Weekday", "Weekend", "Online", "Offline"];
+  const {selecteCourseDetails} =
+  useContext(GlobalContext);
+ 
   return (
     <>
       <section className="w-[87.5vw] m-auto mobile:w-[92.558vw]">
         <article className="font-bold text-[1.875vw] sm:pt-[4.444vh] sm:pb-[2.222vh] mobile:text-[3.721vw] ">
-          Schedule for Java Full Stack Developer
+          Schedule for {selecteCourseDetails.courseName}
         </article>
         <section className="flex gap-3 py-[2.222vh]">
           {upComingSchedule.map((item, index) => {
@@ -55,7 +59,7 @@ const UpcomingBatchesLanding = () => {
             </>
           )}
 
-          <CourseDetails />
+          <CourseDetails selecteCourseDetails={selecteCourseDetails}/>
         </div>
       </section>
     </>

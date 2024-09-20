@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import Button from "@/components/commonComponents/button/Button";
 import EnrollPopUp from "@/components/commonComponents/courseCard/EnrollPopUp";
-const CourseDetails = () => {
+const CourseDetails = ({selecteCourseDetails}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const handleClick = () => {
     setIsModalOpen(true);
@@ -17,7 +17,7 @@ const CourseDetails = () => {
         <div className="flex justify-between">
           <div>
           <p className="font-semibold text-[1.25vw]">
-            Java Full Stack Developer
+            {selecteCourseDetails?.courseName}
           </p>
           <section className="flex gap-10 pt-[2.222vh] pb-[3.611vh]">
           <div className="flex gap-1.5 items-center">
@@ -61,6 +61,7 @@ const CourseDetails = () => {
       <EnrollPopUp
         isModalOpen={isModalOpen}
         handleCloseModal={handleCloseModal}
+        cardData={selecteCourseDetails}
       />
     </>
   );
