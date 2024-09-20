@@ -285,7 +285,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                 />
                 
               )}
-              {videoDialog  && element?.gotjob[0]?.mini_testimonial?.url_details.youtube_video_without_company_name && (
+              {videoDialog  && element?.gotjob[0]?.mini_testimonial?.url_details?.youtube_video_without_company_name && (
                 <VideoPopup videoLink={getFilteredTestimonials(
                   element?.gotjob[0]?.mini_testimonial?.url_details
                     ?.youtube_video_without_company_name)}  />
