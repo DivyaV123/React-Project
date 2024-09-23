@@ -17,7 +17,7 @@ function PlacementAssistance() {
     return (
         <section className='mt-[3.333vh] mobile:mt-[3.219vh] mobile:hidden'>
             <header>
-                <Slide top cascade>
+                <Slide direction="top" cascade>
                     <p className='font-bold text-[2rem] mobile:text-[5.581vw] text-black flex justify-center align-center sm:mb-8 sm:mt-8 mobile:mb-[1.717vh]'>
                         Why Choose {domainVariable}
                     </p>
