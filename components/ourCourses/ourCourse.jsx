@@ -140,7 +140,6 @@ function OurCourse({ page }) {
   groupedCourses?.[noSpaceText]
       ?.filter((ele) => ele?.category?.title === hoveredCategory)
       ?.flatMap((ele) => ele.courses) ?? [];
-console.log(getFinalCourseList,"getFinalCourseList")
   return (
     <MaxWebWidth>
       {page !== "explore" && (
