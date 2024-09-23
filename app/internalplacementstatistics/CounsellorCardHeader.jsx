@@ -1,5 +1,5 @@
 "use client";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState,useRef } from "react";
 import TotalPlacedCard from "../placements/TotalPlacedCard";
 import DegreeCard from "../placements/DegreeCard";
 import OverviewCard from "../placements/OverviewCard";
@@ -121,7 +121,15 @@ const CounsellorCardHeader = () => {
     }
     return searchParams;
   };
-
+  const scrollContainerRef = useRef(null);
+  useEffect(() => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollTo({
+        top: 0,
+        behavior: "smooth", 
+      });
+    }
+  }, [filteredDateRange]);
   useEffect(() => {
     const searchParams = constructSearchParams();
     const fullURL = `${COUNSELLOR_SECTION}/${
@@ -230,6 +238,7 @@ const CounsellorCardHeader = () => {
 
         </div>
         <div
+        ref={scrollContainerRef}
           onScroll={(event) => {
             handleScroll(
               event,

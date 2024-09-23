@@ -289,8 +289,8 @@ function SubCategoryContent() {
       subCategoryTitle: values.subCategory,
     };
     let editPayload = {
-      subCategoryTitle: values.subCategory,
-      subCategoryId: editData.subCourseId,
+      subCategoryTitle: values?.subCategory,
+      subCategoryId: editData?.subCourseId,
     };
 
     try {

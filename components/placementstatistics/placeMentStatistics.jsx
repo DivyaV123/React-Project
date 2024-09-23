@@ -7,7 +7,7 @@ import Image from 'next/image';
 
 function PlaceMentStatistics({ className, path, statistics }) {
     const [isloading, setisLoading] = useState(true)
-    const { setPlacementParam, setNonItCheckedIcon, setThroughCheckedIcon, setPlacedCheckedIcon, setLessCheckedIcon, setItCheckedIcon } = useContext(GlobalContext)
+    const { setPlacementParam, setNonItCheckedIcon, setThroughCheckedIcon, setPlacedCheckedIcon, setLessCheckedIcon, setItCheckedIcon,setFilteredRange } = useContext(GlobalContext)
     useEffect(() => {
         setTimeout(() => {
             setisLoading(false)
@@ -21,6 +21,10 @@ function PlaceMentStatistics({ className, path, statistics }) {
                 setPlacedCheckedIcon(false);
                 setLessCheckedIcon(true);
                 setItCheckedIcon(false);
+                setFilteredRange((prev)=>({
+                    less_than60:true
+                })
+                )
                 break;
             case "nonit":
                 setNonItCheckedIcon(true);
@@ -28,6 +32,10 @@ function PlaceMentStatistics({ className, path, statistics }) {
                 setPlacedCheckedIcon(false);
                 setLessCheckedIcon(false);
                 setItCheckedIcon(false);
+                setFilteredRange((prev)=>({
+                    non_it:true
+                })
+                )
                 break;
             case "it":
                 setNonItCheckedIcon(false);
@@ -35,6 +43,10 @@ function PlaceMentStatistics({ className, path, statistics }) {
                 setPlacedCheckedIcon(false);
                 setLessCheckedIcon(false);
                 setItCheckedIcon(true);
+                setFilteredRange((prev)=>({
+                    it:true
+                })
+                )
                 break;
             case "throughoutsixty":
                 setNonItCheckedIcon(false);
@@ -42,6 +54,10 @@ function PlaceMentStatistics({ className, path, statistics }) {
                 setPlacedCheckedIcon(false);
                 setLessCheckedIcon(false);
                 setItCheckedIcon(false);
+                setFilteredRange((prev)=>({
+                    above_60:true
+                })
+                )
                 break;
             default:
                 break;
