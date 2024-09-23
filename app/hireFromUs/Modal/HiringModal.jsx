@@ -4,7 +4,8 @@ import React ,{useEffect} from 'react';
 import './hiringModal.scss'
 import HiringFromUsForm from '../HiringFromUsForm';
 
-const HiringModal = ({ isModalOpen, selectedCity, activeTab, handleCloseModal, setActiveTab }) => {
+const HiringModal = ({ isModalOpen, selectedCity, activeTab, handleCloseModal, setActiveTab,toast }) => {
+
     useEffect(() => {
         const body = document.body;
         const scrollbarWidth = window.innerWidth - body.clientWidth;
@@ -59,13 +60,13 @@ const HiringModal = ({ isModalOpen, selectedCity, activeTab, handleCloseModal, s
        </div>
         <div className="tab-content">
           {activeTab === 'Corporate Training' && <div>
-          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal}/>
+          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal} toast={toast}/>
           </div>}
           {activeTab === 'Hire From Us' && <div>
-          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal}/>
+          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal} toast={toast}/>
           </div>}
           {activeTab === 'General Enquiries' && <div>
-          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal}/>
+          <HiringFromUsForm activeTab={activeTab} handleCloseModal={handleCloseModal} toast={toast}/>
           </div>}
         </div>
       </div>

@@ -2,8 +2,10 @@
 import React, { useState } from "react";
 import "./HirefromusLanding.scss";
 import HiringModal from "./Modal/HiringModal";
-
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 const FindingCandidates = () => {
+  const { toast } = useToast();
   const cities = [
     { name: "Bangalore", image: "../../Icon_bangalore.png" },
     { name: "Hyderabad", image: "../../Icon_hydrebad.png" },
@@ -69,7 +71,9 @@ const FindingCandidates = () => {
         activeTab={activeTab}
         handleCloseModal={handleCloseModal}
         setActiveTab={setActiveTab}
+        toast={toast}
       />
+          <Toaster/>
     </section>
   );
 };

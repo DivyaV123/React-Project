@@ -46,7 +46,7 @@ function NavItems() {
     data: courseResponse,
     isLoading: CourseIsLoading,
     error: CourseError,
-  } = useGetAllCategoriesQuery();
+  } = useGetAllCategoriesQuery(domain);
   const {
     data: BranchResponse,
     error: branchError,

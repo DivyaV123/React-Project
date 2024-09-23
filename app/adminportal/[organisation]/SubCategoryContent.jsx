@@ -74,6 +74,7 @@ function SubCategoryContent() {
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
+  console.log(getParams[1], "checkif");
   const initialOrgType =
     instituteParam === "Qspiders"
       ? "QSP"
@@ -231,12 +232,7 @@ function SubCategoryContent() {
     return (
       <Form className="space-y-4">
         <div>
-          <label
-            htmlFor="subCategory"
-           
-          >
-            Sub Category
-          </label>
+          <label htmlFor="subCategory">Sub Category</label>
           <Input
             id="subCategory"
             name="subCategory"
@@ -319,7 +315,6 @@ function SubCategoryContent() {
     setSubCategoryId(id);
     setDeleteSubCategoryModal(true);
     setSubCategoryName(batchName);
-   
   };
 
   const handleDeleteSubCategory = async () => {
@@ -386,7 +381,11 @@ function SubCategoryContent() {
 
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] ">
-          <p className="px-4 font-bold text-[#434343]">{categoryTitle}</p>
+          {getParams[1] === "dynamic" ? (
+            <p className="px-4 font-bold text-[#434343]">{categoryTitle}</p>
+          ) : (
+            ""
+          )}
           <Table className="">
             <TableHeader className=" z-1">
               <TableRow>

@@ -1,11 +1,20 @@
 "use client";
-import React from "react";
+import React,{useContext} from "react";
 import CourseCard from "@/components/commonComponents/courseCard/courseCard";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
-
+import { GlobalContext } from "@/components/Context/GlobalContext";
 import CourseCardSkeleton from "@/components/commonComponents/courseCard/CourseCardSkeleton";
 const TrendingCourses = ({page}) => {
-  const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery();
+  const { domainVariable } = useContext(GlobalContext);
+  let domain =
+    domainVariable === "Qspiders"
+      ? "qspiders"
+      : domainVariable === "Jspiders"
+      ? "jspiders"
+      : domainVariable === "Pyspiders"
+      ? "pyspiders"
+      : "bspiders";
+  const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery(domain);
   const getPopularCourses = (AllCourse && AllCourse.data) 
   ? AllCourse.data
       .filter(ele => ele.title === "Popular Courses")

@@ -1,7 +1,7 @@
 'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState,useContext } from 'react';
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import dayjs from "dayjs";
@@ -13,16 +13,25 @@ import BranchDropDowns from '../branchEditForm/BranchDropDowns';
 import Input from '@/components/commonComponents/input/Input';
 import Button from '@/components/commonComponents/button/Button';
 import { useAddBatchApiMutation } from '@/redux/queries/addBatchApi';
-
+import { GlobalContext } from '@/components/Context/GlobalContext';
 
 function BatchFormLanding() {
+    const { domainVariable } = useContext(GlobalContext);
+    let domain =
+      domainVariable === "Qspiders"
+        ? "qspiders"
+        : domainVariable === "Jspiders"
+        ? "jspiders"
+        : domainVariable === "Pyspiders"
+        ? "pyspiders"
+        : "bspiders";
     const [addBatch, { data: branchAdd, error: courseError, isLoading: courseAdderLoad }] = useAddBatchApiMutation();
     const {
         data: courseResponse,
         isLoading: CourseIsLoading,
         error: CourseError,
         refetch
-    } = useGetAllCategoriesQuery();
+    } = useGetAllCategoriesQuery(domain);
     const [selectedCourse, setSelectedCourse] = useState("");
     const [subCourseOptions, setSubCourseOptions] = useState([]);
     const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);

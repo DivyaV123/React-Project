@@ -1,7 +1,7 @@
 'use client'
 import Dropdown from '@/components/commonComponents/dropdown/Dropdown'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useContext } from "react";
 import { useFormik, Field } from "formik";
 import * as Yup from "yup";
 import { useGetAllCategoriesInCourseQuery } from '@/redux/queries/getAllCategoriesInCourseForm'
@@ -12,9 +12,11 @@ import { useCourseWeightageEditMutation } from '@/redux/queries/courseWeightageE
 import { useToast } from "@/components/ui/use-toast"
 import { Toaster } from "@/components/ui/toaster"
 import { ToastAction } from '@/components/ui/toast';
-
+import { GlobalContext } from "@/components/Context/GlobalContext";
 function CourseWeitage() {
     const { toast } = useToast()
+        const { domainVariable } = useContext(GlobalContext);
+  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
     const [afterUpdate, setAfterUpdate] = useState(0)
     const [addCourseWeightage, { data: courseAdd, error: courseError, isLoading: courseAdderLoad }] = useCourseWeightageMutation();
     const [addCourseWeightageEdit, { data: courseEdit, error: courseEditError, isLoading: courseEditLoad }] = useCourseWeightageEditMutation();
@@ -23,7 +25,7 @@ function CourseWeitage() {
         isLoading: CourseIsLoading,
         error: CourseError,
         refetch
-    } = useGetAllCategoriesQuery();
+    } = useGetAllCategoriesQuery(domain);
     const [selectedCourse, setSelectedCourse] = useState("")
     const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);
     const [courseDisable, setCourseDisable] = useState(true)

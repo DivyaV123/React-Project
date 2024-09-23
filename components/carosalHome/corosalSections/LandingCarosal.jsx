@@ -15,7 +15,7 @@ function LandingCarosal() {
   const { domainVariable } = useContext(GlobalContext)
       let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "prospiders"
   const [isloading, setisLoading] = useState(true);
-  const [active, setActive] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('General Enquiries')
   useEffect(() => {
     setTimeout(() => {
@@ -23,8 +23,9 @@ function LandingCarosal() {
     }, 500);
   }, []);
   const handleCloseModal = () => {
-    setActive(false);
+    setIsModalOpen(false);
   };
+  console.log(isModalOpen,"isModalOpen")
   const { data:heroPageData, isLoading, error } = useGetHeroPageQuery(domain);
   return (
     // isloading ? <LandingCarosalSkeleton />
@@ -45,7 +46,7 @@ function LandingCarosal() {
               </p>
               <article className="sm:pb-[2.222vh] mobile:pb-[4.292vh]">
                 <Button
-                  onClick={() => setActive(true)}
+                  onClick={() => setIsModalOpen(true)}
                   className="primary text-[1.25vw] mobile:text-[3.721vw]"
                   title="Get Started"
                 />
@@ -174,9 +175,9 @@ function LandingCarosal() {
         </Fade>
       </div>
       <CarosalFooter heroPageData={heroPageData}/>
-      {active && (
+      {isModalOpen && (
         <HiringModal
-          isModalOpen={active}
+          isModalOpen={isModalOpen}
           activeTab={activeTab}
           handleCloseModal={handleCloseModal}
           setActiveTab={setActiveTab}

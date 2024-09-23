@@ -3,7 +3,7 @@ import Dropdown from '@/components/commonComponents/dropdown/Dropdown'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import WebLayout from '@/components/commonComponents/webLayout/WebLayout'
 import { useGetAllCategoriesQuery } from '@/redux/queries/getAllCategories'
-import React, { useState } from 'react'
+import React, { useState ,useContext} from 'react'
 import { useFormik, Field } from "formik";
 import * as Yup from "yup";
 import Button from '@/components/commonComponents/button/Button'
@@ -11,7 +11,7 @@ import { useCourseCategoryMapMutation } from '@/redux/queries/courseCategoryMapi
 import { useCourseSubCategoryMapMutation } from '@/redux/queries/courseSubCategoryMapApi'
 import { useCategoryUnMapMutation } from '@/redux/queries/categoryUnMapApi'
 import { useSubCategortyUnMapMutation } from '@/redux/queries/subCategortyUnMapApi'
-
+import { GlobalContext } from '@/components/Context/GlobalContext'
 function CourseMapLanding() {
     const [courseCategoryMap, { data: courseCategoryMapData, error: courseCategoryMapError, isLoading: courseCategoryMapLoad }] = useCourseCategoryMapMutation();
     const [courseSubCategoryMap, { data: courseSubCategoryMapData, error: courseSubCategoryMapError, isLoading: courseSubCategoryMapLoad }] = useCourseSubCategoryMapMutation();
@@ -29,6 +29,15 @@ function CourseMapLanding() {
     const [selectedCourseId, setSelectedCourseId] = useState([])
     const [showmapCategory, setShowMapCategory] = useState(0)
     const [showmapSubCategory, setShowMapSubCategory] = useState(false)
+    const { domainVariable } = useContext(GlobalContext);
+    let domain =
+      domainVariable === "Qspiders"
+        ? "qspiders"
+        : domainVariable === "Jspiders"
+        ? "jspiders"
+        : domainVariable === "Pyspiders"
+        ? "pyspiders"
+        : "bspiders";
     const validationSchema = Yup.object({
         category: Yup.string().required("category is required"),
         // subCourse: Yup.string().required("Sub Course is required"),
@@ -47,7 +56,7 @@ function CourseMapLanding() {
         isLoading: CourseIsLoading,
         error: CourseError,
         refetch
-    } = useGetAllCategoriesQuery();
+    } = useGetAllCategoriesQuery(domain);
 
     const courseOptions = []
     courseResponse?.data?.map((element) => {

@@ -1,7 +1,7 @@
 "use client";
 import Dropdown from "@/components/commonComponents/dropdown/Dropdown";
 import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useContext} from "react";
 import { useFormik, Field } from "formik";
 import * as Yup from "yup";
 import { useGetAllCategoriesInCourseQuery } from "@/redux/queries/getAllCategoriesInCourseForm";
@@ -14,9 +14,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { ToastAction } from "@/components/ui/toast";
 import { useGetAllSubjectsQuery } from "@/redux/queries/getAllSubjectsApi";
 import { useSubjectMappingMutation } from "@/redux/queries/mapSubjectApi";
-
+import { GlobalContext } from "@/components/Context/GlobalContext";
 function SubjectMapping() {
   const { toast } = useToast();
+    const { domainVariable } = useContext(GlobalContext);
+  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
   const [afterUpdate, setAfterUpdate] = useState(0);
   const [
     addCourseWeightage,
@@ -31,7 +33,7 @@ function SubjectMapping() {
     isLoading: CourseIsLoading,
     error: CourseError,
     refetch,
-  } = useGetAllCategoriesQuery();
+  } = useGetAllCategoriesQuery(domain);
   const {
     data: subjectResponse,
     isLoading: subjectIsLoading,

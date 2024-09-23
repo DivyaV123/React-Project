@@ -7,10 +7,11 @@ import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
 import "./HirefromusLanding.scss";
 import { useEnrollMutation } from "@/redux/queries/enrollNowApi";
-import { toast } from "@/components/ui/use-toast";
-const HiringFromUsForm = ({ activeTab,handleCloseModal }) => {
+
+const HiringFromUsForm = ({ activeTab,handleCloseModal,toast }) => {
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("");
+
   const [error, setError] = useState({
     mobileNumber: false,
     validPhone: false,
@@ -61,7 +62,9 @@ const HiringFromUsForm = ({ activeTab,handleCloseModal }) => {
             .email("Invalid email address")
             .required("Email is required")
             .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
-          message: Yup.string().required("Message is required"),
+          message: Yup.string()
+          .matches(/^\S.*$/, "Message cannot start with a space")
+          .required("Message is required"),
         });
       case "General Enquiries":
         return Yup.object({
@@ -73,7 +76,9 @@ const HiringFromUsForm = ({ activeTab,handleCloseModal }) => {
             .email("Invalid email address")
             .required("Email is required")
             .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
-          message: Yup.string().required("Message is required"),
+          message: Yup.string()
+          .matches(/^\S.*$/, "Message cannot start with a space")
+          .required("Message is required"),
         });
       default:
         return Yup.object({
@@ -81,12 +86,17 @@ const HiringFromUsForm = ({ activeTab,handleCloseModal }) => {
             .matches(/^[A-Za-z]+$/, "Full Name can only contain letters")
             .required("Full Name is required"),
           mobileNumber: Yup.string().required("Mobile number is required"),
-          companyName: Yup.string().required("Company Name is required"),
+          companyName: Yup.string()
+          .trim() 
+          .required("Company Name is required")
+          .matches(/^\S.*$/, "Company Name cannot start with a space"),
           email: Yup.string()
             .email("Invalid email address")
             .required("Email is required")
             .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
-          message: Yup.string().required("Message is required"),
+          message: Yup.string()
+          .matches(/^\S.*$/, "Message cannot start with a space")
+          .required("Message is required"),
         });
     }
   };
@@ -140,12 +150,12 @@ const HiringFromUsForm = ({ activeTab,handleCloseModal }) => {
       try {
         const response = await enquirie(payload).unwrap();
         if (response) {
+          handleCloseModal(false);
           toast({
             title: response?.message,
 
             variant: "success",
           });
-          handleCloseModal(false);
         }
         formik.resetForm();
       } catch (err) {
@@ -371,6 +381,7 @@ const HiringFromUsForm = ({ activeTab,handleCloseModal }) => {
           </button>
         </div>
       </form>
+
     </div>
   );
 };

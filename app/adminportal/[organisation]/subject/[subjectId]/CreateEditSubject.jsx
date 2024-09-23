@@ -26,13 +26,7 @@ const renderIcon = (isOpen, hasChildren, hasVideoUrl,handleVideoPreview) => {
         color={svgicons.accordianArrowDown[4]}
       />
     ) : (
-      <Svg
-        width={svgicons.accordianArrowSide[0]}
-        height={svgicons.accordianArrowSide[1]}
-        viewBox={svgicons.accordianArrowSide[2]}
-        icon={svgicons.accordianArrowSide[3]}
-        color={svgicons.accordianArrowSide[4]}
-      />
+      <img src="/chevron.svg"/>
     );
   }
 
