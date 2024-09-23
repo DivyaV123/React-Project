@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import Button from '../commonComponents/button/Button'
-import Fade from 'react-reveal/Fade'
+import { Fade } from 'react-awesome-reveal'
 import Counter from '../commonComponents/counterAnimation/Counter'
 import './chooseUs.scss'
 import Image from 'next/image'
@@ -23,7 +23,7 @@ function ExperiencedFaculty() {
     ]
     return (
         <selection className='sm:grid grid-cols-2 gap-4 mt-[3.333vh]  mobile:flex-col mobile:hidden'>
-            <Fade left delay={0} duration={1000}>
+            <Fade direction="left" delay={0} duration={1000}>
                 <figure className='sm:w-[85%] tabView:mt-16 tabView:w-full'>
                     <Image
                         src="/images/Placement assistance_image (02).png"
@@ -35,7 +35,7 @@ function ExperiencedFaculty() {
                     {/* <img className='mobile:w-[94.419vw]' src='./images/Placement assistance_image (02).png' alt='facultyImage'></img> */}
                 </figure>
             </Fade>
-            <Fade right duration={1000} delay={0} >
+            <Fade direction="right" duration={1000} delay={0} >
                 <aside className='animate-slide-from-right'>
                     <h1 className='font-bold text-black text-[2.188vw] mobile:text-[6.512vw] text-center flex justify-center mb-6 mobile:mb-[2.575vh] tabView:text-[2.688vw]'>
                         Get Experienced Faculty <br /> Guidance

@@ -1,9 +1,9 @@
 "use client";
 import { useContext } from "react";
-import Slide from "react-reveal/Slide";
+import { Fade ,Slide} from 'react-awesome-reveal'
 import "./PlacementStatisticsHome.scss";
 import { Badge } from "@/components/ui/badge";
-import { Fade } from "react-reveal";
+
 import PlaceMentStatistics from "./placeMentStatistics";
 import Link from "next/link";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
@@ -94,7 +94,7 @@ const disableIcons =()=>{
   return (
     <section className="sm:w-[87.5vw] sm:m-auto mobile:w-full  align-center sm:mt-8 bg-Pinkgradient-tab tabView:w-full">
       <header>
-        <Slide top cascade>
+        <Slide direction="top" cascade>
           <h1
             className={`font-bold text-[2rem] mobile:text-[5.581vw] mobile:flex mobile:justify-center text-black flex ${page === "course" || "branch" ? "justify-start" : "justify-center"} sm:mb-8 sm:mt-8 sm:h-12 mobile:bg-Pinkgradient  mobile:pt-[2.575vh] mobile:pb-[1.717vh] mobile:pl-[5.581vw]} tabView:text-[3.226vw] tabView:pt-10`}
           >
@@ -104,7 +104,7 @@ const disableIcons =()=>{
       </header>
       <article className="bg-Pinkgradient sm:rounded-b-2xl relative sm:rounded-r-2xl flex mobile:flex-col justify-between sm:rounded-tl-[120px] sm:mt-8 sm:p-[5%] mobile:px-[2.326vw] md:bg-none tabView:block">
         <aside className="sm:p-2 tabView:columns-2 tabView:item-center">
-          <Fade left duration={1000} deley={0}>
+          <Fade  duration={1000} deley={0}>
             <figure className="absolute top-[-4%] left-[-6.5%] mobile:hidden tabView:hidden">
               {/* <img className='w-[75%]' src={page === "branch" || page === "course" ? '../graduationCapIcon.svg' : './graduationCapIcon.svg'}></img> */}
               <Image
