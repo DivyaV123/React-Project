@@ -742,7 +742,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
             </div>
           </div>
         </div>
-        <div className="pt-[2.222vh] pb-[2.222vh]">
+        {/* <div className="pt-[2.222vh] pb-[2.222vh]">
           <div>
             <p className={tagHeadStyle}>Add Subjects</p>
             <Dropdown
@@ -750,7 +750,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
               inputStyle="!w-[42.695vw] h-[2.813vw] flex items-center  text-[12px] text-gray-400"
             />
           </div>
-        </div>
+        </div> */}
         <div className="flex justify-between items-center pb-[2.222vh] pt-[2.222vh]">
           <div className="w-[23.438vw]">
             <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Course Icon</p>
