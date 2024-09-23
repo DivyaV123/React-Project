@@ -1,6 +1,6 @@
 'use client'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
-import React, { useEffect, useLayoutEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { useFormik, Field } from "formik";
 import * as Yup from "yup";
 import Dropdown from '@/components/commonComponents/dropdown/Dropdown';
@@ -17,7 +17,7 @@ import "react-quill/dist/quill.bubble.css";
 import { useCourseEditorMutation } from '@/redux/queries/courseById';
 import { useCourseEditDataMutation } from '@/redux/queries/editCourseApi';
 import { useCourseDeleteMutation } from '@/redux/queries/deleteCourse';
-
+import { GlobalContext } from '@/components/Context/GlobalContext';
 const ReactQuill = dynamic(
     async () => {
         const { default: RQ } = await import("react-quill");
@@ -29,6 +29,15 @@ const ReactQuill = dynamic(
 );
 
 function CourseEditorFormLanding() {
+    const { domainVariable } = useContext(GlobalContext);
+    let domain =
+      domainVariable === "Qspiders"
+        ? "qspiders"
+        : domainVariable === "Jspiders"
+        ? "jspiders"
+        : domainVariable === "Pyspiders"
+        ? "pyspiders"
+        : "bspiders";
     const [selectedCourseDetails, { data: courseToEditData, error: courseError, isLoading: courseAdderLoad }] = useCourseEditorMutation();
     const [editSelectedCourse, { data: courseEditResp, error: courseEditError, isLoading: courseEditLoad }] = useCourseEditDataMutation();
     const [deleteSelectedCourse, { data: courseDeleteResp, error: courseDeleteError, isLoading: courseDeleteLoad }] = useCourseDeleteMutation();
@@ -38,7 +47,7 @@ function CourseEditorFormLanding() {
         isLoading: CourseIsLoading,
         error: CourseError,
         refetch
-    } = useGetAllCategoriesQuery();
+    } = useGetAllCategoriesQuery(domain);
     const commonLabelStyles = "pb-[1.111vh]";
     const [selectedSubCourse, setSelectedSubCourse] = useState("");
     const [subCourseOptions, setSubCourseOptions] = useState([]);

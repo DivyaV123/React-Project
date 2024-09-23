@@ -1,16 +1,19 @@
 'use client'
-import React,{useMemo} from 'react'
+import React,{useMemo,useContext} from 'react'
 import { usePathname } from "next/navigation";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import Link from 'next/link';
 import { truncateText } from '@/lib/utils';
 import "../../../branchnav/BranchPopup.scss"
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const SubCourseResponseLanding = () => {
+          const { domainVariable } = useContext(GlobalContext);
+  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
   const {
     data: courseResponse,
     isLoading: CourseIsLoading,
     error: CourseError,
-  } = useGetAllCategoriesQuery();
+  } = useGetAllCategoriesQuery(domain);
   const pathname = usePathname();
   const [courseID, subCourseID] = pathname.split('/').slice(2, 4);  
 

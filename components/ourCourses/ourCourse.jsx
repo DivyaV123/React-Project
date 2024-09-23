@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import "./ourCourses.scss";
 import CourseCard from "../commonComponents/courseCard/courseCard";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
@@ -22,9 +22,12 @@ import {
 } from "@/components/ui/accordion";
 import { useGetHomePageCourseQuery } from "@/redux/queries/getHomePageCourse";
 import Image from "next/image";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 
 function OurCourse({ page }) {
-  const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery();
+  const { domainVariable } = useContext(GlobalContext);
+  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
+  const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery(domain);
   //commented upto testing to be done for Explore our courses , we are using getAllcategories for Explore our courses as well
   // const {
   //   data: homeCourse,

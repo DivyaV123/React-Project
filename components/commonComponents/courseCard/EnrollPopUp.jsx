@@ -17,7 +17,8 @@ function EnrollPopUp({
   toast,
   branchId,
 }) {
-  const { courseResponseId, courseId, batchId, courseName, title } =  cardData || {};
+  const { courseResponseId, courseId, batchId, courseName, title } =
+    cardData || {};
   const modalRef = useRef(null);
   const [phoneValue, setPhoneValue] = useState("");
   const [countryCode, setCountryCode] = useState("");
@@ -46,7 +47,7 @@ function EnrollPopUp({
       .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
     message: Yup.string().required("Message is required"),
   });
- 
+
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
@@ -282,13 +283,13 @@ function EnrollPopUp({
                   >
                     <span className="text-red-500 pr-1">*</span>Course
                   </label>
-                  <select
+                  <input
                     id="course"
                     name="course"
-                    placeholder="-Select-"
+                    type="text"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.course}
+                    value={courseName ? courseName : title}
                     disabled
                     className={`w-full border p-2 rounded ${
                       formik.touched.course && formik.errors.course
@@ -296,8 +297,7 @@ function EnrollPopUp({
                         : "border-gray-300"
                     }`}
                   >
-                    <option>{courseName ? courseName : title}</option>
-                  </select>
+                  </input>
                   {formik.touched.course && formik.errors.course ? (
                     <div className="text-red-500 absolute text-sm">
                       {formik.errors.course}

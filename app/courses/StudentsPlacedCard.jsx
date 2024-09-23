@@ -231,6 +231,104 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                         />
                       </Link>
                     </div>
+                    <div className="iconContainer">
+                    <Link
+                        href={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.twitter
+                          ) || "#"
+                        }
+                        target={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.twitter
+                          )
+                            ? "_blank"
+                            : "_self"
+                        }
+                        onClick={(e) => {
+                          if (
+                            !getFilteredTestimonials(
+                              element?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.twitter
+                            )
+                          ) {
+                            e.preventDefault();
+                          }
+                        }}
+                        className={`${
+                          !getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.twitter
+                          )
+                            ? "pointer-events-none"
+                            : ""
+                        }`}
+                      >
+                      <img
+                        src="../twitter.svg"
+                        alt="Share"
+                        className={`${
+                          !getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.twitter
+                          )
+                            ? "opacity-30 pointer-events-none"
+                            : ""
+                        }`}
+                       />
+                       </Link>
+                    </div>
+                    <div className="iconContainer">
+                    <Link
+                        href={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.instagram
+                          ) || "#"
+                        }
+                        target={
+                          getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.instagram
+                          )
+                            ? "_blank"
+                            : "_self"
+                        }
+                        onClick={(e) => {
+                          if (
+                            !getFilteredTestimonials(
+                              element?.gotjob[0]?.mini_testimonial?.url_details
+                                ?.instagram
+                            )
+                          ) {
+                            e.preventDefault();
+                          }
+                        }}
+                        className={`${
+                          !getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.instagram
+                          )
+                            ? "pointer-events-none"
+                            : ""
+                        }`}
+                      >
+                      <img
+                        src="../instagram.svg"
+                        alt="Share"
+                        className={`${
+                          !getFilteredTestimonials(
+                            element?.gotjob[0]?.mini_testimonial?.url_details
+                              ?.instagram
+                          )
+                            ? "opacity-30 pointer-events-none"
+                            : ""
+                        }`}
+                       />
+                       </Link>
+                    </div>
                 </div>
               </div>
               <div className=" flex flex-col gap-2.5">

@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React,{useContext} from "react";
 import Svg from "@/components/commonComponents/Svg/Svg";
 import { svgicons } from "@/components/assets/icons/svgassets";
 import Link from "next/link";
@@ -7,13 +7,23 @@ import { NAV_BAR, HOME_PATH } from "@/lib/RouteConstants";
 import { useGetAllCategoriesQuery } from "@/redux/queries/getAllCategories";
 import { useRouter } from "next/navigation";
 import Loading from "@/lib/Loading";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const CoursePopup = () => {
+  const { domainVariable } = useContext(GlobalContext);
+  let domain =
+    domainVariable === "Qspiders"
+      ? "qspiders"
+      : domainVariable === "Jspiders"
+      ? "jspiders"
+      : domainVariable === "Pyspiders"
+      ? "pyspiders"
+      : "bspiders";
   const router = useRouter();
   const {
     data: courseResponse,
     isLoading: CourseIsLoading,
     error: CourseError,
-  } = useGetAllCategoriesQuery(); 
+  } = useGetAllCategoriesQuery(domain); 
 
   const getAllCategories = courseResponse?.data;
 

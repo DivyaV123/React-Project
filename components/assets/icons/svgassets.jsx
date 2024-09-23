@@ -67,6 +67,10 @@ export const svgicons = {
         <path d="M1 17L9 9L1 1" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />,
         'none'
     ],
+    arrowSide:[
+        "24","24","0 0 24 24",
+        <path d="M9 20L17 12L9 4" stroke="#454545" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+    ],
     courseVideoIcon: [
         "24", "24", "0 0 24 24",
         <>

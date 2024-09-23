@@ -2,6 +2,8 @@
 import React, { useState } from "react";
 import "./HirefromusLanding.scss";
 import HiringModal from "./Modal/HiringModal";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 const domains = [
   { name: "Software Developer", image: "../../developer.svg" },
   { name: "UI/UX Designer", image: "../../designer.svg" },
@@ -20,6 +22,7 @@ const DomainContainer = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
   const [activeTab, setActiveTab] = useState("Hire From Us");
+  const { toast } = useToast();
 
   const handleCardClick = (city) => {
     setSelectedCity(city);
@@ -62,7 +65,9 @@ const DomainContainer = () => {
         activeTab={activeTab}
         handleCloseModal={handleCloseModal}
         setActiveTab={setActiveTab}
+        toast={toast}
       />
+      <Toaster/>
     </section>
   );
 };

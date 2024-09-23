@@ -347,7 +347,7 @@ const PlacementContent = ({ placementList }) => {
                         }`}
                       >
                       <img
-                        src="../share 1.svg"
+                        src="../twitter.svg"
                         alt="Share"
                         className={`${
                           !getFilteredTestimonials(
@@ -396,7 +396,7 @@ const PlacementContent = ({ placementList }) => {
                         }`}
                       >
                       <img
-                        src="../share 1.svg"
+                        src="../instagram.svg"
                         alt="Share"
                         className={`${
                           !getFilteredTestimonials(
