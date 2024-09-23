@@ -2,8 +2,7 @@
 import React, { useContext } from 'react'
 import MaxWebWidth from '../commonComponents/maxwebWidth/maxWebWidth'
 import CommonIconsComponent from '../commonComponents/commoniconcomponent/commonIconsComponent'
-import Slide from "react-reveal/Slide";
-import Fade from 'react-reveal/Fade'
+import { Fade } from 'react-awesome-reveal'
 import { GlobalContext } from '../Context/GlobalContext';
 
 function FooterHome() {
@@ -17,7 +16,7 @@ function FooterHome() {
     return (
         <MaxWebWidth sectionStyling='bg-footer-blue min-h-80 flex justify-center'>
             <footer>
-                <Fade left duration={1000} delay={0}>
+                <Fade direction="left" duration={1000} delay={0}>
                     <article className='flex justify-around pt-8 mobile:grid mobile:grid-cols-2 mobile:grid-rows-1 mobile:gap-x-28'>
                         {Object.entries(footerContent).map(([header, subHeaders], index) => (
                             <div key={index} className="mobile:col-span-1 mobile:row-span-1">
@@ -35,7 +34,7 @@ function FooterHome() {
 
 
                 </Fade>
-                <Fade bottom duration={1000} delay={0}>
+                <Fade direction="bottom" duration={1000} delay={0}>
                     <article className='relative b-0 p-8'>
                         <span className='flex justify-center mobile:relative mobile:bottom-[3.863vh]'>
                             <CommonIconsComponent lite={true} />

@@ -1,14 +1,15 @@
 'use client'
 import React, { useContext } from 'react'
 import Button from '../commonComponents/button/Button'
-import Fade from 'react-reveal/Fade'
-import Slide from "react-reveal/Slide";
+
+
 import Counter from '../commonComponents/counterAnimation/Counter';
 import './chooseUs.scss'
 import { GlobalContext } from '../Context/GlobalContext';
 import Link from 'next/link';
 import { PLACEMENT_PATH } from '@/lib/RouteConstants';
 import Image from 'next/image';
+import { Fade, Slide } from 'react-awesome-reveal';
 
 
 function PlacementAssistance() {
@@ -23,7 +24,7 @@ function PlacementAssistance() {
                 </Slide>
             </header>
             <article className='sm:grid grid-cols-2 gap-4 mobile:flex mobile:flex-col-reverse'>
-                <Fade left delay={0} duration={1000}>
+                <Fade direction="left" delay={0} duration={1000}>
                     <aside className='mt-[3.333vh] animate-slide-from-left'>
                         <header className='font-bold text-black  text-[1.75rem] mobile:text-[6.512vw]  flex justify-center tabView:text-[2.688vw]'>
                             <p >Placement Assistance</p>
@@ -60,7 +61,7 @@ function PlacementAssistance() {
                         </Link>
                     </aside>
                 </Fade>
-                <Fade right delay={0} duration={1000}>
+                <Fade direction="right" delay={0} duration={1000}>
                     <aside className='flex justify-center align-end animate-slide-from-right tabView:mt-16'>
                         <figure className='sm:w-[78%]'>
                             <Image

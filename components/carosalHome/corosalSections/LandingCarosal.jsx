@@ -3,7 +3,7 @@ import CarosalSection from "@/components/commonComponents/carosalSection/carosal
 import React, { useContext, useEffect, useState } from "react";
 import "./sections.scss";
 import Button from "@/components/commonComponents/button/Button";
-import Fade from "react-reveal/Fade";
+import { Fade } from 'react-awesome-reveal'
 import CarosalFooter from "../carosalFooter/CarosalFooter";
 import Counter from "@/components/commonComponents/counterAnimation/Counter";
 import LandingCarosalSkeleton from "./LandingCarosalSkeleton";
@@ -31,7 +31,7 @@ function LandingCarosal() {
     //   :
     <>
       <div className=" grid grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-2 gap-4 sm:h-[84vh] mobile:block">
-        <Fade left delay={0} duration={1000}>
+        <Fade direction="left" delay={0} duration={1000}>
           <aside className="flex items-center mb-8 2xl:mb-12 3xl:mb-16 mobile:m-0">
             <article className="headerArticle mb-10 w-full mobile:m-0">
               <h1 className="mainHead pb-[2.222vh] text-[3.75vw] mobile:text-[7.907vw] opacity-100 mobile:pt-[6.438vh] mobile:pb-[1.288vh] tabView:text-[4.57vw] tabView:font-normal">
@@ -53,7 +53,7 @@ function LandingCarosal() {
             </article>
           </aside>
         </Fade>
-        <Fade right delay={0} duration={1000}>
+        <Fade direction="right" delay={0} duration={1000}>
           <aside className="flex items-center justify-end mobile:hidden">
             {/* <article className="flex rounded-md gap-4 bg-white absolute w-56 h-[4.5rem] px-4 py-3 bg-primary-300 justify-start border-solid border-2 top-[5%] left-[9%] 2xl:left-[17%] border-dark-gray-600  items-center">
               <figure>

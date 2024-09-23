@@ -1,7 +1,7 @@
 'use client'
 import React, { useContext, useState } from 'react'
 import Button from '../commonComponents/button/Button'
-import Fade from 'react-reveal/Fade'
+import { Fade } from 'react-awesome-reveal'
 import './chooseUs.scss'
 import { GlobalContext } from '../Context/GlobalContext'
 import HiringModal from '@/app/hireFromUs/Modal/HiringModal'
@@ -22,7 +22,7 @@ function RelevantTraining() {
     };
     return (
         <section className='sm:grid grid-cols-2 gap-4 mt-[3.333vh] mb-8 mobile:hidden mobile:flex-col-reverse'>
-            <Fade left duration={1000} delay={0}>
+            <Fade direction="left" duration={1000} delay={0}>
                 <aside className='flex items-center'>
                     <div>
                         <header>
@@ -61,7 +61,7 @@ function RelevantTraining() {
                     </div>
                 </aside>
             </Fade>
-            <Fade right duration={1000} delay={0}>
+            <Fade direction="right" duration={1000} delay={0}>
                 <aside className='flex justify-center align-end tabView:mt-8'>
                     <figure className='sm:w-[95%] tabView:w-[100%]'>
                         <Image
