@@ -5,7 +5,7 @@ import CourseCard from "../commonComponents/courseCard/courseCard";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import "../ui/button.scss";
 import Button from "../commonComponents/button/Button";
-import Slide from "react-reveal/Slide";
+import { Slide} from 'react-awesome-reveal'
 import Svg from "../commonComponents/Svg/Svg";
 import { svgicons } from "../assets/icons/svgassets";
 import Link from "next/link";
@@ -147,7 +147,7 @@ function OurCourse({ page }) {
     <MaxWebWidth>
       {page !== "explore" && (
         <aside className="flex justify-center align-center my-[4.444vh] mobile:my-[2.575vh]">
-          <Slide top cascade>
+          <Slide direction="top" cascade>
             <h1 className="font-bold text-[2rem] mobile:text-[5.581vw] header text-black">
               Explore Our Courses
             </h1>

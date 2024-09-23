@@ -2,7 +2,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import MaxWebWidth from "../commonComponents/maxwebWidth/maxWebWidth";
 import TrainingMode from "./trainingMode/trainingMode";
-import Slide from "react-reveal/Slide";
+import { Slide} from 'react-awesome-reveal'
 import Button from "../commonComponents/button/Button";
 import OnlineLiveClasses from "./OnlineLiveClasses";
 import { useRouter } from "next/navigation";
@@ -110,7 +110,7 @@ function OurBranchesHome({ page, tabData ,courseDetails}) {
               </article>
             </article>
           ) : (
-            <Slide top cascade>
+            <Slide direction="top" cascade>
               <h1 className="flex justify-center text-[2.5vw] mobile:text-[5.581vw] sm:m-2 font-bold sm:p-5 mobile:py-[2.575vh]">
                 Our Offline Branches
               </h1>

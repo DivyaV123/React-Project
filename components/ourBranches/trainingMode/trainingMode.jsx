@@ -1,8 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import TrainingCard from "./trainingCard";
-import Slide from "react-reveal/Slide";
-import { Fade } from "react-reveal";
+import { Fade ,Slide} from 'react-awesome-reveal'
 import TrainingCardSkeleton from "./TrainingCardSkeleton";
 import "./trainingCard.scss";
 
@@ -68,7 +67,7 @@ function TrainingMode({ page }) {
       className={`${page === "corporateTraining" ? "trainingwave" : ""} mb-6`}
     >
       <header>
-        <Slide top cascade>
+        <Slide direction="top" cascade>
           <h1
             className={`flex ${
               page === "corporateTraining"
@@ -80,7 +79,7 @@ function TrainingMode({ page }) {
           </h1>
         </Slide>
       </header>
-      <Fade bottom duration={1000} delay={0}>
+      <Fade direction="bottom" duration={1000} delay={0}>
         <div>
           {page === "corporateTraining" && (
             <div className="flex justify-center items-center flex-col">

@@ -1,13 +1,13 @@
 import Counter from '@/components/commonComponents/counterAnimation/Counter'
 import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth'
 import React from 'react'
-import { Fade } from 'react-reveal'
+import { Fade } from 'react-awesome-reveal'
 
 function CarosalFooter({heroPageData}) {
     return (
 
         <MaxWebWidth sectionStyling='z-100 flex justify-center sm:absolute sm:top-[74%] w-full sm:bottom-2 tabView:relative tabView:p-6' articalStyling='rounded-lg bg-footer-blue flex justify-center bg-cover items-between w-full mb-3  items-center'>
-            <Fade bottom duration={1000} delay={0} >
+            <Fade direction="bottom" duration={1000} delay={0} >
                 <div className='grid md:grid-cols-6 mobile:flex mobile:flex-wrap   mobile:py-[2.039vh] tabView:grid-cols-3'>
                     {
                         heroPageData?.data?.details?.map((element) => {

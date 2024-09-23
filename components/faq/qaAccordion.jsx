@@ -6,7 +6,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion"
-import { Fade, Slide } from 'react-reveal';
+import { Fade } from 'react-awesome-reveal'
 
 
 function Qaccordion({ qaList }) {
@@ -20,7 +20,7 @@ function Qaccordion({ qaList }) {
 
   return (
     <>
-      <Fade top duration={1000} delay={0}>
+      <Fade direction="top" duration={1000} delay={0}>
         <Accordion defaultValue="hello" className="w-full" type="single" collapsible>
           {qaList?.map((element, index) => (
             <AccordionItem className="pb-2 min-h-[4.375vw]" key={index} value={index === 0 ? "hello" : index}>

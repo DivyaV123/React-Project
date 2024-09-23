@@ -10,13 +10,13 @@ import {
 } from "@/components/ui/carousel"
 import Button from '../commonComponents/button/Button'
 import AllTestimonial from './allTestimonial'
-import { Slide } from 'react-reveal'
+import { Slide} from 'react-awesome-reveal'
 
 function TestimonialsHome() {
     return (
         <MaxWebWidth>
             <header>
-                <Slide top cascade>
+                <Slide direction="top" cascade>
                     <h1 className='font-extra-bold text-[2.188vw] flex justify-center align-center mb-3 mt-8 h-18'>
                         Students Testimonials
                     </h1>
