@@ -17,12 +17,13 @@ import "./ourBranchesHome.scss";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import { toProperCase } from "@/lib/utils";
-function OurBranchesHome({ page, tabData }) {
+function OurBranchesHome({ page, tabData ,courseDetails}) {
+
   const router = useRouter();
   const pathname = usePathname();
   const [courseId] = pathname.split("/").slice(2);
   const [isloading, setisLoading] = useState(true);
-  const { setSelectedBranch, setSelectedBatch, homeBranchData, countryList } =
+  const { setSelectedBranch, setSelectedBatch, homeBranchData, countryList,setSelecteCourseDetails } =
     useContext(GlobalContext);
   const [btnState, setBtnState] = useState("OfflineClasses");
   const [countryTab, setCountryTab] = useState("india");
@@ -47,6 +48,7 @@ function OurBranchesHome({ page, tabData }) {
       router.push(`${OFFLINE_BRANCHES}/${cityName},${countryTab}`);
     } else if (page === "course") {
       setSelectedBatch(cityName);
+      setSelecteCourseDetails(courseDetails)
       router.push(`/courses/${courseId}/${cityName}`);
     } else if (page !== "course" && cityName === "AllCities") {
       router.push(`${COMBINED_BRANCHES}/${toProperCase(countryTab)}`);

@@ -3,6 +3,7 @@ import React, { useEffect } from 'react'
 import './IndividualCentres.scss'
 import Image from 'next/image'
 const CommonBranch = ({ selectedId, page }) => {
+ 
   useEffect(() => {
   }, [selectedId])
   function removeSpacesFromNumbers(phoneNumbers) {
