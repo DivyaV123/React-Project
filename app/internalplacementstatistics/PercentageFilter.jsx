@@ -13,7 +13,7 @@ const PercentageFilter = () => {
     toPercentage,
     setToPercentage,
     selectedPercentage,
-    setSelectedPercentage,
+    setSelectedPercentage,setScrollPage
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
   const [errorMessage, setErrorMessage] = useState("");
@@ -75,7 +75,7 @@ const PercentageFilter = () => {
     setFromPercentage("");
     setToPercentage("");
     const selectedValue = percentageType[index].toLowerCase();
-   
+    setScrollPage(1);
     if(index===0){
       setFilteredRange((prevFilteringData) => ({
         ...prevFilteringData,
