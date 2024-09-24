@@ -38,7 +38,10 @@ import {
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
 import { useCitiesEditMutation } from "@/redux/queries/editAdminCityApi";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 const CityWeightageContent = () => {
+  const { toast } = useToast();
   const [cityEditDialog, setCityEditDialog] = useState(false);
   const [selectedCityId, setSelectedCityId] = useState(null);
   const [deleteCity, setdeleteCity] = useState(false);
@@ -155,6 +158,10 @@ const CityWeightageContent = () => {
           : await addCity({ bodyData: payload }).unwrap();
         if (response.statusCode === 200 || response.statusCode === 201) {
           cityRefetch();
+          toast({
+            title: "City Added Successfully",
+            variant: "success",
+          });
         }
         setCityAddDialog(false);
         setCityEditDialog(false);
@@ -263,7 +270,7 @@ const CityWeightageContent = () => {
     return (
       <form onSubmit={formikDetails.handleSubmit}>
         <div className="pb-[2.222vh]">
-          <p className={pStyle}>City name</p>
+          <p className={pStyle}><span class="text-red-500 pr-1">*</span>City name</p>
           <Input
             onChange={formikDetails.handleChange}
             onBlur={formikDetails.handleBlur}
@@ -278,7 +285,7 @@ const CityWeightageContent = () => {
           ) : null}
         </div>
         <div className="pb-[2.222vh]">
-          <p className={pStyle}>State Name</p>
+          <p className={pStyle}><span class="text-red-500 pr-1">*</span>State Name</p>
           <Input
             onChange={formikDetails.handleChange}
             onBlur={formikDetails.handleBlur}
@@ -294,7 +301,7 @@ const CityWeightageContent = () => {
         </div>
         {!editData && (
           <div className="pb-[2.222vh]">
-            <p className={pStyle}>Select Country Name</p>
+            <p className={pStyle}><span class="text-red-500 pr-1">*</span>Select Country Name</p>
             <Dropdown
               name="countryname"
               value={selectedCountry}
@@ -310,7 +317,7 @@ const CityWeightageContent = () => {
 
         <div className="flex justify-between">
           <div className="w-[23.438vw] pb-[2.222vh]">
-            <p className={pStyle}>City Icon</p>
+            <p className={pStyle}><span class="text-red-500 pr-1">*</span>City Icon</p>
             <input
               type="file"
               accept="image/*"
@@ -341,7 +348,7 @@ const CityWeightageContent = () => {
             )}
           </div>
           <div className="w-[23.438vw] pb-[2.222vh]">
-            <p className={pStyle}>City Image</p>
+            <p className={pStyle}><span class="text-red-500 pr-1">*</span>City Image</p>
             <input
               type="file"
               accept="image/*"
@@ -484,7 +491,7 @@ const CityWeightageContent = () => {
               <DialogTrigger>
                 <button
                   onClick={() => handleSubEditClick(city, getCityData)}
-                  className="mr-2 text-blue-500 hover:underline"
+                  className="mr-2 text-blue-500 "
                 >
                   Edit
                 </button>
@@ -495,7 +502,7 @@ const CityWeightageContent = () => {
                 setdeleteCity(true);
                 setSelectedCityId(city.cityId);
               }}
-              className="text-red-500 hover:underline"
+              className="text-red-500 "
             >
               Delete
             </button>
@@ -529,7 +536,7 @@ const CityWeightageContent = () => {
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
             >
-              City
+              + City
             </button>
           </DialogTrigger>
         </article>
@@ -619,6 +626,7 @@ const CityWeightageContent = () => {
           />
         </AlertDialog>
       </div>
+      <Toaster />
     </>
   );
 };

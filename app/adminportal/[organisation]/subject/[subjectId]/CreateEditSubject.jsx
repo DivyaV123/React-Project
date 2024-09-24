@@ -770,7 +770,7 @@ const handleAddDetails=()=>{
           <Dialog open={addDetailDialog} onOpenChange={setAddDetailDialog}>
             <CommonDialog
               header={`${editDialog ? "Edit Details" : "Add Details"}`}
-              footerBtnTitle={`${editDialog ? "Update" : "Create"}`}
+              footerBtnTitle={`${editDialog ? "Update" : "Create"} ${formState.selectedLabel}`}
               formfn={dialogForm}
               footerBtnClick={handleSubmitDetails}
             />
