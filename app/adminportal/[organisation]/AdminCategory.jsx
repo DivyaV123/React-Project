@@ -45,6 +45,8 @@ import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 const AdminCategory = () => {
   const [categories, setCategories] = useState([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchCategoriesList, setSearchCategoriesList] = useState([]);
   const [deleteCategory, setDeleteCategory] = useState(false);
   const [categoryId, setCategoryId] = useState(null);
   const [warningCategory, setWarningCategory] = useState(false);
@@ -86,6 +88,7 @@ const AdminCategory = () => {
   useEffect(() => {
     if (categoryData?.data) {
       setCategories(categoryData.data);
+      setSearchCategoriesList(categoryData.data);
     }
   }, [categoryData?.data]);
   const pStyle = " text-[1.094vw] font-medium pb-[1.389vh]";
@@ -555,6 +558,16 @@ const AdminCategory = () => {
       </TableRow>
     );
   };
+
+  const handleSearch = (e) => {
+    const value = e.target.value.toLowerCase();
+    setSearchTerm(value);
+
+    const filteredCategories = searchCategoriesList.filter((category) =>
+      category.title.toLowerCase().includes(value)
+    );
+    setCategories(filteredCategories);
+  };
   return (
     <>
       <Dialog>
@@ -564,6 +577,8 @@ const AdminCategory = () => {
               inputStyle="rounded-md"
               placeholder="Search"
               iconPath="../images/icon_outline_search.png"
+              value={searchTerm}
+              onChange={handleSearch}
             />
           </div>
           <aside className="pt-[2.778vh] pr-[1.875vw]">

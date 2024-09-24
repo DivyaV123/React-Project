@@ -45,6 +45,15 @@ import { useCreateSubCategoryMutation } from "@/redux/queries/createSubCategoryA
 import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup/DeleteWarningPopup";
 import { useSubCategoryDeleteMutation } from "@/redux/queries/deleteSubCategoryApi";
 import { useUpdateSubCategoryMutation } from "@/redux/queries/updateSubCategoryApi";
+import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@/components/ui/breadcrumb";
+import Link from "next/link";
 
 function SubCategoryContent() {
   const { toast } = useToast();
@@ -386,11 +395,35 @@ function SubCategoryContent() {
 
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] ">
-          {getParams[1] === "dynamic" ? (
-            <p className="px-4 font-bold text-[#434343]">{categoryTitle}</p>
-          ) : (
-            ""
-          )}
+          {getParams[1] === "dynamic"
+            ? decodedCategory !== "subcategory" && (
+                <Breadcrumb>
+                  <BreadcrumbList>
+                    <BreadcrumbItem>
+                      <BreadcrumbLink>
+                        <Link
+                          className="text-[#6E6E6E] font-medium pl-[1.25vw] pb-[1.111vh]"
+                          href={
+                            decodedCategory !== "subcategory"
+                              ? `${ADMIN_PORTAL}/Category,${instituteParam}`
+                              : `${ADMIN_PORTAL}/${getParams[0]}`
+                          }
+                        >
+                          Home
+                        </Link>
+                      </BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                      <BreadcrumbLink className="text-[#434343] pb-[0.111vh] font-bold">
+                        {categoryTitle}
+                      </BreadcrumbLink>
+                    </BreadcrumbItem>
+                  </BreadcrumbList>
+                </Breadcrumb>
+              )
+            : ""}
+
           <Table className="">
             <TableHeader className=" z-1">
               <TableRow>
