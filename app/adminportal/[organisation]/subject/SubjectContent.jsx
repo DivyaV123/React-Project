@@ -380,6 +380,7 @@ const SubjectContent = () => {
                             checked={storeCourseId.includes(ele.subjectId)}
                           />{" "}
                           <div
+                            title={ele.subjectTitle}
                             className="cursor-pointer"
                             onClick={() =>
                               handleCreateEditSubject(ele.subjectId)

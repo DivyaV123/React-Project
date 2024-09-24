@@ -26,7 +26,7 @@ const DeleteWarningPopup = ({ header, icon, setDeleteCategory, btnText,contentTe
         </header>
         <section className="flex flex-col items-center ">
           <img className="h-32 w-32 m-0" src={icon} />
-          <p className="mb-[2.639vh] text-[#212121] text-[1.094vw] font-bold">
+          <p className="mb-[2.639vh] text-[#212121] text-[1.094vw] ">
             {contentText}
           </p>
           <button className="bg-[#FF7B1B] text-white text-[1.094vw] font-medium rounded-md py-[0.833vh] px-[4.805vw] my-[1.389vh]" onClick={deleteFunction}>

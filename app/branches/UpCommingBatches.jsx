@@ -46,7 +46,7 @@ function UpCommingBatches({ branchesData, branchName,branchCourseData ,branchId}
           <div className="flex justify-end pt-4">
             <Button
               className="bg-gradient w-[9.375vw] h-[5.694vh] text-[0.938vw] text-white rounded-md"
-              title={showAll ? "View Less" : "View more"}
+              title={showAll ? "View less" : "View more"}
               onClick={handleViewToggle}
             />
           </div>
