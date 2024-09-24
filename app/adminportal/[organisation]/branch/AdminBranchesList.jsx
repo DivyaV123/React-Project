@@ -119,12 +119,13 @@ function AdminBranchesList() {
     country?.cities?.forEach((city) => {
       city?.courses?.forEach((course) => {
         const matchingBranches = course?.branches?.filter(
-          (branch) => branch.organizationType === initialOrgType
+          (branch) => branch.organizationType === domain
         );
         filteredBranches.push(...matchingBranches);
       });
     });
   });
+
   return (
     <>
       <Dialog>
@@ -148,7 +149,7 @@ function AdminBranchesList() {
                 "cursor-pointer bg-gradient text-white py-[1.389vh] px-[0.938vw] text-[#6E6E6E] text-[1.094vw] rounded-lg mr-[1.875vw]"
               }
             >
-              + BRANCH
+              + Branch
             </button>
           </DialogTrigger>
         </article>
@@ -257,12 +258,12 @@ function AdminBranchesList() {
                     </a>
                   </TableCell>
 
-                  <TableCell className={tblTextClass}>
+                  <TableCell className={`${tblTextClass} invisible group-hover:visible`}>
                     <Dialog>
                       <DialogTrigger asChild>
                         <button
                           onClick={handleEditClick(ele)}
-                          className="mr-2 text-blue-500 hover:underline"
+                          className="mr-2 text-blue-500 "
                         >
                           Edit
                         </button>
@@ -270,7 +271,7 @@ function AdminBranchesList() {
                     </Dialog>
                     <button
                       onClick={handleDeleteClick(ele.branchId, ele.branchName)}
-                      className="text-red-500 hover:underline"
+                      className="text-red-500"
                     >
                       Delete
                     </button>

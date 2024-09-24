@@ -11,7 +11,10 @@ import HiringModal from "@/app/hireFromUs/Modal/HiringModal";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import Image from "next/image";
 import { useGetHeroPageQuery } from "@/redux/queries/getheroPageApi";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 function LandingCarosal() {
+  const { toast } = useToast();
   const { domainVariable } = useContext(GlobalContext)
       let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "prospiders"
   const [isloading, setisLoading] = useState(true);
@@ -25,7 +28,7 @@ function LandingCarosal() {
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
-  console.log(isModalOpen,"isModalOpen")
+
   const { data:heroPageData, isLoading, error } = useGetHeroPageQuery(domain);
   return (
     // isloading ? <LandingCarosalSkeleton />
@@ -181,9 +184,11 @@ function LandingCarosal() {
           activeTab={activeTab}
           handleCloseModal={handleCloseModal}
           setActiveTab={setActiveTab}
+          toast={toast}
         />
       )
       }
+      <Toaster/>
     </>
   );
 }

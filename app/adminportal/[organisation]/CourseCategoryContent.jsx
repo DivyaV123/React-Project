@@ -25,8 +25,10 @@ import DeleteWarningPopup from "@/components/commonComponents/deleteWarningPopup
 import { useCourseDeleteMutation } from "@/redux/queries/deleteCourse";
 import { useCourseEditorMutation } from "@/redux/queries/courseById";
 import { useCourseUnMapMutation } from "@/redux/queries/courseUnMapApi";
-
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 function CourseCategoryContent() {
+  const { toast } = useToast();
   const [storeCourseId, setStoreCourseId] = useState([]);
   const [selectedCategoryId, setSelectedCategoryId] = useState(null);
   const [selectedCategoryName, setSelectedCategoryName] = useState("");
@@ -253,6 +255,11 @@ function CourseCategoryContent() {
       } catch (error) {
         console.error("Category mapping failed", error);
       }
+    }else{
+      toast({
+        title: "Please select a category",
+        variant: "destructive",
+      });
     }
   };
   const [selectedCourseDetailsToEdit, { data: courseToEdit }] =
@@ -374,8 +381,8 @@ function CourseCategoryContent() {
         </article>
         {dialogOpen && (
           <CommonDialog
-            header="Add new category"
-            footerBtnTitle="Create Category"
+            header="Map to category"
+            footerBtnTitle="Map All Courses"
             formfn={dialogForm}
             footerBtnClick={handleCreateCategory}
             dialogCloseClick={() => setDialogOpen(false)}
@@ -395,6 +402,7 @@ function CourseCategoryContent() {
             courseRefetch={courseRefetch}
             dialogCloseClick={setCourseAddDialog}
             courseEditData={courseEditData}
+            toast={toast}
           />
         </Dialog>
       </Dialog>
@@ -544,6 +552,7 @@ function CourseCategoryContent() {
             deleteFunction={handleDeleteSelectedCourse}
           />
         </AlertDialog>
+        <Toaster/>
       </div>
     </>
   );

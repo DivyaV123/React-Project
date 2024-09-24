@@ -20,6 +20,8 @@ import * as Yup from "yup";
 import { Dialog, DialogTrigger, DialogClose } from "@/components/ui/dialog";
 import { AlertDialog, AlertDialogTrigger } from "@/components/ui/alert-dialog";
 import CommonDialog from "@/components/commonComponents/adminDialog/CommonDialog";
+import { useToast } from "@/components/ui/use-toast";
+import { Toaster } from "@/components/ui/toaster";
 
 // Import DnD Kit modules
 import {
@@ -45,6 +47,7 @@ import { useSubCategoryDeleteMutation } from "@/redux/queries/deleteSubCategoryA
 import { useUpdateSubCategoryMutation } from "@/redux/queries/updateSubCategoryApi";
 
 function SubCategoryContent() {
+  const { toast } = useToast();
   const [dialogOpen, setDialogOpen] = useState(false);
   const [editData, setEditData] = useState(null);
   const [assignCategoryID, setAssignCategoryID] = useState(null);
@@ -74,7 +77,6 @@ function SubCategoryContent() {
   const pathname = usePathname();
   const getParams = pathname.split("/").slice(2);
   const [instituteParam] = getParams[0].split(",").slice(1);
-  console.log(getParams[1], "checkif");
   const initialOrgType =
     instituteParam === "Qspiders"
       ? "QSP"
@@ -209,7 +211,6 @@ function SubCategoryContent() {
             organisation: initialOrgType, // Ensure this is the correct value
             weightage: newIndex + 1,
           }).unwrap();
-
           if (response.statusCode === 200) {
             refetch(); // Refetch data if necessary
           }
@@ -299,6 +300,10 @@ function SubCategoryContent() {
           });
 
       if (response.data.statusCode === 201) {
+        toast({
+          title: "SubCategory Updated successfully",
+          variant: "success",
+        });
         setDialogOpen(false);
         categoryDataRefetch();
       }
@@ -369,7 +374,7 @@ function SubCategoryContent() {
             {(formikDetails) => (
               <CommonDialog
                 header="Add new sub-Category"
-                footerBtnTitle="Save"
+                footerBtnTitle="Create Sub Category"
                 formfn={() => createBatchForm(formikDetails)}
                 footerBtnClick={formikDetails.handleSubmit}
                 dialogCloseClick={() => setDialogOpen(false)}
@@ -502,6 +507,7 @@ function SubCategoryContent() {
             deleteFunction={handleDeleteSubCategory}
           />
         </AlertDialog>
+        <Toaster/>
       </div>
     </>
   );

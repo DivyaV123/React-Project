@@ -20,6 +20,7 @@ import { useCourseEditDataMutation } from "@/redux/queries/editCourseApi";
 import "react-quill/dist/quill.snow.css";
 import dynamic from "next/dynamic";
 import "react-quill/dist/quill.bubble.css";
+
 const ReactQuill = dynamic(
   async () => {
     const { default: RQ } = await import("react-quill");
@@ -29,7 +30,7 @@ const ReactQuill = dynamic(
     ssr: false,
   }
 );
-function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
+function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData,toast }) {
   const {
     data: courseData,
     error,
@@ -44,6 +45,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
     addCourse,
     { data: courseAdd, error: courseError, isLoading: courseAdderLoad },
   ] = useCourseAdderMutation();
+
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedSubCourse, setSelectedSubCourse] = useState("");
   const [isSubCourseDisabled, setIsSubCourseDisabled] = useState(true);
@@ -460,6 +462,10 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData }) {
           : await addCourse({ bodyData: payload }).unwrap();
 
         if (response.statusCode == 201 || response.statusCode == 200) {
+          toast({
+            title: "Course created successfully",
+            variant: "success",
+          });
           dialogCloseClick(false);
           formikDetails.resetForm();
           setSelectedCourse("");

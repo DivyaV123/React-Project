@@ -52,7 +52,7 @@ const HiringFromUsForm = ({ activeTab,handleCloseModal,toast }) => {
       case "Corporate Training":
         return Yup.object({
           fullName: Yup.string()
-            .matches(/^[A-Za-z]+$/, "Full Name can only contain letters")
+          .matches(/^[A-Za-z]+( [A-Za-z]+)*$/, "Full Name can only contain letters and spaces, and cannot end with a space")
             .required("Full Name is required"),
           mobileNumber: Yup.string().required("Mobile number is required"),
           requiredTraining: Yup.string()
@@ -69,7 +69,7 @@ const HiringFromUsForm = ({ activeTab,handleCloseModal,toast }) => {
       case "General Enquiries":
         return Yup.object({
           fullName: Yup.string()
-            .matches(/^[A-Za-z]+$/, "Full Name can only contain letters")
+          .matches(/^[A-Za-z]+( [A-Za-z]+)*$/, "Full Name can only contain letters and spaces, and cannot end with a space")
             .required("Full Name is required"),
           mobileNumber: Yup.string().required("Mobile number is required"),
           email: Yup.string()
@@ -83,7 +83,7 @@ const HiringFromUsForm = ({ activeTab,handleCloseModal,toast }) => {
       default:
         return Yup.object({
           fullName: Yup.string()
-            .matches(/^[A-Za-z]+$/, "Full Name can only contain letters")
+          .matches(/^[A-Za-z]+( [A-Za-z]+)*$/, "Full Name can only contain letters,cannot end with a space")
             .required("Full Name is required"),
           mobileNumber: Yup.string().required("Mobile number is required"),
           companyName: Yup.string()

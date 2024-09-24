@@ -31,7 +31,7 @@ export default function Home() {
 
     document.title = newTitle;
   }, [router]);
-  console.log(router?.pathname, "afterpathname");
+
 
   return (
     <main className="">

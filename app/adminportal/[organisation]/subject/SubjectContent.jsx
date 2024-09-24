@@ -81,7 +81,9 @@ const SubjectContent = () => {
   };
 
   const validationSchema = Yup.object({
-    SubjectName: Yup.string().required("Subject Name is required"),
+    SubjectName: Yup.string()
+      .matches(/^\S.*$/, "Subject Name cannot start with a space")
+      .required("Subject Name is required"),
   });
 
   const formikDetails = useFormik({
@@ -339,7 +341,7 @@ const SubjectContent = () => {
         {subjectNameDialog && (
           <CommonDialog
             header={`${editData ? "Edit" : "Add new"} Subject`}
-            footerBtnTitle={`${editData ? "Update" : "Create"}`}
+            footerBtnTitle={`${editData ? "Update" : "Create Subject"}`}
             formfn={dialogForm}
             footerBtnClick={footerBtnClick}
           />
@@ -394,7 +396,7 @@ const SubjectContent = () => {
                         <DialogTrigger>
                           <button
                             onClick={() => handleEditSubject(ele.subjectId, ele.subjectTitle)}
-                            className="mr-2 text-blue-500 hover:underline"
+                            className="mr-2 text-blue-500 "
                           >
                             Edit
                           </button>
@@ -403,7 +405,7 @@ const SubjectContent = () => {
                           onClick={() => {
                             setDeleteDialog(true), setSubjectId(ele.subjectId);
                           }}
-                          className="text-red-500 hover:underline"
+                          className="text-red-500 "
                         >
                           Delete
                         </button>
