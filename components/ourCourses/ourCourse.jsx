@@ -182,7 +182,7 @@ function OurCourse({ page }) {
             </article>
           )}
 
-          <div className="bg-white  flex rounded">
+          <div className="bg-[#F3F3F3] h-[7vh] mobile:h-[5.1vh] rounded-3xl flex ">
             {tutionClasses.map((classItem, index) => (
               <button
                 key={index}
@@ -243,7 +243,7 @@ function OurCourse({ page }) {
                     </picture>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent page="explorecourses">
+                <AccordionContent page="explorecourses" className=" mobile:h-[45vh] ">
                   <article className="h-full sm:hidden tabView:block">
                     <div className="flex  justify-between gap-4 h-full  mobile:overflow-x-scroll mobile:offlineScrollbar   pt-[2.575vh] ">
                       {getFinalCourseList?.length > 0 ? (
