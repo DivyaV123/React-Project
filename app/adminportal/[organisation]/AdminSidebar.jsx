@@ -16,42 +16,42 @@ const AdminSidebar = () => {
     {
       name: "Category",
       icon: "/icon_outline_category.svg",
-      iconLite: "/AdminCategoryliteIcon.png"
+      iconLite: "/AdminCategoryliteIcon.png",
     },
     {
       name: "Sub Category",
       icon: "/subcategory_icon.svg",
-      iconLite: "/AdminCategoryliteIcon.png"
+      iconLite: "/icon_outline_sub_category.png",
     },
     {
       name: "Course",
       icon: "/course_icon_admin.svg",
-      iconLite: "/AdminCategoryliteIcon.png"
+      iconLite: "/icon_outline_courses.png",
     },
     {
       name: "Subject",
       icon: "/subject_icon_admin.svg",
-      iconLite: "/AdminCategoryliteIcon.png"
+      iconLite: "/icon_outline_subjects.png",
     },
     {
       name: "City",
       icon: "/icon_outline_city.svg",
-      iconLite: "/AdminCategoryliteIcon.png"
+      iconLite: "/icon_outline_city.png",
     },
     {
       name: "Branch",
       icon: "/icon_outline_branch.svg",
-      iconLite: "/AdminCategoryliteIcon.png"
+      iconLite: "/icon_outline_branch.png",
     },
     {
       name: "Batches",
       icon: "/course_icon_admin.svg",
-      iconLite: "/AdminCategoryliteIcon.png"
+      iconLite: "/icon_linear_branch.png",
     },
     {
       name: "Trainers",
       icon: "/icon_trainers.png",
-      iconLite: "/AdminCategoryliteIcon.png"
+      iconLite: "/profile.png",
     },
   ];
   const handleSideBar = (name) => {
@@ -83,10 +83,10 @@ const AdminSidebar = () => {
               instituteParam === "Qspiders"
                 ? "/qpidersnew.svg"
                 : instituteParam === "Jspiders"
-                  ? "/adminjpiders.svg"
-                  : instituteParam === "Pyspiders"
-                    ? "/admin_pypiders.svg"
-                    : "/admin_prospiders.svg"
+                ? "/adminjpiders.svg"
+                : instituteParam === "Pyspiders"
+                ? "/admin_pypiders.svg"
+                : "/admin_prospiders.svg"
             }
             className="pb-[2.222vh] relative left-[1vw] h-[10vh]"
           />
@@ -96,14 +96,21 @@ const AdminSidebar = () => {
             return (
               <div
                 key={index}
-                className={`flex items-center gap-1.5 cursor-pointer text-[1.094vw] py-[1.25vh] px-[0.625vw] my-[0.694vh] ${decodeURIComponent(sidebarParam) === item.name
-                  ? "bg-[#FF7B1B] text-white  font-bold rounded-md"
-                  : "text-[#6E6E6E] font-medium"
-                  } `}
+                className={`flex items-center gap-1.5 cursor-pointer text-[1.094vw] py-[1.25vh] px-[0.625vw] my-[0.694vh] ${
+                  decodeURIComponent(sidebarParam) === item.name
+                    ? "bg-[#FF7B1B] text-white  font-bold rounded-md"
+                    : "text-[#6E6E6E] font-medium"
+                } `}
                 onClick={() => handleSideBar(item.name)}
               >
                 <picture>
-                  <img src={decodeURIComponent(sidebarParam) === item.name ? item.iconLite : item.icon} />
+                  <img
+                    src={
+                      decodeURIComponent(sidebarParam) === item.name
+                        ? item.iconLite
+                        : item.icon
+                    }
+                  />
                 </picture>
                 <button className="">{item.name}</button>
               </div>

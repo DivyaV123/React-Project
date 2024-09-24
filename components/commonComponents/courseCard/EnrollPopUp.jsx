@@ -131,6 +131,7 @@ function EnrollPopUp({
     if (country?.dialCode !== countryCode) {
       setPhoneValue(country.dialCode);
       formik.setFieldValue("mobileNumber", country.dialCode);
+      setError({ ...error, validPhone: false });
     } else {
       setPhoneValue(value);
       formik.setFieldValue("mobileNumber", value);
@@ -296,8 +297,7 @@ function EnrollPopUp({
                         ? "border-red-500"
                         : "border-gray-300"
                     }`}
-                  >
-                  </input>
+                  ></input>
                   {formik.touched.course && formik.errors.course ? (
                     <div className="text-red-500 absolute text-sm">
                       {formik.errors.course}

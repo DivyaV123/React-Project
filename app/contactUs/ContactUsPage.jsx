@@ -149,6 +149,7 @@ function ContactUsPage() {
     if (country?.dialCode !== countryCode) {
       setPhoneValue(country.dialCode);
       formikDetails.setFieldValue('phone', country.dialCode);
+      setError({ ...error, validPhone: false });
     } else {
       setPhoneValue(value);
       formikDetails.setFieldValue('phone', value);

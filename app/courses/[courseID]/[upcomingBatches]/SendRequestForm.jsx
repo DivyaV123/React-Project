@@ -96,6 +96,7 @@ const SendRequestForm = () => {
     if (country?.dialCode !== countryCode) {
       setPhoneValue("");
       formikDetails.setFieldValue("phone", country.dialCode);
+      setError({ ...error, validPhone: false });
     } else {
       setPhoneValue(value);
       formikDetails.setFieldValue("phone", value);
