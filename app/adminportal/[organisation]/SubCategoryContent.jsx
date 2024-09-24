@@ -242,7 +242,7 @@ function SubCategoryContent() {
     return (
       <Form className="space-y-4">
         <div>
-          <label htmlFor="subCategory">Sub Category</label>
+          <label htmlFor="subCategory">Sub category</label>
           <Input
             id="subCategory"
             name="subCategory"
@@ -382,8 +382,8 @@ function SubCategoryContent() {
           >
             {(formikDetails) => (
               <CommonDialog
-                header="Add new sub-Category"
-                footerBtnTitle="Create Sub Category"
+                header="Add new sub category"
+                footerBtnTitle="Create Sub category"
                 formfn={() => createBatchForm(formikDetails)}
                 footerBtnClick={formikDetails.handleSubmit}
                 dialogCloseClick={() => setDialogOpen(false)}

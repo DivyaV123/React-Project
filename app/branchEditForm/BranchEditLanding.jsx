@@ -325,7 +325,7 @@ function BranchEditLanding() {
                             <p className={commonFieldClass}>Branch Name</p>
                             <Input
                                 name='BranchName'
-                                placeholder='enter the Branch Name'
+                                placeholder='Enter the Branch Name'
                                 value={formikDetails.values.BranchName}
                                 onChange={formikDetails.handleChange}
 

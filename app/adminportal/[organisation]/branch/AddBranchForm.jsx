@@ -384,7 +384,7 @@ function AddBranchForm({ dialogCloseClick, branchRefetch, branchEditData,setBran
                                 <Input
                                     name='BranchName'
                                     inputStyle="!w-[23.438vw] h-[2.813vw] text-[12px]  text-gray-400"
-                                    placeholder='enter the Branch Name'
+                                    placeholder='Enter the Branch Name'
                                     value={formikDetails.values.BranchName}
                                     onChange={formikDetails.handleChange}
 
@@ -616,7 +616,7 @@ function AddBranchForm({ dialogCloseClick, branchRefetch, branchEditData,setBran
                                 <p className={tagHeadStyle}>Location</p>
                                 <Input
                                     name='location'
-                                    placeholder="Please eFnter Location"
+                                    placeholder="Please enter location"
                                     inputStyle="!w-[23.438vw] h-[2.813vw]  text-[12px]  text-gray-400"
                                     value={formikDetails.values.location}
                                     handleBlur={formikDetails.handleBlur}

@@ -282,7 +282,7 @@ const AdminCategory = () => {
         <p className={pStyle}>
           <span class="text-red-500 pr-1">*</span>Category Icon Dark
         </p>
-        <div className="flex gap-4 items-center">
+        <div className="flex gap-4 items-center pb-[2.222vh]">
           <div className="w-[50%] break-all">
             <input
               type="file"
@@ -397,12 +397,12 @@ const AdminCategory = () => {
   const deleteICon = "/illustrate_delete.svg";
   const warningIcon = "/illustrate_warning.svg";
   const handleDeleteClick = (id, category) => {
+    setGetCategoryName(category.title)
     if (category.subCourse.length > 0 || category.courseResponse.length > 0) {
       setWarningCategory(true);
     } else {
       setCategoryId(id);
       setDeleteCategory(true);
-      setGetCategoryName(category.title);
     }
   };
   const handledeleteSelectedCategory = async () => {
@@ -689,7 +689,11 @@ const AdminCategory = () => {
             icon={warningIcon}
             setDeleteCategory={setWarningCategory}
             btnText="Close"
-            contentText="You can’t delete the Category until there is a course in it"
+            contentText={
+              <>
+                You can’t delete the Category until there is a <span className="font-bold">course</span> in <span className="font-bold">{getCategoryName}</span>
+              </>
+            }
             deleteFunction={() => {
               setWarningCategory(false);
             }}

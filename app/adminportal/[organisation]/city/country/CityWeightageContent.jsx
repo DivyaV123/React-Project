@@ -106,8 +106,8 @@ const CityWeightageContent = () => {
     stateName: "",
   };
   const validationSchema = Yup.object({
-    cityName: Yup.string().required("city Name is required"),
-    stateName: Yup.string().required("state Name is required"),
+    cityName: Yup.string().required("City name is required"),
+    stateName: Yup.string().required("State name is required"),
   });
 
   useEffect(() => {
@@ -557,10 +557,10 @@ const CityWeightageContent = () => {
               <div key={index} className="flex justify-between items-center  ">
                 <button
                   onClick={() => handleCountryClick(ele.countryName)}
-                  className={`text-[#212121] py-[1.389vh] border-b-2 border-transparent text-[1.094vw] font-medium ${
+                  className={`text-[#212121] py-[1.389vh]  text-[1.094vw] font-medium ${
                     activeCountry === ele.countryName
                       ? " text-[#FF7B1B] font-bold border-b-2 border-[#FF7B1B]"
-                      : ""
+                      : "border-b-2 border-transparent"
                   }`}
                 >
                   {ele.countryName}

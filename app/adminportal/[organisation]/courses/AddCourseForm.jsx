@@ -706,9 +706,9 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData,toast }
           <div className="w-full h-full">
             <div className="pt-[2.222vh]">
               <div>
-                <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Organigation</p>
+                <p className={tagHeadStyle}><span class="text-red-500 pr-1">*</span>Organization</p>
                 <Dropdown
-                  placeholder="Enter organigation"
+                  placeholder="Enter Organization"
                   inputStyle=" h-[2.813vw]  flex items-center text-[12px]  text-gray-400"
                   iconStyle="w-[10%]"
                   options={orgOptions}
