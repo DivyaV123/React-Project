@@ -270,7 +270,9 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData,toast }
     }
   };
 
-  const handleCancel = (iconType) => {
+  const handleCancel = (iconType,event) => {
+    event.preventDefault();
+    event.stopPropagation();
     setSelectedFile((prevState) => ({
       ...prevState,
       [iconType]: null,
@@ -779,7 +781,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData,toast }
                   />
                   <button
                     type="button"
-                    onClick={() => handleCancel("courseIcon")}
+                    onClick={(e) => handleCancel("courseIcon",e)}
                     className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
                   >
                     &#10005;
@@ -817,7 +819,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData,toast }
                   />
                   <button
                     type="button"
-                    onClick={() => handleCancel("homePageImage")}
+                    onClick={(e) => handleCancel("homePageImage",e)}
                     className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
                   >
                     &#10005;
@@ -855,7 +857,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData,toast }
                   />
                   <button
                     type="button"
-                    onClick={() => handleCancel("courseCardImage")}
+                    onClick={(e) => handleCancel("courseCardImage",e)}
                     className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
                   >
                     &#10005;

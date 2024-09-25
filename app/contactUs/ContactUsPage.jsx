@@ -284,6 +284,8 @@ function ContactUsPage() {
                       iconStyle=""
                       placeholder="Type here..."
                       name="message"
+                      iconPath="/emailFieldicon.svg"
+
                       onChange={formikDetails.handleChange}
                       onBlur={formikDetails.handleBlur}
                       value={formikDetails.values.message}
@@ -353,7 +355,7 @@ function ContactUsPage() {
                         icon={svgicons.contactUsMail[3]}
                         color={svgicons.contactUsMail[4]}
                       />
-                      <div className="text-white tabView:text-[1.613vw]  text-[0.938vw]">
+                      <div className="text-white leading-[2.6vh] tabView:text-[1.613vw]  text-[0.938vw]">
                         {data.mail}
                       </div>
                     </div>

@@ -232,14 +232,8 @@ const AdminCategory = () => {
       });
 
       setSelectedFile({
-        categoryIconDark: editData.icon
-          ? new File([], editData.icon.split("/").pop(), { type: "image/*" })
-          : null,
-        categoryIconLite: editData.alternativeIcon
-          ? new File([], editData.alternativeIcon.split("/").pop(), {
-              type: "image/*",
-            })
-          : null,
+        categoryIconDark: null,
+        categoryIconLite: null,
       });
 
       setErrorMessage({
@@ -292,7 +286,11 @@ const AdminCategory = () => {
               onChange={(event) => handleFileChange(event, "categoryIconDark")}
             />
             <label htmlFor="file-upload-dark">
-              <img src="../images/uploadinput.png" alt="file upload" />
+              <img
+                src="../images/uploadinput.png"
+                className=" cursor-pointer "
+                alt="file upload"
+              />
             </label>
             {selectedFile.categoryIconDark && (
               <p className="text-gray-700 text-[0.6rem]">
@@ -341,7 +339,11 @@ const AdminCategory = () => {
               onChange={(event) => handleFileChange(event, "categoryIconLite")}
             />
             <label htmlFor="file-upload-lite">
-              <img src="../images/uploadinput.png" alt="file upload" />
+              <img
+                src="../images/uploadinput.png"
+                className=" cursor-pointer "
+                alt="file upload"
+              />
             </label>
             {selectedFile.categoryIconLite && (
               <p className="text-gray-700 text-[0.6rem]">
@@ -397,7 +399,7 @@ const AdminCategory = () => {
   const deleteICon = "/illustrate_delete.svg";
   const warningIcon = "/illustrate_warning.svg";
   const handleDeleteClick = (id, category) => {
-    setGetCategoryName(category.title)
+    setGetCategoryName(category.title);
     if (category.subCourse.length > 0 || category.courseResponse.length > 0) {
       setWarningCategory(true);
     } else {
@@ -691,7 +693,9 @@ const AdminCategory = () => {
             btnText="Close"
             contentText={
               <>
-                You can’t delete the Category until there is a <span className="font-bold">course</span> in <span className="font-bold">{getCategoryName}</span>
+                You can’t delete the Category until there is a{" "}
+                <span className="font-bold">course</span> in{" "}
+                <span className="font-bold">{getCategoryName}</span>
               </>
             }
             deleteFunction={() => {

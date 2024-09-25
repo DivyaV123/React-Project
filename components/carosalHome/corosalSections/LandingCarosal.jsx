@@ -3,7 +3,7 @@ import CarosalSection from "@/components/commonComponents/carosalSection/carosal
 import React, { useContext, useEffect, useState } from "react";
 import "./sections.scss";
 import Button from "@/components/commonComponents/button/Button";
-import { Fade } from 'react-awesome-reveal'
+import { Fade } from "react-awesome-reveal";
 import CarosalFooter from "../carosalFooter/CarosalFooter";
 import Counter from "@/components/commonComponents/counterAnimation/Counter";
 import LandingCarosalSkeleton from "./LandingCarosalSkeleton";
@@ -15,11 +15,18 @@ import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
 function LandingCarosal() {
   const { toast } = useToast();
-  const { domainVariable } = useContext(GlobalContext)
-      let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "prospiders"
+  const { domainVariable } = useContext(GlobalContext);
+  let domain =
+    domainVariable === "Qspiders"
+      ? "qspiders"
+      : domainVariable === "Jspiders"
+      ? "jspiders"
+      : domainVariable === "Pyspiders"
+      ? "pyspiders"
+      : "prospiders";
   const [isloading, setisLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('General Enquiries')
+  const [activeTab, setActiveTab] = useState("General Enquiries");
   useEffect(() => {
     setTimeout(() => {
       setisLoading(false);
@@ -29,14 +36,14 @@ function LandingCarosal() {
     setIsModalOpen(false);
   };
 
-  const { data:heroPageData, isLoading, error } = useGetHeroPageQuery(domain);
+  const { data: heroPageData, isLoading, error } = useGetHeroPageQuery(domain);
   return (
     // isloading ? <LandingCarosalSkeleton />
     //   :
     <>
       <div className=" grid grid-cols-1 sm:grid-cols-2  md:grid-cols-2 lg:grid-cols-2 gap-4 sm:h-[84vh] mobile:block">
         <Fade direction="left" delay={0} duration={1000}>
-          <aside className="flex items-center mb-8 2xl:mb-12 3xl:mb-16 mobile:m-0">
+          <aside className="flex items-center mt-[5vh] mb-8 2xl:mb-12 3xl:mb-16 mobile:m-0">
             <article className="headerArticle mb-10 w-full mobile:m-0">
               <h1 className="mainHead pb-[2.222vh] text-[3.75vw] mobile:text-[7.907vw] opacity-100 mobile:pt-[6.438vh] mobile:pb-[1.288vh] tabView:text-[4.57vw] tabView:font-normal">
                 {heroPageData?.data?.title} <br />{" "}
@@ -167,7 +174,7 @@ function LandingCarosal() {
             </article> */}
             <figure className="w-[75%] h-[84vh] tabView:w-full tabView:h-auto">
               <Image
-                src='/landScreenpicture.png'
+                src="/landScreenpicture.png"
                 priority={true}
                 width={500}
                 height={500}
@@ -177,7 +184,7 @@ function LandingCarosal() {
           </aside>
         </Fade>
       </div>
-      <CarosalFooter heroPageData={heroPageData}/>
+      <CarosalFooter heroPageData={heroPageData} />
       {isModalOpen && (
         <HiringModal
           isModalOpen={isModalOpen}
@@ -186,9 +193,8 @@ function LandingCarosal() {
           setActiveTab={setActiveTab}
           toast={toast}
         />
-      )
-      }
-      <Toaster/>
+      )}
+      <Toaster />
     </>
   );
 }
