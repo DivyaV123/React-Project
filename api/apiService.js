@@ -29,7 +29,7 @@ export const API_ENDPOINTS = {
   GET_ALL_FAQ: (domain) => `backend/api/v1/faqs?organization=${domain}`,
   GET_BRANCH_BY_BRANCHID: (branchId) => `/api/v1/branches/getbyidform?branchId=${branchId}`,
   GET_BRANCH_BY_COURSE_ID_AND_BRANCH_ID: (courseId, branchId) => `backend/api/v1/branches/getbyid?branchId=${branchId}&courseId=${courseId}`,
-  GET_ALL_COURSES_BY_COURSE_ID: (courseId) => `/api/v1/courses/getbyid?courseId=${courseId}`,
+  GET_ALL_COURSES_BY_COURSE_ID: (courseId) => `backend/api/v1/courses/getbyid?courseId=${courseId}`,
   GET_ONLINE_COURSES:(mode)=> `backend/api/v1/categories/getAllCategories?mode=${mode}`,
   GET_ALL_FOR_ADMIN_PORTAL: 'api/v1/courses/getall',
   //placements

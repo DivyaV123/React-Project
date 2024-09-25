@@ -20,7 +20,7 @@ function FaqHome({ page, questions, courseDetails, faqData, mainfaqData }) {
                 {/* )} */}
             </header>
             <article className={`pb-[4.444vh]`}>
-                <Qaccordion qaList={courseDetails?.faqs.length > 0 ? courseDetails?.faqs : faqData ? faqData : mainfaqData} />
+                <Qaccordion qaList={courseDetails?.faqs?.length > 0 ? courseDetails?.faqs : faqData ? faqData : mainfaqData} />
             </article>
         </MaxWebWidth>
     )
