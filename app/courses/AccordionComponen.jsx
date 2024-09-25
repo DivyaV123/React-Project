@@ -24,7 +24,7 @@ const AccordionItem = ({
   const isLeafNode = !hasChildren && (item.topicTitle || item.subTopicTitle);
 
   const handleVideoPreview = (e) => {
-    e.stopPropagation(); 
+    e.stopPropagation();
     if (typeOfLearning === "SELF_PACED" && isLeafNode) {
       setVideoPreview(true);
     }
@@ -85,11 +85,13 @@ const AccordionItem = ({
             <AlertDialogTrigger asChild>
               <div
                 className="flex justify-between sm:pr-[1.875vw]"
-                onClick={isLeafNode && typeOfLearning === "SELF_PACED" ? handleVideoPreview : toggleAccordion}
+                onClick={
+                  isLeafNode && typeOfLearning === "SELF_PACED"
+                    ? handleVideoPreview
+                    : toggleAccordion
+                }
               >
-                <div
-                  className="cursor-pointer text-[1.25vw] text-[#454545] font-semibold mobile:text-[2.791vw] py-3 pl-2 flex space-x-4 items-center"
-                >
+                <div className="cursor-pointer text-[1.25vw] text-[#454545] font-semibold mobile:text-[2.791vw] py-3 pl-2 flex space-x-4 items-center">
                   {isLeafNode ? (
                     typeOfLearning === "SELF_PACED" ? (
                       <img src="/play_button.svg" alt="Play Button" />
@@ -103,7 +105,7 @@ const AccordionItem = ({
                         color={svgicons.smallDoc[4]}
                       />
                     )
-                  ) : item.chapterTitle && hasChildren ? (
+                  ) : (item.chapterTitle || item.topicTitle) && hasChildren ? (
                     isOpen ? (
                       <Svg
                         className=""
