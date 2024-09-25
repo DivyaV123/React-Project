@@ -91,10 +91,10 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
     "flex text-[0.938vw] font-medium text-[#454545] gap-x-[0.469vw] items-center";
 
   function convertToIST(timeString) {
-    let [hours, minutes] = timeString.split(':').map(Number);
+    let [hours, minutes] = timeString?.split(':')?.map(Number);
     let period = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12 || 12;
-    let formattedTime = hours.toString().padStart(2, '0');
+    let formattedTime = hours?.toString()?.padStart(2, '0');
     return `${formattedTime} ${period}`;
   }
 
@@ -131,6 +131,16 @@ const handleCloseModal = () => {
   return (
     <>
       {upcomingBatchesData.map((batch, index) => {
+        const startDate = new Date(batch.startingDatetime);
+        const endDate = new Date(startDate);
+        endDate.setMonth(endDate.getMonth() + 2);
+        const endTime = new Date(endDate);
+        endTime.setHours(endTime.getHours() + 2);
+        const formattedStartDate = startDate.toISOString().split('T')[0];
+        const formattedStartTime = startDate.toTimeString().split(' ')[0].slice(0, 5);
+        //if end date is required use below
+        const formattedEndDate = endDate.toISOString().split('T')[0];
+        const formattedEndTime = endTime.toTimeString().split(' ')[0].slice(0, 5);
         return isloading ? (
           <>
             <div
@@ -183,7 +193,7 @@ const handleCloseModal = () => {
                     icon={svgicons.calender[3]}
                     color={svgicons.calender[4]}
                   />
-                  <div className="mobile:text-[2.791vw]">{batch.date ? batch.date : `${convertDate(batch.startingDate)}-${convertDate(batch.endingDate)}`}</div>
+                  <div className="mobile:text-[2.791vw]">{formattedStartDate}</div>
                 </div>
                 <div className={`${dateAndTime}`}>
                   <Svg
@@ -194,7 +204,7 @@ const handleCloseModal = () => {
                     icon={svgicons.icontime[3]}
                     color={svgicons.icontime[4]}
                   />
-                  <div className="mobile:text-[2.791vw]">{batch.time ? batch.time : `${convertToIST(batch.startingTime)}-${convertToIST(batch.endingTime)}`}</div>
+                  <div className="mobile:text-[2.791vw]">{`${formattedStartTime}-${formattedEndTime}`}</div>
                 </div>
               </div>
               <div className={`${dateAndTime} pb-[1.389vh] mobile:pb-[1.073vh]`}>
