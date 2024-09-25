@@ -17,7 +17,7 @@ function BranchesCourse({ branchCourseData }) {
   const [showAll, setShowAll] = useState(false);
   const [isloading, setisLoading] = useState(false);
   const showViewMoreButton =
-    branchCourseData.length % 4 !== 0 && visibleCards < branchCourseData.length;
+    branchCourseData?.length % 4 !== 0 && visibleCards < branchCourseData?.length;
 
   const handleViewToggle = () => {
     if (showAll) {
@@ -28,7 +28,7 @@ function BranchesCourse({ branchCourseData }) {
     setShowAll(!showAll);
   };
 
-  const cardsToDisplay = branchCourseData.slice(0, visibleCards);
+  const cardsToDisplay = branchCourseData?.slice(0, visibleCards);
  
 
   useEffect(() => {
@@ -43,8 +43,8 @@ function BranchesCourse({ branchCourseData }) {
         Courses
       </p>
       <section className="flex sm:flex-wrap mobile:gap-6 sm:w-[87.5vw] mobile:pl-[5.581vw] mobile:py-[1.717vh]   sm:m-auto 2xl:sm:gap-x-[17px] sm:gap-y-[16px] xl:gap-x-[14.5px] 3xl:gap-x-[22px]  mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[2vh]">
-        {cardsToDisplay.length > 0
-          ? cardsToDisplay.map((element) => {
+        {cardsToDisplay?.length > 0
+          ? cardsToDisplay?.map((element) => {
               return (
                 <div className="branches courseCard" key={element.id}>
                   <article className="w-full h-full">
@@ -58,7 +58,7 @@ function BranchesCourse({ branchCourseData }) {
                 </div>
               );
             })
-          : courseCard.map((element) => {
+          : courseCard?.map((element) => {
               return (
                 <div className="branches courseCard" key={element.id}>
                   <article className="w-full h-full">

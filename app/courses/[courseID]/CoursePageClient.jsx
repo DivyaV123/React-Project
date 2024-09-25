@@ -54,7 +54,7 @@ const CoursePageClient = () => {
       </div>
     );
   if (error) return <div>Error: {error.message}</div>;
-  if (!courseDetails) return <div>No course details found.</div>;
+  if (!courseDetails) return <div className="flex justify-center items-center absolute top-[50%] left-[50%] -translate-y-1/2 -translate-x-1/2">No course details found.</div>;
 
   return (
     <WebLayout page="course" courseDetails={courseDetails.data}>

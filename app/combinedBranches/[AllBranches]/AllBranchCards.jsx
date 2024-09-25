@@ -72,7 +72,7 @@ const AllBranchCards = () => {
           <section
             key={ele.cityName}
             className="w-full pb-8 mobile:pb-[1.717vh] cardBackground myscrollbar"
-          >
+           >
             <div className="flex gap-2.5 pt-2 pl-[6%] mobile:pt-[1.717vh] mobile:pb-[2.575vh]">
               <img src="../icon_fill_location.svg" alt="location icon" />
               {/* <Image
