@@ -77,11 +77,12 @@ const CourseLanding = ({
               <button className="ratingButton flex justify-center items-center py-2 px-4 font-semibold rounded text-ash">
                 <span className="flex text-[1.25vw] py-[0.556vh] px-[0.313vw]">
                   <Svg
-                    width={svgicons.ratingStar[0]}
-                    height={svgicons.ratingStar[1]}
+                    // width={svgicons.ratingStar[0]}
+                    // height={svgicons.ratingStar[1]}
                     viewBox={svgicons.ratingStar[2]}
                     icon={svgicons.ratingStar[3]}
                     color={svgicons.ratingStar[4]}
+                    className="h-[4.5vh] w-[1.5vw] mb-[0.5vh]"
                   />
                 </span>{" "}
                 4.6 Rating

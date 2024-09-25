@@ -392,7 +392,7 @@ const HiringFromUsForm = ({ activeTab, handleCloseModal, toast }) => {
             }`}
           />
           {formik.touched.message && formik.errors.message ? (
-            <div className="text-red-500 absolute text-sm">
+            <div className="text-red-500 absolute text-sm -mt-[1vh]">
               {formik.errors.message}
             </div>
           ) : null}

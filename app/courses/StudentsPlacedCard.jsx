@@ -28,7 +28,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
       setisLoading(false);
     }, 500);
   }, []);
-
+ 
   return (
     <section
       className={`flex flex-wrap sm:gap-y-[1.25vw] mobile:gap-4 mobile:py-[1.717vh] mobile:mx-[4.651vw] ${
@@ -38,7 +38,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
       }`}
     >
       {studentsInfo?.map((element) => {
-        let detail = `${element?.degree?.name}(${element?.percentage_deg}%)- ${element.highestyop}`;
+        let detail = `${toProperCase(element?.degree?.name)}(${element?.percentage_deg}%)- ${element.highestyop}`;
         const getFilteredTestimonials = (getTestimonialArray) => {
           if (getTestimonialArray?.length > 0) {
             const checkArray = getTestimonialArray?.filter((testimonial) => {

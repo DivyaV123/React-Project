@@ -249,7 +249,16 @@ function CategoryContent() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {routeCourseId !== "subcategory" ? (
+            {categoryList.length === 0 ? (
+              <TableRow>
+                <TableCell
+                  colSpan={getTableHeaders.length}
+                  className="text-center text-[24px] text-black py-4 absolute left-[50%] top-[50%]"
+                >
+                  No courses available
+                </TableCell>
+              </TableRow>
+            ) : routeCourseId !== "subcategory" ? (
               <DndContext
                 sensors={sensors}
                 collisionDetection={closestCenter}
