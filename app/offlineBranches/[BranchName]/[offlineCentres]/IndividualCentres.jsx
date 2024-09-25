@@ -141,7 +141,7 @@ const IndividualCentres = () => {
           <div className="sm:hidden text-[#454545] text-[2.791vw] font-medium my-[2.575vh]">
             {selectedId?.courseName}
           </div>
-          <CommonBranch selectedId={selectedId} page="NotofflineBranches" />
+          <CommonBranch selectedId={selectedId} page="NotofflineBranches" courseId={courseId}/>
         </section>
       </section>
     </div>

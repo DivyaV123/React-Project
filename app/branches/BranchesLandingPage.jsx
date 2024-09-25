@@ -29,7 +29,7 @@ function BranchesLandingPage({ BranchDetails }) {
 
     // Assume 4 images per slide
     const imagesPerSlide = 4;
-    const gallery = BranchDetails?.data?.branchGallery.length > 0
+    const gallery = BranchDetails?.data?.branchGallery?.length > 0
         ? BranchDetails.data.branchGallery
         : corosalImgs;
 
