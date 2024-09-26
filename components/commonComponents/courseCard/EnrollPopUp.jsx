@@ -180,6 +180,7 @@ function EnrollPopUp({
                     id="fullName"
                     name="fullName"
                     type="text"
+                    autoFocus
                     placeholder="Enter your full name"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
