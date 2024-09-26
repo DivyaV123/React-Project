@@ -13,7 +13,7 @@ const TrendingCourses = ({page}) => {
       ? "jspiders"
       : domainVariable === "Pyspiders"
       ? "pyspiders"
-      : "bspiders";
+      : "qspiders";
   const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery(domain);
   const getPopularCourses = (AllCourse && AllCourse.data) 
   ? AllCourse.data

@@ -17,7 +17,7 @@ const CoursePopup = () => {
       ? "jspiders"
       : domainVariable === "Pyspiders"
       ? "pyspiders"
-      : "bspiders";
+      : "qspiders";
   const router = useRouter();
   const {
     data: courseResponse,

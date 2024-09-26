@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState ,useContext} from "react";
 import CommonBranch from "../../offlineBranches/[BranchName]/[offlineCentres]/CommonBranch";
 import "./AllBranchCard.scss";
 import { useGetAllBranchCourseQuery } from "@/redux/queries/getBranchCourseApi";
@@ -7,12 +7,22 @@ import { COMBINED_BRANCHES } from "@/lib/RouteConstants";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { toProperCase } from "@/lib/utils";
+import { GlobalContext } from "@/components/Context/GlobalContext";
 const AllBranchCards = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [branchcountry] = pathname.split("/").slice(2);
   const decodeCountry = decodeURIComponent(toProperCase(branchcountry));
-  const { data: branchData, error, isLoading } = useGetAllBranchCourseQuery();
+  const { domainVariable } = useContext(GlobalContext);
+  let domain =
+  domainVariable === "Qspiders"
+    ? "qspiders"
+    : domainVariable === "Jspiders"
+    ? "jspiders"
+    : domainVariable === "Pyspiders"
+    ? "pyspiders"
+    : "qspiders";
+  const { data: branchData } = useGetAllBranchCourseQuery(domain);
   const [countryTab, setCountryTab] = useState("India");
   const [activeTab, setActiveTab] = useState(true);
   const AllBranchCourse = [];

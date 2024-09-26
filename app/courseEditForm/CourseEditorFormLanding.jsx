@@ -37,7 +37,7 @@ function CourseEditorFormLanding() {
         ? "jspiders"
         : domainVariable === "Pyspiders"
         ? "pyspiders"
-        : "bspiders";
+        : "qspiders";
     const [selectedCourseDetails, { data: courseToEditData, error: courseError, isLoading: courseAdderLoad }] = useCourseEditorMutation();
     const [editSelectedCourse, { data: courseEditResp, error: courseEditError, isLoading: courseEditLoad }] = useCourseEditDataMutation();
     const [deleteSelectedCourse, { data: courseDeleteResp, error: courseDeleteError, isLoading: courseDeleteLoad }] = useCourseDeleteMutation();

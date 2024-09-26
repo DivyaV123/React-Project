@@ -24,7 +24,7 @@ function BatchFormLanding() {
         ? "jspiders"
         : domainVariable === "Pyspiders"
         ? "pyspiders"
-        : "bspiders";
+        : "qspiders";
     const [addBatch, { data: branchAdd, error: courseError, isLoading: courseAdderLoad }] = useAddBatchApiMutation();
     const {
         data: courseResponse,

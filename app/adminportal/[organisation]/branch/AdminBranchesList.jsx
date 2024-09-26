@@ -42,7 +42,7 @@ function AdminBranchesList() {
       ? "jspiders"
       : domainVariable === "Pyspiders"
       ? "pyspiders"
-      : "bspiders";
+      : "qspiders";
   const initialOrgType =
     instituteParam === "Qspiders"
       ? "QSP"
