@@ -52,6 +52,7 @@ const HiringFromUsForm = ({ activeTab, handleCloseModal, toast }) => {
       case "Corporate Training":
         return Yup.object({
           fullName: Yup.string()
+          .min(3, "Full Name must be at least 3 characters long")
             .matches(
               /^[A-Za-z]+( [A-Za-z]+)*$/,
               "Full Name can only contain letters and spaces, and cannot end with a space"
@@ -78,6 +79,7 @@ const HiringFromUsForm = ({ activeTab, handleCloseModal, toast }) => {
       case "General Enquiries":
         return Yup.object({
           fullName: Yup.string()
+          .min(3, "Full Name must be at least 3 characters long")
             .matches(
               /^[A-Za-z]+( [A-Za-z]+)*$/,
               "Full Name can only contain letters and spaces, and cannot end with a space"
@@ -98,6 +100,7 @@ const HiringFromUsForm = ({ activeTab, handleCloseModal, toast }) => {
       default:
         return Yup.object({
           fullName: Yup.string()
+          .min(3, "Full Name must be at least 3 characters long")
             .matches(
               /^[A-Za-z]+( [A-Za-z]+)*$/,
               "Full Name can only contain letters,cannot end with a space"
