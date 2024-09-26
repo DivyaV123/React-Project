@@ -23,7 +23,7 @@ function LandingCarosal() {
       ? "jspiders"
       : domainVariable === "Pyspiders"
       ? "pyspiders"
-      : "prospiders";
+      : "qspiders";
   const [isloading, setisLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("General Enquiries");

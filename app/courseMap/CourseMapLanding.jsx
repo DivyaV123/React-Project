@@ -37,7 +37,7 @@ function CourseMapLanding() {
         ? "jspiders"
         : domainVariable === "Pyspiders"
         ? "pyspiders"
-        : "bspiders";
+        : "qspiders";
     const validationSchema = Yup.object({
         category: Yup.string().required("category is required"),
         // subCourse: Yup.string().required("Sub Course is required"),

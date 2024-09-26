@@ -16,7 +16,7 @@ const CourseResponseLanding = () => {
       ? "jspiders"
       : domainVariable === "Pyspiders"
       ? "pyspiders"
-      : "bspiders";
+      : "qspiders";
   const pathname = usePathname();
   const courseID = pathname.split("/").pop();
 

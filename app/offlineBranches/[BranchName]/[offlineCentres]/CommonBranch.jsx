@@ -9,7 +9,7 @@ const CommonBranch = ({ selectedId, page ,courseId}) => {
   }, [selectedId])
   function removeSpacesFromNumbers(phoneNumbers) {
     return phoneNumbers?.split(',')
-      .map(number => number.replace(/\s+/g, '').trim())
+      ?.map(number => number?.replace(/\s+/g, '').trim())
       .join(', ');
   }
   return (
@@ -49,7 +49,7 @@ const CommonBranch = ({ selectedId, page ,courseId}) => {
             <div className="flex gap-3 pt-3 mobile:pt-[1.288vh]">
               <img src="../../../../icon_call.svg" alt="Phone" />
               <p className="text-[0.75rem] text-[#107BD4] font-medium mobile:text-[2.791vw]">
-                {removeSpacesFromNumbers(branch.phoneNumber)}
+                {removeSpacesFromNumbers(branch?.phoneNumber)}
               </p>
             </div>
             <div className="flex gap-3 pt-3 mobile:pt-[1.288vh]">
