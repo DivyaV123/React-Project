@@ -539,7 +539,8 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData,toast }
     <DialogContent>
       <form onSubmit={(e)=>{formikDetails.handleSubmit(e);validateFiles();}}>
         <h1 className="font-bold pb-[2.222vh] text-[1.25vw] text-[#212121]">
-          Add new Course
+        {courseEditData ? "Edit Course" : " Add new Course"}
+         
         </h1>
         <DialogClose>
           <X

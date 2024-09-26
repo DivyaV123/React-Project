@@ -23,7 +23,7 @@ function UpCommingBatches({ branchesData, branchName,branchCourseData ,branchId}
     <>
       <MaxWebWidth>
         <header>
-          <h1 className="font-bold text-[2rem] mobile:text-[4.651vw] sm:pb-5 mobile:pb-[3.433vh]">
+          <h1 className="font-bold mobile:flex mobile:justify-center mobile:items-center text-[2rem] mobile:text-[4.651vw] sm:pb-5 mobile:pb-[3.433vh]">
             Upcoming Batches
           </h1>
         </header>
