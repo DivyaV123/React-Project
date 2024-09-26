@@ -10,6 +10,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 import { isValidPhoneNumber } from "react-phone-number-input";
 import PhoneInput from "react-phone-input-2";
 import "react-phone-input-2/lib/material.css";
+import { useEnrollMutation } from "@/redux/queries/enrollNowApi";
 const TransformWorkSpace = () => {
   const [error, setError] = useState({ phone: false, validPhone: false });
   const [phoneValue, setPhoneValue] = useState();
@@ -19,6 +20,7 @@ const TransformWorkSpace = () => {
   const { domainVariable } = useContext(GlobalContext);
   const contactUsInput = "w-full  h-full text-[0.938vw]";
   const contentStyle = "flex gap-2 pb-[0.625vw] item-center";
+  const [corporateTraining] = useEnrollMutation();
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 768px)");
 
@@ -36,7 +38,6 @@ const TransformWorkSpace = () => {
   }, []);
   const initialValues = {
     name: "",
-    title: '',
     compName: '',
     phone: "",
     email: "",
@@ -56,11 +57,46 @@ const TransformWorkSpace = () => {
       .matches(/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/, "Enter valid email address"),
     message: Yup.string().required("Message is required"),
     compName: Yup.string().required("Company Name is required"),
-    title: Yup.string().required("Title is required"),
   });
   const formikDetails = useFormik({
     initialValues,
     validationSchema,
+    onSubmit: async(values) => {
+      let payload = {};
+      const fullMobileNumber = values.phone;
+      const numberWithoutCountryCode = fullMobileNumber.replace(
+        countryCode,
+        ""
+      );    
+      payload = {
+        userName: values.name,
+        email: values.email,
+        message: values.message,
+        mobileNumber: {
+          code: `+${countryCode}`,
+          number: numberWithoutCountryCode,
+        },
+        type: "CORPORATETRAINING",
+        companyName: values.compName,
+      };
+      try{
+        const response= await corporateTraining(payload).unwrap();
+        if(response){
+          toast({
+            title: "Success",
+            description: "Your message has been sent successfully.",
+            variant: "success",
+          });
+          formikDetails.resetForm();
+        }
+      }catch(error){
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again later.",
+          variant: "destructive",
+        });
+      }
+    },
   });
   const handleOnBlur = (id) => {
     if (!phoneValue) {
@@ -98,7 +134,7 @@ const TransformWorkSpace = () => {
         </article>
         <form
           onSubmit={formikDetails.handleSubmit}
-          className="flex flex-wrap gap-8 w-[51.875vw] corporateTrainingComponent"
+          className="flex flex-wrap gap-8 w-[51.875vw] corporateTrainingComponent  sm:relative"
         >
           <div className="pb-[3.333vh] mobile:mt-[2vh] mobile:pb-[4.5vw] tabView:mt-[3.344vh] tabView:pb-[3.6vw] w-[23.438vw]">
             <span className="text-[0.938vw] font-normal tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]  mobile:text-[2.791vw]">
@@ -116,25 +152,6 @@ const TransformWorkSpace = () => {
             {formikDetails.touched.name && formikDetails.errors.name ? (
               <div className="text-red-500 tabView:text-[1.5vw]  absolute mobile:text-[2.591vw] text-[0.75vw] pt-1">
                 {formikDetails.errors.name}
-              </div>
-            ) : null}
-          </div>
-          <div className=" w-[23.438vw] pb-[3.333vh] mobile:mt-[2vh] mobile:pb-[4.5vw] tabView:mt-[3.344vh] tabView:pb-[3.6vw]">
-            <span className="text-[0.938vw] font-normal tabView:text-[1.813vw] tabView:relative tabView:bottom-[0.781vh]  mobile:text-[2.791vw]">
-              {/* <span className="text-red-500 pr-1">*</span>Name */}
-            </span>
-            <Input
-              inputStyle={`${contactUsInput} mobile:text-[2.591vw] mobile:pl-[7.442vw] tabView:text-[1.491vw] tabView:pl-[5.442vw] contactInput`}
-              iconPath="/nameTextFieldIcon.svg"
-              placeholder="Title"
-              name="title"
-              onChange={formikDetails.handleChange}
-              onBlur={formikDetails.handleBlur}
-              value={formikDetails.values.title}
-            />
-            {formikDetails.touched.title && formikDetails.errors.title ? (
-              <div className="text-red-500 tabView:text-[1.5vw]  absolute mobile:text-[2.591vw] text-[0.75vw] pt-1">
-                {formikDetails.errors.title}
               </div>
             ) : null}
           </div>
@@ -223,7 +240,7 @@ const TransformWorkSpace = () => {
             ) : null}
           </div>
 
-          <div className="w-[23.438vw] pb-[3.333vh] mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
+          <div className="w-[23.438vw]  mobile:pb-[4.5vw] tabView:pb-[3.6vw]">
             <span className="text-[0.938vw] tabView:relative tabView:bottom-[0.781vh] tabView:text-[1.813vw] mobile:text-[2.791vw] font-normal">
               {/* <span className="text-red-500 pr-1">*</span> Your Message */}
             </span>
@@ -243,14 +260,14 @@ const TransformWorkSpace = () => {
               </div>
             ) : null}
           </div>
-        </form>
-
-      </section>
-      <div className="flex justify-end pr-8">
-        <button className="text-white text-[0.938vw] font-medium RequestButton py-[1.111vh]">
+          <div className="w-[23.438vw]  mobile:pb-[4.5vw] tabView:pb-[3.6vw] sm:absolute sm:bottom-0 sm:right-0">
+        <button type="submit" className="text-white text-[0.938vw] font-medium RequestButton py-[1.111vh]">
           Send Request
         </button>
       </div>
+        </form>
+
+      </section>
     </section>
   );
 };

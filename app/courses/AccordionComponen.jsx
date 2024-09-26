@@ -21,7 +21,7 @@ const AccordionItem = ({
     (item.topics && item.topics.length > 0) ||
     (item.subTopics && item.subTopics.length > 0);
 
-  const isLeafNode = !hasChildren && (item.topicTitle || item.subTopicTitle);
+  const isLeafNode = !hasChildren && (item.Name);
 
   const handleVideoPreview = (e) => {
     e.stopPropagation();
@@ -105,7 +105,7 @@ const AccordionItem = ({
                         color={svgicons.smallDoc[4]}
                       />
                     )
-                  ) : (item.chapterTitle || item.topicTitle) && hasChildren ? (
+                  ) : (item.Name) && hasChildren ? (
                     isOpen ? (
                       <Svg
                         className=""
@@ -129,7 +129,7 @@ const AccordionItem = ({
                     ""
                   )}
                   <p>
-                    {item.chapterTitle || item.topicTitle || item.subTopicTitle}
+                    {item.Name}
                   </p>
                 </div>
                 {isLeafNode && typeOfLearning === "SELF_PACED" ? (
@@ -142,7 +142,7 @@ const AccordionItem = ({
                       {item?.topicPreviewDuration}min
                     </span>
                   </h1>
-                ) : item.chapterTitle && typeOfLearning === "SELF_PACED" ? (
+                ) : item.Name && typeOfLearning === "SELF_PACED" ? (
                   <div className="flex gap-1 items-center ">
                     <h1 className="text-[#454545] font-medium text-[1.094vw]">
                       {item?.chapterModuleCount} Modules
