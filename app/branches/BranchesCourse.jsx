@@ -5,13 +5,26 @@ import MaxWebWidth from "@/components/commonComponents/maxwebWidth/maxWebWidth";
 import React, { useEffect, useState } from "react";
 import "./branchesCourseCard.scss";
 import CourseCardSkeleton from "@/components/commonComponents/courseCard/CourseCardSkeleton";
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 function BranchesCourse({ branchCourseData }) {
   const pathname = usePathname();
   const params = pathname.split('/').pop();
   const digitIds = params.match(/\b\d+\b/g);
+  const searchParams = useSearchParams();
+  const fullUrl = `${pathname}?${searchParams.toString()}`
+ 
+  
+  function extractValues(pathname) {
+    const branchIdMatch = pathname.match(/(\d+)-branchId/);
+    const courseIdMatch = pathname.match(/(\d+)-courseId/);
+   
+    const branchId = branchIdMatch ? branchIdMatch[1] : null;
+    const courseId = courseIdMatch ? courseIdMatch[1] : null;
 
-  const branchId = digitIds[0];
+    return { branchId, courseId };
+}
+const { branchId, courseId } = extractValues( fullUrl);
+  
   
   const [visibleCards, setVisibleCards] = useState(4);
   const [showAll, setShowAll] = useState(false);

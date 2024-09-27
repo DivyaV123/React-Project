@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname,useSearchParams  } from "next/navigation";
 import CourseLanding from "../CourseLanding";
 import { useGetAllCourseDetailsQuery } from "@/redux/queries/getCoursedetails";
 import { useGetAllPlacementCountQuery } from "@/redux/queries/getAllPlacementCount";
@@ -16,7 +16,11 @@ import AccordionComponen from "../AccordionComponen";
 
 const CoursePageClient = () => {
   const pathname = usePathname();
-  const courseID = pathname.split("/").pop(); // Extract the courseID from the URL
+  // const courseID = pathname.split("/").pop(); 
+  const searchParams = useSearchParams();
+  const courseID = searchParams.get('course');
+ 
+ 
   const extractModeFromPathname = (pathname) => {
     const parts = pathname.split('&&');
     if (parts.length === 2) {

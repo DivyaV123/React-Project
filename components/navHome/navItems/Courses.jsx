@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import "./navitems.scss";
 import Link from "next/link";
-import { truncateText } from "@/lib/utils";
+import { slugifyURL, truncateText } from "@/lib/utils";
 import Image from "next/image";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 const Courses = ({ courseResponse }) => {
@@ -23,6 +23,8 @@ const Courses = ({ courseResponse }) => {
 const defaultIcon="https://qspiderwebsite.s3.ap-south-1.amazonaws.com/CATEGORY/Popular%20Courses/2024-07-02T16%3A05%3A19.141859900_popular%20courses.svg"
 const isSubcourseAvailable=hoveredIndex !== null &&
 getAllCourses?.[hoveredIndex]?.subCourse?.length > 0
+
+
   return (
     <div className="flex w-[81.09vw]  lg:h-[500px] 3xl:h-[660px]">
       <div className="menuSidebar pt-2  xl:w-[18.75vw] 2xl:w-[15.25vw]  3xl:w-[12.75vw] overflow-auto courseScroll">
@@ -93,11 +95,13 @@ getAllCourses?.[hoveredIndex]?.subCourse?.length > 0
                       ? "courseMedium"
                       : "courseinitial"
                   }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`}
-                  href={`/courses/${
-                    content?.courseResponseId
-                      ? content?.courseResponseId
-                      : content?.subCourseResponseId
-                  }`}
+                  // href={`/courses/${
+                  //   content?.courseResponseId
+                  //     ? content?.courseResponseId
+                  //     : content?.subCourseResponseId
+                  // }`}
+                  href={`/courses/${slugifyURL(content?.title)}?course=${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}
+
                 >
                   <div
                     key={index}

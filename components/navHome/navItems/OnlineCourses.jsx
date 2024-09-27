@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import "./navitems.scss";
 import Link from "next/link";
-import { truncateText } from "@/lib/utils";
+import { slugifyURL, truncateText } from "@/lib/utils";
 import Image from "next/image";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import { filterOnlineCourses } from "@/lib/utils";
@@ -100,11 +100,12 @@ const OnlineCourses = ({ courseResponse }) => {
                       ? "courseMedium"
                       : "courseinitial"
                   }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`}
-                  href={`/courses/${
-                    content?.courseResponseId
-                      ? content?.courseResponseId
-                      : content?.subCourseResponseId
-                  } &&Online`}
+                  // href={`/courses/${
+                  //   content?.courseResponseId
+                  //     ? content?.courseResponseId
+                  //     : content?.subCourseResponseId
+                  // } &&Online`}
+                  href={`/courses/${slugifyURL(content?.title)}?course=${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}&&Online`}
                 >
                   <div
                     key={index}
