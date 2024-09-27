@@ -95,11 +95,7 @@ getAllCourses?.[hoveredIndex]?.subCourse?.length > 0
                       ? "courseMedium"
                       : "courseinitial"
                   }   branchMenuCard bg-[#FFFFFF] w-[19.063vw] rounded-xl px-[1.389vh] py-[0.781vw]`}
-                  // href={`/courses/${
-                  //   content?.courseResponseId
-                  //     ? content?.courseResponseId
-                  //     : content?.subCourseResponseId
-                  // }`}
+                  
                   href={`/courses/${slugifyURL(content?.title)}?course=${content?.courseResponseId ? content?.courseResponseId : content?.subCourseResponseId}`}
 
                 >
