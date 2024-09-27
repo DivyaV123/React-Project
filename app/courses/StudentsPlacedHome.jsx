@@ -10,10 +10,10 @@ import CourseHighlites from './CourseHighlites'
 import StudentsTestimonialsHome from './StudentsTestimonialsHome'
 import Link from 'next/link'
 import { PLACEMENT_PATH } from '@/lib/RouteConstants'
-import { usePathname } from 'next/navigation'
+import { usePathname, useSearchParams } from 'next/navigation'
 import { useGetAllPlacementListQuery } from '@/redux/queries/getPlacementsList'
 function StudentsPlacedHome({ page, courseDetails, branchName }) {
-  
+
     let organisation = courseDetails?.data?.branchType.map((element) => {
         if (element === "JSP") {
             return "Jspiders"
@@ -42,10 +42,12 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
     })
    
     const pathname = usePathname()
+    const searchParams = useSearchParams();
+    const branchId = searchParams.get('course');
     const params = pathname?.split('/').pop();
     const digitIds = params?.match(/\b\d+\b/g);
-
-    const branchId = digitIds[0];
+   
+    // const branchId = digitIds[0];
     const bodyData = pathname.includes('branches') ? { branchLocation: [branchName] } : { branchType: organisation }
   
     const { data: studentsList, isLoading: studentsListLoading } = useGetAllPlacementListQuery(

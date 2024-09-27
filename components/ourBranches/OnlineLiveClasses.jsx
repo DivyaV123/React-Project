@@ -6,7 +6,7 @@ import { truncateText } from "@/lib/utils";
 import EnrollPopUp from "../commonComponents/courseCard/EnrollPopUp";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import { usePathname } from "next/navigation";
+import { usePathname ,useSearchParams} from "next/navigation";
 const OnlineLiveClasses = ({
   className,
   page,
@@ -24,7 +24,22 @@ const OnlineLiveClasses = ({
   const params = pathname.split("/").pop();
   const digitIds = params.match(/\b\d+\b/g);
 
-  const courseID = digitIds[1];
+  
+  const searchParams = useSearchParams();
+  const fullUrl = `${pathname}?${searchParams.toString()}`
+ 
+  
+  function extractValues(pathname) {
+    const branchIdMatch = pathname.match(/(\d+)-branchId/);
+    const courseIdMatch = pathname.match(/(\d+)-courseId/);
+   
+   
+    const courseID = courseIdMatch ? courseIdMatch[1] : null;
+
+    return {  courseID };
+}
+const { courseID } = extractValues( fullUrl);
+
 
   const { toast } = useToast();
   const upcomingBatchesData =
