@@ -6,7 +6,7 @@ import Svg from "@/components/commonComponents/Svg/Svg";
 import Link from "next/link";
 import { GlobalContext } from "@/components/Context/GlobalContext";
 import Image from "next/image";
-import { toProperCase } from "@/lib/utils";
+import { slugifyURL, toProperCase } from "@/lib/utils";
 const Branches = ({ BranchResponse }) => {
   const { setOnGoingBatches, setupComingBatches, setHoverState } =
     useContext(GlobalContext);
@@ -123,8 +123,12 @@ const Branches = ({ BranchResponse }) => {
                   (content, index) => {
                     setOnGoingBatches(content.ongoingBatches)
                     setupComingBatches(content.upcomingBatches)
+                   
                     return (
-                      <Link className="" href={`/branches/${content.branchId}-branchId,${cityData[hoveredIndex]?.courses[hoveredItemIndex]?.courseId}-courseId`}>
+                      <Link className=""
+                      //  href={`/branches/${content.branchId}-branchId,${cityData[hoveredIndex]?.courses[hoveredItemIndex]?.courseId}-courseId`}
+                      href={`/branches/${slugifyURL(content.branchName)}?${content.branchId}-branchId,${slugifyURL(cityData[hoveredIndex]?.courses[hoveredItemIndex]?.courseName)}?${cityData[hoveredIndex]?.courses[hoveredItemIndex]?.courseId}-courseId`}
+                       >
                         <div className="flex branchMenuCard bg-[#FFFFFF] xl:w-[19.922vw] 2xl:w-[22.73vw] 3xl:w-[25.2vw]  rounded-xl px-[1.389vh] py-[0.781vw]" key={index} onClick={() => setHoverState((prevState) => ({ ...prevState, content: false }))}>
                           <div>
                             {content.branchImage &&

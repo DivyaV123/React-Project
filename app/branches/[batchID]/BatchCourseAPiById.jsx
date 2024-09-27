@@ -9,7 +9,7 @@ import HiringPartners from "@/components/hiringPartners/hiringPartners";
 import StidentsPlaced from "../StidentsPlaced";
 import Testimonials from "../Testimonials";
 import FaqHome from "@/components/faq/faqHome";
-import { usePathname } from "next/navigation";
+import { usePathname, useSearchParams } from "next/navigation";
 import { useGetAllBranchDetailsQuery } from "@/redux/queries/getBranchDetails";
 import Loading from "@/lib/Loading";
 
@@ -18,13 +18,29 @@ function BatchCourseAPiById() {
   const params = pathname.split("/").pop();
   const digitIds = params.match(/\b\d+\b/g);
 
-  const branchId = digitIds?.[0] || null;
-  const courseID = digitIds?.[1] || null;
+  const searchParams = useSearchParams();
+
+  const fullUrl = `${pathname}?${searchParams.toString()}`
+ 
+  
+  function extractValues(pathname) {
+    const branchIdMatch = pathname.match(/(\d+)-branchId/);
+    const courseIdMatch = pathname.match(/(\d+)-courseId/);
+   
+    const branchId = branchIdMatch ? branchIdMatch[1] : null;
+    const courseId = courseIdMatch ? courseIdMatch[1] : null;
+
+    return { branchId, courseId };
+}
+const { branchId, courseId } = extractValues( fullUrl);
+
+  // const branchId = digitIds?.[0] || null;
+  // const courseID = digitIds?.[1] || null;
   const {
     data: BranchDetails,
     error,
     isLoading,
-  } = useGetAllBranchDetailsQuery({ branchId: branchId, courseId: courseID });
+  } = useGetAllBranchDetailsQuery({ branchId: branchId, courseId: courseId });
 
   if (isLoading)
     return (
