@@ -1,6 +1,7 @@
 import React from "react";
 import "./CorporateTraining.scss";
-const CorporateModes = () => {
+const CorporateModes = ({heroPageData}) => {
+
   const typesOfClasses = [
     {
       icon: "../../offline_corp.svg",
@@ -28,11 +29,7 @@ const CorporateModes = () => {
       </header>
       <section className="w-[87.5vw] m-auto ">
         <p className="text-[#575757] text-[1.094vw] pt-[3.333vh] pb-[4.444vh] text-center">
-          At the heart of our Experiential Learning Program are the various
-          modes of training that cater to diverse learning styles and schedules.
-          We understand that every learner is unique, and that's why we've
-          designed our training programs to be flexible, comprehensive, and
-          accessible.
+          {heroPageData?.description}
         </p>
         <div className="flex justify-center items-center flex-col  pb-[3.333vh]">
           <button
@@ -44,16 +41,18 @@ const CorporateModes = () => {
         </div>
         <section className="flex justify-center gap-10 pb-[10.556vh]">
           {typesOfClasses.map((item, index) => {
+            {console.log(heroPageData?.modeswetrain[index])}
             return (
+              
               <section className="flex flex-col gap-[1.667vw] bg-white items-center px-[1.25vw] rounded-xl w-[19.531vw]">
                 <img
                   className=" flex justify-center items-center pt-[3.472vh] pb-[4.306vh]"
                   src={item.icon}
                   alt=""
                 />
-                <h1 className="text-[1.563vw] font-bold pb-[2.222vh]">{item.title}</h1>
+                <h1 className="text-[1.563vw] font-bold pb-[2.222vh]">{heroPageData?.modeswetrain[index].mode}</h1>
                 <p className="text-[#575757] text-[1.094vw] pb-[4.861vh] text-center">
-                  {item.description}
+                {heroPageData?.modeswetrain[index].detail}
                 </p>
               </section>
             );
