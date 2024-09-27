@@ -6,18 +6,18 @@ function UpCommingBatches({ branchesData, branchName,branchCourseData ,branchId}
   const [visibleCards, setVisibleCards] = useState(4);
   const [showAll, setShowAll] = useState(false);
   const showViewMoreButton =
-    branchesData.length % 4 !== 0 && visibleCards < branchesData.length;
+    branchesData?.length % 4 !== 0 && visibleCards < branchesData?.length;
 
   const handleViewToggle = () => {
     if (showAll) {
       setVisibleCards(4);
     } else {
-      setVisibleCards(branchesData.length);
+      setVisibleCards(branchesData?.length);
     }
     setShowAll(!showAll);
   };
 
-  const cardsToDisplay = branchesData.slice(0, visibleCards);
+  const cardsToDisplay = branchesData?.slice(0, visibleCards);
 
   return (
     <>

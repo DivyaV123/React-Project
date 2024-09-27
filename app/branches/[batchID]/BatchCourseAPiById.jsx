@@ -24,12 +24,7 @@ function BatchCourseAPiById() {
     data: BranchDetails,
     error,
     isLoading,
-  } = useGetAllBranchDetailsQuery(
-    { courseId: courseID, branchId: branchId },
-    {
-      skip: !courseID || !branchId,
-    }
-  );
+  } = useGetAllBranchDetailsQuery({ branchId: branchId, courseId: courseID });
 
   if (isLoading)
     return (
@@ -45,6 +40,7 @@ function BatchCourseAPiById() {
       </div>
     );
   const { courses, name, batches, faqs } = BranchDetails?.data;
+
   return (
     <WebLayout>
       <BranchesLandingPage BranchDetails={BranchDetails} />
