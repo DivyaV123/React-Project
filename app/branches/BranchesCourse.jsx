@@ -44,7 +44,7 @@ function BranchesCourse({ branchCourseData }) {
       </p>
       <section className="flex sm:flex-wrap mobile:gap-6 sm:w-[87.5vw] mobile:pl-[5.581vw] mobile:py-[1.717vh]   sm:m-auto 2xl:sm:gap-x-[17px] sm:gap-y-[16px] xl:gap-x-[14.5px] 3xl:gap-x-[22px]  mobile:overflow-x-scroll mobile:offlineScrollbar mobile:mb-[2vh]">
         {cardsToDisplay?.length > 0
-          ? cardsToDisplay?.map((element) => {
+          && cardsToDisplay?.map((element) => {
               return (
                 <div className="branches courseCard" key={element.id}>
                   <article className="w-full h-full">
@@ -58,20 +58,22 @@ function BranchesCourse({ branchCourseData }) {
                 </div>
               );
             })
-          : courseCard?.map((element) => {
-              return (
-                <div className="branches courseCard" key={element.id}>
-                  <article className="w-full h-full">
-                    {isloading ? (
-                      <CourseCardSkeleton />
-                    ) : (
-                      <CourseCard cardData={element} />
-                    )}
-                    <div className="viewmore"></div>
-                  </article>
-                </div>
-              );
-            })}
+          // : courseCard?.map((element) => {
+          //     return (
+          //       <div className="branches courseCard" key={element.id}>
+          //         <article className="w-full h-full">
+          //           {isloading ? (
+          //             <CourseCardSkeleton />
+          //           ) : (
+          //             <CourseCard cardData={element} />
+          //           )}
+          //           <div className="viewmore"></div>
+          //         </article>
+          //       </div>
+          //     );
+          //   }
+          //   )
+            }
       </section>
       {(showViewMoreButton || showAll) && (
         <MaxWebWidth articalStyling="flex justify-end pb-5 mobile:hidden pt-6">

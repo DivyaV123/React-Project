@@ -6,103 +6,124 @@ import { truncateText } from "@/lib/utils";
 import EnrollPopUp from "../commonComponents/courseCard/EnrollPopUp";
 import { useToast } from "@/components/ui/use-toast";
 import { Toaster } from "@/components/ui/toaster";
-import { usePathname } from 'next/navigation'
-const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData, branchName ,branchCourseData,branchId}) => {
- 
+import { usePathname } from "next/navigation";
+const OnlineLiveClasses = ({
+  className,
+  page,
+  branchCard,
+  cardSize,
+  branchesData,
+  branchName,
+  branchCourseData,
+  branchId,
+}) => {
   const [isloading, setisLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [cardDetails, setCardDetails] = useState({});
   const pathname = usePathname();
-  const params = pathname.split('/').pop();
+  const params = pathname.split("/").pop();
   const digitIds = params.match(/\b\d+\b/g);
 
   const courseID = digitIds[1];
- 
+
   const { toast } = useToast();
-  const upcomingBatchesData = branchesData?.length > 0 ? branchesData : [
-    {
-      course: "Advanced React",
-      trainer: "shashi kunal",
-      date: "02 Jan - 30 Mar",
-      time: "10am - 12pm",
-      place: "Basavangudi",
-      day: "Weekdays",
-    },
-    {
-      course: "Advanced React",
-      trainer: "shashi kunal",
-      date: "02 Jan - 30 Mar",
-      time: "10am - 12pm",
-      place: "Basavangudi",
-      day: "Weekdays",
-    },
-    {
-      course: "Advanced React",
-      trainer: "shashi kunal",
-      date: "02 Jan - 30 Mar",
-      time: "10am - 12pm",
-      place: "Basavangudi",
-      day: "Weekdays",
-    },
-    {
-      course: "Advanced React",
-      trainer: "shashi kunal",
-      date: "02 Jan - 30 Mar",
-      time: "10am - 12pm",
-      place: "Basavangudi",
-      day: "Weekdays",
-    },
-    {
-      course: "Advanced React",
-      trainer: "shashi kunal",
-      date: "02 Jan - 30 Mar",
-      time: "10am - 12pm",
-      place: "Basavangudi",
-      day: "Weekdays",
-    },
-    {
-      course: "Advanced React",
-      trainer: "shashi kunal",
-      date: "02 Jan - 30 Mar",
-      time: "10am - 12pm",
-      place: "Basavangudi",
-      day: "Weekdays",
-    },
-    {
-      course: "Advanced React",
-      trainer: "shashi kunal",
-      date: "02 Jan - 30 Mar",
-      time: "10am - 12pm",
-      place: "Basavangudi",
-      day: "Weekdays",
-    },
-    {
-      course: "Advanced React",
-      trainer: "shashi kunal",
-      date: "02 Jan - 30 Mar",
-      time: "10am - 12pm",
-      place: "Basavangudi",
-      day: "Weekdays",
-    },
-  ];
+  const upcomingBatchesData =
+    branchesData?.length > 0
+      ? branchesData
+      : [
+          {
+            course: "Advanced React",
+            trainer: "shashi kunal",
+            date: "02 Jan - 30 Mar",
+            time: "10am - 12pm",
+            place: "Basavangudi",
+            day: "Weekdays",
+          },
+          {
+            course: "Advanced React",
+            trainer: "shashi kunal",
+            date: "02 Jan - 30 Mar",
+            time: "10am - 12pm",
+            place: "Basavangudi",
+            day: "Weekdays",
+          },
+          {
+            course: "Advanced React",
+            trainer: "shashi kunal",
+            date: "02 Jan - 30 Mar",
+            time: "10am - 12pm",
+            place: "Basavangudi",
+            day: "Weekdays",
+          },
+          {
+            course: "Advanced React",
+            trainer: "shashi kunal",
+            date: "02 Jan - 30 Mar",
+            time: "10am - 12pm",
+            place: "Basavangudi",
+            day: "Weekdays",
+          },
+          {
+            course: "Advanced React",
+            trainer: "shashi kunal",
+            date: "02 Jan - 30 Mar",
+            time: "10am - 12pm",
+            place: "Basavangudi",
+            day: "Weekdays",
+          },
+          {
+            course: "Advanced React",
+            trainer: "shashi kunal",
+            date: "02 Jan - 30 Mar",
+            time: "10am - 12pm",
+            place: "Basavangudi",
+            day: "Weekdays",
+          },
+          {
+            course: "Advanced React",
+            trainer: "shashi kunal",
+            date: "02 Jan - 30 Mar",
+            time: "10am - 12pm",
+            place: "Basavangudi",
+            day: "Weekdays",
+          },
+          {
+            course: "Advanced React",
+            trainer: "shashi kunal",
+            date: "02 Jan - 30 Mar",
+            time: "10am - 12pm",
+            place: "Basavangudi",
+            day: "Weekdays",
+          },
+        ];
   const enrollEnquire =
     "py-[1.389vh] px-[0.781vw] mobile:px-[2.791vw] mobile:py-[1.073vh] mobile:w-[24.884vw] mobile:text-[3.256vw] w-[8.359375vw] text-[1.094vw] font-semibold";
   const dateAndTime =
     "flex text-[0.938vw] font-medium text-[#454545] gap-x-[0.469vw] items-center";
 
   function convertToIST(timeString) {
-    let [hours, minutes] = timeString?.split(':')?.map(Number);
-    let period = hours >= 12 ? 'PM' : 'AM';
+    let [hours, minutes] = timeString?.split(":")?.map(Number);
+    let period = hours >= 12 ? "PM" : "AM";
     hours = hours % 12 || 12;
-    let formattedTime = hours?.toString()?.padStart(2, '0');
+    let formattedTime = hours?.toString()?.padStart(2, "0");
     return `${formattedTime} ${period}`;
   }
 
   function convertDate(dateString) {
     const date = new Date(dateString);
     const monthNames = [
-      "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-      "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
     ];
     const day = date.getDate();
     const month = monthNames[date.getMonth()];
@@ -115,85 +136,76 @@ const OnlineLiveClasses = ({ className, page, branchCard, cardSize, branchesData
     }, 500);
   }, []);
   function extractCourseName(branchCourseData, courseID) {
-    const foundCourse = branchCourseData.find(course => course.courseId == courseID);
+    const foundCourse = branchCourseData.find(
+      (course) => course.courseId == courseID
+    );
     return foundCourse?.courseName || null;
   }
   const handleCardClick = (data) => {
     const courseName = extractCourseName(branchCourseData, courseID);
-   
-    setCardDetails({ ...data, courseName ,courseId:Number(courseID)});
+
+    setCardDetails({ ...data, courseName, courseId: Number(courseID) });
     // setCardDetails(data)
     setIsModalOpen(true);
-};
-const handleCloseModal = () => {
-  setIsModalOpen(false);
-};
+  };
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
   return (
     <>
       {upcomingBatchesData.map((batch, index) => {
-        const startDate = new Date(batch.startingDatetime);
-        const endDate = new Date(startDate);
-        endDate.setMonth(endDate.getMonth() + 2);
-        const endTime = new Date(endDate);
-        endTime.setHours(endTime.getHours() + 2);
-        const formattedStartDate = startDate.toISOString().split('T')[0];
-        const formattedStartTime = startDate.toTimeString().split(' ')[0].slice(0, 5);
-        //if end date is required use below
-        const formattedEndDate = endDate.toISOString().split('T')[0];
-        const formattedEndTime = endTime.toTimeString().split(' ')[0].slice(0, 5);
-        return isloading ? (
-          <>
-            <div
-              className={
-                page === "branch"
-                  ? { cardSize }
-                  : "h-[13.672vw] w-[20.469vw] mobile:w-[60.93vw] upcomingBatches py-[2.222vh] px-[1.25vw]"
-              }
-            >
-              <Skeleton className="h-4 w-[70%] mb-3" />
-              <Skeleton className="h-3 w-[30%] mb-5" />
-              <Skeleton className="w-[20%]" />
-              <Skeleton className="w-[20%]" />
-              <div className="flex gap-2 mt-7">
-                <Skeleton className="h-4 w-[250px]" />
-                <Skeleton className="h-4 w-[200px]" />
-              </div>
-              <div className="flex gap-2 mt-8">
-                <Skeleton className="h-8 w-[250px]" />
-                <Skeleton className="h-8 w-[200px]" />
-              </div>
-            </div>
-          </>
-        ) : (
-          <section
-            className={`${page === "course" ? className : branchCard
-              } flex flex-wrap`}
-            key={index}
+        let formattedStartDate = null;
+        let formattedStartTime = null;
+        let formattedEndTime = null;
+
+        if (batch.startingDatetime) {
+          const startDate = new Date(batch.startingDatetime);
+          const endDate = new Date(startDate);
+          endDate.setMonth(endDate.getMonth() + 2);
+          const endTime = new Date(endDate);
+          endTime.setHours(endTime.getHours() + 2);
+
+          formattedStartDate = startDate.toISOString().split("T")[0];
+          formattedStartTime = startDate
+            .toTimeString()
+            .split(" ")[0]
+            .slice(0, 5);
+          formattedEndTime = endTime.toTimeString().split(" ")[0].slice(0, 5);
+        }
+
+        const renderBatchCard = () => (
+          <div
+            className={
+              page === "branch"
+                ? { cardSize }
+                : "w-[20.46vw] mobile:w-[60.93vw] upcomingBatches py-[2.222vh] px-[1.25vw] mobile:px-[3.488vw] mobile:py-[1.717vh]"
+            }
           >
-            <div
-              className={
-                page === "branch"
-                  ? { cardSize }
-                  : "w-[20.46vw] mobile:w-[60.93vw] upcomingBatches py-[2.222vh] px-[1.25vw] mobile:px-[3.488vw] mobile:py-[1.717vh]"
-              }
+            <header
+              title={batch.course ? batch.course : batch.batchName}
+              className="font-bold text-[1.25vw] pb-[0.833vh] mobile:text-[3.721vw] mobile:pb-[0.644vh]"
             >
-              <header title={batch.course ? batch.course : batch.batchName} className="font-bold text-[1.25vw] pb-[0.833vh] mobile:text-[3.721vw] mobile:pb-[0.644vh]">
-                {batch.course ? truncateText(batch.course, 22) : truncateText(batch.batchName, 22)}
-              </header>
-              <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh] mobile:text-[2.791vw] mobile:pb-[2.146vh]">
-                By: {batch.trainer ? batch.trainer : batch.trainerName}
-              </p>
-              <div className="flex mobile:pb-[1.073vh] pb-[1.389vh] gap-x-[0.469vw] items-center  justify-between">
+              {batch.course
+                ? truncateText(batch.course, 22)
+                : truncateText(batch.batchName, 22)}
+            </header>
+            <p className="font-normal text-[0.938vw] text-ash pb-[2.778vh] mobile:text-[2.791vw] mobile:pb-[2.146vh]">
+              By: {batch.trainer ? batch.trainer : batch.trainerName}
+            </p>
+            {formattedStartDate && (
+              <div className="flex mobile:pb-[1.073vh] pb-[1.389vh] gap-x-[0.469vw] items-center justify-between">
                 <div className={`${dateAndTime}`}>
                   <Svg
-                    className=" pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
+                    className="pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
                     width={svgicons.calender[0]}
                     height={svgicons.calender[1]}
                     viewBox={svgicons.calender[2]}
                     icon={svgicons.calender[3]}
                     color={svgicons.calender[4]}
                   />
-                  <div className="mobile:text-[2.791vw]">{formattedStartDate}</div>
+                  <div className="mobile:text-[2.791vw]">
+                    {formattedStartDate}
+                  </div>
                 </div>
                 <div className={`${dateAndTime}`}>
                   <Svg
@@ -207,48 +219,70 @@ const handleCloseModal = () => {
                   <div className="mobile:text-[2.791vw]">{`${formattedStartTime}-${formattedEndTime}`}</div>
                 </div>
               </div>
-              <div className={`${dateAndTime} pb-[1.389vh] mobile:pb-[1.073vh]`}>
-                <Svg
-                  className=" pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
-                  width={svgicons.branchLocation[0]}
-                  height={svgicons.branchLocation[1]}
-                  viewBox={svgicons.branchLocation[2]}
-                  icon={svgicons.branchLocation[3]}
-                  color={svgicons.branchLocation[4]}
-                />
-                <div className="mobile:text-[2.791vw]">{batch.place ? batch.place : branchName}</div>
+            )}
+            <div className={`${dateAndTime} pb-[1.389vh] mobile:pb-[1.073vh]`}>
+              <Svg
+                className="pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
+                width={svgicons.branchLocation[0]}
+                height={svgicons.branchLocation[1]}
+                viewBox={svgicons.branchLocation[2]}
+                icon={svgicons.branchLocation[3]}
+                color={svgicons.branchLocation[4]}
+              />
+              <div className="mobile:text-[2.791vw]">
+                {batch.place ? batch.place : branchName}
               </div>
-              <div className={`${dateAndTime} pb-[1.389vh] mobile:pb-[1.073vh]`}>
-                <Svg
-                  className=" pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
-                  width={svgicons.calender[0]}
-                  height={svgicons.calender[1]}
-                  viewBox={svgicons.calender[2]}
-                  icon={svgicons.calender[3]}
-                  color={svgicons.calender[4]}
-                />
-                <div className="mobile:text-[2.791vw]">{batch.day ? batch.day : batch.batchType}</div>
-              </div>
-              <div className="flex justify-between">
-                <button
-                 onClick={() => handleCardClick(batch)}
-                  className={`${enrollEnquire} EnrollButton bg-gradient rounded text-white`}
-                >
-                  Enroll now
-                </button>
-                <button
-                  className={`${enrollEnquire} EnquireButton rounded border border-orange-500 text-orange-500`}
-                >
-                  Know more
-                </button>
-              </div>
-            
             </div>
+            <div className={`${dateAndTime} pb-[1.389vh] mobile:pb-[1.073vh]`}>
+              <Svg
+                className="pr-[0.469vw] mobile:pr-[1.395vw] mobile:w-[4.186vw] mobile:height-[1.931vh]"
+                width={svgicons.calender[0]}
+                height={svgicons.calender[1]}
+                viewBox={svgicons.calender[2]}
+                icon={svgicons.calender[3]}
+                color={svgicons.calender[4]}
+              />
+              <div className="mobile:text-[2.791vw]">
+                {batch.day ? batch.day : batch.batchType}
+              </div>
+            </div>
+            <div className="flex justify-between">
+              <button
+                onClick={() => handleCardClick(batch)}
+                className={`${enrollEnquire} EnrollButton bg-gradient rounded text-white`}
+              >
+                Enroll now
+              </button>
+              <button
+                className={`${enrollEnquire} EnquireButton rounded border border-orange-500 text-orange-500`}
+              >
+                Know more
+              </button>
+            </div>
+          </div>
+        );
+
+
+        return (
+          <section
+            className={`${
+              page === "course" ? className : branchCard
+            } flex flex-wrap`}
+            key={index}
+          >
+            {renderBatchCard()}
           </section>
         );
       })}
-      <EnrollPopUp isModalOpen={isModalOpen} branchId={branchId} toast={toast}  cardData={cardDetails} handleCloseModal={handleCloseModal} />  
-      <Toaster/>
+
+      <EnrollPopUp
+        isModalOpen={isModalOpen}
+        branchId={branchId}
+        toast={toast}
+        cardData={cardDetails}
+        handleCloseModal={handleCloseModal}
+      />
+      <Toaster />
     </>
   );
 };
