@@ -46,13 +46,13 @@ function LandingCarosal() {
           <aside className="flex items-center mt-[5vh] mb-8 2xl:mb-12 3xl:mb-16 mobile:m-0">
             <article className="headerArticle mb-10 w-full mobile:m-0">
               <h1 className="mainHead pb-[2.222vh] text-[3.75vw] mobile:text-[7.907vw] opacity-100 mobile:pt-[6.438vh] mobile:pb-[1.288vh] tabView:text-[4.57vw] tabView:font-normal">
-                {heroPageData?.data?.title} <br />{" "}
+                {heroPageData?.data?.homepage?.title} <br />{" "}
                 <span className="gradient-text text-[3.75vw] mobile:text-[7.907vw] font-extra-bold tabView:text-[3.59vw]">
-                  {heroPageData?.data?.subtitle}
+                  {heroPageData?.data?.homepage?.subtitle}
                 </span>{" "}
               </h1>
               <p className="paragraph text-[1.25vw] mobile:text-[2.791vw] font-medium pb-[2.222vh] text-ash mobile:pb-[1.717vh]">
-                {heroPageData?.data?.description}
+                {heroPageData?.data?.homepage?.description}
               </p>
               <article className="sm:pb-[2.222vh] mobile:pb-[4.292vh]">
                 <Button

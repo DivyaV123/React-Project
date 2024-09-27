@@ -10,7 +10,7 @@ function CarosalFooter({heroPageData}) {
             <Fade direction="bottom" duration={1000} delay={0} >
                 <div className='grid md:grid-cols-6 mobile:flex mobile:flex-wrap   mobile:py-[2.039vh] tabView:grid-cols-3'>
                     {
-                        heroPageData?.data?.details?.map((element) => {
+                        heroPageData?.data?.homepage?.details?.map((element) => {
                             let content = element.details.replace(/#/g, "<br/>")
                             return (
                                 <div className='sm:p-2 mobile:w-[50%]  mobile:py-[2.039vh] mobile:pr-[5.581vw] mobile:pl-[3.721vw]'>

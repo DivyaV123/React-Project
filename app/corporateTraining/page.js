@@ -14,18 +14,27 @@ import { GlobalContext } from '@/components/Context/GlobalContext'
 import OurCourse from '@/components/ourCourses/ourCourse'
 import CorporateModes from './CorporateModes'
 import CorporateTrainingFeatures from './CorporateTrainingFeatures'
+import { useGetHeroPageQuery } from '@/redux/queries/getheroPageApi'
 const CorporateTraining = () => {
   const { domainVariable } = useContext(GlobalContext)
-  let domain = domainVariable === "Qspiders" ? "QSP" : domainVariable === "Jspiders" ? "JSP" : domainVariable === "Pyspiders" ? "PYSP" : "BSP"
+  let domain =
+    domainVariable === "Qspiders"
+      ? "qspiders"
+      : domainVariable === "Jspiders"
+      ? "jspiders"
+      : domainVariable === "Pyspiders"
+      ? "pyspiders"
+      : "qspiders";
   const { data: faqData, error, isLoading } = useGetAllFaqQuery(domain);
+  const { data: heroPageData } = useGetHeroPageQuery(domain);
   return (
     <WebLayout>
 
-      <CorporateTrainingLanding />
+      <CorporateTrainingLanding heroPageData={heroPageData?.data}/>
       <HiringPartners />
       {/* <TrainingMode page='corporateTraining' /> */}
       {/* <OurCourse /> */}
-      <CorporateModes/>
+      <CorporateModes heroPageData={heroPageData?.data?.corporate?.modeswetrain} />
       <div className='w-[87.5vw] m-auto'>
         <TrendingCourses page="corporate"/>
         {/* <BenefitsOfTraining /> */}
