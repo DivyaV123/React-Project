@@ -31,6 +31,11 @@ const Branches = ({ BranchResponse }) => {
       setActiveTab(false);
     }
   };
+  const removeLastWord = (branchName) => {
+    const words = branchName.split(' ');
+    words.pop();
+    return words.join(' ');
+  };
   return (
     <div className="w-[81.09vw] lg:h-[500px] 2xl::h-[530px] 3xl:h-[660px]">
       <section className="flex gap-6 pl-4 pt-[1.389vh] ">
@@ -149,7 +154,7 @@ const Branches = ({ BranchResponse }) => {
                           <div className="pl-[0.781vw]">
                             <div className="flex justify-between pb-[1.111vh]">
                               <h3 className="text-left h-5 text-[0.938vw] font-bold">
-                                {toProperCase(content.branchName)}
+                                {toProperCase(removeLastWord(content.branchName))}
                               </h3>
                               <button onClick={() => window.open(content.location, "_blank")} className="flex gap-1 text-xs text z-1 items-center">
                                 <p className="text-[#7298FF] text-[0.703vw] p-[0.156vw]">Get Directions</p>

@@ -41,7 +41,7 @@ function NavItems() {
     setFilterPlacementData,
     hoverState, setHoverState, setCountryList,domainVariable
   } = useContext(GlobalContext);
-  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
+  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" :  domainVariable === "Prospiders" ? "prospiders" : "bspiders"
   const {
     data: courseResponse,
     isLoading: CourseIsLoading,

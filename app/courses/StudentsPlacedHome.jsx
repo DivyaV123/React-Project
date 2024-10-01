@@ -43,11 +43,25 @@ function StudentsPlacedHome({ page, courseDetails, branchName }) {
    
     const pathname = usePathname()
     const searchParams = useSearchParams();
-    const branchId = searchParams.get('course');
+   
     const params = pathname?.split('/').pop();
     const digitIds = params?.match(/\b\d+\b/g);
    
-    // const branchId = digitIds[0];
+
+    const fullUrl = `${pathname}?${searchParams.toString()}`
+   
+    
+    function extractValues(pathname) {
+      const branchIdMatch = pathname.match(/(\d+)-branchId/);
+      const courseIdMatch = pathname.match(/(\d+)-courseId/);
+     
+      const branchId = branchIdMatch ? branchIdMatch[1] : null;
+      const courseId = courseIdMatch ? courseIdMatch[1] : null;
+  
+      return { branchId, courseId };
+  }
+  const { branchId, courseId } = extractValues( fullUrl);
+   
     const bodyData = pathname.includes('branches') ? { branchLocation: [branchName] } : { branchType: organisation }
   
     const { data: studentsList, isLoading: studentsListLoading } = useGetAllPlacementListQuery(
