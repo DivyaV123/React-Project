@@ -38,6 +38,7 @@ function StudentsPlacedCard({ studentsInfo, page }) {
       }`}
     >
       {studentsInfo?.map((element) => {
+        const {image}=element || {}
         let detail = `${toProperCase(element?.degree?.name)}(${element?.percentage_deg}%)- ${element.highestyop}`;
         const getFilteredTestimonials = (getTestimonialArray) => {
           if (getTestimonialArray?.length > 0) {
@@ -60,8 +61,8 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                 <img
                   className="h-10 w-[3.125vw] mobile:w-[9.302vw] rounded-full"
                   src={
-                    element?.image?.length
-                      ? element?.image
+                    image?.length
+                      ? image
                       : "../../images/user.jpg"
                   }
                   alt="no image"
