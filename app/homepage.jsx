@@ -15,7 +15,7 @@ import { GlobalContext } from '@/components/Context/GlobalContext'
 
 function Homepage() {
     const { domainVariable } = useContext(GlobalContext)
-    let domain = domainVariable === "Qspiders" ? "QSP" : domainVariable === "Jspiders" ? "JSP" : domainVariable === "Pyspiders" ? "PYSP" : "BSP"
+    let domain = domainVariable === "Qspiders" ? "QSP" : domainVariable === "Jspiders" ? "JSP" : domainVariable === "Pyspiders" ? "PYSP" :  domainVariable === "Prospiders" ? "PROSP" : "BSP"
     const { data: faqData, error, isLoading } = useGetAllFaqQuery(domain);
 
     return (

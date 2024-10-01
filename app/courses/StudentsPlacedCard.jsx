@@ -60,8 +60,8 @@ function StudentsPlacedCard({ studentsInfo, page }) {
                 <img
                   className="h-10 w-[3.125vw] mobile:w-[9.302vw] rounded-full"
                   src={
-                    element.image.length
-                      ? element.image
+                    element?.image?.length
+                      ? element?.image
                       : "../../images/user.jpg"
                   }
                   alt="no image"

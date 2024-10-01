@@ -34,8 +34,10 @@ const CommonBranch = ({ selectedId, page ,courseId}) => {
             </header>
             <div className="flex gap-3 pt-3 mobile:pt-[1.288vh]">
               <img
-                src="../../../../icon_outline_location.svg"
+                src="../../../../Vector_loc.png"
                 alt="Location"
+                className='h-[3vh]'
+                
               />
               <p className="text-[0.859vw] text-[#575757] mobile:text-[2.326vw]">
                 {[

@@ -24,7 +24,7 @@ function ExperiencedFaculty() {
     return (
         <selection className='sm:grid grid-cols-2 gap-4 mt-[3.333vh]  mobile:flex-col mobile:hidden'>
             <Fade direction="left" delay={0} duration={1000}>
-                <figure className='sm:w-[85%] tabView:mt-16 tabView:w-full'>
+                <figure className='sm:w-[85%] tabView:mt-16 tabView:w-full relative bottom-[7vh]'>
                     <Image
                         src="/images/Placement assistance_image (02).png"
                         alt="platformAssociateImage"
