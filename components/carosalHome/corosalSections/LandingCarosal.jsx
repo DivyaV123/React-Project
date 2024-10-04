@@ -23,7 +23,7 @@ function LandingCarosal() {
       ? "jspiders"
       : domainVariable === "Pyspiders"
       ? "pyspiders"
-      : "qspiders";
+      : domainVariable === "Prospiders" ? "prospiders" : "qspiders";
   const [isloading, setisLoading] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [activeTab, setActiveTab] = useState("General Enquiries");
@@ -58,7 +58,7 @@ function LandingCarosal() {
                 <Button
                   onClick={() => setIsModalOpen(true)}
                   className="primary text-[1.25vw] mobile:text-[3.721vw]"
-                  title="Get Started"
+                  title="Book a Demo"
                 />
               </article>
             </article>
