@@ -26,7 +26,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 
 function OurCourse({ page }) {
   const { domainVariable } = useContext(GlobalContext);
-  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : "bspiders"
+  let domain = domainVariable === "Qspiders" ? "qspiders" : domainVariable === "Jspiders" ? "jspiders" : domainVariable === "Pyspiders" ? "pyspiders" : domainVariable === "Prospiders" ? "prospiders" : "bspiders"
   const { data: AllCourse, error, isloading } = useGetAllCategoriesQuery(domain);
   //commented upto testing to be done for Explore our courses , we are using getAllcategories for Explore our courses as well
   // const {

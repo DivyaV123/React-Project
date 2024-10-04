@@ -465,7 +465,7 @@ function AddCourseForm({ dialogCloseClick, courseRefetch, courseEditData,toast }
 
         if (response.statusCode == 201 || response.statusCode == 200) {
           toast({
-            title: "Course created successfully",
+            title:courseEditData ? "Course updated successfully" :"Course created successfully" ,
             variant: "success",
           });
           dialogCloseClick(false);

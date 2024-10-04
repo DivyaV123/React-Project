@@ -159,7 +159,7 @@ const CityWeightageContent = () => {
         if (response.statusCode === 200 || response.statusCode === 201) {
           cityRefetch();
           toast({
-            title: "City Added Successfully",
+            title:editData ? "City updated successfully": "City Added Successfully",
             variant: "success",
           });
         }
@@ -257,10 +257,25 @@ const CityWeightageContent = () => {
       const response = await deleteSelectedCity({
         cityId: selectedCityId,
       }).unwrap();
+     
+      if (response) {
+       
+        toast({
+          title:"City deleted successfully",
+          variant: "success",
+        });
+      }
       setdeleteCity(false);
       cityRefetch();
     } catch (err) {
-      console.error(err);
+     
+      if(err.data.statusCode == 400){
+       
+        toast({
+          title:err.data.data,
+          variant: "delete",
+        });
+      }
     }
   };
   const handleCountrySelect = (event) => {
@@ -550,7 +565,7 @@ const CityWeightageContent = () => {
           />
         )}
       </Dialog>
-      <div className="py-[3.333vh] px-[1.875vw]">
+      <div className="py-[3.333vh] px-[1.875vw] h-[81vh] overflow-y-hidden">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
           <div className="flex gap-6 pl-4">
             {cityData?.data?.map((ele, index) => (

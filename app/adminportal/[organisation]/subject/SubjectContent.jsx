@@ -332,7 +332,7 @@ const SubjectContent = () => {
         {dialogOpen && (
           <CommonDialog
             header="Add new Subject"
-            footerBtnTitle="Create Subject"
+            footerBtnTitle="Add new Subject"
             formfn={mapSubjectForm}
             footerBtnClick={handleCreateCourse}
             dialogCloseClick={() => setDialogOpen(false)}
@@ -341,7 +341,7 @@ const SubjectContent = () => {
         {subjectNameDialog && (
           <CommonDialog
             header={`${editData ? "Edit" : "Add new"} Subject`}
-            footerBtnTitle={`${editData ? "Update" : "Create Subject"}`}
+            footerBtnTitle={`${editData ? "Update" : "Add new Subject"}`}
             formfn={dialogForm}
             footerBtnClick={footerBtnClick}
           />
@@ -359,7 +359,7 @@ const SubjectContent = () => {
         <div className="py-[3.333vh] px-[1.875vw]">
           <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
             <Table>
-              <TableHeader className="z-1">
+              <TableHeader className="sticky top-0 bg-white z-10">
                 <TableRow>
                   {tableHeaders.map((header, index) => (
                     <TableHead key={index} className={tblTextClass}>

@@ -631,6 +631,7 @@ const handleAddDetails=()=>{
       </section>
     );
   };
+
   return (
     <>
       <Dialog>
@@ -656,13 +657,18 @@ const handleAddDetails=()=>{
           </DialogTrigger>
         </article>
 
-        <div className="py-[3.333vh] px-[1.875vw] ">
+        <div className="py-[3.333vh] px-[1.875vw] h-[70vh]">
           <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh] h-[78vh] overflow-x-hidden overflow-y-scroll myscrollbar">
             <p className="pl-4 text-[#434343] font-bold text-[1.25vw] pb-2">
               Subject - {individualSubject?.data?.subjectTitle}
             </p>
             <section>
-              {individualSubject?.data?.chapters?.map(
+            {individualSubject?.data?.chapters?.length === 0 ? (
+    <div className=" flex justify-center items-center align-middle h-[70vh] py-4">
+      <p>No chapters available</p>
+    </div>
+  ) : (
+              individualSubject?.data?.chapters?.map(
                 (chapter, chapterIdx, originalArray) => (
                   <AccordionItem
                     key={chapter.chapterId}
@@ -764,7 +770,8 @@ const handleAddDetails=()=>{
                       ))}
                   </AccordionItem>
                 )
-              )}
+    )
+  )}
             </section>
           </div>
           <Dialog open={addDetailDialog} onOpenChange={setAddDetailDialog}>

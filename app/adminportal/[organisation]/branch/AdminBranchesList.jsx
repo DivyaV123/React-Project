@@ -166,7 +166,7 @@ function AdminBranchesList() {
       <div className="py-[3.333vh] px-[1.875vw]">
         <div className="rounded-2xl bg-[#FFFFFF] pt-[2.222vh]">
           <Table>
-            <TableHeader className="z-1">
+            <TableHeader className="sticky top-0 bg-white z-10">
               <TableRow>
                 {tableHeaders.map((header, index) => (
                   <TableHead key={index} className={tblTextClass}>
