@@ -41,6 +41,7 @@ const PlacementContent = ({ placementList }) => {
             const checkArray = getTestimonialArray?.filter((testimonial) => {
               return testimonial?.verify;
             });
+           
             return checkArray[0]?.url || checkArray[0]?.img;
           } else return "";
         };
@@ -79,18 +80,52 @@ const PlacementContent = ({ placementList }) => {
 
         return (
           <section
-            className="w-[99.4%] mobile:w-[92.558vw]  contentCard flex mobile:flex-row-reverse sm:pt-[0.556vh]
+            className="w-[87.5vw]  mobile:w-[92.558vw]  contentCard flex mobile:flex-row-reverse sm:pt-[0.556vh]
            sm:pl-[0.469vw] sm:pb-[1.111vh] sm:mb-[3.333vh] sm:mt-[0.556vh] sm:ml-[0.078vw] mobile:my-[2.575vh] mobile:gap-4 mobile:justify-end"
           >
             <AlertDialog popup="imagepopup">
               <div className="mobile:flex mobile:flex-col flex mobile:w-full mobile:pr-[3.721vw]">
                 <div className="sm:w-[15.547vw] ">
-                  <div className="h-[24.861vh] overflow-hidden w-full rounded-2xl mobile:hidden">
-                    <img
-                      src={student?.thumbnail_img ? `${student.base_url}${student.thumbnail_img}` : defaultImage}
-                      className="w-full object-cover"
-                    />
-                  </div>
+                 
+                  <AlertDialogTrigger asChild>
+                  <div
+    className={`videoBox ${
+      student?.gotjob[0]?.mini_testimonial?.url_details?.youtube_video_without_company_name
+        ? "cursor-pointer"
+        : "cursor-not-allowed"
+    }`}
+    onClick={openVideoDialog}
+    style={{ position: "relative", display: "inline-block", width: "100%" }}
+  >
+    {/* Thumbnail Image */}
+    <div className="h-[24.861vh] overflow-hidden w-full rounded-2xl">
+      <img
+        src={
+          student?.thumbnail_img
+            ? `${student.base_url}${student.thumbnail_img}`
+            : defaultImage
+        }
+        className="w-full h-full object-cover"
+        alt="Student Thumbnail"
+      />
+    </div>
+
+    {/* Play Button Overlay */}
+    <img
+      src="../play_button_placements.svg"
+      alt="Play Button"
+      style={{
+        position: "absolute",
+        top: "11vh",
+        left: "50%",
+        transform: "translate(-50%, -50%)",
+        pointerEvents: "none",
+        height:"7vh"
+      }}
+    />
+  </div>
+  </AlertDialogTrigger>
+ 
                   <div className="imageCard">
                     <header className="studentName font-semibold sm:py-[1.111vh] mobile:pt-[1.717vh] mobile:pb-[1.502vh] sm:text-center">
                       {student?.name}
@@ -132,7 +167,7 @@ const PlacementContent = ({ placementList }) => {
                     </div>
                   </div>
                 </div>
-                <div className="sm:pl-[1.563vw] sm:w-[42.813vw] sm:pt-[2.222vh] flex flex-col justify-between">
+                <div className="sm:pl-[1.563vw] w-[59vw]  sm:pt-[2.222vh] flex flex-col justify-between">
                   <p className="studentReview mobile:hidden">
                     {student?.gotjob[0]?.mini_testimonial?.written_testimonial}
                   </p>
@@ -411,8 +446,7 @@ const PlacementContent = ({ placementList }) => {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="sm:pl-[1.125vw] sm:pr-[1vw] sm:pt-[2.222vh] flex flex-col gap-4  mobile:pt-[1.717vh]">
+                <div className="sm:pl-[1.125vw] sm:pr-[1vw] sm:pt-[2.222vh] flex flex-col gap-4  mobile:pt-[1.717vh]">
                 <AlertDialogTrigger asChild>
                   <img
                     onClick={openImageDialog}
@@ -424,7 +458,7 @@ const PlacementContent = ({ placementList }) => {
                     // alt="Testimonial Image"
                   />
                 </AlertDialogTrigger>
-                <AlertDialogTrigger asChild>
+                {/* <AlertDialogTrigger asChild>
                   <div
                     className={`videoBox ${student?.gotjob[0]?.mini_testimonial?.url_details?.youtube_video_without_company_name ? "cursor-pointer" : "cursor-not-allowed" }`}
                     onClick={openVideoDialog}
@@ -453,8 +487,10 @@ const PlacementContent = ({ placementList }) => {
                       }}
                     />
                   </div>
-                </AlertDialogTrigger>
+                </AlertDialogTrigger> */}
               </div>
+              </div>
+              
               {(imageDialog && student?.gotjob[0]?.mini_testimonial?.img_details?.written_testimonial_image) &&(
                 <ImagePopup
                   testimonialLink={student.base_url+getFilteredTestimonials(
@@ -463,7 +499,7 @@ const PlacementContent = ({ placementList }) => {
                   )}
                 />
               )}
-              {(videoDialog && student?.gotjob[0]?.mini_testimonial?.url_details.youtube_video_without_company_name) && (
+              {(videoDialog && student?.gotjob[0]?.mini_testimonial?.url_details?.youtube_video_without_company_name) && (
                 <VideoPopup videoLink={getFilteredTestimonials(
                   student?.gotjob[0]?.mini_testimonial?.url_details
                     ?.youtube_video_without_company_name)} />

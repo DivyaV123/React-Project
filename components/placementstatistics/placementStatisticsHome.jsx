@@ -13,7 +13,7 @@ import Image from "next/image";
 import { branchAbbreviations } from "@/lib/utils";
 import { formatToIndianCurrency } from "@/lib/utils";
 function PlacementStatisticsHome({ page }) {
-  const { setAllStaticsCount, setNonItCheckedIcon,setItCheckedIcon,setThroughCheckedIcon, setLessCheckedIcon,setPlacedCheckedIcon,setSideBarBtn,setHomePlacements } =
+  const { setAllStaticsCount, setNonItCheckedIcon,setItCheckedIcon,setThroughCheckedIcon, setLessCheckedIcon,setPlacedCheckedIcon,setSideBarBtn,setHomePlacements,setIsRedirectFrmHomePage } =
     useContext(GlobalContext);
   const {
     data: countDetails,
@@ -26,28 +26,12 @@ function PlacementStatisticsHome({ page }) {
       ? "/graduationReportIcon.svg"
       : "/graduationReportIcon.svg";
 
-  const degrees = [
-    "BE",
-    "BCA",
-    "BCOM",
-    "MCA",
-    "M.Tech",
-    "MBA",
-    "MSC",
-    "MSW",
-    "More...",
-  ];
-  const branches = [
-    "CS",
-    "IS",
-    "E&C",
-    "Civil",
-    "HR",
-    "Mech",
-    "AE",
-    "CTM",
-    "More...",
-  ];
+      const degrees = [
+        'BE', 'BCA', 'BSC', 'BBM', 'B Arch', 'MSW', 'MCA', 'MBA', 'More...'
+    ]
+    const branches = [
+        'TEX', 'IT', 'ETE', 'PME', 'ECE', 'Mech', 'AE', 'CIV', "More..."
+    ]
   const statistics = [
     {
       count: `${formatToIndianCurrency(countDetails?.above_60)}`,
@@ -89,6 +73,7 @@ const disableIcons =()=>{
   setItCheckedIcon(false);
   setPlacedCheckedIcon(false)
   setSideBarBtn('')
+  setIsRedirectFrmHomePage(true)
 }
 
   return (

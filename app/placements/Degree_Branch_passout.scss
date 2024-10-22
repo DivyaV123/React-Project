@@ -4,14 +4,21 @@
 }
 .activeButton {
   background: linear-gradient(159.73deg, #f7a54d 12.36%, #ef810e 83.19%);
+  
   color: white;
-  border-radius: 0.188rem;
+  border-radius:12px;
   font-size: 0.813rem;
 }
 .passout-wrapper {
   position: relative;
 }
-
+.carouselBtn{
+  
+  box-shadow: 0px 0px 24px -8px #00000040;
+}
+.dropdownContainer{
+  border: 1px solid rgba(255, 201, 151, 0.3);
+}
 .additional-years-list {
   list-style: none;
   position: absolute;

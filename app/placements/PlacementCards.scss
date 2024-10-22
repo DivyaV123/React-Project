@@ -10,6 +10,12 @@
     // margin-top: -7.296vh;
   }
 }
+.activeGridBtn{
+  color:#f5861f
+}
+.non-activeGridBtn{
+  color:#53514f
+}
 .internalStats{
   @extend .placedCard ;
   width: 21.719vw;
@@ -104,4 +110,9 @@
 .videoPopup{
   width: 100%;
   height: inherit;
+}
+.placementContent{
+  // background: linear-gradient(177.96deg, rgba(255, 201, 151, 0.1) 1.72%, rgba(255, 255, 255, 0.76) 92.3%);
+  background: linear-gradient(177.96deg, rgba(255, 201, 151, 0.1) 1.72%, rgba(253, 291, 265, 51.76) 92.3%);
+
 }
