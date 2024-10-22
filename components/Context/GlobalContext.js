@@ -60,6 +60,7 @@ const GlobalContextProvider = ({ children }) => {
   const [yearSearchQuery, setYearSearchQuery] = useState("");
   const [streamSearchQuery, setStreamSearchQuery] = useState("");
   const [selecteCourseDetails, setSelecteCourseDetails] = useState({});
+  const [isRedirectFrmHomePage, setIsRedirectFrmHomePage] = useState(false);
   // edit Subject
   const [individualSubjectData, setIndividualSubjectData] = useState();
   //course testimonialpopup
@@ -145,6 +146,7 @@ const GlobalContextProvider = ({ children }) => {
   const [onGoingBatches, setOnGoingBatches] = useState(null);
   const [homePlacements, setHomePlacements] = useState(false);
   const [scrollPage, setScrollPage] = useState(1);
+  const [selectedPlacementBtn, setSelectedPlacementBtn] = useState("");
   const emptySearch =
     citySearchQuery === "" &&
     stateSearchQuery === "" &&
@@ -460,7 +462,10 @@ const GlobalContextProvider = ({ children }) => {
         filteredDateRange,
         setFilteredRange,
         selecteCourseDetails, 
-        setSelecteCourseDetails
+        setSelecteCourseDetails,
+        selectedPlacementBtn,
+         setSelectedPlacementBtn,
+         isRedirectFrmHomePage, setIsRedirectFrmHomePage,
       }}
     >
       {children}

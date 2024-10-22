@@ -15,7 +15,8 @@ function Dropdown({
     iconStyle = '',
     options = [],
     disabled = false,
-    multi = false
+    multi = false,
+    arrowIcon=""
 }) {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOptions, setSelectedOptions] = useState([]);
@@ -111,7 +112,7 @@ function Dropdown({
                 {renderSelectedOptions()}
                 <span className="absolute right-3 top-1/2 transform -translate-y-1/2 pointer-events-none">
                     <Svg
-                        className=''
+                        className={`${arrowIcon}`}
                         width={svgicons.accordianArrowDown[0]}
                         height={svgicons.accordianArrowDown[1]}
                         viewBox={svgicons.accordianArrowDown[2]}
