@@ -42,7 +42,7 @@ const PlacementContentGridMode = ({ placementList }) => {
             const checkArray = getTestimonialArray?.filter((testimonial) => {
               return testimonial?.verify;
             });
-            console.log({ checkArray });
+           
             return checkArray[0]?.url || checkArray[0]?.img;
           } else return "";
         };
