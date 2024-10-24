@@ -182,7 +182,7 @@ const CounsellorCardHeader = () => {
           pathname === "/internalplacementstatistics" ? "pl-[1.875vw]" : ""
         }`}
       >
-        <section className="sm:px-[1.875vw] flex mobile:flex-wrap sm:gap-5 sm:pb-[3.333vh] sm:items-center">
+        {/* <section className="sm:px-[1.875vw] flex mobile:flex-wrap sm:gap-5 sm:pb-[3.333vh] sm:items-center">
           {placementLoading ? (
             <LinkCardSkeleton />
           ) : (
@@ -209,7 +209,7 @@ const CounsellorCardHeader = () => {
               handleParameter={handleParameter}
             />
           )}
-        </section>
+        </section> */}
         <div className="hidden mobile:px-[1.875vw] mobile:mt-[1.5vh] mobile:mb-[1.5vh] mobile:block mobile:flex mobile:justify-between mobile:h-[5.579vh] mobile:w-[92.558vw] mobile:items-center">
         <div>
           <h2 className=" mobile:text-[3.721vw] mobile:font-bold ">Students Feedback</h2>
@@ -248,7 +248,7 @@ const CounsellorCardHeader = () => {
               setIsFetchData
             );
           }}
-          className="h-[58.889vh] overflow-auto myscrollbar mobile:w-[96vw] w-[69.063vw] ml-[1.875vw] rounded-2xl"
+          className="h-[100vh] overflow-auto myscrollbar mobile:w-[96vw] w-[69.063vw] ml-[1.875vw] rounded-2xl"
         >
           {accumulatedData.length > 0 ? (
             placementLoading ? (

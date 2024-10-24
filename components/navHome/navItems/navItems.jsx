@@ -59,15 +59,15 @@ function NavItems() {
   //   isLoading: onlineCourseIsLoading,
   // } = useGetAllOnlineCoursesQuery("online");
   const navItems = [
-    { id: 1, name: "All Courses", content: <Courses courseResponse={courseResponse} /> },
-    { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
-    { id: 3, name: "Online Courses", content: <OnlineCourses courseResponse={courseResponse} /> },
+    // { id: 1, name: "All Courses", content: <Courses courseResponse={courseResponse} /> },
+    // { id: 2, name: "Offline Centres", content: <Branches BranchResponse={BranchResponse} /> },
+    // { id: 3, name: "Online Courses", content: <OnlineCourses courseResponse={courseResponse} /> },
     // { id: 3, name: "University Programs", content: <UniversityProgram /> },
     // { id: 5, name: "Tuitions", content: <Tutions /> },
-    { id: 4, name: "Corporate Training", content: "" },
-    { id: 6, name: "Hire From Us", content: "" },
-    { id: 7, name: "Placements", content: "" },
-    { id: 8, name: "Contact Us", content: "" },
+    // { id: 4, name: "Corporate Training", content: "" },
+    // { id: 6, name: "Hire From Us", content: "" },
+    // { id: 7, name: "Placements", content: "" },
+    // { id: 8, name: "Contact Us", content: "" },
   ];
   const filterCountryObj = BranchResponse?.data?.filter(ele => ele?.countryName === 'india')
   const cityData = filterCountryObj?.[0]?.cities;

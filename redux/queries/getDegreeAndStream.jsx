@@ -6,7 +6,7 @@ export const degreeAndStreamApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
         getAllDegreeAndStream: builder.query({
-            query: (type_name,id,name,qualification_type_id,per_page=500) => API_ENDPOINTS.GET_DEGREE(type_name,id,name,qualification_type_id,per_page),
+            query: (name) => API_ENDPOINTS.GET_DEGREE(name),
         }),
     }),
 });

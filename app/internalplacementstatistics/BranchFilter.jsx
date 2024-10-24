@@ -33,6 +33,7 @@ const BranchFilter = ({ BranchList }) => {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
+
   return (
     <>
       <div className="flex justify-between pb-[1.111vh]">

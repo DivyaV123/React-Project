@@ -6,7 +6,7 @@ export const collegesApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
         getAllColleges: builder.query({
-            query: (id,district_id,state_id) => API_ENDPOINTS.GET_COLLEGES(id,district_id,state_id),
+            query: ({id,district_id,state_id,name}) => API_ENDPOINTS.GET_COLLEGES(id,district_id,state_id,name),
         }),
     }),
 });

@@ -27,8 +27,12 @@ const YearFilter = () => {
     yearSearchQuery,
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
-  const { data: PlacementBranchData } = useGetAllPlacementBranchQuery();
-  const BranchList = PlacementBranchData?.results?.filter((branch) => branch.name !== "");
+  const { data: PlacementBranchData } = useGetAllPlacementBranchQuery(
+    yearSearchQuery?.length >= 3 ? yearSearchQuery : ""
+  );
+  const BranchList = PlacementBranchData?.results?.filter(
+    (branch) => branch.name !== ""
+  );
   const { data: YearOfPassoutData } = useGetAllYearOfPassoutQuery();
   const YopList = YearOfPassoutData?.response;
   const sortedYearList = [...(YopList || [])].sort((a, b) => b - a);
@@ -53,7 +57,13 @@ const YearFilter = () => {
   };
 
   const handleCommonFilterForYear = (yearRange) => {
-    handleCounsellorCommonFilter(-1, [], setSelectedYop, yearRange, "highestyop");
+    handleCounsellorCommonFilter(
+      -1,
+      [],
+      setSelectedYop,
+      yearRange,
+      "highestyop"
+    );
   };
 
   const clearYearRange = () => {
@@ -69,7 +79,13 @@ const YearFilter = () => {
       checked={selected?.includes(item)}
       onChange={() => {
         clearYearRange();
-        handleCounsellorCommonFilter(item, selected, setSelected, items, "highestyop");
+        handleCounsellorCommonFilter(
+          item,
+          selected,
+          setSelected,
+          items,
+          "highestyop"
+        );
       }}
     />
   );
@@ -77,7 +93,8 @@ const YearFilter = () => {
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
   };
-  const commonClassforAllFilters="px-[1.875vw] pt-[2.778vh] thinCloseBorder pb-[1.111vh] mobile:px-[5.875vw] mobile:pt-[1.778vh]"
+  const commonClassforAllFilters =
+    "px-[1.875vw] pt-[2.778vh] thinCloseBorder pb-[1.111vh] mobile:px-[5.875vw] mobile:pt-[1.778vh]";
   return (
     <>
       <div className={commonClassforAllFilters}>
@@ -148,9 +165,7 @@ const YearFilter = () => {
         <BranchTypeFilter />
       </div>
       <div className={commonClassforAllFilters}>
-        <BranchFilter
-          BranchList={BranchList}
-        />
+        <BranchFilter BranchList={BranchList} />
       </div>
     </>
   );

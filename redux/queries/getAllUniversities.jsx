@@ -6,7 +6,7 @@ export const universitiesApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
         getAllUniversities: builder.query({
-            query: (id) => API_ENDPOINTS.GET_UNIVERSITIES(id),
+            query: (name) => API_ENDPOINTS.GET_UNIVERSITIES(name),
         }),
     }),
 });

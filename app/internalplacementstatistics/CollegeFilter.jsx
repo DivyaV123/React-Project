@@ -18,7 +18,10 @@ const CollegeFilter = () => {
   const [isExpanded, setIsExpanded] = useState(true);
 
   const { data: collegeData, refetch } =
-    useGetAllCollegesQuery(universitySelected);
+    useGetAllCollegesQuery({
+      university_id: universitySelected,
+      name: collegeSearchQuery?.length >= 3 ? collegeSearchQuery : ""  
+    });
     const getCollegeData = collegeData?.results?.filter((college) => college !== "")
   const collegeList = getCollegeData?.filter((college) =>
       college.name.toLowerCase().includes(collegeSearchQuery.toLowerCase())

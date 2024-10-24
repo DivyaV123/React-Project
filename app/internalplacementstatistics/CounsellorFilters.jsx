@@ -43,19 +43,21 @@ const CounsellorFilters = () => {
     setUniversitySearchQuery,
     setYearSearchQuery,
     setStreamSearchQuery,
-    emptySearch
+    emptySearch,
+    degreeSearchQuery,
+    streamSearchQuery
   } = useContext(GlobalContext);
 
   const {
     data: degreeAndStreamdata,
     error,
     isLoading,
-  } = useGetAllDegreeAndStreamQuery();
+  } = useGetAllDegreeAndStreamQuery(degreeSearchQuery?.length >= 3 ? degreeSearchQuery : "");
   const {
     data: streamData,
     error: streamError,
     isLoading: streamIsLoading,
-  } = useGetAllStreamQuery();
+  } = useGetAllStreamQuery(streamSearchQuery?.length >= 3 ? streamSearchQuery : "");
   const degreeList = degreeAndStreamdata?.results?.filter(
     (degree) => degree.name !== ""
   );

@@ -9,7 +9,7 @@ import { GlobalContext } from "@/components/Context/GlobalContext";
 const UniversityFilter = () => {
   const { handleCounsellorCommonFilter, selectedUniversity, setSelectedUniversity, universitySearchQuery, setUniversitySearchQuery, } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
-  const { data: universityData } = useGetAllUniversitiesQuery();
+  const { data: universityData } = useGetAllUniversitiesQuery(universitySearchQuery?.length >= 3 ? universitySearchQuery : "");
   const universityList = universityData?.results
     ?.filter((uni) => uni.name !== "")
     ?.map((uni) => ({

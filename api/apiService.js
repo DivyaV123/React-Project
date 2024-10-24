@@ -5,14 +5,14 @@ export const getWebsiteUrl = () => process.env.NEXT_PUBLIC_QSPIDERS_URL;
 export const getEnrollUrl = () => process.env.NEXT_PUBLIC_GOLANG_ENROLL_URL;
 export const API_ENDPOINTS = {
   LOGIN: 'api/v1/users/login',
-  GET_HERO_PAGE_DATA:(domain)=>`backend/api/v1/homepage-data?organization=${domain}`,
-  GET_ALL_CATEGORIES:(domain)=> `/backend/api/v1/categories/getAllCategories?organization=${domain}`,
-  GET_ALL_BRANCHES:(domain)=> `/backend/api/v1/branches/getAllBranches?organization=${domain}`,
-  ENROLL_NOW:"add-website-enquiry",
+  GET_HERO_PAGE_DATA: (domain) => `backend/api/v1/homepage-data?organization=${domain}`,
+  GET_ALL_CATEGORIES: (domain) => `/backend/api/v1/categories/getAllCategories?organization=${domain}`,
+  GET_ALL_BRANCHES: (domain) => `/backend/api/v1/branches/getAllBranches?organization=${domain}`,
+  ENROLL_NOW: "add-website-enquiry",
   ENQUIRE: 'api/v1/enquiry',
   FEEDBACK: 'api/v1/feedback',
   GET_CATEGORY_IN_COURSE_FORM: 'api/v1/categories/getCategory',
-  VIEW_ALL_COURSES:(domain)=> `backend/api/v1/branches/viewAll?organization=${domain}`,
+  VIEW_ALL_COURSES: (domain) => `backend/api/v1/branches/viewAll?organization=${domain}`,
   FIND_ALL_CATEGORIES: 'backend/api/v1/categories/findAllCategories',
   GET_COURSE_ID_AND_SUBCOURSE_ID: (courseId, subcourseId) => `api/v1/courses?categoryId=${courseId}${subcourseId}`,
   ADDCOURES_WITHFILE: `api/v1/courses/saveCourse`,
@@ -31,22 +31,24 @@ export const API_ENDPOINTS = {
   GET_BRANCH_BY_COURSE_ID_AND_BRANCH_ID: (courseId, branchId) => {
     let queryParams = `branchId=${branchId}`;
     if (courseId) {
-        queryParams += `&courseId=${courseId}`;
+      queryParams += `&courseId=${courseId}`;
     }
     return `backend/api/v1/branches/getbyid?${queryParams}`;
-},
+  },
   GET_ALL_COURSES_BY_COURSE_ID: (courseId) => `backend/api/v1/courses/getbyid?courseId=${courseId}`,
-  GET_ONLINE_COURSES:(mode)=> `backend/api/v1/categories/getAllCategories?mode=${mode}`,
+  GET_ONLINE_COURSES: (mode) => `backend/api/v1/categories/getAllCategories?mode=${mode}`,
   GET_ALL_FOR_ADMIN_PORTAL: 'api/v1/courses/getall',
   //placements
-  GET_STATES: (id) => `placementsstatelist/?id=${id ? id : ""}`,
-  GET_COLLEGES: (id, district_id, state_id) => `placementcollegelist/?district_id=${district_id ? district_id : ""}&state_id=${state_id ? state_id : ""}&university_id=${id ? id : ""}`,
-  GET_CITIES: (state_id) => `/placementscitylist/?id&state_id=${state_id ? state_id : ''}`,
-  GET_UNIVERSITIES: (id) => `placementsuniversities/?id=${id ? id : ''}`,
+  GET_STATES: (name) => `placementsstatelist/?name=${name ? name : ""}`,
+  GET_COLLEGES: (id, district_id, state_id,name) => `placementcollegelist/?district_id=${district_id ? district_id : ""}&state_id=${state_id ? state_id : ""}&university_id=${id ? id : ""}&name=${name ? name : ''}`,
+  GET_CITIES: (state_id,name) => `/placementscitylist/?state_id=${state_id ? state_id : ''}&name=${name ? name : ''}`,
+  GET_UNIVERSITIES: (name) => `placementsuniversities/?name=${name ? name : ''}`,
   GET_ORGANISATION: (id) => `placementorganisationlist/?id=${id ? id : ""}`,
-  GET_DEGREE: (type_name, id, name, qualification_type_id,per_page) => `placementsdegree/?type_name=${type_name ? type_name : ''}&id=${id ? id : ''}&name=${name ? name : ''}&qualification_type_id=${qualification_type_id ? qualification_type_id : ''}&per_page=${per_page ? per_page : ''}`,
-  GET_STREAM: (type_id, id, degree_id,per_page) => `placementsstream/?type_id=${type_id ? type_id : ''}&id=${id ? id : ''}&name=${degree_id ? degree_id : ''}&per_page=${per_page ? per_page : ''}`,
-  GET_BRANCH: (organization_id, id) => `/placementsbranchlist/?organization_id=${organization_id ? organization_id : ''}&id=${id ? id : ''}`,
+  GET_DEGREE: ( name) => `placementsdegree/?name=${name ? name : ''}`,
+  GET_STREAM: (name) => `placementsstream/?name=${name ? name : ''}`,
+  GET_BRANCH: (name) =>
+    `/placementsbranchlist/?name=${name ? name : ''}`,
+
   GET_COURSE_BY_ID: (courseId) => `api/v1/courses/getbyid?courseId=${courseId}`,
   COURSE_MAP_CATEGORY: (categoryId) => `/api/v1/categories/assigncourses?categoryId=${categoryId}`,
   CATEGORY_UNMAP: (categoryId) => `/api/v1/categories/removeCourseFromCategory?categoryId=${categoryId}`,
@@ -60,8 +62,8 @@ export const API_ENDPOINTS = {
   GET_LESS_THAN_SIXTY: (pageNo, pageSize) => `candidate/lessThanSixty?pageNo=${pageNo}&pageSize=${pageSize}`,
   GET_PLACED_BETWEEN: (startDate, endDate, pageNo, pageSize) => `candidate/placedDate?startDate=${startDate}&endDate=${endDate}&pageNumber=${pageNo}&size=${pageSize}`,
   COUNSELLOR_FILTER: (pageNumber, pageSize, parameter) => `candidate/counsellor/filter?pageNumber=${pageNumber}&pageSize=${pageSize}${parameter ? `&parameter=${parameter}` : ''}`,
- 
-  PLACEMENT_LIST: (page, testimonial_id, joining_date_after, joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id,highestyop,stud_org_id,stud_branch_id,verified_testimonial,less_than60,above_60,non_it,it,university,college,state,city,placement_branch_id) => `placementslist/?page=${page ? page : ""}&testimonial_id=${testimonial_id ? testimonial_id : ""}&joining_date_after=${joining_date_after ? joining_date_after : ""}&joining_date_before=${joining_date_before ? joining_date_before : ""}&degree_id=${degree_id ? degree_id : ""}&d_stream_id=${d_stream_id ? d_stream_id : ""}&masters_id=${masters_id ? masters_id : ""}&m_stream_id=${m_stream_id ? m_stream_id : ""}&highestyop=${highestyop ? highestyop : ""}&&stud_org_id=${stud_org_id ? stud_org_id :""}&stud_branch_id=${stud_branch_id ? stud_branch_id :""}&verified_testimonial=${verified_testimonial}&less_than60=${less_than60 ? less_than60 : ""}
+
+  PLACEMENT_LIST: (page, testimonial_id, joining_date_after, joining_date_before, degree_id, d_stream_id, masters_id, m_stream_id, highestyop, stud_org_id, stud_branch_id, verified_testimonial, less_than60, above_60, non_it, it, university, college, state, city, placement_branch_id) => `placementslist/?page=${page ? page : ""}&testimonial_id=${testimonial_id ? testimonial_id : ""}&joining_date_after=${joining_date_after ? joining_date_after : ""}&joining_date_before=${joining_date_before ? joining_date_before : ""}&degree_id=${degree_id ? degree_id : ""}&d_stream_id=${d_stream_id ? d_stream_id : ""}&masters_id=${masters_id ? masters_id : ""}&m_stream_id=${m_stream_id ? m_stream_id : ""}&highestyop=${highestyop ? highestyop : ""}&&stud_org_id=${stud_org_id ? stud_org_id : ""}&stud_branch_id=${stud_branch_id ? stud_branch_id : ""}&verified_testimonial=${verified_testimonial}&less_than60=${less_than60 ? less_than60 : ""}
   &above_60=${above_60 ? above_60 : ""}&non_it=${non_it ? non_it : ""}&it=${it ? it : ""}&university=${university ? university : ""}&college=${college ? college : ""}&state=${state ? state : ""}&city=${city ? city : ""}&placement_branch_id=${placement_branch_id ? placement_branch_id : ""}  `,
   //Add Subject
   SUBJECT_ADDER: `api/v1/subjects`,

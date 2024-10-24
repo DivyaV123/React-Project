@@ -6,7 +6,7 @@ export const PlacementBranchApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
         getAllPlacementBranch: builder.query({
-            query: (organization_id, id) => API_ENDPOINTS.GET_BRANCH(organization_id, id),
+            query: (name) => API_ENDPOINTS.GET_BRANCH(name),
         }),
     }),
 });

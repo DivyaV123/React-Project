@@ -6,7 +6,7 @@ export const streamApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
         getAllStream: builder.query({
-            query: (type_id,id,degree_id,per_page=500) => API_ENDPOINTS.GET_STREAM(type_id,id,degree_id,per_page),
+            query: (name) => API_ENDPOINTS.GET_STREAM(name),
         }),
     }),
 });

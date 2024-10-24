@@ -6,7 +6,7 @@ export const citiesApi = createApi({
     baseQuery: fetchBaseQuery({ baseUrl: getStatisticsUrl() }),
     endpoints: (builder) => ({
         getAllCities: builder.query({
-            query: (state_id) => API_ENDPOINTS.GET_CITIES(state_id),
+            query: ({state_id,name}) => API_ENDPOINTS.GET_CITIES(state_id,name),
         }),
     }),
 });

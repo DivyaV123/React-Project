@@ -15,7 +15,7 @@ const StateFilter = () => {
     setStateSearchQuery,
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
-  const { data: statesData, error, isLoading } = useGetAllStatesQuery();
+  const { data: statesData, error, isLoading } = useGetAllStatesQuery(stateSearchQuery?.length >= 3 ? stateSearchQuery : "");
   const getStatesData = statesData?.results?.filter(
     (state) => state.name !== ""
   ); 

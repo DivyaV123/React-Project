@@ -16,7 +16,10 @@ const CityFilter = ({ selectedState }) => {
     setCitySearchQuery,
   } = useContext(GlobalContext);
   const [isExpanded, setIsExpanded] = useState(true);
-  const { data: cityData, refetch } = useGetAllCitiesQuery(stateSelected);
+  const { data: cityData, refetch } = useGetAllCitiesQuery({
+    state_id: stateSelected, 
+    name: citySearchQuery?.length >= 3 ? citySearchQuery : ""  
+  });
   const cityList = cityData?.results
     ?.filter((city) => city.name !== "")
     ?.map((city) => ({

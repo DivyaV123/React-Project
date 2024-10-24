@@ -8,11 +8,13 @@ import { branchAbbreviations } from "@/lib/utils";
 import { truncateText, toProperCase } from "@/lib/utils";
 import TestimonialPopup from "./TestimonialPopup";
 import { extractVideoId } from "@/lib/utils";
-
+import { usePathname } from "next/navigation";
 const PlacementContent = ({ placementList }) => {
   const [imageDialog, setImageDialog] = useState(false);
   const [videoDialog, setVideoDialog] = useState(false);
   const [testimonialDialog, setTestimonialDialog] = useState(false);
+  const pathname = usePathname();
+  const isInternalPlacementPage=pathname.includes("internalplacementstatistics")
   const openImageDialog = () => {
     setImageDialog(true);
     setVideoDialog(false);
@@ -80,8 +82,8 @@ const PlacementContent = ({ placementList }) => {
 
         return (
           <section
-            className="w-[87.5vw]  mobile:w-[92.558vw]  contentCard flex mobile:flex-row-reverse sm:pt-[0.556vh]
-           sm:pl-[0.469vw] sm:pb-[1.111vh] sm:mb-[3.333vh] sm:mt-[0.556vh] sm:ml-[0.078vw] mobile:my-[2.575vh] mobile:gap-4 mobile:justify-end"
+            className={`${isInternalPlacementPage ? "w-[68vw]" : "w-[87.5vw]"} w-[87.5vw] mobile:w-[92.558vw]  contentCard flex mobile:flex-row-reverse sm:pt-[0.556vh]
+           sm:pl-[0.469vw] sm:pb-[1.111vh] sm:mb-[3.333vh] sm:mt-[0.556vh] sm:ml-[0.078vw] mobile:my-[2.575vh] mobile:gap-4 mobile:justify-end`}
           >
             <AlertDialog popup="imagepopup">
               <div className="mobile:flex mobile:flex-col flex mobile:w-full mobile:pr-[3.721vw]">
@@ -167,7 +169,7 @@ const PlacementContent = ({ placementList }) => {
                     </div>
                   </div>
                 </div>
-                <div className="sm:pl-[1.563vw] w-[59vw]  sm:pt-[2.222vh] flex flex-col justify-between">
+                <div className={`sm:pl-[1.563vw] w-[59vw] ${isInternalPlacementPage ? "w-[41vw]" : "w-[59vw]"} sm:pt-[2.222vh] flex flex-col justify-between`}>
                   <p className="studentReview mobile:hidden">
                     {student?.gotjob[0]?.mini_testimonial?.written_testimonial}
                   </p>
