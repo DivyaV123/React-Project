@@ -1,0 +1,21 @@
+.animatedCounter{
+    margin-top: 34px;
+      .counter{
+          font-size: 35px;
+          line-height: 53px;
+          letter-spacing: 0px;
+          opacity: 1;
+      }
+      .devider{
+          width: 1px;
+          height: 64px; 
+          margin: 10px;
+      }
+  }
+.badgeHover{
+border: 2px solid transparent;
+}
+.badgeHover:hover{
+border: 2px solid #f96900;
+color: #f96900;
+}

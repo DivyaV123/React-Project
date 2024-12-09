@@ -1,0 +1,118 @@
+.placedCard {
+  background: #002248;
+  width: 17.969vw;
+  height: 9.897vw;
+  border-radius: 1rem;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 85.116vw;
+    height: 8.584vh;
+    // margin-top: -7.296vh;
+  }
+}
+.activeGridBtn{
+  color:#f5861f
+}
+.non-activeGridBtn{
+  color:#53514f
+}
+.internalStats{
+  @extend .placedCard ;
+  width: 21.719vw;
+  @media (max-width: 639px) {
+    width: 85.116vw;
+    height: 8.584vh;
+    // margin-top: -7.296vh;
+  }
+}
+.degreeCard {
+  @extend .placedCard;
+  background: #fff0f2;
+  background-image: url(../../public/red_card.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-left: 3.721vw;
+    margin-right: 6.047vw;
+  }
+}
+.degreeInternal{
+  @extend .degreeCard;
+  width: 21.719vw;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-left: 3.721vw;
+    margin-right: 6.047vw;
+  }
+}
+.nonItCard {
+  @extend .placedCard;
+  background: #f3f6ff;
+  // width: 17.422vw;
+  background-image: url(../../public/blue_card.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-right: 3.721vw;
+  }
+}
+.branchCard{
+  @extend .placedCard;
+  background: #FFF4F0;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-left: 3.721vw;
+    margin-right: 6.047vw;
+  }
+
+}
+.overviewCard{
+  @extend .placedCard;
+  background: #E4FFE8;
+  margin-top: 0.5rem;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-right: 3.721vw;
+  }
+
+}
+.overviewInternal{
+  @extend .overviewCard;
+  width: 21.719vw;
+  @media (max-width: 639px) {
+    width: 43.256vw;
+    height: 12.876vh;
+    margin-top: 2.575vh;
+    margin-right: 3.721vw;
+  }
+}
+.imagePopup{
+  width: 100%;
+  height: inherit;
+}
+.videoPopup{
+  width: 100%;
+  height: inherit;
+}
+.placementContent{
+  // background: linear-gradient(177.96deg, rgba(255, 201, 151, 0.1) 1.72%, rgba(255, 255, 255, 0.76) 92.3%);
+  background: linear-gradient(177.96deg, rgba(255, 201, 151, 0.1) 1.72%, rgba(253, 291, 265, 51.76) 92.3%);
+
+}

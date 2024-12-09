@@ -1,0 +1,255 @@
+.hireFromSection {
+  background-image: url("../../public/hirefrombg.svg"),
+    linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.3) 0%,
+      rgba(255, 255, 255, 0.76) 78.2%
+    );
+  background-repeat: no-repeat;
+  height: 84vh;
+
+  background-position: bottom right;
+  background-size: auto 100%;
+}
+
+.textgradient {
+  background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.clientTestimonial {
+  height: auto;
+  padding-left: 58px;
+  padding-right: 58px;
+  padding-bottom: 5vh;
+  header {
+    .testimonials-text {
+      font-size: 32px;
+      font-weight: 700;
+      margin: 20px 0px;
+    }
+  }
+  .header-wrapper {
+    margin-top: 20px;
+    position: relative;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    margin-right: 3vh;
+    margin-left: 2vh;
+  }
+
+  .carousel-item {
+    border: 1px solid #00000040;
+    // width: 20.313vw;
+    // height: 240px;
+    border-radius: 12px;
+    text-wrap: wrap;
+    overflow: hidden;
+  }
+  .custom-quote {
+    color: orange;
+    height: 52px;
+    font-size: 50px;
+
+    display: inline-block;
+  }
+
+  .left-arrow {
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+
+  .right-arrow {
+    font-size: 20px;
+    border: 1px solid black;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+  }
+  .quotes {
+    color: #575757;
+    font-size: 15px;
+  }
+}
+.findingCandidate {
+  height: auto;
+  background-image: url("../../public/hireUsBg.png"),
+    linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.3) 0%,
+      rgba(255, 255, 255, 0.76) 78.2%
+    );
+  background-repeat: no-repeat;
+  background-position: bottom left;
+  background-size: cover;
+  // padding-left: 9.813vw;
+  // padding-right: 9.813vw;
+  .city-selector {
+    h2 {
+      // font-family: "poppins";
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 48px;
+      color: #454545;
+    }
+    .city-card {
+      // transition: background-color 0.3s;
+
+      &:hover {
+        background-color: #ffffff;
+        box-shadow: 0px 0px 12px -4px #00000040;
+        .image img {
+          filter: brightness(0) saturate(100%) invert(55%) sepia(92%)
+            saturate(2145%) hue-rotate(353deg) brightness(99%) contrast(102%);
+        }
+        .cityName {
+          color: #f77423;
+        }
+      }
+    }
+  }
+  .card_candidate {
+    gap: 2rem;
+  }
+  .cityName {
+    // font-family: Poppins;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+  }
+}
+// domain
+.domainContainer {
+  height: auto;
+  background: #f8f8f8;
+  .domain-selector {
+    h2 {
+      font-size: 32px;
+      font-weight: 700;
+      line-height: 48px;
+      color: #454545;
+    }
+    .domain_candidate {
+      padding-bottom: 25px;
+      gap: 30px;
+      position: relative;
+      padding-left: 7.813vw;
+      padding-right: 7.813vw;
+    }
+    .domain-card {
+      // transition: background-color 0.3s;
+      border-bottom: 2px solid #ff512f;
+      background: linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.76) 0%,
+        rgba(255, 201, 151, 0.1) 100%
+      ) !important;
+
+      margin-bottom: 10px;
+      transition: transform 0.3s, background-color 0.3s;
+      border-radius: 0px 0px 16px 16px;
+      // border: 0px 0px 2px 0px;
+    }
+  }
+  .card_candidate {
+    gap: 2rem;
+  }
+  .domainName {
+    // font-family: "Poppins";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 24px;
+    text-align: center;
+  }
+}
+.hiringFromUsComponent {
+  input::placeholder {
+    font-size: 14px;
+  }
+  .react-tel-input .form-control {
+    width: -webkit-fill-available;
+    height: 30px;
+  }
+  .react-tel-input .form-control:focus {
+    border-color: initial; 
+    box-shadow: none; 
+  }
+  .custom-grid-form_hiring {
+    @apply grid-cols-2;
+    gap: 1rem; // general gap
+
+    @media (min-width: 768px) {
+      column-gap: 3rem; // increased gap between columns for medium screens and up
+    }
+  }
+
+  .btnComponent {
+    right: 32px;
+    bottom: 16px;
+    position: absolute;
+    display: flex;
+    height: 48px;
+
+    justify-content: end;
+    button {
+      height: inherit;
+      width: 107px;
+      justify-content: end;
+      background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+    }
+  }
+}
+@media only screen and (max-width: 639px) {
+  .hireFromSection {
+    height: 45.708vh;
+    width: 100vw;
+    background: linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.1) 0%,
+      rgba(255, 255, 255, 0.76) 100%
+    );
+  }
+  .carousel-item {
+    width: auto !important;
+  }
+  .clientTestimonial header .testimonials-text {
+    font-size: 21px !important;
+  }
+  .btnComponent {
+    top: 1px !important;
+  }
+  .domainName{
+    font-size: 12px !important;
+  }
+}
+@media only screen and (max-width: 1024px) and (min-width: 744px) {
+  .hireFromSection {
+    height: 59.426vh;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 100vw;
+    background-image: url("../../public/hirefrombg.svg"),
+      linear-gradient(
+        180deg,
+        rgba(255, 201, 151, 0.3) 0%,
+        rgba(255, 255, 255, 0.76) 78.2%
+      );
+  }
+  .carousel-item {
+    width: auto !important;
+  }
+  .clientTestimonial header .testimonials-text {
+    font-size: 21px !important;
+  }
+  .btnComponent {
+    top: 1px !important;
+  }
+  .custom-grid-form_hiring {
+    grid-template-columns: repeat(1, minmax(0, 1fr));
+  }
+}

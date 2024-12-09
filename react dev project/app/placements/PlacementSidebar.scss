@@ -1,0 +1,175 @@
+.sidebarContainer {
+  width: 14.063vw;
+  height: 42.222vh;
+  @media (max-width: 639px) {
+    width: 100%;
+    display: flex;
+    background: white;
+    box-shadow: none;
+  }
+}
+.mobileRadius{
+  @media (max-width: 639px) {
+    border-radius: 20px;
+  }
+}
+.sideBarButton {
+  // border-radius: 20px 0px 0px 20px;
+  background: #7781F71F;
+  color: #575757;
+  font-weight: 400;
+  font-size: 1.15vw;
+
+}
+.placedCount{
+ 
+  color: #7781F7;
+  font-weight: 600;
+  font-size: 1.25vw;
+}
+.contentCard {
+  
+  border-radius: 20px;
+  
+  box-shadow: 0px 0px 24px -8px #00000040;
+ 
+  background-image: url("../../public/hireUsBg.png"),
+    linear-gradient(
+      180deg,
+      rgba(255, 201, 151, 0.3) 0%,
+      rgba(255, 255, 255, 0.76) 78.2%
+    );
+    background-repeat: no-repeat;
+    background-position: top;
+    background-size: inherit;
+
+}
+.imageCard {
+  @media (min-width: 639px) {
+    box-shadow: 0px 2px 6px 0px #00000040;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 1;
+    background: white;
+    margin-top: -3.5vh;
+    margin-bottom: -2.5vh;
+    margin-right: 0.313vw;
+    margin-left: 0.313vw;
+  }
+}
+.studentName {
+  color: #201c19;
+  font-size: 1.172vw;
+  @media (max-width: 639px) {
+    font-size: 3.721vw;
+  }
+}
+.studentDetails {
+  color: #201c19;
+  font-size: 0.781vw;
+  @media (max-width: 639px) {
+    font-size: 2.326vw;
+  }
+}
+.educationDetails {
+  color: #a5a5a5;
+  font-size: 0.625vw;
+  @media (max-width: 639px) {
+    font-size: 1.86vw;
+  }
+}
+.studentReview {
+  color: #6f6e6e;
+  font-size: 0.859vw;
+  @media (max-width: 639px) {
+    font-size: 2.791vw;
+  }
+}
+.studentReview span{
+  background: linear-gradient(96.77deg, #F09819 -28.03%, #FF512F 134.69%);
+  -webkit-background-clip: text;
+  color: transparent;
+}
+.iconContainer {
+  @media (min-width: 639px) {
+  width: 1.875vw;
+  border-radius: 0.75rem;
+  background: #ffffff;
+  box-shadow: 0px 2px 4px 0px #00000029;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.556vh;
+  padding-bottom: 0.556vh;
+  padding-left: 0.313vw;
+  padding-right: 0.313vw;
+  }
+  @media (max-width: 639px) {
+    border-radius: 0.75rem;
+    background: #ffffff;
+    box-shadow: 0px 2px 4px 0px #00000029;
+  }
+}
+.imageBox {
+  width: 9.375vw;
+  height: 17.639vh;
+  border-radius: 5px;
+  background: #d9d9d9;
+  box-shadow: 0px 0px 12px -6px #00000040;
+  @media (max-width: 639px) {
+    width: 13.953vw;
+    height: 6.438vh;
+  }
+}
+.videoBox {
+  width: 6.797vw;
+  height: 10.056vh;
+  border-radius: 14px;
+  background: #d9d9d9;
+  box-shadow: 0px 0px 12px -6px #00000040;
+  @media (max-width: 639px) {
+    width: 13.953vw;
+    height: 6.438vh;
+  }
+}
+.courseScroll::-webkit-scrollbar {
+  width: 5px !important;
+  border-radius: 5px;
+  visibility: hidden;
+}
+
+.courseScroll::-webkit-scrollbar-thumb {
+  width: 5px !important;
+  background-color: #a8a8a8;
+  border-radius: 5px;
+  visibility: hidden;
+}
+
+.courseScroll::-webkit-scrollbar-track {
+  width: 5px !important;
+  visibility: hidden;
+}
+
+.searchIcon{
+  position: absolute;
+  background-image: url("../../public/search.svg");
+  background-size: cover;
+  cursor: pointer;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-71%);
+}
+
+
+/* Prevent body scroll when modal is open */
+
+  body.modal-open {
+    overflow: hidden;
+    width: 100vw;
+}
+
+

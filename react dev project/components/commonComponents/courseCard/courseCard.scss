@@ -1,0 +1,31 @@
+.courseCard {
+  width: 21.016vw;
+  @media (min-width: 639px){
+    // height: 55.028vh;
+    box-shadow: 0px 0px 24px -6px #00000040;
+  }
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  
+  @media (max-width: 639px) {
+    width: 60.93vw;
+    box-shadow: 0px 0px 24px -6px #00000040;
+    border-radius: 8px;
+  }
+  .cardStyle {
+    //   width: 40%;
+    //   height: auto;
+    //   max-height: 418px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    border-radius: 16px;
+    opacity: 1;
+  }
+}
+.offlineScrollbar::-webkit-scrollbar {
+  visibility: hidden;
+}
+.offlineScrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -1,0 +1,15 @@
+.bg-pink {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 201, 151, 0.1) 0%,
+    rgba(255, 255, 255, 0.76) 78.2%
+  );
+}
+.spinner {
+  animation: spin 1s linear infinite;
+  border-radius: 9999px;
+  height: 4rem;
+  width: 4rem;
+  border-top-width: 4px;
+  border-top-color: orange;
+}

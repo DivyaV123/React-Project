@@ -1,0 +1,125 @@
+'use client'
+import React, { useState } from 'react'
+import {
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
+} from "@/components/ui/accordion"
+import Svg from '@/components/commonComponents/Svg/Svg';
+import { svgicons } from '@/components/assets/icons/svgassets';
+import NestedAccordion from '@/components/ui/NestedAccordion';
+import MaxWebWidth from '@/components/commonComponents/maxwebWidth/maxWebWidth';
+
+function CourseContent({ courseDetails,typeOfLearning }) {
+
+    const transformData = (subjects) => {
+        return subjects?.flatMap(subject => {
+            return subject?.chapters?.map(chapter => {
+                return {
+                    [chapter.chapterTitle]: chapter?.topics.map(topic => {
+                        return {
+                            [topic.topicTitle]: topic?.subTopics?.map(subTopic => subTopic?.subTopicTitle),
+                            [topic.topicPreviewDuration] : topic?.subTopics?.map(subTopic => subTopic?.subTopicPreviewDuration),
+                            [topic.topicPreviewUrl]: topic?.subTopics?.map(subTopic => subTopic?.subTopicPreviewUrl),
+                            [chapter.chapterModuleCount]:chapter?.chapterModuleCount,
+                            [chapter.chapterModuleDuration]:chapter?.chapterModuleDuration,
+                        };
+                     })
+                };
+            });
+        });
+    };
+
+    const courseContentdata = transformData(courseDetails?.data?.subjects)
+    const [openIndex, setOpenIndex] = useState(-1);
+
+    const handleAccordionToggle = (index) => {
+        setOpenIndex(index === openIndex ? '-1' : index);
+    };
+
+    const renderAccordions = (data, parentKey = '', isParent = true) => {
+        if (!Array.isArray(data)) {
+            return null; // Return null if data is not an array
+        }
+        return data?.map((item, index) => {
+            const key = parentKey ? `${parentKey}-accordion-${index}` : `accordion-${index}`;
+            if (typeof item === 'object' && !Array.isArray(item)) {
+                const [keyName] = Object.keys(item);
+                if (isParent) {
+                    return (
+                        <AccordionItem className='border-none' key={key} value={key}>
+                            <AccordionTrigger onClick={() => handleAccordionToggle(index)} className='bg-[#FFFCF9] m-1 font-medium'>
+                                <article className='flex justify-between w-full'>
+                                    <h1>
+                                        {keyName}
+                                    </h1>
+                                    <h1 className='pr-2'>4 Modules | 32 Min</h1>
+                                </article>
+                            </AccordionTrigger>
+                            <AccordionContent>
+                                {renderAccordions(Object.values(item)[0], key, false)}
+                            </AccordionContent>
+                        </AccordionItem>
+                    );
+                } else {
+                    return renderAccordions(Object.values(item)[0], key, false);
+                }
+            } else if (Array.isArray(item)) {
+                return item.map((subItem, subIndex) => {
+                    const subKey = `${key}-sub-${subIndex}`;
+                    return (
+                        <AccordionItem key={subKey} value={subKey}>
+                            <AccordionTrigger>{subItem}</AccordionTrigger>
+                        </AccordionItem>
+                    );
+                });
+            } else if (typeof item === 'string') {
+                return (
+                    <AccordionContent>
+                        {item !== "" && (
+                            <article className='flex justify-between'>
+                                <h1 className='flex'>
+                                    <span>
+                                        <Svg
+                                            width={svgicons.courseVideoIcon[0]}
+                                            height={svgicons.courseVideoIcon[1]}
+                                            viewBox={svgicons.courseVideoIcon[2]}
+                                            icon={svgicons.courseVideoIcon[3]}
+                                            color={svgicons.courseVideoIcon[4]}
+                                        />
+                                    </span><span className='p-1'>{item}</span>
+                                </h1>
+                                <h1 className='flex'>
+                                    <span>
+                                        <Svg
+                                            width={svgicons.courseVideoIcon[0]}
+                                            height={svgicons.courseVideoIcon[1]}
+                                            viewBox={svgicons.courseVideoIcon[2]}
+                                            icon={svgicons.courseVideoIcon[3]}
+                                            color={svgicons.courseVideoIcon[4]}
+                                        />
+                                    </span><span className='p-1'>Preview</span><span className='p-1'>4 min</span>
+                                </h1>
+                            </article>
+                        )}
+                    </AccordionContent>
+                );
+            } else {
+                return null; // Handle other types of data if necessary
+            }
+        });
+    };
+
+    return (
+        <MaxWebWidth>
+            <header className='text-[1.875vw] font-bold sm:pt-[2.778vh] pb-[2.778vh] mobile:pb-[1.717vh] mobile:text-[4.651vw]'>
+                Course Content
+            </header>
+            <article className='sm:my-[2.778vh]'>
+                <NestedAccordion data={courseContentdata} typeOfLearning={typeOfLearning}
+                    page='course' />
+            </article>
+        </MaxWebWidth>
+    )
+}
+export default CourseContent

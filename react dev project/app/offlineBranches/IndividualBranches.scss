@@ -1,0 +1,41 @@
+.offlineHeader {
+  font-weight: 700;
+  font-size: 1.406vw;
+  padding-top: 4.167vh;
+  @media (max-width: 639px) {
+    font-size: 4.651vw;
+    padding-top: 2.682vh;
+    margin-bottom: 1.717vh;
+  }
+}
+.cityNavbar {
+  background: #f4f4f4;
+}
+.activeCity {
+  font-weight: 600;
+  background: linear-gradient(96.77deg, #f09819 -28.03%, #ff512f 134.69%);
+  color: white;
+}
+.inActiveCity {
+  background: #ffffff;
+  font-weight: 500;
+  color: #454545;
+}
+// .courseCard {
+//   width: 19.063vw;
+//   border: 1px solid #c2c2c4;
+//   background: #ffffff;
+//   border-radius: 6px;
+// }
+.BranchCard {
+  width: 20.469vw;
+  border: 1px solid #c2c2c4;
+  background: #ffffff;
+  border-radius: 6px;
+  @media (max-width: 639px) {
+    width: 100%;
+  }
+}
+.BranchCard:hover{
+  border: 1px solid orangered;
+}

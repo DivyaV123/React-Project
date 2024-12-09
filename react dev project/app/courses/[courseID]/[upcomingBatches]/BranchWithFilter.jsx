@@ -1,0 +1,170 @@
+"use client";
+import React, { useState, useContext, useEffect } from "react";
+import { Checkbox } from "@/components/ui/checkbox";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import "./upComingBranches.scss";
+import { GlobalContext } from "@/components/Context/GlobalContext";
+
+import UpcommingBatchModalMobileView from "./UpcommingBatchModalMobileView";
+
+function BranchWithFilter() {
+  const { selectedBatch, setSelectedBatch } = useContext(GlobalContext);
+  const [openIndex, setOpenIndex] = useState(-1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+
+
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const branchesList = [
+    {
+      Bangalore: [
+        "Basavanagudi",
+        "Old Airport Road",
+        "Rajajinagar",
+        "Hebbal",
+        "BTM Layout",
+      ],
+    },
+    { Hyderabad: [] },
+    { Chennai: [] },
+    { Pune: [] },
+    { Mumbai: [] },
+    { Noida: [] },
+    { Gurugram: [] },
+    { "New Delhi": [] },
+    { Bhubaneswar: [] },
+    { Kolkata: [] },
+    { Ahmedabad: [] },
+    { Chandigarh: [] },
+    { Tirupati: [] },
+    { Kochi: [] },
+    { Mysore: [] },
+  ];
+
+  const handleAccordionToggle = (index) => {
+    setOpenIndex(index === openIndex ? -1 : index);
+  };
+
+  const handleCheckboxChange = (checked, id) => {
+    setSelectedBatch((prev) =>
+      Array.isArray(prev) ? (checked ? [...prev, id] : prev.filter((item) => item !== id)) : []
+    );
+  };
+
+
+  return (
+    <>
+      <section className="bg-[#F9F9F9] pb-6 ">
+        <button
+          onClick={handleModalOpen}
+          className="hidden mobile:flex mobile:gap-[1.163vw] rounded mobile:w-[23.256vw] mobile:bg-[#FFFFFF] mobile:text-[3.956vw] mobile:justify-center mobile:items-center mobile:h-[4.841vh] mobile:text-[] mobile:font-bold"
+        >
+          <span className="mobile:mx-1">
+            <img src="../../icon_filter_black.png" alt="Filter" />
+          </span>
+          Filter
+        </button>
+        <section className="flex gap-x-[1.875vw] gap-y-[3.333vh]">
+          <aside className="mobile:hidden">
+            <article className="w-[21.719vw]  bg-[#FFFFFF] rounded ">
+              <h1 className="font-semibold text-black text-[0.875rem] bg-[#FFF9F4] w-full p-3 flex">
+                City
+              </h1>
+              <Accordion type="single" collapsible className="w-full">
+                {branchesList.map((cityObj, index) => {
+                  const cityName = Object.keys(cityObj)[0];
+                  const branches = cityObj[cityName];
+                  const cityId = cityName.toLowerCase().replace(/ /g, "");
+                  return (
+                    <AccordionItem
+                      key={index}
+                      value={`item-${index + 1}`}
+                      isOpen={index === openIndex}
+                    >
+                      <AccordionTrigger
+                        className="p-[1.111vh]"
+                        onClick={() => handleAccordionToggle(index)}
+                      >
+                        <div className="p-[1.111vh]">
+                          <div className="flex items-center space-x-[1.111vh]">
+                            <Checkbox
+                              checked={selectedBatch.includes(cityName)}
+                              onCheckedChange={(checked) =>
+                                handleCheckboxChange(checked, cityName)
+                              }
+                              id={cityId}
+                            />
+                            <label
+                              htmlFor={cityId}
+                              className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                            >
+                              <span className="text-gray font-medium text-[0.875]">
+                                {cityName}
+                              </span>
+                            </label>
+                          </div>
+                        </div>
+                      </AccordionTrigger>
+                      <AccordionContent className="pl-[0.938vw]">
+                        {branches.map((branch, branchIndex) => {
+                          const branchId = `${cityId}-${branch
+                            .toLowerCase()
+                            .replace(/ /g, "")}`;
+                          return (
+                            <div className="p-[1.111vh]" key={branchIndex}>
+                              <div className="flex items-center space-x-2">
+                                <Checkbox
+                                  id={branchId}
+                                  checked={selectedBatch.includes(branchId)}
+                                  onCheckedChange={(checked) =>
+                                    handleCheckboxChange(checked, branchId)
+                                  }
+                                />
+                                <label
+                                  htmlFor={branchId}
+                                  className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                                >
+                                  {branch}
+                                </label>
+                              </div>
+                            </div>
+                          );
+                        })}
+                      </AccordionContent>
+                    </AccordionItem>
+                  );
+                })}
+              </Accordion>
+            </article>
+          </aside>
+        </section>
+      </section>
+      {isModalOpen && (
+        <UpcommingBatchModalMobileView
+          openIndex={openIndex}
+          handleCheckboxChange={handleCheckboxChange}
+          handleAccordionToggle={handleAccordionToggle}
+          selectedBatch={selectedBatch}
+          branchesList={branchesList}
+          isModalOpen={isModalOpen}
+          handleCloseModal={handleCloseModal}
+        />
+      )}
+    </>
+  );
+}
+
+export default BranchWithFilter;

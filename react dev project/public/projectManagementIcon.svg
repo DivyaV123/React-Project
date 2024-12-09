@@ -1,0 +1,7 @@
+<svg id="icon_menu_normal_10" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+  <rect id="background" width="24" height="24" fill="none"/>
+  <g id="Group_41297" data-name="Group 41297">
+    <rect id="Rectangle_44323" data-name="Rectangle 44323" width="24" height="24" fill="none"/>
+    <path id="shape" d="M15.5,12H17a2,2,0,0,0,2-2V3a2,2,0,0,0-2-2H10A2,2,0,0,0,8,3V4.5M3,19h7a2,2,0,0,0,2-2V10a2,2,0,0,0-2-2H3a2,2,0,0,0-2,2v7A2,2,0,0,0,3,19Z" transform="translate(2 2)" fill="none" stroke="#454545" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/>
+  </g>
+</svg>
